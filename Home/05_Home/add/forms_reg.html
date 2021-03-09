@@ -2,9 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forms</title>
+    <title>Forms_reg</title>
 </head>
 <body>
+    <h1 align="center">Заполните анкету</h1>
+    <form action="http://fe.it-academy.by/TestForm.php" method="post" name="autorizaciya">
+        <fieldset>
+            <legend>Личные данные</legend>
+            <input type="text" name="фамилия" pattern="^[А-Я][а-яЁё]+$" maxlength="25" autofocus placeholder="это обязательное поле" required value="Фамилия"><br>
+            <input type="text" name="имя" pattern="^[А-Я][а-яЁё]+$" maxlength="20" placeholder="это обязательное поле" required  value="Имя"><br>
+            <input type="text" name="отчество" pattern="^[А-Я][а-яЁё]+$" maxlength="24" placeholder="это обязательное поле" required value="Отчество"><br>
+                <fieldset>
+                    <legend>Паспортные данные</legend>
+                    <input type="text" name="серия_паспорта" pattern="[A-Z]{2,}" maxlength="2" placeholder="это обязательное поле" required value="AA" size="1">
+                    <input type="text" name="номер_паспорта" pattern="[0-9]{7,}" maxlength="7" placeholder="это обязательное поле" required value="1234567" size="5">
+                </fieldset>
+                <fieldset>
+                <legend>Дата рождения</legend>
+                <input type="text" name="год рождения" pattern="[0-9]{4,}" maxlength="4" placeholder="это обязательное поле" required value="2000" size="4"><br>
+                <select name="месяц рождения">
+                    <option value="январь">январь</option>
+                    <option value="февраль">февраль</option>
+                    <option value="март">март</option>
+                    <option value="апрель">апрель</option>
+                    <option value="май">май</option>
+                    <option value="июнь">июнь</option>
+                    <option value="июль">июль</option>
+                    <option value="август">август</option>
+                    <option value="сентябрь">сентябрь</option>
+                    <option value="октябрь">октябрь</option>
+                    <option value="декабрь">декабрь</option>
+                </select><br>
+                <!--пропустит 30,31 февраля-->
+                <input type="number" name="число рождения" min="1" max="31" value="1"><br>
+                </fieldset>
+            <select name="национальность">
+                <option value="бел">РБ</option>
+                <option value="рус">Россия</option>
+            </select><br>
+            Адрес:<br>
+            <textarea name="адрес" cols="25" rows="2"></textarea>
+        </fieldset>
+
+
+
+
+
+        <br>
+        <input type="submit" value="Отправить">
+    </form>
+
+
+
+
+    <br><br><br>
+    <form action="http://fe.it-academy.by/TestForm.php" method="get" name="autorizaciya">
+        <fieldset>
+            <legend>Личные данные</legend>
+            <input type="text" name="фамилия" maxlength="25" autofocus placeholder="это обязательное поле" required
+                   value="Фамилия">
+            <input type="text" name="имя" pattern="^[А-Я][а-яЁё]+$" maxlength="20" placeholder="это обязательное поле" require value="Имя"><br>
+            <input type="text" name="отчество" pattern="^[А-Я][а-яЁё]+$" maxlength="24" placeholder="это обязательное поле" require value="Отчество"><br>
+        </fieldset>
+        <fieldset>
+            <legend>Паспортные данные</legend>
+            <input type="text" name="серия_паспорта" pattern="[A-Z]{2,}" maxlength="2" placeholder="это обязательное поле" require value="AA" size="1">
+            <input type="text" name="номер_паспорта" pattern="^[А-Я][а-яЁё]+$" maxlength="7" value="1234567" size="5">
+        </fieldset>
+        <br>
+        <input type="submit" value="Отправить">
+    </form>
+
+
+
+
+
+
+
+    <br><br><br>
     <table width="700" border="0">
         <tr>
             <td valign="top"><h4>Простая форма поиска с вариантами:</h4>
