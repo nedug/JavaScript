@@ -9,18 +9,18 @@
     <form action="http://fe.it-academy.by/TestForm.php" method="post" name="autorizaciya">
         <fieldset>
             <legend>Личные данные</legend>
-            <input type="text" name="фамилия" pattern="^[А-Я][а-яЁё]+$" maxlength="25" autofocus placeholder="это обязательное поле" required value="Фамилия"><br>
-            <input type="text" name="имя" pattern="^[А-Я][а-яЁё]+$" maxlength="20" placeholder="это обязательное поле" required  value="Имя"><br>
-            <input type="text" name="отчество" pattern="^[А-Я][а-яЁё]+$" maxlength="24" placeholder="это обязательное поле" required value="Отчество"><br>
+            <input type="text" name="surname" pattern="^[А-Я][а-яЁё]+$" maxlength="25" autofocus placeholder="это обязательное поле" required value="Фамилия"><br>
+            <input type="text" name="name" pattern="^[А-Я][а-яЁё]+$" maxlength="20" placeholder="это обязательное поле" required  value="Имя"><br>
+            <input type="text" name="second_name" pattern="^[А-Я][а-яЁё]+$" maxlength="24" placeholder="это обязательное поле" required value="Отчество"><br>
                 <fieldset>
                     <legend>Паспортные данные</legend>
-                    <input type="text" name="серия_паспорта" pattern="[A-Z]{2,}" maxlength="2" placeholder="это обязательное поле" required value="AA" size="1">
-                    <input type="text" name="номер_паспорта" pattern="[0-9]{7,}" maxlength="7" placeholder="это обязательное поле" required value="1234567" size="5">
+                    <input type="text" name="series_passport" pattern="[A-Z]{2,}" maxlength="2" placeholder="это обязательное поле" required value="AA" size="1">
+                    <input type="text" name="number_passport" pattern="[0-9]{7,}" maxlength="7" placeholder="это обязательное поле" required value="1234567" size="5">
                 </fieldset>
                 <fieldset>
                 <legend>Дата рождения</legend>
-                <input type="text" name="год рождения" pattern="[0-9]{4,}" maxlength="4" placeholder="это обязательное поле" required value="2000" size="4"><br>
-                <select name="месяц рождения">
+                <input type="text" name="birth_year" pattern="[0-9]{4,}" maxlength="4" placeholder="это обязательное поле" required value="2000" size="4"><br>
+                <select name="birth_month">
                     <option value="январь">январь</option>
                     <option value="февраль">февраль</option>
                     <option value="март">март</option>
@@ -34,35 +34,35 @@
                     <option value="декабрь">декабрь</option>
                 </select><br>
                 <!--пропустит 30,31 февраля-->
-                <input type="number" name="число рождения" min="1" max="31" value="1"><br>
+                <input type="number" name="birth_day" min="1" max="31" value="1"><br>
                 </fieldset>
-            <select name="национальность">
+            <select name="national">
                 <option value="бел">РБ</option>
                 <option value="рус">Россия</option>
             </select><br>
             Адрес:<br>
-            <textarea name="адрес" cols="25" rows="2"></textarea>
+            <textarea name="adress" cols="25" rows="2"></textarea>
         </fieldset>
         <fieldset>
             <legend>Интересы</legend>
             <fieldset>
                 <legend>Хобби</legend>
                 <label>
-                <input type="checkbox" name="Рыбалка">Рыбалка
+                <input type="checkbox" name="fish">Рыбалка
                 </label><br>
                 <label>
-                    <input type="checkbox" name="Астрономия">Астрономия
+                    <input type="checkbox" name="astro">Астрономия
                 </label><br>
                 <label>
-                    <input type="checkbox" name="Дайвинг">Дайвинг
+                    <input type="checkbox" name="dive">Дайвинг
                 </label><br>
                 <label>
-                    <input type="checkbox" name="Марки">Марки
+                    <input type="checkbox" name="marks">Марки
                 </label><br>
             </fieldset>
             <fieldset>
                 <legend>Домашние животные</legend>
-                <select name="домашние животные[]" size="8" multiple>
+                <select name="home_pets[]" size="8" multiple>
                     <optgroup label="Попугаи">
                         <option value="Волнистый">Волнистый</option>
                         <option value="Ара">Ара</option>
@@ -89,11 +89,11 @@
         <fieldset>
             <legend>Координаты</legend>
             <input type="email" name="login" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="введите адрес почты"><br>
-            <input type="url" name="url" value="введите адрес сайта"><br>
+            <input type="url" name="url_site" value="введите адрес сайта"><br>
         </fieldset>
         <fieldset>
             <legend>Цифры</legend>
-            <input type="number" name="цифры" min="-2.5" max="2.5" step="0.1"><br>
+            <input type="number" name="number" min="-2.5" max="2.5" step="0.1"><br>
             <input type="range" name="range" min="1" max="10"><br>
         </fieldset>
         <fieldset>
