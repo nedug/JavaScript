@@ -1,0 +1,30 @@
+h1{
+    color: #ff1c1a !important;
+    font-style: italic
+}
+p{
+    color: blue;
+}
+body{
+    color: darkgoldenrod;
+}
+.aaa{
+    color: forestgreen;
+    font-weight: bold;
+}
+.bbb{
+    background-color: aquamarine;
+    color: dimgray;
+}
+#ccc{
+    color: black;
+}
+div span{
+    font-size: 50px;
+}
+.qqq{
+    background-color: darkmagenta;
+}
+p.qqq{
+    background-color: black;
+}
