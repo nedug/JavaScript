@@ -1,0 +1,34 @@
+tr:nth-child(1){
+    height: 50px;
+    background-color: #4086d0;
+    border-top: 2px dotted red;
+    border-bottom: 2px dotted red;
+}
+tr:nth-child(2n+3){
+    background-color: #50a750;
+    border-top: 2px dotted red;
+    border-bottom: 2px dotted red;
+}
+tr:last-child{
+    border-bottom: 2px dotted red;
+}
+table{
+    border-collapse: collapse;
+    caption-side: bottom;
+}
+td{
+    border-left: 2px dotted red;
+    height: 30px;
+}
+th:not(:last-child){
+    border-right: 2px dotted red;
+}
+th:only-of-type{
+    text-align: left;
+}
+tr:not(:first-child):hover{
+    background-color: yellow;
+    color: #f105f1;
+    font-style: italic;
+    cursor: pointer;
+}
