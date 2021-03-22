@@ -2,7 +2,6 @@ a[href^="https"]:before{
     content: url("pic/extref.png");
     margin-right: 5px;
 }
-
 p > a[href$=".doc"]:after{
     content: url("pic/logo-doc.jpg");
     margin-left: 5px;
