@@ -1,20 +1,20 @@
-a[href^="https"]:before{
+a[href^="https"]::before{
     content: url("pic/extref.png");
     margin-right: 5px;
 }
-p > a[href$=".doc"]:after{
+p > a[href$=".doc"]::after{
     content: url("pic/logo-doc.jpg");
     margin-left: 5px;
 }
-p > a[href$=".pdf"]:after{
+p > a[href$=".pdf"]::after{
     content: url("pic/logo-pdf.png");
     margin-left: 5px;
 }
-p > a[href$=".zip"]:after{
+p > a[href$=".zip"]::after{
     content: url("pic/logo-zip.gif");
     margin-left: 5px;
 }
-ul li:before{
+ul li::before{
     content: url("pic/logo-list.jpg");
     margin-right: 5px;
 }
@@ -22,20 +22,20 @@ ul{
     list-style-type: none;
     padding-left: 15px;
 }
-li a:hover[href$=".doc"]:after{
+li a:hover[href$=".doc"]::after{
     content: url("pic/logo-doc.jpg");
     margin-left: 5px;
 }
-li a:hover[href$=".pdf"]:after{
+li a:hover[href$=".pdf"]::after{
     content: url("pic/logo-pdf.png");
     margin-left: 5px;
 }
-li a:hover[href$=".zip"]:after{
+li a:hover[href$=".zip"]::after{
     content: url("pic/logo-zip.gif");
     margin-left: 5px;
 }
 p{
     border: 1px solid #00000030;
     padding: 10px;
-    border-radius: 0 15px 0;
+    border-radius: 0 10px/20px;
 }

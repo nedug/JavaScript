@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		 body{
+           height: 1000px;
+           padding: 1px;
+		 }
+		.first{
+          height: 500px;
+          width: 500px;
+			 background-color: #b84444;
+			 position: relative;
+			 /*top: 50px;*/
+			 /*left: 50px;*/
+			 margin-top: 50px;
+			 margin-left: 50px;
+			 /*opacity: 0.5;*/
+          -moz-transform: rotate(76deg);
+          -webkit-transform: rotate(76deg);
+          -o-transform: rotate(76deg);
+          -ms-transform: rotate(76deg);
+          transform: rotate(76deg);
+			 transform-origin: left;
+		}
+      .second{
+          height: 200px;
+          width: 200px;
+          background-color: #4259d0;
+          /*position: relative;*/
+          /*top: 50px;*/
+          /*left: 50px;*/
+      }
+		.third{
+			 height: 100px;
+          width: 100px;
+          background-color: #42d055;
+			 position: absolute;
+			 top: 0px;
+          right: -50px;
+			 z-index: -1;
+
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="first">
+	<div class="second">
+		<div class="third"></div>
+	</div>
+</div>
+
+</body>
+</html>

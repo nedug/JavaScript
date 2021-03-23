@@ -1,4 +1,4 @@
-a[href^="https"]{
+[href^="https"]{
     background-image: url("pic/extref.png");
     background-repeat: no-repeat;
     background-position: left;
@@ -46,5 +46,5 @@ li a:hover[href$=".zip"]{
 p{
     border: 1px solid #00000030;
     padding: 10px;
-    border-radius: 0 15px 0;
+    border-radius: 0 10px/20px;
 }

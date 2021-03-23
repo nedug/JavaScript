@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       h2+ p + strong + p{
+           background-color: red;
+       }
+		  strong ~ p{
+			  color: blue;
+		 }
+       ul li{
+           list-style-type: none;
+           width: 100px;
+           height: 100px;
+           background-color: green;
+           margin: 10px;
+           display: inline-block;
+       }
+		 li:hover{
+			  background-color: #ff1c1a;
+		 }
+		div > p > strong{
+			  background-color: #87dbdb;
+		 }
+       #main P:first-child{
+			  color:#0F0
+		 }
+       #main1 P:only-of-type{
+           color:red
+       }
+	</style>
+</head>
+<body>
+	<h2>Привет</h2>
+	<p>Тест</p>
+	<strong>Пока</strong>
+	<p>Тест</p>
+	<p>Тест</p>
+	<p>Тест</p>
+	<h2>Пока
+		<p>Тест</p>
+	</h2>
+	<hr>
+	<h2>Привет</h2>
+	<p>Тест</p>
+
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+	<div>
+		<p>тэг П
+			<strong>стронг
+				<em>ем
+					<span>
+						спан
+					</span>
+				</em>
+			</strong>
+		</p>
+	</div>
+	<div>
+		<p>тэг П
+			<em>ем
+				<strong>
+					<span>
+						спан
+					</span>
+				</strong>
+			</em>
+		</p>
+	</div>
+	<hr>
+	<div id="main">
+		<p>этот абзац <strong>спан</strong> будет набран зеленым цветом.</p>
+		<blockquote>
+			<p>этот абзац — тоже.</p>
+			<p>этот абзац — тоже.</p>
+		</blockquote>
+		<blockquote>
+			<p>и этот — тоже.</p>
+			<p>а этот — нет.</p>
+		</blockquote>
+		<p>а этот — нет.</p>
+	</div>
+	<hr>
+	<div id="main1">
+		<p>этот абзац будет набран зеленым цветом.</p>
+		<blockquote>
+			<p>этот абзац — тоже.</p>
+		</blockquote>
+		<blockquote>
+			<p>и этот — тоже.</p>
+			<p>а этот — нет.</p>
+		</blockquote>
+		<p>а этот — нет.</p>
+	</div>
+	<hr>
+</body>
+</html>
