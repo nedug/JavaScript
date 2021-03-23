@@ -43,7 +43,7 @@ li a:hover[href$=".zip"]{
     background-position: right;
     padding-right: 20px;
 }
-p {
+p{
     border: 1px solid #00000030;
     padding: 10px;
     border-radius: 0 15px 0;
