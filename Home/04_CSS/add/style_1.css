@@ -1,4 +1,4 @@
-a[href^="https"]::before{
+[href^="https"]::before{
     content: url("pic/extref.png");
     margin-right: 5px;
 }
