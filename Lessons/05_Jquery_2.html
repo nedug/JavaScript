@@ -111,14 +111,25 @@
 		      $(window).scrollTop(500);
         })
 
-		  $('form').submit(function (e) {
-		      e.preventDefault();
-				console.log('form send');
+		  // $('form').submit(function (e) {
+		  //     e.preventDefault();
+			// 	console.log('form send');
+        // })
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var value = $('input[type="text"]').val();
+            if(value === ''){
+                alert('enter value')
+				}
+            else{
+                console.log('form send')
+				}
         })
 
-
-
-
+        // $('#btn').click(function () {
+        //     $('#test1').html('<p>test1 <span>text2</span></p>')
+        // })
 
 
     });

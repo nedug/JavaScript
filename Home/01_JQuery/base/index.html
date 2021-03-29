@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		p{
+			 font-size: 10px;
+		}
+	</style>
+</head>
+<body>
+	<form action="" name="form" method="get">
+		<label>Введите свой пароль:
+			<input id="pswd" type="password" name="password" size="15">
+		</label>
+			<input id="sbm" type="submit" name="send" value="Войти">
+			<p>* - от 8 до 15 символов с минимум одной цифрой, одной	заглавной и одной строчной латинской буквой</p>
+	</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="password"]').keyup(function () {
+            var value = $(this).val();
+            if (value.match(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})/)) {
+                $('#pswd').css('backgroundColor', 'green'); $('#sbm').fadeIn(1000); $('p').slideUp(1000);
+            } else {
+                $('#pswd').css('backgroundColor', 'red'); $('#sbm').fadeOut(1000); $('p').css('color', 'red').slideDown(1000);
+            }
+        });
+		  $('form').submit(function (e) {
+				e.preventDefault();
+				var value = $('input[type="password"]').val();
+				if(value === ''){
+					 alert('Пароль: Неверное значение')
+				}
+		  });
+    });
+    //не будет работать если вставить пароль при помощи мыши
+</script>
+</body>
+</html>
