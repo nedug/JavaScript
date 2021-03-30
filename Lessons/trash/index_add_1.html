@@ -6,8 +6,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
-<table>
-	<caption>Данные о сотрудниках</caption>
+<table class="table">
+	<caption>данные о сотрудниках</caption>
 	<tr>
 		<th>ФИО</th>
 		<th>пол</th>
@@ -57,26 +57,31 @@
 		<td>923123379</td>
 	</tr>
 </table>
-<button class="btn btn-dark" disabled><span>Нет скрытых строк</span></button>
+<button class="btn btn-dark"><span>Нет скрытых строк</span></button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-        $('table').addClass('table table-dark table-striped table-bordered table-hover');
-        $('tr:nth-child(1), td, caption').css('textAlign', 'center');
+        $('tr:nth-child(1)').css({'backgroundColor': '#4086d0','height': '50px'});
+        $('tr:nth-child(2n+3)').css('backgroundColor', '#50a750');
+        $('tr').css({'borderTop': '2px dotted red', 'borderBottom': '2px dotted red'});
+        $('td').css({'borderLeft': '2px dotted red', 'height': '30px'});
+        $('th:not(:last-child)').css('borderRight', '2px dotted red');
+        $('table').css({'borderCollapse': 'collapse', 'captionSide': 'bottom'});
         $('tr:not(:first-child)').mouseenter(function () {
-				$(this).css('color', '#de7cde')
-		  	})
-				.mouseleave(function () {
-					 $(this).css('color', 'white')
-				})
+            $(this).css({'backgroundColor': 'yellow', 'color': '#f105f1'})
+        })
+            .mouseleave(function () {
+                $(this).css({'backgroundColor': 'white','color': 'black'});
+                $('tr:nth-child(2n+3)').css({'backgroundColor': '#50a750'});
+            })
             .click(function () {
-                $(this).slideUp(); $('span').html('<span>Показать все строки</span>'); $('button').prop("disabled", false)
+                $(this).slideUp(); $('span').html('<span>Показать все строки</span>');
             });
 		  $('button').click(function () {
-		      $('tr').slideDown(); $('span').html('<span>Нет скрытых строк</span>'); $('button').prop("disabled", true)
+		      $('tr').slideDown(); $('span').html('<span>Нет скрытых строк</span>');
         });
     });
 </script>
