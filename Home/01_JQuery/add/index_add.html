@@ -73,10 +73,18 @@
 					 $(this).css('color', 'white')
 				})
             .click(function () {
-                $(this).slideUp(); $('span').html('<span>Показать все строки</span>'); $('button').prop("disabled", false)
+                $(this).fadeOut(300); $('span').html('<span>Показать все строки</span>'); $('button').prop("disabled", false).animate({
+                    marginLeft: 8
+                }, 50).animate({
+                    marginLeft: 1
+                }, 50).animate({
+                    marginLeft: 4
+                }, 50).animate({
+                    marginLeft: 1
+                }, 50)
             });
 		  $('button').click(function () {
-		      $('tr').slideDown(); $('span').html('<span>Нет скрытых строк</span>'); $('button').prop("disabled", true)
+		      $('tr').fadeIn(300); $('span').html('<span>Нет скрытых строк</span>'); $('button').prop("disabled", true)
         });
     });
 </script>
