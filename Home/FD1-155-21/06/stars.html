@@ -4,9 +4,33 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 </head>
+<style>
+	 li{
+		  width: 100px;
+        height: 100px;
+		  margin: 0 -2px;
+		  display: inline-block;
+		  background-image: url("img/star0.png");
+		  background-repeat: no-repeat;
+	}
+	ul:hover>li{
+       background-image: url("img/star1.png");
+       background-repeat: no-repeat;
+	}
+   li:hover~li{
+       background-image: url("img/star0.png");
+       background-repeat: no-repeat;
+   }
+	</style>
 <body>
 
-
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
 
 </body>
 </html>
