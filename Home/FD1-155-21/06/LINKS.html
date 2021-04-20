@@ -20,10 +20,21 @@
 	ul{
 		 margin-left: -40px;
 	}
-	a{
+	a:not(.menu a){
 		 color: #50a750;
 		 padding: 0 15px;
        border-left: #ff1c1a solid 3px;
+	}
+   .menu a:not(a:first-child)::before{
+       content: '|';
+       padding: 0 10px;
+       color: #ff1c1a;
+       font-size: 23px;
+		 font-weight: bold;
+   }
+	.menu a{
+		 color: #50a750;
+		 margin-left: 10px;
 	}
 	td:first-child>a, li:first-child>a, div:first-child:not(.menu)>a, .menu a:first-child{
 		 border: none;
@@ -34,7 +45,7 @@
 </style>
 <body>
 
-<!--несколько тегов <a> подряд-->
+<!--несколько тегов <a> подряд, разделитель с помощью псевдо-элемента :before-->
 	<div class="menu">
 		<a href="#">первая ссылка</a>
 		<a href="#">вторая ссылка</a>
@@ -44,7 +55,7 @@
 	</div>
 	<br>
 
-<!--с помощью таблицы-->
+<!--с помощью таблицы, разделитель border-->
 	<div class="menu_table">
 		<table>
 			<tr>
@@ -58,7 +69,7 @@
 	</div>
 	<br>
 
-<!--c помошью свойства display: inline-block;-->
+<!--c помошью свойства display: inline-block. разделитель border-->
 	<div class="menu_div">
 		<div><a href="#">первая ссылка</a></div>
 		<div><a href="#">вторая ссылка</a></div>
@@ -68,7 +79,7 @@
 	</div>
 	<br>
 
-<!--c помошью свойства float: left;-->
+<!--c помошью свойства float: left. разделитель border-->
 	<div class="menu_float">
 		<div><a href="#">первая ссылка</a></div>
 		<div><a href="#">вторая ссылка</a></div>
@@ -78,7 +89,7 @@
 	</div>
 	<br>
 
-<!--c помощью маркированного списка и свойства display: inline;-->
+<!--c помощью маркированного списка и свойства display: inline. разделитель border-->
 	<ul class="menu_list">
 		<li><a href="#">первая ссылка</a></li>
 		<li><a href="#">вторая ссылка</a></li>
