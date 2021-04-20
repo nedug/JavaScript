@@ -6,47 +6,35 @@
 </head>
 <style>
 	.menu_table td{
-       width: 155px;
 		 text-align: left;
-	}
-	.menu_table td:first-child{
-		 /*border-left: none;*/
 	}
 	.menu_div div{
 		 display: inline-block;
 	}
-	.menu_div div:first-child{
-		 /*border-left: none;*/
-	}
-   .menu_float div{
+	.menu_float div{
        float: left;
    }
-   .menu_float div:first-child{
-       /*border-left: none;*/
-   }
-	.menu a:first-child{
-		 border-left: none;
+	.menu_list li{
+		 display: inline;
 	}
-
-
-
+	ul{
+		 margin-left: -40px;
+	}
 	a{
 		 color: #50a750;
 		 padding: 0 15px;
        border-left: #ff1c1a solid 3px;
 	}
-	td:first-child>a{
+	td:first-child>a, li:first-child>a, div:first-child:not(.menu)>a, .menu a:first-child{
 		 border: none;
 	}
-	div:first-child:not(.menu)>a{
-       border-left: none;
-	}
-		a:hover{
+	a:hover{
 		 color: #ff1c1a;
 	}
 </style>
 <body>
 
+<!--несколько тегов <a> подряд-->
 	<div class="menu">
 		<a href="#">первая ссылка</a>
 		<a href="#">вторая ссылка</a>
@@ -56,6 +44,7 @@
 	</div>
 	<br>
 
+<!--с помощью таблицы-->
 	<div class="menu_table">
 		<table>
 			<tr>
@@ -69,6 +58,7 @@
 	</div>
 	<br>
 
+<!--c помошью свойства display: inline-block;-->
 	<div class="menu_div">
 		<div><a href="#">первая ссылка</a></div>
 		<div><a href="#">вторая ссылка</a></div>
@@ -78,6 +68,7 @@
 	</div>
 	<br>
 
+<!--c помошью свойства float: left;-->
 	<div class="menu_float">
 		<div><a href="#">первая ссылка</a></div>
 		<div><a href="#">вторая ссылка</a></div>
@@ -85,6 +76,16 @@
 		<div><a href="#">четвертая ссылка</a></div>
 		<div><a href="#">пятая ссылка</a></div>
 	</div>
+	<br>
+
+<!--c помощью маркированного списка и свойства display: inline;-->
+	<ul class="menu_list">
+		<li><a href="#">первая ссылка</a></li>
+		<li><a href="#">вторая ссылка</a></li>
+		<li><a href="#">третья ссылка</a></li>
+		<li><a href="#">четвертая ссылка</a></li>
+		<li><a href="#">пятая ссылка</a></li>
+	</ul>
 
 </body>
 </html>
