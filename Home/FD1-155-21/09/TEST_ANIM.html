@@ -3,10 +3,85 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+		.container{
+          width: 550px;
+          height: 550px;
+			 background-color: #50a750;
+			 position: relative;
+		}
+		.first{
+          height: 200px;
+			 width: 200px;
+			 position: absolute;
+			 top: 50px;
+          left: 50px;
+			 animation: my_1 3s infinite;
+          animation-timing-function: linear;
+		}
+      .second{
+          height: 250px;
+          width: 120px;
+          background-color: #4d64d9;
+			 position: absolute;
+			 right: 0;
+			 top: 150px;
+      }
+      .third{
+          height: 100px;
+          width: 300px;
+          background-color: #d9bb4d;
+          position: absolute;
+          bottom: 0;
+      }
+		@keyframes my_1{
+			 from{
+				  background-color: #ff1c1a;
+				  transform: rotate(0);
+			 }
+			 to{
+              background-color: #15dec7;
+              transform: rotate(360deg);
+			 }
+      }
+      @keyframes my_2{
+          from{
+              background-color: #d76011;
+              top: 150px;
+          }
+          to{
+              background-color: #121312;
+              top: 0;
+          }
+      }
+      @keyframes my_3{
+          from{
+              height: 100px;
+              width: 300px;
+              background-color: #d9bb4d;
+          }
+          to{
+              height: 200px;
+              width: 150px;
+              background-color: #50a750;
+          }
+      }
+      .container:hover .second{
+          animation: my_2 2s infinite;
+      }
+      .container:hover .third{
+          animation: my_3 4s;
+          animation-fill-mode: forwards;
+      }
+	</style>
 </head>
 <body>
 
-
+	<div class="container">
+		<div class="first"></div>
+		<div class="second"></div>
+		<div class="third"></div>
+	</div>
 
 </body>
 </html>
