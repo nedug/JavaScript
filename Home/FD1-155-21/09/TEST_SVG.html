@@ -3,10 +3,51 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       rect.home:hover {
+           fill:rgb(255, 0, 234);
+           stroke:black;
+			  stroke-width: 5px;
+       }
+       polygon:hover {
+           fill:rgba(72, 236, 113, 0.678);
+           stroke:green;
+           stroke-width: 15px;
+       }
+       rect.window:hover {
+           fill:red;
+           width: 100px;
+           height: 150px;
+			  stroke:white;
+           stroke-width: 3px;
+       }
+       rect.door:hover {
+           fill:rgb(23, 226, 209);
+           width: 115px;
+           stroke:wheat;
+       }
+       circle.sun:hover {
+           fill:rgb(236, 142, 2);
+           r:100;
+       }
+       line.vert:hover {
+           stroke:rgb(23, 226, 209);
+       }
+	</style>
 </head>
 <body>
 
-
+	<div style="width: 1280px;">
+		<svg width=1240px height=800 xmlns='http://www.w3.org/2000/svg'>
+			<circle class="sun" cx=15% cy=120 r=70  fill=yellow />
+			<rect class="home" x=38% y=310 width=300 height=300 stroke='#FF0000' fill=blue />
+			<polygon points="380,310 615,100 850,310" stroke=red fill=green />
+			<rect class="window" x=40% y=333 width=100 height=100 stroke='#FF0000' fill=brown />
+			<rect class="door" x=52% y=410 width=100 height=200 stroke='#FF0000' fill=brown />
+			<line class="vert" x1=44% y1=433 x2=44% y2=333 stroke=red />
+			<line  x1=40% y1=383 x2=48% y2=383 stroke=red />
+		</svg>
+	</div>
 
 </body>
 </html>
