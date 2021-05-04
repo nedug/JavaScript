@@ -17,21 +17,20 @@
     var patronymic = prompt('Введите отчество');
     isFinite(parseFloat(patronymic)) ? (patronymic = "error") && (alert('Вы ввели некорректное значение Отчества')) : '';
 
-    var age = prompt ('Введите возраст в годах');
-    var age_check = parseInt(age);
-    isNaN(age_check) ? (age = "error") && (alert('Вы ввели некорректное значение Возраста')) : '';
+    var age = parseInt(prompt('Введите возраст в годах'));
+    isNaN(age) ? (age = "error") && (alert('Вы ввели некорректное значение Возраста')) : '';
 
     var gender = confirm('Ваш пол мужской?');
     gender ? gender = 'мужской' : gender = 'женский';
 
     var pension;
 
-	 ((gender == 'мужской') && (age_check<62)) ? pension = "нет" : '';
-	 ((gender == 'мужской') && (age_check>=62)) ? pension = "да" : '';
-	 ((gender == 'женский') && (age_check<58)) ? pension = "нет" : '';
-	 ((gender == 'женский') && (age_check>=58)) ? pension = "да" : '';
+	 ((gender == 'мужской') && (age<62)) ? pension = "нет" : '';
+	 ((gender == 'мужской') && (age>=62)) ? pension = "да" : '';
+	 ((gender == 'женский') && (age<58)) ? pension = "нет" : '';
+	 ((gender == 'женский') && (age>=58)) ? pension = "да" : '';
 
-    alert ('ваше ФИО: '+ surname + ' ' + name + ' ' + patronymic + '\nваш возраст в годах: ' + age + '\nваш возраст в днях: ' + (age_check*365) + '\nчерез 5 лет вам будет: ' + (age_check+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension)
+    alert ('ваше ФИО: '+ surname + ' ' + name + ' ' + patronymic + '\nваш возраст в годах: ' + age + '\nваш возраст в днях: ' + (age*365) + '\nчерез 5 лет вам будет: ' + (age+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension)
 
 </script>
 

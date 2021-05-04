@@ -9,29 +9,25 @@
 <script>
 
    var surname = prompt('Введите фамилию');
-   var surname_check = parseFloat(surname);
-   if (isFinite(surname_check)) {
+   if (isFinite(parseFloat(surname))) {
        alert('Вы ввели некорректное значение Фамилии');
        surname = "error";
 	}
 
 	var name = prompt('Введите имя');
-   var name_check = parseFloat(name);
-   if (isFinite(name_check)) {
+   if (isFinite(parseFloat(name))) {
        alert('Вы ввели некорректное значение Имени');
        name = "error";
 	}
 
 	var patronymic = prompt('Введите отчество');
-   var patronymic_check = parseFloat(patronymic);
-   if (isFinite(patronymic_check)) {
+   if (isFinite(parseFloat(patronymic))) {
        alert('Вы ввели некорректное значение Отчества');
        patronymic = "error";
 	}
 
-   var age = prompt ('Введите возраст в годах');
-   var age_check = parseInt(age);
-   if (isNaN(age_check)) {
+   var age = parseInt(prompt('Введите возраст в годах'));
+   if (isNaN(age)) {
        alert('Вы ввели некорректное значение Возраста');
        age = "error";
    }
@@ -46,20 +42,20 @@
 
    var pension;
 
-   if ((gender == 'мужской') && (age_check<62)) {
+   if ((gender == 'мужской') && (age<62)) {
        pension = "нет";
 	}
-   else if ((gender == 'мужской') && (age_check>=62)) {
+   else if ((gender == 'мужской') && (age>=62)) {
        pension = "да";
    }
-   else if ((gender == 'женский') && (age_check<58)) {
+   else if ((gender == 'женский') && (age<58)) {
        pension = "нет";
    }
-   else if ((gender == 'женский') && (age_check>=58)) {
+   else if ((gender == 'женский') && (age>=58)) {
        pension = "да";
    }
 
-	alert ('ваше ФИО: '+ surname + ' ' + name + ' ' + patronymic + '\nваш возраст в годах: ' + age + '\nваш возраст в днях: ' + (age_check*365) + '\nчерез 5 лет вам будет: ' + (age_check+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension)
+	alert ('ваше ФИО: '+ surname + ' ' + name + ' ' + patronymic + '\nваш возраст в годах: ' + age + '\nваш возраст в днях: ' + (age*365) + '\nчерез 5 лет вам будет: ' + (age+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension)
 
 </script>
 
