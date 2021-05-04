@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+   var surname = prompt('Введите фамилию');
+   var surname_check = parseFloat(surname);
+   if (isFinite(surname_check)) {
+       alert('Вы ввели некорректное значение Фамилии');
+       surname = "error";
+	}
+
+	var name = prompt('Введите имя');
+   var name_check = parseFloat(name);
+   if (isFinite(name_check)) {
+       alert('Вы ввели некорректное значение Имени');
+       name = "error";
+	}
+
+	var patronymic = prompt('Введите отчество');
+   var patronymic_check = parseFloat(patronymic);
+   if (isFinite(patronymic_check)) {
+       alert('Вы ввели некорректное значение Отчества');
+       patronymic = "error";
+	}
+
+   var age = prompt ('Введите возраст в годах');
+   var age_check = parseInt(age);
+   if (isNaN(age_check)) {
+       alert('Вы ввели некорректное значение Возраста');
+       age = "error";
+   }
+
+   var gender = confirm('Ваш пол мужской?');
+   if (gender) {
+       gender = 'мужской';
+	}
+   else {
+       gender = 'женский';
+	}
+
+   var pension;
+
+   if ((gender == 'мужской') && (age_check<62)) {
+       pension = "нет";
+	}
+   else if ((gender == 'мужской') && (age_check>=62)) {
+       pension = "да";
+   }
+   else if ((gender == 'женский') && (age_check<58)) {
+       pension = "нет";
+   }
+   else if ((gender == 'женский') && (age_check>=58)) {
+       pension = "да";
+   }
+
+	alert ('ваше ФИО: '+ surname + ' ' + name + ' ' + patronymic + '\nваш возраст в годах: ' + age + '\nваш возраст в днях: ' + (age_check*365) + '\nчерез 5 лет вам будет: ' + (age_check+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension)
+
+</script>
+
+</body>
+</html>
