@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		input{
+          width: 300px;
+          height: 50px;
+			 background-color: #88cbd7;
+			 margin: 6px;
+			 border: none;
+			 font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+
+	<input type="button" value="ввод информации о стране" onclick='indicateCountry()'><br>
+	<input type="button" value="получение информации о стране" onclick='getInformation()'><br>
+	<input type="button" value="перечень всех стран" onclick='dataInConsole()'><br>
+	<input type="button" value="удаление информации о стране" onclick='deleteInformation()'><br>
+
+<script>
+
+    var countrysH={};
+
+    function addCountry(countryName,capitalName) {
+        countrysH[countryName]=capitalName;
+    }
+
+    function deleteCountry(countryName) {
+        delete countrysH[countryName];
+    }
+
+    function getCountryInfo(countryName) {
+        if ( countryName in countrysH )
+            return 'страна: ' + countryName + ' столица: ' + countrysH[countryName] ;
+        else
+            return 'нет информации о стране ' + countryName + '!' ;
+    }
+
+    function listCountrys() {
+        var res="";
+        for ( var CN in countrysH )
+            res+='\n'+getCountryInfo(CN);
+        return res;
+    }
+
+    addCountry('Германия','Берлин');
+    addCountry('Венгрия','Будапешт');
+    addCountry('Франция','Париж');
+
+    console.log("список стран:" + listCountrys() );
+
+
+
+    function indicateCountry() {
+        countryName = prompt("Введите страну:", "Беларусь");
+        capitalName = prompt("Введите столицу:", "Минск");
+        addCountry(countryName, capitalName);
+    }
+
+    function dataInConsole() {
+        console.log("список стран:" + listCountrys() );
+    }
+
+    function getInformation() {
+        countryName = prompt("Введите название страны:", "Беларусь");
+        getCountryInfo(countryName);
+        alert(getCountryInfo(countryName));
+    }
+
+    function deleteInformation() {
+        countryName = prompt("Введите название страны:", "Беларусь");
+        deleteCountry(countryName);
+    }
+
+
+//	var countries = {'Германия':'Берлин'};
+//
+//	function addCountry (country, capital) {
+//       country = prompt("Введите страну:", "Россия");
+//       capital = prompt("Введите столицу:", "Москва");
+//       countries[country] = capital;
+//   }
+//
+//   // addCountry('беларусь', 'минск');
+//
+//	console.log(countries)
+//
+
+   // var surname = prompt('Введите страну', 'Беларусь');
+	
+</script>
+
+</body>
+</html>

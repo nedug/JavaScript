@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    function getCountryInfo(countryName) {
+        if ( countryName in countrysH )
+            return 'страна: ' + countryName + ' столица: ' + countrysH[countryName] ;
+        else
+            return 'нет информации о стране ' + countryName + '!' ;
+    }
+
+    countryName = prompt("Введите название страны:", "Венгрия");
+
+    getCountryInfo (countryName)
+
+</script>
+
+</body>
+</html>
