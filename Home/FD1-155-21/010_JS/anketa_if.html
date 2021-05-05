@@ -8,25 +8,25 @@
 
 <script>
 
-   var surname = prompt('Введите фамилию');
+   var surname = prompt('Введите фамилию', 'Иванов');
    if (isFinite(parseFloat(surname))) {
        alert('Вы ввели некорректное значение Фамилии');
        surname = "error";
 	}
 
-	var name = prompt('Введите имя');
+	var name = prompt('Введите имя', 'Иван');
    if (isFinite(parseFloat(name))) {
        alert('Вы ввели некорректное значение Имени');
        name = "error";
 	}
 
-	var patronymic = prompt('Введите отчество');
+	var patronymic = prompt('Введите отчество', 'Иванович');
    if (isFinite(parseFloat(patronymic))) {
        alert('Вы ввели некорректное значение Отчества');
        patronymic = "error";
 	}
 
-   var age = parseInt(prompt('Введите возраст в годах'));
+   var age = parseInt(prompt('Введите возраст в годах', '60'));
    if (isNaN(age)) {
        alert('Вы ввели некорректное значение Возраста');
        age = "error";
@@ -45,13 +45,10 @@
    if ((gender == 'мужской') && (age<62)) {
        pension = "нет";
 	}
-   else if ((gender == 'мужской') && (age>=62)) {
-       pension = "да";
-   }
    else if ((gender == 'женский') && (age<58)) {
        pension = "нет";
    }
-   else if ((gender == 'женский') && (age>=58)) {
+   else {
        pension = "да";
    }
 
