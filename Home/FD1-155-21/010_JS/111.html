@@ -3,22 +3,62 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       input{
+           width: 350px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 6px;
+           border: none;
+           font-size: 18px;
+       }
+		 [value^="уда"]{
+			  background-color: #e97170;
+		 }
+       [value^="вв"]{
+           background-color: #8ce5a1;
+       }
+	</style>
 </head>
 <body>
 
+	<input type="button" value="ввод информации о стране" onclick='addCountry()'><br>
+	<input type="button" value="получение информации о стране" onclick='getInfoCountry()'><br>
+	<input type="button" value="перечень всех стран" onclick='showListCountry()'><br>
+	<input type="button" value="удаление информации о стране" onclick='deleteCountry()'><br>
 
 <script>
 
-    function getCountryInfo(countryName) {
-        if ( countryName in countrysH )
-            return 'страна: ' + countryName + ' столица: ' + countrysH[countryName] ;
-        else
-            return 'нет информации о стране ' + countryName + '!' ;
+    var countries = {'Germany':'Berlin', 'Russia':'Moscow'};
+
+    function addCountry(country, capital) {
+          country = prompt("Введите страну:", "Belarus");
+          capital = prompt("Введите столицу:", "Minsk");
+          countries[country] = capital;
+          alert ('Страна успешно добавлена!');
+      }
+
+    function getInfoCountry(country) {
+        country = prompt("Введите название страны:", "Belarus");
+        if (country in countries) {
+            alert ('Столица страны: ' + countries[country]);
+        }
+        else {
+            alert('нет информации о стране: ' + country);
+        }
     }
 
-    countryName = prompt("Введите название страны:", "Венгрия");
+      function showListCountry() {
+        for (var key in countries) {
+            console.log('Название страны: ' + key + '  Название столицы: ' + countries[key]);
+		  }
+		}
 
-    getCountryInfo (countryName)
+		function deleteCountry(country) {
+			 country = prompt("Введите название страны:", "Belarus");
+			 delete countries[country];
+          alert ('Страна успешно удалена!');
+		}
 
 </script>
 
