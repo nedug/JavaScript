@@ -5,7 +5,7 @@
 	<title>Title</title>
 	<script src="JS/Country.js"></script>
 	<style>
-       input{
+        button{
            width: 350px;
            height: 50px;
            background-color: #88cbd7;
@@ -13,20 +13,20 @@
            border: none;
            font-size: 18px;
        }
-		 [value^="уда"]{
+		 [onclick^="del"]{
 			  background-color: #e97170;
 		 }
-       [value^="вв"]{
+       [onclick^="add"]{
            background-color: #8ce5a1;
        }
 	</style>
 </head>
 <body>
 
-	<input type="button" value="ввод информации о стране" onclick='addCountry()'><br>
-	<input type="button" value="получение информации о стране" onclick='getInfoCountry()'><br>
-	<input type="button" value="перечень всех стран" onclick='showListCountry()'><br>
-	<input type="button" value="удаление информации о стране" onclick='deleteCountry()'><br>
+	<button type="button" onclick='addCountry()'>ввод информации о стране</button> <br>
+	<button type="button" onclick='getInfoCountry()'>получение информации о стране</button> <br>
+	<button type="button" onclick='showListCountry()'>перечень всех стран</button> <br>
+	<button type="button" onclick='deleteCountry()'>удаление информации о стране</button>
 
 </body>
 </html>
