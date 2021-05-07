@@ -3,12 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+		div{
+          height: 600px;
+          width: 600px;
+			 background:
+                  url("img/pan_part.png") no-repeat 96px 266px,
+						url("img/small_pan_all.png") no-repeat 119px 208px,
+						url("img/big_pan.png") no-repeat center;
+		}
+		div:hover{
+          background:
+                  url("img/pan_part.png") no-repeat 96px 266px,
+                  url("img/small_pan_all.png") no-repeat 119px 135px,
+                  url("img/big_pan.png") no-repeat center;
+			 transition: .7s;
+		}
+	</style>
 </head>
 <body>
 
-	<img src="img/big_pan.png" alt="pan">
-	<img src="img/small_pan.png" alt="pan" style="margin-left: -415px; margin-bottom: 75px;">
-<!--	<img src="img/small_pan_all.png" alt="pan" style="margin-left: -415px; margin-bottom: 75px;">-->
+	<div></div>
 
 </body>
 </html>
