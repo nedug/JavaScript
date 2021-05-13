@@ -16,6 +16,7 @@
    }
 	.menu_list li{
 		 display: inline;
+       padding: 0 8px;
 	}
 	ul{
 		 margin-left: -40px;
@@ -23,7 +24,7 @@
 	.menu{
 		 margin-left: 23px;
 	}
-	a:not(.menu a){
+	a:not(.menu a, .menu_list a){
 		 padding: 0 15px;
        border-left: #ff1c1a solid 3px;
 	}
@@ -33,6 +34,12 @@
        color: #ff1c1a;
        font-size: 23px;
 		 font-weight: bold;
+   }
+   .menu_list div{
+       display: inline-block;
+       width: 3px;
+       height: 16px;
+       background-color: #ff1c1a;
    }
 	a{
 		 color: #50a750;
@@ -54,7 +61,19 @@
 		<a href="#">четвертая ссылка</a>
 		<a href="#">пятая ссылка</a>
 	</div>
-	<br>
+
+<!--c помощью маркированного списка и свойства display: inline. разделитель c помощью div (width, height) -->
+<ul class="menu_list">
+	<li><a href="#">первая ссылка</a></li>
+	<li><div></div></li>
+	<li><a href="#">вторая ссылка</a></li>
+	<li><div></div></li>
+	<li><a href="#">третья ссылка</a></li>
+	<li><div></div></li>
+	<li><a href="#">четвертая ссылка</a></li>
+	<li><div></div></li>
+	<li><a href="#">пятая ссылка</a></li>
+</ul>
 
 <!--с помощью таблицы, разделитель border-->
 	<div class="menu_table">
@@ -89,15 +108,6 @@
 		<div><a href="#">пятая ссылка</a></div>
 	</div>
 	<br>
-
-<!--c помощью маркированного списка и свойства display: inline. разделитель border-->
-	<ul class="menu_list">
-		<li><a href="#">первая ссылка</a></li>
-		<li><a href="#">вторая ссылка</a></li>
-		<li><a href="#">третья ссылка</a></li>
-		<li><a href="#">четвертая ссылка</a></li>
-		<li><a href="#">пятая ссылка</a></li>
-	</ul>
 
 </body>
 </html>
