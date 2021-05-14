@@ -12,14 +12,18 @@ body{
     width: 1336px;
     margin: 0 auto;
 }
-/*черная верхняя полоска*/
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/*черная верхняя полоса*/
 .read_more p{
-    height: 40px;
     font-size: 14px;
     color: #ffffff;
     text-align: center;
     background: #181818;
-    padding-top: 13px;
+    padding: 13px 0;
     text-transform: capitalize;
 }
 .read_more span{
@@ -32,7 +36,6 @@ body{
 
 /*основное меню*/
 .menu{
-    background-color: aquamarine;
     padding: 1px;
 }
 .menu h3{
@@ -44,12 +47,12 @@ body{
     margin: 20px 56px 20px 36px;
     float: left;
 }
-.menu ul{
+.goods{
     list-style-type: none;
     font-weight: 400;
     font-size: 18px;
 }
-.menu ul li{
+.goods li{
     float: left;
     margin: 32px 0 32px 36px;
     border: 1px solid transparent;
@@ -60,9 +63,17 @@ body{
     text-decoration: none;
     color: inherit;
 }
-.menu ul li:hover{
+.goods li:hover{
     border: 1px solid rgba(0,0,0,0.6);
 }
+.icon{
+    list-style-type: none;
+    font-size: 22px;
+    margin-right: 29px;
+}.icon li{
+     float: right;
+     margin: 36px 24px 37px 0;
+ }
 
 
 
