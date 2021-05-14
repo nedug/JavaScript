@@ -7,6 +7,11 @@ body{
     overflow-x: hidden;
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
+    height: 2000px;
+}
+a{
+    text-decoration: none;
+    color: inherit;
 }
 .container{
     width: 1336px;
@@ -23,7 +28,7 @@ body{
     color: #ffffff;
     text-align: center;
     background: #181818;
-    padding: 13px 0;
+    padding: 12px 0;
     text-transform: capitalize;
 }
 .read_more span{
@@ -32,6 +37,7 @@ body{
 .read_more a{
     color: #88C6FF;
     text-transform: none;
+    text-decoration: underline;
 }
 
 /*основное меню*/
@@ -59,10 +65,6 @@ body{
     border-radius: 4px;
     padding: 5px;
 }
-.menu a{
-    text-decoration: none;
-    color: inherit;
-}
 .goods li:hover{
     border: 1px solid rgba(0,0,0,0.6);
 }
@@ -75,6 +77,118 @@ body{
      margin: 36px 24px 37px 0;
  }
 
+/*первый блок фото*/
+ .photo_goods_1 img{
+     float: left;
+ }
+ .photo_goods_1 .sox{
+     float: left;
+     width: 216px;
+     height: 204px;
+     background-color: #FEDF1E;
+ }
+ [src*='1']{
+     margin: 59px 46px 72px 36px;
+ }
+[src*='2']{
+    margin: 41px 36px 55px 0;
+}
+[src*='6'],[src*='7']{
+    margin: 31px 10px 8px 0;
+}
+[src*='8']{
+    margin-left: 10px;
+}
+.sox h4{
+    font-weight: 500;
+    font-size: 18px;
+    margin: 32px 0 8px;
+}
+.sox h2{
+    font-weight: 600;
+    font-size: 42px;
+}
+.sox p{
+    font-weight: 300;
+    font-size: 12px;
+    margin: 29px 22px 34px;
+}
+ .sox{
+     text-align: center;
+ }
+
+/*скидки*/
+.sale_inside{
+    background-color: #C12633;
+    color: #FFFFFF;
+    height: 407px;
+    position: relative;
+}
+.sale_inside p:last-of-type{
+    font-weight: 400;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    position: absolute;
+    top: 70px;
+    right: 88px;
+}
+.sale_inside h3{
+    font-weight: 600;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    position: absolute;
+    top: 132px;
+    right: 88px;
+}
+.sale_inside h2{
+    font-weight: 600;
+    font-size: 72px;
+    letter-spacing: 0.04em;
+    position: absolute;
+    top: 167px;
+    right: 88px;
+}
+.sale_inside button{
+    width: 227px;
+    height: 50px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0;
+    position: absolute;
+    top: 287px;
+    right: 88px;
+}
+.sale_inside .sss,.sale_inside .aaa,.sale_inside .lll,.sale_inside .eee{
+    font-weight: 800;
+    font-size: 194px;
+    position: absolute;
+}
+.sale_inside .sss{
+    top: 142px;
+    left: 93px;
+    transform: rotate(-18.82deg);
+}
+.sale_inside .aaa{
+    top: 52px;
+    left: 256px;
+    transform: rotate(7.67deg);
+}
+.sale_inside .lll{
+    top: 135px;
+    left: 380px;
+    transform: rotate(-24.68deg);
+}
+.sale_inside .eee{
+    top: 90px;
+    left: 509px;
+    transform: rotate(14.68deg);
+}
 
 
 
