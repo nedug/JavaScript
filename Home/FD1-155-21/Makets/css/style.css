@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+}
+.container{
+    width: 1336px;
+    margin: 0 auto;
+}
+/*черная верхняя полоска*/
+.read_more p{
+    height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    background: #181818;
+    padding-top: 13px;
+    text-transform: capitalize;
+}
+.read_more span{
+    font-weight: 400;
+}
+.read_more a{
+    color: #88C6FF;
+    text-transform: none;
+}
+
+/*основное меню*/
+.menu{
+    background-color: aquamarine;
+    padding: 1px;
+}
+.menu h3{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    width: 103px;
+    height: 52px;
+    margin: 20px 56px 20px 36px;
+    float: left;
+}
+.menu ul{
+    list-style-type: none;
+    font-weight: 400;
+    font-size: 18px;
+}
+.menu ul li{
+    float: left;
+    margin: 32px 0 32px 36px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 5px;
+}
+.menu a{
+    text-decoration: none;
+    color: inherit;
+}
+.menu ul li:hover{
+    border: 1px solid rgba(0,0,0,0.6);
+}
+
+
+
+
