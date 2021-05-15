@@ -33,7 +33,7 @@ ul{
 }
 .read_more_inside div:first-child{
     float: left;
-    margin-left: 20px;
+    margin-left: 38px;
     color: white;
     font-size: 12px;
 }
@@ -41,12 +41,12 @@ ul{
     float: left;
     color: #ffffff;
     text-align: center;
-    margin: 12px 0 12px 255px;
+    margin: 12px 0 12px 240px;
     text-transform: capitalize;
 }
 .read_more_inside div:last-child{
     float: right;
-    padding: 12px 10px;
+    padding: 12px 24px;
     background-color: #FEDF1E;
 }
 select{
@@ -89,13 +89,13 @@ select{
 }
 .goods li{
     float: left;
-    margin: 32px 0 32px 36px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    padding: 5px;
+    margin: 32px 0 32px 41px;
+    border-bottom: 1px solid transparent;
+    padding: 3px 0;
 }
 .goods li:hover{
-    border: 1px solid rgba(0,0,0,0.6);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    color: #646464;
 }
 .icon{
     font-size: 22px;
@@ -103,7 +103,10 @@ select{
 }.icon li{
      float: right;
      margin: 36px 24px 37px 0;
- }
+}
+.fa-heart{
+    color: red;
+}
 
 /*первый блок фото*/
  .photo_goods_1 img{
@@ -115,6 +118,7 @@ select{
      height: 204px;
      background-color: #FEDF1E;
      text-align: center;
+     cursor: pointer;
  }
  [src*='1']{
      margin: 59px 46px 72px 36px;
@@ -183,6 +187,7 @@ select{
     color: #000000;
     text-transform: uppercase;
     border: none;
+    border-radius: 4px;
     font-weight: 600;
     font-size: 17px;
     letter-spacing: 0;
@@ -243,7 +248,84 @@ select{
     transform: rotate(-37.5deg);
     padding-top: 0;
 }
+.sale_inside:hover .discount_circle_3{
+    animation: my_1 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_1{
+    to{
+        transform: rotate(360deg);
+    }
+}
+.sale_inside:hover .discount_circle_1, .sale_inside:hover .discount_circle_2{
+    animation: my_2 .5s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_2{
+    to{
+        z-index: -1;
+    }
+}
+.sale_inside:hover .sss{
+    animation: my_3 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_3{
+    to{
+        transform: rotate(0);
+    }
+}
+.sale_inside:hover .aaa{
+    animation: my_4 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_4{
+    to{
+        transform: rotate(0);
+        top: 142px;
+    }
+}
+.sale_inside:hover .lll{
+    animation: my_5 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_5{
+    to{
+        transform: rotate(0);
+        top: 142px;
+    }
+}
+.sale_inside:hover .eee{
+    animation: my_6 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_6{
+    to{
+        transform: rotate(0);
+        top: 142px;
+        left: 545px;
+    }
+}
 
-
+/*две кнопки*/
+.red_button{
+    text-align: center;
+}
+.red_button button{
+    width: 244px;
+    height: 48px;
+    background-color: #C12633;
+    color: white;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 40px 108px;
+    cursor: pointer;
+}
+.red_button button:hover{
+    color: black;
+    transition: .3s;
+}
 
 
