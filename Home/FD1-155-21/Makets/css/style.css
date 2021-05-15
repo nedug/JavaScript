@@ -249,7 +249,7 @@ select{
     padding-top: 0;
 }
 .sale_inside:hover .discount_circle_3{
-    animation: my_1 2s;
+    animation: my_1 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes my_1{
@@ -258,7 +258,7 @@ select{
     }
 }
 .sale_inside:hover .discount_circle_1, .sale_inside:hover .discount_circle_2{
-    animation: my_2 .5s;
+    animation: my_2;
     animation-fill-mode: forwards;
 }
 @keyframes my_2{
@@ -267,7 +267,7 @@ select{
     }
 }
 .sale_inside:hover .sss{
-    animation: my_3 2s;
+    animation: my_3 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes my_3{
@@ -276,7 +276,7 @@ select{
     }
 }
 .sale_inside:hover .aaa{
-    animation: my_4 2s;
+    animation: my_4 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes my_4{
@@ -286,7 +286,7 @@ select{
     }
 }
 .sale_inside:hover .lll{
-    animation: my_5 2s;
+    animation: my_5 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes my_5{
@@ -296,7 +296,7 @@ select{
     }
 }
 .sale_inside:hover .eee{
-    animation: my_6 2s;
+    animation: my_6 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes my_6{
@@ -355,3 +355,21 @@ select{
     letter-spacing: 0;
     margin-bottom: 48px;
  }
+.background_nike_inside:hover p{
+      animation: my_7 .5s;
+      animation-fill-mode: forwards;
+  }
+@keyframes my_7{
+    to{
+        padding: 100px 394px 45px;
+    }
+}
+.background_nike_inside:hover button{
+    animation: my_8 .5s;
+    animation-fill-mode: forwards;
+}
+@keyframes my_8{
+    to{
+        margin-bottom: 100px;
+    }
+}
