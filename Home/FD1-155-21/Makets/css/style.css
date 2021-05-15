@@ -45,7 +45,7 @@ ul{
 }
 .read_more_inside div:last-child{
     float: right;
-    padding: 12px 24px;
+    padding: 12px 30px;
     background-color: #FEDF1E;
 }
 select{
@@ -58,7 +58,7 @@ select{
     margin: 10px 0;
 }
 .fa-truck{
-    padding-right: 10px;
+    padding-right: 25px;
 }
 .read_more span{
     font-weight: 400;
@@ -99,29 +99,38 @@ select{
 .icon{
     font-size: 22px;
     margin-right: 29px;
-}.icon li{
-     float: right;
-     margin: 36px 24px 37px 0;
 }
-.fa-heart{
+.icon li{
+     float: right;
+     margin: 36px 32px 37px 0;
+}
+.icon li:nth-of-type(3){
+    position: relative;
+}
+.icon span{
     color: #d71c2c;
+    position: absolute;
+    font-size: 18px;
+    font-weight: 500;
+    top: -10px;
+
 }
 
 /*первый блок фото*/
- .photo_goods_1 img{
+.photo_goods_1 img{
      float: left;
- }
- .photo_goods_1 .sox{
+}
+.photo_goods_1 .sox{
      float: left;
      width: 216px;
      height: 204px;
      background-color: #FEDF1E;
      text-align: center;
      cursor: pointer;
- }
- [src*='1']{
+}
+[src*='1']{
      margin: 59px 46px 72px 36px;
- }
+}
 [src*='2']{
     margin: 41px 36px 55px 0;
 }
@@ -353,11 +362,11 @@ select{
     font-size: 17px;
     letter-spacing: 0;
     margin-bottom: 48px;
- }
+}
 .background_nike_inside:hover p{
       animation: my_7 .5s;
       animation-fill-mode: forwards;
-  }
+}
 @keyframes my_7{
     to{
         padding: 100px 394px 45px;
@@ -416,7 +425,7 @@ select{
     width: 280px;
     height: 30px;
     border: 1px solid white;
-    border-radius: 2px;
+    border-radius: 4px;
     background: #181818;
     color: white;
     margin: 25px 0;
@@ -441,4 +450,7 @@ select{
 }
 .instagram i{
     cursor: pointer;
+}
+.instagram i:hover{
+    color: #C12633;
 }
