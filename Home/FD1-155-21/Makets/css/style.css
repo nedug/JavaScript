@@ -13,6 +13,9 @@ a{
     text-decoration: none;
     color: inherit;
 }
+ul{
+    list-style-type: none;
+}
 .container{
     width: 1336px;
     margin: 0 auto;
@@ -22,14 +25,41 @@ a{
     display: block;
     clear: both;
 }
+
 /*черная верхняя полоса*/
-.read_more p{
+.read_more_inside{
+    background: #181818;
     font-size: 14px;
+}
+.read_more_inside div:first-child{
+    float: left;
+    margin-left: 20px;
+    color: white;
+    font-size: 12px;
+}
+.read_more_inside div:nth-of-type(2){
+    float: left;
     color: #ffffff;
     text-align: center;
-    background: #181818;
-    padding: 12px 0;
+    margin: 12px 0 12px 255px;
     text-transform: capitalize;
+}
+.read_more_inside div:last-child{
+    float: right;
+    padding: 12px 10px;
+    background-color: #FEDF1E;
+}
+select{
+    background-color: #181818;
+    border: none;
+    width: 68px;
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    margin: 10px 0;
+}
+.fa-truck{
+    padding-right: 10px;
 }
 .read_more span{
     font-weight: 400;
@@ -46,7 +76,7 @@ a{
 }
 .menu h3{
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 22px;
     width: 103px;
     height: 52px;
@@ -54,7 +84,6 @@ a{
     float: left;
 }
 .goods{
-    list-style-type: none;
     font-weight: 400;
     font-size: 18px;
 }
@@ -69,7 +98,6 @@ a{
     border: 1px solid rgba(0,0,0,0.6);
 }
 .icon{
-    list-style-type: none;
     font-size: 22px;
     margin-right: 29px;
 }.icon li{
@@ -86,6 +114,7 @@ a{
      width: 216px;
      height: 204px;
      background-color: #FEDF1E;
+     text-align: center;
  }
  [src*='1']{
      margin: 59px 46px 72px 36px;
@@ -113,11 +142,8 @@ a{
     font-size: 12px;
     margin: 29px 22px 34px;
 }
- .sox{
-     text-align: center;
- }
 
-/*скидки*/
+/*красные скидки*/
 .sale_inside{
     background-color: #C12633;
     color: #FFFFFF;
