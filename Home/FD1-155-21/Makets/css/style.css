@@ -7,7 +7,6 @@ body{
     overflow-x: hidden;
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
-    height: 2000px;
 }
 a{
     text-decoration: none;
@@ -105,7 +104,7 @@ select{
      margin: 36px 24px 37px 0;
 }
 .fa-heart{
-    color: red;
+    color: #d71c2c;
 }
 
 /*первый блок фото*/
@@ -249,7 +248,7 @@ select{
     padding-top: 0;
 }
 .sale_inside:hover .discount_circle_3{
-    animation: my_1 1.5s;
+    animation: my_1 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_1{
@@ -267,7 +266,7 @@ select{
     }
 }
 .sale_inside:hover .sss{
-    animation: my_3 1.5s;
+    animation: my_3 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_3{
@@ -276,7 +275,7 @@ select{
     }
 }
 .sale_inside:hover .aaa{
-    animation: my_4 1.5s;
+    animation: my_4 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_4{
@@ -286,7 +285,7 @@ select{
     }
 }
 .sale_inside:hover .lll{
-    animation: my_5 1.5s;
+    animation: my_5 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_5{
@@ -296,7 +295,7 @@ select{
     }
 }
 .sale_inside:hover .eee{
-    animation: my_6 1.5s;
+    animation: my_6 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_6{
@@ -372,4 +371,74 @@ select{
     to{
         margin-bottom: 100px;
     }
+}
+
+/*о компании*/
+.info_company_inside{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: white;
+    background-color: #181818;
+    padding: 1px;
+}
+.info_company_inside h3{
+    font-size: 22px;
+    width: 103px;
+    height: 52px;
+    margin: 35px 0 40px 36px;
+    /*float: left;*/
+}
+.about_goods, .about_company, .phone_number{
+    font-size: 16px;
+    margin: 0 100px 35px 36px;
+    float: left;
+}
+.info_company_inside ul{
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: 35px;
+}
+.info_company_inside ul li{
+    margin-bottom: 16px;
+}
+.fa-mobile-alt, .fa-envelope-open{
+    padding-right: 12px;
+}
+.instagram{
+    width: 300px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 50px 35px 36px;
+    float: right;
+}
+.instagram input{
+    width: 280px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 2px;
+    background: #181818;
+    color: white;
+    margin: 25px 0;
+}
+.instagram button{
+    width: 280px;
+    height: 30px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0;
+    margin-bottom: 25px;
+}
+.instagram div{
+    font-size: 30px;
+}
+.fa-facebook-f, .fa-twitter, .fa-youtube{
+    margin-left: 50px;
+}
+.instagram i{
+    cursor: pointer;
 }
