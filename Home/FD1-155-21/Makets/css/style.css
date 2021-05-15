@@ -164,31 +164,60 @@ a{
     top: 287px;
     right: 88px;
 }
-.sale_inside .sss,.sale_inside .aaa,.sale_inside .lll,.sale_inside .eee{
+.sss, .aaa, .lll, .eee{
     font-weight: 800;
     font-size: 194px;
     position: absolute;
 }
-.sale_inside .sss{
+.sss{
     top: 142px;
     left: 93px;
     transform: rotate(-18.82deg);
 }
-.sale_inside .aaa{
+.aaa{
     top: 52px;
     left: 256px;
     transform: rotate(7.67deg);
 }
-.sale_inside .lll{
+.lll{
     top: 135px;
-    left: 380px;
+    left: 410px;
     transform: rotate(-24.68deg);
 }
-.sale_inside .eee{
+.eee{
     top: 90px;
     left: 509px;
     transform: rotate(14.68deg);
 }
+.discount_circle_1, .discount_circle_2, .discount_circle_3{
+    width: 58px;
+    height: 58px;
+    background-color: white;
+    border-radius: 29px;
+    font-weight: 500;
+    color: #C12633;
+    font-size: 45px;
+    text-align: center;
+    padding-top: 3px;
+    position: absolute;
+    top: 166px;
+    left: 186px;
+}
+.sale_inside .discount_circle_2{
+    top: 241px;
+    left: 361px;
+    transform: rotate(38.94deg);
+}
+.sale_inside .discount_circle_3{
+    top: 71px;
+    left: 666px;
+    color: white;
+    border: 2px solid white;
+    background-color: #C12633;
+    transform: rotate(-37.5deg);
+    padding-top: 0;
+}
+
 
 
 
