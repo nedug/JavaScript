@@ -337,7 +337,7 @@ select{
     transition: .3s;
 }
 
-/*нижний фон*/
+/*нижний фон Nike*/
 .background_nike_inside{
     background: url("../img/background_nike.jpg") no-repeat center;
     text-align: center;
@@ -382,6 +382,15 @@ select{
     }
 }
 
+/*второй блок фото Бренды*/
+.photo_brands_inside{
+    text-align: center;
+    line-height: 0;
+}
+.photo_brands_inside img{
+    margin-left: 20px;
+}
+
 /*о компании*/
 .info_company_inside{
     font-family: 'Roboto', sans-serif;
@@ -395,7 +404,6 @@ select{
     width: 103px;
     height: 52px;
     margin: 35px 0 40px 36px;
-    /*float: left;*/
 }
 .about_goods, .about_company, .phone_number{
     font-size: 16px;
