@@ -462,3 +462,12 @@ select{
 .instagram i:hover{
     color: #C12633;
 }
+
+
+
+@media all and (max-width: 1000px) {
+    .container{
+        width: 100%;
+        margin: 0;
+    }
+}
