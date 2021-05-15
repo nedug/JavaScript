@@ -308,8 +308,9 @@ select{
 }
 
 /*две кнопки*/
-.red_button{
+.red_button_inside{
     text-align: center;
+    background: url("../img/nike_back.png") repeat right fixed;
 }
 .red_button button{
     width: 244px;
@@ -328,4 +329,29 @@ select{
     transition: .3s;
 }
 
-
+/*нижний фон*/
+.background_nike_inside{
+    background: url("../img/background_nike.jpg") no-repeat center;
+    text-align: center;
+}
+.background_nike_inside p{
+    color: white;
+    font-weight: 600;
+    font-size: 40px;
+    padding: 152px 394px 45px;
+}
+.background_nike_inside span{
+    white-space: nowrap;
+}
+.background_nike_inside button{
+    width: 325px;
+    height: 65px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0;
+    margin-bottom: 48px;
+ }
