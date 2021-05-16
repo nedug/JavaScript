@@ -465,9 +465,40 @@ select{
 
 
 
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1350px) {
     .container{
-        width: 100%;
-        margin: 0;
+        width: 1036px;
     }
+    .read_more_inside div:nth-of-type(2){
+        margin-left: 80px;
+    }
+    .read_more_inside div:last-child{
+        padding: 12px 20px;
+    }
+    .goods li{
+        margin-left: 21px;
+    }
+    .menu h3{
+                margin-right: 36px;
+        float: left;
+    }
+    .icon li{
+        margin-right: 25px;
+    }
+    [src*='1']{
+        margin: 0 96px;
+    }
+    [src*='2']{
+        margin: 0;
+        height: 361px;
+    }
+
+
+
+
+
+
+
 }
+
+
