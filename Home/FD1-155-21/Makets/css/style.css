@@ -589,23 +589,40 @@ select{
 
 @media all and (max-width: 1056px) {
     .container{
-        width: 736px;
+        width: 768px;
     }
 
     /*черная верхняя полоса*/
+    .read_more_inside div:first-child{
+        margin-left: 33px;
+    }
     .read_more_inside div:nth-of-type(2){
-        padding: 12px 20px;
+        padding: 21px 10px;
+    }
+    .fa-truck{
+        padding-right: 10px;
+    }
+    .read_more_inside div:last-child{
+        padding-top: 12px;
+    }
+    select{
+        margin: 20px 0;
     }
 
     /*основное меню*/
     .goods li{
         margin-left: 22px;
+        margin-bottom: 25px;
     }
     .menu h3{
-        margin-right: 36px;
+        margin-right: 31px;
+        margin-left: 31px;
+    }
+    .icon{
+        margin-right: 26px;
     }
     .icon li{
-        margin-left: 30px;
+        margin: 0 0 37px 27px;
     }
 
     /*первый блок фото*/
