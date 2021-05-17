@@ -346,7 +346,7 @@ select{
 .background_nike_inside{
     background: url("../img/background_nike.jpg") no-repeat center;
     text-align: center;
-    transition: .5s;
+    transition: .4s;
 }
 .background_nike_inside:hover{
     background: url("../img/nike_mono.jpg") no-repeat center;
@@ -478,6 +478,24 @@ select{
     color: #C12633;
 }
 
+/*кнопка "в начало страницы"*/
+.btn_up{
+    width: 46px;
+    height: 46px;
+    background-color: #949393;
+    border: none;
+    font-size: 23px;
+    position: fixed;
+    bottom: 60px;
+    margin-left: 1270px;
+    opacity: .6;
+    transition: .6s;
+}
+.btn_up:hover{
+    opacity: .9;
+}
+
+
 
 
 @media all and (max-width: 1350px) {
@@ -560,6 +578,98 @@ select{
     .instagram{
         margin-left: 25px;
     }
+
+    /*кнопка "в начало страницы"*/
+    .btn_up{
+        margin-left: 970px;
+    }
 }
 
 
+
+@media all and (max-width: 1056px) {
+    .container{
+        width: 736px;
+    }
+
+    /*черная верхняя полоса*/
+    .read_more_inside div:nth-of-type(2){
+        padding: 12px 20px;
+    }
+
+    /*основное меню*/
+    .goods li{
+        margin-left: 22px;
+    }
+    .menu h3{
+        margin-right: 36px;
+    }
+    .icon li{
+        margin-left: 30px;
+    }
+
+    /*первый блок фото*/
+    [src*='1']{
+        margin: 0 130px 0 96px;
+    }
+    [src*='2']{
+        margin: 0;
+        height: 361px;
+    }
+    [src*='6'],[src*='7'], .sox, [src*='8']{
+        margin: 30px 57px 30px 0;
+    }
+    [src*='8']{
+        margin-right: 0;
+    }
+
+    /*красные скидки*/
+    .sale_inside .discount_circle_3{
+        left: 475px;
+    }
+    .sale_inside p:last-of-type, .sale_inside h3, .sale_inside h2, .sale_inside button{
+        right: 60px;
+    }
+
+    /*нижний фон Nike*/
+    .background_nike_inside p{
+        padding: 152px 260px 45px;
+    }
+    .background_nike_inside:hover p{
+        animation: my_7 .5s;
+        animation-fill-mode: forwards;
+    }
+    @keyframes my_7{
+        to{
+            padding-top: 120px;
+        }
+    }
+    .background_nike_inside:hover button{
+        animation: my_8 .5s;
+        animation-fill-mode: forwards;
+    }
+    @keyframes my_8{
+        to{
+            margin-bottom: 80px;
+        }
+    }
+
+    /*второй блок фото Бренды*/
+    .photo_brands_inside img{
+        height: 95px;
+        margin-left: 21px;
+    }
+
+    /*о компании*/
+    .about_goods, .about_company, .phone_number{
+        margin-right: 27px;
+    }
+    .instagram{
+        margin-left: 25px;
+    }
+
+    /*кнопка "в начало страницы"*/
+    .btn_up{
+        margin-left: 970px;
+    }
+}
