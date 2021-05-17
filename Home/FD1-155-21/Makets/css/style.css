@@ -622,31 +622,79 @@ select{
         margin-right: 26px;
     }
     .icon li{
-        margin: 0 0 37px 27px;
+        margin: 0 0 30px 27px;
     }
 
     /*первый блок фото*/
     [src*='1']{
-        margin: 0 130px 0 96px;
+        margin: 0 84px 0 84px;
+        height: 300px;
     }
     [src*='2']{
         margin: 0;
-        height: 361px;
+        height: 300px;
     }
     [src*='6'],[src*='7'], .sox, [src*='8']{
-        margin: 30px 57px 30px 0;
+        margin: 15px 10px 10px 0;
+        width: 174px;
     }
     [src*='8']{
         margin-right: 0;
     }
 
     /*красные скидки*/
+    .sale_inside{
+        height: 340px;
+    }
     .sale_inside .discount_circle_3{
         left: 475px;
     }
-    .sale_inside p:last-of-type, .sale_inside h3, .sale_inside h2, .sale_inside button{
-        right: 60px;
+    .sale_inside p:last-of-type{
+        top: 40px;
+        right: 40px;
     }
+    .sale_inside h3{
+        top: 102px;
+        right: 40px;
+    }
+    .sale_inside h2{
+        top: 137px;
+        right: 40px;
+    }
+    .sale_inside button{
+        top: 246px;
+        right: 40px;
+    }
+    .discount_circle_1, .discount_circle_2, .discount_circle_3{
+        z-index: -1;
+    }
+    .sss, .aaa, .lll, .eee{
+         font-size: 145px;
+    }
+    .sss{
+        top: 10px;
+        left: 70px;
+        transform: rotate(0);
+    }
+    .aaa{
+        top: 10px;
+        left: 210px;
+        transform: rotate(0);
+    }
+    .lll{
+        top: 160px;
+        left: 70px;
+        transform: rotate(0);
+    }
+    .eee{
+        top: 160px;
+        left: 210px;
+        transform: rotate(0);
+    }
+    .sale_inside:hover .sss, .sale_inside:hover .aaa, .sale_inside:hover .lll, .sale_inside:hover .eee{
+        animation-play-state: paused;
+    }
+
 
     /*нижний фон Nike*/
     .background_nike_inside p{
