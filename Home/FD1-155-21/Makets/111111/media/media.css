@@ -383,7 +383,7 @@ and (orientation : landscape){
 and (max-device-width : 667px)
 and (orientation : portrait){
     .container{
-        width: 370px;
+        width: 375px;
     }
 
     /*черная верхняя полоса*/
