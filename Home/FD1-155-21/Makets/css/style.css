@@ -674,22 +674,22 @@ select{
     .sss{
         top: 10px;
         left: 70px;
-        transform: rotate(0);
+        transform: rotate(-10deg);
     }
     .aaa{
         top: 10px;
         left: 210px;
-        transform: rotate(0);
+        transform: rotate(-10deg);
     }
     .lll{
         top: 160px;
         left: 70px;
-        transform: rotate(0);
+        transform: rotate(-10deg);
     }
     .eee{
         top: 160px;
         left: 210px;
-        transform: rotate(0);
+        transform: rotate(-10deg);
     }
     .sale_inside:hover .sss, .sale_inside:hover .aaa, .sale_inside:hover .lll, .sale_inside:hover .eee{
         animation-play-state: paused;
@@ -747,16 +747,14 @@ select{
 
 
 
-
-
-@media all and (max-width: 764px) {
+@media all and (max-width: 763px) {
     .container{
-        width: 657px;
+        width: 667px;
     }
 
     /*черная верхняя полоса*/
     .read_more_inside div:first-child{
-        margin-left: 33px;
+        margin-left: 25px;
     }
     .read_more_inside div:nth-of-type(2){
         padding: 21px 10px;
@@ -773,32 +771,32 @@ select{
 
     /*основное меню*/
     .goods li{
-        margin-left: 22px;
+        margin-left: 11px;
         margin-bottom: 25px;
     }
     .menu h3{
-        margin-right: 31px;
-        margin-left: 31px;
+        margin-right: 15px;
+        margin-left: 25px;
     }
     .icon{
-        margin-right: 26px;
+        margin-right: 20px;
     }
     .icon li{
-        margin: 0 0 30px 27px;
+        margin: 0 0 25px 24px;
     }
 
     /*первый блок фото*/
     [src*='1']{
-        margin: 0 84px 0 84px;
-        height: 300px;
+        margin: 0 73px 0 73px;
+        height: 260px;
     }
     [src*='2']{
         margin: 0;
-        height: 300px;
+        height: 260px;
     }
     [src*='6'],[src*='7'], .sox, [src*='8']{
-        margin: 15px 10px 10px 0;
-        width: 174px;
+        margin: 10px 8px 10px 0;
+        width: 142px;
     }
     [src*='8']{
         margin-right: 0;
@@ -806,95 +804,76 @@ select{
 
     /*красные скидки*/
     .sale_inside{
-        height: 340px;
-    }
-    .sale_inside .discount_circle_3{
-        left: 475px;
+        height: 300px;
     }
     .sale_inside p:last-of-type{
-        top: 40px;
-        right: 40px;
+        top: 25px;
+        right: 30px;
     }
     .sale_inside h3{
-        top: 102px;
-        right: 40px;
+        top: 80px;
+        right: 30px;
     }
     .sale_inside h2{
-        top: 137px;
-        right: 40px;
+        top: 110px;
+        right: 30px;
     }
     .sale_inside button{
-        top: 246px;
-        right: 40px;
-    }
-    .discount_circle_1, .discount_circle_2, .discount_circle_3{
-        z-index: -1;
+        top: 215px;
+        right: 30px;
     }
     .sss, .aaa, .lll, .eee{
-        font-size: 145px;
+        font-size: 110px;
     }
     .sss{
         top: 10px;
         left: 70px;
-        transform: rotate(0);
+        transform: rotate(10deg);
     }
     .aaa{
         top: 10px;
-        left: 210px;
-        transform: rotate(0);
+        left: 180px;
+        transform: rotate(10deg);
     }
     .lll{
-        top: 160px;
+        top: 155px;
         left: 70px;
-        transform: rotate(0);
+        transform: rotate(10deg);
     }
     .eee{
-        top: 160px;
-        left: 210px;
-        transform: rotate(0);
-    }
-    .sale_inside:hover .sss, .sale_inside:hover .aaa, .sale_inside:hover .lll, .sale_inside:hover .eee{
-        animation-play-state: paused;
+        top: 155px;
+        left: 180px;
+        transform: rotate(10deg);
     }
 
     /*две кнопки*/
     .red_button button{
-        margin: 40px 60px;
+        margin: 35px 40px;
     }
 
     /*нижний фон Nike*/
     .background_nike_inside p{
-        padding: 69px 129px 45px;
-    }
-    .background_nike_inside:hover p{
-        animation-play-state: paused;
-    }
-    .background_nike_inside:hover button{
-        animation-play-state: paused;
-    }
-    .background_nike_inside:hover{
-        background: url("../img/background_nike.jpg") no-repeat center;
+        padding: 60px 75px 40px;
     }
 
     /*второй блок фото Бренды*/
     .photo_brands_inside img{
-        height: 80px;
+        height: 69px;
         margin-left: 0;
     }
 
     /*о компании*/
     .info_company_inside h3{
-        margin: 35px 0 35px 36px;
+        margin: 30px 0 30px 30px;
     }
     .about_goods, .about_company, .phone_number{
-        margin-right: 63px;
-        margin-bottom: 25px;
+        margin-right: 35px;
+        margin-bottom: 20px;
+        margin-left: 30px;
+
     }
     .info_company_inside ul li{
         margin-bottom: 10px;
-    }
-    .instagram{
-        display: none;
     }
 
     /*кнопка "в начало страницы"*/
