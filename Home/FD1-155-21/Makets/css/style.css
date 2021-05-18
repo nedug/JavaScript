@@ -463,7 +463,9 @@ select{
     font-size: 15px;
     letter-spacing: 0;
     margin-bottom: 25px;
-}
+}.instagram button i{
+     margin-left: 25px;
+ }
 .instagram div{
     font-size: 30px;
 }
@@ -743,10 +745,6 @@ select{
 
 
 
-
-
-
-
 @media all and (max-width: 763px) {
     .container{
         width: 667px;
@@ -873,11 +871,196 @@ select{
 
     }
     .info_company_inside ul li{
-        margin-bottom: 10px;
+        margin-bottom: 9px;
+    }
+    .info_company_inside ul {
+         margin-top: 30px;
+     }
+
+    /*кнопка "в начало страницы"*/
+    .btn_up{
+        margin-left: 621px;
+    }
+}
+
+
+
+
+
+@media all and (max-width: 666px) {
+    .container{
+        width: 375px;
+    }
+
+    /*черная верхняя полоса*/
+    .read_more_inside div:first-child{
+        margin-left: 65px;
+    }
+    .read_more_inside div:nth-of-type(2){
+        padding: 13px 13px;
+    }
+    .fa-truck{
+        padding-right: 10px;
+    }
+    .read_more_inside div:last-child{
+        padding-top: 53px;
+    }
+    select{
+        margin: 13px 0;
+    }
+
+    /*основное меню*/
+    .goods{
+        float: left;
+        text-align: left;
+    }
+    .goods li{
+        margin: 0 0 4px 30px;
+        float: none;
+    }
+    .menu h3{
+        float: none;
+        width: 100%;
+        height: 100%;
+        margin: 25px 0 25px 0;
+    }
+    .menu{
+        text-align: center;
+    }
+    .icon{
+        margin-right: -130px;
+        margin-top: 30px;
+    }
+    .icon li{
+        margin: 0 0 25px 24px;
+        float: none;
+    }
+    .goods li:hover{
+        border-bottom: 1px solid transparent;
+        color: #646464;
+    }
+
+    /*первый блок фото*/
+    [src*='1']{
+        margin: 0;
+        height: auto;
+        width: 170px;
+    }
+    [src*='2']{
+        margin: 0;;
+        height: auto;
+        width: 170px;
+    }
+    [src*='6'],[src*='7'], .sox, [src*='8']{
+        margin: 5px 5px 5px 0;
+        width: 170px;
+    }
+    [src*='8']{
+        margin-right: 0;
+        width: 152px;
+    }
+
+    /*красные скидки*/
+    .sale_inside{
+        height: 230px;
+    }
+    .sale_inside p:last-of-type{
+        top: 20px;
+        right: 29px;
+        font-size: 20px;
+    }
+    .sale_inside h3{
+        top: 60px;
+        right: 110px;
+        font-size: 25px;
+    }
+    .sale_inside h2{
+        top: 90px;
+        right: 110px;
+        font-size: 55px;
+    }
+    .sale_inside button{
+        top: 162px;
+        right: 69px;
+        font-weight: 500;
+    }
+    .sss, .aaa, .lll, .eee{
+        display: none;
+    }
+
+    /*две кнопки*/
+    .red_button button{
+        margin: 25px 40px;
+    }
+    .red_button .men{
+        margin-top: 0;
+    }
+
+    /*нижний фон Nike*/
+    .background_nike_inside p{
+        padding: 40px 15px 30px;
+        font-weight: 500;
+        font-size: 27px;
+    }
+    .background_nike_inside button{
+        width: 227px;
+        height: 56px;
+        font-weight: 500;
+        font-size: 17px;
+        margin-bottom: 40px;
+        transition: .3s;
+    }
+
+    /*второй блок фото Бренды*/
+    .photo_brands_inside img{
+        height: 55px;
+        margin: 0 16px;
+    }
+
+    /*о компании*/
+    .info_company_inside{
+        text-align: center;
+    }
+    .info_company_inside h3{
+        margin: 25px 0;
+        width: 100%;
+        height: 100%;
+    }
+    .about_goods, .about_company, .phone_number{
+        margin-right: 30px;
+        margin-bottom: 20px;
+        margin-left: 25px;
+        text-align: left;
+
+    }
+    .info_company_inside ul li{
+        margin-bottom: 9px;
+    }
+    .info_company_inside ul{
+        margin-top: 25px;
+        font-size: 13px;
+    }
+    .instagram{
+        display: block;
+        margin: 0 36px 20px 36px;
+    }
+    .instagram input{
+        width: 250px;
+        margin: 20px 0;
+    }
+    .instagram button{
+        width: 250px;
+        margin-bottom: 20px;
+    }
+    .fa-facebook-f, .fa-twitter, .fa-youtube{
+        margin-left: 45px;
+    }
+    .instagram div{
+        font-size: 25px;
     }
 
     /*кнопка "в начало страницы"*/
     .btn_up{
-        margin-left: 702px;
+        margin-left: 329px;
     }
 }
