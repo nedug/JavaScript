@@ -585,9 +585,14 @@ select{
     }
 }
 
+
+
+
+
+
 @media all and (max-width: 1020px) {
     .container{
-        width: 768px;
+        width: 760px;
     }
 
     /*черная верхняя полоса*/
@@ -617,15 +622,15 @@ select{
         margin-left: 31px;
     }
     .icon{
-        margin-right: 26px;
+        margin-right: 18px;
     }
     .icon li{
-        margin: 0 0 30px 27px;
+        margin: 0 0 30px 25px;
     }
 
     /*первый блок фото*/
     [src*='1']{
-        margin: 0 84px 0 84px;
+        margin: 0 80px 0 80px;
         height: 300px;
     }
     [src*='2']{
@@ -633,7 +638,7 @@ select{
         height: 300px;
     }
     [src*='6'],[src*='7'], .sox, [src*='8']{
-        margin: 15px 10px 10px 0;
+        margin: 15px 7px 10px 0;
         width: 174px;
     }
     [src*='8']{
@@ -643,9 +648,6 @@ select{
     /*красные скидки*/
     .sale_inside{
         height: 340px;
-    }
-    .sale_inside .discount_circle_3{
-        left: 475px;
     }
     .sale_inside p:last-of-type{
         top: 40px;
@@ -664,7 +666,7 @@ select{
         right: 40px;
     }
     .discount_circle_1, .discount_circle_2, .discount_circle_3{
-        z-index: -1;
+        display: none;
     }
     .sss, .aaa, .lll, .eee{
          font-size: 145px;
@@ -700,7 +702,7 @@ select{
 
     /*нижний фон Nike*/
     .background_nike_inside p{
-        padding: 69px 129px 45px;
+        padding: 69px 123px 45px;
     }
     .background_nike_inside:hover p{
         animation-play-state: paused;
@@ -714,7 +716,7 @@ select{
 
     /*второй блок фото Бренды*/
     .photo_brands_inside img{
-        height: 80px;
+        height: 79px;
         margin-left: 0;
     }
 
@@ -723,7 +725,7 @@ select{
         margin: 35px 0 35px 36px;
     }
     .about_goods, .about_company, .phone_number{
-        margin-right: 63px;
+        margin-right: 59px;
         margin-bottom: 25px;
     }
     .info_company_inside ul li{
@@ -747,9 +749,9 @@ select{
 
 
 
-@media all and (max-width: 788px) {
+@media all and (max-width: 764px) {
     .container{
-        width: 375px;
+        width: 657px;
     }
 
     /*черная верхняя полоса*/
