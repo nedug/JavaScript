@@ -1,4 +1,4 @@
-@media all and (max-width: 1350px) and (orientation: landscape) {
+@media all and (max-width: 1350px){
     .container{
         width: 1000px;
     }
@@ -86,7 +86,7 @@
 }
 
 
-@media all and (max-width: 1020px) and (orientation: portrait) {
+@media all and (max-width: 1020px){
     .container{
         width: 760px;
     }
@@ -379,7 +379,7 @@
 
 @media all and (max-device-width: 660px){
     .container{
-        width: 374px;
+        width: 370px;
     }
 
     /*черная верхняя полоса*/
