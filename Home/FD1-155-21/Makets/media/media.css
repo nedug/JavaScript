@@ -1,4 +1,4 @@
-@media all and (max-width: 1350px) and (orientation: landscape) {
+@media all and (max-width: 1350px){
     .container{
         width: 1000px;
     }
@@ -86,7 +86,7 @@
 }
 
 
-@media all and (max-width: 1020px) and (orientation: portrait) {
+@media all and (max-width: 1020px){
     .container{
         width: 760px;
     }
@@ -238,7 +238,7 @@
 }
 
 
-@media all and (max-width: 763px) and (orientation: landscape) {
+@media all and (max-width: 763px){
     .container{
         width: 667px;
     }
@@ -377,7 +377,7 @@
 }
 
 
-@media only screen and (max-width: 665px){
+@media all and (max-width: 665px){
     .container{
         width: 375px;
     }
@@ -418,7 +418,8 @@
         text-align: center;
     }
     .icon{
-        margin-right: -130px;
+        margin-right: 0;
+        margin-left: 200px;
         margin-top: 30px;
     }
     .icon li{
