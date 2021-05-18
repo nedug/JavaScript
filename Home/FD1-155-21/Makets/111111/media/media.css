@@ -380,7 +380,7 @@ and (orientation : landscape){
 
 
 @media all and (min-width : 375px)
-and (max-width : 667px)
+and (max-width : 770px)
 and (orientation : portrait){
     .container{
         width: 375px;
