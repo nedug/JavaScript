@@ -238,7 +238,7 @@
 }
 
 
-@media all and (max-width: 763px) and (orientation: landscape) {
+@media all and (max-width: 763px){
     .container{
         width: 667px;
     }
@@ -377,9 +377,9 @@
 }
 
 
-@media only screen and (max-device-width: 660px){
+@media all and (max-device-width: 660px){
     .container{
-        width: 373px;
+        width: 374px;
     }
 
     /*черная верхняя полоса*/
