@@ -500,7 +500,7 @@ select{
 
 @media all and (max-width: 1350px) {
     .container{
-        width: 1036px;
+        width: 1000px;
     }
 
     /*черная верхняя полоса*/
@@ -521,14 +521,14 @@ select{
 
     /*первый блок фото*/
     [src*='1']{
-        margin: 0 130px 0 96px;
+        margin: 0 120px 0 86px;
     }
     [src*='2']{
         margin: 0;
         height: 361px;
     }
     [src*='6'],[src*='7'], .sox, [src*='8']{
-        margin: 30px 57px 30px 0;
+        margin: 30px 45px 30px 0;
     }
     [src*='8']{
         margin-right: 0;
@@ -539,12 +539,12 @@ select{
         left: 475px;
     }
     .sale_inside p:last-of-type, .sale_inside h3, .sale_inside h2, .sale_inside button{
-        right: 60px;
+        right: 50px;
     }
 
     /*нижний фон Nike*/
     .background_nike_inside p{
-        padding: 152px 260px 45px;
+        padding: 152px 243px 45px;
     }
     .background_nike_inside:hover p{
         animation: my_7 .5s;
@@ -568,24 +568,24 @@ select{
     /*второй блок фото Бренды*/
     .photo_brands_inside img{
         height: 95px;
-        margin-left: 21px;
+        margin-left: 14px;
     }
 
     /*о компании*/
     .about_goods, .about_company, .phone_number{
-        margin-right: 27px;
+        margin-right: 17px;
     }
     .instagram{
-        margin-left: 25px;
+        margin-left: 20px;
     }
 
     /*кнопка "в начало страницы"*/
     .btn_up{
-        margin-left: 970px;
+        margin-left: 935px;
     }
 }
 
-@media all and (max-width: 1056px) {
+@media all and (max-width: 1020px) {
     .container{
         width: 768px;
     }
