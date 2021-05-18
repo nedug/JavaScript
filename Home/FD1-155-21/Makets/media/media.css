@@ -377,7 +377,7 @@
 }
 
 
-@media all and (max-width: 666px) and (orientation: portrait) {
+@media all and (max-width: 665px) and (orientation: portrait) {
     .container{
         width: 375px;
     }
