@@ -377,7 +377,7 @@
 }
 
 
-@media all and (max-device-width: 660px){
+@media all and (max-width: 660px){
     .container{
         width: 370px;
     }
