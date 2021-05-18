@@ -238,8 +238,8 @@
 }
 
 
-@media all and (min-device-width : 375px)
-and (max-device-width : 667px)
+@media all and (min-width : 375px)
+and (max-width : 770px)
 and (orientation : landscape){
     .container{
         width: 667px;
@@ -379,8 +379,8 @@ and (orientation : landscape){
 }
 
 
-@media all and (min-device-width : 375px)
-and (max-device-width : 667px)
+@media all and (min-width : 375px)
+and (max-width : 667px)
 and (orientation : portrait){
     .container{
         width: 375px;
