@@ -391,7 +391,7 @@
 
     /*черная верхняя полоса*/
     .read_more_inside div:first-child{
-        margin-left: 65px;
+        margin-left: 32px;
     }
     .read_more_inside div:nth-of-type(2){
         padding: 13px 13px;
