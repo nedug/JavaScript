@@ -5,7 +5,7 @@
 
     /*черная верхняя полоса*/
     .read_more_inside div:nth-of-type(2){
-        padding: 14px 20px;
+        padding: 12px 20px;
     }
 
     /*основное меню*/
@@ -14,6 +14,7 @@
     }
     .menu h3{
         margin-right: 36px;
+        color: red;
     }
     .icon li{
         margin-left: 30px;
