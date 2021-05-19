@@ -103,7 +103,7 @@
         padding-right: 10px;
     }
     .read_more_inside div:last-child{
-        padding-top: 14px;
+        padding-top: 13px;
     }
     select{
         margin: 20px 0;
@@ -137,7 +137,7 @@
         width: 300px;
     }
     [src*='6'],[src*='7'], .sox, [src*='8']{
-        margin: 15px 7px 10px 0;
+        margin: 15px 10px 10px 0;
         width: 174px;
         height: 174px;
     }
