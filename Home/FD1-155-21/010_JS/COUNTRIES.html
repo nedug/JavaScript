@@ -9,10 +9,12 @@
            width: 350px;
            height: 50px;
            background-color: #88cbd7;
-           margin: 6px;
-           border: none;
+           margin: 8px;
+            border: 2px solid transparent;
+			  border-radius: 5px;
            font-size: 18px;
 			  cursor: pointer;
+				transition: .3s;
 		  }
 		 [onclick^="del"]{
 			  background-color: #e97170;
@@ -20,6 +22,9 @@
        [onclick^="add"]{
            background-color: #8ce5a1;
        }
+        button:hover{
+				border: 2px solid black;
+		  }
 	</style>
 </head>
 <body>
