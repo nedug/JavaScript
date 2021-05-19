@@ -248,9 +248,6 @@
     }
 
     /*черная верхняя полоса*/
-    .read_more_inside{
-        font-size: 14px;
-    }
     .read_more_inside div:first-child{
         margin-left: 25px;
     }
@@ -261,7 +258,8 @@
         padding-right: 10px;
     }
     .read_more_inside div:last-child{
-        padding-top: 0;
+        padding-top: 12px;
+        font-size: inherit;
     }
     select{
         margin: 20px 0;
@@ -275,6 +273,7 @@
     .menu h3{
         margin-right: 15px;
         margin-left: 25px;
+        color: aqua;
     }
     .icon{
         margin-right: 20px;
