@@ -266,8 +266,7 @@
 
     /*основное меню*/
     .goods li{
-        float: right;
-        margin-left: 9px;
+        margin-left: 11px;
         margin-bottom: 25px;
     }
     .menu h3{
@@ -414,7 +413,7 @@
     }
     .goods li{
         margin: 0 0 4px 30px;
-        float: none;
+        float: left;
     }
     .menu h3{
         float: none;
