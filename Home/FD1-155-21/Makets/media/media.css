@@ -248,6 +248,9 @@
     }
 
     /*черная верхняя полоса*/
+    .read_more_inside{
+        font-size: 14px;
+    }
     .read_more_inside div:first-child{
         margin-left: 25px;
     }
