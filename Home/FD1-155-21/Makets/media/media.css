@@ -259,7 +259,6 @@
     }
     .read_more_inside div:last-child{
         padding-top: 12px;
-        font-size: 12px;
     }
     select{
         margin: 20px 0;
@@ -267,17 +266,14 @@
 
     /*основное меню*/
     .goods li{
-        margin-left: 11px;
+        float: right;
+        margin-left: 9px;
         margin-bottom: 25px;
     }
     .menu h3{
         margin-right: 15px;
         margin-left: 25px;
     }
-    .goods{
-         font-weight: 400;
-         font-size: 18px;
-     }
     .icon{
         margin-right: 20px;
     }
