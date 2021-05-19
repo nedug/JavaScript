@@ -259,6 +259,7 @@
     }
     .read_more_inside div:last-child{
         padding-top: 12px;
+        font-size: 12px;
     }
     select{
         margin: 20px 0;
@@ -281,7 +282,7 @@
         margin-right: 20px;
     }
     .icon li{
-        margin: 0 0 25px 24px;
+        margin: 5px 0 25px 24px;
     }
 
     /*первый блок фото*/
