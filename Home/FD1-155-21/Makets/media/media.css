@@ -258,7 +258,7 @@
         padding-right: 10px;
     }
     .read_more_inside div:last-child{
-        padding-top: 12px;
+        padding-top: 0;
     }
     select{
         margin: 20px 0;
