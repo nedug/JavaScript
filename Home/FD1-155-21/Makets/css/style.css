@@ -73,7 +73,7 @@ select{
 
 /*основное меню*/
 .menu{
-    padding: 1px;
+    /*padding: 1px;*/
 }
 .menu h3{
     font-family: 'Roboto', sans-serif;
