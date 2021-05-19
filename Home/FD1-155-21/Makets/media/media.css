@@ -535,7 +535,9 @@
     }
     .phone_number{
         margin-left: 105px;
-
+    }
+    .about_company{
+        text-align: right;
     }
     .info_company_inside ul li{
         margin-bottom: 9px;
