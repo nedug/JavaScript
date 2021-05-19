@@ -41,13 +41,13 @@ button{
 }
 .read_more_inside div:nth-of-type(2){
     float: right;
-    padding: 13px 30px;
+    padding: 14px 30px;
     background-color: #FEDF1E;
 }
 .read_more_inside div:last-child{
     color: #ffffff;
     text-align: center;
-    padding: 12px 0;
+    padding: 13px 0;
     text-transform: capitalize;
 }
 select{
