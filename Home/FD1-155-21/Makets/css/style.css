@@ -41,7 +41,7 @@ button{
 }
 .read_more_inside div:nth-of-type(2){
     float: right;
-    padding: 12px 30px;
+    padding: 13px 30px;
     background-color: #FEDF1E;
 }
 .read_more_inside div:last-child{
