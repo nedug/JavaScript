@@ -496,3 +496,6 @@ select{
 .btn_up:hover{
     opacity: .9;
 }
+.btn_up a{
+    padding: 11px;
+}
