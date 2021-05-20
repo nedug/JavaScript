@@ -464,7 +464,8 @@ select{
     letter-spacing: 0;
     margin-bottom: 25px;
     transition: .3s;
-}.instagram button i{
+}
+.instagram button i{
      margin-left: 25px;
  }
 .instagram button:hover{
