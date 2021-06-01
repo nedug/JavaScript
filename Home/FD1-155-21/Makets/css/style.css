@@ -263,7 +263,8 @@ select{
     color: #d71c2c;
 }
 .sale_inside:hover .discount_circle_3{
-    animation: my_1 1s;
+    animation: my_1;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 @keyframes my_1{
