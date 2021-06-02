@@ -8,6 +8,7 @@ body{
     font-family: 'Gotham Book', sans-serif;
     font-weight: 500;
     line-height: 1;
+    /*height: 5000px;*/
 }
 a{
     text-decoration: none;
@@ -72,12 +73,20 @@ button{
     transition: .3s;
 }
 
-/*  section - home */
+/*  section - home  */
 .home{
     /*height: 80%;*/
     border-top: 1px solid #7b7b7b;
     text-align: center;
 }
+/*.home .container{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+
+/*}*/
 .home__top{
     margin-top: 13%;
 }
@@ -94,4 +103,23 @@ button{
     color: #11749e;
     letter-spacing: 0.8em;
     text-transform: uppercase;
+}
+.home__bottom{
+    margin-bottom: 8%;
+}
+.home__bottom div:first-child{
+    font-size: 13px;
+}
+.home__bottom div:last-child{
+    position: relative;
+    left: 47%;
+    padding: 25px 0;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+}
+.home__bottom a{
+    margin-top: 25px;
 }
