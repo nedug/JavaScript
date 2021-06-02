@@ -3,12 +3,16 @@
     margin: 0;
     box-sizing: border-box;
 }
+html{
+    height: 100%;
+}
+/*  для того чтобы при 100% высоты был всегда на весь экран браузера*/
 body{
     overflow-x: hidden;
     font-family: 'Gotham Book', sans-serif;
     font-weight: 500;
     line-height: 1;
-    /*height: 5000px;*/
+    height: 100%;
 }
 a{
     text-decoration: none;
@@ -22,11 +26,6 @@ ul{
     margin: 0 auto;
     padding: 0 15px;
 }
-/*.clearfix::after{*/
-/*    content: '';*/
-/*    display: block;*/
-/*    clear: both;*/
-/*}*/
 button{
     cursor: pointer;
 }
@@ -42,7 +41,9 @@ button{
 .header__nav{
     display: flex;
     justify-content: space-between;
+/*  justify-content: space-between — в промежутки между flex-блоками вдоль основной оси поровну добавляется свободное место.  */
     align-items: center;
+/*  align-items: center — flex-блоки центрируются на побочной оси.  */
     font-size: 20px;
 }
 .header__nav img{
@@ -75,20 +76,19 @@ button{
 
 /*  section - home  */
 .home{
-    /*height: 80%;*/
+    height: 100%;
     border-top: 1px solid #7b7b7b;
     text-align: center;
 }
-/*.home .container{*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-
-/*}*/
+.home .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
 .home__top{
-    margin-top: 13%;
+    margin-top: 10%;
 }
 .home__top h1{
     font-size: 152px;
@@ -105,21 +105,31 @@ button{
     text-transform: uppercase;
 }
 .home__bottom{
-    margin-bottom: 8%;
+    margin-bottom: 18%;
 }
 .home__bottom div:first-child{
     font-size: 13px;
 }
 .home__bottom div:last-child{
     position: relative;
-    left: 47%;
     padding: 25px 0;
+    left: 4px;
     border: 1px solid white;
     border-radius: 50%;
     width: 70px;
     height: 70px;
     font-size: 20px;
+    animation: circle 1s infinite alternate;
+/* animation-direction: alternate; - чётные проигрывания анимации будут идти в обратном направлении, а нечётные — в обычном. */
 }
 .home__bottom a{
-    margin-top: 25px;
+    padding: 25px;
+}
+@keyframes circle{
+    from{
+        bottom: 0;
+    }
+    to{
+        bottom: -50px;
+    }
 }
