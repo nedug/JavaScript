@@ -13,6 +13,8 @@ body{
     font-weight: 500;
     line-height: 1;
     height: 100%;
+    /*scroll-behavior: smooth;*/
+/*  CSS-свойство scroll-behavior, которое предназначено для задания плавной прокрутки внутри любого элемента.  */
 }
 a{
     text-decoration: none;
@@ -90,7 +92,7 @@ button{
     height: 100%;
 }
 .home__top{
-    margin-top: 10%;
+    margin-top: 13%;
 }
 .home__top h1{
     font-size: 152px;
@@ -101,13 +103,13 @@ button{
 }
 .home__top h4{
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 600;
     color: #11749e;
     letter-spacing: 0.8em;
     text-transform: uppercase;
 }
 .home__bottom{
-    margin-bottom: 18%;
+    margin-bottom: 22%;
 }
 .home__bottom div:first-child{
     font-size: 13px;
@@ -115,7 +117,7 @@ button{
 .home__bottom div:last-child{
     position: relative;
     padding: 25px 0;
-    left: 4px;
+    left: 5px;
     border: 1px solid white;
     border-radius: 50%;
     width: 70px;
@@ -134,4 +136,103 @@ button{
     to{
         bottom: -50px;
     }
+}
+
+/*  FEATURES  */
+.features{
+    color: white;
+    background-color: #11749e;
+    position: relative;
+}
+.features h3{
+    font-size: 37px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 170px 0 140px;
+}
+.features h2{
+    font-size: 247px;
+    font-family: 'Roboto Condensed', sans-serif;
+    opacity: 15%;
+    text-transform: uppercase;
+    position: absolute;
+    top: 62px;
+}
+.features .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.features .icon{
+    text-align: center;
+    width: 134px;
+    height: 134px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: .3s;
+}
+.features .icon:hover{
+   background-color: rgba(255, 255, 255, 0.35);
+}
+.features .icon img{
+    margin-top: 50px;
+}
+.features__item h3{
+    font-size: 18px;
+    margin: 24px 0 34px;
+}
+.features__item{
+    font-size: 15px;
+    width: 262px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+.features__item p{
+    line-height: 2em;
+}
+.features__row__item{
+    display: flex;
+    margin-bottom: 130px;
+    text-align: center;
+}
+
+/*  NEWS  */
+.news{
+    /*font-family: 'Gotham', sans-serif;*/
+    height: 3000px;
+    font-size: 15px;
+}
+.news_row_1{
+    color: white;
+    background-color: #222;
+}
+.news_item{
+    width: 480px;
+    padding: 70px 0 0 0;
+    margin: 0 115px 0 205px;
+}
+.news_item p:first-of-type{
+    font-size: 13px;
+}
+.news_item h2{
+    font-size: 25px;
+    margin: 20px 0 30px;
+}
+.news_item h2 ~ p{
+    line-height: 2;
+}
+.news_item h2 + p{
+    margin-bottom: 35px;
+}
+.news_item span:first-child{
+    margin-right: 12px;
+}
+.news_item span:last-child{
+    margin-left: 12px;
+}
+.news_item span:nth-of-type(2){
+    opacity: 0.6;
 }
