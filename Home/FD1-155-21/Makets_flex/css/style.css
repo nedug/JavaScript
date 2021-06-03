@@ -413,32 +413,39 @@ button{
     justify-content: space-between;
     align-items: center;
 }
-.team .icon:hover img{
-    box-shadow: 0 0 10px #11749e;
+.team .icon_info:hover{
+    box-shadow: 0 0 10px #222;
 }
 .team .icon img{
-    width: 270px;
-    height: 280px;
-    transition: .3s;
+    width: 262px;
+    height: auto;
 }
 .team__item h3{
-    font-size: 18px;
-    margin: 40px 0 34px;
+    font-size: 20px;
+    margin: 25px 0 20px;
     color: #11749e;
 }
 .team__item{
-    font-size: 15px;
-    width: 270px;
+    font-size: 16px;
+    width: 262px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 15px;
 }
 .team__item p{
-    line-height: 2em;
+    font-weight: 600;
+    margin-bottom: 25px;
 }
 .team__row__item{
     display: flex;
     margin-bottom: 115px;
     text-align: center;
+}
+.team__item .icon_info{
+    width: 220px;
+    background-color: white;
+    position: relative;
+    bottom: 47px;
+    transition: .3s;
 }
