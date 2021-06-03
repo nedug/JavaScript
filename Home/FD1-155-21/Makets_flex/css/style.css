@@ -250,8 +250,6 @@ button{
 
 /*  BLOG  */
 .blog{
-    /*color: white;*/
-    /*background-color: #11749e;*/
     position: relative;
 }
 .blog h3{
@@ -279,27 +277,23 @@ button{
     justify-content: space-between;
     align-items: center;
 }
-.blog .icon{
-    text-align: center;
-    width: 134px;
-    height: 134px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.15);
-    transition: .3s;
-}
-.blog .icon:hover{
-    background-color: rgba(255, 255, 255, 0.35);
+.blog .icon:hover img{
+    box-shadow: 0 0 10px #11749e;
+/*  Добавляет тень к элементу. Допускается использовать несколько теней, указывая их параметры через запятую, при наложении теней первая тень в списке будет выше, последняя ниже. Если для элемента задается радиус скругления через свойство border-radius, то тень также получится с закругленными уголками. Добавление тени увеличивает ширину элемента, поэтому возможно появление горизонтальной полосы прокрутки в браузере.  */
 }
 .blog .icon img{
-    margin-top: 50px;
+    width: 270px;
+    height: 280px;
+    transition: .3s;
 }
 .blog__item h3{
     font-size: 18px;
-    margin: 24px 0 34px;
+    margin: 40px 0 34px;
+    color: #11749e;
 }
 .blog__item{
     font-size: 15px;
-    width: 262px;
+    width: 270px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -310,6 +304,27 @@ button{
 }
 .blog__row__item{
     display: flex;
-    margin-bottom: 130px;
+    margin-bottom: 115px;
     text-align: center;
+}
+
+/*  BLUE_BLOG  */
+.blue_blog{
+    color: white;
+    background-color: #11749e;
+}
+.blue_blog .container{
+    display: flex;
+    justify-content: space-between;
+}
+.blue_blog__item{
+    font-size: 15px;
+    width: 560px;
+    display: flex;
+    align-items: center;
+    margin: 110px 0;
+}
+.blue_blog__item p{
+    line-height: 2em;
+    margin-left: 34px;
 }
