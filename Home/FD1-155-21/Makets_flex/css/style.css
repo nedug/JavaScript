@@ -360,7 +360,7 @@ button{
 }
 .key__item button{
     width: 370px;
-    height: 42px;
+    height: 45px;
     background-color: #11749e;
     color: white;
     text-transform: uppercase;
@@ -453,7 +453,6 @@ button{
 /*  CONTACT  */
 .contact{
     color: white;
-    /*background-color: #11749e;*/
     background: url("../img/bg3.jpg") center/cover no-repeat fixed;
     position: relative;
 }
@@ -474,22 +473,7 @@ button{
 .contact .container{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-}
-.contact .icon{
-    text-align: center;
-    width: 134px;
-    height: 134px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.15);
-    transition: .3s;
-}
-.contact .icon:hover{
-    background-color: rgba(255, 255, 255, 0.35);
-}
-.contact .icon img{
-    margin-top: 50px;
 }
 .contact__item h3{
     font-size: 18px;
@@ -497,19 +481,10 @@ button{
 }
 .contact__item{
     font-size: 15px;
-    width: 262px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 15px;
-}
-.contact__item p{
-    line-height: 2em;
-}
-.contact__row__item{
-    display: flex;
-    margin-bottom: 130px;
-    text-align: center;
+    justify-content: space-between;
+    margin: 0 0 40px 0;
 }
 .contact input{
     border: 1px solid #fff;
@@ -517,4 +492,41 @@ button{
     color: #fff;
     width: 370px;
     padding: 15px 0 15px 20px;
+    transition: .3s;
+}
+.contact textarea{
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    width: 100%;
+    padding: 15px 0 15px 20px;
+    resize: none;
+    transition: .3s;
+}
+.container > label{
+    width: 100%;
+}
+.contact input::placeholder, .contact textarea::placeholder{
+    font-family: 'Gotham Book', sans-serif;
+    color: #fff;
+/*  Изменение цвета текста placeholder  */
+}
+.contact button{
+    width: 230px;
+    height: 65px;
+    border: none;
+    font-family: 'Gotham Book', sans-serif;
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    background: #11749e;
+    margin: 50px 0;
+    transition: .3s;
+}
+.contact button:hover{
+    color: #222;
+}
+.contact input:hover, .contact textarea:hover{
+    border: 1px solid #11749e;
 }
