@@ -328,3 +328,117 @@ button{
     line-height: 2em;
     margin-left: 34px;
 }
+
+/*  KEY  */
+.key{
+    color: white;
+    background: url("../img/bg2.jpg") center/cover no-repeat fixed;
+}
+.key img{
+    margin: 100px 0;
+}
+.key__item h3{
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 0 0 40px 0;
+}
+.key__item{
+    font-size: 15px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+}
+.key__item p{
+    line-height: 2em;
+    margin: 0 0 70px 0;
+}
+.key__row__item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.key__item button{
+    width: 370px;
+    height: 42px;
+    background-color: #11749e;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    font-family: 'Gotham Book', sans-serif;
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 28px;
+}
+.key__item a{
+    margin-left: 20px;
+}
+.key__item button:nth-of-type(2){
+    width: 410px;
+}
+.key__item button:nth-of-type(3){
+    width: 450px;
+}
+.key__item button:hover{
+    color: #222;
+    font-weight: 600;
+}
+
+/*  TEAM  */
+.team{
+    position: relative;
+}
+.team h3{
+    font-size: 37px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 170px 0 140px;
+}
+.team h4{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 75px;
+}
+.team h2{
+    font-size: 247px;
+    font-family: 'Roboto Condensed', sans-serif;
+    opacity: 15%;
+    text-transform: uppercase;
+    position: absolute;
+    top: 65px;
+}
+.team .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.team .icon:hover img{
+    box-shadow: 0 0 10px #11749e;
+}
+.team .icon img{
+    width: 270px;
+    height: 280px;
+    transition: .3s;
+}
+.team__item h3{
+    font-size: 18px;
+    margin: 40px 0 34px;
+    color: #11749e;
+}
+.team__item{
+    font-size: 15px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+.team__item p{
+    line-height: 2em;
+}
+.team__row__item{
+    display: flex;
+    margin-bottom: 115px;
+    text-align: center;
+}
