@@ -576,3 +576,30 @@ button{
 .btn_up a{
     padding: 11px;
 }
+
+/*  "НАЧАЛО РАЗГОВОРА"  */
+.btn_order{
+    width: 46px;
+    height: 46px;
+    background-color: white;
+    color: rgba(17, 116, 158, 1);
+    border: none;
+    font-size: 23px;
+    position: fixed;
+    bottom: 96px;
+    right: 50px;
+    opacity: .5;
+    transition: .5s;
+}
+.btn_order:hover{
+    opacity: .9;
+    animation: blink .5s ease infinite alternate;
+}
+@keyframes blink{
+    from{
+        color: rgba(17, 116, 158, 1);
+    }
+    to{
+        color: rgba(17, 116, 158, 0.1);
+    }
+}
