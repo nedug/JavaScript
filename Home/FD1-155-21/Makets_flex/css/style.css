@@ -203,6 +203,9 @@ button{
 .news{
     font-size: 15px;
     font-weight: 600;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
 }
 .news_row_1{
     color: white;
@@ -213,7 +216,18 @@ button{
 }
 .news_item{
     width: 480px;
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*padding: 70px 0 0 0;*/
+    /*padding: 0 115px 0 205px;*/
     margin: 0 115px 0 205px;
+    /*flex-shrink: 0;*/
+}
+.news img{
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*max-width: 800px;*/
+    /*flex-shrink: 2;*/
 }
 .news_item p:first-of-type{
     font-size: 13px;
@@ -242,6 +256,7 @@ button{
     background-color: white;
     display: flex;
     justify-content: center;
+    /*flex-direction: row-reverse;*/
     align-items: center;
 }
 .news_row_2 .news_item{
