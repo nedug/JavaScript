@@ -543,7 +543,7 @@ button{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 140px;
+    height: 130px;
 }
 .footer__all i{
     margin-top: 15px;
@@ -554,4 +554,25 @@ button{
 }
 .fa-mobile-alt, .fa-envelope-open{
     padding-right: 15px;
+}
+
+/*  "В НАЧАЛО СТРАНИЦЫ"  */
+.btn_up{
+    width: 46px;
+    height: 46px;
+    background-color: #11749e;
+    color: white;
+    border: none;
+    font-size: 23px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    opacity: .5;
+    transition: .5s;
+}
+.btn_up:hover{
+    opacity: .9;
+}
+.btn_up a{
+    padding: 11px;
 }
