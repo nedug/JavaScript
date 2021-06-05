@@ -18,6 +18,7 @@
     }
 }
 
+
 @media all and (max-width: 1215px){
     .container{
         width: 1024px;
@@ -171,8 +172,144 @@
     }
 }
 
+
 @media all and (max-width: 1023px){
     .container{
         width: 667px;
+        padding: 0 10px;
     }
+
+/*  HEADER  */
+    .header__nav{
+        flex-direction: column;
+    }
+    .header__menu li{
+        margin: 0 11px;
+    }
+    .header__menu{
+        margin: 15px 0;
+    }
+    .header__social{
+        order: 1;
+        align-self: flex-end;
+    }
+    .header__nav img{
+        margin: 0 0 10px 0;
+        order: 2;
+    }
+    .header__menu{
+        order: 3;
+    }
+    .header__menu a{
+        padding: 8px 0;
+    }
+
+/*  HOME  */
+    .home__top h1{
+        font-size: 100px;
+        margin-bottom: 10px;
+    }
+    .home__top h4{
+        font-size: 15px;
+    }
+    .home__top{
+        margin-top: 5%;
+    }
+
+/*  FEATURES  */
+    .features h3{
+        font-size: 30px;
+        margin: 100px 0 90px;
+    }
+    .features h2{
+        font-size: 200px;
+        top: 17px;
+    }
+    .features__item{
+        width: 285px;
+        margin-bottom: 15px;
+    }
+    .features__item h3{
+        font-size: 18px;
+        margin: 20px 0 20px;
+    }
+    .features__row__item{
+        margin-bottom: 0;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .features .icon{
+        width: 100px;
+        height: 100px;
+    }
+    .features .icon img{
+        margin-top: 34px;
+    }
+
+/*  NEWS  */
+    .news_item{
+        width: 100%;
+        padding: 25px 0;
+        margin: 0 25px 0 25px;
+    }
+    .news_row_2 .news_item{
+        margin: 0 25px 0 25px;
+    }
+    .news img{
+        width: 100%;
+        height: auto;
+    }
+    .news_item h2 + p{
+        margin-bottom: 20px;
+    }
+    .news_row_1{
+        flex-wrap: wrap;
+    }
+    .news_row_2{
+        flex-wrap: wrap-reverse;
+    }
+
+/*  BLOG  */
+    .blog h3{
+        font-size: 30px;
+        margin: 100px 0 90px;
+    }
+    .blog h2{
+        font-size: 200px;
+        top: 17px;
+    }
+    .blog h4{
+        font-size: 23px;
+        margin: 0 0 25px;
+    }
+    .blog__item h3{
+        margin: 30px 0 25px;
+    }
+    .blog__item{
+        width: 225px;
+    }
+    .blog .icon img{
+        width: 220px;
+        height: auto;
+    }
+    .blog__row__item{
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

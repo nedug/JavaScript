@@ -196,6 +196,7 @@ button{
 .features__row__item{
     display: flex;
     margin-bottom: 110px;
+    align-items: center;
     text-align: center;
 }
 
