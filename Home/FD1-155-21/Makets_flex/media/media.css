@@ -148,7 +148,6 @@
         width: 310px;
     }
 
-
 /*  MAP  */
     .map iframe{
         height: 200px;
@@ -283,33 +282,127 @@
         margin: 0 0 25px;
     }
     .blog__item h3{
-        margin: 30px 0 25px;
+        font-size: 18px;
+        margin: 20px 0 15px;
     }
     .blog__item{
-        width: 225px;
-    }
-    .blog .icon img{
-        width: 220px;
-        height: auto;
+        width: 293px;
+        margin: 0 0 20px;
     }
     .blog__row__item{
-        margin-bottom: 40px;
+        margin-bottom: 0;
         flex-wrap: wrap;
         justify-content: space-around;
-
     }
 
+/*  BLUE_BLOG  */
+    .blue_blog .blue_blog__item:last-child{
+        display: none;
+    }
+    .blue_blog .container{
+        justify-content: center;
+    }
+    .blue_blog__item{
+        width: 100%;
+        margin: 20px 20px;
+    }
 
+/*  KEY  */
+    .key__row__item{
+        flex-direction: column;
+    }
+    .key img{
+        margin: -80px 0 -85px;
+        height: 450px;
+        width: auto;
+        transform: rotate(90deg);
+    }
+    .key__item{
+        width: 500px;
+        margin: 0 15px 0 70px;
+    }
+    .key__item p{
+        margin: 0 0 30px 0;
+    }
+    .key__item h3{
+        font-size: 25px;
+        margin: 30px 0 30px 0;
+    }
 
+/*  TEAM  */
+    .team h3{
+        font-size: 30px;
+        margin: 100px 0 90px;
+    }
+    .team h2{
+        font-size: 200px;
+        top: 17px;
+    }
+    .team h4{
+        font-size: 24px;
+        margin: 0 0 25px;
+    }
+    .team__item h3{
+        font-size: 20px;
+        margin: 20px 0 15px;
+    }
+    .team__item{
+        width: 275px;
+        margin-bottom: -42px;
+    }
+    .team__row__item{
+        margin-bottom: 0;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .team .icon img{
+        width: 100%;
+        height: auto;
+    }
 
+/*  CONTACT  */
+    .contact h3{
+        font-size: 30px;
+        margin: 100px 0 90px;
+    }
+    .contact h2{
+        font-size: 200px;
+        top: 25px;
+    }
+    .contact__item{
+        margin: 0 0 20px 0;
+        flex-direction: column;
+    }
+    .contact textarea{
+        height: 100px;
+    }
+    .contact button{
+        margin: 25px 0;
+        width: 180px;
+        height: 50px;
+        font-size: 20px;
+    }
+    .contact input{
+        padding: 10px 0 10px 20px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
+/*  MAP  */
+    .map iframe{
+        height: 110px;
+    }
 
-
-
-
-
-
-
-
-
+/*  FOOTER  */
+    .footer__all{
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    .footer__all img{
+        margin: 20px 0 27px;
+    }
+    .footer__all p:last-child{
+        margin-bottom: 20px;
+    }
 }
