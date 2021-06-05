@@ -1,12 +1,10 @@
 @media all and (max-width: 1601px){
+
+/*  NEWS  */
     .news_item{
-        /*width: 480px;*/
         width: 100%;
-        /*height: auto;*/
         padding: 30px 0;
-        /*padding: 0 115px 0 205px;*/
         margin: 0 50px 0 50px;
-        /*flex-shrink: 0;*/
     }
     .news_row_2 .news_item{
         margin: 0 50px 0 50px;
@@ -14,44 +12,44 @@
     .news img{
         width: 750px;
         height: auto;
-        /*max-width: 800px;*/
-        /*flex-shrink: 2;*/
     }
     .news_item h2 + p{
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 }
 
 @media all and (max-width: 1215px){
     .container{
         width: 1024px;
-        margin: 0 auto;
-        padding: 0 15px;
+    }
+
+/*  HEADER  */
+    .header__menu li {
+        margin: 0 20px;
+    }
+
+/*  FEATURES  */
+    .features h3{
+        margin: 150px 0 130px;
+    }
+    .features h2{
+        top: 40px;
     }
     .features__item {
-        /*font-size: 15px;*/
         width: 225px;
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*align-items: center;*/
-        /*margin: 0 15px;*/
     }
-    .features__row__item {
-        display: flex;
-        margin-bottom: 70px;
-        text-align: center;
+    .features__item h3{
+        margin: 24px 0 30px;
     }
-    .header__menu li {
-         margin: 0 20px;
-     }
+    .features__row__item{
+        margin-bottom: 40px;
+    }
+
+/*  NEWS  */
     .news_item{
-        /*width: 480px;*/
         width: 100%;
-        /*height: auto;*/
         padding: 25px 0;
-        /*padding: 0 115px 0 205px;*/
         margin: 0 40px 0 40px;
-        /*flex-shrink: 0;*/
     }
     .news_row_2 .news_item{
         margin: 0 40px 0 40px;
@@ -59,62 +57,122 @@
     .news img{
         width: 400px;
         height: auto;
-        /*max-width: 800px;*/
-        /*flex-shrink: 2;*/
     }
     .news_item h2 + p{
          margin-bottom: 20px;
     }
-    .blog__item {
-        /*font-size: 15px;*/
-        width: 225px;
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*align-items: center;*/
-        /*margin: 0 15px;*/
+
+/*  BLOG  */
+    .blog h3{
+        margin: 140px 0 130px;
     }
-    .blog .icon img {
+    .blog h2{
+        top: 30px;
+    }
+    .blog h4{
+        margin: 0 0 45px;
+    }
+    .blog__item h3{
+        margin: 30px 0 25px;
+    }
+    .blog__item{
+        width: 225px;
+    }
+    .blog .icon img{
         width: 220px;
         height: auto;
-        /*transition: .3s;*/
     }
-    .blog__row__item {
-        display: flex;
-        margin-bottom: 70px;
-        text-align: center;
+    .blog__row__item{
+        margin-bottom: 40px;
     }
-    .team .icon img {
+
+/*  BLUE_BLOG  */
+    .blue_blog__item{
+        margin: 30px 25px;
+    }
+
+/*  KEY  */
+    .key img{
+        margin: 45px 0;
+        height: 470px;
+        width: auto;
+    }
+
+/*  TEAM  */
+    .team h3{
+        margin: 150px 0 130px;
+    }
+    .team h2{
+        top: 32px;
+    }
+    .team h4{
+        margin: 0 0 45px;
+    }
+    .team .icon img{
         width: 200px;
         height: auto;
     }
-    .team__item {
-        font-size: 16px;
+    .team__item h3{
+        margin: 20px 0 15px;
+    }
+    .team__item .icon_info{
+        background-color: transparent;
+        width: 200px;
+        bottom: 49px;
+    }
+    .team__item{
         width: 215px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 15px;
     }
-    .team__row__item {
-        display: flex;
-        margin-bottom: 15px;
-        text-align: center;
+    .team__row__item{
+        margin-bottom: -30px;
     }
-    .contact input {
-        border: 1px solid #fff;
-        background: transparent;
-        color: #fff;
+
+/*  CONTACT  */
+    .contact h3{
+        margin: 150px 0 125px;
+    }
+    .contact h2{
+        top: 45px;
+    }
+    .contact__item{
+        margin: 0 0 30px 0;
+    }
+    .contact textarea{
+        height: 150px;
+    }
+    .contact button{
+        margin: 40px 0;
+    }
+    .contact input{
         width: 310px;
-        padding: 15px 0 15px 20px;
-        transition: .3s;
+    }
+
+
+/*  MAP  */
+    .map iframe{
+        height: 200px;
+    }
+
+/*  FOOTER  */
+    .footer__all{
+        height: 100px;
+    }
+
+/*  "В НАЧАЛО СТРАНИЦЫ"  */
+    .btn_up{
+        bottom: 60px;
+        right: 0;
+    }
+
+/*  "НАЧАЛО РАЗГОВОРА"  */
+    .btn_order{
+        bottom: 115px;
+        right: 0;
     }
 }
-
 
 @media all and (max-width: 1023px){
     .container{
         width: 667px;
-        margin: 0 auto;
-        padding: 0 15px;
     }
 }
