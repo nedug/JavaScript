@@ -568,7 +568,7 @@ button{
     position: fixed;
     bottom: 50px;
     right: 50px;
-    opacity: .5;
+    opacity: .6;
     transition: .5s;
 }
 .btn_up:hover{
@@ -584,18 +584,21 @@ button{
     height: 46px;
     background-color: white;
     color: rgba(17, 116, 158, 1);
-    border: none;
+    border: 1px solid #11749e;
     border-radius: 50%;
     font-size: 23px;
     position: fixed;
     bottom: 105px;
     right: 50px;
-    opacity: .5;
+    opacity: .8;
     transition: .5s;
 }
 .btn_order:hover{
     opacity: .9;
     animation: blink .5s ease infinite alternate;
+}
+.btn_order a{
+    padding: 10px;
 }
 @keyframes blink{
     from{
@@ -604,4 +607,54 @@ button{
     to{
         color: rgba(17, 116, 158, 0.1);
     }
+}
+
+/*  "ONLINE_CHAT"  */
+.online_chat:target{
+    opacity: 1;
+    z-index: 1;
+}
+.online_chat{
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    color: rgba(17, 116, 158, 1);
+    border: 1px solid #11749e;
+    border-radius: 4px;
+    font-size: 23px;
+    position: fixed;
+    bottom: 178px;
+    right: 10px;
+    opacity: 0;
+    transition: .7s;
+    z-index: -1;
+}
+.btn_close a{
+    padding: 10px;
+}
+.online_chat .btn_close{
+    width: 46px;
+    height: 46px;
+    background-color: white;
+    color: rgba(17, 116, 158, 1);
+    border: 1px solid #11749e;
+    border-radius: 50%;
+    font-size: 23px;
+    position: fixed;
+    bottom: 105px;
+    right: 50px;
+}
+.online_chat .triangle{
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #11749e;
+    border-left: 1px solid #11749e;
+    transform: rotate(-135deg);
+    background-color: white;
+    /*border: 1px solid #11749e;*/
+    /*border-radius: 50%;*/
+    /*font-size: 23px;*/
+    position: fixed;
+    bottom: 162px;
+    right: 62px;
 }
