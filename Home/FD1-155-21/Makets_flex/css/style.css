@@ -615,15 +615,16 @@ button{
     z-index: 1;
 }
 .online_chat{
-    width: 200px;
-    height: 100px;
+    width: 225px;
+    height: 82px;
     background-color: white;
-    color: rgba(17, 116, 158, 1);
-    border: 1px solid #11749e;
+    letter-spacing: 0;
+    font-weight: 600;
+    color: black;
     border-radius: 4px;
-    font-size: 23px;
+    font-size: 16px;
     position: fixed;
-    bottom: 178px;
+    bottom: 172px;
     right: 10px;
     opacity: 0;
     transition: .7s;
@@ -647,14 +648,22 @@ button{
 .online_chat .triangle{
     width: 20px;
     height: 20px;
-    border-top: 1px solid #11749e;
-    border-left: 1px solid #11749e;
     transform: rotate(-135deg);
     background-color: white;
-    /*border: 1px solid #11749e;*/
-    /*border-radius: 50%;*/
-    /*font-size: 23px;*/
     position: fixed;
     bottom: 162px;
     right: 62px;
+}
+.online_chat .phone, .online_chat .online{
+    margin: 15px;
+    cursor: pointer;
+}
+.phone i,.online i{
+    color: rgb(38, 198, 59);
+}
+.online_chat .fa-comment-alt{
+    margin-right: 20px;
+}
+.online_chat .fa-mobile-alt{
+    margin-right: 10px;
 }
