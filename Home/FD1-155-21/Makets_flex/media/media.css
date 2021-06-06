@@ -190,8 +190,6 @@
 /*  WRAPPER  */
     .wrapper{
         background: url("../img/fullscreen.png") center/cover no-repeat;
-        /*color: #fff;*/
-        /*height: 100%;*/
     }
 
 /*  HEADER  */
@@ -332,6 +330,9 @@
     }
 
 /*  KEY  */
+    .key{
+        background: url("../img/bg2.jpg") center/cover no-repeat;
+    }
     .key__row__item{
         flex-direction: column;
     }
@@ -385,6 +386,9 @@
     }
 
 /*  CONTACT  */
+    .contact{
+        background: url("../img/bg3.jpg") center/cover no-repeat;
+    }
     .contact h3{
         font-size: 30px;
         margin: 100px 0 90px;
