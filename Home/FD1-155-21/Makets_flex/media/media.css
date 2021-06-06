@@ -160,14 +160,23 @@
 
 /*  "В НАЧАЛО СТРАНИЦЫ"  */
     .btn_up{
-        bottom: 60px;
         right: 0;
     }
 
 /*  "НАЧАЛО РАЗГОВОРА"  */
     .btn_order{
-        bottom: 115px;
         right: 0;
+    }
+
+/*  "ONLINE_CHAT"  */
+    .online_chat{
+        right: 10px;
+    }
+    .online_chat .btn_close{
+        right: 0;
+    }
+    .online_chat .triangle{
+        right: 22px;
     }
 }
 
@@ -176,6 +185,13 @@
     .container{
         width: 667px;
         padding: 0 10px;
+    }
+
+/*  WRAPPER  */
+    .wrapper{
+        background: url("../img/fullscreen.png") center/cover no-repeat;
+        /*color: #fff;*/
+        /*height: 100%;*/
     }
 
 /*  HEADER  */
