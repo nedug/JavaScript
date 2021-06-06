@@ -309,6 +309,9 @@
         width: 100%;
         margin: 20px 20px;
     }
+    .blue_blog__item p{
+        line-height: 1.8em;
+    }
 
 /*  KEY  */
     .key__row__item{
