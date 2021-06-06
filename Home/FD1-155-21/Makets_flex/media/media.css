@@ -189,6 +189,7 @@
         margin: 15px 0;
     }
     .header__social{
+        margin-top: 15px;
         order: 1;
         align-self: flex-end;
     }
@@ -247,6 +248,8 @@
 
 /*  NEWS  */
     .news_item{
+        font-size: 15px;
+        font-weight: 500;
         width: 100%;
         padding: 25px 0;
         margin: 0 25px 0 25px;
