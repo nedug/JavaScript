@@ -215,6 +215,9 @@
     .home__top{
         margin-top: 5%;
     }
+    .home .container{
+        justify-content: space-around;
+    }
 
 /*  FEATURES  */
     .features h3{
@@ -248,9 +251,8 @@
 
 /*  NEWS  */
     .news_item{
-        font-size: 15px;
         font-weight: 500;
-        /*width: 100%;*/
+        width: 100%;
         padding: 25px 0;
         margin: 0 25px 0 25px;
     }
