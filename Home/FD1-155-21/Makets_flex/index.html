@@ -20,7 +20,7 @@
 	<div class="wrapper">
 
 <!--  HEADER  -->
-		<header class="header">
+		<header class="header" id="header">
 <!--  <header> - «шапка» сайта или раздела, в которой обычно располагается заголовок.
 Если делаете современный сайт, именно на HTML5, то лучше использовать тег <header>. Для оптимизации, под старые браузеры, также, можете использовать вариант с <div>.
 Записывать в <header>, можно почти всё, что угодно (ваши теги <nav> и списки как раз попадают). <nav>, строго запрещено вкладывать в <address>. В шапку часто помещают: навигацию (также, часто делают в <aside>), блок регистрации/входа, информацию о сайте, лого (название, назначение, свежие новости и т.д.)  -->
@@ -31,12 +31,12 @@
 <!--	во всем коде атрибут title не заполнен специально, так как в современных сайтах он практически не используется  -->
 					<div class="header__menu">
 						<ul>
-							<li><a href="#home">Home</a></li>
+							<li><a href="#home" class="scroll-to">Home</a></li>
 							<li><a href="#">Pages</a></li>
-							<li><a href="#features">Features</a></li>
+							<li><a href="#features" class="scroll-to">Features</a></li>
 							<li><a href="#">Extensions</a></li>
 							<li><a href="#">Tutorials</a></li>
-							<li><a href="#contact">Contact us</a></li>
+							<li><a href="#contact" class="scroll-to">Contact us</a></li>
 						</ul>
 					</div>
 					<div class="header__social">
@@ -61,7 +61,7 @@
 				</div>
 				<div class="home__bottom">
 					<div>Scroll Down</div>
-					<div><a href="#features"><i class="fas fa-chevron-down"></i></a></div>
+					<div><a href="#features" class="scroll-to"><i class="fas fa-chevron-down"></i></a></div>
 				</div>
 			</div>
 		</section>
@@ -264,7 +264,7 @@
 	</footer>
 
 <!--  "В НАЧАЛО СТРАНИЦЫ"  -->
-		<button class="btn_up" type="button"><a href="#"><i class="fas fa-chevron-up"></i></a></button>
+		<button class="btn_up" type="button"><a href="#header" class="scroll-to"><i class="fas fa-chevron-up"></i></a></button>
 
 <!--  "НАЧАЛО РАЗГОВОРА"  -->
 	<button class="btn_order" type="button"><a href="#online_chat"><i class="far fa-comment"></i></a></button>
@@ -276,6 +276,27 @@
 		<div class="online"><i class="far fa-comment-alt"></i>Online chat</div>
 		<div class="triangle"></div>
 	</div>
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script>
+
+//  ПЛАВНАЯ ПРОКРУТКА К ЯКОРЮ
+       $("a.scroll-to").on("click", function(e){
+//  Работает только для ссылок с классом 'scroll-to'
+           e.preventDefault();
+           var anchor = $(this).attr('href');
+           $('html, body').stop().animate({
+               scrollTop: $(anchor).offset().top - 0
+//  Можно указать после минуса высоту фиксированной плавающей шапки, если она есть. Устанавливается чтобы при прокрутке якорный элемент не перекрывался ей. Если фиксированной шапки нет, то значение убирается или устанавливается в 0.
+           }, 800);
+       });
+
+	</script>
+
 
 </body>
 </html>
