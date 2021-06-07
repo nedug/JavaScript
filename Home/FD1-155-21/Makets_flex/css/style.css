@@ -570,6 +570,7 @@ button{
     right: 50px;
     opacity: .6;
     transition: .5s;
+    display: none;
 }
 .btn_up:hover{
     opacity: .9;

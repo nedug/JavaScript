@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<style>
+		 body{
+           height: 3000px;
+		 }
+       #top{
+           width: 46px;
+           height: 46px;
+			  background-color: green;
+           position: fixed;
+           bottom: 50px;
+           right: 50px;
+			  display: none;
+           /*opacity: .6;*/
+           /*transition: .5s;*/
+       }
+	</style>
+</head>
+<body>
+
+
+<div id="top">
+	<button class="btn_up" type="button"><a href="#" class="scroll-to"><i class="fas fa-chevron-up"></i></a></button>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+
+
+$(window).scroll(function (){
+    const scr = $(this).scrollTop();
+    if(scr<100){
+    $("#top").fadeOut();
+}
+else{
+    $("#top").fadeIn();
+}
+});
+
+    });
+
+
+</script>
+
+</body>
+</html>
