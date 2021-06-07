@@ -1642,6 +1642,39 @@
   animation-name: fadeInUpBig;
 }
 
+@-webkit-keyframes fadeInUpBigBtn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: .8;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUpBigBtn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: .8;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUpBigBtn {
+  -webkit-animation-name: fadeInUpBigBtn;
+  animation-name: fadeInUpBigBtn;
+}
+
 @-webkit-keyframes fadeOut {
   from {
     opacity: 1;

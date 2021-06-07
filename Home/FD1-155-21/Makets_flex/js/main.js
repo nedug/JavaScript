@@ -84,12 +84,49 @@ $(function () {
 	        var imagePos = $(this).offset().top;
 
 	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
+	        if (imagePos < topOfWindow+800) {
 	            $(this).addClass("fadeIn");
 	        }
 	    });
 	});
+		$(window).scroll(function() {
+			$('.rotate-In-L').each(function(){
+				var imagePos = $(this).offset().top;
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+650) {
+					$(this).addClass("rotateInDownLeft");
+				}
+			});
+		});
+		$(window).scroll(function() {
+			$('.rotate-In-R').each(function(){
+				var imagePos = $(this).offset().top;
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+650) {
+					$(this).addClass("rotateInDownRight");
+				}
+			});
+		});
+		$(window).scroll(function() {
+			$('.jack-In').each(function(){
+				var imagePos = $(this).offset().top;
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+650) {
+					$(this).addClass("jackInTheBox");
+				}
+			});
+		});
+		$(window).scroll(function() {
+			$('.fade-In-Btn').each(function(){
+				var imagePos = $(this).offset().top;
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow+650) {
+					$(this).addClass("fadeInUpBigBtn");
+				}
+			});
+		});
 })
+
 jQuery(document).ready(function() {
 		jQuery("a.scrollto").click(function () {
 				elementClick = jQuery(this).attr("href")
