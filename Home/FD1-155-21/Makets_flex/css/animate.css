@@ -4,11 +4,12 @@
 /*  Свойство animation-fill-mode определяет в каком состоянии будет элемент до начала анимации и после её завершения.  */
 }
 
-.animated__home{
-    animation-name: animated__home;
-}
 
-@keyframes animated__home{
+/*  HOME  */
+.anim__home{
+    animation-name: anim__home;
+}
+@keyframes anim__home{
     from {
         opacity: 0;
         transform: translate(0, 2000px);
@@ -20,6 +21,38 @@
         transform: translate(0, 0);
     }
 }
+
+
+/*  FEATURES  */
+.anim__features__1{
+    animation-name: anim__features__1;
+}
+@keyframes anim__features__1{
+    from {
+        opacity: 0;
+        transform: translate(0, -100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+.anim__features__2{
+    animation-name: anim__features__2;
+}
+@keyframes anim__features__2{
+    from {
+        opacity: 0;
+        transform: translate(0, 100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
 
 
 
