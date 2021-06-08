@@ -715,17 +715,17 @@ button{
 
 
 
-.blog__img{
-    position: absolute;
-    animation: paused;
-    animation-delay: 1s;
-    transition-duration: 1s;
-}
-.blog__img:hover{
-    animation: running;
-    animation-delay: 2s;
-    transition: 1s;
-}
+/*.blog__img{*/
+/*    position: absolute;*/
+/*    animation: paused;*/
+/*    animation-delay: 1s;*/
+/*    transition-duration: 1s;*/
+/*}*/
+/*.blog__img:hover{*/
+/*    animation: running;*/
+/*    animation-delay: 2s;*/
+/*    transition: 1s;*/
+/*}*/
 
 
 
