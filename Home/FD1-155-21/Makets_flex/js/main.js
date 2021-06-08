@@ -24,6 +24,17 @@ $(window).scroll(function (){
 	}
 });
 
+//--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" для PAGES.html  --
+$(window).scroll(function (){
+	var scr = $(this).scrollTop();
+	if(scr>5){
+		$(".btn_up_1").fadeIn().addClass("fadeInUpBigBtn");
+	}
+	else{
+		$(".btn_up_1").fadeOut();
+	}
+});
+
 
 //--  АНИМАЦИЯ ВЫПАДАЮЩИХ РАЗДЕЛОВ САЙТА  --
 $(function () {

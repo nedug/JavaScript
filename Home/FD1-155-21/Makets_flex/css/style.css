@@ -678,3 +678,51 @@ button{
 .animated{
     opacity: 0;
 }
+
+
+
+/*  PAGES.html  */
+.wrapper__pages{
+    color: #fff;
+    background: url("../img/fullscreen.png") no-repeat fixed center;
+}
+.pages{
+    border-top: 1px solid #7b7b7b;
+    background-color: rgba(0, 229, 177, .88);
+}
+.color__pages{
+    background-color: rgba(0, 229, 177, .75);
+    position: relative;
+}
+.color__blue{
+    color: #11749e;
+}
+.head__img{
+    position: absolute;
+    left: 247px;
+}
+.head__social{
+    position: absolute;
+    top: 48px;
+}
+.blog__big{
+    color: white;
+    position: absolute;
+}
+.btn_up_1{
+    width: 46px;
+    height: 46px;
+    background-color: #11749e;
+    color: white;
+    border: none;
+    font-size: 23px;
+    position: fixed;
+    bottom: 90px;
+    right: 50px;
+    opacity: .6;
+    transition: .5s;
+    display: none;
+}
+.btn_up_1 a{
+    padding: 11px;
+}
