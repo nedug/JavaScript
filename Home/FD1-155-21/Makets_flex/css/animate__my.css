@@ -1,7 +1,7 @@
 .view {
     width: 370px;
     height: 348px;
-    margin: 10px;
+    margin: 10px 20px;
     float: left;
     /*border: 10px solid #faffff;*/
     overflow: hidden;
@@ -76,7 +76,7 @@
 }
 
 .view-tenth .mask {
-    background-color: rgba(213, 228, 243, 0.29);
+    background-color: rgba(213, 228, 243, 0.1);
     -webkit-transition: all 0.5s linear;
     -moz-transition: all 0.5s linear;
     -o-transition: all 0.5s linear;

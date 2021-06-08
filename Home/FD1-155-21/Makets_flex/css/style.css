@@ -709,32 +709,23 @@ button{
     color: white;
     position: absolute;
 }
-
-
-
-
-
-
-/*.blog__img{*/
-/*    position: absolute;*/
-/*    animation: paused;*/
-/*    animation-delay: 1s;*/
-/*    transition-duration: 1s;*/
-/*}*/
-/*.blog__img:hover{*/
-/*    animation: running;*/
-/*    animation-delay: 2s;*/
-/*    transition: 1s;*/
-/*}*/
-
-
-
-
-
-
-
-
-
+.blog .pages_h3{
+    margin: 140px 0 95px;
+}
+.blog .pages_h2{
+    top: 23px;
+}
+.blog .pages_h4{
+    margin-bottom: 30px;
+}
+.pages__wrap h3{
+    color: #11749e;
+    font-size: 20px;
+    margin: 0;
+}
+.pages_row{
+    margin-bottom: 60px;
+}
 .btn_up_1{
     width: 46px;
     height: 46px;
