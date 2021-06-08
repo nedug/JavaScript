@@ -684,7 +684,7 @@ button{
 /*  PAGES.html  */
 .wrapper__pages{
     color: #fff;
-    background: url("../img/fullscreen.png") no-repeat fixed center;
+    background: url("../img/fullscreen.png") no-repeat center/cover;
 }
 .pages{
     border-top: 1px solid #7b7b7b;
