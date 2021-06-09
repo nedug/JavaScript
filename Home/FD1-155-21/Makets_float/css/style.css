@@ -8,6 +8,11 @@ body{
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
 }
+html{
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
 a{
     text-decoration: none;
     color: inherit;
