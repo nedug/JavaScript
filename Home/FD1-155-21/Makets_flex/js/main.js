@@ -174,3 +174,19 @@ jQuery(document).ready(function() {
 				return false;
 		});
 });
+
+
+
+//--  АНИМАЦИЯ ДЛЯ СЛАЙДЕРА (about.html)  --
+jQuery(function($){
+	$(document).ready(function(){
+		$('.bxslider').bxSlider({
+			mode: 'vertical',
+			minSlides: 2,
+			slideMargin: 5,
+			controls: true,
+			nextText: ['<img src="img/down.png"/>'],
+			prevText: ['<img src="img/up.png"/>'],
+		});
+	});
+});

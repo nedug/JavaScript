@@ -749,7 +749,6 @@ button{
 /*  ABOUT.html  */
 .color__about{
     background-color: rgba(174, 139, 239, .86);
-    /*background-color: rgba(0, 229, 177, .75);*/
     position: relative;
 }
 .blog__about{

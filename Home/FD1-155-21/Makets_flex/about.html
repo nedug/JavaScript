@@ -13,9 +13,11 @@
 	<link rel="stylesheet" href="css/all.css">
 
 	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/animate__my.css">
 
 	<link rel="stylesheet" href="media/media.css">
+
+	<link rel="stylesheet" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" href="css/slider.css">
 
 </head>
 <body>
@@ -58,43 +60,52 @@
 	</header>
 
 <!--  BLOG  -->
-	<section class="blog blog__about" id="blog">
+	<section class="blog blog__about about" id="blog">
 		<div class="container">
 			<h3 class="pages_h3">What our customers have to say about us</h3>
 			<h3 class="pages_h3 blog__big animated fadeOutDown delay-400ms">What our customers have to say about us</h3>
 			<h2 class="color__blue pages_h2">a</h2>
-			<h4 class="pages_h4">Мy life - my rules</h4>
-			<div class="blog__row__item pages_row">
-				<div class="pages__wrap">
-					<div class="view view-tenth">
-						<img src="img/sport.jpg" alt="sport">
-						<div class="mask">
-							<p>Life is far too important a thing ever to talk seriously about.<br><br>Beauty is in the eye of the beholder.</p>
-							<a href="#" class="info">See More</a>
+			<div class="blog__row__item pages_row about__face">
+
+				<ul class="bxslider">
+					<li>
+						<img src="img/bg__text.png" class="bg__text">
+						<img src="img/avatar-1.png" alt="avatar" class="avatar">
+						<div class="comment">
+							<h5>John Doe</h5>
+							<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br>	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							</p>
 						</div>
-					</div>
-					<h3>sportswear websites</h3>
-				</div>
-				<div class="pages__wrap">
-					<div class="view view-tenth">
-						<img src="img/bike.jpg" alt="sport">
-						<div class="mask">
-							<p>Imagination is the only weapon in the war against reality.<br><br>Our life is what our thoughts make it.</p>
-							<a href="#" class="info">See More</a>
+					</li>
+					<li>
+						<img src="img/avatar-2.png" alt="avatar" class="avatar">
+						<img src="img/bg__text.png" class="bg__text">
+						<div class="comment">
+							<h5>John Doe</h5>
+							<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br>	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							</p>
 						</div>
-					</div>
-					<h3>vehicles and bikes</h3>
-				</div>
-				<div class="pages__wrap">
-					<div class="view view-tenth">
-						<img src="img/blow.jpg" alt="sport">
-						<div class="mask">
-							<p>And if you gaze long into an abyss, the abyss also gazes into you.<br><br>Elementary, my dear Watson!</p>
-							<a href="#" class="info">See More</a>
+					</li>
+					<li>
+						<img src="img/avatar-1.png" alt="avatar" class="avatar">
+						<img src="img/bg__text.png" class="bg__text">
+						<div class="comment">
+							<h5>John Doe</h5>
+							<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br>	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							</p>
 						</div>
-					</div>
-					<h3>nature and animals</h3>
-				</div>
+					</li>
+					<li>
+						<img src="img/avatar-2.png" alt="avatar" class="avatar">
+						<img src="img/bg__text.png" class="bg__text">
+						<div class="comment">
+							<h5>John Doe</h5>
+							<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br>	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							</p>
+						</div>
+					</li>
+				</ul>
+
 			</div>
 		</div>
 	</section>
@@ -122,6 +133,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script src="js/main.js"></script>
+<script src="js/jquery.bxslider.js"></script>
 
 </body>
 </html>

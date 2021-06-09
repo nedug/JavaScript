@@ -3,7 +3,6 @@
     height: 348px;
     margin: 10px 20px;
     float: left;
-    /*border: 10px solid #faffff;*/
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -47,13 +46,10 @@
 }
 
 .view a.info {
-    /*font-family: 'Oswald Regular', serif;*/
     font-weight: 600;
     display: inline-block;
     text-decoration: none;
-    padding: 12px 14px;
-    /*background: #ffffff;*/
-    /*color: rgba(0, 0, 0, 0.8);*/
+    padding: 12px 14px
     text-transform: uppercase;
     box-shadow: 0 0 3px #ffffff;
 }
