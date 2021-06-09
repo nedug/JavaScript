@@ -17,14 +17,19 @@
 }
 
 .comment p {
-    color: #78909c;
-    line-height: 1.6em;
-    padding-top: 16px;
-    padding-right: 10px;
+    color: #000000;
+    opacity: 0.9;
+    line-height: 1.1em;
+    padding-top: 30px;
 }
 
 .comment h5 {
     color: #11749e;
+    font-size: 15px;
+}
+
+.comment i {
+    padding-right: 15px;
 }
 
 .bx-wrapper {
@@ -48,7 +53,7 @@
 
 .bx-wrapper .bx-prev  {
     display: block;
-    top: -570px !important;
+    top: -550px !important;
 }
 
 .bx-wrapper .bx-next {

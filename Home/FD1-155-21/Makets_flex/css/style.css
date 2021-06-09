@@ -688,10 +688,10 @@ button{
 }
 .pages{
     border-top: 1px solid #7b7b7b;
-    background-color: rgba(0, 229, 177, .88);
+    background-color: rgba(0, 229, 177, .65);
 }
 .color__pages{
-    background-color: rgba(0, 229, 177, .75);
+    background-color: rgba(0, 229, 177, .8);
     position: relative;
 }
 .color__blue{
@@ -748,10 +748,10 @@ button{
 
 /*  ABOUT.html  */
 .color__about{
-    background-color: rgba(174, 139, 239, .86);
+    background-color: rgba(174, 139, 239, .80);
     position: relative;
 }
 .blog__about{
     border-top: 1px solid #7b7b7b;
-    background-color: rgba(174, 139, 239, .77);
+    background-color: rgba(174, 139, 239, .60);
 }
