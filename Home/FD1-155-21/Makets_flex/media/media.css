@@ -440,3 +440,119 @@
         margin-bottom: 20px;
     }
 }
+
+
+@media all and (max-width: 666px){
+    .container{
+        width: 375px;
+        padding: 0 10px;
+    }
+
+/*  HEADER  */
+    .header__menu ul{
+        /*display: flex;*/
+        flex-direction: column;
+    }
+    .header__social ul{
+        /*display: flex;*/
+        flex-direction: column;
+    }
+    .header__social li{
+        margin: 15px 11px;
+    }
+
+    .header__nav{
+        flex-direction: row;
+    }
+    .header__menu li{
+        margin: 7px 11px;
+    }
+    .header__menu{
+        margin: 15px 0;
+    }
+    .header__social{
+        flex-direction: column;
+        margin-top: 15px;
+        order: 3;
+        align-self: center;
+    }
+    .header__nav img{
+        margin: 0 0 10px 0;
+        order: 2;
+    }
+    .header__menu{
+        order: 1;
+    }
+    .header__menu a{
+        padding: 3px 0;
+    }
+
+/*  HOME  */
+    .home__top h1{
+        font-size: 55px;
+        margin-bottom: 20px;
+    }
+    .home__top h4{
+        font-size: 15px;
+        letter-spacing: .2em;
+    }
+    .home__top{
+        margin-top: 20%;
+    }
+    .home .container{
+        display: block;
+        justify-content: space-around;
+    }
+    .home__bottom{
+        display: none;
+    }
+
+/*  FEATURES  */
+.features{
+    text-align: center;
+}
+
+/*  BLOG  */
+    .blog{
+        text-align: center;
+    }
+
+
+/*  KEY  */
+    .key__item{
+        width: 330px;
+        margin: 0 20px 0 20px;
+    }
+    .key__item button{
+        width: 100%;
+    }
+    .key__item button:nth-of-type(2){
+        width: 100%;
+    }
+    .key__item button:nth-of-type(3){
+        width: 100%;
+    }
+    .key img{
+        display: none;
+    }
+    .key__item button:last-child{
+        margin-bottom: 20px;
+    }
+
+/*  TEAM  */
+    .team{
+        text-align: center;
+    }
+
+/*  CONTACT  */
+    .contact h3{
+        margin: 100px 0 50px;
+    }
+
+
+
+
+
+
+
+}
