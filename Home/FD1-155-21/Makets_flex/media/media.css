@@ -450,11 +450,9 @@
 
 /*  HEADER  */
     .header__menu ul{
-        /*display: flex;*/
         flex-direction: column;
     }
     .header__social ul{
-        /*display: flex;*/
         flex-direction: column;
     }
     .header__social li{
@@ -548,11 +546,4 @@
     .contact h3{
         margin: 100px 0 50px;
     }
-
-
-
-
-
-
-
 }
