@@ -56,6 +56,11 @@ button{
 }
 .header__menu{
     justify-self: end;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 50px;
+    margin-top: 68px;
+    color: white;
 }
 .header__logo{
     width: 225px;
@@ -69,5 +74,14 @@ button{
     justify-items: center;
     align-items: center;
     margin-top: 40px;
-
+}
+.header__menu ul{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto;
+    grid-column-gap: 50px;
+    letter-spacing: 7px;
+}
+.header__menu span{
+    color: red;
 }
