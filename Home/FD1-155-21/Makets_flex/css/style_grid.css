@@ -33,7 +33,7 @@ button{
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 896px 1717px 850px 151px;
+    grid-template-rows: 896px auto 850px 151px;
 }
 
 
@@ -117,8 +117,6 @@ button{
     font-size: 40px;
     letter-spacing: 20px;
     border: 40px solid white;
-
-
     grid-column-gap: 40px;
     grid-row-gap: 40px
 }
@@ -158,3 +156,5 @@ button{
     align-items: end;
     grid-template-rows: 2fr 1fr;
 }
+
+/*  HOME_2  */
