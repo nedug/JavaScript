@@ -278,11 +278,22 @@ button{
     .wrapper{
         width: 667px;
     }
-    .header__logo{
-        margin-right: 25px;
+    .header{
+        grid-template-columns: 1fr 0;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
     }
+
+
+
+    .header__logo{
+        margin: 25px 0 0;
+    }
+
+
     .header__menu{
-        margin-right: 30px;
+        margin: 0;
+        grid-column: 1/2;
+        grid-row: 2/3;
     }
     .header__menu ul{
         grid-column-gap: 45px;
