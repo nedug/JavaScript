@@ -1,0 +1,125 @@
+@media all and (max-width: 1380px){
+
+    .wrapper{
+        width: 1024px;
+    }
+    .header__logo{
+        margin-right: 25px;
+    }
+    .header__menu{
+        margin-right: 30px;
+    }
+    .header__menu ul{
+        grid-column-gap: 45px;
+    }
+    .home_1{
+        letter-spacing: normal;
+    }
+    .home_logo{
+        margin-left: 0;
+    }
+    .home_1 p{
+        margin: 0;
+    }
+    .home__item_1 p{
+        margin: 15px 0 15px 30px;
+    }
+    .home__item_1 .home_logo{
+        margin-left: 30px;
+    }
+    .home__item_2 p, .home__item_3 p, .home__item_4 p, .home__item_5 p, .home__item_6 p{
+        margin: 0 0 15px 15px;
+    }
+    .home_logo{
+        margin-left: 15px;
+    }
+    .home__item_2, .home__item_3, .home__item_4, .home__item_5, .home__item_6{
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+
+@media all and (max-width: 1023px){
+
+    .wrapper{
+        width: 667px;
+    }
+    .header{
+        grid-template-columns: 1fr 0;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    .header__logo{
+        margin: 25px 0 0;
+    }
+    .header__menu{
+        margin: -50px 15px 0 0;
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+    .header__menu ul{
+        grid-column-gap: 20px;
+    }
+    .header__name{
+        grid-row: 2/3;
+    }
+    .header__name h2{
+        margin: 120px 0 25px 40px;
+        text-shadow: 0 0 15px #ffffff;
+    }
+    .header__arrow{
+        grid-row: 4/5;
+        margin-top: 50px;
+    }
+    .home_1{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        border: 20px solid white;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px
+    }
+    .home__item_1{
+        grid-column: 1/2;
+        grid-row: 1/2;
+        font-size: 40px;
+        height: 500px;
+    }
+    .home_logo{
+        margin-left: 0;
+    }
+    .home_1 p{
+        margin: 0;
+    }
+    .home__item_1 p{
+        margin: 15px 0 15px 30px;
+    }
+    .home__item_1 .home_logo{
+        margin-left: 30px;
+    }
+    .home__item_2 p, .home__item_3 p, .home__item_4 p, .home__item_5 p, .home__item_6 p{
+        margin: 0 0 15px 15px;
+    }
+    .home_logo{
+        margin-left: 15px;
+    }
+    .home__item_2, .home__item_3, .home__item_4, .home__item_5, .home__item_6{
+        grid-template-rows: 3fr 1fr;
+    }
+    .home2__text{
+        right: 0;
+    }
+    .footer__social{
+        display: none;
+    }
+    .footer__about{
+        margin-left: 30px;
+        margin-right: 30px;
+        grid-column-gap: 25px;
+    }
+    .footer{
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+    .footer__about li:first-child{
+        margin-right: 0;
+    }
+}
