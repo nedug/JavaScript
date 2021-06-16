@@ -40,10 +40,8 @@ button{
     background-color: black;
     color: white;
     border-bottom: 3px solid red;
-}
-.marquee span:hover{
-    animation-play-state: paused;
-    cursor: pointer;
+    overflow: hidden;
+/*  Помогло скрыть вылезающий паддинг на мобильных устройствах  */
 }
 .marquee span{
     display: inline-block;
@@ -53,6 +51,10 @@ button{
     animation: marquee 30s linear infinite;
     font-size: 14px;
     font-weight: bold;
+}
+.marquee span:hover{
+    animation-play-state: paused;
+    cursor: pointer;
 }
 @keyframes marquee{
     from{
