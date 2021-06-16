@@ -41,6 +41,10 @@ button{
     color: white;
     border-bottom: 3px solid red;
 }
+.marquee span:hover{
+    animation-play-state: paused;
+    cursor: pointer;
+}
 .marquee span{
     display: inline-block;
     padding-left: 100%;

@@ -36,6 +36,16 @@
     .home__item_2, .home__item_3, .home__item_4, .home__item_5, .home__item_6{
         grid-template-rows: 1fr 1fr;
     }
+
+
+
+
+    .wrapper{
+        grid-template-rows: 896px auto 680px 151px;
+    }
+    .marquee{
+        display: none;
+    }
 }
 
 
