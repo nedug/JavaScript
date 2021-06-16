@@ -528,7 +528,9 @@
     .blog{
         text-align: center;
     }
-
+    .blog__big{
+        display: none;
+    }
 
 /*  KEY  */
     .key__item{
