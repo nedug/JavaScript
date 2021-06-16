@@ -237,6 +237,9 @@
     .header__menu a{
         padding: 8px 0;
     }
+    .blog__about .social__none{
+        display: none;
+    }
 
 /*  HOME  */
     .home__top h1{
@@ -456,9 +459,9 @@
         width: 375px;
         padding: 0 10px;
     }
-    .view {
+    .view{
          width: 335px;
-     }
+    }
 
 /*  HEADER  */
     .header__menu ul{
@@ -520,9 +523,9 @@
     }
 
 /*  FEATURES  */
-.features{
-    text-align: center;
-}
+    .features{
+        text-align: center;
+    }
 
 /*  BLOG  */
     .blog{
@@ -530,6 +533,15 @@
     }
     .blog__big{
         display: none;
+    }
+    .blog__about .avatar{
+         top: 13px;
+    }
+    .blog__about .comment{
+        top: -80px;
+    }
+    .blog__about .bx-wrapper .bx-prev{
+         top: -450px !important;
     }
 
 /*  KEY  */
