@@ -182,7 +182,7 @@
         right: 0;
     }
     .btn_up_1{
-         right: 15px;
+         right: 45px;
      }
 
 /*  "НАЧАЛО РАЗГОВОРА"  */
@@ -235,7 +235,7 @@
         padding: 8px 0;
     }
     .head__img{
-        left: 345px;
+        left: 295px;
         top: 35px;
     }
     .social__move{
@@ -475,7 +475,6 @@
     .header__social li{
         margin: 15px 11px;
     }
-
     .header__nav{
         flex-direction: row;
     }
@@ -500,6 +499,10 @@
     }
     .header__menu a{
         padding: 3px 0;
+    }
+    .head__img{
+        left: 192px;
+        top: 75px;
     }
 
 /*  HOME  */
