@@ -33,6 +33,12 @@
     .header__menu li {
         margin: 0 20px;
     }
+    .head__img{
+        display: none;
+    }
+    .header__social .social__none{
+        display: none;
+    }
 
 /*  FEATURES  */
     .features h3{
@@ -178,6 +184,9 @@
     .btn_up{
         right: 0;
     }
+    .btn_up_1{
+         right: 0;
+     }
 
 /*  "НАЧАЛО РАЗГОВОРА"  */
     .btn_order{
@@ -447,6 +456,9 @@
         width: 375px;
         padding: 0 10px;
     }
+    .view {
+         width: 335px;
+     }
 
 /*  HEADER  */
     .header__menu ul{
@@ -458,7 +470,6 @@
     .header__social li{
         margin: 15px 11px;
     }
-
     .header__nav{
         flex-direction: row;
     }
@@ -483,6 +494,9 @@
     }
     .header__menu a{
         padding: 3px 0;
+    }
+    .pages__wrap h3{
+        font-size: 26px;
     }
 
 /*  HOME  */
