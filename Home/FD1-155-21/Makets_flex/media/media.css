@@ -102,6 +102,9 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
+    .blog__about{
+        text-align: center;
+    }
 
 /*  BLUE_BLOG  */
     .blue_blog__item{
