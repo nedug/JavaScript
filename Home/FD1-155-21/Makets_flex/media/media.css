@@ -73,6 +73,9 @@
     .news_item h2 + p{
          margin-bottom: 20px;
     }
+    .news_item{
+        overflow-x: hidden;
+    }
 
 /*  BLOG  */
     .blog h3{
