@@ -231,6 +231,12 @@ Old standard for color using rgb and rgba:
     width: 480px;
     margin: 0 115px 0 205px;
 }
+.news_item p:hover{
+    transform: translateY(-10px);
+}
+.news_item p{
+    /*transition: transform .25s ease-in-out;*/
+}
 .news_item p:first-of-type{
     font-size: 13px;
 }
