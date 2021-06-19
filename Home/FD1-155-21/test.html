@@ -4,38 +4,28 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-       option{
-			 background-color: red;
-			 color: white;
-		}
-		 select{
-           background-color: red;
-           color: white;
-       }
-		.tap{
+		 *{
+
+           -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		 }
+		 .tap{
           width: 200px;
           height: 200px;
-			 background-color: black;
+			 background-color: red;
+			 margin-top: 100px;
+
+          /*transition: 3s;*/
 		}
+		 .tap:hover{
+           background-color: green;
+		 }
 	</style>
 </head>
 <body>
 
 
-<select name="cities">
-	<option value="Minsk">Минск</option>
-	<option value="Brest">Брест</option>
-	<option value="Grodno">Гродно</option>
-	<option value="Mogilev">Могилев</option>
-	<option value="Vitebsk">Витебск</option>
-	<option value="Gomel">Гомель</option>
-</select>
 
-
-
-<div class="tap">
-
-</div>
+<div class="tap"></div>
 
 </body>
 </html>
