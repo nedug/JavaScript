@@ -184,7 +184,7 @@
 /*  Скрытие элементов МЕНЮ  */
     .menu__ul{
         display: block;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: -100%;
         color: black;
