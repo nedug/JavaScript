@@ -25,6 +25,12 @@
 		#btn_hover:hover{
           background-color: green;
 		}
+       #btn_touch{
+           width: 400px;
+           height: 400px;
+           background-color: red;
+           border: none;
+       }
 
 
 
@@ -41,6 +47,23 @@
 <div>TOUCH</div>
 
 <button type="button" id="btn_touch"></button>
+
+
+
+
+
+
+<script>
+
+    document.querySelector('#btn_touch').addEventListener('touchstart', function(){
+        document.querySelector('#btn_touch').style.background = 'green';
+    });
+
+    document.querySelector('#btn_touch').addEventListener('touchend', function(){
+        document.querySelector('#btn_touch').style.background = 'red';
+    });
+
+</script>
 
 
 </body>
