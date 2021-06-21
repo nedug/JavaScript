@@ -269,6 +269,10 @@ Old standard for color using rgb and rgba:
 .news_row_2 .news_item{
     margin: 0 205px 0 115px;
 }
+.news_row_1, .news_row_2, .blue_blog{
+    overflow: hidden;
+/*  Сделано чтобы на мобильных устройствах устойствах во время боковой анимациии нельзя было пролиснуть страницу в бок  */
+}
 
 /*  BLOG  */
 .blog{
@@ -767,10 +771,4 @@ Old standard for color using rgb and rgba:
 .blog__about{
     border-top: 1px solid #7b7b7b;
     background-color: rgba(174, 139, 239, .60);
-}
-
-
-.news_row_1, .news_row_2{
-    color: red;
-    overflow: hidden;
 }
