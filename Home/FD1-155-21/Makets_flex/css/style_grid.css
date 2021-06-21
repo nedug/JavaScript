@@ -142,7 +142,7 @@ button{
     letter-spacing: 20px;
     border: 40px solid white;
     grid-column-gap: 40px;
-    grid-row-gap: 40px
+    grid-row-gap: 40px;
 }
 .home__item_1{
     background: url("../img_grid/3.jpeg") center/cover no-repeat;
