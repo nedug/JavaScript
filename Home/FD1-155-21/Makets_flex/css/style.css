@@ -768,3 +768,9 @@ Old standard for color using rgb and rgba:
     border-top: 1px solid #7b7b7b;
     background-color: rgba(174, 139, 239, .60);
 }
+
+
+.news_row_1, .news_row_2, .news{
+    color: red;
+    overflow: hidden;
+}
