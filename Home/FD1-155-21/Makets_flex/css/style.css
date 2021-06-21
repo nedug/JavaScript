@@ -770,7 +770,7 @@ Old standard for color using rgb and rgba:
 }
 
 
-.news_row_1, .news_row_2, .news{
-    /*color: red;*/
-    /*overflow: hidden;*/
+.news_row_1, .news_row_2{
+    color: red;
+    overflow: hidden;
 }
