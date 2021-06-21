@@ -189,7 +189,7 @@
         left: -100%;
         color: black;
         width: 100%;
-        background: rgba(245, 246, 246, 0.95);
+        background: rgba(245, 246, 246, 1);
         box-shadow: 0 8px 7px -3px rgba(36, 36, 36, 0.7);
         transition: all 0.4s ease;
         overflow: auto;
