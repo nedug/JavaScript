@@ -127,11 +127,31 @@
 
 	</div>
 
+<!-- МОДАЛЬНОЕ ОКНО  -->
+	<div id="overlay_modal">
+		<div class="modal_window">
+			<h2>New Collection 2021</h2>
+			<h3>Nike Lebron Low XVIII</h3>
+			<p>A powerful LeBron engine requires a lightweight yet durable body to help it operate efficiently.</p>
+			<div class="pl-left">
+				<img src="img_grid/lebron.jpg" alt="nike">
+			</div>
+			<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
+		</div>
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="js/menu_grid.js"></script>
 
 	<script>
+
 		 document.body.addEventListener('touchstart', function () {});
+
+       var delay_modal_window = 2500;
+// Время появления модального окна
+       setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
+// Скрытие модального окна по нажатию кнопки
+
 	</script>
 
 </body>
