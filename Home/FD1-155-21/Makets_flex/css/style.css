@@ -596,6 +596,7 @@ Old standard for color using rgb and rgba:
     opacity: .6;
     transition: .5s;
     display: none;
+    z-index: 999;
 }
 .btn_up:hover{
     opacity: .9;
@@ -756,6 +757,7 @@ Old standard for color using rgb and rgba:
     opacity: .6;
     transition: .5s;
     display: none;
+    z-index: 999;
 }
 .btn_up_1 a{
     padding: 11px;
