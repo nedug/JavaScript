@@ -324,3 +324,15 @@ button{
 #overlay_modal.open-menu{
     display: block;
 }
+
+/*  Заливка кнопки закрытия модального блока черным цветом  */
+.close{
+    background-image: linear-gradient(transparent 50%, black 50%);
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    transition: 1.7s;
+}
+.close.open-menu{
+    background-position: 0 100%;
+    color: white;
+}

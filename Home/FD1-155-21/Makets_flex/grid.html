@@ -159,6 +159,13 @@
            }, 1500);
        });
 
+// Заливка кнопки закрытия модального блока черным цветом
+       $('.close').click(function(){
+           setTimeout(function() {
+               $('.close').toggleClass('open-menu');
+           });
+       });
+
 //    Добавление элементу свойства CSS:
 	//		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
 
