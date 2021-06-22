@@ -233,4 +233,9 @@
         opacity: 1;
     }
 
+/*  Модальное окно  */
+    .modal_window h2{
+        font-size: 20px;
+    }
+
 }
