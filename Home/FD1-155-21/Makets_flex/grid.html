@@ -136,7 +136,7 @@
 			<div class="pl-left">
 				<img src="img_grid/lebron.jpg" alt="nike">
 			</div>
-			<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
+			<button class="close"><i class="fas fa-times"></i></button>
 		</div>
 	</div>
 
@@ -147,10 +147,17 @@
 
 		 document.body.addEventListener('touchstart', function () {});
 
-       var delay_modal_window = 2500;
-// Задержка появления модального окна
-       setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
-// Появление модального окна
+// Появление модального окна с задержкой 2,5с
+       setTimeout(function() {
+           $("#overlay_modal").toggleClass('open-menu');
+       }, 2500);
+
+// Закрытие модального окна по клику на кнопку с задержкой 1,5с
+       $('.close').click(function(){
+           setTimeout(function() {
+               $('#overlay_modal').toggleClass('open-menu');
+           }, 1500);
+       });
 
 	</script>
 
