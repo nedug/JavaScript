@@ -3,6 +3,12 @@
     .wrapper{
         width: 1024px;
     }
+    .wrap_btn{
+        width: 1024px;
+    }
+    .menu.bottomRight{
+        margin-left: 975px;
+    }
     .header__logo{
         margin-right: 25px;
     }
@@ -43,6 +49,12 @@
 
     .wrapper{
         width: 667px;
+    }
+    .wrap_btn{
+        width: 667px;
+    }
+    .menu.bottomRight{
+        margin-left: 617px;
     }
     .header{
         grid-template-columns: 1fr 0;
@@ -129,11 +141,12 @@
 
 /*  Значок Гамбургера  */
     .menu-burger__header{
-        position: absolute;
+        position: fixed;
         width: 40px;
         height: 35px;
         background-color: white;
-        right: 15px;
+        margin-left: 590px;
+        /*right: 15px;*/
         top: 75px;
         border: 8px solid white;
         box-sizing: content-box;

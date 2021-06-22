@@ -19,7 +19,6 @@
     border-radius: 2px;
     color: white;
     opacity: .9;
-    /*border: 1px solid black;*/
 }
 .menu .share:hover.bottom .submenu li:nth-child(1) {
     opacity: 1;
@@ -207,4 +206,20 @@
 .menu.bottomRight {
     bottom: 20px;
     margin-left: 1290px;
+}
+.fa-facebook-f{
+    font-size: 20px;
+    padding-right: 13px;
+}
+.instagram .fab{
+    font-size: 20px;
+    padding-right: 15px;
+}
+.twitter .fab{
+    font-size: 20px;
+    padding-right: 13px;
+}
+.fa-google-plus-g{
+    font-size: 20px;
+    padding-right: 9px;
 }
