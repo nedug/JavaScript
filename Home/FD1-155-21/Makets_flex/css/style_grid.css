@@ -130,6 +130,15 @@ button{
 .header__menu span{
     color: red;
 }
+.login{
+    color: black;
+    outline: 1px solid #666;
+    outline-offset: 14px;
+}
+.login:hover{
+    cursor: pointer;
+    outline: 1px solid white;
+}
 
 /*  HOME_1  */
 .home_1{

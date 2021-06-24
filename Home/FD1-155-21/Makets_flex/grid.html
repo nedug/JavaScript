@@ -10,6 +10,7 @@
 
 	<link rel="stylesheet" href="css/style_grid.css">
 	<link rel="stylesheet" href="css/style_social_grid.css">
+	<link rel="stylesheet" href="css/style_forms_grid.css">
 	<link rel="stylesheet" href="css/all.css">
 
 	<link rel="stylesheet" href="media/media_grid.css">
@@ -31,9 +32,9 @@
 				<ul class="menu__ul">
 					<li><a href="#">Mens</a></li>
 					<li><a href="#">Womens</a></li>
-					<li><a href="#">Brands</a></li>
+					<li><a href="#">Brand</a></li>
 					<li><a href="#"><span>Sale</span></a></li>
-					<li><a href="#">News</a></li>
+					<li class="login">Login</li>
 				</ul>
 			</div>
 			<div class="header__name">
@@ -159,19 +160,83 @@
 <!--  ЗАТЕМНЕНИЕ ФОНА ПРИ ПОЯВЛЕНИИ МЕНЮ ГАМБУРГЕР  -->
 	<div class="overlay"></div>
 
+<!--  ФОРМА ВХОДА и РЕГИСТРАЦИИ  -->
+	<section class="user">
+		<div class="user_options-container">
+			<div class="user_options-text">
+				<div class="user_options-unregistered">
+					<h2 class="user_unregistered-title">Don't have an account?</h2>
+					<p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+					<button class="user_unregistered-signup" id="signup-button">Sign up</button>
+				</div>
+
+				<div class="user_options-registered">
+					<h2 class="user_registered-title">Have an account?</h2>
+					<p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+					<button class="user_registered-login" id="login-button">Login</button>
+				</div>
+			</div>
+
+			<div class="user_options-forms" id="user_options-forms">
+				<div class="user_forms-login">
+					<h2 class="forms_title">Login</h2>
+					<form class="forms_form">
+						<fieldset class="forms_fieldset">
+							<div class="forms_field">
+								<input type="email" placeholder="Email" class="forms_field-input" required autofocus />
+							</div>
+							<div class="forms_field">
+								<input type="password" placeholder="Password" class="forms_field-input" required />
+							</div>
+						</fieldset>
+						<div class="forms_buttons">
+							<button type="button" class="forms_buttons-forgot">Forgot password?</button>
+							<input type="submit" value="Log In" class="forms_buttons-action">
+						</div>
+					</form>
+				</div>
+				<div class="user_forms-signup">
+					<h2 class="forms_title">Sign Up</h2>
+					<form class="forms_form">
+						<fieldset class="forms_fieldset">
+							<div class="forms_field">
+								<input type="text" placeholder="Full Name" class="forms_field-input" required />
+							</div>
+							<div class="forms_field">
+								<input type="email" placeholder="Email" class="forms_field-input" required />
+							</div>
+							<div class="forms_field">
+								<input type="password" placeholder="Password" class="forms_field-input" required />
+							</div>
+						</fieldset>
+						<div class="forms_buttons">
+							<input type="submit" value="Sign up" class="forms_buttons-action">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<button class="user_registered-close"><i class="fas fa-times"></i></button>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="js/menu_grid.js"></script>
 
+
 	<script>
 
+
 		 document.body.addEventListener('touchstart', function () {});
+
 
 // Появление модального окна с задержкой 2,5с
        setTimeout(function() {
            $("#overlay_modal").toggleClass('open-menu');
        }, 2500);
+
 
 // Закрытие модального окна по клику на кнопку с задержкой 1,5с
        $('.close').click(function(){
@@ -180,12 +245,36 @@
            }, 1500);
        });
 
+
 // Заливка кнопки закрытия модального окна черным цветом
        $('.close').click(function(){
            setTimeout(function() {
                $('.close').toggleClass('open-menu');
            });
        });
+
+
+// Анимация и работа ФОРМЫ РЕГИСТРАЦИИ
+       const signupButton = document.getElementById('signup-button'),
+           loginButton = document.getElementById('login-button'),
+           userForms = document.getElementById('user_options-forms')
+
+       /**
+        * Add event listener to the "Sign Up" button
+        */
+       signupButton.addEventListener('click', () => {
+           userForms.classList.remove('bounceRight')
+           userForms.classList.add('bounceLeft')
+       }, false)
+
+       /**
+        * Add event listener to the "Login" button
+        */
+       loginButton.addEventListener('click', () => {
+           userForms.classList.remove('bounceLeft')
+           userForms.classList.add('bounceRight')
+       }, false)
+
 
 //    Добавление элементу свойства CSS:
 	//		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
@@ -194,6 +283,7 @@
 	//		var delay_modal_window = 2500;
 // Появление модального окна:
 	//		setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
+
 
 	</script>
 

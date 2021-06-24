@@ -82,6 +82,9 @@
         grid-row: 4/5;
         margin-top: 50px;
     }
+    .login{
+        outline: none;
+    }
     .home_1{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
