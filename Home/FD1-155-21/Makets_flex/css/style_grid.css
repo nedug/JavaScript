@@ -144,7 +144,7 @@ button{
 .home_1{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     color: white;
     font-weight: normal;
     font-size: 40px;
@@ -162,6 +162,22 @@ button{
     grid-template-rows: 5fr 1fr;
     font-size: 60px;
 }
+/*  Плавающий список  */
+.tabs{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: grid;
+    align-items: flex-start;
+    grid-template-rows: 1.5fr .2fr 8fr;
+    font-size: 20px;
+    letter-spacing: normal;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.content{
+    padding: 0 30px;
+    text-transform: none;
+}
+
 .home_1 p{
     margin: 10px 0 60px 60px;
     text-shadow: 0 0 18px #000000;

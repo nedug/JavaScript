@@ -42,6 +42,13 @@
     .home__item_2, .home__item_3, .home__item_4, .home__item_5, .home__item_6{
         grid-template-rows: 1fr 1fr;
     }
+    .tabs .content section h2,
+    .tabs ul li label {
+        font-size: 19px;
+    }
+    .content span{
+        display: none;
+    }
 }
 
 
@@ -136,6 +143,13 @@
     }
     .footer__about li:first-child{
         margin-right: 0;
+    }
+    .tabs .content section h2,
+    .tabs ul li label {
+        font-size: 20px;
+    }
+    .content span{
+        display: block;
     }
 
 
