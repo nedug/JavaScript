@@ -90,7 +90,11 @@
         margin-top: 50px;
     }
     .login{
-        outline: none;
+        /*outline: none;*/
+        border-bottom: none;
+    }
+    .login:hover{
+        border-bottom: none;
     }
     .home_1{
         grid-template-columns: 1fr 1fr;
@@ -266,6 +270,30 @@
 /*  Модальное окно  */
     .modal_window h2{
         font-size: 20px;
+    }
+
+/*  Стили для НОЧНОГО РЕЖИМА  */
+    .menu-burger__header.night{
+        background-color: black;
+        border: 8px solid black;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.55);
+    }
+    .menu-burger__header.night span, .menu-burger__header.night:after, .menu-burger__header.night:before{
+        background: #ffffff;
+    }
+    .header__logo.night{
+        border: 1px solid white;
+    }
+    .menu__ul.night{
+        color: white;
+        background: rgb(0, 0, 0);
+        box-shadow: 0 8px 7px -3px rgba(255, 255, 255, 0.7);
+    }
+    .login.night{
+        color: white;
+    }
+    #night.night{
+        border: 1px solid white;
     }
 
 }
