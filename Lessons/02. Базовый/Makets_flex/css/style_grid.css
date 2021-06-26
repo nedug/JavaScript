@@ -364,41 +364,10 @@ button{
     color: white;
 }
 
-
-
-
-
-
-
-body.night{
-    background-color: black;
-}
-.home_1.night{
-    border: 40px solid black;
-}
-.header__name.night h2{
-    color: black;
-}
-/*.header__logo{*/
-/*    background-color: black;*/
-/*}*/
-/*.home_1 p{*/
-/*    color: black;*/
-/*    text-shadow: 0 0 15px #ffffff;*/
-/*}*/
-
-
-
-
-
-
+/*  CHECKBOX для НОЧНОГО РЕЖИМА  */
 .center {
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
     transform: translate(0, -6%);
 }
-
 input[type="checkbox"] {
     width: 65px;
     height: 30px;
@@ -429,4 +398,32 @@ input[type="checkbox"]::before {
 }
 input:checked[type="checkbox"]::before {
     left: 35px;
+}
+
+/*  Стили для НОЧНОГО РЕЖИМА  */
+body.night{
+    background-color: black;
+}
+.home_1.night{
+    border: 40px solid black;
+}
+.header__name.night h2{
+    color: black;
+}
+.header__logo.night{
+    background-color: black;
+}
+.header__arrow.night{
+    color: black;
+}
+.home_1.night p{
+    color: black;
+    text-shadow: 0 0 15px #ffffff;
+}
+.home_2.night{
+    color: black;
+    text-shadow: 0 0 15px #ffffff;
+}
+.footer.night{
+    color: white;
 }
