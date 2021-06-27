@@ -429,3 +429,21 @@ body.night{
 .footer.night{
     color: white;
 }
+.bottomRight.night{
+    border: 1px solid white;
+}
+.header.night{
+    background: url("../img_grid/1_2.jpeg") center/cover no-repeat;
+}
+.home__item_2.night{
+    background: url("../img_grid/4_1.jpeg") center/cover no-repeat;
+}
+.home__item_3.night{
+    background: url("../img_grid/5_1.jpeg") center/cover no-repeat;
+}
+.home__item_4.night{
+    background: url("../img_grid/6_1.jpeg") center/cover no-repeat;
+}
+.home__item_5.night{
+    background: url("../img_grid/7_1.jpeg") center/cover no-repeat;
+}
