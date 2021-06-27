@@ -24,6 +24,7 @@ $(window).scroll(function (){
 	}
 });
 
+
 //--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" для PAGES.html  --
 $(window).scroll(function (){
 	var scr = $(this).scrollTop();
@@ -190,3 +191,7 @@ jQuery(function($){
 		});
 	});
 });
+
+
+//--  Для активации hover эффекта на ТАЧ устройствах  --
+document.body.addEventListener('touchstart', function () {});

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>STUSSY2021</title>
+
 	<link rel="icon" href="img_grid/26.jpeg">
 
 	<link rel="stylesheet" href="fonts/ProximaNova/stylesheet.css">
@@ -253,119 +254,10 @@
 	<button class="user_registered-close"><i class="fas fa-times"></i></button>
 
 
-
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="js/main_grid.js"></script>
 	<script src="js/menu_grid.js"></script>
 
-
-	<script>
-
-//    Для активации hover эффекта на ТАЧ устройствах
-		 document.body.addEventListener('touchstart', function () {});
-
-
-//  Появление модального окна с задержкой 2,5с
-       setTimeout(function() {
-           $("#overlay_modal").toggleClass('open-menu');
-       }, 2500);
-
-
-//  Закрытие модального окна по клику на кнопку с задержкой 1,5с
-       $('.close').click(function(){
-           setTimeout(function() {
-               $('#overlay_modal').toggleClass('open-menu');
-           }, 1500);
-       });
-
-
-//  Заливка кнопки закрытия модального окна черным цветом
-       $('.close').click(function(){
-           setTimeout(function() {
-               $('.close').toggleClass('open-menu');
-           });
-       });
-
-
-//  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ
-       const signupButton = document.getElementById('signup-button'),
-           loginButton = document.getElementById('login-button'),
-           userForms = document.getElementById('user_options-forms')
-
-       /**
-        * Add event listener to the "Sign Up" button
-        */
-       signupButton.addEventListener('click', () => {
-           userForms.classList.remove('bounceRight')
-           userForms.classList.add('bounceLeft')
-       }, false)
-
-       /**
-        * Add event listener to the "Login" button
-        */
-       loginButton.addEventListener('click', () => {
-           userForms.classList.remove('bounceLeft')
-           userForms.classList.add('bounceRight')
-       }, false)
-
-
-//  Включение и Отключение НОЧНОГО РЕЖИМА
-       $(document).ready(function()
-       {
-           $('#night').change(function()
-           {
-               if(this.checked!=true)
-               {
-                   $('body').toggleClass('night');
-                   $('.home_1').toggleClass('night');
-                   $('.header__name').toggleClass('night');
-                   $('.header__logo').toggleClass('night');
-                   $('.header__arrow').toggleClass('night');
-                   $('.home_2').toggleClass('night');
-                   $('.footer').toggleClass('night');
-                   $('.menu-burger__header').toggleClass('night');
-                   $('.menu__ul').toggleClass('night');
-                   $('.login').toggleClass('night');
-                   $('#night').toggleClass('night');
-                   $('.bottomRight').toggleClass('night');
-                   $('.header').toggleClass('night');
-                   $('.home__item_2').toggleClass('night');
-                   $('.home__item_3').toggleClass('night');
-                   $('.home__item_4').toggleClass('night');
-                   $('.home__item_5').toggleClass('night');
-               }
-               else {
-                   $('body').toggleClass('night');
-                   $('.home_1').toggleClass('night');
-                   $('.header__name').toggleClass('night');
-                   $('.header__logo').toggleClass('night');
-                   $('.header__arrow').toggleClass('night');
-                   $('.home_2').toggleClass('night');
-                   $('.footer').toggleClass('night');
-                   $('.menu-burger__header').toggleClass('night');
-                   $('.menu__ul').toggleClass('night');
-                   $('.login').toggleClass('night');
-                   $('#night').toggleClass('night');
-                   $('.bottomRight').toggleClass('night');
-                   $('.header').toggleClass('night');
-                   $('.home__item_2').toggleClass('night');
-                   $('.home__item_3').toggleClass('night');
-                   $('.home__item_4').toggleClass('night');
-                   $('.home__item_5').toggleClass('night');
-               }
-           });
-       });
-
-
-
-//    Добавление элементу свойства CSS:
-	//		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
-
-// Задержка появления модального окна:
-	//		var delay_modal_window = 2500;
-// Появление модального окна:
-	//		setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
-
-	</script>
 
 </body>
 </html>

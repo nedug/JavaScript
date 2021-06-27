@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-// Анимация Иконки БУРГЕРА, Появление МЕНЮ, затемнение ФОНА
+//  Анимация Иконки БУРГЕРА, Появление МЕНЮ, затемнение ФОНА
 	$('.menu-burger__header').click(function(){
         $('.menu-burger__header').toggleClass('open-menu');
         $('.menu__ul').toggleClass('open-menu');
@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 
 
-// Закрытие МЕНЮ по клику на OVERLAY
+//  Закрытие МЕНЮ по клику на OVERLAY
     $('.overlay').click(function(){
         $('.menu-burger__header').toggleClass('open-menu');
         $('.menu__ul').toggleClass('open-menu');
@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
 
 
-// Появление ФОРМЫ РЕГИСТРАЦИИ по клику на LOGIN
+//  Появление ФОРМЫ РЕГИСТРАЦИИ по клику на LOGIN
     $('.login').click(function(){
         $('.user').toggleClass('open-menu');
         $('.user_registered-close').toggleClass('open-menu');
@@ -27,7 +27,7 @@ $(document).ready(function() {
     });
 
 
-// Закрытие ФОРМЫ РЕГИСТРАЦИИ по клику на КРЕСТ
+//  Закрытие ФОРМЫ РЕГИСТРАЦИИ по клику на КРЕСТ
     $('.user_registered-close').click(function(){
         $('.user').toggleClass('open-menu');
         $('.user_registered-close').toggleClass('open-menu');
