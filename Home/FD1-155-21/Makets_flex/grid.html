@@ -258,6 +258,26 @@
 	<script src="js/main_grid.js"></script>
 	<script src="js/menu_grid.js"></script>
 
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+	<script>
+       $( function() {
+           $( ".modal_window" ).draggable();
+       } );
+
+
+       //  Заливка кнопки закрытия модального окна черным цветом
+       $('.modal_window').mousedown(function(){
+
+               $('.modal_window').addClass('open-menu');
+
+       });
+
+
+	</script>
+
 
 </body>
 </html>

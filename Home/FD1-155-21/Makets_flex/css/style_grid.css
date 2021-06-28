@@ -287,8 +287,8 @@ button{
 /*  МОДАЛЬНОЕ ОКНО  */
 .modal_window{
     top: 25%;
-    left: 0;
-    right: 0;
+    left: 32%;
+    /*right: 0;*/
     margin: auto;
     width: 85%;
     min-width: 320px;
@@ -447,3 +447,9 @@ body.night{
 .home__item_5.night{
     background: url("../img_grid/7_1.jpeg") center/cover no-repeat;
 }
+
+.modal_window.open-menu{
+    /*right: auto;*/
+    /*margin: 0;*/
+}
+
