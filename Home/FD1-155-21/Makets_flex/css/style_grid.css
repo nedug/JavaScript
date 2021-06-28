@@ -286,9 +286,11 @@ button{
 
 /*  МОДАЛЬНОЕ ОКНО  */
 .modal_window{
-    top: 25%;
-    left: 32%;
+    top: 50%;
+    /*left: 32%;*/
     /*right: 0;*/
+    left:50%;
+    transform:translate(-50%, -50%);
     margin: auto;
     width: 85%;
     min-width: 320px;
