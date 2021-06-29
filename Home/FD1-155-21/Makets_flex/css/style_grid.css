@@ -286,16 +286,17 @@ button{
 
 /*  МОДАЛЬНОЕ ОКНО  */
 .modal_window{
-    top: 50%;
-    /*left: 32%;*/
-    /*right: 0;*/
-    left:50%;
-    transform:translate(-50%, -50%);
+    top: 25%;
+    left: 0;
+    right: 0;
     margin: auto;
     width: 85%;
     min-width: 320px;
     max-width: 600px;
     position: absolute;
+}
+.modal_move{
+    position: relative;
     padding: 10px 20px;
     background: #fefefe;
     z-index: 1000;
@@ -338,7 +339,7 @@ button{
     background: rgba(0, 0, 0, 0.65);
     z-index: 1000;
     animation: fade .6s;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 @-moz-keyframes fade {
     from { opacity: 0; }
@@ -449,9 +450,3 @@ body.night{
 .home__item_5.night{
     background: url("../img_grid/7_1.jpeg") center/cover no-repeat;
 }
-
-.modal_window.open-menu{
-    /*right: auto;*/
-    /*margin: 0;*/
-}
-

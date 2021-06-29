@@ -156,13 +156,15 @@
 <!--  МОДАЛЬНОЕ ОКНО  -->
 	<div id="overlay_modal">
 		<div class="modal_window">
-			<h2>New Collection 2021</h2>
-			<h3>Nike Lebron Low XVIII</h3>
-			<p>A powerful LeBron engine requires a lightweight yet durable body to help it operate efficiently.</p>
-			<div class="pl-left">
-				<img src="img_grid/lebron.jpg" alt="nike">
+			<div class="modal_move">
+				<h2>New Collection 2021</h2>
+				<h3>Nike Lebron Low XVIII</h3>
+				<p>A powerful LeBron engine requires a lightweight yet durable body to help it operate efficiently.</p>
+				<div class="pl-left">
+					<img src="img_grid/lebron.jpg" alt="nike">
+				</div>
+				<button class="close"><i class="fas fa-times"></i></button>
 			</div>
-			<button class="close"><i class="fas fa-times"></i></button>
 		</div>
 	</div>
 
@@ -255,28 +257,11 @@
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="js/main_grid.js"></script>
-	<script src="js/menu_grid.js"></script>
-
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
-	<script>
-       $( function() {
-           $( ".modal_window" ).draggable();
-       } );
-
-
-       //  Заливка кнопки закрытия модального окна черным цветом
-       $('.modal_window').mousedown(function(){
-
-               $('.modal_window').addClass('open-menu');
-
-       });
-
-
-	</script>
+	<script src="js/main_grid.js"></script>
+	<script src="js/menu_grid.js"></script>
 
 
 </body>

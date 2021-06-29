@@ -94,6 +94,16 @@ $(document).ready(function()
 });
 
 
+//  Включение ПЕРЕМЕЩЕНИЯ Модального ОКНА
+$(document).ready(function()
+{
+    $( function() {
+        $( ".modal_move" ).draggable();
+    });
+});
+
+
+
 //    Добавление элементу свойства CSS:
 //		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
 
