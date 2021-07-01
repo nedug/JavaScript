@@ -597,6 +597,7 @@ Old standard for color using rgb and rgba:
     transition: .5s;
     display: none;
     z-index: 999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 .btn_up:hover{
     opacity: .9;
@@ -656,6 +657,7 @@ Old standard for color using rgb and rgba:
     opacity: 0;
     transition: .7s;
     z-index: -1;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.35), 3px 3px 9px rgba(0, 0, 0, 0.40);
 }
 .btn_close a{
     padding: 10px;
@@ -680,6 +682,7 @@ Old standard for color using rgb and rgba:
     position: fixed;
     bottom: 162px;
     right: 63px;
+    box-shadow: -3px -3px 4px rgba(0, 0, 0, 0.40);
 }
 .online_chat .phone, .online_chat .online{
     margin: 17px;
