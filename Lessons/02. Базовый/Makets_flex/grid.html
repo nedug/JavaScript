@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>STUSSY2021</title>
+
 	<link rel="icon" href="img_grid/26.jpeg">
 
 	<link rel="stylesheet" href="fonts/ProximaNova/stylesheet.css">
@@ -31,7 +32,7 @@
 			<div class="header__logo">&#160;icndy</div>
 			<div class="header__menu">
 				<ul class="menu__ul">
-					<li><a href="#">Mens</a></li>
+					<li><a href="#" id="man">Mens</a></li>
 					<li><a href="#">Womens</a></li>
 					<li><a href="#"><span>Sale</span></a></li>
 					<li>
@@ -144,9 +145,11 @@
 				<li><a href="#">CONTACT</a></li>
 			</ul>
 			<ul class="footer__social">
-				<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-				<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
+				<li>
+					<div class="center">
+						<input type="checkbox" id="language">
+					</div>
+				</li>
 			</ul>
 		</footer>
 
@@ -155,13 +158,15 @@
 <!--  МОДАЛЬНОЕ ОКНО  -->
 <!--	<div id="overlay_modal">-->
 <!--		<div class="modal_window">-->
-<!--			<h2>New Collection 2021</h2>-->
-<!--			<h3>Nike Lebron Low XVIII</h3>-->
-<!--			<p>A powerful LeBron engine requires a lightweight yet durable body to help it operate efficiently.</p>-->
-<!--			<div class="pl-left">-->
-<!--				<img src="img_grid/lebron.jpg" alt="nike">-->
+<!--			<div class="modal_move">-->
+<!--				<h2>New Collection 2021</h2>-->
+<!--				<h3>Nike Lebron Low XVIII</h3>-->
+<!--				<p>A powerful LeBron engine requires a lightweight yet durable body to help it operate efficiently.</p>-->
+<!--				<div class="pl-left">-->
+<!--					<img src="img_grid/lebron.jpg" alt="nike">-->
+<!--				</div>-->
+<!--				<button class="close"><i class="fas fa-times"></i></button>-->
 <!--			</div>-->
-<!--			<button class="close"><i class="fas fa-times"></i></button>-->
 <!--		</div>-->
 <!--	</div>-->
 
@@ -253,107 +258,19 @@
 	<button class="user_registered-close"><i class="fas fa-times"></i></button>
 
 
-
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="js/menu_grid.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+	<script src="js/main_grid.js"></script>
+	<script src="js/menu_grid.js"></script>
 
 	<script>
 
-//    Для активации hover эффекта на ТАЧ устройствах
-		 document.body.addEventListener('touchstart', function () {});
-
-
-//  Появление модального окна с задержкой 2,5с
-       setTimeout(function() {
-           $("#overlay_modal").toggleClass('open-menu');
-       }, 2500);
-
-
-//  Закрытие модального окна по клику на кнопку с задержкой 1,5с
-       $('.close').click(function(){
-           setTimeout(function() {
-               $('#overlay_modal').toggleClass('open-menu');
-           }, 1500);
-       });
-
-
-//  Заливка кнопки закрытия модального окна черным цветом
-       $('.close').click(function(){
-           setTimeout(function() {
-               $('.close').toggleClass('open-menu');
-           });
-       });
-
-
-//  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ
-       const signupButton = document.getElementById('signup-button'),
-           loginButton = document.getElementById('login-button'),
-           userForms = document.getElementById('user_options-forms')
-
-       /**
-        * Add event listener to the "Sign Up" button
-        */
-       signupButton.addEventListener('click', () => {
-           userForms.classList.remove('bounceRight')
-           userForms.classList.add('bounceLeft')
-       }, false)
-
-       /**
-        * Add event listener to the "Login" button
-        */
-       loginButton.addEventListener('click', () => {
-           userForms.classList.remove('bounceLeft')
-           userForms.classList.add('bounceRight')
-       }, false)
-
-
-//  Включение и Отключение НОЧНОГО РЕЖИМА
-       $(document).ready(function()
-       {
-           $('#night').change(function()
-           {
-               if(this.checked!=true)
-               {
-                   $('body').toggleClass('night');
-                   $('.home_1').toggleClass('night');
-                   $('.header__name').toggleClass('night');
-                   $('.header__logo').toggleClass('night');
-                   $('.header__arrow').toggleClass('night');
-                   $('.home_2').toggleClass('night');
-                   $('.footer').toggleClass('night');
-                   $('.menu-burger__header').toggleClass('night');
-                   $('.menu__ul').toggleClass('night');
-                   $('.login').toggleClass('night');
-                   $('#night').toggleClass('night');
-               }
-               else {
-                   $('body').toggleClass('night');
-                   $('.home_1').toggleClass('night');
-                   $('.header__name').toggleClass('night');
-                   $('.header__logo').toggleClass('night');
-                   $('.header__arrow').toggleClass('night');
-                   $('.home_2').toggleClass('night');
-                   $('.footer').toggleClass('night');
-                   $('.menu-burger__header').toggleClass('night');
-                   $('.menu__ul').toggleClass('night');
-                   $('.login').toggleClass('night');
-                   $('#night').toggleClass('night');
-               }
-           });
-       });
-
-
-
-//    Добавление элементу свойства CSS:
-	//		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
-
-// Задержка появления модального окна:
-	//		var delay_modal_window = 2500;
-// Появление модального окна:
-	//		setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
+       // document.getElementById("man").innerHTML = "МУЖЧИНЫ";
 
 	</script>
+
 
 </body>
 </html>
