@@ -455,7 +455,7 @@ body.night{
 
 /*  CHECKBOX для ПЕРЕКЛЮЧЕНИЯ ЯЗЫКА  */
 .language {
-    transform: translate(0, -3%);
+    transform: translate(0, 0);
 }
 #language[type="checkbox"] {
     width: 65px;
