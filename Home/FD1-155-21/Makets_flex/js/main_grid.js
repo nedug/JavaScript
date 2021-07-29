@@ -18,7 +18,7 @@ $('.close').click(function(){
 });
 
 
-//-- Также появление и закрытие МОДАЛЬНОГО окна через названную функцию (пример, где меньше кода)  --
+//--  Также появление и закрытие МОДАЛЬНОГО окна через названную функцию (пример, где меньше кода)  --
 // function showMenu() {
 //     $("#overlay_modal").toggleClass('open-menu');
 // }
@@ -36,29 +36,6 @@ $('.close').click(function(){
     });
 });
 //  Для работы Таймер не нужен, нет задержки по дизайну сайта, таймер можно удалить;
-
-
-//--  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ LOGIN  --
-//  Взято с Интернета;
-const signupButton = document.getElementById('signup-button'),
-    loginButton = document.getElementById('login-button'),
-    userForms = document.getElementById('user_options-forms')
-
-/**
- * Add event listener to the "Sign Up" button
- */
-signupButton.addEventListener('click', () => {
-    userForms.classList.remove('bounceRight')
-    userForms.classList.add('bounceLeft')
-}, false)
-
-/**
- * Add event listener to the "Login" button
- */
-loginButton.addEventListener('click', () => {
-    userForms.classList.remove('bounceLeft')
-    userForms.classList.add('bounceRight')
-}, false)
 
 
 //--  Включение и Отключение НОЧНОГО РЕЖИМА по checkbox --
@@ -109,13 +86,12 @@ $(document).ready(function() {
 });
 
 
-//--  ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА  --
-$(document).ready(function()
-{
-    $('#language').change(function()
-    {
-        if(this.checked!=true)
-        {
+//--  ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА по checkbox (аналогично НОЧНОМУ режиму)  --
+//  Сделано только для тренировки замены текста;
+$(document).ready(function() {
+    $('#language').change(function() {
+        if(this.checked!=true) {
+//  Замена ТЕКСТА сделана через чистый JS. По идее можно было сделать и через jQuery;
             document.getElementById("man").innerHTML = "mens";
             document.getElementById("man").style.fontSize = "23px";
             document.getElementById("man").style.letterSpacing = "7px";
@@ -190,20 +166,43 @@ $(document).ready(function()
 });
 
 
-//--  Включение ПЕРЕМЕЩЕНИЯ Модального ОКНА  --
+//--  Включение ПЕРЕМЕЩЕНИЯ Модального ОКНА c помощью jQuery UI  --
 $(document).ready(function()
 {
-    $( function() {
-        $( ".modal_move" ).draggable();
+    $(function() {
+        $(".modal_move").draggable();
     });
 });
 
 
+//--  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ LOGIN (!взято с Интернета!) --
+const signupButton = document.getElementById('signup-button'),
+    loginButton = document.getElementById('login-button'),
+    userForms = document.getElementById('user_options-forms')
 
-//--  Добавление элементу свойства CSS:  --
+/**
+ * Add event listener to the "Sign Up" button
+ */
+signupButton.addEventListener('click', () => {
+    userForms.classList.remove('bounceRight')
+    userForms.classList.add('bounceLeft')
+}, false)
+
+/**
+ * Add event listener to the "Login" button
+ */
+loginButton.addEventListener('click', () => {
+    userForms.classList.remove('bounceLeft')
+    userForms.classList.add('bounceRight')
+}, false)
+
+
+//--  Добавление элементу свойств CSS через JS:  --
 //		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
+// Или по клику запускаешь только функцию в которой все расписано;
 
-//--  Задержка появления модального окна:  --
+//--  Задержка появления Модального окна:  --
 //		var delay_modal_window = 2500;
-// Появление модального окна:
+//  Появление модального окна:
 //		setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
+//  Величина задержи таймера вынесена в переменную;

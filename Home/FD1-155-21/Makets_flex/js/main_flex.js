@@ -290,8 +290,7 @@ $(function () {
 });
 
 
-//--  АНИМАЦИЯ ДЛЯ СЛАЙДЕРА (about.html)  --
-//  Взято с Интернета;
+//--  АНИМАЦИЯ СЛАЙДЕРА для страницы "about.html" (!взято с Интернета!)  --
 jQuery(function($){
 	$(document).ready(function(){
 		$('.bxslider').bxSlider({
