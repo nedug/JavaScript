@@ -1,14 +1,14 @@
-//  Для активации hover эффекта на ТАЧ устройствах
+//--  Для активации hover эффекта на ТАЧ устройствах  --
 document.body.addEventListener('touchstart', function () {});
 
 
-//  Появление модального окна с задержкой 2,5с
+//--  Появление модального окна с задержкой 2,5с  --
 setTimeout(function() {
     $("#overlay_modal").toggleClass('open-menu');
 }, 2500);
 
 
-//  Закрытие модального окна по клику на кнопку с задержкой 1,5с
+//--  Закрытие модального окна по клику на кнопку с задержкой 1,5с  --
 $('.close').click(function(){
     setTimeout(function() {
         $('#overlay_modal').toggleClass('open-menu');
@@ -16,7 +16,7 @@ $('.close').click(function(){
 });
 
 
-//  Заливка кнопки закрытия модального окна черным цветом
+//--  Заливка кнопки закрытия модального окна черным цветом  --
 $('.close').click(function(){
     setTimeout(function() {
         $('.close').toggleClass('open-menu');
@@ -24,7 +24,7 @@ $('.close').click(function(){
 });
 
 
-//  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ
+//--  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ  --
 const signupButton = document.getElementById('signup-button'),
     loginButton = document.getElementById('login-button'),
     userForms = document.getElementById('user_options-forms')
@@ -46,7 +46,7 @@ loginButton.addEventListener('click', () => {
 }, false)
 
 
-//  Включение и Отключение НОЧНОГО РЕЖИМА
+//--  Включение и Отключение НОЧНОГО РЕЖИМА  --
 $(document).ready(function()
 {
     $('#night').change(function()
@@ -94,7 +94,7 @@ $(document).ready(function()
 });
 
 
-//  ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
+//--  ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА  --
 $(document).ready(function()
 {
     $('#language').change(function()
@@ -175,7 +175,7 @@ $(document).ready(function()
 });
 
 
-//  Включение ПЕРЕМЕЩЕНИЯ Модального ОКНА
+//--  Включение ПЕРЕМЕЩЕНИЯ Модального ОКНА  --
 $(document).ready(function()
 {
     $( function() {
@@ -185,10 +185,10 @@ $(document).ready(function()
 
 
 
-//    Добавление элементу свойства CSS:
+//--  Добавление элементу свойства CSS:  --
 //		<button class="close" onclick="document.getElementById('overlay_modal').style.display='none';"><i class="fas fa-times"></i></button>
 
-// Задержка появления модального окна:
+//--  Задержка появления модального окна:  --
 //		var delay_modal_window = 2500;
 // Появление модального окна:
 //		setTimeout("document.getElementById('overlay_modal').style.display='block'", delay_modal_window);
