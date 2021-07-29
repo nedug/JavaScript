@@ -37,7 +37,7 @@ $(document).ready(function () {
 	});
 
 
-//--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" при перезагрузке страницы, когда она проскролена ниже чем 200 пикселей. --
+//--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" при перезагрузке страницы, когда она уже проскролена ниже чем 200 пикселей. --
 //  Через $(window).ready(). Возможно есть более простой вариант.
 	$(window).ready(function (){
 		var scr = $(this).scrollTop();
@@ -71,131 +71,224 @@ $(function () {
 	    $('.fadeIn-Down').each(function(){
 //  .each - выбираются все элементы на странице, соответсвующие выборке;
 	        var imagePos = $(this).offset().top;
-//  Узнаем высоту (в переменную) от начала страницы до необходимого блока страницы;  500px
+//  Узнаем высоту (в переменную) от начала страницы до необходимого блока страницы;
 	        var topOfWindow = $(window).scrollTop();
-//  Узнаем высоту на сколько проскролена страница от верха;  300px
+//  Узнаем высоту на сколько проскролена страница от верха;
 	        if (imagePos < topOfWindow+650) {
-//  Сравниваем две переменных для появления разделов сайта;
 	            $(this).addClass("fadeInDown");
 	        }
+//  Сравниваем две переменных для появления разделов сайта через добавление необходимого класса анимации;
 	    });
-	});
-	$(window).scroll(function() {
-	    $('.fadeIn-Up').each(function(){
-	        var imagePos = $(this).offset().top;
 
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInUp");
-	        }
-	    });
-	});
-	$(window).scroll(function() {
-	    $('.note-1').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInDownBig");
-	        }
-	    });
-	});$(window).scroll(function() {
-	    $('.note-2').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInRightBig");
-	        }
-	    });
-	});
-	$(window).scroll(function() {
-	    $('.note-3').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInUpBig");
-	        }
-	    });
-	});
-	$(window).scroll(function() {
-	    $('.note-4').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInLeftBig");
-	        }
-	    });
-	});
-	$(window).scroll(function() {
-	    $('.fadeIn-Left').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInLeft");
-	        }
-	    });
-	});
-	$(window).scroll(function() {
-	    $('.fadeIn-Right').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+650) {
-	            $(this).addClass("fadeInRight");
-	        }
-	    });
-	});
-		$(window).scroll(function() {
-	    $('.fade-In').each(function(){
-	        var imagePos = $(this).offset().top;
-
-	        var topOfWindow = $(window).scrollTop();
-	        if (imagePos < topOfWindow+800) {
-	            $(this).addClass("fadeIn");
-	        }
-	    });
-	});
-		$(window).scroll(function() {
-			$('.rotate-In-L').each(function(){
-				var imagePos = $(this).offset().top;
-				var topOfWindow = $(window).scrollTop();
-				if (imagePos < topOfWindow+650) {
-					$(this).addClass("rotateInDownLeft");
-				}
-			});
+		$('.fadeIn-Up').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUp");
+			}
 		});
-		$(window).scroll(function() {
-			$('.rotate-In-R').each(function(){
-				var imagePos = $(this).offset().top;
-				var topOfWindow = $(window).scrollTop();
-				if (imagePos < topOfWindow+650) {
-					$(this).addClass("rotateInDownRight");
-				}
-			});
+
+		$('.note-1').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInDownBig");
+			}
 		});
-		$(window).scroll(function() {
-			$('.jack-In').each(function(){
-				var imagePos = $(this).offset().top;
-				var topOfWindow = $(window).scrollTop();
-				if (imagePos < topOfWindow+650) {
-					$(this).addClass("jackInTheBox");
-				}
-			});
+
+		$('.note-2').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInRightBig");
+			}
 		});
-		$(window).scroll(function() {
-			$('.fade-In-Btn').each(function(){
-				var imagePos = $(this).offset().top;
-				var topOfWindow = $(window).scrollTop();
-				if (imagePos < topOfWindow+650) {
-					$(this).addClass("fadeInUpBigBtn");
-				}
-			});
+
+		$('.note-3').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUpBig");
+			}
 		});
-})
+
+		$('.note-4').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInLeftBig");
+			}
+		});
+
+		$('.fadeIn-Left').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInLeft");
+			}
+		});
+
+		$('.fadeIn-Right').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInRight");
+			}
+		});
+
+		$('.fade-In').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+800) {
+				$(this).addClass("fadeIn");
+			}
+		});
+
+		$('.rotate-In-L').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("rotateInDownLeft");
+			}
+		});
+
+		$('.rotate-In-R').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("rotateInDownRight");
+			}
+		});
+
+		$('.jack-In').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("jackInTheBox");
+			}
+		});
+
+		$('.fade-In-Btn').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUpBigBtn");
+			}
+		});
+
+	});
+
+
+//--  АНИМАЦИЯ ВЫПАДАЮЩИХ РАЗДЕЛОВ САЙТА, при перезагрузке страницы, когда она уже проскролена.  --
+//  Через $(window).ready(). Возможно есть более простой вариант.
+	$(window).ready(function() {
+		$('.fadeIn-Down').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInDown");
+			}
+		});
+
+		$('.fadeIn-Up').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUp");
+			}
+		});
+
+		$('.note-1').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInDownBig");
+			}
+		});
+
+		$('.note-2').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInRightBig");
+			}
+		});
+
+		$('.note-3').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUpBig");
+			}
+		});
+
+		$('.note-4').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInLeftBig");
+			}
+		});
+
+		$('.fadeIn-Left').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInLeft");
+			}
+		});
+
+		$('.fadeIn-Right').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInRight");
+			}
+		});
+
+		$('.fade-In').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+800) {
+				$(this).addClass("fadeIn");
+			}
+		});
+
+		$('.rotate-In-L').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("rotateInDownLeft");
+			}
+		});
+
+		$('.rotate-In-R').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("rotateInDownRight");
+			}
+		});
+
+		$('.jack-In').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("jackInTheBox");
+			}
+		});
+
+		$('.fade-In-Btn').each(function(){
+			var imagePos = $(this).offset().top;
+			var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+650) {
+				$(this).addClass("fadeInUpBigBtn");
+			}
+		});
+
+	});
+
+});
 
 
 //--  АНИМАЦИЯ ДЛЯ СЛАЙДЕРА (about.html)  --
