@@ -1,39 +1,67 @@
-//--  ПЛАВНАЯ ПРОКРУТКА К ЯКОРЮ  --
-$("a.scroll-to").on("click", function(e){
-//  Работает только для ссылок с классом 'scroll-to'
-	e.preventDefault();
-//  Отменяем стандартную обработку нажатия по ссылке
-	var id = $(this).attr('href');
-//  Забираем индефикатор блока с атрибутом href
-	$('html, body').stop().animate({
-		scrollTop: $(id).offset().top - 0
+$(document).ready(function () {
+
+
+//--  ПЛАВНАЯ ПРОКРУТКА К ЯКОРЮ  (Также смотри пример Евгения)  --
+	$("a.scroll-to").on("click", function(e){
+//  Работает только для ссылок с классом 'scroll-to', или смотри пример Евгения;
+		e.preventDefault();
+//  Отменяем стандартную обработку нажатия по ссылке, т.е. отменяет быстрый переход по ссылке который есть по умолчанию;
+		var id = $(this).attr('href');
+//  Забираем идентификатор блока с атрибута href, то есть сам идентификатор, к примеру #first_item;
+//  .attr() - Возвращает или изменяет значение атрибутов у выбранных элементов страницы;
+		$('html, body').stop().animate({
+			scrollTop: $(id).offset().top - 0}, 800);
+//  .stop() - Останавливает выполнение текущей анимации (можно без этого);
+//  .animate() - Выполняет анимацию, которая была создана пользователем;
+//  .scrollTop() / .scrollLeft() - Возвращает/изменяет величину скроллинга (прокрутку) элемента;
+// 	В данном случае мы устанавливем величину скроллинга, которая узнается путем обращения к нужному элементу через переменную $(id) и получения координат через .offset().top;
+//  .offset() / .position() - С помощью этих функций, можно узнавать координаты элемента на странице. Кроме этого, с помощью offset(), можно изменить координаты элемента;
+// 	800 - продолжительность выполнения анимации в мс;
 //  Можно указать после минуса высоту фиксированной плавающей шапки, если она есть. Устанавливается чтобы при прокрутке якорный элемент не перекрывался ей. Если фиксированной шапки нет, то значение убирается или устанавливается в 0.
-	}, 800);
-});
+	});
 
 
 //--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ"  --
-$(window).scroll(function (){
-	var scr = $(this).scrollTop();
-	if(scr>200){
-		$(".btn_up").fadeIn().addClass("fadeInUpBigBtn");
+	$(window).scroll(function (){
+		var scr = $(this).scrollTop();
+//  .scroll() - Устанавливает обработчик "прокрутки" элементов документа, либо, запускает это событие;
+//  Заносим в переменную на сколько мы проскролили окно браузера;
+		if(scr>200){
+			$(".btn_up").fadeIn().addClass("fadeInUpBigBtn").removeClass("fadeOutDown");
+		}
 //  кнопке по умолчанию необходимо задать: display: none;
-	}
-	else{
-		$(".btn_up").fadeOut();
-	}
-});
+// 	Добавляем и удаляем классы анимации пояления кнопки;
+		else{
+			$(".btn_up").fadeOut().addClass("fadeOutDown");
+		}
+	});
+
+
+//--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" при перезагрузке страницы, когда она проскролена ниже чем 200 пикселей. --
+//  Через $(window).ready(). Возможно есть более простой вариант.
+	$(window).ready(function (){
+		var scr = $(this).scrollTop();
+		if(scr>200){
+			$(".btn_up").fadeIn().addClass("fadeInUpBigBtn").removeClass("fadeOutDown");
+		}
+		else{
+			$(".btn_up").fadeOut().addClass("fadeOutDown");
+		}
+	});
 
 
 //--  ПОЯВЛЕНИЕ КНОПКИ "В НАЧАЛО СТРАНИЦЫ" для PAGES.html  --
-$(window).scroll(function (){
-	var scr = $(this).scrollTop();
-	if(scr>5){
-		$(".btn_up_1").fadeIn().addClass("fadeInUpBigBtn");
-	}
-	else{
-		$(".btn_up_1").fadeOut();
-	}
+// Не вносил изменения по примеру выше
+	$(window).scroll(function (){
+		var scr = $(this).scrollTop();
+		if(scr>5){
+			$(".btn_up_1").fadeIn().addClass("fadeInUpBigBtn");
+		}
+		else{
+			$(".btn_up_1").fadeOut();
+		}
+	});
+
 });
 
 
@@ -41,11 +69,13 @@ $(window).scroll(function (){
 $(function () {
 	$(window).scroll(function() {
 	    $('.fadeIn-Down').each(function(){
+//  .each - выбираются все элементы на странице, соответсвующие выборке;
 	        var imagePos = $(this).offset().top;
-//  знаем высоту от начала страницы до необходимого блока
+//  Узнаем высоту (в переменную) от начала страницы до необходимого блока страницы;  500px
 	        var topOfWindow = $(window).scrollTop();
-//  узнаем высоту от начала страницы
+//  Узнаем высоту на сколько проскролена страница от верха;  300px
 	        if (imagePos < topOfWindow+650) {
+//  Сравниваем две переменных для появления разделов сайта;
 	            $(this).addClass("fadeInDown");
 	        }
 	    });
@@ -166,16 +196,6 @@ $(function () {
 			});
 		});
 })
-
-jQuery(document).ready(function() {
-		jQuery("a.scrollto").click(function () {
-				elementClick = jQuery(this).attr("href")
-				destination = jQuery(elementClick).offset().top;
-				jQuery("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 1100);
-				return false;
-		});
-});
-
 
 
 //--  АНИМАЦИЯ ДЛЯ СЛАЙДЕРА (about.html)  --
