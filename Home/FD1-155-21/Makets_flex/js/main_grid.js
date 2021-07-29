@@ -2,13 +2,15 @@
 document.body.addEventListener('touchstart', function () {});
 
 
-//--  Появление модального окна с задержкой 2,5с  --
+//--  Автоматическое появление модального окна с задержкой 2,5с  --
 setTimeout(function() {
     $("#overlay_modal").toggleClass('open-menu');
 }, 2500);
+// setTimeout - позволяет вызвать функцию ОДИН раз через определённый интервал времени;
+//  Сначала для (#overlay_modal) - display: none; затем - display: block;
 
 
-//--  Закрытие модального окна по клику на кнопку с задержкой 1,5с  --
+//--  Закрытие модального окна по клику на кнопку КРЕСТ с задержкой 1,5с  --
 $('.close').click(function(){
     setTimeout(function() {
         $('#overlay_modal').toggleClass('open-menu');
@@ -16,15 +18,28 @@ $('.close').click(function(){
 });
 
 
-//--  Заливка кнопки закрытия модального окна черным цветом  --
+//-- Также появление и закрытие МОДАЛЬНОГО окна через названную функцию (пример, где меньше кода)  --
+// function showMenu() {
+//     $("#overlay_modal").toggleClass('open-menu');
+// }
+// setTimeout(showMenu, 2500);
+// $('.close').click(function(){
+//     setTimeout(showMenu, 1500);
+// });
+
+
+
+//--  Заливка кнопки закрытия МОДАЛЬНОГО окна ЧЕРНЫМ цветом  --
 $('.close').click(function(){
     setTimeout(function() {
         $('.close').toggleClass('open-menu');
     });
 });
+//  Для работы Таймер не нужен, нет задержки по дизайну сайта, таймер можно удалить;
 
 
-//--  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ  --
+//--  Анимация и работа ФОРМЫ РЕГИСТРАЦИИ LOGIN  --
+//  Взято с Интернета;
 const signupButton = document.getElementById('signup-button'),
     loginButton = document.getElementById('login-button'),
     userForms = document.getElementById('user_options-forms')
@@ -46,13 +61,13 @@ loginButton.addEventListener('click', () => {
 }, false)
 
 
-//--  Включение и Отключение НОЧНОГО РЕЖИМА  --
-$(document).ready(function()
-{
-    $('#night').change(function()
-    {
-        if(this.checked!=true)
-        {
+//--  Включение и Отключение НОЧНОГО РЕЖИМА по checkbox --
+//  Как сказал Евгений тут нужно было делать отдельный стилевой файл и его уже подключать/отключать по CHECK/UNCHECK;
+$(document).ready(function() {
+    $('#night').change(function() {
+// .change() - Устанавливает обработчик изменения заданного элемента формы, либо, запускает это событие;
+        if(this.checked!=true) {
+//  Проверка на CHECK/UNCHECK;
             $('body').toggleClass('night');
             $('.home_1').toggleClass('night');
             $('.header__name').toggleClass('night');

@@ -291,6 +291,7 @@ $(function () {
 
 
 //--  АНИМАЦИЯ ДЛЯ СЛАЙДЕРА (about.html)  --
+//  Взято с Интернета;
 jQuery(function($){
 	$(document).ready(function(){
 		$('.bxslider').bxSlider({
