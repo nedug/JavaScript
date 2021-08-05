@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+	 // Доработка проверки на пустую строку и значение null
+    var surname = prompt('Введите фамилию', 'Иванов');
+    while (true) {
+     	  if (surname=='' || surname==null){
+            surname = prompt('Введите корректно фамилию');
+        }
+        else if (isNaN(parseFloat(surname))) {
+            break;
+        }
+        surname = prompt('Введите корректно фамилию');
+    }
+
+
+    // var name = prompt('Введите имя', 'Иван');
+    // while (true) {
+    //     if (!isFinite(parseFloat(name))) {
+    //         break;
+    //     }
+    //     name = prompt('Введите корректно имя');
+    // }
+
+
+    // var patronymic = prompt('Введите отчество', 'Иванович');
+    // while (true) {
+    //     if (!isFinite(parseFloat(patronymic))) {
+    //         break;
+    //     }
+    //     patronymic = prompt('Введите корректно отчество');
+    // }
+
+
+    // Доработка проверки на текстовое значение для возраста и возраст выше 120 лет
+    var age = parseInt(prompt('Введите возраст в годах', '60'));
+    while (true) {
+        if (isNaN(age) || (age>120)) {
+            age = parseInt(prompt('Введите корректено возраст в годах'));
+        }
+        else {
+            break;
+		  }
+	 }
+
+
+    // var gender = confirm('Ваш пол мужской?');
+    // if (gender) {
+    //     gender = 'мужской';
+    // }
+    // else {
+    //     gender = 'женский';
+    // }
+
+
+    // var pension;
+	 //
+    // if ((gender == 'мужской') && (age<62)) {
+    //     pension = "нет";
+    // }
+    // else if ((gender == 'женский') && (age<58)) {
+    //     pension = "нет";
+    // }
+    // else {
+    //     pension = "да";
+    // }
+
+
+    alert ('ваше ФИО: '+ surname
+		  // + ' ' + name + ' ' + patronymic
+		  +
+		  '\nваш возраст в годах: ' + age
+		  // + '\nваш возраст в днях: ' + (age*365) + '\nчерез 5 лет вам будет: ' + (age+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension
+	 )
+
+</script>
+
+
+</body>
+</html>
