@@ -9,7 +9,7 @@
 
 <script>
 
-    quadraticEquation(1, -8, 5);
+    quadraticEquation(1, -11, -36);
 
     function quadraticEquation(a, b, c) {
 
@@ -19,24 +19,44 @@
         var x2 = (-b - Math.sqrt(D)) / 2 / a;
 
         if (!x1 || !x2) {
-            var answer = 'не имеет вещественных корней';
+            var result = 'не имеет вещественных корней';
 		  } else if (x1 === x2) {
-            answer = `имеет один корень x = ${x1}`
+            result = `имеет один корень x = ${x1}`;
 		  } else {
-            answer = `имеет корни x1 = ${x1} и x2 = ${x2}`;
+            result = `имеет корни x1 = ${x1} и x2 = ${x2}`;
 		  }
 
-		  if (a === 1) {
-		      var A = '';
-		  } else {
-            var A = a;
-		  }
+        if (a === 0) {
+            alert ('Коэффициент при первом слагаемом уравнения не может быть равным нулю измените его и попробуйте снова.');
+            return;
+        }
+
+		  var firstSummand;
+		  a === 1 ? firstSummand = '': firstSummand = a;
+
+        if (b > 0) {
+            var operator = '+';
+            var B = b;
+        } else if (b < 0){
+            var operator = '-';
+            var B = -b;
+        }
+		  
+
+
+        if (c > 0) {
+            var operator = '+';
+            var C = c;
+        } else if (c < 0){
+            var operator = '-';
+            var C = -c;
+        }
 
         console.log(D)
         console.log(x1)
         console.log(x2)
 
-        console.log(`уравнение ${A}x^2 + ${b}x + ${c} = 0 ${answer}`);
+        console.log(`уравнение ${firstSummand}x^2 ${operator} ${B}x ${operator} ${C} = 0 ${result}`);
 
 
     }
