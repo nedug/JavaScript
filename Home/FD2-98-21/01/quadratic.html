@@ -9,7 +9,7 @@
 
 <script>
 
-    quadraticEquation(1, -11, -36);
+    quadraticEquation(1, -8, 72);
 
     function quadraticEquation(a, b, c) {
 
@@ -18,8 +18,10 @@
         var x1 = (-b + Math.sqrt(D)) / 2 / a;
         var x2 = (-b - Math.sqrt(D)) / 2 / a;
 
-        if (!x1 || !x2) {
-            var result = 'не имеет вещественных корней';
+        if (x1 === 0 || x2 === 0) {
+            var result = `имеет корни x1 = ${x1} и x2 = ${x2}`;
+		  } else if (!x1 || !x2) {
+            result = 'не имеет вещественных корней';
 		  } else if (x1 === x2) {
             result = `имеет один корень x = ${x1}`;
 		  } else {
@@ -34,30 +36,23 @@
 		  var firstSummand;
 		  a === 1 ? firstSummand = '': firstSummand = a;
 
-        if (b > 0) {
-            var operator = '+';
-            var B = b;
-        } else if (b < 0){
-            var operator = '-';
-            var B = -b;
-        }
-		  
-
-
-        if (c > 0) {
-            var operator = '+';
-            var C = c;
-        } else if (c < 0){
-            var operator = '-';
-            var C = -c;
+        if (b >= 0) {
+            var operator1 = '+';
+            var secondSummand = b;
+        } else if (b < 0) {
+            var operator1 = '-';
+            var secondSummand = -b;
         }
 
-        console.log(D)
-        console.log(x1)
-        console.log(x2)
+        if (c >= 0) {
+            var operator2 = '+';
+            var thirdSummand = c;
+        } else if (c < 0) {
+            var operator2 = '-';
+            var thirdSummand = -c;
+        }
 
-        console.log(`уравнение ${firstSummand}x^2 ${operator} ${B}x ${operator} ${C} = 0 ${result}`);
-
+        console.log(`уравнение ${firstSummand}x^2 ${operator1} ${secondSummand}x ${operator2} ${thirdSummand} = 0 ${result}`);
 
     }
 
