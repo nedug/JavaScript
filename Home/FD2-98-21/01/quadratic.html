@@ -9,13 +9,36 @@
 
 <script>
 
-    fizzBuzz();
+    quadraticEquation(1, -8, 5);
 
-    function fizzBuzz() {
-        var i;
-        for (i = 1; i <= 100; i++) {
-            console.log((i % 3 == 0 && i % 5 == 0 && 'FizzBuzz') || (i % 3 == 0 && 'Fizz') || (i % 5 == 0 && 'Buzz') || i);
-        }
+    function quadraticEquation(a, b, c) {
+
+        var D = b * b - 4 * a * c;
+
+        var x1 = (-b + Math.sqrt(D)) / 2 / a;
+        var x2 = (-b - Math.sqrt(D)) / 2 / a;
+
+        if (!x1 || !x2) {
+            var answer = 'не имеет вещественных корней';
+		  } else if (x1 === x2) {
+            answer = `имеет один корень x = ${x1}`
+		  } else {
+            answer = `имеет корни x1 = ${x1} и x2 = ${x2}`;
+		  }
+
+		  if (a === 1) {
+		      var A = '';
+		  } else {
+            var A = a;
+		  }
+
+        console.log(D)
+        console.log(x1)
+        console.log(x2)
+
+        console.log(`уравнение ${A}x^2 + ${b}x + ${c} = 0 ${answer}`);
+
+
     }
 
 </script>
