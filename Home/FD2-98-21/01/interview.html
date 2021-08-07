@@ -8,81 +8,51 @@
 
 <script>
 
-
-	 // Доработка проверки на пустую строку и значение null
     var surname = prompt('Введите фамилию', 'Иванов');
-    while (true) {
-     	  if (surname=='' || surname==null){
-            surname = prompt('Введите корректно фамилию');
-        }
-        else if (isNaN(parseFloat(surname))) {
-            break;
-        }
-        surname = prompt('Введите корректно фамилию');
+    while (!surname || parseFloat(surname) || surname.length < 2 || surname.length > 30) {
+		  surname = prompt('Введите корректно фамилию!');
+    }
+    // Единственное не получилось убрать возможность ввода фамилии/имени/отчества по типу: Иванов123
+
+    var nameUser = prompt('Введите имя', 'Иван');
+    while (!nameUser || parseFloat(nameUser) || nameUser.length < 2 || nameUser.length > 30) {
+        nameUser = prompt('Введите корректно имя!');
     }
 
+    var patronymic = prompt('Введите отчество', 'Иванович');
+    while (!patronymic || parseFloat(patronymic) || patronymic.length < 2 || patronymic.length > 30) {
+        patronymic = prompt('Введите корректно отчество!');
+    }
 
-    // var name = prompt('Введите имя', 'Иван');
-    // while (true) {
-    //     if (!isFinite(parseFloat(name))) {
-    //         break;
-    //     }
-    //     name = prompt('Введите корректно имя');
-    // }
+    var age = Number(prompt('Введите возраст в годах', '60'));
+    while (!age || age < 1 || age > 125) {
+        age = Number(prompt('Введите корректено возраст!'));
+    }
 
+    var gender = confirm('Ваш пол мужской?');
+    if (gender) {
+        gender = 'мужской';
+    } else {
+        gender = 'женский';
+    }
 
-    // var patronymic = prompt('Введите отчество', 'Иванович');
-    // while (true) {
-    //     if (!isFinite(parseFloat(patronymic))) {
-    //         break;
-    //     }
-    //     patronymic = prompt('Введите корректно отчество');
-    // }
+    var pension;
+    if (gender == 'мужской' && age < 62) {
+        pension = "нет";
+    } else if (gender == 'женский' && age < 58) {
+        pension = "нет";
+    } else {
+        pension = "да";
+    }
 
-
-    // Доработка проверки на текстовое значение для возраста и возраст выше 120 лет
-    var age = parseInt(prompt('Введите возраст в годах', '60'));
-    while (true) {
-        if (isNaN(age) || (age>120)) {
-            age = parseInt(prompt('Введите корректено возраст в годах'));
-        }
-        else {
-            break;
-		  }
-	 }
-
-
-    // var gender = confirm('Ваш пол мужской?');
-    // if (gender) {
-    //     gender = 'мужской';
-    // }
-    // else {
-    //     gender = 'женский';
-    // }
-
-
-    // var pension;
-	 //
-    // if ((gender == 'мужской') && (age<62)) {
-    //     pension = "нет";
-    // }
-    // else if ((gender == 'женский') && (age<58)) {
-    //     pension = "нет";
-    // }
-    // else {
-    //     pension = "да";
-    // }
-
-
-    alert ('ваше ФИО: '+ surname
-		  // + ' ' + name + ' ' + patronymic
-		  +
-		  '\nваш возраст в годах: ' + age
-		  // + '\nваш возраст в днях: ' + (age*365) + '\nчерез 5 лет вам будет: ' + (age+5) + '\nваш пол: ' + gender + '\nвы на пенсии: ' + pension
-	 )
+    alert (`ваше ФИО: ${surname} ${nameUser} ${patronymic}
+ваш возраст в годах:  ${age}
+ваш возраст в днях: ${age*365}
+через 5 лет вам будет: ${age+5}
+ваш пол: ${gender}
+вы на пенсии: ${pension}`);
 
 </script>
-
 
 </body>
 </html>
