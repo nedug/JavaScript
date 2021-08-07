@@ -10,6 +10,8 @@
 <script>
 
     quadraticEquation(1, -8, 72);
+    quadraticEquation(1, 12, 36);
+    quadraticEquation(4, -8, 1);
 
     function quadraticEquation(a, b, c) {
 
@@ -33,13 +35,18 @@
             return;
         }
 
-		  var firstSummand;
-		  a === 1 ? firstSummand = '': firstSummand = a;
+		  if (a === 1) {
+		      var firstSummand = '';
+		  } else if (a === -1) {
+            var firstSummand = '-';
+		  } else {
+		      var firstSummand = a;
+		  }
 
         if (b >= 0) {
             var operator1 = '+';
             var secondSummand = b;
-        } else if (b < 0) {
+        } else {
             var operator1 = '-';
             var secondSummand = -b;
         }
@@ -47,7 +54,7 @@
         if (c >= 0) {
             var operator2 = '+';
             var thirdSummand = c;
-        } else if (c < 0) {
+        } else {
             var operator2 = '-';
             var thirdSummand = -c;
         }
