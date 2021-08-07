@@ -11,8 +11,7 @@
     fizzBuzz();
 
 	 function fizzBuzz() {
-        var i;
-        for (i = 1; i <= 100; i++) {
+        for (var i = 1; i <= 100; i++) {
             console.log((i % 3 == 0 && i % 5 == 0 && 'FizzBuzz') || (i % 3 == 0 && 'Fizz') || (i % 5 == 0 && 'Buzz') || i);
         }
 	 }
@@ -24,8 +23,7 @@
     fizzBuzz_2();
 
     function fizzBuzz_2() {
-        var i;
-        for (i = 1; i <= 100; i++) {
+        for (var i = 1; i <= 100; i++) {
             console.log((i % 3 == 0 && 'Fizz_' || '') + (i % 5 == 0 && 'Buzz_' || '') || i);
         }
     }
