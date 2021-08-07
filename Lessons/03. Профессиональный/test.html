@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+    var surname = prompt('Введите фамилию', 'iva5nov');
+
+    // console.log(surname[0])
+
+    var validSymbol = '0123456789';
+
+    var control;
+
+    for (var i = 0; i < surname.length; i++) {
+        var control = validSymbol.indexOf(surname[i]);
+        console.log(`control = ${control}`)
+        while (true) {
+            if (control !== -1) {
+                surname = prompt('Введите корректно фамилию!');
+                var control = validSymbol.indexOf(surname[i]);
+            } else {
+                break
+				}
+        }
+    }
+
+    console.log(`control = ${control}`)
+
+
+    // while (control != -1) {
+    //     surname = prompt('Введите корректно фамилию!');
+    // }
+
+
+    alert (`ваше ФИО: ${surname}
+ваш возраст в годах:
+ваш возраст в днях:
+через 5 лет вам будет: $
+ваш пол:
+вы на пенсии: `);
+
+</script>
+
+</body>
+</html>
