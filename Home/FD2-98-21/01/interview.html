@@ -24,21 +24,21 @@
         patronymic = prompt('Введите корректно отчество!');
     }
 
-    var age = Number(prompt('Введите возраст в годах', '60'));
+    var age = +prompt('Введите возраст в годах', '60');
     while (!age || age < 1 || age > 125) {
-        age = Number(prompt('Введите корректено возраст!'));
+        age = +prompt('Введите корректно возраст!');
     }
 
-    var numMonth = Number(prompt('Введите номер месяца вашего рождения', '2'));
+    var numMonth = +prompt('Введите номер месяца вашего рождения', '2');
     while (!numMonth || numMonth < 1 || numMonth > 12) {
-        numMonth = Number(prompt('Введите корректено номер месяца!'));
+        numMonth = +prompt('Введите корректно номер месяца!');
     }
 
-    var numDay = Number(prompt('Введите число вашего рождения', '31'));
+    var numDay = +prompt('Введите число вашего рождения', '31');
     while (!numDay || (numDay < 1 || numDay > 30) && (numMonth == 4 || numMonth == 6 || numMonth == 9 || numMonth == 11)
     || (numDay < 1 || numDay > 31) && (numMonth == 1 || numMonth == 3 || numMonth == 5 || numMonth == 7 || numMonth == 8 || numMonth == 10 || numMonth == 12)
     || (numDay < 1 || numDay > 28) && numMonth == 2) {
-        numDay = Number(prompt('Введите корректено число рождения!'));
+        numDay = +prompt('Введите корректно число рождения!');
     }
 
     var gender = confirm('Ваш пол мужской?');
