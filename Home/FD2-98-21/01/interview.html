@@ -10,7 +10,7 @@
 
     var surname = prompt('Введите фамилию', 'Иванов');
     while (!surname || parseFloat(surname) || surname.length < 2 || surname.length > 30) {
-		  surname = prompt('Введите корректно фамилию!');
+        surname = prompt('Введите корректно фамилию!');
     }
     // Единственное не получилось убрать возможность ввода фамилии/имени/отчества по типу: Иванов123
 
@@ -29,6 +29,18 @@
         age = Number(prompt('Введите корректено возраст!'));
     }
 
+    var numMonth = Number(prompt('Введите номер месяца вашего рождения', '2'));
+    while (!numMonth || numMonth < 1 || numMonth > 12) {
+        numMonth = Number(prompt('Введите корректено номер месяца!'));
+    }
+
+    var numDay = Number(prompt('Введите число вашего рождения', '31'));
+    while (!numDay || (numDay < 1 || numDay > 30) && (numMonth == 4 || numMonth == 6 || numMonth == 9 || numMonth == 11)
+    || (numDay < 1 || numDay > 31) && (numMonth == 1 || numMonth == 3 || numMonth == 5 || numMonth == 7 || numMonth == 8 || numMonth == 10 || numMonth == 12)
+    || (numDay < 1 || numDay > 28) && numMonth == 2) {
+        numDay = Number(prompt('Введите корректено число рождения!'));
+    }
+
     var gender = confirm('Ваш пол мужской?');
     if (gender) {
         gender = 'мужской';
@@ -45,12 +57,92 @@
         pension = "да";
     }
 
+    switch (numMonth) {
+        case 1 :
+            var month = 'январь';
+            var periodYear = 'зима';
+            break;
+        case 2 :
+            var month = 'февраль';
+            var periodYear = 'зима';
+            break;
+        case 3 :
+            var month = 'март';
+            var periodYear = 'весна';
+            break;
+        case 4 :
+            var month = 'апрель';
+            var periodYear = 'весна';
+            break;
+        case 5 :
+            var month = 'май';
+            var periodYear = 'весна';
+            break;
+        case 6 :
+            var month = 'июнь';
+            var periodYear = 'лето';
+            break;
+        case 7 :
+            var month = 'июль';
+            var periodYear = 'лето';
+            break;
+        case 8 :
+            var month = 'август';
+            var periodYear = 'лето';
+            break;
+        case 9 :
+            var month = 'сентябрь';
+            var periodYear = 'осень';
+            break;
+        case 10 :
+            var month = 'октябрь';
+            var periodYear = 'осень';
+            break;
+        case 11 :
+            var month = 'ноябрь';
+            var periodYear = 'осень';
+            break;
+        case 12 :
+            var month = 'декабрь';
+            var periodYear = 'зима';
+            break;
+    }
+
+    if ((numDay >= 21 && numDay <= 31 && numMonth === 3) || (numDay > 0 && numDay <= 19 && numMonth === 4)) {
+        var zodiak = 'овен';
+    } else if ((numDay >= 20 && numDay <= 30 && numMonth === 4) || (numDay > 0 && numDay <= 20 && numMonth === 5)) {
+        var zodiak = 'телец';
+    } else if ((numDay >= 21 && numDay <= 31 && numMonth === 5) || (numDay > 0 && numDay <= 20 && numMonth === 6)) {
+        var zodiak = 'близнецы';
+    } else if ((numDay >= 21 && numDay <= 30 && numMonth === 6) || (numDay > 0 && numDay <= 22 && numMonth === 7)) {
+        var zodiak = 'рак';
+    } else if ((numDay >= 23 && numDay <= 31 && numMonth === 7) || (numDay > 0 && numDay <= 22 && numMonth === 8)) {
+        var zodiak = 'лев';
+    } else if ((numDay >= 23 && numDay <= 31 && numMonth === 8) || (numDay > 0 && numDay <= 22 && numMonth === 9)) {
+        var zodiak = 'дева';
+    } else if ((numDay >= 23 && numDay <= 30 && numMonth === 9) || (numDay > 0 && numDay <= 22 && numMonth === 10)) {
+        var zodiak = 'весы';
+    } else if ((numDay >= 23 && numDay <= 31 && numMonth === 10) || (numDay > 0 && numDay <= 21 && numMonth === 11)) {
+        var zodiak = 'скорпион';
+    } else if ((numDay >= 22 && numDay <= 30 && numMonth === 11) || (numDay > 0 && numDay <= 21 && numMonth === 12)) {
+        var zodiak = 'стрелец';
+    } else if ((numDay >= 22 && numDay <= 31 && numMonth === 12) || (numDay > 0 && numDay <= 19 && numMonth === 1)) {
+        var zodiak = 'козерог';
+    } else if ((numDay >= 20 && numDay <= 31 && numMonth === 1) || (numDay > 0 && numDay <= 18 && numMonth === 2)) {
+        var zodiak = 'водолей';
+    } else if ((numDay >= 19 && numDay <= 28 && numMonth === 2) || (numDay > 0 && numDay <= 20 && numMonth === 3)) {
+        var zodiak = 'рыбы';
+    } else {
+        var zodiak = 'Уточните число рождения!';
+    }
+
     alert (`ваше ФИО: ${surname} ${nameUser} ${patronymic}
 ваш возраст в годах: ${age}
+дата рождения: ${numDay}, ${month} (${periodYear})
 ваш возраст в днях: ${age*365}
-через 5 лет вам будет: ${age+5}
 ваш пол: ${gender}
-вы на пенсии: ${pension}`);
+вы на пенсии: ${pension}
+ваш знак зодиака: ${zodiak}`);
 
 </script>
 
