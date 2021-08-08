@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    var surname = prompt('Введите фамилию', 'Ива345нов');
+
+
+    // var control = surname.indexOf('4');
+    // console.log(`control = ${control}`);
+
+   for (var i = 0; i < 10; i++) {
+       var control = surname.indexOf(i);
+		 console.log(`control = ${control}`);
+       while (!surname || parseFloat(surname) || surname.length < 2 || surname.length > 30 || control > 0) {
+           surname = prompt('Введите корректно фамилию!');
+       }
+	}
+
+
+
+
+    alert (`ваше ФИО: ${surname}
+ваш возраст в годах:
+ваш возраст в днях:
+через 5 лет вам будет:
+ваш пол:
+вы на пенсии: `)
+
+</script>
+
+</body>
+</html>
