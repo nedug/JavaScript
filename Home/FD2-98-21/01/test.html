@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+    // var numMonth = Number(prompt('Введите номер месяца вашего рождения', '3'));
+    // while (!numMonth || numMonth < 1 || numMonth > 12) {
+    //     numMonth = Number(prompt('Введите корректено номер месяца!'));
+    // }
+	 //
+    // switch (numMonth) {
+    //     case 1 :
+    //         var month = 'январь';
+    //         var periodYear = 'зима';
+    //         break;
+    //     case 2 :
+    //         var month = 'февраль';
+    //         var periodYear = 'зима';
+    //         break;
+    //     case 3 :
+    //         var month = 'март';
+    //         var periodYear = 'весна';
+    //         break;
+    //     case 4 :
+    //         var month = 'апрель';
+    //         var periodYear = 'весна';
+    //         break;
+    //     case 5 :
+    //         var month = 'май';
+    //         var periodYear = 'весна';
+    //         break;
+    //     case 6 :
+    //         var month = 'июнь';
+    //         var periodYear = 'лето';
+    //         break;
+    //     case 7 :
+    //         var month = 'июль';
+    //         var periodYear = 'лето';
+    //         break;
+    //     case 8 :
+    //         var month = 'август';
+    //         var periodYear = 'лето';
+    //         break;
+    //     case 9 :
+    //         var month = 'сентябрь';
+    //         var periodYear = 'осень';
+    //         break;
+    //     case 10 :
+    //         var month = 'октябрь';
+    //         var periodYear = 'осень';
+    //         break;
+    //     case 11 :
+    //         var month = 'ноябрь';
+    //         var periodYear = 'осень';
+    //         break;
+    //     case 12 :
+    //         var month = 'декабрь';
+    //         var periodYear = 'зима';
+    //         break;
+	 // }
+
+    var numDay = Number(prompt('Введите число вашего рождения', '30'));
+    while (!numDay || numDay < 1 || numDay > 32) {
+        numDay = Number(prompt('Введите корректено число рождения!'));
+    }
+
+    if (numDay > 5 && numDay <= 20) {
+        var zodiak = 'весы';
+    } else if (numDay > 20 && numDay < 31) {
+        var zodiak = 'скорпион';
+	 }
+
+
+
+
+    alert (`ваше ФИО:
+ваш возраст в годах:
+вы родились:
+знак зодиака: ${zodiak}
+ваш пол:
+вы на пенсии: `);
+
+</script>
+
+
+</body>
+</html>
