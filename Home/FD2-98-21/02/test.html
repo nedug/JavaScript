@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    const countVowels = str => Array.from(str)
+        .filter(letter => 'aeiou'.includes(letter)).length;
+
+    console.log(countVowels('abcdefghijklmnopqrstuvwxyz')); // 5
+    console.log(countVowels('test')); // 1
+    console.log(countVowels('ddd')); // 0
+
+
+</script>
+
+</body>
+</html>
