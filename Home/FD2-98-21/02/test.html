@@ -8,12 +8,67 @@
 
 <script>
 
-    const countVowels = str => Array.from(str)
-        .filter(letter => 'aeiou'.includes(letter)).length;
+    compress_1('a');
+    compress_1('aaa');
+    compress_1('aabbb');
+    compress_1('aaabcc');
 
-    console.log(countVowels('abcdefghijklmnopqrstuvwxyz')); // 5
-    console.log(countVowels('test')); // 1
-    console.log(countVowels('ddd')); // 0
+    function compress_1(value) {
+
+        var sumLetterA = 0;
+        var sumLetterB = 0;
+        var sumLetterC = 0;
+
+        if (value.length === 1) {
+              console.log(`"${value}" => "${value}"`)
+
+        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1 || value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1 ||value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a" || value[i] === "b" || value[i] === "c") {
+                    sumLetterA += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA}"`)
+
+		  } else if ((value.indexOf('b') < 0 || value.indexOf('a') < 0 || value.indexOf('c') < 0) && value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a") {
+                    sumLetterA += 1;
+                }
+
+                if (value[i] === "b") {
+                    sumLetterB += 1;
+                }
+
+                if (value[i] === "c") {
+                    sumLetterC += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA || sumLetterB || sumLetterC}${value[sumLetterA || sumLetterB || sumLetterC]}${sumLetterB || sumLetterC}"`)
+
+		  } else if (value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a") {
+                    sumLetterA += 1;
+                }
+
+                if (value[i] === "b") {
+                    sumLetterB += 1;
+                }
+
+                if (value[i] === "c") {
+                    sumLetterC += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA || sumLetterB || sumLetterC}${value[sumLetterA || sumLetterB || sumLetterC]}${sumLetterB || sumLetterC}${value[sumLetterA+sumLetterB]}${sumLetterC}"`)
+		  }
+    }
+
+
+
 
 
 </script>
