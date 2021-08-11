@@ -13,6 +13,7 @@
         surname = prompt('Введите корректно фамилию!');
     }
     // Единственное не получилось убрать возможность ввода фамилии/имени/отчества по типу: Иванов123
+	 // Возможно проблему решит метод Number.isNaN?
 
     var nameUser = prompt('Введите имя', 'Иван');
     while (!nameUser || parseFloat(nameUser) || nameUser.length < 2 || nameUser.length > 30) {
