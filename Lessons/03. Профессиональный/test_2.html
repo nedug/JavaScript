@@ -9,19 +9,19 @@
 
 <script>
 
-    var surname = prompt('Введите фамилию', 'Ива345нов');
+    var surname = 'приветпакетerhrthtdherheh';
 
 
     // var control = surname.indexOf('4');
     // console.log(`control = ${control}`);
+   var cc = '';
+   for (var i = 0; i < surname.length; i+=2) {
 
-   for (var i = 0; i < 10; i++) {
-       var control = surname.indexOf(i);
-		 console.log(`control = ${control}`);
-       while (!surname || parseFloat(surname) || surname.length < 2 || surname.length > 30 || control > 0) {
-           surname = prompt('Введите корректно фамилию!');
+       var bb = surname[i];
+       // console.log(bb);
+       cc += bb;
        }
-	}
+    console.log(cc);
 
 
 
@@ -29,12 +29,7 @@
 
 
 
-    alert (`ваше ФИО: ${surname}
-ваш возраст в годах:
-ваш возраст в днях:
-через 5 лет вам будет:
-ваш пол:
-вы на пенсии: `)
+
 
 </script>
 
