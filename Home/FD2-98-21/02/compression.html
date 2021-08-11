@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    // compress('a');
+    // compress('aaa');
+    // compress('aabbb');
+    // compress('aaabcc');
+	 //
+    // function compress(value) {
+	 //
+    //     var newArr = value.split('');
+    //     var numbA = newArr.filter(item => item === 'a')
+    //     var numbB = newArr.filter(item => item === 'b')
+    //     var numbC = newArr.filter(item => item === 'c')
+	 //
+		//   if (value.length === 1) {
+    //         console.log(`"${value}" => "${value}"`)
+		//   } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+    //         console.log(`"${value}" => "${value[0]}${value.length}"`)
+		//   } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+    //         console.log(`"${value}" => "${value[0]}${value.length}"`)
+    //     } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+    //         console.log(`"${value}" => "${value[0]}${value.length}"`)
+    //     } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
+		// 		console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}`);
+    //     } else if (value.indexOf('b') >= 0 && value.indexOf('c') >= 0 && value.indexOf('a') < 0) {
+    //         console.log(`"${value}" => "${value[0]}${numbB.length}${value[numbC.length]}${numbC.length}`);
+    //     }else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
+    //         console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbC.length]}${numbC.length}`);
+    //     } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
+		// 		console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}${value[numbA.length+numbB.length]}${numbC.length}"`);
+    //     }
+    // }
+
+
+
+
+    uncompress('a');
+    uncompress('a5');
+    uncompress('aabbb');
+    uncompress('aaabcc');
+
+    function uncompress(value) {
+
+        var newArr = value.split('');
+        var numbA = newArr.filter(item => item === 'a')
+        var numbB = newArr.filter(item => item === 'b')
+        var numbC = newArr.filter(item => item === 'c')
+
+        if (value.length === 1) {
+            console.log(`"${value}" => "${value}"`)
+
+
+        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+
+
+
+
+
+
+        } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+
+        } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+
+
+
+
+
+
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}`);
+        } else if (value.indexOf('b') >= 0 && value.indexOf('c') >= 0 && value.indexOf('a') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbB.length}${value[numbC.length]}${numbC.length}`);
+        }else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbC.length]}${numbC.length}`);
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}${value[numbA.length+numbB.length]}${numbC.length}"`);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
