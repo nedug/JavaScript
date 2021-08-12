@@ -20,25 +20,21 @@
         var numbB = newArr.filter(item => item === 'b');
         var numbC = newArr.filter(item => item === 'c');
 
-		  if (value.length === 1) {
+        if (value.length === 1) {
             console.log(`"${value}" => "${value}"`)
 
-		  } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
-            console.log(`"${value}" => "${value[0]}${value.length}"`)
-		  } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
-            console.log(`"${value}" => "${value[0]}${value.length}"`)
-        } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+        } else if (value[0] === value[value.length - 1]) {
             console.log(`"${value}" => "${value[0]}${value.length}"`)
 
         } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
-				console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}"`);
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}"`);
         } else if (value.indexOf('b') >= 0 && value.indexOf('c') >= 0 && value.indexOf('a') < 0) {
             console.log(`"${value}" => "${value[0]}${numbB.length}${value[numbC.length]}${numbC.length}"`);
         } else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
             console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbC.length]}${numbC.length}"`);
 
         } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
-				console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}${value[numbA.length+numbB.length]}${numbC.length}"`);
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}${value[numbA.length+numbB.length]}${numbC.length}"`);
         }
     }
 
@@ -57,7 +53,7 @@
             var firstMember = value[0];
             var SumFirstMember = +value.slice(1);
 
-				for (var i = 0; i < SumFirstMember; i++) {
+            for (var i = 0; i < SumFirstMember; i++) {
                 firstMember += value[0];
             }
             return firstMember;
@@ -81,7 +77,7 @@
             for (var i = 0; i < SumSecondMember-1; i++) {
                 secondMember += value[NumSecondMember];
             }
-				return secondMember;
+            return secondMember;
         }
 
         function uncompressForTwoC() {
@@ -112,7 +108,7 @@
         } else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
             console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoC()}"`);
 
-    	  } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
             console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoB()}${uncompressForTwoC()}"`);
         }
     }
@@ -121,7 +117,7 @@
     console.log('\n--------------- variant 2 (only compress) ----------------------\n\n')
 
 
-	 /* Подход другой, но кода еще больше. Уверен можно уйти от условий if и все считать в одном console.log */
+    /* Подход другой, но кода еще больше. Уверен можно уйти от условий if и все считать в одном console.log */
 
 
     compress_1('a');

@@ -6,26 +6,178 @@
 </head>
 <body>
 
-
 <script>
 
-    var surname = 'приветпакетerhrthtdherheh';
+    compress('a');
+    compress('aaa');
+    compress('aabbb');
+    compress('aaabcc');
+
+    function compress(value) {
+
+        var newArr = value.split('');
+        var numbA = newArr.filter(item => item === 'a');
+        var numbB = newArr.filter(item => item === 'b');
+        var numbC = newArr.filter(item => item === 'c');
+
+        if (value.length === 1) {
+            console.log(`"${value}" => "${value}"`)
+
+        } else if (value[0] === value[value.length - 1]) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}"`);
+        } else if (value.indexOf('b') >= 0 && value.indexOf('c') >= 0 && value.indexOf('a') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbB.length}${value[numbC.length]}${numbC.length}"`);
+        } else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbC.length]}${numbC.length}"`);
+
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
+            console.log(`"${value}" => "${value[0]}${numbA.length}${value[numbA.length]}${numbB.length}${value[numbA.length+numbB.length]}${numbC.length}"`);
+        }
+    }
 
 
-    // var control = surname.indexOf('4');
-    // console.log(`control = ${control}`);
-   var cc = '';
-   for (var i = 0; i < surname.length; i+=2) {
-
-       var bb = surname[i];
-       // console.log(bb);
-       cc += bb;
-       }
-    console.log(cc);
+    console.log('\n-----------------------------------------------\n\n')
 
 
+    uncompress('a');
+    uncompress('a5');
+    uncompress('a2b3');
+    uncompress('a12b1c3');
+
+    function uncompress(value) {
+
+        function uncompressForOne() {
+            var firstMember = value[0];
+            var SumFirstMember = +value.slice(1);
+
+            for (var i = 0; i < SumFirstMember; i++) {
+                firstMember += value[0];
+            }
+            return firstMember;
+        }
+
+        function uncompressForTwo() {
+            var firstMember = value[0];
+            var SumFirstMember = parseInt(value.slice(1));
+
+            for (var i = 0; i < SumFirstMember-1; i++) {
+                firstMember += value[0];
+            }
+            return firstMember;
+        }
+
+        function uncompressForTwoB() {
+            var NumSecondMember = (value.indexOf('b'));
+            var SumSecondMember = parseInt(value.slice(NumSecondMember+1));
+            var secondMember = value[NumSecondMember];
+
+            for (var i = 0; i < SumSecondMember-1; i++) {
+                secondMember += value[NumSecondMember];
+            }
+            return secondMember;
+        }
+
+        function uncompressForTwoC() {
+            var NumSecondMember = (value.indexOf('c'));
+            var SumSecondMember = value.slice(NumSecondMember+1);
+            var secondMember = value[NumSecondMember];
+
+            for (var i = 0; i < SumSecondMember-1; i++) {
+                secondMember += value[NumSecondMember];
+            }
+            return secondMember;
+        }
+
+        if (value.length === 1) {
+            console.log(`"${value}" => "${value}"`)
+
+        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${uncompressForOne()}"`)
+        } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${uncompressForOne()}"`)
+        } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${uncompressForOne()}"`)
+
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
+            console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoB()}"`);
+        } else if (value.indexOf('b') >= 0 && value.indexOf('c') >= 0 && value.indexOf('a') < 0) {
+            console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoC()}"`);
+        } else if (value.indexOf('a') >= 0 && value.indexOf('c') >= 0 && value.indexOf('b') < 0) {
+            console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoC()}"`);
+
+        } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') >= 0) {
+            console.log(`"${value}" => "${uncompressForTwo()}${uncompressForTwoB()}${uncompressForTwoC()}"`);
+        }
+    }
 
 
+    console.log('\n--------------- variant 2 (only compress) ----------------------\n\n')
+
+
+    /* Подход другой, но кода еще больше. Уверен можно уйти от условий if и все считать в одном console.log */
+
+
+    compress_1('a');
+    compress_1('aaa');
+    compress_1('aabbb');
+    compress_1('aaabcc');
+
+    function compress_1(value) {
+
+        var sumLetterA = 0;
+        var sumLetterB = 0;
+        var sumLetterC = 0;
+
+        if (value.length === 1) {
+            console.log(`"${value}" => "${value}"`)
+
+        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1 || value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1 ||value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a" || value[i] === "b" || value[i] === "c") {
+                    sumLetterA += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA}"`)
+
+        } else if ((value.indexOf('b') < 0 || value.indexOf('a') < 0 || value.indexOf('c') < 0) && value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a") {
+                    sumLetterA += 1;
+                }
+
+                if (value[i] === "b") {
+                    sumLetterB += 1;
+                }
+
+                if (value[i] === "c") {
+                    sumLetterC += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA || sumLetterB || sumLetterC}${value[sumLetterA || sumLetterB || sumLetterC]}${sumLetterB || sumLetterC}"`)
+
+        } else if (value.length > 1) {
+            for (var i = 0; i < value.length; i++) {
+
+                if (value[i] === "a") {
+                    sumLetterA += 1;
+                }
+
+                if (value[i] === "b") {
+                    sumLetterB += 1;
+                }
+
+                if (value[i] === "c") {
+                    sumLetterC += 1;
+                }
+            }
+            console.log(`"${value}" => "${value[0]}${sumLetterA || sumLetterB || sumLetterC}${value[sumLetterA || sumLetterB || sumLetterC]}${sumLetterB || sumLetterC}${value[sumLetterA+sumLetterB]}${sumLetterC}"`)
+        }
+    }
 
 
 
