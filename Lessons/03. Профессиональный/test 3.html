@@ -43,7 +43,7 @@
 
 
     uncompress('a');
-    uncompress('c3');
+    uncompress('a3');
     uncompress('a2b3');
     uncompress('a12b1c3');
 
@@ -53,7 +53,7 @@
             var firstMember = value[0];
             var SumFirstMember = +value.slice(1);
 
-            for (var i = 0; i < SumFirstMember; i++) {
+            for (var i = 0; i < SumFirstMember-1; i++) {
                 firstMember += value[0];
             }
             return firstMember;
