@@ -23,7 +23,11 @@
         if (value.length === 1) {
             console.log(`"${value}" => "${value}"`)
 
-        } else if (value[0] === value[value.length - 1]) {
+        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+        } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
+            console.log(`"${value}" => "${value[0]}${value.length}"`)
+        } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
             console.log(`"${value}" => "${value[0]}${value.length}"`)
 
         } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {

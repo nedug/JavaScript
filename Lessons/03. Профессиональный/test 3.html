@@ -43,7 +43,7 @@
 
 
     uncompress('a');
-    uncompress('a5');
+    uncompress('c3');
     uncompress('a2b3');
     uncompress('a12b1c3');
 
@@ -53,7 +53,7 @@
             var firstMember = value[0];
             var SumFirstMember = +value.slice(1);
 
-            for (var i = 0; i < SumFirstMember - 1; i++) {
+            for (var i = 0; i < SumFirstMember; i++) {
                 firstMember += value[0];
             }
             return firstMember;
@@ -63,7 +63,7 @@
             var firstMember = value[0];
             var SumFirstMember = parseInt(value.slice(1));
 
-            for (var i = 0; i < SumFirstMember - 1; i++) {
+            for (var i = 0; i < SumFirstMember-1; i++) {
                 firstMember += value[0];
             }
             return firstMember;
@@ -74,7 +74,7 @@
             var SumSecondMember = parseInt(value.slice(NumSecondMember+1));
             var secondMember = value[NumSecondMember];
 
-            for (var i = 0; i < SumSecondMember - 1; i++) {
+            for (var i = 0; i < SumSecondMember-1; i++) {
                 secondMember += value[NumSecondMember];
             }
             return secondMember;
@@ -85,7 +85,7 @@
             var SumSecondMember = value.slice(NumSecondMember+1);
             var secondMember = value[NumSecondMember];
 
-            for (var i = 0; i < SumSecondMember - 1; i++) {
+            for (var i = 0; i < SumSecondMember-1; i++) {
                 secondMember += value[NumSecondMember];
             }
             return secondMember;
@@ -94,11 +94,7 @@
         if (value.length === 1) {
             console.log(`"${value}" => "${value}"`)
 
-        } else if (value.indexOf('b') < 0 && value.indexOf('c') < 0 && value.length > 1) {
-            console.log(`"${value}" => "${uncompressForOne()}"`)
-        } else if (value.indexOf('a') < 0 && value.indexOf('c') < 0 && value.length > 1) {
-            console.log(`"${value}" => "${uncompressForOne()}"`)
-        } else if (value.indexOf('a') < 0 && value.indexOf('b') < 0 && value.length > 1) {
+        } else if (isNaN(+value.slice(1)) === false) {
             console.log(`"${value}" => "${uncompressForOne()}"`)
 
         } else if (value.indexOf('a') >= 0 && value.indexOf('b') >= 0 && value.indexOf('c') < 0) {
@@ -178,6 +174,9 @@
             console.log(`"${value}" => "${value[0]}${sumLetterA || sumLetterB || sumLetterC}${value[sumLetterA || sumLetterB || sumLetterC]}${sumLetterB || sumLetterC}${value[sumLetterA+sumLetterB]}${sumLetterC}"`)
         }
     }
+
+    var аааа= 'a55';
+    console.log(isNaN(+аааа.slice(1)))
 
 
 
