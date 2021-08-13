@@ -11,7 +11,18 @@
 
     var pow = function(x) {
         return function(y) {
-           console.log(`${x}^${y} = ${x ** y}`);
+            var c = 1;
+            if (y >= 0) {
+                for (let i = 0; i < y; i++) {
+                    c = c * x;
+                }
+                console.log(`${x}^${y} = ${c}`);
+				} else {
+                for (let i = 0; i < -y; i++) {
+                    c = c * x;
+                }
+                console.log(`${x}^(${y}) = ${1 / c}`);
+				}
         };
     };
 
@@ -20,18 +31,6 @@
     pow(16)(0);
     pow(2)(-3);
 
-
-
-
-
-
-
-
-
-
-
-
-    
 
     console.log('\n-----------------------------------------------\n\n')
 
@@ -62,20 +61,6 @@
     calculate(3)('*')(7);
     calculate(15)('/')(3);
     calculate(2)('/')(0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 
