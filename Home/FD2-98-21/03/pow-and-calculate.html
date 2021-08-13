@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    var pow = function(x) {
+        return function(y) {
+           console.log(`${x}^${y} = ${x ** y}`);
+        };
+    };
+
+    pow(-2)(3);
+    pow(4)(2);
+    pow(16)(0);
+    pow(2)(-3);
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    console.log('\n-----------------------------------------------\n\n')
+
+
+    var calculate = function(x) {
+        return function(y) {
+            return function(z) {
+                if (y === '+'){
+                    console.log(`${x}${y}${z} = ${x + z}`);
+					 }
+                else if (y === '-') {
+                    console.log(`${x}${y}${z} = ${x - z}`);
+					 }
+                else if (y === '*') {
+                    console.log(`${x}${y}${z} = ${x * z}`);
+                }
+                else if (y === '/' && z !== 0) {
+                    console.log(`${x}${y}${z} = ${x / z}`);
+                }
+                else {
+                    console.log(`${x}${y}${z} = Ошибка (на ноль делить нельзя)`);
+                }
+            }
+        };
+    };
+
+    calculate(1)('+')(2);
+    calculate(3)('*')(7);
+    calculate(15)('/')(3);
+    calculate(2)('/')(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
