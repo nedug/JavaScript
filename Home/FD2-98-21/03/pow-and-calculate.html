@@ -40,17 +40,13 @@
             return function(z) {
                 if (y === '+'){
                     console.log(`${x}${y}${z} = ${x + z}`);
-					 }
-                else if (y === '-') {
+					 } else if (y === '-') {
                     console.log(`${x}${y}${z} = ${x - z}`);
-					 }
-                else if (y === '*') {
+					 } else if (y === '*') {
                     console.log(`${x}${y}${z} = ${x * z}`);
-                }
-                else if (y === '/' && z !== 0) {
+                } else if (y === '/' && z !== 0) {
                     console.log(`${x}${y}${z} = ${x / z}`);
-                }
-                else {
+                } else {
                     console.log(`${x}${y}${z} = Ошибка (на ноль делить нельзя)`);
                 }
             }
