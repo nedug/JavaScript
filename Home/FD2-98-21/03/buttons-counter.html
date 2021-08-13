@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<button id="first">0</button>
+<button id="second">0</button>
+
+
+<script>
+
+
+    const button1 = document.getElementById('first');
+
+    let click1 = null;
+
+    function trigger1() {
+
+        click1 = 0;
+
+        return function () {
+            console.log(click1++);
+        }
+    }
+
+    button1.onclick = trigger1();
+
+
+/*---------------------------------------------------*/
+
+
+    const button2 = document.getElementById('second');
+
+    let click2 = null;
+
+    function trigger2() {
+
+        click2 = 0;
+
+        return function () {
+            return click2++;
+        }
+    }
+
+    let bb = trigger2();
+
+    console.log(bb)
+
+    button2.onclick = bb();
+
+    console.log(button2.onclick)
+
+</script>
+
+
+</body>
+</html>
