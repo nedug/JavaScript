@@ -6,31 +6,11 @@
 </head>
 <body>
 
-<button id="first">1</button>
-<button id="second">2</button>
+<!--<button id="first">1</button>-->
+<button id="second">0</button>
 
 
 <script>
-
-
-    const button1 = document.getElementById('first');
-
-    let click1 = null;
-
-    function trigger1() {
-
-        click1 = 0;
-
-        return function () {
-            console.log(click1++);
-        }
-    }
-
-    button1.onclick = trigger1();
-
-
-/*---------------------------------------------------*/
-
 
     const button2 = document.getElementById('second');
 
@@ -47,11 +27,9 @@
 
     let bb = trigger2();
 
-    console.log(bb)
-
-    button2.onclick = bb();
-
-    console.log(button2.onclick)
+    button2.onclick = function () {
+        button2.innerText = bb();
+	 };
 
 </script>
 
