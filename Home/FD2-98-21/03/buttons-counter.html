@@ -3,33 +3,55 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       button{
+           width: 150px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 10px;
+           border: 1px solid transparent;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+           transition: .3s;
+       }
+       button:hover{
+           border: 1px solid black;
+       }
+		 button:first-child{
+           background-color: #d788c6;
+		 }
+       button:nth-child(2){
+           background-color: #8bd788;
+       }
+	</style>
+
 </head>
 <body>
 
-<!--<button id="first">1</button>-->
-<button id="second">0</button>
+<button>Кликни по мне</button>
+<button>И по мне</button>
+<button>Ну если мало</button>
 
 
 <script>
 
-    const button2 = document.getElementById('second');
+    const buttons = document.querySelectorAll('button');
 
-    let click2 = null;
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function () {
+            buttons[i].innerText = count();
+		  }
+	 }
 
-    function trigger2() {
-
-        click2 = 0;
-
+    function trigger() {
+        let click = 1;
         return function () {
-            return click2++;
+            return click++;
         }
     }
 
-    let bb = trigger2();
-
-    button2.onclick = function () {
-        button2.innerText = bb();
-	 };
+    let count = trigger();
 
 </script>
 
