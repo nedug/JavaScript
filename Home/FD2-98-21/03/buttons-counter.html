@@ -42,16 +42,18 @@
         buttons[i].onclick = function () {
             buttons[i].innerText = count();
 		  }
+
+        function trigger() {
+            let click = 1;
+            return function () {
+                return click++;
+            }
+        }
+
+        let count = trigger();
 	 }
 
-    function trigger() {
-        let click = 1;
-        return function () {
-            return click++;
-        }
-    }
 
-    let count = trigger();
 
 </script>
 
