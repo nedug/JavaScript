@@ -18,9 +18,9 @@
        button:hover{
            border: 1px solid black;
        }
-		 button:first-child{
+       button:first-child{
            background-color: #d788c6;
-		 }
+       }
        button:nth-child(2){
            background-color: #8bd788;
        }
@@ -38,20 +38,20 @@
     const buttons = document.querySelectorAll('button');
 
     for (let i = 0; i < buttons.length; i++) {
-
-        let count = trigger();
-
         buttons[i].onclick = function () {
             buttons[i].innerText = count();
-		  }
-	 }
+        }
+        let count = trigger();
+    }
 
     function trigger() {
-        let click = 0;
+        let click = 1;
         return function () {
-            return ++click;
+            return click++;
         }
     }
+
+
 
 </script>
 
