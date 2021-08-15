@@ -14,63 +14,19 @@
     countVowelLetters('Не будете ли Вы так любезны, Иван, передать мне блокнот и «Известия»');
 
     function countVowelLetters(value) {
+        let sumVowels = 0;
 
-        var strLow = value.toLowerCase();
+        let stringLow = value.toLowerCase();
 
-        var arrLetters = strLow.split('');
+        let vowels = [ "а","е","ё","и","о","у","ы","э","ю","я"];
+        // let vowels = [ "a","e","i","o","u","y"];
 
-        var letterA = arrLetters.filter(item => item === 'а');
-
-        var letterE = arrLetters.filter(item => item === 'е');
-
-        var letterEE = arrLetters.filter(item => item === 'ё');
-
-        var letterI = arrLetters.filter(item => item === 'и');
-
-        var letterO = arrLetters.filter(item => item === 'о');
-
-        var letterY = arrLetters.filter(item => item === 'у');
-
-        var letterYU = arrLetters.filter(item => item === 'ы');
-
-        var letterAE = arrLetters.filter(item => item === 'э');
-
-        var letterU = arrLetters.filter(item => item === 'ю');
-
-        var letterYA = arrLetters.filter(item => item === 'я');
-
-        console.log(`Количество гласных = ${letterA.length+letterE.length+letterEE.length +
-		  												  letterI.length+letterO.length+letterY.length +
-		  												  letterYU.length+letterAE.length+letterU.length +
-														  letterYA.length}`);
-
-	 }
-
-
-    console.log('\n----------------- variant 2 ------------------------\n\n')
-
-	 
-    countVowelLetters_1('Пришла зима, запахло…');
-    countVowelLetters_1('Ghbdtn, z r dfv bp Hjccbb');
-    countVowelLetters_1('длинношеее');
-    countVowelLetters_1('Не будете ли Вы так любезны, Иван, передать мне блокнот и «Известия»');
-
-    function countVowelLetters_1(value) {
-
-        var sumLetter = 0;
-
-        var strLow = value.toLowerCase();
-
-        for (var i = 0; i < strLow.length; i++) {
-
-				if (strLow[i] === "а" || strLow[i] === "е" || strLow[i] === "ё" ||
-					 strLow[i] === "и" || strLow[i] === "о" || strLow[i] === "у" ||
-					 strLow[i] === "ы" || strLow[i] === "э" || strLow[i] === "ю" ||
-					 strLow[i] === "я") {
-                	sumLetter += 1;
+        for (let letter of stringLow) {
+            if (vowels.includes(letter)) {
+                sumVowels++;
             }
         }
-        console.log(`Количество гласных = ${sumLetter}`);
+        console.log(`Количество русских гласных = ${sumVowels}`)
     }
 
 </script>
