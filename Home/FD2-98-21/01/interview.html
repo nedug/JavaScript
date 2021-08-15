@@ -36,9 +36,9 @@
     }
 
     var numDay = +prompt('Введите число вашего рождения', '31');
-    while (!numDay || (numDay < 1 || numDay > 30) && (numMonth == 4 || numMonth == 6 || numMonth == 9 || numMonth == 11)
-    || (numDay < 1 || numDay > 31) && (numMonth == 1 || numMonth == 3 || numMonth == 5 || numMonth == 7 || numMonth == 8 || numMonth == 10 || numMonth == 12)
-    || (numDay < 1 || numDay > 28) && numMonth == 2) {
+    while (!numDay || (numDay < 1 || numDay > 30) && (numMonth === 4 || numMonth === 6 || numMonth === 9 || numMonth === 11)
+    || (numDay < 1 || numDay > 31) && (numMonth === 1 || numMonth === 3 || numMonth === 5 || numMonth === 7 || numMonth === 8 || numMonth === 10 || numMonth === 12)
+    || (numDay < 1 || numDay > 28) && numMonth === 2) {
         numDay = +prompt('Введите корректно число рождения!');
     }
 
@@ -50,9 +50,9 @@
     }
 
     var pension;
-    if (gender == 'мужской' && age < 62) {
+    if (gender === 'мужской' && age < 62) {
         pension = "нет";
-    } else if (gender == 'женский' && age < 58) {
+    } else if (gender === 'женский' && age < 58) {
         pension = "нет";
     } else {
         pension = "да";
