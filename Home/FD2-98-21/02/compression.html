@@ -8,7 +8,6 @@
 
 <script>
 
-
     function compress(value) {
         let compressString = '';
 
@@ -42,11 +41,9 @@
         let uncompressString = '';
 
         for(let i = 0; i < value.length; i++) {
-
             let currentLetter = value[i];
-
             let count = parseInt(value.slice(i+1));
-				
+
 				if (count > 0 && isNaN(currentLetter)) {
 
                 for (let i = 0; i < count; i++) {
@@ -55,62 +52,14 @@
             } else if (value.length === 1) {
 					 uncompressString = currentLetter;
 				}
-
-
-
         }
         console.log(`"${value}" => "${uncompressString}"`);
     }
 
-    uncompress('p');
-    uncompress('p12');
-    uncompress('k9l3');
+    uncompress('a');
+    uncompress('a5');
+    uncompress('a2b3');
     uncompress('a12b1c3');
-
-
-
-
-    // function uncompress(value) {
-    //     let uncompressString='';
-	 //
-    //     for (let i = 0; i < value.length; i++) {
-    //         let letter = value[i];
-    //         let number;
-	 //
-    //         if (parseInt(value[i] + value[i+1]) == NaN){
-    //             number = parseInt(value[i+1]);
-    //         }
-    //         else {
-    //             number = parseInt(value[i+1] + value[i+2]);
-    //         }
-	 //
-    //         if (number > 1) {
-    //             for(let j = 1; j < number; j++){
-    //                 uncompressString = uncompressString + letter;
-    //             }
-    //         }
-	 //
-    //         if ( number = !parseInt(value[i])){
-    //             uncompressString += letter;
-    //         }
-	 //
-    //     }
-    //     console.log(`"${value}" => "${uncompressString}"`);
-	 //
-    // }
-	 //
-	 //
-    // uncompress('a');
-    // uncompress('a5');
-    // uncompress('a2b3');
-    // uncompress('a12b1c3');
-
-
-
-
-
-
-
 
 </script>
 
