@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+	 changeArray([ 1, 2, 3, 4, 5 ]);
+    changeArray([ 1, 2 ]);
+    changeArray([ 1, 2, 3, 4, 5, 6, 7, 8]);
+
+    function changeArray(anArray) {
+
+        if (anArray.length % 2 === 0) {
+            var evenArr = anArray.splice(anArray.length/2).concat(anArray);
+
+				console.log(evenArr);
+        }
+
+        else if (anArray.length % 2 !== 0) {
+            var part1 = anArray.splice(anArray.length/2+1);
+            var part2 = anArray.splice(0, anArray.length-1);
+				var oddArr = part1.concat(anArray).concat(part2);
+
+            console.log(oddArr);
+        }
+    }
+
+</script>
+
+</body>
+</html>
