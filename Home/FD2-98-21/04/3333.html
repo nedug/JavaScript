@@ -8,20 +8,18 @@
 
 <script>
 
-    const str = "Каждый охотник желает знать, где сидит фазан.";
+    const startArray = [-1, 2, 3.5, -12, 4, 1.25, 16];
 
-    const newArr = firstLettersFromString(str);
+    const newArr = filteredArray(startArray);
 
     console.log(newArr);
 
-    function firstLettersFromString(str) {
+    function filteredArray(startArray) {
 
-        let strArr = str.split(' ');
+		  return startArray.filter(posInt);
 
-        return strArr.map(firstLetters);
-
-        function firstLetters(v) {
-            return v.slice(0,1);
+        function posInt(v) {
+            return v%1 === 0 && v > 0;
         }
     }
 
