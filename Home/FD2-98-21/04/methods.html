@@ -11,122 +11,29 @@
     let numbers = [2, 3, 5, 7, 11, 13, 17];
 
 
-
-    // let result = numbers.reduce((sum, current) => sum + current, 0);
-
     function currentSums(numbers) {
 
         let result = [];
 
         numbers.reduce((sum, current, i) => result[i] = sum + current, 0);
 
-        // console.log(sum);
-
-
-		  // console.log(numbers.join('+'));
-
-		  // var bbb = numbers.join('++');
-		  //
-        // console.log(bbb);
-		  //
-		  //
-        // console.log(bbb.split('+'));
-
-
-        function f(v,i,a) {
-            console.log(v + '+');
-            console.log(a)
+		  for (var i = 0; i < numbers.length; i++) {
+            numbers[i] = numbers[i] + "+";
         }
-
-
-        var bb = numbers.forEach(f);
-
-		  console.log(numbers.forEach(f))
-
-
-
-
-
-
 
         numbers.reduce((sum, current, i) => numbers[i] = sum + current, '');
 
+        var numbersFull = numbers.map(firstLetters);
 
+		  function firstLetters(v) {
+            return (v.slice(0,v.length-1)) ;
+        }
 
-
-
-
-
-        // numbers.reduce((sum, i) => numbers[i] = sum, 0);
-
-		  //
-		  // var aa = '';
-		  //
-        // let result1 = [];
-
-		  // for (let i = 0; i < numbers.length; i++) {
-        //     console.log(numbers[i]); ;
-		  // }
-
-        // console.log(result1);
-
-
-        // function f(v,i,a) {
-        //     console.log( numbers[i-1] + numbers[i-2] + '+' + v); }
-		  //
-		  // numbers.forEach(f)
-		  //
-        // console.log(numbers)
-
-
-
-
-
-
-
-
-
-
-        console.log(` = [${result}]`);
-        console.log(` = [${numbers}]`);
-
-
-
-
-
-
-
-
-
+        console.log(`[${numbersFull}] = [${result}]`);
 
     }
 
-
-
-
     currentSums(numbers);
-
-
-
-
-
-
-
-    // console.log(result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 
