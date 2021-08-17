@@ -8,54 +8,125 @@
 
 <script>
 
-    var pow = function(x) {
-        return function(y) {
-            var c = 1;
-            if (y >= 0) {
-                for (let i = 0; i < y; i++) {
-                    c = c * x;
-                }
-                console.log(`${x}^${y} = ${c}`);
-            } else {
-                for (let i = 0; i < -y; i++) {
-                    c = c * x;
-                }
-                console.log(`${x}^(${y}) = ${1 / c}`);
-            }
-        };
-    };
-
-    pow(-2)(3);
-    pow(4)(2);
-    pow(16)(0);
-    pow(2)(-3);
+    let numbers = [2, 3, 5, 7, 11, 13, 17];
 
 
-    console.log('\n-----------------------------------------------\n\n')
+
+    // let result = numbers.reduce((sum, current) => sum + current, 0);
+
+    function currentSums(numbers) {
+
+        let result = [];
+
+        numbers.reduce((sum, current, i) => result[i] = sum + current, 0);
+
+        // console.log(sum);
 
 
-    var calculate = function(x) {
-        return function(y) {
-            return function(z) {
-                if (y === '+'){
-                    console.log(`${x}${y}${z} = ${x + z}`);
-                } else if (y === '-') {
-                    console.log(`${x}${y}${z} = ${x - z}`);
-                } else if (y === '*') {
-                    console.log(`${x}${y}${z} = ${x * z}`);
-                } else if (y === '/' && z !== 0) {
-                    console.log(`${x}${y}${z} = ${x / z}`);
-                } else {
-                    console.log(`${x}${y}${z} = Ошибка (на ноль делить нельзя)`);
-                }
-            }
-        };
-    };
+		  // console.log(numbers.join('+'));
 
-    calculate(1)('+')(2);
-    calculate(3)('*')(7);
-    calculate(15)('/')(3);
-    calculate(2)('/')(0);
+		  // var bbb = numbers.join('++');
+		  //
+        // console.log(bbb);
+		  //
+		  //
+        // console.log(bbb.split('+'));
+
+
+        function f(v,i,a) {
+            console.log(v + '+');
+            console.log(a)
+        }
+
+
+        var bb = numbers.forEach(f);
+
+		  console.log(numbers.forEach(f))
+
+
+
+
+
+
+
+        numbers.reduce((sum, current, i) => numbers[i] = sum + current, '');
+
+
+
+
+
+
+
+        // numbers.reduce((sum, i) => numbers[i] = sum, 0);
+
+		  //
+		  // var aa = '';
+		  //
+        // let result1 = [];
+
+		  // for (let i = 0; i < numbers.length; i++) {
+        //     console.log(numbers[i]); ;
+		  // }
+
+        // console.log(result1);
+
+
+        // function f(v,i,a) {
+        //     console.log( numbers[i-1] + numbers[i-2] + '+' + v); }
+		  //
+		  // numbers.forEach(f)
+		  //
+        // console.log(numbers)
+
+
+
+
+
+
+
+
+
+
+        console.log(` = [${result}]`);
+        console.log(` = [${numbers}]`);
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+    currentSums(numbers);
+
+
+
+
+
+
+
+    // console.log(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
