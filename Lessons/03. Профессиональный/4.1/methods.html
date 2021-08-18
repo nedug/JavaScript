@@ -15,22 +15,22 @@
     function currentSums(numbers) {
 
         let result = [];
-        let resultFull = [];
 
-        numbers.reduce((sum, current, i) => {
+        numbers.reduce((sum, current, i) => result[i] = sum + current, 0);
 
-            if (i === 0) {
-                resultFull[i] = current;
-                return result[i] = sum + current;
+		  for (let i = 0; i < numbers.length; i++) {
+            numbers[i] = numbers[i] + "+";
+        }
 
-            } else {
-                resultFull[i] = resultFull[i-1] + '+' + current;
-                return result[i] = sum + current;
-            }
+        numbers.reduce((sum, current, i) => numbers[i] = sum + current, '');
 
-        }, 0);
+        let numbersFull = numbers.map(firstLetters);
 
-        console.log(`[${resultFull}] = [${result}]`);
+		  function firstLetters(v) {
+            return (v.slice(0,v.length-1)) ;
+        }
+
+        console.log(`[${numbersFull}] = [${result}]`);
 
     }
 
@@ -93,21 +93,21 @@
         function compare(a,b) {
             if (a === 0 && b !== 0) {
                 return 1;
-                //  Вторая пара (0, 1);
-                //  Пятая пара (0, 2);
-                //  Если больше 0, сортировка поставит b по меньшему индексу, чем a;
+                //	Вторая пара (0, 1);
+                //	Пятая пара (0, 2);
+                // Если больше 0, сортировка поставит b по меньшему индексу, чем a;
             } else if (b === 0 && a !== 0) {
                 return -1;
-                //  Третья пара (NaN, 0);
-                //  Шестая пара (null, 0);
-                //  Последняя пара (5, 0);
-                //  Если меньше 0, сортировка поставит a по меньшему индексу, чем b, то есть, a идёт первым.
+                // Третья пара (NaN, 0);
+                // Шестая пара (null, 0);
+                // Последняя пара (5, 0);
+                //	Если меньше 0, сортировка поставит a по меньшему индексу, чем b, то есть, a идёт первым.
             } else {
                 return 0;
-                //  Первая пара (1, false);
-                //  Четвертая пара (2, NaN);
-                //  Седьмая пара (3, null);
-                //  Если вернёт 0, сортировка оставит a и b неизменными по отношению друг к другу, но отсортирует их по отношению ко всем другим элементам;
+                //	Первая пара (1, false);
+                //	Четвертая пара (2, NaN);
+                //	Седьмая пара (3, null);
+                //	Если вернёт 0, сортировка оставит a и b неизменными по отношению друг к другу, но отсортирует их по отношению ко всем другим элементам;
 
             }
         }
@@ -137,6 +137,7 @@
             console.log(oddArr);
         }
     }
+
 
 </script>
 
