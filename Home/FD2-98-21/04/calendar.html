@@ -7,18 +7,23 @@
        table {
            border-collapse: collapse;
        }
-
        td,
        th {
            border: 1px solid black;
            padding: 3px;
            text-align: center;
+           width: 50px;
+           height: 50px;
+           font-size: 25px;
        }
-
        th {
            font-weight: bold;
-           background-color: #E6E6E6;
+           background-color: #b3c8c2;
        }
+		 caption {
+			  font-weight: bold;
+			  font-size: 30px;
+		 }
 	</style>
 </head>
 
@@ -37,17 +42,6 @@
     while (!year) {
         year = +prompt('Введите корректно номер года!');
     }
-
-
-
-    function infoDay(date) {
-        var day = date.getDay();
-        if (day === 0) {
-            day = 7;
-        }
-        return (day - 1);
-    }
-
 
     createCalendar(year, monthUser);
 
@@ -85,12 +79,21 @@
         table = table + '</tr></table>';
         //  Закрываем строку и таблицу;
 
+        ourDate.setMonth(month);
+        const monthName = ourDate.toLocaleString('default', { month: 'long' });
+
         document.getElementById('calendar').innerHTML = table;
-        document.querySelector('caption').innerText = `${monthUser} ${year} года`;
-        // document.querySelector('caption').innerText =  monthUser;
-        //  Вносим данные
+		  document.querySelector('caption').innerText = `${monthName} ${year} года`;
+        //  Вносим данные в DIV id="calendar";
     }
 
+    function infoDay(date) {
+        var day = date.getDay();
+        if (day === 0) {
+            day = 7;
+        }
+        return (day - 1);
+    }
 
 </script>
 
