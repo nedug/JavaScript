@@ -24,10 +24,6 @@
 
 <body>
 
-
-<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td>1</td></tr></table>
-
-
 <div id="calendar"></div>
 
 <script>
@@ -53,9 +49,9 @@
     }
 
 
-    createCalendar(calendar, year, monthUser);
+    createCalendar(year, monthUser);
 
-    function createCalendar(elem, year, monthUser) {
+    function createCalendar(year, monthUser) {
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
@@ -89,7 +85,9 @@
         table = table + '</tr></table>';
         //  Закрываем строку и таблицу;
 
-        calendar.innerHTML = table;
+        document.getElementById('calendar').innerHTML = table;
+        document.querySelector('caption').innerText = `${monthUser} ${year} года`;
+        // document.querySelector('caption').innerText =  monthUser;
 		  //  Вносим данные
     }
 
