@@ -50,16 +50,16 @@
         numbers1.reduce((sum, current, i) => {
 
             if (i === 0) {
-                return resultFull[i] = current,
-                result[i] = sum + current;
+                return (resultFull[i] = current,
+                result[i] = sum + current);
                 /* Оба варината работают.
                 Но вариант когда return возращает оба массива (resultFull[i] и result[i]) кажется логичнее,
                 но тогда WebStorm ругается на запятую после 'resultFull[i] = current'.
                 Какой вариант правильнее? */
 
             } else {
-                return resultFull[i] = resultFull[i-1] + '+' + current,
-                result[i] = sum + current;
+                return (resultFull[i] = resultFull[i-1] + '+' + current,
+                result[i] = sum + current);
             }
 
         }, 0);
