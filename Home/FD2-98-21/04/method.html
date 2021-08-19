@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let numbers = [2, 3, 5, 7, 11, 13, 17];
+
+    currentSums(numbers);
+
+    function currentSums(numbers) {
+
+        let result = [];
+        let resultFull = [];
+
+        numbers.reduce((sum, current, i) => {
+
+            if (i === 0) {
+                resultFull[i] = current;
+                return result[i] = sum + current;
+
+            } else {
+                resultFull[i] = resultFull[i-1] + '+' + current;
+                return result[i] = sum + current;
+            }
+
+        }, 0);
+
+        console.log(`[${resultFull}] = [${result}]`);
+
+    }
+
+
+    console.log('-----------------------------------------------');
+
+
+    let numbers1 = [2, 3, 5, 7, 11, 13, 17];
+
+    currentSums1(numbers1);
+
+    function currentSums1(numbers1) {
+
+        let result = [];
+        let resultFull = [];
+
+        numbers1.reduce((sum, current, i) => {
+
+            if (i === 0) {
+                return resultFull[i] = current,
+                result[i] = sum + current;
+                /* Оба варината работают. Но вариант когда return возращает оба массива (resultFull[i] и result[i]) кажется логичнее, но тогда WebStorm ругается на запятую после 'current'. Какой вариант правильнее? */
+
+            } else {
+                return resultFull[i] = resultFull[i-1] + '+' + current,
+                result[i] = sum + current;
+            }
+
+        }, 0);
+
+        console.log(`[${resultFull}] = [${result}]`);
+
+    }
+
+
+
+</script>
+
+</body>
+</html>
