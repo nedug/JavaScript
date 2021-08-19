@@ -13,23 +13,24 @@
 
     function getCounter (number = 0) {
 
-        var sum = 0;
+        function Counter () {
+            var sum = 0;
 
-        return {
-            log: function () {
+            this.log = function () {
                 console.log(number + sum);
                 return this;
-            },
-            count: function (countNumb) {
+            }
+            this.count = function (countNumb) {
                 sum += countNumb;
                 return this;
-            },
-            reset: function () {
+            }
+            this.reset = function () {
                 number = null;
                 sum = null;
                 return this;
             }
-        };
+        }
+        return new Counter();
     }
 
 </script>
