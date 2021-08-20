@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+
+        function HashStorage () {
+
+
+            this.addValue = function (key,value) {
+                key = prompt("Введите название коктейля:", "Маргарита");
+                value = prompt("Алкогольный напиток?:", "да");
+
+                this[key] = value;
+
+            }
+
+
+            this.getValue = function (key) {
+                key = prompt("Введите название коктейля:", "Маргарита");
+
+                if (key in this) {
+                    console.log(this);
+                }
+
+                else {
+                    console.log(`нет информации о коктейле: ${key}`);
+                }
+
+            }
+
+
+            this.deleteValue = function (key) {
+
+
+
+
+            }
+
+
+        }
+
+
+        console.log(number + sum);
+
+
+
+        // return new Counter();
+
+
+</script>
+
+</body>
+</html>
