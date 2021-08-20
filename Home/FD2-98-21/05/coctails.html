@@ -3,11 +3,39 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       button{
+           width: 350px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 8px;
+           border: 2px solid transparent;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+           transition: .3s;
+       }
+       [onclick^="del"]{
+           background-color: #e97170;
+       }
+       [onclick^="add"]{
+           background-color: #8ce5a1;
+       }
+       button:hover{
+           border: 2px solid black;
+       }
+	</style>
 </head>
 <body>
 
-<script>
 
+<button type="button" onclick='coctailsStorage.addValue()'>ввод рецепта</button> <br>
+<button type="button" onclick='coctailsStorage.getValue()'>рецепт напитка</button> <br>
+<button type="button" onclick='coctailsStorage.deleteValue()'>удаление рецепта</button> <br>
+<button type="button" onclick='coctailsStorage.getKeys()'>перечень всех коктейлей</button>
+
+
+<script>
 
 
         function HashStorage () {
@@ -15,7 +43,7 @@
 
             this.addValue = function (key,value) {
                 key = prompt("Введите название коктейля:", "Маргарита");
-                value = prompt("Алкогольный напиток?:", "да");
+                value = prompt("Алкогольный напиток?:", "40 градусов");
 
                 this[key] = value;
 
@@ -26,20 +54,53 @@
                 key = prompt("Введите название коктейля:", "Маргарита");
 
                 if (key in this) {
-                    console.log(this);
+                    console.log(`Коктейль "${key}" ${this[key]}`);
+                    // console.log(`${key} ${this.key}`);
+                    // console.log(this[key]);
                 }
 
                 else {
-                    console.log(`нет информации о коктейле: ${key}`);
+                    console.log(`Нет информации о коктейле "${key}"`);
                 }
 
             }
 
 
             this.deleteValue = function (key) {
+                key = prompt("Введите название коктейля:", "Маргарита");
+
+                if (key in this) {
+                    delete this[key];
+                    console.log(`Удален рецепт коктейля: ${key}`);
+                }
+
+                else {
+                    console.log(`Нет информации о коктейле: ${key}`);
+                }
+            }
+
+
+            this.getKeys = function () {
+
+                for (const [key] of Object.entries(this)) {
+                    if (typeof this[key] === 'string') {
+                        console.log(key);
+						  }
+
+                }
 
 
 
+
+
+
+                // for (let keys in this) {
+                //     if (typeof this[keys] === 'string') {
+                //         console.log(`Коктейль: "${keys}"`);
+                //         // console.log(Object.keys(this));
+						//   }
+					 //
+                // }
 
             }
 
@@ -47,11 +108,9 @@
         }
 
 
-        console.log(number + sum);
+        var coctailsStorage = new HashStorage();
 
-
-
-        // return new Counter();
+        // console.log(coctailsStorage);
 
 
 </script>

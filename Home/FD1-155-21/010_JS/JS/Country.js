@@ -25,6 +25,7 @@ function showListCountry() {
 
 function deleteCountry(country) {
     country = prompt("Введите название страны:", "Belarus");
-    delete countries[country];
+    // delete countries[country];
+    console.log (delete countries[country])
     alert ('Страна успешно удалена!');
 }
