@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       button{
+           width: 350px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 8px;
+           border: 2px solid transparent;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+           transition: .3s;
+       }
+       button:hover{
+           border: 2px solid black;
+       }
+	</style>
+</head>
+<body>
+
+<button>ввод рецепта</button> <br>
+<button>рецепт напитка</button> <br>
+<button>удаление рецепта</button> <br>
+<button>перечень всех коктейлей</button>
+
+
+
+
+<script>
+
+    const buttons = document.querySelectorAll('button');
+
+
+
+    function HashStorage () {
+
+
+        this.addValue = function (key,value) {
+
+            key = prompt("Введите название коктейля:", "Маргарита");
+
+            value = {};
+
+            this[key] = value;
+
+            value.alcohol = prompt("Алкогольный напиток?", "12 градусов");
+
+            value.ingredients = [];
+            value.ingredients[0] = prompt("Введите необходимые ингредиенты:", "Водка Finlandia 50мл");
+            value.ingredients[1] = prompt("Введите необходимые ингредиенты:", "Кофейный ликер 25мл");
+
+            value.recipe = '';
+            value.recipe = prompt("Введите рецепт приготовления:", "Наполни стакан кубиками льда доверху, затем налей кофейный ликер 25 мл, водку 50 мл и размешай коктейльной ложкой.");
+
+            // console.log(this);
+
+
+        }
+
+
+        this.getValue = function (key) {
+            key = prompt("Введите название коктейля:", "Маргарита");
+
+            if (key in this) {
+                console.log(`Коктейль "${key}" (алкогольный: ${this[key].alcohol})
+Необходимые ингредиенты:
+${this[key].ingredients[0]}
+${this[key].ingredients[1]}
+рецепт приготовления:
+${this[key].recipe}`)
+            }
+
+            else {
+                console.log(`Нет информации о коктейле "${key}"`);
+            }
+
+        }
+
+
+        this.deleteValue = function (key) {
+            key = prompt("Введите название коктейля:", "Маргарита");
+
+            if (key in this) {
+                delete this[key];
+                console.log(`Удален рецепт коктейля: ${key}`);
+                return true;
+            }
+
+            else {
+                console.log(`Нет информации о коктейле: ${key}`);
+                return false;
+            }
+        }
+
+
+        this.getKeys = function () {
+
+            for (const [key] of Object.entries(this)) {
+                if (typeof this[key] === 'object') {
+                    console.log(key);
+                }
+            }
+        }
+
+    }
+
+
+    var coctailsStorage = new HashStorage();
+
+
+</script>
+
+</body>
+</html>
