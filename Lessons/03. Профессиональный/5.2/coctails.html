@@ -58,7 +58,7 @@
 Необходимые ингредиенты:
 ${this[key].ingredients.join('\n')}
 Рецепт приготовления:
-${this[key].recipe}`);
+${this[key].recipe}`)
                 }
                 else {
                     console.log(`Нет информации о коктейле: "${key}"`);
@@ -80,23 +80,21 @@ ${this[key].recipe}`);
             }
 
             this.getKeys = function () {
-                if (Object.keys(this).length > 4) {
-                    console.log(Object.keys(this).slice(4).join('\n'));
-					 }
-                else {
-                    console.log(`Коктейльная карта пуста..`);
-					 }
+                for (const [key] of Object.entries(this)) {
+                    console.log(key);
 
-					 // for (const [key] of Object.entries(this)) {
-						//  if (typeof this[key] === 'object') {
-						// 	  console.log(key);
-						//  }
-					 // }
+                    // if (typeof this[key] === 'object') {
+                    //     console.log(key);
+						  // }
+                }
             }
 
         }
 
         var coctailsStorage = new HashStorage();
+
+
+        // coctailsStorage.addValue('Пнокалада', {alcohol: 'да'});
 
 </script>
 
