@@ -8,9 +8,9 @@
 
 <script>
 
-    function HashStorage (hash) {
+    function HashStorage () {
 
-        this.storage = hash;
+        this.storage = {};
 
         this.addValue = function (key,value) {
             this.storage[key] = value;
@@ -36,7 +36,7 @@
     }
 
 
-    var coctailsStorage = new HashStorage({});
+    var coctailsStorage = new HashStorage();
 
     console.log(coctailsStorage);
 
