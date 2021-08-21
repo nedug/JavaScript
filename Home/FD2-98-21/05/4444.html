@@ -6,6 +6,11 @@
 </head>
 <body>
 
+	<button id="addRecipe">Ввод рецепта</button><br>
+	<button id="showRecipe">Рецепт напитка</button><br>
+	<button id="delRecipe">Удаление рецепта</button><br>
+	<button id="listRecipe">Перечень всех коктейлей</button>
+
 <script>
 
     function HashStorage () {
@@ -46,6 +51,11 @@
     coctailsStorage.addValue("Красный грех", {alcohol: "8 градусов",
 		  ingredients: ["Черносмородиновый ликер Creme de Cassis - 40 мл", "Апельсиновый сок - 10 мл", "Красное шампанское - 300-400 мл", "Лед - 5-6 куб", "Сахар - 100 г"],
 		  recipe: "Смочить кромку стакана для лонгдринка апельсиновым соком или водой. Вращать смоченную кромку стакана в сахаре. Ликер и сок смешать в стакане для лонгдринка вместе с кубиками льда. Долить шампанским. Фруктовый коктейль можно подавать."});
+
+    let addRecipe = document.getElementById('addRecipe');
+    addRecipe.onclick = function () {
+        
+	 }
 
 
 
