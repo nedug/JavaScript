@@ -103,22 +103,63 @@
 
         let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
 
-        if (nameCocktail in coctailsStorage.storage) {
-            console.log(`Коктейль "${nameCocktail}" (алкогольный: ${coctailsStorage.storage[nameCocktail].alcohol})
-Необходимые ингредиенты:
-${coctailsStorage.storage[nameCocktail].ingredient.join('\n')}
-Рецепт приготовления:
-${coctailsStorage.storage[nameCocktail].recipe}`);
-        }
-        else {
+
+        let cocktail = coctailsStorage.getValue(nameCocktail);
+
+        if (cocktail === undefined) {
             console.log(`Нет информации о коктейле: "${nameCocktail}"`);
-        }
+		  } else {
+            console.log(`Коктейль "${nameCocktail}" (алкогольный: ${cocktail.alcohol})
+Необходимые ингредиенты:
+${cocktail.ingredient.join('\n')}
+Рецепт приготовления:
+${cocktail.recipe}`);
+		  }
+
+
+
+
+
+
+
+
+
+
+
+
+//         if (nameCocktail in coctailsStorage.storage) {
+//             console.log(`Коктейль "${nameCocktail}" (алкогольный: ${coctailsStorage.storage[nameCocktail].alcohol})
+// Необходимые ингредиенты:
+// ${coctailsStorage.storage[nameCocktail].ingredient.join('\n')}
+// Рецепт приготовления:
+// ${coctailsStorage.storage[nameCocktail].recipe}`);
+//         }
+//         else {
+//             console.log(`Нет информации о коктейле: "${nameCocktail}"`);
+//         }
+
+
+    }
+
+
+    let delRecipe = document.getElementById('delRecipe');
+    delRecipe.onclick = function () {
+
+        // let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
+
+
+
+
+
+
+
+
 
     }
 
 
 
-    console.log(coctailsStorage.storage.Оазис.alcohol);
+    console.log(coctailsStorage.getValue('Маргарита'));
 
 </script>
 
