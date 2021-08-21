@@ -3,6 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       button {
+           width: 300px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 8px;
+           border: 1px solid transparent;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+           transition: .3s;
+       }
+       button:hover {
+           border: 1px solid black;
+       }
+	</style>
 </head>
 <body>
 
@@ -54,7 +70,22 @@
 
     let addRecipe = document.getElementById('addRecipe');
     addRecipe.onclick = function () {
-        
+
+        let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
+        while (!nameCocktail) {
+            nameCocktail = prompt("Введите корректно название коктейля!");
+        }
+
+        let alcohol = prompt("Алкогольный напиток?", "12 градусов");
+        while (!alcohol) {
+            alcohol = prompt("Введите корректно параметр коктейля!");
+        }
+
+
+
+
+
+
 	 }
 
 
