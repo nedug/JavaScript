@@ -12,7 +12,7 @@
 
         this.storage = {};
 
-        this.addValue = function (key,value) {
+        this.addValue = function (key, value) {
             this.storage[key] = value;
         }
 
@@ -22,8 +22,7 @@
 
         this.deleteValue = function (key) {
             if (key in this.storage) {
-                delete this.storage[key];
-                return true;
+                return delete this.storage[key];
             }
             else {
                 return false;
