@@ -18,35 +18,117 @@
        button:hover {
            border: 1px solid black;
        }
+		 #delRecipe {
+           background-color: #ea8787;
+		 }
+       #addRecipe {
+           background-color: #8ce5a1;
+       }
 	</style>
 </head>
 <body>
 
-	<button type="button" onclick='coctailsStorage.addValue()'>Ввод рецепта</button><br>
-	<button type="button" onclick='coctailsStorage.getValue()'>Рецепт напитка</button><br>
-	<button type="button" onclick='coctailsStorage.deleteValue()'>Удаление рецепта</button><br>
-	<button type="button" onclick='coctailsStorage.getKeys()'>Перечень всех коктейлей</button>
+	<button id="addRecipe">Ввод рецепта</button><br>
+	<button id="showRecipe">Рецепт напитка</button><br>
+	<button id="delRecipe">Удаление рецепта</button><br>
+	<button id="listRecipe">Перечень всех коктейлей</button>
 
 
 <script src="JS/HashStorage.js"></script>
 
 <script>
 
-	var coctailsStorage = new HashStorage();
+    const coctailsStorage = new HashStorage();
+
+    coctailsStorage.addValue("Пиранья", {alcohol: "10 градусов",
+		  ingredient: ["Водка – 37 мл", "Шоколадный ликер, коричневый – 25 мл", "Кола, сильно охлажденная – 25 мл"],
+		  recipe: "Влейте спиртное в низкий стакан, заполненный большим количеством колотого льда. Хорошо размешайте. Затем добавьте колу."});
+    coctailsStorage.addValue("Оазис", {alcohol: "8 градусов",
+		  ingredient: ["Джин – 50 м", "Ликер «Кюрасао» голубой – 12 мл", "Тоник – 100 мл"],
+		  recipe: "Влейте джин в стакан, наполовину заполненный колотым льдом. Добавьте Кюрасао, влейте тоник и перемешайте. Украсьте долькой лимона и веточкой мяты."});
+    coctailsStorage.addValue("Красный грех", {alcohol: "7 градусов",
+		  ingredient: ["Черносмородиновый ликер Creme de Cassis - 40 мл", "Апельсиновый сок - 10 мл", "Красное шампанское - 300-400 мл", "Лед - 5-6 куб", "Сахар - 100 г"],
+		  recipe: "Смочить кромку стакана для лонгдринка апельсиновым соком или водой. Вращать смоченную кромку стакана в сахаре. Ликер и сок смешать в стакане для лонгдринка вместе с кубиками льда. Долить шампанским. Фруктовый коктейль можно подавать."});
 
 
+    let addRecipe = document.getElementById('addRecipe');
+    addRecipe.onclick = function () {
 
-	coctailsStorage.Пиранья = {alcohol: "10 градусов",
-		ingredients: ["Водка – 37 мл", "Шоколадный ликер, коричневый – 25 мл", "Кола, сильно охлажденная – 25 мл"],
-		recipe: "Влейте спиртное в низкий стакан, заполненный большим количеством колотого льда. Хорошо размешайте. Затем добавьте колу."};
+        let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
+        while (!nameCocktail) {
+            nameCocktail = prompt("Введите корректно название коктейля!");
+        }
 
-   coctailsStorage.Оазис = {alcohol: "8 градусов",
-       ingredients: ["Джин – 50 м", "Ликер «Кюрасао» голубой – 12 мл", "Тоник – 100 мл"],
-       recipe: "Влейте джин в стакан, наполовину заполненный колотым льдом. Добавьте Кюрасао, влейте тоник и перемешайте. Украсьте долькой лимона и веточкой мяты."};
+        let alcoholic = prompt("Алкогольный напиток?", "12 градусов");
+        while (!alcoholic) {
+            alcoholic = prompt("Введите корректно параметр коктейля!");
+        }
 
-   coctailsStorage['Красный грех'] = {alcohol: "8 градусов",
-       ingredients: ["Черносмородиновый ликер Creme de Cassis - 40 мл", "Апельсиновый сок - 10 мл", "Красное шампанское - 300-400 мл", "Лед - 5-6 куб", "Сахар - 100 г"],
-       recipe: "Смочить кромку стакана для лонгдринка апельсиновым соком или водой. Вращать смоченную кромку стакана в сахаре. Ликер и сок смешать в стакане для лонгдринка вместе с кубиками льда. Долить шампанским. Фруктовый коктейль можно подавать."};
+        const ingredients = [];
+        for (let i = 0; i < 10; i++) {
+            ingredients[i] = prompt("Введите необходимые ингредиенты:", "Водка Finlandia 50мл");
+            if (ingredients[i] === null) {
+                ingredients.pop();
+                break;
+            }
+        }
+
+        let recipe = prompt("Введите рецепт приготовления:", "Наполни стакан кубиками льда доверху, затем налей кофейный ликер 25 мл, водку 50 мл и размешай коктейльной ложкой.");
+
+        coctailsStorage.addValue(nameCocktail, {alcohol: alcoholic, ingredient: ingredients, recipe: recipe});
+
+        console.log(`Данные о коктейле "${nameCocktail}" сохранены!`);
+	 }
+
+
+    let showRecipe = document.getElementById('showRecipe');
+    showRecipe.onclick = function () {
+
+        let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
+
+        let cocktail = coctailsStorage.getValue(nameCocktail);
+
+        if (cocktail === undefined) {
+            console.log(`Нет информации о коктейле: "${nameCocktail}"`);
+		  }
+        else {
+            console.log(`Коктейль "${nameCocktail}" (алкогольный: ${cocktail.alcohol})
+Необходимые ингредиенты:
+${cocktail.ingredient.join('\n')}
+Рецепт приготовления:
+${cocktail.recipe}`);
+		  }
+    }
+
+
+    let delRecipe = document.getElementById('delRecipe');
+    delRecipe.onclick = function () {
+
+        let nameCocktail = prompt("Введите название коктейля:", "Маргарита");
+
+        let cocktail = coctailsStorage.deleteValue(nameCocktail);
+
+        if (cocktail === true) {
+            console.log(`Удален рецепт коктейля: "${nameCocktail}"`);
+		  }
+        else if (cocktail === false) {
+            console.log(`Нет информации о коктейле: "${nameCocktail}"`);
+		  }
+    }
+
+
+    let listRecipe = document.getElementById('listRecipe');
+    listRecipe.onclick = function () {
+
+        let cocktail = coctailsStorage.getKeys();
+
+        if (cocktail.length > 0) {
+            console.log(cocktail.join('\n'));
+		  }
+        else {
+            console.log(`Коктейльная карта пуста..`);
+		  }
+    }
 
 </script>
 
