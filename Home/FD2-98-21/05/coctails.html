@@ -67,6 +67,9 @@
         const ingredients = [];
         for (let i = 0; i < 10; i++) {
             ingredients[i] = prompt("Введите необходимые ингредиенты:", "Водка Finlandia 50мл");
+            while (ingredients[i] === '') {
+                ingredients[i] = prompt("Введите корректно ингредиент коктейля!");
+            }
             if (ingredients[i] === null) {
                 ingredients.pop();
                 break;
@@ -74,6 +77,9 @@
         }
 
         let recipe = prompt("Введите рецепт приготовления:", "Наполни стакан кубиками льда доверху, затем налей кофейный ликер 25 мл, водку 50 мл и размешай коктейльной ложкой.");
+        while (!recipe) {
+            recipe = prompt("Введите корректно рецепт приготовления!");
+        }
 
         coctailsStorage.addValue(nameCocktail, {alcohol: alcoholic, ingredient: ingredients, recipe: recipe});
 
