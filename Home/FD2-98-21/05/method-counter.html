@@ -13,16 +13,18 @@
 
     function getCounter (number = 0) {
         return {
+            sum: 0,
             log: function () {
-                console.log(number);
+                console.log(number + this.sum);
                 return this;
             },
             count: function (countNumb) {
-                number += countNumb;
+                this.sum += countNumb;
                 return this;
             },
             reset: function () {
                 number = 0;
+                this.sum = 0;
                 return this;
             },
         };
