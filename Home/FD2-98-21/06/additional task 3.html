@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+	function Vehicle(_name, _year) {
+	    this.name = _name;
+	    this.year = _year;
+   }
+
+   Vehicle.prototype.getName = function () {
+	    return (`Модель: ${this.name}`);
+	};
+   Vehicle.prototype.getYear = function () {
+       return (`Год выпуска: ${this.year}`);
+   };
+   Vehicle.prototype.getInfo = function () {
+       console.log(`${this.getName()}, ${this.getYear()}`);
+   };
+
+	const carFirst = new Vehicle('Fort T', 1908);
+
+
+
+</script>
+
+</body>
+</html>
