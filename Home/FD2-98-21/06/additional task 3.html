@@ -68,32 +68,31 @@ ${this.getYear()}
    MotoCar.prototype.constructor = MotoCar;
 
 
-	function Driver (_name, _age) { // Создаем новый класс Driver, создаем методы;
+	function Driver (_name, _age) { // Создаем новый класс Driver, создаем собственные методы в Прототип;
        this.name = _name;
        this.age = _age;
 	}
 
-	// Driver.prototype.
+	Driver.prototype.showInfo = function () {
+	    return (`Водитель ${this.name} (возраст ${this.age})`);
+	}
 
-
-
+	Driver.prototype.DriveCar = function (car) {  // создаем собственные методы в Прототип, в качестве агрумента принимает объекты Audi, BMW, Suzuki или любой объект с ключами name и year;
+	    console.log(`${this.showInfo()} работает на ${car.name} ${car.year} года выпуска`);
+	}
 
 
 	const audi = new Car('Ауди А6', 2015, true);
-	audi.getInfo();
-
    const bmw = new Car('БМВ 7GT', 2010);
-   bmw.getInfo();
 
    const suzuki = new MotoCar('Suzuki RX500', 2021);
 
+   const driverOleg = new Driver('Олег', 42);
+   const driverPetr = new Driver('Петр', 25);
 
-
-	
-
-
-
-
+   driverOleg.DriveCar(audi);
+   driverPetr.DriveCar(suzuki);
+   driverPetr.DriveCar({name: 'Самокат', year: "1999"});
 
 </script>
 
