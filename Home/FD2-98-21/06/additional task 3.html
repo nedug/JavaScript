@@ -26,6 +26,50 @@
 	const carFirst = new Vehicle('Fort T', 1908);
 
 
+	function Car(_name, _year, isSunRoof = false) {
+	    Vehicle.call(this, _name, _year);
+       // делаем вызов с нужным this, чтобы скопировать публичные свойства и методы;
+
+		 this.sunRoof = isSunRoof;
+       // создаем собственное публичное свойство;
+	}
+
+	Car.prototype = Object.create(Vehicle.prototype);
+   // наследуем в Прототип все свойства и методы из Прототипа родительского класса;
+	Car.prototype.constructor = Car;
+   // явно указываем класс от которого создаем объект в Конструктор;
+
+	Car.prototype.hasSunRoof = function () {
+		 return (this.sunRoof ? 'Люк есть' : 'Люка нет');
+	} // создаем собственный приватный метод;
+
+	Car.prototype.getInfo = function () { // создаем собственный приватный метод getInfo (теперь getInfo из наследования использоваться не будет);
+	    const wheels = 4;
+	    const maxSpeed = 170;
+       // создаем собственные приватные свойства - локальная переменная;
+
+	    function showMaxSpeed () { // создаем доп. функцию;
+	        return `${maxSpeed} км/ч`;
+		 }
+
+		 console.log(`${this.getName()}
+${this.getYear()}
+Колес: ${wheels}
+Максимальная скорость: ${showMaxSpeed()}
+Доп. фунции: ${this.hasSunRoof()}`)
+	}
+
+
+	const audi = new Car('Ауди А6', 2015, true);
+	audi.getInfo();
+
+   const bmw = new Car('БМВ 7GT', 2010);
+   bmw.getInfo();
+	
+
+
+
+
 
 </script>
 
