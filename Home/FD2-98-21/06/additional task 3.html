@@ -26,7 +26,7 @@
 	const carFirst = new Vehicle('Fort T', 1908);
 
 
-	function Car(_name, _year, isSunRoof = false) {
+	function Car(_name, _year, isSunRoof = false) { // Создаем новый класс Car, наследуем свойства и методы из Vehicle, создаем свои свойства и методы;
 	    Vehicle.call(this, _name, _year);
        // делаем вызов с нужным this, чтобы скопировать публичные свойства и методы;
 
@@ -35,7 +35,7 @@
 	}
 
 	Car.prototype = Object.create(Vehicle.prototype);
-   // наследуем в Прототип все свойства и методы из Прототипа родительского класса;
+   // наследуем в Прототип все свойства и методы из Прототипа родительского класса (Vehicle);
 	Car.prototype.constructor = Car;
    // явно указываем класс от которого создаем объект в Конструктор;
 
@@ -60,11 +60,35 @@ ${this.getYear()}
 	}
 
 
+   function MotoCar(_name, _year) { // Создаем новый класс MotoCar, наследуем свойства и методы из Vehicle;
+       Vehicle.call(this, _name, _year);
+   }
+
+   MotoCar.prototype = Object.create(Vehicle.prototype);
+   MotoCar.prototype.constructor = MotoCar;
+
+
+	function Driver (_name, _age) { // Создаем новый класс Driver, создаем методы;
+       this.name = _name;
+       this.age = _age;
+	}
+
+	// Driver.prototype.
+
+
+
+
+
 	const audi = new Car('Ауди А6', 2015, true);
 	audi.getInfo();
 
    const bmw = new Car('БМВ 7GT', 2010);
    bmw.getInfo();
+
+   const suzuki = new MotoCar('Suzuki RX500', 2021);
+
+
+
 	
 
 
