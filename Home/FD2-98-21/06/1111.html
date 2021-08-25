@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    class Vehicle {
+        constructor(_name, _year) {
+            this.name = _name;
+            this.year = _year;
+        }
+        getName() {
+            return (`Модель: ${this.name}`);
+        };
+        getYear() {
+            return (`Год выпуска: ${this.year}`);
+        };
+        getInfo() {
+            console.log(`${this.getName()}, ${this.getYear()}`);
+        };
+    }
+
+    const carFirst = new Vehicle('Fort T', 1908);
+
+
+    class Car extends Vehicle {
+        constructor(_name, _year, isSunRoof = false) {
+            super();
+            this.name = _name;
+            this.year = _year;
+            this.sunRoof = isSunRoof;
+        }
+        hasSunRoof() {
+            return (this.sunRoof ? 'Люк есть' : 'Люка нет');
+        }
+        getInfo() {
+            const wheels = 4;
+            const maxSpeed = 170;
+
+            function showMaxSpeed () {
+                return `${maxSpeed} км/ч`;
+            }
+
+            console.log(`${this.getName()}
+${this.getYear()}
+Колес: ${wheels}
+Максимальная скорость: ${showMaxSpeed()}
+Доп. фунции: ${this.hasSunRoof()}`)
+        }
+    }
+
+
+    class MotoCar extends Vehicle {
+        constructor(_name, _year) {
+            super();
+            this.name = _name;
+            this.year = _year;
+        }
+    }
+
+
+    class Driver {
+        constructor(_name, _age) {
+            this.name = _name;
+            this.age = _age;
+        }
+        showInfo () {
+            return (`Водитель ${this.name} (возраст ${this.age})`);
+        }
+        DriveCar(car) {
+            console.log(`${this.showInfo()} работает на ${car.name} ${car.year} года выпуска`);
+        }
+    }
+
+
+    const audi = new Car('Ауди А6', 2015, true);
+    const bmw = new Car('БМВ 7GT', 2010);
+
+    const suzuki = new MotoCar('Suzuki RX500', 2021);
+
+    const driverOleg = new Driver('Олег', 42);
+    const driverPetr = new Driver('Петр', 25);
+
+    driverOleg.DriveCar(audi);
+    driverPetr.DriveCar(suzuki);
+    driverPetr.DriveCar({name: 'Самокат', year: "1999"});
+
+</script>
+
+</body>
+</html>

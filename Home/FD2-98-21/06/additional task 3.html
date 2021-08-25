@@ -77,7 +77,7 @@ ${this.getYear()}
 	    return (`Водитель ${this.name} (возраст ${this.age})`);
 	}
 
-	Driver.prototype.DriveCar = function (car) {  // создаем собственные методы в Прототип, в качестве агрумента принимает объекты Audi, BMW, Suzuki или любой объект с ключами name и year;
+	Driver.prototype.DriveCar = function (car) { // создаем собственные методы в Прототип, в качестве агрумента принимает объекты Audi, BMW, Suzuki или любой объект с ключами name и year;
 	    console.log(`${this.showInfo()} работает на ${car.name} ${car.year} года выпуска`);
 	}
 
