@@ -29,9 +29,7 @@
 
     class Car extends Vehicle {
         constructor(_name, _year, isSunRoof = false) {
-            super();
-            this.name = _name;
-            this.year = _year;
+            super(_name, _year);
             this.sunRoof = isSunRoof;
         }
         hasSunRoof() {
@@ -55,11 +53,6 @@ ${this.getYear()}
 
 
     class MotoCar extends Vehicle {
-        constructor(_name, _year) {
-            super();
-            this.name = _name;
-            this.year = _year;
-        }
     }
 
 
