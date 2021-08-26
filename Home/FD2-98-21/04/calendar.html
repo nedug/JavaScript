@@ -80,7 +80,7 @@
         //  Закрываем строку и таблицу;
 
         ourDate.setMonth(month);
-        const monthName = ourDate.toLocaleString('ru', { month: 'long' });
+        const monthName = ourDate.toLocaleString('default', { month: 'long' });
 
         document.getElementById('calendar').innerHTML = table;
 		  document.querySelector('caption').innerText = `${monthName} ${year} года`;
