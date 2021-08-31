@@ -35,26 +35,9 @@
                 textField.placeholder = 'Введите значение';
             }
             else {
-                let xxx = document.createElement('li');
-
-                xxx.innerHTML = textField.value;
-
-
-                list.append(xxx);
-
-
-
+                list.insertAdjacentHTML("beforeend", `<li>${textField.value}</li>`);
                 textField.value = '';
                 btnRemove.disabled = false;
-
-
-
-                console.log(xxx);
-
-
-                // list.insertAdjacentHTML("beforeend", `<li>${textField.value}</li>`);
-                // textField.value = '';
-                // btnRemove.disabled = false;
             }
         }
 
@@ -108,24 +91,30 @@
 
         for (let i = 0; i < allList.length; i++) {
 
-            allList[i].addEventListener("click", changeValueLi);
+            allList[i].addEventListener("click", changeValueLi, {once:true});
 
             function changeValueLi() {
 
                 let input = document.createElement('input');
 
-                input.value = this.innerHTML;
+                input.value = allList[i].innerHTML;
 
-                this.innerHTML = '';
-                this.appendChild(input);
+                // console.log(this);
 
-                let td = this;
+                allList[i].innerHTML = '';
+
+                allList[i].append(input);
+
+                input.focus();
+
+
+
                 input.addEventListener('blur', function() {
-                    td.innerHTML = this.value;
-                    td.addEventListener('click', changeValueLi);
+                    allList[i].innerHTML = input.value;
+                    allList[i].addEventListener('click', changeValueLi);
                 });
 
-                this.removeEventListener('click', changeValueLi);
+                // this.removeEventListener('click', changeValueLi);
 
 
 
@@ -134,31 +123,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // console.log(myInput);
-
-                // allList[i].innerHTML = `<input>`;
-
-
-                // newInput.focus();
 
 
 

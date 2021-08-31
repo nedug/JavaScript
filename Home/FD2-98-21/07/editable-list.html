@@ -14,6 +14,7 @@
        let list = document.createElement('ol');
 
 		 for (let i = 0; i < value.length; i++) {
+
            list.innerHTML += `<li>${value[i]}</li>`;
 		 }
 		 document.body.prepend(list);
@@ -58,104 +59,30 @@
        }
 
 
-
-
-
-
-       // console.log(allList);
-
-       // for (let i = 0; i < allList.length; i++) {
-       //     allList[i].addEventListener("click", showSomething);
-		 //
-       //     // console.log(allList[i].innerHTML);
-       // }
-		 //
-       // function showSomething() {
-		 //
-       //     let xxx;
-		 //
-       //     for (let i = 0; i < allList.length; i++) {
-		 //
-       //        xxx = allList[i].innerHTML;
-       //     }
-		 //
-       //     console.log(xxx);
-		 //
-		 //
-       // }
-
-
-
-
        let allList = document.getElementsByTagName('li');
 
        for (let i = 0; i < allList.length; i++) {
 
-           allList[i].addEventListener("click", changeValueLi);
+           allList[i].addEventListener("click", changeValueLi, {once:true});
 
            function changeValueLi() {
 
                let valueLi = allList[i].innerHTML;
 
-               // console.log(valueLi);
+               allList[i].innerHTML = `<input value="${valueLi}" id="my-Input">`;
 
-               // let newInput = document.createElement('input');
-
-
-               // console.log(newInput);
-
-               // newInput.value = valueLi;
-
-               // console.log(newInput.value);
-
-               allList[i].innerHTML = `<input value="${valueLi}" id="myInput">`;
-
-               let myInput = document.getElementById('myInput');
+               let myInput = document.getElementById('my-Input');
 
                myInput.focus();
-
-               console.log(allList.length);
-
-
-
-
-
-
-
-
-
-
-
 
                myInput.addEventListener('blur', SetValueLi);
 
                function SetValueLi() {
 
-                   let valueInput = myInput.value;
+                   allList[i].innerHTML = myInput.value;
 
-                   allList[i].innerHTML = `${valueInput}`;
-
-
-
-
-
-                   // console.log(valueInput);
-
-
-
-
+                   allList[i].addEventListener("click", changeValueLi, {once:true});
 					}
-
-
-
-
-               // console.log(myInput);
-
-               // allList[i].innerHTML = `<input>`;
-
-
-               // newInput.focus();
-
 
 
            }
@@ -163,9 +90,7 @@
 
 
 
-
        }
-
 
 
 
