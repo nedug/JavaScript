@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       button{
+           width: 150px;
+           height: 50px;
+           background-color: #88cbd7;
+           margin: 10px;
+           border: 1px solid transparent;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+           transition: .3s;
+       }
+       button:hover{
+           border: 1px solid black;
+       }
+       button:first-child{
+           background-color: #d788c6;
+       }
+       button:nth-child(2){
+           background-color: #8bd788;
+       }
+	</style>
+
+</head>
+<body>
+
+
+<p id="ourServices">ddgdgdgdgdgdgdgdg</p>
+
+<input type="text" id="input">
+
+
+
+<script>
+
+    let myInput222 = document.getElementById('ourServices');
+
+    myInput222.addEventListener("click", changeValueLi);
+
+    function changeValueLi() {
+
+        let valueLi = myInput222.innerHTML;
+
+        console.log(valueLi);
+
+
+        myInput222.innerHTML = `<input value="${valueLi}" id="myInput">`;
+
+        let myInput = document.getElementById('myInput');
+
+        myInput.focus();
+
+
+
+
+
+
+
+        myInput.addEventListener('blur', SetValueLi);
+
+        function SetValueLi() {
+
+            let valueInput = myInput.value;
+
+            myInput222.innerHTML = `${valueInput}`;
+
+
+
+
+
+            // console.log(valueInput);
+
+
+
+
+        }
+
+
+
+
+        // console.log(myInput);
+
+        // allList[i].innerHTML = `<input>`;
+
+
+        // newInput.focus();
+
+
+
+    }
+
+
+
+
+
+
+
+
+    // myInput.focus();
+	 //
+	 //
+    // myInput.addEventListener('blur', someNew);
+	 //
+    // function someNew() {
+	 //
+    //     // let valueInput = myInput.value;
+		//   //
+    //     // allList[i].innerHTML = `${valueInput}`;
+	 //
+    //     console.log(myInput.value);
+	 //
+	 //
+	 //
+	 //
+    // }
+
+
+    
+    
+
+
+</script>
+
+</body>
+</html>
