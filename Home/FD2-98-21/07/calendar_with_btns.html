@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       table {
+           border-collapse: collapse;
+       }
+       td {
+           border: 1px solid #d2d2d2;
+           padding: 3px;
+           text-align: center;
+           width: 50px;
+           height: 50px;
+           font-size: 25px;
+       }
+       td:nth-last-child(-n+2) {
+           /*color: red;*/
+       }
+		 tr:first-child {
+           background-color: #dd7979;
+			  text-transform: uppercase;
+			  color: white;
+		 }
+       tr:nth-of-type(2) {
+           background-color: #b3c8c2;
+           color: white;
+       }
+		 button {
+           height: 25px;
+           font-size: 20px;
+			  border: none;
+			  border-radius: 5px;
+           cursor: pointer;
+		 }
+	</style>
+</head>
+
+<body>
+
+	<div id="calendar"></div>
+
+<script>
+
+    // var monthUser = +prompt('Введите номер месяца', '8');
+    // while (!monthUser || monthUser < 1 || monthUser > 12) {
+    //     monthUser = +prompt('Введите корректно номер месяца!');
+    // }
+	 //
+    // var year = +prompt('Введите номер года', '2021');
+    // while (!year) {
+    //     year = +prompt('Введите корректно номер года!');
+    // }
+
+    var monthUser = 11;
+    var year = 2021;
+
+    createCalendar(year, monthUser);
+
+    function createCalendar(year, monthUser) {
+
+        var month = monthUser - 1;
+        var ourDate = new Date(year, month);
+
+        let table = '<table><tr><td><button id="yearDown"><<</button></td><td><button id="monthDown"><</button></td><td id="yearMonth" colspan="3"></td><td><button id="monthUp">></button></td><td><button id="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
+
+        for (let i = 0; i < infoDay(ourDate); i++) {
+            table = table + '<td></td>';
+        }
+
+        while (ourDate.getMonth() === month) {
+            table = table + '<td>' + ourDate.getDate() + '</td>';
+
+            if (infoDay(ourDate) % 7 === 6) {
+                table = table + '</tr><tr>';
+            }
+            ourDate.setDate(ourDate.getDate() + 1);
+        }
+
+        if (infoDay(ourDate) !== 0) {
+            for (let i = infoDay(ourDate); i < 7; i++) {
+                table = table + '<td></td>';
+            }
+        }
+
+        table = table + '</tr></table>';
+
+        ourDate.setMonth(month);
+        const monthName = ourDate.toLocaleString('ru', { month: 'long' });
+
+        document.getElementById('calendar').innerHTML = table;
+        document.getElementById('yearMonth').innerHTML = `${monthName}<br>${year} года`;
+
+        let yearDown = document.getElementById('yearDown');
+        yearDown.onclick = function () {
+            year--;
+            createCalendar(year, monthUser);
+        }
+
+        let monthDown = document.getElementById('monthDown');
+        monthDown.onclick = function () {
+            monthUser--;
+          if (monthUser === 0) {
+                monthUser = 12;
+                year--;
+          }
+            createCalendar(year, monthUser);
+        }
+
+        let yearUp = document.getElementById('yearUp');
+        yearUp.onclick = function () {
+            year++;
+            createCalendar(year, monthUser);
+        }
+
+        let monthUp = document.getElementById('monthUp');
+        monthUp.onclick = function () {
+            monthUser++;
+            if (monthUser === 13) {
+                monthUser = 1;
+                year++;
+            }
+            createCalendar(year, monthUser);
+        }
+	 }
+
+    function infoDay(date) {
+        var day = date.getDay();
+        if (day === 0) {
+            day = 7;
+        }
+        return (day - 1);
+    }
+
+</script>
+
+</body>
+</html>
