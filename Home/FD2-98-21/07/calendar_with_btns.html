@@ -15,8 +15,9 @@
            height: 50px;
            font-size: 25px;
        }
-       td:nth-last-child(-n+2) {
-           /*color: red;*/
+       .currentMonth:nth-last-child(-n+2) {
+			  background-color: #94b4c8;
+           color: white;
        }
 		 tr:first-child {
            background-color: #dd7979;
@@ -34,6 +35,19 @@
 			  border-radius: 5px;
            cursor: pointer;
 		 }
+		 .lastMonth, .nextMonth {
+			  color: #b1a3a3;
+           transition: .3s;
+		 }
+       .lastMonth:hover, .nextMonth:hover {
+			  background-color: #d4d4d4;
+           cursor: pointer;
+       }
+		 .currentMonth:hover {
+           background-color: #dd7979;
+			  color: white;
+			  transition: .3s;
+		 }
 	</style>
 </head>
 
@@ -43,18 +57,18 @@
 
 <script>
 
-    // var monthUser = +prompt('Введите номер месяца', '8');
-    // while (!monthUser || monthUser < 1 || monthUser > 12) {
-    //     monthUser = +prompt('Введите корректно номер месяца!');
-    // }
-	 //
-    // var year = +prompt('Введите номер года', '2021');
-    // while (!year) {
-    //     year = +prompt('Введите корректно номер года!');
-    // }
+    var monthUser = +prompt('Введите номер месяца', '9');
+    while (!monthUser || monthUser < 1 || monthUser > 12) {
+        monthUser = +prompt('Введите корректно номер месяца!');
+    }
 
-    var monthUser = 11;
-    var year = 2021;
+    var year = +prompt('Введите номер года', '2021');
+    while (!year) {
+        year = +prompt('Введите корректно номер года!');
+    }
+
+    // var monthUser = 9;
+    // var year = 2021;
 
     createCalendar(year, monthUser);
 
@@ -65,12 +79,16 @@
 
         let table = '<table><tr><td><button id="yearDown"><<</button></td><td><button id="monthDown"><</button></td><td id="yearMonth" colspan="3"></td><td><button id="monthUp">></button></td><td><button id="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
 
-        for (let i = 0; i < infoDay(ourDate); i++) {
-            table = table + '<td></td>';
+        const sumPastDay = infoDay(ourDate);
+        ourDate.setDate(ourDate.getDate() - sumPastDay);
+
+        for (let i = 0; i < sumPastDay; i++) {
+            table = table + '<td class="lastMonth">' + ourDate.getDate() + '</td>';
+            ourDate.setDate(ourDate.getDate() + 1);
         }
 
         while (ourDate.getMonth() === month) {
-            table = table + '<td>' + ourDate.getDate() + '</td>';
+            table = table + '<td class="currentMonth">' + ourDate.getDate() + '</td>';
 
             if (infoDay(ourDate) % 7 === 6) {
                 table = table + '</tr><tr>';
@@ -80,7 +98,8 @@
 
         if (infoDay(ourDate) !== 0) {
             for (let i = infoDay(ourDate); i < 7; i++) {
-                table = table + '<td></td>';
+                table = table + '<td class="nextMonth">' + ourDate.getDate() + '</td>';
+                ourDate.setDate(ourDate.getDate() + 1);
             }
         }
 
@@ -93,13 +112,17 @@
         document.getElementById('yearMonth').innerHTML = `${monthName}<br>${year} года`;
 
         let yearDown = document.getElementById('yearDown');
-        yearDown.onclick = function () {
+        yearDown.addEventListener("click", showYearDown);
+
+        function showYearDown() {
             year--;
             createCalendar(year, monthUser);
-        }
+		  }
 
         let monthDown = document.getElementById('monthDown');
-        monthDown.onclick = function () {
+        monthDown.addEventListener("click", showMonthDown);
+
+        function showMonthDown() {
             monthUser--;
           if (monthUser === 0) {
                 monthUser = 12;
@@ -109,19 +132,33 @@
         }
 
         let yearUp = document.getElementById('yearUp');
-        yearUp.onclick = function () {
+        yearUp.addEventListener("click", ShowYearUp);
+
+		  function ShowYearUp() {
             year++;
             createCalendar(year, monthUser);
         }
 
         let monthUp = document.getElementById('monthUp');
-        monthUp.onclick = function () {
+        monthUp.addEventListener("click", ShowMonthUp);
+
+		  function ShowMonthUp() {
             monthUser++;
             if (monthUser === 13) {
                 monthUser = 1;
                 year++;
             }
             createCalendar(year, monthUser);
+        }
+
+        let monthDownAll = document.querySelectorAll('.lastMonth');
+        for (let i = 0; i < monthDownAll.length; i++) {
+            monthDownAll[i].addEventListener("click", showMonthDown);
+		  }
+
+        let monthUpAll = document.querySelectorAll('.nextMonth');
+        for (let i = 0; i < monthUpAll.length; i++) {
+            monthUpAll[i].addEventListener("click", ShowMonthUp);
         }
 	 }
 
