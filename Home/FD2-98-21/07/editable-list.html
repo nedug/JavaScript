@@ -9,7 +9,63 @@
 
 <script>
 
+	function buildList(value) {
 
+       let list = document.createElement('ol');
+
+		 for (let i = 0; i < value.length; i++) {
+           list.innerHTML += `<li>${value[i]}</li>`;
+		 }
+		 document.body.prepend(list);
+
+
+       let textField = document.createElement('input');
+       document.body.append(textField);
+
+
+       let btnAdd = document.createElement('button');
+       btnAdd.innerHTML = `Add`;
+       document.body.append(btnAdd);
+
+       btnAdd.addEventListener("click", addTextToList);
+
+       function addTextToList() {
+
+           if (textField.value === '') {
+               textField.placeholder = 'Введите значение';
+           }
+           else {
+               list.insertAdjacentHTML("beforeend", `<li>${textField.value}</li>`);
+               textField.value = '';
+               btnRemove.disabled = false;
+			  }
+		 }
+
+
+       let btnRemove = document.createElement('button');
+       btnRemove.innerHTML = `Remove`;
+       document.body.append(btnRemove);
+
+       btnRemove.addEventListener("click", removeTextFromList);
+
+       function removeTextFromList() {
+
+           list.lastChild.remove();
+
+           if (list.children.length === 0) {
+               btnRemove.disabled = true;
+			  }
+       }
+
+
+
+
+
+
+   }
+
+
+   buildList(['Первый пункт', 'Второй пункт', 'Третий пункт', 'Четвертый пункт', 'Пятый пункт']);
 
 
 
