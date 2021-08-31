@@ -85,7 +85,9 @@
        // }
 
 
-       let allList = document.querySelectorAll('li');
+
+
+       let allList = document.getElementsByTagName('li');
 
        for (let i = 0; i < allList.length; i++) {
 
@@ -95,7 +97,7 @@
 
                let valueLi = allList[i].innerHTML;
 
-               console.log(valueLi);
+               // console.log(valueLi);
 
                // let newInput = document.createElement('input');
 
@@ -111,6 +113,8 @@
                let myInput = document.getElementById('myInput');
 
                myInput.focus();
+
+               console.log(allList.length);
 
 
 
