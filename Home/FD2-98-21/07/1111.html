@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       * {
+           font-size: 20px;
+       }
+       /*.list, .new-list {*/
+       /*    margin: 15px 0;*/
+       /*    padding-left: 10px;*/
+       /*}*/
+       #my-Input {
+           /*color: #e7445c;*/
+       }
+       .new-list {
+           /*color: #43c8e2;*/
+       }
+       .input-text, #my-Input {
+           /*width: 300px;*/
+           /*height: 20px;*/
+           /*padding: 5px;*/
+       }
+       .input-text {
+           /*border-radius: 5px;*/
+       }
+       .btn-add, .btn-remove {
+           width: 125px;
+           height: 35px;
+           background-color: #88cbd7;
+           margin-left: 15px;
+           border: 1px solid transparent;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+       .btn-remove {
+           background-color: #ea8787;
+       }
+       [disabled] {
+           background-color: #cbcbcb;
+       }
+	</style>
+</head>
+<body>
+
+<script>
+
+    function buildList(value) {
+
+        let list = document.createElement('ol');
+
+        for (let i = 0; i < value.length; i++) {
+
+            list.innerHTML += `<li>${value[i]}</li>`;
+        }
+        document.body.prepend(list);
+
+
+        let textField = document.createElement('input');
+        list.after(textField);
+
+        let btnAdd = document.createElement('button');
+        btnAdd.innerHTML = `Add`;
+        btnAdd.className = 'btn-add';
+        textField.after(btnAdd);
+
+        btnAdd.addEventListener("click", addTextToList);
+
+        function addTextToList() {
+
+            if (textField.value === '') {
+                textField.placeholder = 'Введите значение';
+            }
+            else {
+                list.insertAdjacentHTML("beforeend", `<li style="color: #43c8e2; margin: 15px 0; padding-left: 10px;">${textField.value}</li>`);
+                textField.value = '';
+                btnRemove.disabled = false;
+            }
+        }
+
+
+        let btnRemove = document.createElement('button');
+        btnRemove.innerHTML = `Remove`;
+        btnRemove.className = 'btn-remove';
+        btnAdd.after(btnRemove);
+
+        btnRemove.addEventListener("click", removeTextFromList);
+
+        function removeTextFromList() {
+
+            list.lastChild.remove();
+
+            if (list.children.length === 0) {
+                btnRemove.disabled = true;
+            }
+        }
+
+
+        let allList = document.querySelector('ol');
+
+        allList.addEventListener('click', function(event) {
+
+            let target = event.target;
+
+            if (target.tagName !== 'LI') {
+                return;
+            }
+            changeValueLi(target);
+        });
+
+        function changeValueLi(li) {
+
+            let valueLi = li.innerHTML;
+
+            li.innerHTML = `<input value="${valueLi}" id="my-Input">`;
+
+            let myInput = document.getElementById('my-Input');
+
+            myInput.focus();
+
+            myInput.addEventListener('blur', SetValueLi);
+
+            function SetValueLi() {
+
+                li.innerHTML = myInput.value;
+            }
+
+            myInput.style.cssText = 'color: red; width: 250px; height: 18px; padding: 5px;'
+        }
+
+        let liCss = document.body.querySelectorAll('li');
+        for (let i = 0; i < liCss.length; i++) {
+            liCss[i].style.cssText = 'margin: 15px 0; padding-left: 10px;'
+        }
+
+        let inputCss = document.body.querySelectorAll('input');
+        for (let i = 0; i < inputCss.length; i++) {
+            inputCss[i].style.cssText = 'width: 300px; height: 20px; padding: 5px; border-radius: 5px;'
+        }
+
+
+
+    }
+
+
+    buildList(['Первый пункт', 'Второй пункт', 'Третий пункт', 'Четвертый пункт', 'Пятый пункт']);
+
+</script>
+
+</body>
+</html>
