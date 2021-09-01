@@ -89,6 +89,10 @@
             function SetValueLi() {
 
                 li.innerHTML = myInput.value;
+
+                if (myInput.value === '') {
+                    li.innerHTML = '/некорректное значение/';
+                }
             }
 
             myInput.style.cssText = 'color: red; width: 250px; height: 18px; padding: 5px;'
