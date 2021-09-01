@@ -7,23 +7,23 @@
        * {
            font-size: 20px;
        }
-       /*.list, .new-list {*/
-       /*    margin: 15px 0;*/
-       /*    padding-left: 10px;*/
-       /*}*/
+       .list, .new-list {
+           margin: 15px 0;
+           padding-left: 10px;
+       }
        #my-Input {
-           /*color: #e7445c;*/
+           color: #e7445c;
        }
        .new-list {
-           /*color: #43c8e2;*/
+           color: #43c8e2;
        }
        .input-text, #my-Input {
-           /*width: 300px;*/
-           /*height: 20px;*/
-           /*padding: 5px;*/
+           width: 300px;
+           height: 20px;
+           padding: 5px;
        }
        .input-text {
-           /*border-radius: 5px;*/
+           border-radius: 5px;
        }
        .btn-add, .btn-remove {
            width: 125px;
@@ -52,13 +52,15 @@
 
         for (let i = 0; i < value.length; i++) {
 
-            list.innerHTML += `<li>${value[i]}</li>`;
+            list.innerHTML += `<li class="list">${value[i]}</li>`;
         }
         document.body.prepend(list);
 
 
         let textField = document.createElement('input');
+        textField.className = 'input-text';
         list.after(textField);
+
 
         let btnAdd = document.createElement('button');
         btnAdd.innerHTML = `Add`;
@@ -73,7 +75,7 @@
                 textField.placeholder = 'Введите значение';
             }
             else {
-                list.insertAdjacentHTML("beforeend", `<li style="color: #43c8e2; margin: 15px 0; padding-left: 10px;">${textField.value}</li>`);
+                list.insertAdjacentHTML("beforeend", `<li class="new-list">${textField.value}</li>`);
                 textField.value = '';
                 btnRemove.disabled = false;
             }
@@ -125,22 +127,7 @@
 
                 li.innerHTML = myInput.value;
             }
-
-            myInput.style.cssText = 'color: red; width: 250px; height: 18px; padding: 5px;'
         }
-
-        let liCss = document.body.querySelectorAll('li');
-        for (let i = 0; i < liCss.length; i++) {
-            liCss[i].style.cssText = 'margin: 15px 0; padding-left: 10px;'
-        }
-
-        let inputCss = document.body.querySelectorAll('input');
-        for (let i = 0; i < inputCss.length; i++) {
-            inputCss[i].style.cssText = 'width: 300px; height: 20px; padding: 5px; border-radius: 5px;'
-        }
-
-
-
     }
 
 
