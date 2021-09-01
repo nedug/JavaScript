@@ -16,41 +16,41 @@
            font-size: 25px;
        }
        .currentMonth:nth-last-child(-n+2) {
-			  background-color: #94b4c8;
+           background-color: #94b4c8;
            color: white;
        }
-		 tr:first-child {
+       tr:first-child {
            background-color: #dd7979;
-			  text-transform: uppercase;
-			  color: white;
-		 }
+           text-transform: uppercase;
+           color: white;
+       }
        tr:nth-of-type(2) {
            background-color: #b3c8c2;
            color: white;
        }
-		 button {
+       button {
            height: 25px;
            font-size: 20px;
-			  border: none;
-			  border-radius: 5px;
+           border: none;
+           border-radius: 5px;
            cursor: pointer;
-		 }
-		 .lastMonth, .nextMonth {
-			  color: #b1a3a3;
+       }
+       .lastMonth, .nextMonth {
+           color: #b1a3a3;
            transition: .3s;
-		 }
+       }
        .lastMonth:hover, .nextMonth:hover {
-			  background-color: #d4d4d4;
+           background-color: #d4d4d4;
            cursor: pointer;
        }
        .currentMonth {
            background-color: #e3dddd;
            transition: .3s;
        }
-		 .currentMonth:hover {
+       .currentMonth:hover {
            background-color: #dd7979;
-			  color: white;
-		 }
+           color: white;
+       }
 	</style>
 </head>
 
@@ -81,6 +81,9 @@
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
+
+
+
 
         let table = '<table><tr><td><button id="yearDown"><<</button></td><td><button id="monthDown"><</button></td><td id="yearMonth" colspan="3"></td><td><button id="monthUp">></button></td><td><button id="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
 
@@ -122,24 +125,24 @@
         function showYearDown() {
             year--;
             createCalendar(year, monthUser);
-		  }
+        }
 
         let monthDown = document.getElementById('monthDown');
         monthDown.addEventListener("click", showMonthDown);
 
         function showMonthDown() {
             monthUser--;
-          if (monthUser === 0) {
+            if (monthUser === 0) {
                 monthUser = 12;
                 year--;
-          }
+            }
             createCalendar(year, monthUser);
         }
 
         let yearUp = document.getElementById('yearUp');
         yearUp.addEventListener("click", ShowYearUp);
 
-		  function ShowYearUp() {
+        function ShowYearUp() {
             year++;
             createCalendar(year, monthUser);
         }
@@ -147,7 +150,7 @@
         let monthUp = document.getElementById('monthUp');
         monthUp.addEventListener("click", ShowMonthUp);
 
-		  function ShowMonthUp() {
+        function ShowMonthUp() {
             monthUser++;
             if (monthUser === 13) {
                 monthUser = 1;
@@ -159,13 +162,13 @@
         let monthDownAll = document.querySelectorAll('.lastMonth');
         for (let i = 0; i < monthDownAll.length; i++) {
             monthDownAll[i].addEventListener("click", showMonthDown);
-		  }
+        }
 
         let monthUpAll = document.querySelectorAll('.nextMonth');
         for (let i = 0; i < monthUpAll.length; i++) {
             monthUpAll[i].addEventListener("click", ShowMonthUp);
         }
-	 }
+    }
 
     function infoDay(date) {
         var day = date.getDay();
