@@ -6,7 +6,6 @@
 </head>
 <body>
 
-
 <script>
 
     function buildList(value) {
@@ -22,9 +21,6 @@
 
         let textField = document.createElement('input');
         document.body.append(textField);
-
-
-
 
 
         let btnAdd = document.createElement('button');
@@ -46,8 +42,6 @@
         }
 
 
-
-
         let btnRemove = document.createElement('button');
         btnRemove.innerHTML = `Remove`;
         document.body.append(btnRemove);
@@ -64,12 +58,9 @@
         }
 
 
-
-
-
         let allList = document.querySelector('ol');
 
-        allList.addEventListener('click', function (event) {
+        allList.addEventListener('click', function(event) {
 
             let target = event.target;
 
@@ -80,6 +71,7 @@
 		  });
 
         function changeValueLi(li) {
+
             let valueLi = li.innerHTML;
 
             li.innerHTML = `<input value="${valueLi}" id="my-Input">`;
@@ -99,9 +91,6 @@
 
 
     buildList(['Первый пункт', 'Второй пункт', 'Третий пункт', 'Четвертый пункт', 'Пятый пункт']);
-
-
-
 
 </script>
 
