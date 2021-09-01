@@ -3,6 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       * {
+           font-size: 20px;
+       }
+       .list, .new-list {
+           margin: 15px 0;
+           padding-left: 10px;
+       }
+       #my-Input {
+           color: #e7445c;
+       }
+       .new-list {
+           color: #43c8e2;
+       }
+       .input-text, #my-Input {
+           width: 300px;
+           height: 20px;
+           padding: 5px;
+       }
+       .input-text {
+           border-radius: 5px;
+       }
+       .btn-add, .btn-remove {
+           width: 125px;
+           height: 35px;
+           background-color: #88cbd7;
+           margin-left: 15px;
+           border: 1px solid transparent;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+       .btn-remove {
+           background-color: #ea8787;
+       }
+       [disabled] {
+           background-color: #cbcbcb;
+       }
+	</style>
 </head>
 <body>
 
@@ -14,18 +52,20 @@
 
         for (let i = 0; i < value.length; i++) {
 
-            list.innerHTML += `<li>${value[i]}</li>`;
+            list.innerHTML += `<li class="list">${value[i]}</li>`;
         }
         document.body.prepend(list);
 
 
         let textField = document.createElement('input');
-        document.body.append(textField);
+        textField.className = 'input-text';
+        list.after(textField);
 
 
         let btnAdd = document.createElement('button');
         btnAdd.innerHTML = `Add`;
-        document.body.append(btnAdd);
+        btnAdd.className = 'btn-add';
+        textField.after(btnAdd);
 
         btnAdd.addEventListener("click", addTextToList);
 
@@ -35,7 +75,7 @@
                 textField.placeholder = 'Введите значение';
             }
             else {
-                list.insertAdjacentHTML("beforeend", `<li>${textField.value}</li>`);
+                list.insertAdjacentHTML("beforeend", `<li class="new-list">${textField.value}</li>`);
                 textField.value = '';
                 btnRemove.disabled = false;
             }
@@ -44,7 +84,8 @@
 
         let btnRemove = document.createElement('button');
         btnRemove.innerHTML = `Remove`;
-        document.body.append(btnRemove);
+        btnRemove.className = 'btn-remove';
+        btnAdd.after(btnRemove);
 
         btnRemove.addEventListener("click", removeTextFromList);
 
@@ -66,9 +107,9 @@
 
             if (target.tagName !== 'LI') {
                 return;
-				}
+            }
             changeValueLi(target);
-		  });
+        });
 
         function changeValueLi(li) {
 
@@ -86,7 +127,7 @@
 
                 li.innerHTML = myInput.value;
             }
-		  }
+        }
     }
 
 
