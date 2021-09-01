@@ -69,37 +69,32 @@
 
         let allList = document.querySelector('ol');
 
-			allList.addEventListener('click', function(event) {
+        allList.addEventListener('click', function (event) {
 
-             let target = event.target;
+            let target = event.target;
 
-             if (target.tagName !== 'LI') {
-                 return;
-             }
-             changeValueLi(target);
+            if (target.tagName !== 'LI') {
+                return;
+				}
+            changeValueLi(target);
+		  });
 
-         });
+        function changeValueLi(li) {
+            let valueLi = li.innerHTML;
 
-			 function changeValueLi(allList) {
+            li.innerHTML = `<input value="${valueLi}" id="my-Input">`;
 
-				  let valueLi = allList.innerHTML;
+            let myInput = document.getElementById('my-Input');
 
-				  allList.innerHTML = `<input value="${valueLi}" id="my-Input">`;
+            myInput.focus();
 
-				  let myInput = document.getElementById('my-Input');
+            myInput.addEventListener('blur', SetValueLi);
 
-				  myInput.focus();
+            function SetValueLi() {
 
-				  myInput.addEventListener('blur', SetValueLi);
-
-				  function SetValueLi() {
-
-						allList.innerHTML = myInput.value;
-				  }
-
-			 }
-
-
+                li.innerHTML = myInput.value;
+            }
+		  }
     }
 
 
