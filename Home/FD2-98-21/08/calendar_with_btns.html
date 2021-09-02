@@ -115,7 +115,6 @@
     let valSelectMonth;
     let valSelectYear;
 
-
     header.addEventListener('click', disBtn);
 
     function disBtn() {
@@ -129,26 +128,15 @@
         else {
             create.disabled = false;
 		  }
-
-        console.log(valSelectMonth);
-        console.log(valSelectYear);
-
+        // console.log(valSelectMonth);
+        // console.log(valSelectYear);
     }
 
 
     create.addEventListener('click', getCalendar);
 
     function getCalendar() {
-
-        let valSelectMonth = monthSelect.options[monthSelect.selectedIndex].value;
-        let valSelectYear = yearSelect.options[yearSelect.selectedIndex].value;
-
-        if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
-            create.disabled = true;
-        }
-        else {
-            create.disabled = false;
-        }
+        createCalendar(valSelectYear, valSelectMonth);
     }
 
 
