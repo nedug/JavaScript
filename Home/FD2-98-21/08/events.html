@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+
+	</style>
+</head>
+<body>
+
+	<a href="http://onliner.by" title="Новости">читать далее...</a> <br>
+	<a href="http://pogoda.by" title="Погода">читать далее...</a> <br>
+	<a href="http://google.by" title="Поиск">читать далее...</a>
+
+<script>
+
+	let valueLink;
+
+   document.body.addEventListener('mouseover', function(event) {
+
+       let target = event.target;
+
+       valueLink = target.innerHTML;
+
+       if (target.tagName !== 'A') {
+           return;
+       }
+       changeValueLink(target);
+   });
+
+   function changeValueLink(a) {
+
+       a.innerHTML = `${a.getAttribute('title')} (${a.getAttribute('href')})`;
+   }
+
+
+   document.body.addEventListener('mouseout', function(event) {
+
+       let target = event.target;
+
+       if (target.tagName !== 'A') {
+           return;
+       }
+       returnValueLink(target);
+   });
+
+   function returnValueLink(a) {
+
+       a.innerHTML = valueLink;
+   }
+
+
+</script>
+
+</body>
+</html>
