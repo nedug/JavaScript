@@ -28,7 +28,7 @@
            background-color: #b3c8c2;
            color: white;
        }
-		 table > button {
+		 table  button {
            height: 25px;
            font-size: 20px;
 			  border: none;
@@ -52,9 +52,14 @@
 			  color: white;
 		 }
 		 select {
-           width: 150px;
+           width: 125px;
            height: 30px;
            margin: 10px;
+		 }
+		 header button {
+           height: 30px;
+           width: 100px;
+			  background-color: #c4e7c4;
 		 }
 	</style>
 </head>
@@ -85,7 +90,7 @@
 
 	 for (let i = 0; i < monthArr.length; i++) {
 
-        monthSelect.innerHTML += `<option>${monthArr[i]}</option>`;
+        monthSelect.innerHTML += `<option value=${i}>${monthArr[i]}</option>`;
 	 }
     header.prepend(monthSelect);
 
@@ -104,33 +109,50 @@
 
     let create = document.createElement('button');
     create.innerHTML = `Создать`;
+    create.disabled = true;
     header.append(create);
 
+    let valSelectMonth;
+    let valSelectYear;
 
 
-    const task = document.querySelector('.month-Select');
+    header.addEventListener('click', disBtn);
 
-    task.addEventListener('click', valueToConsole);
+    function disBtn() {
 
-    function valueToConsole(event) {
+        valSelectMonth = monthSelect.options[monthSelect.selectedIndex].value;
+        valSelectYear = yearSelect.options[yearSelect.selectedIndex].value;
 
-        let target = event.target;
-
-        console.log(target.value);
-
-        if (target.value === monthSelect[0].value) {
+        if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
             create.disabled = true;
 		  }
         else {
             create.disabled = false;
 		  }
+
+        console.log(valSelectMonth);
+        console.log(valSelectYear);
+
+    }
+
+
+    create.addEventListener('click', getCalendar);
+
+    function getCalendar() {
+
+        let valSelectMonth = monthSelect.options[monthSelect.selectedIndex].value;
+        let valSelectYear = yearSelect.options[yearSelect.selectedIndex].value;
+
+        if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
+            create.disabled = true;
+        }
+        else {
+            create.disabled = false;
+        }
     }
 
 
 
-
-
-    // console.log(monthSelect[0].value)
 
 
 
