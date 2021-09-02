@@ -4,7 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-
+		 * {
+           font-size: 25px;
+		 }
+       body {
+           padding: 10px;
+       }
+		 input {
+           height: 25px;
+           width: 250px;
+			  padding: 5px;
+			  margin: 5px;
+		 }
+		 p {
+           margin: 10px;
+		 }
 	</style>
 </head>
 <body>
@@ -15,13 +29,37 @@
 		<a href="http://google.by" title="Поиск">читать далее...</a>
 	</div>
 
+	<hr>
 
+	<div id="task2">
+		<input type="text" value="text 1111"> <br>
+		<input type="text" value="text 2222"> <br>
+		<input type="text" value="text 3333">
+	</div>
+
+	<hr>
+
+	<div id="task3">
+		<p>11</p>
+		<p>4</p>
+		<p>128</p>
+	</div>
+
+	<hr>
+
+	<div id="task4">
+		<input type="text" data-length="2"> <br>
+		<input type="text" data-length="4"> <br>
+		<input type="text" data-length="5">
+	</div>
 
 <script>
 
+	 /* -------- Task 1 ---------- */
+
 	let valueLink;
 
-   const task1 = document.getElementById('task1')
+   const task1 = document.getElementById('task1');
 
    task1.addEventListener('mouseover', function(event) {
 
@@ -56,6 +94,51 @@
        a.innerHTML = valueLink;
    }
 
+    /* -------- Task 2 ---------- */
+
+    const task2 = document.querySelectorAll('#task2 input');
+
+    task2.forEach(elem => elem.addEventListener('focusout', valueToConsole, {once: true}));
+
+    function valueToConsole(event) {
+
+        console.log(event.target.value);
+    }
+
+    /* -------- Task 3 ---------- */
+
+    const task3 = document.querySelectorAll('#task3 p');
+
+    task3.forEach(elem => elem.addEventListener('click', valueToSquared, {once: true}));
+
+    function valueToSquared(event) {
+
+        let target = event.target;
+
+        let number = target.innerHTML;
+
+        target.innerHTML = `${number}^2 = ${number ** 2}`;
+    }
+
+    /* -------- Task 4 ---------- */
+
+    let task4 = document.getElementById('task4')
+
+    task4.addEventListener('focusout', valueCheck);
+
+    function valueCheck(event) {
+
+        let target = event.target;
+
+        let valueData = +target.dataset.length;
+
+        if (target.value.length === valueData) {
+            target.style.cssText = 'border: 2px solid #00FF00'
+        }
+        else {
+            target.style.cssText = 'border: 2px solid red'
+        }
+    }
 
 </script>
 
