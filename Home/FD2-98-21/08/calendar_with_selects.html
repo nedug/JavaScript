@@ -128,8 +128,6 @@
         else {
             create.disabled = false;
 		  }
-        // console.log(valSelectMonth);
-        // console.log(valSelectYear);
     }
 
 
@@ -138,10 +136,10 @@
     function getCalendar() {
 
         createCalendar(valSelectYear, valSelectMonth);
+
+        header.after(calendar);
+
     }
-
-
-
 
 
 
@@ -256,6 +254,10 @@
         }
         return (day - 1);
     }
+
+
+
+
 
 </script>
 
