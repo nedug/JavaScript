@@ -9,15 +9,21 @@
 </head>
 <body>
 
-	<a href="http://onliner.by" title="Новости">читать далее...</a> <br>
-	<a href="http://pogoda.by" title="Погода">читать далее...</a> <br>
-	<a href="http://google.by" title="Поиск">читать далее...</a>
+	<div id="task1">
+		<a href="http://onliner.by" title="Новости">читать далее...</a> <br>
+		<a href="http://pogoda.by" title="Погода">читать далее...</a> <br>
+		<a href="http://google.by" title="Поиск">читать далее...</a>
+	</div>
+
+
 
 <script>
 
 	let valueLink;
 
-   document.body.addEventListener('mouseover', function(event) {
+   const task1 = document.getElementById('task1')
+
+   task1.addEventListener('mouseover', function(event) {
 
        let target = event.target;
 
@@ -35,7 +41,7 @@
    }
 
 
-   document.body.addEventListener('mouseout', function(event) {
+   task1.addEventListener('mouseout', function(event) {
 
        let target = event.target;
 

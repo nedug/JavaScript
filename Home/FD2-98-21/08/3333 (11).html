@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+
+	</style>
+</head>
+<body>
+
+<!--<div id="task2">-->
+
+<input type="text" value="text1111"> <br>
+<input type="text" value="text2222"> <br>
+<input type="text" value="text3333">
+
+<!--</div>-->
+
+<script>
+
+
+
+    let task2 = document.querySelectorAll('input');
+    task2.forEach(el => el.addEventListener('click', something));
+
+    function something(event) {
+        let target = event.target;
+        console.log(target.value);
+        this.removeEventListener('click', something);
+    }
+
+</script>
+
+</body>
+</html>
