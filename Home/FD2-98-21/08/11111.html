@@ -105,6 +105,7 @@
 
     let create = document.createElement('button');
     create.innerHTML = `Создать`;
+    create.className = 'create-btn'
     // create.disabled = true;
     header.append(create);
 
@@ -144,17 +145,23 @@
 
 
     function getCalendar() {
-		  
+
     }
 
-    function createCalendar1() {
+    function createCalendar1(event) {
+
+        let target = event.target;
+
+        if (target.tagName !== 'BUTTON' || target.getAttribute('class') !== 'create-btn') {
+            return;
+        }
+
+        // if (target.getAttribute('class') !== 'create-btn') {
+        //     return;
+        // }
 
         createCalendar(valSelectYear, valSelectMonth);
     }
-
-
-
-
 
 
     function createCalendar(year, monthUser) {
@@ -193,7 +200,7 @@
         console.log(table);
 
         ourDate.setMonth(month);
-        const monthName = ourDate.toLocaleString('ru', { month: 'long' });
+        let monthName = ourDate.toLocaleString('ru', { month: 'long' });
 
 
 
@@ -209,21 +216,16 @@
         // let calendarAll = document.querySelector('.parent');
         // calendar.innerHTML = table;
 
-        // let yearMonthAll = document.querySelectorAll('.yearMonth');
-        // yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
 
 
         parent.insertAdjacentHTML('beforeend', `${table}`);
 
 
+        let yearMonthAll = document.querySelectorAll('.yearMonth');
+
+        yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
+
     }
-
-
-
-
-
-
-
 
 
 
