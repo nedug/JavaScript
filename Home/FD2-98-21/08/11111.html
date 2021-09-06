@@ -67,10 +67,16 @@
 <body>
 
 
+<div class="parent"></div>
+
+
 <script>
 
+    let parent = document.querySelector('.parent');
+
+
     let header = document.createElement('header');
-    document.body.prepend(header);
+    parent.prepend(header);
 
 
     let monthSelect = document.createElement('select');
@@ -99,7 +105,7 @@
 
     let create = document.createElement('button');
     create.innerHTML = `Создать`;
-    create.disabled = true;
+    // create.disabled = true;
     header.append(create);
 
 
@@ -114,7 +120,7 @@
         valSelectYear = yearSelect.options[yearSelect.selectedIndex].value;
 
         if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
-            create.disabled = true;
+            // create.disabled = true;
         }
         else {
             create.disabled = false;
@@ -131,14 +137,25 @@
 
     create.addEventListener('click', getCalendar);
 
-    function getCalendar() {
+    parent.addEventListener('click', createCalendar1);
 
-        let calendar = document.createElement('div');
-        calendar.setAttribute('class', 'calendar');
-        document.body.append(calendar);
+
+    // console.log(parent);
+
+
+    function getCalendar() {
+		  
+    }
+
+    function createCalendar1() {
 
         createCalendar(valSelectYear, valSelectMonth);
     }
+
+
+
+
+
 
     function createCalendar(year, monthUser) {
 
@@ -147,7 +164,7 @@
 
         let table = '<table><tr><td><button class="yearDown"><<</button></td><td><button class="monthDown"><</button></td><td class="yearMonth" colspan="3"></td><td><button class="monthUp">></button></td><td><button class="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
 
-        const sumPastDay = infoDay(ourDate);
+        let sumPastDay = infoDay(ourDate);
         ourDate.setDate(ourDate.getDate() - sumPastDay);
 
         for (let i = 0; i < sumPastDay; i++) {
@@ -173,16 +190,31 @@
 
         table = table + '</tr></table>';
 
+        console.log(table);
+
         ourDate.setMonth(month);
         const monthName = ourDate.toLocaleString('ru', { month: 'long' });
 
 
 
-        let calendarAll = document.querySelectorAll('.calendar');
-        calendarAll[calendarAll.length - 1].innerHTML = table;
+        // let calendarAll = document.querySelectorAll('.calendar');
+        // calendarAll[calendarAll.length - 1].innerHTML = table;
 
-        let yearMonthAll = document.querySelectorAll('.yearMonth');
-        yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
+
+
+        // let calendar = document.createElement('div');
+        // calendar.setAttribute('class', 'calendar');
+        // parent.append(calendar);
+
+        // let calendarAll = document.querySelector('.parent');
+        // calendar.innerHTML = table;
+
+        // let yearMonthAll = document.querySelectorAll('.yearMonth');
+        // yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
+
+
+        parent.insertAdjacentHTML('beforeend', `${table}`);
+
 
     }
 
