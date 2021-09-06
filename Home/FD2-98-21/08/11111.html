@@ -197,7 +197,7 @@
 
         table = table + '</tr></table>';
 
-        console.log(table);
+        // console.log(table);
 
         ourDate.setMonth(month);
         let monthName = ourDate.toLocaleString('ru', { month: 'long' });
@@ -224,6 +224,29 @@
         let yearMonthAll = document.querySelectorAll('.yearMonth');
 
         yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
+
+
+
+        let tableCal = document.querySelector('table');
+
+        // console.log(tableCal);
+
+        tableCal.addEventListener('click', something);
+
+        function something(event) {
+            let target = event.target;
+            console.log(target);
+
+            if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
+                year--;
+                createCalendar(year, monthUser);
+            }
+
+
+
+		  }
+
+
 
     }
 
