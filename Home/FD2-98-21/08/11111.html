@@ -121,6 +121,11 @@
         }
     }
 
+    // let script = document.querySelector('script');
+
+
+
+
 
 
 
@@ -128,11 +133,9 @@
 
     function getCalendar() {
 
-        let script = document.querySelector('script');
-
         let calendar = document.createElement('div');
         calendar.setAttribute('class', 'calendar');
-        script.before(calendar);
+        document.body.append(calendar);
 
         createCalendar(valSelectYear, valSelectMonth);
     }
@@ -191,7 +194,7 @@
 
 
 
-    
+
 
 
     function infoDay(date) {
