@@ -48,8 +48,8 @@
            transition: .3s;
        }
        .currentMonth:hover {
-           background-color: red;
-           color: white;
+           /*background-color: #dd7979;*/
+           /*color: white;*/
        }
        select {
            width: 125px;
@@ -69,7 +69,6 @@
        }
        .parent .highlight {
            background-color: red;
-           color: white;
        }
 
 	</style>
@@ -188,9 +187,14 @@
     }
 
 
+
+
     function createCalendar(year, monthUser, count) {
 
-        // console.log("create calendar callback");
+        console.log("create calendar callback");
+
+        let selectedTd;
+
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
@@ -232,26 +236,24 @@
         yearMonthAll.innerHTML = `${monthName}<br>${year} года`;
 
 
-        let selectTd;
-
         let tableCal = document.querySelector(`#calendar_${count}`);
 
         tableCal.addEventListener('click', clickTableHandler);
 
         function clickTableHandler(event) {
 
-            event.preventDefault();
-            event.stopPropagation();
+            // event.preventDefault();
+            // event.stopPropagation();
 
             let target = event.target;
 
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
                 year--;
-                createCalendar(year, monthUser, count);
+
             }
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearUp') {
                 year++;
-                createCalendar(year, monthUser, count);
+
             }
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthDown') {
                 monthUser--;
@@ -259,7 +261,7 @@
                     monthUser = 12;
                     year--;
                 }
-                createCalendar(year, monthUser, count);
+
             }
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthUp') {
                 monthUser++;
@@ -267,21 +269,65 @@
                     monthUser = 1;
                     year++;
                 }
-                createCalendar(year, monthUser, count);
-            }
-            if (target.getAttribute('class') === 'currentMonth') {
 
-                changeColorCell(target);
-				}
-
-            function changeColorCell(td) {
-                if (selectTd) {
-                    selectTd.classList.remove('highlight');
-                }
-                selectTd = td;
-                selectTd.classList.add('highlight');
             }
+            createCalendar(year, monthUser, count);
         }
+
+
+
+
+
+            // if (target.tagName === 'TD') {
+            //     let target = event.target;
+            //
+            //     target.style.background = 'red';
+            //     target.style.color = 'white';
+            // }
+
+
+
+
+
+
+
+
+            // if (target.getAttribute('class') !== 'currentMonth') {
+            //     console.log(selectedTd)
+            //     return;
+            //
+            // }
+
+        tableCal.addEventListener('click', clickTab);
+
+        function clickTab(event) {
+
+            let target = event.target;
+
+            if (target.tagName !== 'TD') return;
+
+            highlight(target);
+
+            // console.log(selectedTd)
+
+            function highlight(td) {
+                if (selectedTd) {
+                    selectedTd.classList.remove('highlight');
+                }
+                selectedTd = td;
+                selectedTd.classList.add('highlight');
+            }
+
+
+            console.log(target)
+		  }
+
+
+
+
+
+
+
     }
 
 
