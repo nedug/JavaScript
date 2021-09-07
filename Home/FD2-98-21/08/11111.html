@@ -62,6 +62,7 @@
            background-color: #c4e7c4;
            margin: 10px;
 			  border: none;
+           cursor: pointer;
        }
 		 .delete-btn {
            background-color: #e7c4c4;
@@ -71,13 +72,11 @@
 
 <body>
 
-
-<div class="parent"></div>
-
-
 <script>
 
-    let parent = document.querySelector('.parent');
+    let parent = document.createElement('div');
+    parent.className = 'parent'
+    document.body.prepend(parent);
 
 
     let header = document.createElement('header');
@@ -139,28 +138,12 @@
         }
     }
 
+
     let count = 0;
-
-
-
-
-    // create.addEventListener('click', getCalendar11);
-
-
-
-
-    // console.log(parent);
-
-
-    // function getCalendar11) {
-	 //
-    // }
 
     parent.addEventListener('click', getCalendar);
 
     function getCalendar(event) {
-
-
 
         let target = event.target;
 
@@ -172,39 +155,19 @@
         calendarX.setAttribute('id', `cal_wrap_${count}`);
         parent.append(calendarX);
 
-        // if (target.getAttribute('class') !== 'create-btn') {
-        //     return;
-        // }
-
         createCalendar(valSelectYear, valSelectMonth, count);
 
         count++
 
-
-        let xxx = parent.querySelector('div');
-
-        console.log(xxx)
-
-        // if (!xxx) {
-        //     deleteBtn.disabled = true;
-        // }
-        if (xxx) {
+        if (parent.querySelector('div')) {
             deleteBtn.disabled = false;
         }
     }
 
 
-
     parent.addEventListener('click', delCalendar);
 
     function delCalendar(event) {
-
-
-        let xxx = parent.querySelector('div');
-        let yyy = parent.getElementsByTagName('div');
-
-        console.log(xxx)
-
 
         let target = event.target;
 
@@ -212,44 +175,15 @@
             return;
         }
 
+        parent.querySelector('div').remove();
 
-
-        // parent.style.background = 'red';
-
-
-
-
-
-        console.log(xxx)
-
-        xxx.remove();
-
-        if (yyy.length === 0) {
+        if (parent.getElementsByTagName('div').length === 0) {
             deleteBtn.disabled = true;
         }
-
-
-
-        // if (!xxx) {
-        //     deleteBtn.disabled = false;
-		  // }
-
-
-        // let calendarX = document.createElement('div');
-        // calendarX.setAttribute('id', `cal_wrap_${count}`);
-        // parent.append(calendarX);
-
-
-
     }
 
 
-
-
-
     function createCalendar(year, monthUser, count) {
-
-        // console.log(count)
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
@@ -282,67 +216,29 @@
 
         table = table + '</tr></table>';
 
-        // console.log(table);
-
         ourDate.setMonth(month);
         let monthName = ourDate.toLocaleString('ru', { month: 'long' });
 
-
-
-        // let calendarAll = document.querySelectorAll('.calendar');
-        // calendarAll[calendarAll.length - 1].innerHTML = table;
-
-
-
-        // let calendar = document.createElement('div');
-        // calendar.setAttribute('class', 'calendar');
-        // parent.append(calendar);
-
-        // let calendarAll = document.querySelector('.parent');
-        // calendar.innerHTML = table;
-
-
-
-
-        // let calendarX = document.createElement('div');
-        // calendarX.setAttribute('id', `calendar_${count}`);
-        // parent.append(calendarX);
-
         document.getElementById(`cal_wrap_${count}`).innerHTML = table;
 
-
-
-        // parent.insertAdjacentHTML('beforeend', `${table}`);
-
-
         let yearMonthAll = document.querySelector(`#yearMonth_${count}`);
-
         yearMonthAll.innerHTML = `${monthName}<br>${year} года`;
 
 
-
         let tableCal = document.querySelector(`#calendar_${count}`);
-        // let tableCal = document.getElementById(`calendar_${count}`);
 
-        // console.log(tableCal);
+        tableCal.addEventListener('click', changeYearMonth);
 
-        tableCal.addEventListener('click', something);
+        function changeYearMonth(event) {
 
-        function something(event) {
             let target = event.target;
-            // console.log(target);
 
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
                 year--;
-                // console.log(document.getElementById(`calendar_${count}`));
-                // document.getElementById(`cal_wrap_${count}`).innerHTML = '';
             }
-
-
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearUp') {
                 year++;
             }
-
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthDown') {
                 monthUser--;
                 if (monthUser === 0) {
@@ -350,7 +246,6 @@
                     year--;
                 }
             }
-
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthUp') {
                 monthUser++;
                 if (monthUser === 13) {
@@ -359,20 +254,8 @@
                 }
             }
             createCalendar(year, monthUser, count);
-
-
-
-
-
 		  }
-
-
-
     }
-
-
-
-
 
     function infoDay(date) {
         var day = date.getDay();
