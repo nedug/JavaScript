@@ -3,105 +3,67 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
-
 	<style>
+
 		 table {
            border-collapse: collapse;
 		 }
-		td {
-			 border: 1px solid black;
-		}
-		.highlight {
-			 background-color: red;
-		}
+       td {
+           border: 1px solid black;
+           width: 100px;
+           height: 100px;
+       }
+       .highlight {
+           background-color: red;
+       }
+       .highlight11{
+           background-color: green;
+       }
+
 	</style>
 </head>
 <body>
 
 
-<table id="bagua-table">
-	<tr>
-		<th colspan="3">Квадрат<em>Bagua</em>: Направление, Элемент, Цвет, Значение</th>
-	</tr>
-	<tr>
-		<td class="nw"><strong>Северо-Запад</strong>
-			<br>Металл
-			<br>Серебро
-			<br>Старейшины
-		</td>
-		<td class="n"><strong>Север</strong>
-			<br>Вода
-			<br>Синий
-			<br>Перемены
-		</td>
-		<td class="ne"><strong>Северо-Восток</strong>
-			<br>Земля
-			<br>Жёлтый
-			<br>Направление
-		</td>
-	</tr>
-	<tr>
-		<td class="w"><strong>Запад</strong>
-			<br>Металл
-			<br>Золото
-			<br>Молодость
-		</td>
-		<td class="c"><strong>Центр</strong>
-			<br>Всё
-			<br>Пурпурный
-			<br>Гармония
-		</td>
-		<td class="e"><strong>Восток</strong>
-			<br>Дерево
-			<br>Синий
-			<br>Будущее
-		</td>
-	</tr>
-	<tr>
-		<td class="sw"><strong>Юго-Запад</strong>
-			<br>Земля
-			<br>Коричневый
-			<br>Спокойствие
-		</td>
-		<td class="s"><strong>Юг</strong>
-			<br>Огонь
-			<br>Оранжевый
-			<br>Слава
-		</td>
-		<td class="se"><strong>Юго-Восток</strong>
-			<br>Дерево
-			<br>Зелёный
-			<br>Роман
-		</td>
-	</tr>
-
-</table>
+	<table>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
 
 
 <script>
 
-    let selectedTd;
-
+    let selectTd;
 	 let tableCal = document.body.querySelector('table')
-
     tableCal.addEventListener('click', changeColorCell);
+    tableCal.addEventListener('mouseover', addHoverColorCell);
+    tableCal.addEventListener('mouseout', delHoverColorCell);
 
     function changeColorCell(event) {
-
         let target = event.target;
-
         if (target.tagName !== 'TD') return;
 
         highlight(target);
-
         function highlight(td) {
-            if (selectedTd) {
-                selectedTd.classList.remove('highlight');
+            if (selectTd) {
+                selectTd.classList.remove('highlight');
             }
-            selectedTd = td;
-            selectedTd.classList.add('highlight');
+            selectTd = td;
+            selectTd.classList.add('highlight');
         }
+    }
 
+    function addHoverColorCell(event) {
+        let target = event.target;
+        if (target.tagName !== 'TD') return;
+        target.classList.add('highlight11');
+    }
+
+    function delHoverColorCell(event) {
+        let target = event.target;
+        if (target.tagName !== 'TD') return;
+        target.classList.remove('highlight11');
     }
 
 
