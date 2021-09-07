@@ -131,7 +131,7 @@
     // let script = document.querySelector('script');
 
 
-
+    let count = 0;
 
 
 
@@ -148,7 +148,11 @@
 
     }
 
+
+
     function createCalendar1(event) {
+
+
 
         let target = event.target;
 
@@ -156,20 +160,30 @@
             return;
         }
 
+        let calendarX = document.createElement('div');
+        calendarX.setAttribute('id', `cal_wrap_${count}`);
+        parent.append(calendarX);
+
         // if (target.getAttribute('class') !== 'create-btn') {
         //     return;
         // }
 
-        createCalendar(valSelectYear, valSelectMonth);
+        createCalendar(valSelectYear, valSelectMonth, count);
+
+        count++
     }
 
 
-    function createCalendar(year, monthUser) {
+
+
+    function createCalendar(year, monthUser, count) {
+
+        // console.log(count)
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
 
-        let table = '<table><tr><td><button class="yearDown"><<</button></td><td><button class="monthDown"><</button></td><td class="yearMonth" colspan="3"></td><td><button class="monthUp">></button></td><td><button class="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
+        let table = `<table id="calendar_${count}"><tr><td><button class="yearDown"><<</button></td><td><button class="monthDown"><</button></td><td id="yearMonth_${count}" colspan="3"></td><td><button class="monthUp">></button></td><td><button class="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>`;
 
         let sumPastDay = infoDay(ourDate);
         ourDate.setDate(ourDate.getDate() - sumPastDay);
@@ -218,16 +232,26 @@
 
 
 
-        parent.insertAdjacentHTML('beforeend', `${table}`);
+
+        // let calendarX = document.createElement('div');
+        // calendarX.setAttribute('id', `calendar_${count}`);
+        // parent.append(calendarX);
+
+        document.getElementById(`cal_wrap_${count}`).innerHTML = table;
 
 
-        let yearMonthAll = document.querySelectorAll('.yearMonth');
 
-        yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
-
+        // parent.insertAdjacentHTML('beforeend', `${table}`);
 
 
-        let tableCal = document.querySelector('table');
+        let yearMonthAll = document.querySelector(`#yearMonth_${count}`);
+
+        yearMonthAll.innerHTML = `${monthName}<br>${year} года`;
+
+
+
+        let tableCal = document.querySelector(`#calendar_${count}`);
+        // let tableCal = document.getElementById(`calendar_${count}`);
 
         // console.log(tableCal);
 
@@ -235,12 +259,40 @@
 
         function something(event) {
             let target = event.target;
-            console.log(target);
+            // console.log(target);
 
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
                 year--;
-                createCalendar(year, monthUser);
+                console.log(document.getElementById(`calendar_${count}`));
+                // document.getElementById(`cal_wrap_${count}`).innerHTML = '';
+                // console.log(document.getElementById(`calendar_${count}`));
+                // createCalendar(year, monthUser, count);
+
             }
+
+
+            if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearUp') {
+                year++;
+            }
+
+            if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthDown') {
+                monthUser--;
+                if (monthUser === 0) {
+                    monthUser = 12;
+                    year--;
+                }
+            }
+
+            if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'monthUp') {
+                monthUser++;
+                if (monthUser === 13) {
+                    monthUser = 1;
+                    year++;
+                }
+            }
+            createCalendar(year, monthUser, count);
+
+
 
 
 
