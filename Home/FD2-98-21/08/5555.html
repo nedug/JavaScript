@@ -48,8 +48,8 @@
            transition: .3s;
        }
        .currentMonth:hover {
-           background-color: #dd7979;
-           color: white;
+           /*background-color: #dd7979;*/
+           /*color: white;*/
        }
        select {
            width: 125px;
@@ -67,6 +67,12 @@
        .delete-btn {
            background-color: #e7c4c4;
        }
+
+       .highlight {
+           background-color: red;
+       }
+
+
 	</style>
 </head>
 
@@ -254,8 +260,67 @@
                 }
             }
             createCalendar(year, monthUser, count);
+
+
+
         }
+
+
+
+        let selectedTd;
+
+
+        tableCal.addEventListener('click', changeColorCell);
+
+        function changeColorCell(event) {
+
+            let target = event.target;
+
+
+
+            if (target.tagName !== 'TD') return;
+
+
+            // if (target.getAttribute('class') === 'currentMonth') {
+
+                console.log(target)
+
+                // target.classList.remove('currentMonth');
+					 //
+                // target.style.background = 'red';
+                // target.style.color = 'red';
+
+                highlight(target);
+
+
+                // document.body.style.background = 'red';
+
+            // }
+
+            function highlight(td) {
+                if (selectedTd) {
+                    selectedTd.classList.remove('highlight');
+                }
+                selectedTd = td;
+                selectedTd.classList.add('highlight');
+            }
+
+
+		   //
+
+
+
+        }
+
+
+
+
     }
+
+
+
+
+
 
     function infoDay(date) {
         var day = date.getDay();
