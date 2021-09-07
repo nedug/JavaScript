@@ -60,7 +60,12 @@
            height: 30px;
            width: 100px;
            background-color: #c4e7c4;
+           margin: 10px;
+			  border: none;
        }
+		 .delete-btn {
+           background-color: #e7c4c4;
+		 }
 	</style>
 </head>
 
@@ -106,8 +111,14 @@
     let create = document.createElement('button');
     create.innerHTML = `Создать`;
     create.className = 'create-btn'
-    // create.disabled = true;
+    create.disabled = true;
     header.append(create);
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = `Удалить`;
+    deleteBtn.className = 'delete-btn'
+    deleteBtn.disabled = true;
+    header.append(deleteBtn);
 
 
     let valSelectMonth;
@@ -121,15 +132,12 @@
         valSelectYear = yearSelect.options[yearSelect.selectedIndex].value;
 
         if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
-            // create.disabled = true;
+            create.disabled = true;
         }
         else {
             create.disabled = false;
         }
     }
-
-    // let script = document.querySelector('script');
-
 
     let count = 0;
 
@@ -171,7 +179,70 @@
         createCalendar(valSelectYear, valSelectMonth, count);
 
         count++
+
+
+        let xxx = parent.querySelector('div');
+
+        console.log(xxx)
+
+        // if (!xxx) {
+        //     deleteBtn.disabled = true;
+        // }
+        if (xxx) {
+            deleteBtn.disabled = false;
+        }
     }
+
+
+
+    parent.addEventListener('click', delCalendar);
+
+    function delCalendar(event) {
+
+
+        let xxx = parent.querySelector('div');
+        let yyy = parent.getElementsByTagName('div');
+
+        console.log(xxx)
+
+
+        let target = event.target;
+
+        if (target.tagName !== 'BUTTON' || target.getAttribute('class') !== 'delete-btn') {
+            return;
+        }
+
+
+
+        // parent.style.background = 'red';
+
+
+
+
+
+        console.log(xxx)
+
+        xxx.remove();
+
+        if (yyy.length === 0) {
+            deleteBtn.disabled = true;
+        }
+
+
+
+        // if (!xxx) {
+        //     deleteBtn.disabled = false;
+		  // }
+
+
+        // let calendarX = document.createElement('div');
+        // calendarX.setAttribute('id', `cal_wrap_${count}`);
+        // parent.append(calendarX);
+
+
+
+    }
+
 
 
 
