@@ -34,11 +34,11 @@
 
 <script>
 
-    let selectTd;
-	 let tableCal = document.body.querySelector('table')
+	 let tableCal = document.body.querySelector('table');
     tableCal.addEventListener('click', changeColorCell);
     tableCal.addEventListener('mouseover', addHoverColorCell);
     tableCal.addEventListener('mouseout', delHoverColorCell);
+    let selectTd;
 
     function changeColorCell(event) {
         let target = event.target;
