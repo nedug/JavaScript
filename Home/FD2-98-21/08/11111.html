@@ -136,21 +136,21 @@
 
 
 
-    create.addEventListener('click', getCalendar);
+    // create.addEventListener('click', getCalendar11);
 
-    parent.addEventListener('click', createCalendar1);
+
 
 
     // console.log(parent);
 
 
-    function getCalendar() {
+    // function getCalendar11) {
+	 //
+    // }
 
-    }
+    parent.addEventListener('click', getCalendar);
 
-
-
-    function createCalendar1(event) {
+    function getCalendar(event) {
 
 
 
@@ -263,11 +263,8 @@
 
             if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
                 year--;
-                console.log(document.getElementById(`calendar_${count}`));
-                // document.getElementById(`cal_wrap_${count}`).innerHTML = '';
                 // console.log(document.getElementById(`calendar_${count}`));
-                // createCalendar(year, monthUser, count);
-
+                // document.getElementById(`cal_wrap_${count}`).innerHTML = '';
             }
 
 
