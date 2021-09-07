@@ -161,7 +161,7 @@
 
         createCalendar(valSelectYear, valSelectMonth, count);
 
-        count++
+        count++;
 
         if (parent.querySelector('div')) {
             deleteBtn.disabled = false;
@@ -189,7 +189,7 @@
 
     function createCalendar(year, monthUser, count) {
 
-
+        console.log("create calendar callback");
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
@@ -266,15 +266,14 @@
                 createCalendar(year, monthUser, count);
             }
 
-
-            
-            if (target.tagName === 'TD') {
+        if (target.tagName === 'TD') {
                 let target = event.target;
 
                 target.style.background = 'red';
                 target.style.color = 'white';
             }
         }
+
     }
 
 
