@@ -260,66 +260,29 @@
                 }
             }
             createCalendar(year, monthUser, count);
-
-
-
         }
 
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
+        let tableCalendar = document.querySelector(`#calendar_${count}`);
 
-        let selectedTd;
-
-
-        tableCal.addEventListener('click', changeColorCell);
+        tableCalendar.addEventListener('click', changeColorCell);
 
         function changeColorCell(event) {
 
             let target = event.target;
 
-
-
             if (target.tagName !== 'TD') return;
 
+            target.style.background = 'red';
+            target.style.color = 'white';
 
-            // if (target.getAttribute('class') === 'currentMonth') {
-
-                console.log(target)
-
-                // target.classList.remove('currentMonth');
-					 //
-                // target.style.background = 'red';
-                // target.style.color = 'red';
-
-                highlight(target);
-
-
-                // document.body.style.background = 'red';
-
-            // }
-
-            function highlight(td) {
-                if (selectedTd) {
-                    selectedTd.classList.remove('highlight');
-                }
-                selectedTd = td;
-                selectedTd.classList.add('highlight');
-            }
-
-
-		   //
-
-
-
+				console.log(target);
+				console.log(event.currentTarget);
         }
-
-
-
+        /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
     }
-
-
-
-
 
 
     function infoDay(date) {
