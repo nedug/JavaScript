@@ -67,7 +67,7 @@
        .delete-btn {
            background-color: #e7c4c4;
        }
-       .highlight {
+       .parent .highlight {
            background-color: red;
        }
 
@@ -267,13 +267,32 @@
             }
 
 
-            
-            if (target.tagName === 'TD') {
-                let target = event.target;
 
-                target.style.background = 'red';
-                target.style.color = 'white';
-            }
+
+
+            // if (target.tagName === 'TD') {
+            //     let target = event.target;
+				//
+            //     target.style.background = 'red';
+            //     target.style.color = 'white';
+            // }
+
+
+            let selectedTd;
+
+            if (target.getAttribute('class') === 'currentMonth') {
+                highlight(target);
+
+                function highlight(td) {
+                    if (selectedTd) {
+                        selectedTd.classList.remove('highlight');
+                    }
+                    selectedTd = td;
+                    selectedTd.classList.add('highlight');
+                }
+				}
+
+
         }
     }
 
