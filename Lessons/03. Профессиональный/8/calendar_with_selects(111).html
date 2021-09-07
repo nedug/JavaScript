@@ -16,56 +16,55 @@
            font-size: 25px;
        }
        .currentMonth:nth-last-child(-n+2) {
-           background-color: #94b4c8;
+			  background-color: #94b4c8;
            color: white;
        }
-       tr:first-child {
+		 tr:first-child {
            background-color: #dd7979;
-           text-transform: uppercase;
-           color: white;
-       }
+			  text-transform: uppercase;
+			  color: white;
+		 }
        tr:nth-of-type(2) {
            background-color: #b3c8c2;
            color: white;
        }
-       table  button {
+		 table  button {
            height: 25px;
            font-size: 20px;
-           border: none;
-           border-radius: 5px;
+			  border: none;
+			  border-radius: 5px;
            cursor: pointer;
-       }
-       .lastMonth, .nextMonth {
-           color: #b1a3a3;
+		 }
+		 .lastMonth, .nextMonth {
+			  color: #b1a3a3;
            transition: .3s;
-       }
+		 }
        .lastMonth:hover, .nextMonth:hover {
-           background-color: #d4d4d4;
+			  background-color: #d4d4d4;
            cursor: pointer;
        }
        .currentMonth {
            background-color: #e3dddd;
            transition: .3s;
        }
-       .currentMonth:hover {
+		 .currentMonth:hover {
            background-color: #dd7979;
-           color: white;
-       }
-       select {
+			  color: white;
+		 }
+		 select {
            width: 125px;
            height: 30px;
            margin: 10px;
-       }
-       header button {
+		 }
+		 header button {
            height: 30px;
            width: 100px;
-           background-color: #c4e7c4;
-       }
+			  background-color: #c4e7c4;
+		 }
 	</style>
 </head>
 
 <body>
-
 
 <script>
 
@@ -73,7 +72,7 @@
     // while (!monthUser || monthUser < 1 || monthUser > 12) {
     //     monthUser = +prompt('Введите корректно номер месяца [1-12]!');
     // }
-    //
+	 //
     // var year = +prompt('Введите номер года', '2021');
     // while (!year) {
     //     year = +prompt('Введите корректно номер года!');
@@ -88,10 +87,10 @@
 
     let monthArr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь ', 'Ноябрь', 'Декабрь'];
 
-    for (let i = 0; i < monthArr.length; i++) {
+	 for (let i = 0; i < monthArr.length; i++) {
 
         monthSelect.innerHTML += `<option value=${i}>${monthArr[i]}</option>`;
-    }
+	 }
     header.prepend(monthSelect);
 
 
@@ -125,35 +124,36 @@
 
         if (valSelectMonth === monthSelect[0].value || valSelectYear === yearSelect[0].value) {
             create.disabled = true;
-        }
+		  }
         else {
             create.disabled = false;
-        }
+		  }
     }
-
 
 
     create.addEventListener('click', getCalendar);
 
     function getCalendar() {
 
-        let script = document.querySelector('script');
-
-        let calendar = document.createElement('div');
-        calendar.setAttribute('class', 'calendar');
-        script.before(calendar);
-
         createCalendar(valSelectYear, valSelectMonth);
     }
 
 
+    var monthUser = 9;
+    var year = 2021;
+
+    let calendar = document.createElement('div');
+    calendar.setAttribute('id', 'calendar');
+    header.after(calendar);
+
+    createCalendar(year, monthUser);
 
     function createCalendar(year, monthUser) {
 
         var month = monthUser - 1;
         var ourDate = new Date(year, month);
 
-        let table = '<table><tr><td><button class="yearDown"><<</button></td><td><button class="monthDown"><</button></td><td class="yearMonth" colspan="3"></td><td><button class="monthUp">></button></td><td><button class="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
+        let table = '<table><tr><td><button id="yearDown"><<</button></td><td><button id="monthDown"><</button></td><td id="yearMonth" colspan="3"></td><td><button id="monthUp">></button></td><td><button id="yearUp">>></button></td></tr><tr><td>пн</td><td>вт</td><td>ср</td><td>чт</td><td>пт</td><td>сб</td><td>вс</td></tr><tr>';
 
         const sumPastDay = infoDay(ourDate);
         ourDate.setDate(ourDate.getDate() - sumPastDay);
@@ -184,103 +184,59 @@
         ourDate.setMonth(month);
         const monthName = ourDate.toLocaleString('ru', { month: 'long' });
 
+        document.getElementById('calendar').innerHTML = table;
+        document.getElementById('yearMonth').innerHTML = `${monthName}<br>${year} года`;
 
+        let yearDown = document.getElementById('yearDown');
+        yearDown.addEventListener("click", showYearDown);
 
-        let calendarAll = document.querySelectorAll('.calendar');
-        calendarAll[calendarAll.length - 1].innerHTML = table;
+        function showYearDown() {
+            year--;
+            createCalendar(year, monthUser);
+		  }
 
-        // console.log(xxx[xxx.length-1]);
-        // console.log(document.querySelectorAll('.calendar')[0]);
+        let monthDown = document.getElementById('monthDown');
+        monthDown.addEventListener("click", showMonthDown);
 
-        let yearMonthAll = document.querySelectorAll('.yearMonth');
-        yearMonthAll[yearMonthAll.length - 1].innerHTML = `${monthName}<br>${year} года`;
-
-
-
-
-        let allList = document.querySelectorAll('table');
-
-        // console.log(allList);
-
-
-        // const task2 = document.querySelectorAll('.calendar .yearDown');
-
-        // console.log(task2);
-
-
-        // document.body.addEventListener('click', showYearDown);
-
-        allList.forEach(elem => elem.addEventListener('click', showYearDown));
-
-
-        function showYearDown(event) {
-
-            let target = event.target;
-
-            console.log(target);
-            console.log(event.targetcurrent);
-            console.log(target.getAttribute('class'));
-
-            if (target.tagName === 'BUTTON' && target.getAttribute('class') === 'yearDown') {
+        function showMonthDown() {
+            monthUser--;
+          if (monthUser === 0) {
+                monthUser = 12;
                 year--;
-                createCalendar(year, monthUser);
-            }
-
+          }
+            createCalendar(year, monthUser);
         }
 
+        let yearUp = document.getElementById('yearUp');
+        yearUp.addEventListener("click", ShowYearUp);
 
+		  function ShowYearUp() {
+            year++;
+            createCalendar(year, monthUser);
+        }
 
+        let monthUp = document.getElementById('monthUp');
+        monthUp.addEventListener("click", ShowMonthUp);
 
-        // let yearDown = document.querySelectorAll('.yearDown');
-        // yearDown[yearDown.length-1].addEventListener("click", showYearDown);
-		  //
-        // function showYearDown() {
-        //     year--;
-        //     createCalendar(year, monthUser);
-        // }
-		  //
-        // let monthDown = document.querySelectorAll('.monthDown');
-        // monthDown[monthDown.length-1].addEventListener("click", showMonthDown);
-		  //
-        // function showMonthDown() {
-        //     monthUser--;
-        //     if (monthUser === 0) {
-        //         monthUser = 12;
-        //         year--;
-        //     }
-        //     createCalendar(year, monthUser);
-        // }
-		  //
-        // let yearUp = document.querySelectorAll('.yearUp');
-        // yearUp[yearUp.length-1].addEventListener("click", ShowYearUp);
-		  //
-        // function ShowYearUp() {
-        //     year++;
-        //     createCalendar(year, monthUser);
-        // }
-		  //
-        // let monthUp = document.querySelectorAll('.monthUp');
-        // monthUp[monthUp.length-1].addEventListener("click", ShowMonthUp);
-		  //
-        // function ShowMonthUp() {
-        //     monthUser++;
-        //     if (monthUser === 13) {
-        //         monthUser = 1;
-        //         year++;
-        //     }
-        //     createCalendar(year, monthUser);
-        // }
+		  function ShowMonthUp() {
+            monthUser++;
+            if (monthUser === 13) {
+                monthUser = 1;
+                year++;
+            }
+            createCalendar(year, monthUser);
+        }
 
-        // let monthDownAll = document.querySelectorAll('.lastMonth');
-        // for (let i = 0; i < monthDownAll.length; i++) {
-        //     monthDownAll[i].addEventListener("click", showMonthDown);
-        // }
-        //
-        // let monthUpAll = document.querySelectorAll('.nextMonth');
-        // for (let i = 0; i < monthUpAll.length; i++) {
-        //     monthUpAll[i].addEventListener("click", ShowMonthUp);
-        // }
-    }
+        let monthDownAll = document.querySelectorAll('.lastMonth');
+        for (let i = 0; i < monthDownAll.length; i++) {
+            monthDownAll[i].addEventListener("click", showMonthDown);
+		  }
+
+        let monthUpAll = document.querySelectorAll('.nextMonth');
+        for (let i = 0; i < monthUpAll.length; i++) {
+            monthUpAll[i].addEventListener("click", ShowMonthUp);
+        }
+	 }
 
     function infoDay(date) {
         var day = date.getDay();
@@ -289,7 +245,7 @@
         }
         return (day - 1);
     }
-
+	 
 </script>
 
 </body>
