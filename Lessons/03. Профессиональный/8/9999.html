@@ -13,10 +13,10 @@
            width: 100px;
            height: 100px;
        }
-       .highlight {
+       .color-red {
            background-color: red;
        }
-       .highlight11{
+       .color-green {
            background-color: green;
        }
 
@@ -41,29 +41,22 @@
     let selectTd;
 
     function changeColorCell(event) {
-        let target = event.target;
-        if (target.tagName !== 'TD') return;
-
-        highlight(target);
+        highlight(event.target);
         function highlight(td) {
             if (selectTd) {
-                selectTd.classList.remove('highlight');
+                selectTd.classList.remove('color-red');
             }
             selectTd = td;
-            selectTd.classList.add('highlight');
+            selectTd.classList.add('color-red');
         }
     }
 
     function addHoverColorCell(event) {
-        let target = event.target;
-        if (target.tagName !== 'TD') return;
-        target.classList.add('highlight11');
+        event.target.classList.add('color-green');
     }
 
     function delHoverColorCell(event) {
-        let target = event.target;
-        if (target.tagName !== 'TD') return;
-        target.classList.remove('highlight11');
+        event.target.classList.remove('color-green');
     }
 
 
