@@ -24,23 +24,21 @@
 </head>
 <body>
 
-
 	<table>
 		<tr><td></td><td></td><td></td></tr>
 		<tr><td></td><td></td><td></td></tr>
 		<tr><td></td><td></td><td></td></tr>
 	</table>
 
-
 <script>
 
 	 let tableCal = document.body.querySelector('table');
-    tableCal.addEventListener('click', changeColorCell);
+    tableCal.addEventListener('click', clickColorCell);
     tableCal.addEventListener('mouseover', addHoverColorCell);
     tableCal.addEventListener('mouseout', delHoverColorCell);
     let selectTd;
 
-    function changeColorCell(event) {
+    function clickColorCell(event) {
         highlight(event.target);
         function highlight(td) {
             if (selectTd) {
@@ -50,15 +48,12 @@
             selectTd.classList.add('color-red');
         }
     }
-
     function addHoverColorCell(event) {
         event.target.classList.add('color-green');
     }
-
     function delHoverColorCell(event) {
         event.target.classList.remove('color-green');
     }
-
 
 </script>
 
