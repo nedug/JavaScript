@@ -4,43 +4,112 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-		div {
-          width: 200px;
-          height: 5px;
+		 .wrap {
+           width: 500px;
+           height: 500px;
+			  background-color: #a9bbc8;
+			  position: relative;
+		 }
+		.second {
+          width: 240px;
+          height: 4px;
+          border-radius: 30%;
 			 background-color: black;
-          margin: 250px;
-			 transform: rotate(30deg);
 			 transform-origin: 5% 50%;
+			 position: absolute;
+          left: 50%;
+          top: 50%;
+
 		}
+      .minute {
+          width: 200px;
+          height: 7px;
+          background-color: #c47272;
+          transform-origin: 5% 50%;
+			 border-radius: 7px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+      }
+       .hour {
+           width: 150px;
+           height: 15px;
+           background-color: #66b782;
+           transform-origin: 5% 50%;
+           border-radius: 12px;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+       }
 	</style>
 </head>
 <body>
 
-	<div></div>
+
+	<div class="wrap">
+		<div class="hour"></div>
+		<div class="minute"></div>
+		<div class="second"></div>
+	</div>
+
 
 
 <script>
 
+    let angelSecArrow;
+    let angelMinArrow;
+    let angelHourArrow;
 
-	let timeNow = new Date();
-	let sec = timeNow.getSeconds()
-
-	console.log(sec);
-
-	let timer1 = setInterval(showTime, 1000);
-
-	function showTime() {
-       let timeNow = new Date();
-       console.log(timeNow);
-	}
-
-	clearInterval(timer1);
+    let arrowSec = document.body.querySelector('.second');
+    let arrowMin = document.body.querySelector('.minute');
+    let arrowHour = document.body.querySelector('.hour');
 
 
+    arrowSec.setAttribute('style', `transform:rotate(${6 * (new Date().getSeconds()) - 90}deg)`);
+
+    arrowMin.setAttribute('style', `transform:rotate(${6 * (new Date().getMinutes()) - 90}deg)`);
+
+    arrowHour.setAttribute('style', `transform:rotate(${(new Date().getHours() - 15) * 30}deg)`);
 
 
+    setInterval(startClock, 1000);
+
+    function startClock() {
+
+        if (new Date().getSeconds() === 0) {
+            arrowMin.setAttribute('style', `transform:rotate(${6 * (new Date().getMinutes()) - 90}deg)`);
+            setInterval(startMinute, 60000);
+        }
+
+        if (new Date().getMinutes() === 0) {
+            arrowHour.setAttribute('style', `transform:rotate(${((new Date().getHours()) - 15) * 30}deg)`);
+            setInterval(startHours, 3600000);
+        }
+    }
 
 
+   setInterval(startSecond, 1000);
+
+   function startSecond() {
+       angelSecArrow = (6 * new Date().getSeconds()) - 90;
+       arrowSec.setAttribute('style', `transform:rotate(${angelSecArrow}deg)`);
+   }
+
+
+    function startMinute() {
+
+        angelMinArrow = (6 * new Date().getMinutes()) - 90;
+
+        arrowMin.setAttribute('style', `transform:rotate(${angelMinArrow}deg)`);
+    }
+
+
+    function startHours() {
+
+        angelHourArrow = (new Date().getHours() - 15) * 30;
+
+        arrowHour.setAttribute('style', `transform:rotate(${angelHourArrow}deg)`);
+    }
 
 
 </script>
