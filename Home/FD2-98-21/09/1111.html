@@ -3,11 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+		div {
+          width: 200px;
+          height: 5px;
+			 background-color: black;
+          margin: 250px;
+			 transform: rotate(30deg);
+			 transform-origin: 5% 50%;
+		}
+	</style>
 </head>
 <body>
 
+	<div></div>
+
 
 <script>
+
+
+	let timeNow = new Date();
+	let sec = timeNow.getSeconds()
+
+	console.log(sec);
+
+	let timer1 = setInterval(showTime, 1000);
+
+	function showTime() {
+       let timeNow = new Date();
+       console.log(timeNow);
+	}
+
+	clearInterval(timer1);
 
 
 
