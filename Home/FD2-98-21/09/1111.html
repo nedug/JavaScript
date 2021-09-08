@@ -7,6 +7,7 @@
 		 .wrap {
            width: 500px;
            height: 500px;
+           border-radius: 50%;
 			  background-color: #a9bbc8;
 			  position: relative;
 		 }
@@ -53,12 +54,11 @@
 	</div>
 
 
-
 <script>
 
-    let angelSecArrow;
-    let angelMinArrow;
-    let angelHourArrow;
+    let angelSecArrow;  /* Для определения угла поворота секундной стрелки */
+    let angelMinArrow;  /* Для определения угла поворота минутной стрелки */
+    let angelHourArrow;  /* Для определения угла поворота часовой стрелки */
 
     let arrowSec = document.body.querySelector('.second');
     let arrowMin = document.body.querySelector('.minute');
@@ -70,6 +70,7 @@
     arrowMin.setAttribute('style', `transform:rotate(${6 * (new Date().getMinutes()) - 90}deg)`);
 
     arrowHour.setAttribute('style', `transform:rotate(${(new Date().getHours() - 15) * 30}deg)`);
+    // arrowHour.setAttribute('style', `transform:rotate(${(3 - 15) * 30}deg)`);
 
 
     setInterval(startClock, 1000);
