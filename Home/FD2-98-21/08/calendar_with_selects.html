@@ -49,8 +49,8 @@
            transition: .3s;
        }
        .parent div .currentMonth:hover {
-           background-color: green;
-           color: white;
+           /*background-color: green;*/
+           /*color: white;*/
        }
        select {
            width: 125px;
@@ -68,9 +68,15 @@
        .delete-btn {
            background-color: #e7c4c4;
        }
-       .parent .highlight {
+       .currentMonth-Hover:hover {
+           background-color: #50a750;
+       }
+       .parent .color-red {
            background-color: red;
            color: white;
+       }
+       .color-red:hover {
+           background-color: #50a750;
        }
 	</style>
 </head>
@@ -206,7 +212,7 @@
         }
 
         while (ourDate.getMonth() === month) {
-            table = table + '<td class="currentMonth">' + ourDate.getDate() + '</td>';
+            table = table + '<td class="currentMonth currentMonth-Hover">' + ourDate.getDate() + '</td>';
 
             if (infoDay(ourDate) % 7 === 6) {
                 table = table + '</tr><tr>';
@@ -231,8 +237,6 @@
         let yearMonthAll = document.querySelector(`#yearMonth_${count}`);
         yearMonthAll.innerHTML = `${monthName}<br>${year} года`;
 
-
-        let selectTd;
 
         let tableCal = document.querySelector(`#calendar_${count}`);
 
@@ -269,17 +273,16 @@
                 }
                 createCalendar(year, monthUser, count);
             }
-            if (target.getAttribute('class') === 'currentMonth') {
+            if (target.classList.contains('currentMonth')) {
 
-                changeColorCell(target);
-				}
+                let AllCurrentMonth = tableCal.querySelectorAll('.currentMonth');
 
-            function changeColorCell(td) {
-                if (selectTd) {
-                    selectTd.classList.remove('highlight');
+                for (let i = 0; i < AllCurrentMonth.length; i++) {
+
+                    AllCurrentMonth[i].classList.remove('color-red');
+                    AllCurrentMonth[i].classList.remove('currentMonth-Hover');
                 }
-                selectTd = td;
-                selectTd.classList.add('highlight');
+                target.classList.add('color-red');
             }
         }
     }

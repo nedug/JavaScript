@@ -17,6 +17,9 @@
        .color-red {
            background-color: red;
        }
+       .color-red-h:hover {
+           background-color: green;
+       }
        .color-red:hover {
            background-color: green;
        }
@@ -29,7 +32,7 @@
 <body>
 
 <table>
-	<tr><td></td><td></td><td></td></tr>
+	<tr><td class="color-red-h"></td><td class="color-red-h"></td><td class="color-red-h"></td></tr>
 	<tr><td></td><td></td><td></td></tr>
 	<tr><td></td><td></td><td></td></tr>
 </table>
@@ -39,8 +42,8 @@
     let tableCal = document.body.querySelector('table');
 
     tableCal.addEventListener('click', clickColorCell);
-    tableCal.addEventListener('mouseover', addHoverColorCell);
-    tableCal.addEventListener('mouseout', delHoverColorCell);
+    // tableCal.addEventListener('mouseover', addHoverColorCell);
+    // tableCal.addEventListener('mouseout', delHoverColorCell);
 
     function clickColorCell(event) {
 
@@ -50,6 +53,7 @@
 
 		  for (let i = 0; i < td.length; i++) {
             td[i].classList.remove('color-red');
+            td[i].classList.remove('color-red-h');
 		  }
         event.target.classList.add('color-red');
     }
