@@ -23,7 +23,7 @@
            z-index: 2;
        }
        .minute {
-           width: 195px;
+           width: 200px;
            height: 7px;
            background-color: #c47272;
            transform-origin: 10px 50%;
@@ -71,6 +71,10 @@
     let numbers;  /* Переменная для создания и расположения кругов с цифрами на циферблате часов */
     let span;  /* Переменная для выравнивания цифр на циферблате часов */
 
+	 const angleHour = 30; /* Константа, необходимая для расчетов угла поворота часовой стрелки и расположения цифр на циферблате часов; 360/12 = 30градусов в одном часу */
+	 const angleMinSec = 6; /* Константа, необходимая для расчетов угла поворота секундной и минутной стрелки; 360/60 = 6градусов в одной минуте/секунде */
+	 const angleCorrect = 90; /* Константа, необходимая для корректировки расположения стрелок и цифр; для часов необходимо чтобы начало отсчета было от оси Y, а не от оси X, поэтому 90 */
+
 
     clock = document.createElement('div');  /* Создание самих часов: div-обвертка, внутри которой будут находиться все другие элементы */
     clock.className = 'clock';
@@ -94,37 +98,37 @@
         numbers = document.createElement('div');
         numbers.innerHTML = `<span>${i}</span>`;
         numbers.className = 'number';
-        numbers.setAttribute('style', `transform:rotate(${30 * i + 90}deg)`);  /* Вычесление расположения кругов с цифрами на циферблате часов */
+        numbers.setAttribute('style', `transform:rotate(${angleHour * i + angleCorrect}deg)`);  /* Вычесление расположения кругов с цифрами на циферблате часов */
         clock.append(numbers);
 
         span = clock.querySelectorAll('span');
 
         if (i < 10) {
-            span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); margin: 8px 17px;`);  /* Выравнивание цифр по вертикали и относительно кругов на циферблате часов */
+            span[i-1].setAttribute('style', `transform:rotate(${-angleHour * i - angleCorrect}deg); margin: 8px 17px;`);  /* Выравнивание цифр по вертикали и относительно кругов на циферблате часов */
         }
         else {
-            span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); margin: 8px 9px;`);
+            span[i-1].setAttribute('style', `transform:rotate(${-angleHour * i - angleCorrect}deg); margin: 8px 9px;`);
         }
     }
 
 
-    second.setAttribute('style', `transform:rotate(${6 * new Date().getSeconds() - 90}deg)`);  /* Установка положения секундной стрелки при загрузке страницы исходя из текушего времени */
-    minute.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);  /* Установка положения минутной стрелки при загрузке страницы исходя из текушего времени */
-    hour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);  /* Установка положения часовой стрелки при загрузке страницы исходя из текушего времени */
+    second.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg)`);  /* Установка положения секундной стрелки при загрузке страницы исходя из текушего времени */
+    minute.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg)`);  /* Установка положения минутной стрелки при загрузке страницы исходя из текушего времени */
+    hour.setAttribute('style', `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg)`);  /* Установка положения часовой стрелки при загрузке страницы исходя из текушего времени */
 
 
     setInterval(startClock, 1000);  /* Запуск часов */
 
     function startClock() {
 
-        second.setAttribute('style', `transform:rotate(${6 * new Date().getSeconds() - 90}deg)`);  /* Установка положения секундной стрелки часов каждую 1с */
+        second.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg)`);  /* Установка положения секундной стрелки часов каждую 1с */
 
         if (new Date().getSeconds() === 0) {  /* Установка положения минутной стрелки, когда секунда текущего времени равна 0 */
-            minute.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
+            minute.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg)`);
         }
 
         if (new Date().getMinutes() === 0) {  /* Установка положения часовой стрелки, когда минута текущего времени равна 0 */
-            hour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
+            hour.setAttribute('style', `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg)`);
         }
     }
 
