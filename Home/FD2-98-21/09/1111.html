@@ -65,11 +65,11 @@
     let arrowHour = document.body.querySelector('.hour');
 
 
-    arrowSec.setAttribute('style', `transform:rotate(${6 * (new Date().getSeconds()) - 90}deg)`);
+    arrowSec.setAttribute('style', `transform:rotate(${6 * new Date().getSeconds() - 90}deg)`);
 
-    arrowMin.setAttribute('style', `transform:rotate(${6 * (new Date().getMinutes()) - 90}deg)`);
+    arrowMin.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
 
-    arrowHour.setAttribute('style', `transform:rotate(${(new Date().getHours() - 15) * 30}deg)`);
+    arrowHour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
     // arrowHour.setAttribute('style', `transform:rotate(${(3 - 15) * 30}deg)`);
 
 
@@ -78,12 +78,12 @@
     function startClock() {
 
         if (new Date().getSeconds() === 0) {
-            arrowMin.setAttribute('style', `transform:rotate(${6 * (new Date().getMinutes()) - 90}deg)`);
+            arrowMin.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
             setInterval(startMinute, 60000);
         }
 
         if (new Date().getMinutes() === 0) {
-            arrowHour.setAttribute('style', `transform:rotate(${((new Date().getHours()) - 15) * 30}deg)`);
+            arrowHour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
             setInterval(startHours, 3600000);
         }
     }
@@ -92,14 +92,14 @@
    setInterval(startSecond, 1000);
 
    function startSecond() {
-       angelSecArrow = (6 * new Date().getSeconds()) - 90;
+       angelSecArrow = 6 * new Date().getSeconds() - 90;
        arrowSec.setAttribute('style', `transform:rotate(${angelSecArrow}deg)`);
    }
 
 
     function startMinute() {
 
-        angelMinArrow = (6 * new Date().getMinutes()) - 90;
+        angelMinArrow = 6 * new Date().getMinutes() - 90;
 
         arrowMin.setAttribute('style', `transform:rotate(${angelMinArrow}deg)`);
     }
@@ -107,7 +107,7 @@
 
     function startHours() {
 
-        angelHourArrow = (new Date().getHours() - 15) * 30;
+        angelHourArrow = 30 * new Date().getHours() - 90;
 
         arrowHour.setAttribute('style', `transform:rotate(${angelHourArrow}deg)`);
     }
