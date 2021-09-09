@@ -56,9 +56,9 @@
 
 <script>
 
-    let angelSecArrow;  /* Для определения угла поворота секундной стрелки */
-    let angelMinArrow;  /* Для определения угла поворота минутной стрелки */
-    let angelHourArrow;  /* Для определения угла поворота часовой стрелки */
+    // let angelSecArrow;  /* Для определения угла поворота секундной стрелки */
+    // let angelMinArrow;  /* Для определения угла поворота минутной стрелки */
+    // let angelHourArrow;  /* Для определения угла поворота часовой стрелки */
 
     let arrowSec = document.body.querySelector('.second');
     let arrowMin = document.body.querySelector('.minute');
@@ -73,13 +73,6 @@
     // arrowHour.setAttribute('style', `transform:rotate(${(3 - 15) * 30}deg)`);
 
 
-    // setInterval(startSecond, 1000);
-    //
-    // function startSecond() {
-    //     angelSecArrow = 6 * new Date().getSeconds() - 90;
-    //     arrowSec.setAttribute('style', `transform:rotate(${angelSecArrow}deg)`);
-    // }
-
 
     setInterval(startClock, 1000);
 
@@ -89,38 +82,13 @@
 
         if (new Date().getSeconds() === 0) {
             arrowMin.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
-            // setInterval(startMinute, 60000);
         }
 
         if (new Date().getMinutes() === 0) {
             arrowHour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
-            setInterval(startHours, 3600000);
         }
     }
 
-
-    function startMinute() {
-
-        angelMinArrow = 6 * new Date().getMinutes() - 90;
-
-        arrowMin.setAttribute('style', `transform:rotate(${angelMinArrow}deg)`);
-    }
-
-
-    function startHours() {
-
-        angelHourArrow = 30 * new Date().getHours() - 90;
-
-        arrowHour.setAttribute('style', `transform:rotate(${angelHourArrow}deg)`);
-    }
-
-
-    // setInterval(startClock111, 5000);
-    //
-    // function startClock111() {
-    //
-    //   console.log(new Date().getSeconds())
-    // }
 
 
 </script>
