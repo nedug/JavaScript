@@ -15,31 +15,32 @@
            width: 155px;
            height: 17px;
            background-color: #70cf91;
-           transform-origin: 0% 50%;
+           transform-origin: 10px 50%;
            border-radius: 12px;
            position: absolute;
-           left: 50%;
+           left: 240px;
            top: 50%;
+           z-index: 2;
        }
        .minute {
            width: 195px;
            height: 7px;
            background-color: #c47272;
-           transform-origin: 0% 50%;
+           transform-origin: 10px 50%;
            border-radius: 7px;
            position: absolute;
-           left: 50%;
+           left: 240px;
            top: 50%;
            z-index: 1;
        }
        .second {
-           width: 225px;
+           width: 235px;
            height: 4px;
            border-radius: 30%;
            background-color: black;
-           transform-origin: 0% 50%;
+           transform-origin: 20px 50%;
            position: absolute;
-           left: 50%;
+           left: 230px;
            top: 50%;
            z-index: 1;
        }
@@ -103,7 +104,7 @@
         }
         else {
             span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); margin: 8px 9px;`);
-		  }
+        }
     }
 
 
