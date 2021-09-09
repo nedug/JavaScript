@@ -48,10 +48,9 @@
 
 <script>
 
-
     let clock = document.createElement('div');
     clock.className = 'clock'
-    document.body.append(clock);
+    document.body.prepend(clock);
 
     let hour = document.createElement('div');
     hour.className = 'hour'
@@ -64,6 +63,10 @@
     let second = document.createElement('div');
     second.className = 'second'
     clock.append(second);
+
+
+
+
 
 
 
