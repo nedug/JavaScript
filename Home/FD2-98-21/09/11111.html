@@ -79,15 +79,15 @@
     hour = document.createElement('div');  /* Создание часовой стрелки часов */
     // hour.setAttribute('style', `left: 240px; top: 50%;`);
     // hour.style.cssText = 'left: 240px; top: 50%';
-    hour.className = 'hour'
+    hour.className = 'hour';
     clock.append(hour);
 
     minute = document.createElement('div');  /* Создание минутной стрелки часов */
-    minute.className = 'minute'
+    minute.className = 'minute';
     clock.append(minute);
 
     second = document.createElement('div');  /* Создание секундной стрелки часов */
-    second.className = 'second'
+    second.className = 'second';
     clock.append(second);
 
 
@@ -95,7 +95,7 @@
 
         numbers = document.createElement('div');
         numbers.innerHTML = `<span>${i}</span>`;
-        numbers.className = 'number'
+        numbers.className = 'number';
         numbers.setAttribute('style', `transform:rotate(${30 * i + 90}deg)`);  /* Вычесление расположения кругов с цифрами на циферблате часов */
         clock.append(numbers);
 
