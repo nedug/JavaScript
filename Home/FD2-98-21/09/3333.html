@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       .clock {
+           width: 500px;
+           height: 500px;
+           border-radius: 50%;
+           background-color: #b9d0e2;
+           position: relative;
+       }
+       .hour {
+           width: 150px;
+           height: 17px;
+           background-color: #70cf91;
+           transform-origin: 5% 50%;
+           border-radius: 12px;
+           position: absolute;
+           left: 50%;
+           top: 48%;
+       }
+       .minute {
+           width: 200px;
+           height: 7px;
+           background-color: #c47272;
+           transform-origin: 5% 50%;
+           border-radius: 7px;
+           position: absolute;
+           left: 50%;
+           top: 49%;
+       }
+       .second {
+           width: 240px;
+           height: 4px;
+           border-radius: 30%;
+           background-color: black;
+           transform-origin: 5% 50%;
+           position: absolute;
+           left: 50%;
+           top: 49%;
+       }
+	</style>
+</head>
+<body>
+
+
+<script>
+
+
+    let clock = document.createElement('div');
+    clock.className = 'clock'
+    document.body.append(clock);
+
+    let hour = document.createElement('div');
+    hour.className = 'hour'
+    clock.append(hour);
+
+    let minute = document.createElement('div');
+    minute.className = 'minute'
+    clock.append(minute);
+
+    let second = document.createElement('div');
+    second.className = 'second'
+    clock.append(second);
+
+
+
+
+
+</script>
+
+</body>
+</html>
