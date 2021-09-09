@@ -12,7 +12,7 @@
            position: relative;
        }
        .hour {
-           width: 155px;
+           width: 150px;
            height: 17px;
            background-color: #70cf91;
            transform-origin: 0% 50%;
@@ -22,7 +22,7 @@
            top: 50%;
        }
        .minute {
-           width: 195px;
+           width: 200px;
            height: 7px;
            background-color: #c47272;
            transform-origin: 0% 50%;
@@ -33,7 +33,7 @@
            z-index: 1;
        }
        .second {
-           width: 225px;
+           width: 240px;
            height: 4px;
            border-radius: 30%;
            background-color: black;
@@ -50,18 +50,29 @@
            background-color: #e7da97;
            position: absolute;
            font-size: 30px;
+           /*padding: 5px 0 0 5px;*/
+           /*padding-left: 5px;*/
            left: 15px;
            top: 225px;
+           /*margin: 0 15px;*/
+           /*transform: rotate(0deg);*/
            transform-origin: 235px center;
        }
        span {
            display: block;
+           /*transform-origin: 25% 0%;*/
        }
 	</style>
 </head>
 <body>
 
+
 <script>
+
+
+
+
+
 
     let clock = document.createElement('div');
     clock.className = 'clock'
@@ -79,23 +90,53 @@
     second.className = 'second'
     clock.append(second);
 
+    // let xxx = 30;
 
-    for (let i = 1; i <= 12; i++) {
 
-        let numbers = document.createElement('div');
-        numbers.innerHTML = `<span>${i}</span>`;
-        numbers.className = 'number'
-        numbers.setAttribute('style', `transform:rotate(${30 * i + 90}deg)`);
-        clock.append(numbers);
+    // for (let i = 1; i < 13; i++) {
+	 //
+    //     let number = document.createElement('div');
+    //     number.innerHTML = `<span>${i}</span>`;
+    //     number.className = 'number'
+    //     // number.style.cssText = 'left: 225px; top: 10px';
+    //     // number.style.cssText = 'left: 225px; top: 10px';
+    //     number.setAttribute('style', `transform:rotate(${30 * i + 90}deg)`);
+    //     clock.append(number);
+	 //
+    //     let span = clock.querySelectorAll('span');
+	 //
+    //     // span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg)`);
+	 //
+    //     span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); transform-origin:${15}%`);
+	 //
+	 //
+	 //
+    //     // span[i-1].setAttribute('style', `transform-origin: ${-30 * i - 90}%`);
+	 //
+	 //
+	 //
+	 //
+    // }
 
-        let span = clock.querySelectorAll('span');
-        span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); margin: 8px 17px;`);
+    // let xxx = clock.querySelectorAll('span');
+    //
+    // console.log(xxx)
 
-        if (i > 9) {
-            span[i-1].setAttribute('style', `transform:rotate(${-30 * i - 90}deg); margin: 8px 9px;`);
-        }
 
-    }
+    // for (let i = 0; i < xxx.length; i++) {
+    //
+    //     xxx[i].setAttribute('style', `transform:rotate(${-30 * i - 120}deg)`);
+    //
+    // }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -103,32 +144,18 @@
 
 
     let arrowSec = document.body.querySelector('.second');
-    let arrowMin = document.body.querySelector('.minute');
-    let arrowHour = document.body.querySelector('.hour');
-
-
-    arrowSec.setAttribute('style', `transform:rotate(${6 * new Date().getSeconds() - 90}deg)`);
-
-    arrowMin.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
-
-    arrowHour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
 
 
 
-    setInterval(startClock, 1000);
+    arrowSec.setAttribute('style', `transform:rotate(${30 * 1 - 90}deg)`);
 
-    function startClock() {
 
-        arrowSec.setAttribute('style', `transform:rotate(${6 * new Date().getSeconds() - 90}deg)`);
 
-        if (new Date().getSeconds() === 0) {
-            arrowMin.setAttribute('style', `transform:rotate(${6 * new Date().getMinutes() - 90}deg)`);
-        }
 
-        if (new Date().getMinutes() === 0) {
-            arrowHour.setAttribute('style', `transform:rotate(${30 * new Date().getHours() - 90}deg)`);
-        }
-    }
+
+
+
+
 
 
 
