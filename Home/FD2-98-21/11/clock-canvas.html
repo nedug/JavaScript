@@ -15,6 +15,15 @@
     const radNumbers = radius * 0.1;  /* Назначаем радиус для кругов-контейнеров цифр часов (желтые круги) */
     const gapNum = widthHeightClock * 0.03;  /* Назначаем зазор между контуром часов и кругами-контейнерами цифр часов */
 
+	 const AngleHourForHour = 2 * Math.PI / 12;  /* Угол на который поворачивается часовая стрелка за 1 час, в радианах; */
+	 const AngleHourForMin = AngleHourForHour / 60;  /* Угол на который поворачивается часовая стрелка за 1 минуту, в радианах; */
+	 const AngleHourForSec = AngleHourForMin / 60;  /* Угол на который поворачивается часовая стрелка за 1 секунду, в радианах; */
+
+    const AngleMinForMin = 2 * Math.PI / 60;  /* Угол на который поворачивается минутная стрелка за 1 минуту, в радианах; */
+    const AngleMinForSec = AngleMinForMin / 60;  /* Угол на который поворачивается минутная стрелка за 1 секунду, в радианах; */
+
+    const AngleSecForSec = AngleMinForMin;  /* Угол на который поворачивается секундная стрелка за 1 секунду, в радианах; */
+
 
     const clock = document.getElementById('clock');
     clock.width = widthHeightClock;
@@ -44,7 +53,7 @@
 
         for (let numClock = 1; numClock <= 12; numClock++) {  /* Создание циферблата часов через цикл */
 
-            let angHours = numClock * (2 * Math.PI / 12);  /* Находим угол поворота для цифр часов */
+            let angHours = numClock * AngleHourForHour;  /* Находим угол поворота для цифр часов */
 
             ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки */
             ctx.translate(0, -radius + (radNumbers + gapNum)); /* Сдвигаем нулевую точку на 12 часов */
@@ -87,9 +96,9 @@
 
 
 /*  Создаем и устанавливаем часовую стрелку часов */
-        let hourAngle = (hour * (2 * Math.PI / 12)) +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
-            (minute * (2 * Math.PI / (12 * 60))) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
-            (second * (2 * Math.PI / (12 * 60 * 60)));  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
+        let hourAngle = hour * AngleHourForHour +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
+            minute * AngleHourForMin +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
+            second * AngleHourForSec;  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
 
         ctx.beginPath();
         ctx.lineWidth = radNumbers * 0.8;  /* Толщина часовой стрелки; принимаем 80% от radNumbers */
@@ -102,7 +111,7 @@
 
 
 /*  Создаем и устанавливаем минутную стрелку часов */
-        let minuteAngle = (minute * (2 * Math.PI / 60)) + (second * (2 * Math.PI / (60 * 60)));
+        let minuteAngle = minute * AngleMinForMin + second * AngleMinForSec;
 
         ctx.beginPath();
         ctx.lineWidth = radNumbers * 0.32;  /* Толщина минутной стрелки; принимаем 32% от radNumbers */
@@ -114,7 +123,7 @@
 
 
 /*  Создаем и устанавливаем секундную стрелку часов */
-        let secondAngle = second * (2 * Math.PI / 60);
+        let secondAngle = second * AngleSecForSec;
 
         ctx.beginPath();
         ctx.lineWidth = radNumbers * 0.12;  /* Толщина секундной стрелки; принимаем 12% от radNumbers */
