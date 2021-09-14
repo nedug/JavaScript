@@ -63,97 +63,31 @@
 
 
 
+    // let hour = new Date().getHours();
+    // let minute = new Date().getMinutes();
+    // let second = new Date().getSeconds();
 
-	 //
-    // for (num = 1; num < 13; num++) {
-	 //
-    //     angHours = num * Math.PI / 6;
-	 //
-    //     ctx.rotate(angHours);
-	 //
-    //     ctx.translate(0, -radius + 35);
-	 //
-    //     ctx.beginPath()
-	 //
-    //     ctx.arc(0, 0, 25, 0, 2 * Math.PI);
-	 //
-	 //
-    //     ctx.translate(0, radius - 35);
-	 //
-    //     ctx.rotate(-angHours);
-	 //
-	 //
-    // }
+
+    // hour = hour % 12;
+
+    let hour = (new Date().getHours() * (2 * Math.PI / 12)) +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
+		  			(new Date().getMinutes() * Math.PI / (6 * 60)) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
+		  			(new Date().getSeconds() * Math.PI / (360 * 60));
+
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ctx.fillStyle = 'black';
-    // ctx.font = '30px Arial';
-	 //
-	 //
-	 //
-    // ctx.rotate(Math.PI / 6);
-	 //
-	 //
-	 //
-    // ctx.translate(0, radius * 0.85);
-	 //
-	 //
-    // // ctx.rotate(-Math.PI / 6);
-	 //
-    // ctx.fillText('text', 0, 0);
-
-
-
-
-	 //
-    // ctx.rotate(Math.PI / 6);
-	 //
-    // ctx.translate(0, radius * 0.85);
-	 //
-    // ctx.rotate(-Math.PI / 6);
-	 //
-	 //
-    // ctx.rotate(2 * Math.PI / 6);
-	 //
-	 //
-    // ctx.translate(0, -radius * 0.85);
-	 //
-    // ctx.rotate(-2 *Math.PI / 6);
-	 //
-    // ctx.fillText('text', 0, 0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function drawHand(ctx, pos, length, width) {
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0,0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
+    }
 
 
 
