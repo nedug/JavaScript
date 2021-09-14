@@ -29,7 +29,6 @@
     ctx.fill();
 
 
-
     let angHours;
     let numClock;
 
@@ -63,31 +62,44 @@
 
 
 
-    // let hour = new Date().getHours();
-    // let minute = new Date().getMinutes();
-    // let second = new Date().getSeconds();
-
-
-    // hour = hour % 12;
-
     let hour = (new Date().getHours() * (2 * Math.PI / 12)) +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
-		  			(new Date().getMinutes() * Math.PI / (6 * 60)) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
-		  			(new Date().getSeconds() * Math.PI / (360 * 60));
-
-    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+		  			(new Date().getMinutes() * (2 * Math.PI / (12 * 60))) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
+		  			(new Date().getSeconds() * (2 * Math.PI / (12 * 60 * 60)));  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
 
 
+    ctx.beginPath();  /* Создаем часовую стрелку */
+    ctx.lineWidth = 20;  /* Толщина часовой стрелки */
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(hour);
+    ctx.lineTo(0, -135);  /* Длина часовой стрелки  */
+    ctx.stroke();
+    ctx.rotate(-hour);
 
-    function drawHand(ctx, pos, length, width) {
-        ctx.beginPath();
-        ctx.lineWidth = width;
-        ctx.lineCap = "round";
-        ctx.moveTo(0,0);
-        ctx.rotate(pos);
-        ctx.lineTo(0, -length);
-        ctx.stroke();
-        ctx.rotate(-pos);
-    }
+
+    let minute = (new Date().getMinutes() * (2 * Math.PI / 60)) + (new Date().getSeconds() * (2 * Math.PI / (60 * 60)));
+
+    ctx.beginPath();  /* Создаем минутную стрелку */
+    ctx.lineWidth = 8;  /* Толщина минутной стрелки */
+    ctx.moveTo(0,0);
+    ctx.rotate(minute);
+    ctx.lineTo(0, -185);  /* Длина минутной стрелки  */
+    ctx.stroke();
+    ctx.rotate(-minute);
+
+
+    let second = new Date().getSeconds() * (2 * Math.PI / 60);
+
+    ctx.beginPath();  /* Создаем секундную стрелку */
+    ctx.lineWidth = 3;  /* Толщина секундной стрелки */
+    ctx.moveTo(0,0);
+    ctx.rotate(second);
+    ctx.lineTo(0, -220);  /* Длина секундной стрелки  */
+    ctx.stroke();
+    ctx.rotate(-second);
+
+
+
 
 
 
