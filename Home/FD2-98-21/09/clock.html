@@ -62,6 +62,10 @@
 </head>
 <body>
 
+<h2>Это первоначальный вариант часов, где часовая и минутная стрелки обновляют свое положение только каждый час/минуту соответственно, чего вероятно не достаточно. <br>
+В общем смотрите вторую ссылку.
+</h2>
+
 <script>
 
     let clock;  /* Переменная для создания часов: div-обвертка, внутри которой будут находиться все другие элементы */
@@ -112,10 +116,7 @@
     }
 
 
-    second.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg)`);  /* Установка положения секундной стрелки при загрузке страницы исходя из текушего времени */
-    minute.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg)`);  /* Установка положения минутной стрелки при загрузке страницы исходя из текушего времени */
-    hour.setAttribute('style', `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg)`);  /* Установка положения часовой стрелки при загрузке страницы исходя из текушего времени */
-
+    startClock();  /* Создание часов при загрузке страницы */
 
     setInterval(startClock, 1000);  /* Запуск часов */
 
@@ -123,13 +124,9 @@
 
         second.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg)`);  /* Установка положения секундной стрелки часов каждую 1с */
 
-        if (new Date().getSeconds() === 0) {  /* Установка положения минутной стрелки, когда секунда текущего времени равна 0 */
-            minute.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg)`);
-        }
+        minute.setAttribute('style', `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg)`); /* Установка положения минутной стрелки часов каждую 1с */
 
-        if (new Date().getMinutes() === 0) {  /* Установка положения часовой стрелки, когда минута текущего времени равна 0 */
-            hour.setAttribute('style', `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg)`);
-        }
+        hour.setAttribute('style', `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg)`); /* Установка положения часовой стрелки часов каждую 1с */
     }
 
 </script>
