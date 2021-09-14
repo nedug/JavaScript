@@ -95,19 +95,17 @@
         ctx.fillText(`${hour}:${minute}:${second}`, 0, -radius * 0.4);
 
 
-/*  Создаем и устанавливаем часовую стрелку часов */
-        let hourAngle = hour * AngleHourForHour +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
-            minute * AngleHourForMin +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
-            second * AngleHourForSec;  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
+/*  Создаем и устанавливаем секундную стрелку часов */
+        let secondAngle = second * AngleSecForSec;
 
         ctx.beginPath();
-        ctx.lineWidth = radNumbers * 0.8;  /* Толщина часовой стрелки; принимаем 80% от radNumbers */
+        ctx.lineWidth = radNumbers * 0.12;  /* Толщина секундной стрелки; принимаем 12% от radNumbers */
         ctx.lineCap = "round";
         ctx.moveTo(0,0);
-        ctx.rotate(hourAngle);
-        ctx.lineTo(0, -radius * 0.55);  /* Длина часовой стрелки; принимаем 55% от radius */
+        ctx.rotate(secondAngle);
+        ctx.lineTo(0, -radius * 0.88);  /* Длина секундной стрелки; принимаем 88% от radius  */
         ctx.stroke();
-        ctx.rotate(-hourAngle);
+        ctx.rotate(-secondAngle);
 
 
 /*  Создаем и устанавливаем минутную стрелку часов */
@@ -122,16 +120,18 @@
         ctx.rotate(-minuteAngle);
 
 
-/*  Создаем и устанавливаем секундную стрелку часов */
-        let secondAngle = second * AngleSecForSec;
+/*  Создаем и устанавливаем часовую стрелку часов */
+        let hourAngle = hour * AngleHourForHour +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
+            minute * AngleHourForMin +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
+            second * AngleHourForSec;  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
 
         ctx.beginPath();
-        ctx.lineWidth = radNumbers * 0.12;  /* Толщина секундной стрелки; принимаем 12% от radNumbers */
+        ctx.lineWidth = radNumbers * 0.8;  /* Толщина часовой стрелки; принимаем 80% от radNumbers */
         ctx.moveTo(0,0);
-        ctx.rotate(secondAngle);
-        ctx.lineTo(0, -radius * 0.88);  /* Длина секундной стрелки; принимаем 88% от radius  */
+        ctx.rotate(hourAngle);
+        ctx.lineTo(0, -radius * 0.55);  /* Длина часовой стрелки; принимаем 55% от radius */
         ctx.stroke();
-        ctx.rotate(-secondAngle);
+        ctx.rotate(-hourAngle);
     }
 
 </script>
