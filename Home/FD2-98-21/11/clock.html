@@ -10,7 +10,10 @@
 
 <script>
 
-	 const widthHeightClock = 500; /* Принимаем ширину и высоту часов */
+	 const widthHeightClock = 500;  /* Принимаем ширину и высоту часов */
+	 const radius = widthHeightClock / 2;  /* Находим радиус часов */
+	 const radNumbers = radius * 0.1;  /* Принимаем радиус для кругов-контейнеров цифр часов (желтые круги) */
+	 const gapNum = 15;  /* Принимаем зазор между контуром часов и кругами-контейнерами цифр часов */
 
 
     const clock = document.getElementById('clock');
@@ -18,6 +21,136 @@
     clock.height = widthHeightClock;
 
     let ctx = clock.getContext('2d');
+
+    ctx.translate(radius, radius); /* Устанавливем нулевую точку в центр часов */
+
+    ctx.fillStyle = '#b9d0e2';
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI); /* Создаем контейнер часов */
+    ctx.fill();
+
+
+
+    let angHours;
+    let numClock;
+
+    ctx.font = "30px arial";
+
+    ctx.textAlign = "center";  /* Выравниваем текс по горизонтали */
+    ctx.textBaseline = "middle";  /* Выравниваем текс по вертикали */
+
+
+    for (numClock = 1; numClock <= 12; numClock++) {
+
+        angHours = numClock * (2 * Math.PI / 12);  /* Находим угол поворота для цифр часов */
+
+        ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки на угол цифр часов */
+        ctx.translate(0, -radius + (radNumbers + gapNum)); /* Сдвигаем нулевую точку на 12 часов */
+        ctx.rotate(-angHours);  /* Возращаем угол поворота на 0 для вставки текста */
+
+        ctx.fillStyle = '#e7da97';
+        ctx.beginPath();
+        ctx.arc(0, 0, radNumbers, 0, 2 * Math.PI); /* Создаем круги-контейнеры для цифр часов */
+        ctx.fill();
+
+        ctx.fillStyle = 'black';
+        ctx.fillText(numClock, 0, 0);  /* Вставляем цифры часов */
+
+        ctx.rotate(angHours); /* Возращаем предыдущий угол поворота, необходимый для возрата нулевой точки */
+        ctx.translate(0, radius - (radNumbers + gapNum)); /* Сдвигаем нулевую точку обратно в центр часов */
+        ctx.rotate(-angHours); /* Возращаем угол поворота на 0 до начала следующего прохода цикла */
+    }
+
+
+
+
+
+	 //
+    // for (num = 1; num < 13; num++) {
+	 //
+    //     angHours = num * Math.PI / 6;
+	 //
+    //     ctx.rotate(angHours);
+	 //
+    //     ctx.translate(0, -radius + 35);
+	 //
+    //     ctx.beginPath()
+	 //
+    //     ctx.arc(0, 0, 25, 0, 2 * Math.PI);
+	 //
+	 //
+    //     ctx.translate(0, radius - 35);
+	 //
+    //     ctx.rotate(-angHours);
+	 //
+	 //
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ctx.fillStyle = 'black';
+    // ctx.font = '30px Arial';
+	 //
+	 //
+	 //
+    // ctx.rotate(Math.PI / 6);
+	 //
+	 //
+	 //
+    // ctx.translate(0, radius * 0.85);
+	 //
+	 //
+    // // ctx.rotate(-Math.PI / 6);
+	 //
+    // ctx.fillText('text', 0, 0);
+
+
+
+
+	 //
+    // ctx.rotate(Math.PI / 6);
+	 //
+    // ctx.translate(0, radius * 0.85);
+	 //
+    // ctx.rotate(-Math.PI / 6);
+	 //
+	 //
+    // ctx.rotate(2 * Math.PI / 6);
+	 //
+	 //
+    // ctx.translate(0, -radius * 0.85);
+	 //
+    // ctx.rotate(-2 *Math.PI / 6);
+	 //
+    // ctx.fillText('text', 0, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
