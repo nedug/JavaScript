@@ -10,10 +10,10 @@
 
 <script>
 
-    const widthHeightClock = 500;  /* Принимаем ширину и высоту часов */
+    const widthHeightClock = 500;  /* Назначаем ширину и высоту часов */
     const radius = widthHeightClock / 2;  /* Находим радиус часов */
-    const radNumbers = radius * 0.1;  /* Принимаем радиус для кругов-контейнеров цифр часов (желтые круги) */
-    const gapNum = 15;  /* Принимаем зазор между контуром часов и кругами-контейнерами цифр часов */
+    const radNumbers = radius * 0.1;  /* Назначаем радиус для кругов-контейнеров цифр часов (желтые круги) */
+    const gapNum = widthHeightClock * 0.03;  /* Назначаем зазор между контуром часов и кругами-контейнерами цифр часов */
 
 
     const clock = document.getElementById('clock');
@@ -37,7 +37,7 @@
         ctx.arc(0, 0, radius, 0, 2 * Math.PI);
         ctx.fill();
 
-        ctx.font = "30px arial";  /* Назначаем шрифт для цифр часов */
+        ctx.font = radNumbers * 1.2 + "px arial";  /* Назначаем шрифт для цифр часов */
         ctx.textAlign = "center";  /* Выравниваем текст по горизонтали */
         ctx.textBaseline = "middle";  /* Выравниваем текст по вертикали */
 
@@ -46,15 +46,15 @@
 
             let angHours = numClock * (2 * Math.PI / 12);  /* Находим угол поворота для цифр часов */
 
-            ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки на угол цифр часов */
+            ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки */
             ctx.translate(0, -radius + (radNumbers + gapNum)); /* Сдвигаем нулевую точку на 12 часов */
-            ctx.rotate(-angHours);  /* Возращаем угол поворота на 0 для вставки текста */
 
             ctx.fillStyle = '#e7da97';
             ctx.beginPath();
             ctx.arc(0, 0, radNumbers, 0, 2 * Math.PI); /* Создаем круги-контейнеры для цифр часов */
             ctx.fill();
 
+            ctx.rotate(-angHours);  /* Возращаем угол поворота на 0 для вставки текста */
             ctx.fillStyle = 'black';
             ctx.fillText(numClock.toString(), 0, 0);  /* Вставляем цифры часов */
 
@@ -65,7 +65,7 @@
 
 
 /*  Создаем электронные часы  */
-        ctx.font = "45px arial";
+        ctx.font = radNumbers * 2 + "px arial";
         ctx.fillStyle = 'white';
 
         let second = new Date().getSeconds();
@@ -83,7 +83,7 @@
             hour = '0' + hour;
         }
 
-        ctx.fillText(`${hour}:${minute}:${second}`, 0, -100);
+        ctx.fillText(`${hour}:${minute}:${second}`, 0, -radius * 0.4);
 
 
 /*  Создаем и устанавливаем часовую стрелку часов */
@@ -92,11 +92,11 @@
             (second * (2 * Math.PI / (12 * 60 * 60)));  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
 
         ctx.beginPath();
-        ctx.lineWidth = 20;  /* Толщина часовой стрелки */
+        ctx.lineWidth = radNumbers * 0.8;  /* Толщина часовой стрелки; принимаем 80% от radNumbers */
         ctx.lineCap = "round";
         ctx.moveTo(0,0);
         ctx.rotate(hourAngle);
-        ctx.lineTo(0, -135);  /* Длина часовой стрелки  */
+        ctx.lineTo(0, -radius * 0.55);  /* Длина часовой стрелки; принимаем 55% от radius */
         ctx.stroke();
         ctx.rotate(-hourAngle);
 
@@ -105,10 +105,10 @@
         let minuteAngle = (minute * (2 * Math.PI / 60)) + (second * (2 * Math.PI / (60 * 60)));
 
         ctx.beginPath();
-        ctx.lineWidth = 8;  /* Толщина минутной стрелки */
+        ctx.lineWidth = radNumbers * 0.32;  /* Толщина минутной стрелки; принимаем 32% от radNumbers */
         ctx.moveTo(0,0);
         ctx.rotate(minuteAngle);
-        ctx.lineTo(0, -185);  /* Длина минутной стрелки  */
+        ctx.lineTo(0, -radius * 0.73);  /* Длина минутной стрелки; принимаем 73% от radius */
         ctx.stroke();
         ctx.rotate(-minuteAngle);
 
@@ -117,10 +117,10 @@
         let secondAngle = second * (2 * Math.PI / 60);
 
         ctx.beginPath();
-        ctx.lineWidth = 3;  /* Толщина секундной стрелки */
+        ctx.lineWidth = radNumbers * 0.12;  /* Толщина секундной стрелки; принимаем 12% от radNumbers */
         ctx.moveTo(0,0);
         ctx.rotate(secondAngle);
-        ctx.lineTo(0, -220);  /* Длина секундной стрелки  */
+        ctx.lineTo(0, -radius * 0.88);  /* Длина секундной стрелки; принимаем 88% от radius  */
         ctx.stroke();
         ctx.rotate(-secondAngle);
     }
