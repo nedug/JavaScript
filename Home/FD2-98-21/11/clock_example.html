@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<canvas id="canvas" width="400" height="400" style="background-color:#333"></canvas>
+<canvas id="canvas" width="400" height="400" style="background-color:#333333"></canvas>
 
 <script>
     var canvas = document.getElementById("canvas");
@@ -11,7 +11,8 @@
     ctx.translate(radius, radius);
     radius = radius * 0.90
     drawClock();
-    setInterval(drawClock, 1000);
+
+    // setInterval(drawClock, 1000);
 
     function drawClock() {
         ctx.arc(0, 0, radius, 0 , 2 * Math.PI);
