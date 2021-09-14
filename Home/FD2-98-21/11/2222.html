@@ -42,7 +42,7 @@
         ctx.textBaseline = "middle";  /* Выравниваем текст по вертикали */
 
 
-        for (let numClock = 1; numClock <= 12; numClock++) {  /* Создание циферблата часов */
+        for (let numClock = 1; numClock <= 12; numClock++) {  /* Создание циферблата часов через цикл */
 
             let angHours = numClock * (2 * Math.PI / 12);  /* Находим угол поворота для цифр часов */
 
@@ -64,43 +64,65 @@
         }
 
 
-        /*  Создаем и устанавливаем часовую стрелку часов */
-        let hour = (new Date().getHours() * (2 * Math.PI / 12)) +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
-            (new Date().getMinutes() * (2 * Math.PI / (12 * 60))) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
-            (new Date().getSeconds() * (2 * Math.PI / (12 * 60 * 60)));  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
+/*  Создаем электронные часы  */
+        ctx.font = "45px arial";
+        ctx.fillStyle = 'white';
+
+        let second = new Date().getSeconds();
+		  if (second < 10 ) {
+            second = '0' + second;
+		  }
+
+        let minute = new Date().getMinutes();
+        if (minute < 10 ) {
+            minute = '0' + minute;
+        }
+
+        let hour = new Date().getHours();
+        if (hour < 10 ) {
+            hour = '0' + hour;
+        }
+
+        ctx.fillText(`${hour}:${minute}:${second}`, 0, -100);
+
+
+/*  Создаем и устанавливаем часовую стрелку часов */
+        let hourAngle = (hour * (2 * Math.PI / 12)) +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
+            (minute * (2 * Math.PI / (12 * 60))) +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
+            (second * (2 * Math.PI / (12 * 60 * 60)));  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
 
         ctx.beginPath();
         ctx.lineWidth = 20;  /* Толщина часовой стрелки */
         ctx.lineCap = "round";
         ctx.moveTo(0,0);
-        ctx.rotate(hour);
+        ctx.rotate(hourAngle);
         ctx.lineTo(0, -135);  /* Длина часовой стрелки  */
         ctx.stroke();
-        ctx.rotate(-hour);
+        ctx.rotate(-hourAngle);
 
 
-        /*  Создаем и устанавливаем минутную стрелку часов */
-        let minute = (new Date().getMinutes() * (2 * Math.PI / 60)) + (new Date().getSeconds() * (2 * Math.PI / (60 * 60)));
+/*  Создаем и устанавливаем минутную стрелку часов */
+        let minuteAngle = (minute * (2 * Math.PI / 60)) + (second * (2 * Math.PI / (60 * 60)));
 
         ctx.beginPath();
         ctx.lineWidth = 8;  /* Толщина минутной стрелки */
         ctx.moveTo(0,0);
-        ctx.rotate(minute);
+        ctx.rotate(minuteAngle);
         ctx.lineTo(0, -185);  /* Длина минутной стрелки  */
         ctx.stroke();
-        ctx.rotate(-minute);
+        ctx.rotate(-minuteAngle);
 
 
-        /*  Создаем и устанавливаем секундную стрелку часов */
-        let second = new Date().getSeconds() * (2 * Math.PI / 60);
+/*  Создаем и устанавливаем секундную стрелку часов */
+        let secondAngle = second * (2 * Math.PI / 60);
 
         ctx.beginPath();
         ctx.lineWidth = 3;  /* Толщина секундной стрелки */
         ctx.moveTo(0,0);
-        ctx.rotate(second);
+        ctx.rotate(secondAngle);
         ctx.lineTo(0, -220);  /* Длина секундной стрелки  */
         ctx.stroke();
-        ctx.rotate(-second);
+        ctx.rotate(-secondAngle);
     }
 
 </script>
