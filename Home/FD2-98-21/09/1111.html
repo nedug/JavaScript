@@ -61,6 +61,9 @@
 
     const angleHour = 30; /* Константа, необходимая для расчетов угла поворота часовой стрелки и расположения цифр на циферблате часов; 360/12 = 30 градусов в одном часу */
     const angleMinSec = 6; /* Константа, необходимая для расчетов угла поворота секундной и минутной стрелки; 360/60 = 6 градусов в одной минуте/секунде */
+    const addAngleSec = angleMinSec / 60; /* Константа, необходимая для расчетов дополнительного угла поворота минутной стрелки в зависимости от секунды текущего времени; 360/60/60 = 0.1 градусов */
+    const addAngleMin = angleHour / 60; /* Константа, необходимая для расчетов дополнительного угла поворота часовой стрелки в зависимости от минуты текущего времени; 360/12/60 = 0.5 градусов */
+    const addAngleHour = addAngleMin / 60; /* Константа, необходимая для расчетов дополнительного угла поворота часовой стрелки в зависимости от секунды текущего времени; */
     const angleCorrect = 90; /* Константа, необходимая для корректировки расположения стрелок и цифр; для часов необходимо чтобы начало отсчета было от оси Y, а не от оси X, поэтому 90 градусов*/
 
     const arrowsX = 240; /* Положение стрелок часов по оси Х относительно контейнера, 500(ширина контейнера часов)/2 - 10(смещение точки поворота стрелки) = 240 */
@@ -107,26 +110,17 @@
     }
 
 
-    second.style.cssText = `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`; /* Установка положения секундной стрелки при загрузке страницы исходя из текушего времени */
-    minute.style.cssText = `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`; /* Установка положения минутной стрелки при загрузке страницы исходя из текушего времени */
-    hour.style.cssText = `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`; /* Установка положения часовой стрелки при загрузке страницы исходя из текушего времени */
+    startClock();  /* Создание часов при загрузке страницы */
 
-
-    setInterval(startClock, 1000);  /* Запуск часов */
+    setInterval(startClock, 1000);  /* Запуск и создание часов с обновлением каждую секунду */
 
     function startClock() {
 
         second.style.cssText = `transform:rotate(${angleMinSec * new Date().getSeconds() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`;  /* Установка положения секундной стрелки часов каждую 1с */
 
+        minute.style.cssText = `transform:rotate(${angleMinSec * new Date().getMinutes() + addAngleSec * new Date().getSeconds() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`;  /* Установка положения минутной стрелки часов каждую 1с */
 
-
-            minute.style.cssText = `transform:rotate(${angleMinSec * new Date().getMinutes() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`;
-
-
-
-            hour.style.cssText = `transform:rotate(${angleHour * new Date().getHours() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`;
-
-
+        hour.style.cssText = `transform:rotate(${angleHour * new Date().getHours() + addAngleMin * new Date().getMinutes() + addAngleHour * new Date().getSeconds() - angleCorrect}deg); left: ${arrowsX}px; top: ${arrowsY}%; transform-origin: ${transX}px ${arrowsY}%;`;  /* Установка положения часовой стрелки часов каждую 1с */
     }
 
 </script>
