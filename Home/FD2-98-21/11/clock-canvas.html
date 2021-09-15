@@ -107,11 +107,13 @@
         ctx.lineCap = "round";
         ctx.moveTo(0,0);
         ctx.save();
+        ctx.globalAlpha = 0.8;
         ctx.rotate(secondAngle);
         ctx.lineTo(0, -radius * 0.88);  /* Длина секундной стрелки; принимаем 88% от radius  */
         ctx.stroke();
         ctx.restore();
         // ctx.rotate(-secondAngle);
+
 
 
         /*  Создаем и запускаем минутную стрелку часов */
@@ -121,6 +123,7 @@
         ctx.lineWidth = radNumbers * 0.32;  /* Толщина минутной стрелки; принимаем 32% от radNumbers */
         ctx.moveTo(0,0);
         ctx.save();
+        ctx.globalAlpha = 0.8;
         ctx.rotate(minuteAngle);
         ctx.lineTo(0, -radius * 0.73);  /* Длина минутной стрелки; принимаем 73% от radius */
         ctx.stroke();
@@ -137,6 +140,7 @@
         ctx.lineWidth = radNumbers * 0.8;  /* Толщина часовой стрелки; принимаем 80% от radNumbers */
         ctx.moveTo(0,0);
         ctx.save();
+        ctx.globalAlpha = 0.8;
         ctx.rotate(hourAngle);
         ctx.lineTo(0, -radius * 0.55);  /* Длина часовой стрелки; принимаем 55% от radius */
         ctx.stroke();

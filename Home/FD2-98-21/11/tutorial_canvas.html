@@ -526,24 +526,26 @@
                 ctx.strokeStyle = "blue";
                 ctx.lineWidth = 4;
                 ctx.fillStyle = "red";
+
                 ctx.save();
 
                 ctx.scale(2, 2);
                 ctx.strokeRect(25, 25, 100, 100);
                 ctx.fillRect(25, 25, 100, 100);
-					 //
+
                 ctx.restore();
+
                 ctx.translate(250, 25);
                 ctx.fillRect(25, 25, 100, 100);
-					 //
-                // ctx.scale(.5, .5);
-                // ctx.fillRect(285, 25, 100, 100);
-					 //
-                // ctx.rotate(.52); // поворот на 0.52 радиан или 30 градусов
-                // ctx.globalAlpha = 0.5;
-                // ctx.fillStyle = "blue";
-                // ctx.fillRect(285, 25, 100, 100);
-					 //
+
+                ctx.scale(.5, .5);
+                ctx.fillRect(285, 25, 100, 100);
+
+                ctx.rotate(.52); // поворот на 0.52 радиан или 30 градусов
+                ctx.globalAlpha = 0.5;
+                ctx.fillStyle = "blue";
+                ctx.fillRect(285, 25, 100, 100);
+
                 // ctx.resetTransform(); // трансформация больше не применяется
                 // ctx.globalAlpha = 1;
                 // ctx.fillStyle = "green";
