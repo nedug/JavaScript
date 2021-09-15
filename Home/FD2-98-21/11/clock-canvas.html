@@ -71,7 +71,7 @@
             ctx.fillStyle = 'black';
             ctx.fillText(numClock.toString(), 0, 0);  /* Вставляем цифры часов */
 
-            ctx.restore();
+            ctx.restore();  /* Возращаем первоначалтное положение нулевой точки и угла поворота */
 
             // ctx.rotate(angHours); /* Возращаем предыдущий угол поворота, необходимый для возрата нулевой точки */
             // ctx.translate(0, radius - (radNumbers + gapNum)); /* Сдвигаем нулевую точку обратно в центр часов */
