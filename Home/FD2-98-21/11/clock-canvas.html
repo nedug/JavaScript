@@ -55,8 +55,12 @@
 
             let angHours = numClock * AngleHourForHour;  /* Находим угол поворота для цифр часов */
 
+            ctx.save();
+
             ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки */
             ctx.translate(0, -radius + (radNumbers + gapNum)); /* Сдвигаем нулевую точку на 12 часов */
+
+            ctx.save();
 
             ctx.fillStyle = '#e7da97';
             ctx.beginPath();
@@ -67,20 +71,25 @@
             ctx.fillStyle = 'black';
             ctx.fillText(numClock.toString(), 0, 0);  /* Вставляем цифры часов */
 
-            ctx.rotate(angHours); /* Возращаем предыдущий угол поворота, необходимый для возрата нулевой точки */
-            ctx.translate(0, radius - (radNumbers + gapNum)); /* Сдвигаем нулевую точку обратно в центр часов */
-            ctx.rotate(-angHours); /* Возращаем угол поворота на 0 до начала следующего прохода цикла */
+            ctx.restore();
+
+            // ctx.rotate(angHours); /* Возращаем предыдущий угол поворота, необходимый для возрата нулевой точки */
+
+            ctx.restore();
+
+            // ctx.translate(0, radius - (radNumbers + gapNum)); /* Сдвигаем нулевую точку обратно в центр часов */
+            // ctx.rotate(-angHours); /* Возращаем угол поворота на 0 до начала следующего прохода цикла */
         }
 
 
-/*  Создаем электронные часы  */
+        /*  Создаем электронные часы  */
         ctx.font = radNumbers * 2 + "px arial";
         ctx.fillStyle = 'white';
 
         let second = new Date().getSeconds();
-		  if (second < 10 ) {
+        if (second < 10 ) {
             second = '0' + second;
-		  }
+        }
 
         let minute = new Date().getMinutes();
         if (minute < 10 ) {
@@ -95,7 +104,7 @@
         ctx.fillText(`${hour}:${minute}:${second}`, 0, -radius * 0.4);
 
 
-/*  Создаем и устанавливаем секундную стрелку часов */
+        /*  Создаем и устанавливаем секундную стрелку часов */
         let secondAngle = second * AngleSecForSec;
 
         ctx.beginPath();
@@ -108,7 +117,7 @@
         ctx.rotate(-secondAngle);
 
 
-/*  Создаем и устанавливаем минутную стрелку часов */
+        /*  Создаем и устанавливаем минутную стрелку часов */
         let minuteAngle = minute * AngleMinForMin + second * AngleMinForSec;
 
         ctx.beginPath();
@@ -120,7 +129,7 @@
         ctx.rotate(-minuteAngle);
 
 
-/*  Создаем и устанавливаем часовую стрелку часов */
+        /*  Создаем и устанавливаем часовую стрелку часов */
         let hourAngle = hour * AngleHourForHour +  /* Находим пероначальный угол часов, без учета текущих минут и секунд времени */
             minute * AngleHourForMin +  /* Находим дополнительный угол часов, в зависимости от текущих минут времени */
             second * AngleHourForSec;  /* Находим дополнительный угол часов, в зависимости от текущих секунд времени */
