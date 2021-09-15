@@ -60,8 +60,6 @@
             ctx.rotate(angHours); /* Поварачиваем все последущие операции: сдвиг нулевой точки */
             ctx.translate(0, -radius + (radNumbers + gapNum)); /* Сдвигаем нулевую точку на 12 часов */
 
-            // ctx.save();
-
             ctx.fillStyle = '#e7da97';
             ctx.beginPath();
             ctx.arc(0, 0, radNumbers, 0, 2 * Math.PI); /* Создаем круги-контейнеры для цифр часов */
