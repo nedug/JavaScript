@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       div {
+           padding: 10px;
+       }
+
+       p {
+           border: 1px red solid;
+           padding: 6px 12px;
+       }
+       p > span,
+       p > strong {
+           display: inline-block;
+           width: calc(50% - 12px);
+           padding: 5px;
+           border: 1px blue solid;
+       }
+	</style>
+</head>
+<body>
+
+	<div>
+		<button id="add">Add new element</button>
+	</div>
+	<div id="root"></div>
+
+<script>
+
+    const root = document.querySelector("#root");
+    const addBtn = document.querySelector("#add");
+
+    addBtn.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const newEle = document.createElement("p");
+        const newEle2 = document.createElement("span");
+
+
+        let counter = 0;
+
+        newEle2.textContent = counter;
+        newEle.append(newEle2);
+
+
+        newEle.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (event.target.tagName === "SPAN") {
+                event.target.textContent++;
+            }
+        });
+
+        root.append(newEle);
+    });
+
+</script>
+
+</body>
+</html>
