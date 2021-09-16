@@ -4,33 +4,33 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-		.field {
-          margin: 50px;
-          background-color: #eee2a5;
-			 border: 1px solid black;
-			 position: relative;
-		}
-		#ball {
-          background-color: #f3445b;
-			 border-radius: 50%;
-          position: absolute;
+       .field {
+           margin: 50px;
+           background-color: #eee2a5;
+           border: 1px solid black;
+           position: relative;
+       }
+       #ball {
+           background-color: #f3445b;
+           border-radius: 50%;
+           position: absolute;
 
-          top: 200px;
-          left: 200px;
-		}
-      #leftRacket {
-          background-color: #6cf189;
-          position: absolute;
-          /*top: 50px;*/
-          /*left: 0px;*/
-      }
-      #rightRacket {
-          background-color: #6c9df1;
-          position: absolute;
+           top: 200px;
+           left: 200px;
+       }
+       #leftRacket {
+           background-color: #6cf189;
+           position: absolute;
+           /*top: 50px;*/
+           /*left: 0px;*/
+       }
+       #rightRacket {
+           background-color: #6c9df1;
+           position: absolute;
 
-          top: 200px;
-          right: 0px;
-      }
+           top: 200px;
+           right: 0px;
+       }
 	</style>
 </head>
 <body>
@@ -83,7 +83,7 @@
             leftRacket.style.left = this.posX + "px";
             leftRacket.style.top = this.posY + "px";
         }
-	 }
+    }
 
     leftRacketInfo.updateRacket();
 
@@ -98,14 +98,14 @@
 
         console.log(event.code)
 
-		  if (event.code === 'ShiftLeft') {
+        if (event.code === 'ShiftLeft') {
 
             // leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
-				//
+            //
             // if (leftRacketInfo.posY < 0) {
             //             leftRacketInfo.posY = 0;
-				// }
-				//
+            // }
+            //
             // leftRacketInfo.updateRacket();
 
 
@@ -118,8 +118,8 @@
                     leftRacketInfo.posY = 0;
                 }
                 leftRacketInfo.updateRacket();
-				}
-		  }
+            }
+        }
 
 
         if (event.code === 'ControlLeft') {
