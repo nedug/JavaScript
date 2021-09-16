@@ -5,7 +5,9 @@
 	<title>Title</title>
 	<style>
 		.field {
-
+          margin: 50px;
+          background-color: #eee2a5;
+			 border: 1px solid black;
 		}
 	</style>
 </head>
@@ -15,8 +17,13 @@
 
 <script>
 
+    const widthField = 850;
+    const heightField = 500;
+
+
     field = document.createElement('div');
     field.className = 'field';
+    field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`
     document.body.prepend(field);
 
 
