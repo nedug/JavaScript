@@ -27,9 +27,8 @@
        #rightRacket {
            background-color: #6c9df1;
            position: absolute;
-
-           top: 200px;
-           right: 0px;
+           /*top: 200px;*/
+           /*right: 0px;*/
        }
 	</style>
 </head>
@@ -74,7 +73,7 @@
     let leftRacketInfo = {
         posX : 0,
         posY : 350,
-        speedY : 7,
+        speedY : 4,
         width : widthRacket,
         height: heightRacket,
 
@@ -85,10 +84,31 @@
         }
     }
 
+
+    let rightRacketInfo = {
+        posX : 0,
+        posY : 250,
+        speedY : 4,
+        width : widthRacket,
+        height: heightRacket,
+
+        updateRacket: function() {
+
+            rightRacket.style.right = this.posX + "px";
+            rightRacket.style.top = this.posY + "px";
+        }
+    }
+
     leftRacketInfo.updateRacket();
+
+    rightRacketInfo.updateRacket();
 
 
     let timer1;
+    let timer2;
+
+    let timer3;
+    let timer4;
 
 
 
@@ -100,16 +120,7 @@
 
         if (event.code === 'ShiftLeft') {
 
-            // leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
-            //
-            // if (leftRacketInfo.posY < 0) {
-            //             leftRacketInfo.posY = 0;
-            // }
-            //
-            // leftRacketInfo.updateRacket();
-
-
-            timer1 = setInterval(upp, 40);
+            timer1 = requestAnimationFrame(upp);
 
             function upp() {
 
@@ -117,35 +128,75 @@
                 if (leftRacketInfo.posY < 0) {
                     leftRacketInfo.posY = 0;
                 }
+
                 leftRacketInfo.updateRacket();
+
+                timer1 = requestAnimationFrame(upp);
             }
         }
 
 
         if (event.code === 'ControlLeft') {
 
-            leftRacketInfo.posY = leftRacketInfo.posY + leftRacketInfo.speedY;
+            timer2 = requestAnimationFrame(upp22);
 
-            if (leftRacketInfo.posY + leftRacketInfo.height > heightField) {
-                leftRacketInfo.posY = heightField - leftRacketInfo.height;
+            function upp22() {
+
+                leftRacketInfo.posY = leftRacketInfo.posY + leftRacketInfo.speedY;
+                if (leftRacketInfo.posY + leftRacketInfo.height > heightField) {
+                    leftRacketInfo.posY = heightField - leftRacketInfo.height;
+                }
+
+                leftRacketInfo.updateRacket();
+
+                timer2 = requestAnimationFrame(upp22);
             }
 
-            leftRacketInfo.updateRacket();
-
-
-            // timer1 = setInterval(upp, 40);
-            //
-            // function upp() {
-            //
-            //     leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
-            //     if (leftRacketInfo.posY < 0) {
-            //         leftRacketInfo.posY = 0;
-            //     }
-            //     leftRacketInfo.updateRacket();
-            // }
         }
 
+
+
     }
+
+
+
+
+
+    addEventListener('keydown', leftRacketUp222, {once:true});
+
+    function leftRacketUp222(event) {
+
+
+        if (event.code === 'ArrowUp') {
+
+            timer3 = requestAnimationFrame(upp33);
+
+            function upp33() {
+
+                rightRacketInfo.posY = rightRacketInfo.posY - rightRacketInfo.speedY;
+                if (rightRacketInfo.posY < 0) {
+                    rightRacketInfo.posY = 0;
+                }
+
+                rightRacketInfo.updateRacket();
+
+                timer3 = requestAnimationFrame(upp33);
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 
 
     addEventListener('keyup', leftRacket10);
@@ -154,8 +205,30 @@
 
         if (event.code === 'ShiftLeft') {
 
-            clearInterval(timer1);
+            cancelAnimationFrame(timer1);
             addEventListener('keydown', leftRacketUp, {once:true});
+
+        }
+
+        if (event.code === 'ControlLeft') {
+
+            cancelAnimationFrame(timer2);
+            addEventListener('keydown', leftRacketUp, {once:true});
+
+        }
+
+    }
+
+
+    addEventListener('keyup', leftRacket222);
+
+    function leftRacket222(event) {
+
+
+        if (event.code === 'ArrowUp') {
+
+            cancelAnimationFrame(timer3);
+            addEventListener('keydown', leftRacketUp222, {once:true});
 
         }
 
