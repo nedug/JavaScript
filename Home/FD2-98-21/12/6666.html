@@ -73,7 +73,7 @@
     let leftRacketInfo = {
         posX : 0,
         posY : 350,
-        speedY : 8,
+        speedY : 10,
         width : widthRacket,
         height: heightRacket,
 
@@ -103,46 +103,64 @@
     rightRacketInfo.updateRacket();
 
 
-    let timer1;
-    let timer2;
 
-    let timer3;
-    let timer4;
+    let storage = [];
 
+    document.addEventListener('keydown', something);
+    document.addEventListener('keyup', something);
 
-    var map = [];
+    function something(event) {
 
-    onkeydown = onkeyup = function(e) {
+        // console.log(event.code);
 
-        map[e.keyCode] = e.type == 'keydown';
+        if (event.type === 'keydown') {
+            storage[event.code] = true;
+		  }
 
-    }
+        if (event.type === 'keyup') {
+            storage[event.code] = false;
+        }
+        // console.log(storage);
+	 }
 
 
     function keydown() {
-        if (map[38]) {
+
+        if (storage['ShiftLeft']) {
             leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
+            if (leftRacketInfo.posY < 0) {
+                leftRacketInfo.posY = 0;
+            }
             leftRacketInfo.updateRacket();
         }
 
-        if (map[40]) {
+        if (storage['ControlLeft']) {
             leftRacketInfo.posY = leftRacketInfo.posY + leftRacketInfo.speedY;
+            if (leftRacketInfo.posY + leftRacketInfo.height > heightField) {
+                leftRacketInfo.posY = heightField - leftRacketInfo.height;
+            }
             leftRacketInfo.updateRacket();
         }
 
-        if (map[87]) {
+        if (storage['ArrowUp']) {
             rightRacketInfo.posY = rightRacketInfo.posY - rightRacketInfo.speedY;
+            if (rightRacketInfo.posY < 0) {
+                rightRacketInfo.posY = 0;
+            }
+            rightRacketInfo.updateRacket();
+        }
+
+        if (storage['ArrowDown']) {
+            rightRacketInfo.posY = rightRacketInfo.posY + rightRacketInfo.speedY;
+            if (rightRacketInfo.posY + rightRacketInfo.height > heightField) {
+                rightRacketInfo.posY = heightField - rightRacketInfo.height;
+            }
             rightRacketInfo.updateRacket();
         }
 
     }
 
-
-
-
-    setInterval(function() {
-        keydown();
-    }, 40);
+    setInterval(keydown, 20);
 
 
 
