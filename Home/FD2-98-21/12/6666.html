@@ -106,10 +106,10 @@
 
     let storage = [];
 
-    document.addEventListener('keydown', something);
-    document.addEventListener('keyup', something);
+    document.addEventListener('keydown', fillStorage);
+    document.addEventListener('keyup', fillStorage);
 
-    function something(event) {
+    function fillStorage(event) {
 
         // console.log(event.code);
 
@@ -124,10 +124,12 @@
 	 }
 
 
-    function keydown() {
+    function racketsMove() {
 
         if (storage['ShiftLeft']) {
+
             leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
+
             if (leftRacketInfo.posY < 0) {
                 leftRacketInfo.posY = 0;
             }
@@ -135,7 +137,9 @@
         }
 
         if (storage['ControlLeft']) {
+
             leftRacketInfo.posY = leftRacketInfo.posY + leftRacketInfo.speedY;
+
             if (leftRacketInfo.posY + leftRacketInfo.height > heightField) {
                 leftRacketInfo.posY = heightField - leftRacketInfo.height;
             }
@@ -143,7 +147,9 @@
         }
 
         if (storage['ArrowUp']) {
+
             rightRacketInfo.posY = rightRacketInfo.posY - rightRacketInfo.speedY;
+
             if (rightRacketInfo.posY < 0) {
                 rightRacketInfo.posY = 0;
             }
@@ -151,7 +157,9 @@
         }
 
         if (storage['ArrowDown']) {
+
             rightRacketInfo.posY = rightRacketInfo.posY + rightRacketInfo.speedY;
+
             if (rightRacketInfo.posY + rightRacketInfo.height > heightField) {
                 rightRacketInfo.posY = heightField - rightRacketInfo.height;
             }
@@ -160,15 +168,7 @@
 
     }
 
-    setInterval(keydown, 20);
-
-
-
-
-
-
-
-
+    setInterval(racketsMove, 20);
 
 
 
