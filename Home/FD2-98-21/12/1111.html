@@ -18,6 +18,20 @@
           top: 200px;
           left: 200px;
 		}
+      #leftRacket {
+          background-color: #6cf189;
+          position: absolute;
+
+          top: 50px;
+          left: 0px;
+      }
+      #rightRacket {
+          background-color: #6c9df1;
+          position: absolute;
+
+          top: 200px;
+          right: 0px;
+      }
 	</style>
 </head>
 <body>
@@ -28,6 +42,9 @@
     const heightField = 500;
 
     const widthHeightBall = heightField * 0.09;
+
+    const widthRacket = heightField * 0.03;
+    const heightRacket = heightField * 0.28;
 
 
     field = document.createElement('div');
@@ -41,10 +58,15 @@
     ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
     field.append(ball);
 
-    ball = document.createElement('div');
-    ball.setAttribute('id', 'ball');
-    ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
-    field.append(ball);
+    leftRacket = document.createElement('div');
+    leftRacket.setAttribute('id', 'leftRacket');
+    leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(leftRacket);
+
+    rightRacket = document.createElement('div');
+    rightRacket.setAttribute('id', 'rightRacket');
+    rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(rightRacket);
 
 
 
