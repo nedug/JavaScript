@@ -21,9 +21,8 @@
       #leftRacket {
           background-color: #6cf189;
           position: absolute;
-
-          top: 50px;
-          left: 0px;
+          /*top: 50px;*/
+          /*left: 0px;*/
       }
       #rightRacket {
           background-color: #6c9df1;
@@ -47,26 +46,107 @@
     const heightRacket = heightField * 0.28;
 
 
-    field = document.createElement('div');
+    let field = document.createElement('div');
     field.className = 'field';
     field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
     document.body.prepend(field);
 
 
-    ball = document.createElement('div');
+    let ball = document.createElement('div');
     ball.setAttribute('id', 'ball');
     ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
     field.append(ball);
 
-    leftRacket = document.createElement('div');
+    let leftRacket = document.createElement('div');
     leftRacket.setAttribute('id', 'leftRacket');
+
+    leftRacket.setAttribute('tabindex', '-1');
+
     leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(leftRacket);
 
-    rightRacket = document.createElement('div');
+    let rightRacket = document.createElement('div');
     rightRacket.setAttribute('id', 'rightRacket');
     rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(rightRacket);
+
+
+    let leftRacketInfo = {
+        posX : 0,
+        posY : 250,
+        speedY : 2,
+        width : widthRacket,
+        height: heightRacket,
+
+        updateRacket: function() {
+
+            leftRacket.style.left = this.posX + "px";
+            leftRacket.style.top = this.posY + "px";
+        }
+	 }
+
+    leftRacketInfo.updateRacket();
+
+
+    let timer1;
+
+
+
+    addEventListener('keydown', leftRacketUp);
+
+    function leftRacketUp(event) {
+
+        console.log(event.code)
+
+		  if (event.code === 'ShiftLeft') {
+
+            timer1 = setInterval(upp, 40);
+
+            function upp() {
+
+                leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
+                if (leftRacketInfo.posY < 0) {
+                    leftRacketInfo.posY = 0;
+                }
+                leftRacketInfo.updateRacket();
+				}
+		  }
+
+        // if (event.code === 'ControlLeft') {
+		  //
+        //     setInterval(down, 40);
+		  //
+        //     function down() {
+		  //
+        //         leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
+        //         if (leftRacketInfo.posY < 0) {
+        //             leftRacketInfo.posY = 0;
+        //         }
+        //         leftRacketInfo.updateRacket();
+        //     }
+        // }
+	 }
+
+
+
+
+
+    addEventListener('keyup', leftRacket10);
+
+    function leftRacket10(event) {
+
+        if (event.code === 'ShiftLeft') {
+
+            clearInterval(timer1);
+
+        }
+
+
+    }
+
+
+
+
 
 
 
