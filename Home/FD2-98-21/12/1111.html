@@ -8,23 +8,43 @@
           margin: 50px;
           background-color: #eee2a5;
 			 border: 1px solid black;
+			 position: relative;
+		}
+		#ball {
+          background-color: #f3445b;
+			 border-radius: 50%;
+          position: absolute;
+
+          top: 200px;
+          left: 200px;
 		}
 	</style>
 </head>
 <body>
-
-
 
 <script>
 
     const widthField = 850;
     const heightField = 500;
 
+    const widthHeightBall = heightField * 0.09;
+
 
     field = document.createElement('div');
     field.className = 'field';
-    field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`
+    field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
     document.body.prepend(field);
+
+
+    ball = document.createElement('div');
+    ball.setAttribute('id', 'ball');
+    ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
+    field.append(ball);
+
+    ball = document.createElement('div');
+    ball.setAttribute('id', 'ball');
+    ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
+    field.append(ball);
 
 
 
