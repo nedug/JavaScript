@@ -27,8 +27,8 @@
        #rightRacket {
            background-color: #6c9df1;
            position: absolute;
-           top: 200px;
-           right: 0px;
+           /*top: 200px;*/
+           /*right: 0px;*/
        }
 	</style>
 </head>
@@ -84,16 +84,37 @@
         }
     }
 
+    let rightRacketInfo = {
+        posX : 0,
+        posY : 250,
+        speedY : 4,
+        width : widthRacket,
+        height: heightRacket,
+
+        updateRacket: function() {
+
+            rightRacket.style.right = this.posX + "px";
+            rightRacket.style.top = this.posY + "px";
+        }
+    }
+
     leftRacketInfo.updateRacket();
+
+    rightRacketInfo.updateRacket();
 
 
     let timer1;
     let timer2;
 
+    let timer3;
+    let timer4;
 
-    addEventListener('keydown', leftRacketUp, {once:true});
+
+    document.body.addEventListener('keydown', leftRacketUp, {once:true});
 
     function leftRacketUp(event) {
+
+        console.log(event.code)
 
         if (event.code === 'ShiftLeft') {
 
@@ -128,10 +149,54 @@
                 timer2 = requestAnimationFrame(down);
             }
         }
+
+
+
+
+        if (event.code === 'ArrowUp') {
+
+            timer3 = requestAnimationFrame(upp33);
+
+            function upp33() {
+
+                rightRacketInfo.posY = rightRacketInfo.posY - rightRacketInfo.speedY;
+                if (rightRacketInfo.posY < 0) {
+                    rightRacketInfo.posY = 0;
+                }
+
+                rightRacketInfo.updateRacket();
+
+                timer3 = requestAnimationFrame(upp33);
+            }
+        }
+
+
+        if (event.code === 'ArrowDown') {
+
+            timer4 = requestAnimationFrame(down2);
+
+            function down2() {
+
+                rightRacketInfo.posY = rightRacketInfo.posY + rightRacketInfo.speedY;
+                if (rightRacketInfo.posY + rightRacketInfo.height > heightField) {
+                    rightRacketInfo.posY = heightField - rightRacketInfo.height;
+                }
+                rightRacketInfo.updateRacket();
+
+                timer4 = requestAnimationFrame(down2);
+            }
+        }
+
+
+
     }
 
 
-    addEventListener('keyup', leftRacket10);
+
+
+
+
+    document.body.addEventListener('keyup', leftRacket10);
 
     function leftRacket10(event) {
 
@@ -145,6 +210,23 @@
             cancelAnimationFrame(timer2);
             addEventListener('keydown', leftRacketUp, {once:true});
         }
+
+        if (event.code === 'ArrowUp') {
+
+            cancelAnimationFrame(timer3);
+            addEventListener('keydown', leftRacketUp, {once:true});
+
+        }
+
+        if (event.code === 'ArrowDown') {
+
+            cancelAnimationFrame(timer4);
+            addEventListener('keydown', leftRacketUp, {once:true});
+
+        }
+
+
+
     }
 
 
