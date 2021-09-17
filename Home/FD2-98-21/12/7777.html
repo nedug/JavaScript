@@ -79,10 +79,18 @@
     rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(rightRacket);
 
+    let scorePlayer1 = 0;
+    let scorePlayer2 = 0;
+
     let score = document.createElement('div');
     score.className = 'score';
-    score.innerHTML = `<span class="player1">0</span>:<span class="player2">0</span>`;
+    score.innerHTML = `<span class="player1">${scorePlayer1}</span>:<span class="player2">${scorePlayer2}</span>`;
     document.body.prepend(score);
+
+    let player1 = document.body.querySelector('.player1');
+    let player2 = document.body.querySelector('.player2');
+
+    // console.log(player1)
 
 
     let button = document.createElement('button');
@@ -93,9 +101,11 @@
 
     button.addEventListener('click', startGame);
 
+    let xxx;
+
     function startGame() {
         setInterval(racketsMove, 20);
-        setInterval(ballMove, 20);
+        xxx = setInterval(ballMove, 20);
         button.disabled = true;
     }
 
@@ -198,9 +208,9 @@
 
 
 
-    let directX = randomDirect();
-    let directY = randomDirect();
-    let angel = randomDiap(2, 4);
+    // let directX = randomDirect();
+    // let directY = randomDirect();
+    // let angel = randomDiap(2, 4);
 
     function randomDirect() {
         let x = Math.random();
@@ -219,14 +229,19 @@
     let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
         posY : heightField / 2 - widthHeightBall / 2,
-        speedX : directX * 7,
-        speedY : directY * angel,
+        speedX : randomDirect() * 7,
+        speedY : randomDirect() * randomDiap(2, 4),
         width : widthHeightBall,
         height: widthHeightBall,
 
         updateBall: function() {
             ball.style.left = this.posX + "px";
             ball.style.top = this.posY + "px";
+            // ball.style.display = 'block';
+        },
+
+        hideBall: function() {
+            ball.style.display = 'none';
         }
     }
 
@@ -235,13 +250,71 @@
 
     function ballMove() {
 
+        // console.log(ballInfo.speedX);
+        // console.log(ballInfo.speedY);
+
+
         ballInfo.posX += ballInfo.speedX;
+        ballInfo.posY += ballInfo.speedY;
 
         // вылетел ли мяч правее стены?
         if (ballInfo.posX + ballInfo.width > widthField) {
 
-            ballInfo.speedX =- ballInfo.speedX;
-            ballInfo.posX = widthField - ballInfo.width;
+            clearInterval(xxx);
+
+            // ball.style.display = 'none';
+
+            player2.innerHTML = `${++scorePlayer2}`;
+
+            ballInfo.posX = widthField / 2 - widthHeightBall / 2;
+            ballInfo.posY = heightField / 2 - widthHeightBall / 2;
+
+            console.log(ballMove)
+
+            setInterval(MoveScore, 1000);
+
+            let backStart = 3;
+
+            function MoveScore() {
+                button.innerHTML = `${backStart--}...`;
+                // if ()
+				}
+
+
+
+            setTimeout(Move111, 3000)
+
+				function Move111() {
+                xxx = setInterval(ballMove, 20);
+				}
+
+
+
+
+
+
+
+            // xxx = setInterval(ballMove, 20);
+
+
+
+
+
+
+
+
+
+
+
+
+            // setInterval(ballMove, 2000);
+
+
+
+
+
+            // ballInfo.speedX =- ballInfo.speedX;
+            // ballInfo.posX = widthField - ballInfo.width;
         }
         // вылетел ли мяч левее стены?
         if (ballInfo.posX < 0) {
@@ -250,7 +323,6 @@
             ballInfo.posX = 0;
         }
 
-        ballInfo.posY += ballInfo.speedY;
 
         // вылетел ли мяч ниже пола?
         if (ballInfo.posY + ballInfo.height > heightField) {
