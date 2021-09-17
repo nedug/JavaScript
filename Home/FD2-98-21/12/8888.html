@@ -6,9 +6,10 @@
 	<style>
        .field {
            margin-left: 50px;
-           background-color: #eee2a5;
            border: 1px solid black;
            position: relative;
+           background: linear-gradient(#000, #000) no-repeat center/1px 100%;
+           background-color: #eee2a5;
        }
        #ball {
            background-color: #f3445b;
@@ -39,7 +40,7 @@
        }
        .score {
            display: inline-block;
-           margin-left: 290px;
+           margin-left: 294px;
            font-size: 50px;
            vertical-align: top;
        }
@@ -49,6 +50,10 @@
            font-size: 50px;
            vertical-align: top;
        }
+		 .backsScore span {
+            color: #ff1c1a;
+        }
+
 	</style>
 </head>
 <body>
@@ -285,22 +290,10 @@
 
             console.log('привет')
 
-
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = widthField - ballInfo.width - widthRacket;
 		  }
 
-
-        // if ((ballInfo.posX + ballInfo.width > widthField - widthRacket) && (rightRacketInfo.posY < ballInfo.posY - widthRacket + widthHeightBall / 2) && (rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 )) {
-		  //
-        //     console.log('привет')
-		  //
-			//
-		  //
-        //     ballInfo.speedX =- ballInfo.speedX;
-        //     ballInfo.posX = widthField - ballInfo.width - widthRacket;
-		  //
-        // }
 
 
 
@@ -351,7 +344,8 @@
                 clearInterval(timer2);
                 clearInterval(timer5);
                 backsScore.style.display = 'inline-block';
-                backsScore.innerHTML = `Win Player1`;
+                backsScore.style.marginLeft = '150px';
+                backsScore.innerHTML = `win <span>Player1</span>`;
                 button.disabled = false;
                 scorePlayer1 = 0;
                 scorePlayer2 = 0;
@@ -406,7 +400,8 @@
                 clearInterval(timer2);
                 clearInterval(timer5);
                 backsScore.style.display = 'inline-block';
-                backsScore.innerHTML = `Win Player2`;
+                backsScore.style.marginLeft = '150px';
+                backsScore.innerHTML = `win <span>Player2</span>`;
                 button.disabled = false;
                 scorePlayer1 = 0;
                 scorePlayer2 = 0;
