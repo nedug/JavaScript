@@ -268,7 +268,7 @@
         },
 
         randomBall: function() {
-            this.speedX = randomDirect() * 7;
+            this.speedX = randomDirect() * 8;
             this.speedY = randomDirect() * randomDiap(2, 5);
         }
     }
@@ -288,17 +288,20 @@
 
         if (ballInfo.posX + ballInfo.width >= widthField - widthRacket && ballInfo.posY >= rightRacketInfo.posY - widthHeightBall && ballInfo.posY <= rightRacketInfo.posY + heightRacket) {
 
-            console.log('привет')
+            console.log('правая ракетка');
 
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = widthField - ballInfo.width - widthRacket;
 		  }
 
 
+        if (ballInfo.posX <= widthRacket && ballInfo.posY >= leftRacketInfo.posY - widthHeightBall && ballInfo.posY <= leftRacketInfo.posY + heightRacket) {
 
+            console.log('левая ракетка');
 
-
-
+            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.posX = widthRacket;
+        }
 
 
         // вылетел ли мяч правее стены?
@@ -350,8 +353,6 @@
                 scorePlayer1 = 0;
                 scorePlayer2 = 0;
             }
-
-
 
 
 
@@ -409,10 +410,6 @@
 
 
         }
-
-
-
-
 
 
 
