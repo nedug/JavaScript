@@ -37,6 +37,12 @@
            border: none;
            cursor: pointer;
 		 }
+		 .score {
+			  display: inline-block;
+			  margin-left: 290px;
+           font-size: 50px;
+			  vertical-align: top;
+		 }
 	</style>
 </head>
 <body>
@@ -73,10 +79,17 @@
     rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(rightRacket);
 
+    let score = document.createElement('div');
+    score.className = 'score';
+    score.innerHTML = `<span class="player1">0</span>:<span class="player2">0</span>`;
+    document.body.prepend(score);
+
+
     let button = document.createElement('button');
     button.className = 'start-btn';
     button.innerHTML = `СТАРТ`;
     document.body.prepend(button);
+
 
     button.addEventListener('click', startGame);
 
