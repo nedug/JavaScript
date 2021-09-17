@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       .field {
+           margin-left: 50px;
+           background-color: #eee2a5;
+           border: 1px solid black;
+           position: relative;
+       }
+       #ball {
+           background-color: #f3445b;
+           border-radius: 50%;
+           position: absolute;
+           /*top: 200px;*/
+           /*left: 200px;*/
+       }
+       #leftRacket {
+           background-color: #6cf189;
+           position: absolute;
+           /*top: 50px;*/
+           /*left: 0px;*/
+       }
+       #rightRacket {
+           background-color: #6c9df1;
+           position: absolute;
+           /*top: 200px;*/
+           /*right: 0px;*/
+       }
+       .start-btn {
+           height: 30px;
+           width: 100px;
+           background-color: #c4e7c4;
+           margin: 15px 0 20px 50px;
+           border: none;
+           cursor: pointer;
+       }
+       .score {
+           display: inline-block;
+           margin-left: 290px;
+           font-size: 50px;
+           vertical-align: top;
+       }
+	</style>
+</head>
+<body>
+
+<script>
+
+    const widthField = 850;
+    const heightField = 500;
+
+    const widthHeightBall = heightField * 0.09;
+
+    const widthRacket = heightField * 0.03;
+    const heightRacket = heightField * 0.28;
+
+
+    let field = document.createElement('div');
+    field.className = 'field';
+    field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
+    document.body.prepend(field);
+
+
+    let ball = document.createElement('div');
+    ball.setAttribute('id', 'ball');
+    ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
+    field.append(ball);
+
+    let leftRacket = document.createElement('div');
+    leftRacket.setAttribute('id', 'leftRacket');
+    leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(leftRacket);
+
+    let rightRacket = document.createElement('div');
+    rightRacket.setAttribute('id', 'rightRacket');
+    rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(rightRacket);
+
+    let score = document.createElement('div');
+    score.className = 'score';
+    score.innerHTML = `<span class="player1">0</span>:<span class="player2">0</span>`;
+    document.body.prepend(score);
+
+
+    let button = document.createElement('button');
+    button.className = 'start-btn';
+    button.innerHTML = `СТАРТ`;
+    document.body.prepend(button);
+
+
+    button.addEventListener('click', startGame);
+
+    function startGame() {
+        setInterval(racketsMove, 20);
+        setInterval(ballMove, 20);
+        button.disabled = true;
+    }
+
+
+    let leftRacketInfo = {
+        posX : 0,
+        posY : 350,
+        speedY : 10,
+        width : widthRacket,
+        height: heightRacket,
+
+        updateRacket: function() {
+
+            leftRacket.style.left = this.posX + "px";
+            leftRacket.style.top = this.posY + "px";
+        }
+    }
+
+    let rightRacketInfo = {
+        posX : 0,
+        posY : 250,
+        speedY : 10,
+        width : widthRacket,
+        height: heightRacket,
+
+        updateRacket: function() {
+
+            rightRacket.style.right = this.posX + "px";
+            rightRacket.style.top = this.posY + "px";
+        }
+    }
+
+    leftRacketInfo.updateRacket();
+
+    rightRacketInfo.updateRacket();
+
+
+
+    let storage = [];
+
+    document.addEventListener('keydown', fillStorage);
+    document.addEventListener('keyup', fillStorage);
+
+    function fillStorage(event) {
+
+        // console.log(event.code);
+
+        if (event.type === 'keydown') {
+            storage[event.code] = true;
+        }
+
+        if (event.type === 'keyup') {
+            storage[event.code] = false;
+        }
+    }
+
+
+    function racketsMove() {
+
+        if (storage['ShiftLeft']) {
+
+            leftRacketInfo.posY = leftRacketInfo.posY - leftRacketInfo.speedY;
+
+            if (leftRacketInfo.posY < 0) {
+                leftRacketInfo.posY = 0;
+            }
+            leftRacketInfo.updateRacket();
+        }
+
+        if (storage['ControlLeft']) {
+
+            leftRacketInfo.posY = leftRacketInfo.posY + leftRacketInfo.speedY;
+
+            if (leftRacketInfo.posY + leftRacketInfo.height > heightField) {
+                leftRacketInfo.posY = heightField - leftRacketInfo.height;
+            }
+            leftRacketInfo.updateRacket();
+        }
+
+        if (storage['ArrowUp']) {
+
+            rightRacketInfo.posY = rightRacketInfo.posY - rightRacketInfo.speedY;
+
+            if (rightRacketInfo.posY < 0) {
+                rightRacketInfo.posY = 0;
+            }
+            rightRacketInfo.updateRacket();
+        }
+
+        if (storage['ArrowDown']) {
+
+            rightRacketInfo.posY = rightRacketInfo.posY + rightRacketInfo.speedY;
+
+            if (rightRacketInfo.posY + rightRacketInfo.height > heightField) {
+                rightRacketInfo.posY = heightField - rightRacketInfo.height;
+            }
+            rightRacketInfo.updateRacket();
+        }
+    }
+
+
+
+    let directX = randomDirect();
+    let directY = randomDirect();
+    let angel = randomDiap(2, 4);
+
+    function randomDirect() {
+        let x = Math.random();
+        if (x < 0.5) x = -1;
+        else x = 1;
+        return x;
+    }
+
+    function randomDiap(n,m) {
+        return Math.floor(
+            Math.random() * (m - n + 1)
+        ) + n;
+    }
+
+
+    let ballInfo = {
+        posX : widthField / 2 - widthHeightBall / 2,
+        posY : heightField / 2 - widthHeightBall / 2,
+        speedX : directX * 7,
+        speedY : directY * angel,
+        width : widthHeightBall,
+        height: widthHeightBall,
+
+        updateBall: function() {
+            ball.style.left = this.posX + "px";
+            ball.style.top = this.posY + "px";
+        }
+    }
+
+
+    ballInfo.updateBall();
+
+    function ballMove() {
+
+        ballInfo.posX += ballInfo.speedX;
+
+        // вылетел ли мяч правее стены?
+        if (ballInfo.posX + ballInfo.width > widthField) {
+
+            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.posX = widthField - ballInfo.width;
+        }
+        // вылетел ли мяч левее стены?
+        if (ballInfo.posX < 0) {
+
+            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.posX = 0;
+        }
+
+        ballInfo.posY += ballInfo.speedY;
+
+        // вылетел ли мяч ниже пола?
+        if (ballInfo.posY + ballInfo.height > heightField) {
+
+            ballInfo.speedY =- ballInfo.speedY;
+            ballInfo.posY = heightField - ballInfo.height;
+        }
+
+        // вылетел ли мяч выше потолка?
+        if (ballInfo.posY < 0) {
+
+            ballInfo.speedY =- ballInfo.speedY;
+            ballInfo.posY = 0;
+        }
+
+        ballInfo.updateBall();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
