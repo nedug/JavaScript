@@ -116,6 +116,8 @@
     let timer1;
 
     function startGame() {
+        ballInfo.randomBall();
+
         setInterval(racketsMove, 20);
         timer1 = setInterval(ballMove, 20);
 
@@ -250,8 +252,6 @@
     let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
         posY : heightField / 2 - widthHeightBall / 2,
-        speedX : randomDirect() * 7,
-        speedY : randomDirect() * randomDiap(2, 4),
         width : widthHeightBall,
         height: widthHeightBall,
 
@@ -261,8 +261,9 @@
             // ball.style.display = 'block';
         },
 
-        hideBall: function() {
-            ball.style.display = 'none';
+        randomBall: function() {
+            this.speedX = randomDirect() * 7;
+            this.speedY = randomDirect() * randomDiap(2, 4);
         }
     }
 
@@ -310,6 +311,9 @@
             let timer3 = setTimeout(Move111, 4000)
 
 				function Move111() {
+
+                ballInfo.randomBall();
+
                 timer1 = setInterval(ballMove, 20);
 				}
 
