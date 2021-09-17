@@ -114,11 +114,12 @@
     button.addEventListener('click', startGame);
 
     let timer1;
+    let timer5;
 
     function startGame() {
         ballInfo.randomBall();
 
-        setInterval(racketsMove, 20);
+        timer5 = setInterval(racketsMove, 20);
         timer1 = setInterval(ballMove, 20);
 
         button.disabled = true;
@@ -280,23 +281,26 @@
         ballInfo.posY += ballInfo.speedY;
 
 
-
-
-
-        if ((ballInfo.posX + ballInfo.width > widthField - widthRacket) && (rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 || rightRacketInfo.posY < ballInfo.posY - widthHeightBall / 2 )) {
+        if (ballInfo.posX + ballInfo.width >= widthField - widthRacket && ballInfo.posY >= rightRacketInfo.posY - widthHeightBall && ballInfo.posY <= rightRacketInfo.posY + heightRacket) {
 
             console.log('привет')
 
 
-            // rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 ||
-            // rightRacketInfo.posY < ballInfo.posY - widthHeightBall / 2
-
-
-
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = widthField - ballInfo.width - widthRacket;
+		  }
 
-        }
+
+        // if ((ballInfo.posX + ballInfo.width > widthField - widthRacket) && (rightRacketInfo.posY < ballInfo.posY - widthRacket + widthHeightBall / 2) && (rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 )) {
+		  //
+        //     console.log('привет')
+		  //
+			//
+		  //
+        //     ballInfo.speedX =- ballInfo.speedX;
+        //     ballInfo.posX = widthField - ballInfo.width - widthRacket;
+		  //
+        // }
 
 
 
@@ -345,6 +349,7 @@
             if (scorePlayer1 === 5) {
                 clearTimeout(timer3);
                 clearInterval(timer2);
+                clearInterval(timer5);
                 backsScore.style.display = 'inline-block';
                 backsScore.innerHTML = `Win Player1`;
                 button.disabled = false;
@@ -399,6 +404,7 @@
             if (scorePlayer2 === 5) {
                 clearTimeout(timer3);
                 clearInterval(timer2);
+                clearInterval(timer5);
                 backsScore.style.display = 'inline-block';
                 backsScore.innerHTML = `Win Player2`;
                 button.disabled = false;
