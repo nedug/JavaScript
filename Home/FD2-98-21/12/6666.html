@@ -15,8 +15,8 @@
            border-radius: 50%;
            position: absolute;
 
-           top: 200px;
-           left: 200px;
+           /*top: 200px;*/
+           /*left: 200px;*/
        }
        #leftRacket {
            background-color: #6cf189;
@@ -58,9 +58,6 @@
 
     let leftRacket = document.createElement('div');
     leftRacket.setAttribute('id', 'leftRacket');
-
-    leftRacket.setAttribute('tabindex', '-1');
-
     leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(leftRacket);
 
@@ -120,7 +117,6 @@
         if (event.type === 'keyup') {
             storage[event.code] = false;
         }
-        // console.log(storage);
 	 }
 
 
@@ -169,6 +165,38 @@
     }
 
     setInterval(racketsMove, 20);
+
+
+
+    let ballInfo = {
+        posX : widthField / 2,
+        posY : heightField / 2,
+        speedX : 5,
+        speedY : 10,
+        width : widthHeightBall,
+        height: widthHeightBall,
+
+        updateBall: function() {
+
+            ball.style.left = this.posX + "px";
+            ball.style.top = this.posY + "px";
+        }
+    }
+
+    ballInfo.updateBall();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
