@@ -107,7 +107,7 @@
 
     let button = document.createElement('button');
     button.className = 'start-btn';
-    button.innerHTML = `СТАРТ`;
+    button.innerHTML = `START`;
     document.body.prepend(button);
 
 
@@ -263,7 +263,7 @@
 
         randomBall: function() {
             this.speedX = randomDirect() * 7;
-            this.speedY = randomDirect() * randomDiap(2, 4);
+            this.speedY = randomDirect() * randomDiap(2, 5);
         }
     }
 
@@ -279,8 +279,63 @@
         ballInfo.posX += ballInfo.speedX;
         ballInfo.posY += ballInfo.speedY;
 
+
         // вылетел ли мяч правее стены?
         if (ballInfo.posX + ballInfo.width > widthField) {
+
+            clearInterval(timer1);
+
+            // ball.style.display = 'none';
+
+            player1.innerHTML = `${++scorePlayer1}`;
+
+            ballInfo.posX = widthField / 2 - widthHeightBall / 2;
+            ballInfo.posY = heightField / 2 - widthHeightBall / 2;
+
+            // console.log(ballMove)
+
+            let timer2 = setInterval(MoveScore, 1000);
+
+            let backStart = 4;
+
+            function MoveScore() {
+                backsScore.style.display = 'inline-block';
+                backsScore.innerHTML = `${--backStart}...`;
+                if (backStart === 0) {
+                    clearInterval(timer2);
+                    backsScore.style.display = 'none';
+                    backStart = 4;
+                }
+            }
+
+
+            let timer3 = setTimeout(Move111, 4000)
+
+            function Move111() {
+
+                ballInfo.randomBall();
+
+                timer1 = setInterval(ballMove, 20);
+            }
+
+            if (scorePlayer1 === 5) {
+                clearTimeout(timer3);
+                clearInterval(timer2);
+                backsScore.style.display = 'inline-block';
+                backsScore.innerHTML = `Win Player1`;
+                button.disabled = false;
+                scorePlayer1 = 0;
+                scorePlayer2 = 0;
+            }
+
+
+
+
+
+        }
+        // вылетел ли мяч левее стены?
+        if (ballInfo.posX < 0) {
+
 
             clearInterval(timer1);
 
@@ -328,16 +383,9 @@
             }
 
 
-
-            
-
         }
-        // вылетел ли мяч левее стены?
-        if (ballInfo.posX < 0) {
 
-            ballInfo.speedX =- ballInfo.speedX;
-            ballInfo.posX = 0;
-        }
+
 
 
         // вылетел ли мяч ниже пола?
@@ -346,6 +394,8 @@
             ballInfo.speedY =- ballInfo.speedY;
             ballInfo.posY = heightField - ballInfo.height;
         }
+
+
 
         // вылетел ли мяч выше потолка?
         if (ballInfo.posY < 0) {
