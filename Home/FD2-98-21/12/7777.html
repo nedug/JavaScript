@@ -43,6 +43,12 @@
            font-size: 50px;
            vertical-align: top;
        }
+       .backsScore {
+           display: inline-block;
+           margin-left: 290px;
+           font-size: 50px;
+           vertical-align: top;
+       }
 	</style>
 </head>
 <body>
@@ -79,6 +85,12 @@
     rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(rightRacket);
 
+
+    let backsScore = document.createElement('div');
+    backsScore.className = 'backsScore';
+    // backsScore.innerHTML = `текст`;
+    document.body.prepend(backsScore);
+
     let scorePlayer1 = 0;
     let scorePlayer2 = 0;
 
@@ -101,12 +113,21 @@
 
     button.addEventListener('click', startGame);
 
-    let xxx;
+    let timer1;
 
     function startGame() {
         setInterval(racketsMove, 20);
-        xxx = setInterval(ballMove, 20);
+        timer1 = setInterval(ballMove, 20);
+
         button.disabled = true;
+
+        player1.innerHTML = `${scorePlayer1}`;
+        player2.innerHTML = `${scorePlayer2}`;
+
+        backsScore.style.display = 'none';
+
+		  // console.log(scorePlayer1);
+
     }
 
 
@@ -260,7 +281,7 @@
         // вылетел ли мяч правее стены?
         if (ballInfo.posX + ballInfo.width > widthField) {
 
-            clearInterval(xxx);
+            clearInterval(timer1);
 
             // ball.style.display = 'none';
 
@@ -269,23 +290,37 @@
             ballInfo.posX = widthField / 2 - widthHeightBall / 2;
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            console.log(ballMove)
+            // console.log(ballMove)
 
-            setInterval(MoveScore, 1000);
+            let timer2 = setInterval(MoveScore, 1000);
 
-            let backStart = 3;
+            let backStart = 4;
 
             function MoveScore() {
-                button.innerHTML = `${backStart--}...`;
-                // if ()
+                backsScore.style.display = 'inline-block';
+                backsScore.innerHTML = `${--backStart}...`;
+                if (backStart === 0) {
+                    clearInterval(timer2);
+                    backsScore.style.display = 'none';
+                    backStart = 4;
+					 }
 				}
 
 
-
-            setTimeout(Move111, 3000)
+            let timer3 = setTimeout(Move111, 4000)
 
 				function Move111() {
-                xxx = setInterval(ballMove, 20);
+                timer1 = setInterval(ballMove, 20);
+				}
+
+				if (scorePlayer2 === 5) {
+				    clearTimeout(timer3);
+                clearInterval(timer2);
+                backsScore.style.display = 'inline-block';
+                backsScore.innerHTML = `Win Player2`;
+                button.disabled = false;
+                scorePlayer1 = 0;
+                scorePlayer2 = 0;
 				}
 
 
