@@ -280,6 +280,30 @@
         ballInfo.posY += ballInfo.speedY;
 
 
+
+
+
+        if ((ballInfo.posX + ballInfo.width > widthField - widthRacket) && (rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 || rightRacketInfo.posY < ballInfo.posY - widthHeightBall / 2 )) {
+
+            console.log('привет')
+
+
+            // rightRacketInfo.posY > ballInfo.posY + widthHeightBall / 2 ||
+            // rightRacketInfo.posY < ballInfo.posY - widthHeightBall / 2
+
+
+
+            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.posX = widthField - ballInfo.width - widthRacket;
+
+        }
+
+
+
+
+
+
+
         // вылетел ли мяч правее стены?
         if (ballInfo.posX + ballInfo.width > widthField) {
 
@@ -384,6 +408,10 @@
 
 
         }
+
+
+
+
 
 
 
