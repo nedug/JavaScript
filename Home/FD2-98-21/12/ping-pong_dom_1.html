@@ -15,20 +15,14 @@
            background-color: #f3445b;
            border-radius: 50%;
            position: absolute;
-           /*top: 200px;*/
-           /*left: 200px;*/
        }
        #leftRacket {
            background-color: #6cf189;
            position: absolute;
-           /*top: 50px;*/
-           /*left: 0px;*/
        }
        #rightRacket {
            background-color: #6c9df1;
            position: absolute;
-           /*top: 200px;*/
-           /*right: 0px;*/
        }
        .start-btn {
            height: 30px;
@@ -53,7 +47,6 @@
        .backScore span {
            color: #ff1c1a;
        }
-
 	</style>
 </head>
 <body>
@@ -79,12 +72,10 @@
     let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
 
 
-
     let field = document.createElement('div'); /* Создаем игровое поле */
     field.className = 'field';
     field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
     document.body.prepend(field);
-
 
     let ball = document.createElement('div'); /* Создаем мяч */
     ball.setAttribute('id', 'ball');
@@ -124,6 +115,7 @@
     button.addEventListener('click', startGame); /* Запускам игру по клику на кнопку START */
 
     function startGame() {
+
         ballInfo.randomBall(); /* Обноляем случайное направление вылета мяча */
 
         timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
