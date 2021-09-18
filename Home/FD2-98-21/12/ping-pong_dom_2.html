@@ -115,7 +115,7 @@
     document.body.prepend(button);
 
 
-/* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
+    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
     let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
         posY : heightField / 2 - widthHeightBall / 2,
@@ -149,24 +149,24 @@
     ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
 
 
-/* Создаем класс для создания экземпляров ракеток */
-	 class Racket {
-	     constructor(_posX, _posY, _speedY, _width, _height, _racket, _side) {
-	         this.posX = _posX;
-	         this.posY = _posY;
-	         this.speedY = _speedY;
-	         this.width = _width;
-	         this.height = _height;
-	         this.racket = _racket;
-	         this.side = _side;
+    /* Создаем класс для создания экземпляров ракеток */
+    class Racket {
+        constructor(_posX, _posY, _speedY, _width, _height, _racket, _side) {
+            this.posX = _posX;
+            this.posY = _posY;
+            this.speedY = _speedY;
+            this.width = _width;
+            this.height = _height;
+            this.racket = _racket;
+            this.side = _side;
         }
         updateRacket() {
             this.racket.style[this.side] = this.posX + "px";
             this.racket.style.top = this.posY + "px";
-		  }
-	 }
+        }
+    }
 
-	 let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
     let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
@@ -174,7 +174,7 @@
     rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
 
 
-/* Физика движения ракеток по игровому полю */
+    /* Физика движения ракеток по игровому полю */
     storage = {}; /* Создаем объект хранилища состояния движения/остановки ракеток */
 
     document.addEventListener('keydown', fillStorage); /* Обрабочик событий нажатия кнопок клавиатуры */
@@ -188,31 +188,34 @@
         if (event.type === 'keyup') {
             storage[event.code] = false;
         }
-        // console.log(event.type);
+        console.log(storage['ControlLeft']);
         // console.log(event.code);
     }
 
-/* Функция движения ракеток по игровому полю */
+    /* Функция движения ракеток по игровому полю */
     function racketsMove() {
 
-        if (storage['ShiftLeft']) {
+        switch (storage['ControlLeft']) {
 
-            leftRacket.posY = leftRacket.posY - leftRacket.speedY;
 
-            if (leftRacket.posY < 0) {
-                leftRacket.posY = 0;
-            }
-            leftRacket.updateRacket();
-        }
+            case 'ControlLeft':
+                leftRacket.posY = leftRacket.posY + leftRacket.speedY;
+
+                if (leftRacket.posY + leftRacket.height > heightField) {
+                    leftRacket.posY = heightField - leftRacket.height;
+                }
+                leftRacket.updateRacket();
+
+                break;
+
+
+		  }
+
+
 
         if (storage['ControlLeft']) {
 
-            leftRacket.posY = leftRacket.posY + leftRacket.speedY;
 
-            if (leftRacket.posY + leftRacket.height > heightField) {
-                leftRacket.posY = heightField - leftRacket.height;
-            }
-            leftRacket.updateRacket();
         }
 
         if (storage['ArrowUp']) {
