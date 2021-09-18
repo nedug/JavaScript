@@ -44,13 +44,13 @@
            font-size: 50px;
            vertical-align: top;
        }
-       .backsScore {
+       .backScore {
            display: inline-block;
            margin-left: 290px;
            font-size: 50px;
            vertical-align: top;
        }
-       .backsScore span {
+       .backScore span {
            color: #ff1c1a;
        }
 
@@ -60,57 +60,55 @@
 
 <script>
 
-    const widthField = 850;
-    const heightField = 500;
+    const widthField = 850; /* Назначаем длину игрового поля */
+    const heightField = 500; /* Назначаем ширину игрового поля */
+    const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
+    const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
+    const heightRacket = heightField * 0.28; /* Назначаем длину игровой ракетки */
 
-    const widthHeightBall = heightField * 0.09;
+    let scorePlayer1; /* Переменная для подсчета очков первого игрока */
+    let scorePlayer2; /* Переменная для подсчета очков второго игрока */
+    let player1; /* Переменная для работы со счетом первого игрока */
+    let player2; /* Переменная для работы со счетом второго игрока */
 
-    const widthRacket = heightField * 0.03;
-    const heightRacket = heightField * 0.28;
 
 
-    let field = document.createElement('div');
+    let field = document.createElement('div'); /* Создаем игровое поле */
     field.className = 'field';
     field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
     document.body.prepend(field);
 
 
-    let ball = document.createElement('div');
+    let ball = document.createElement('div'); /* Создаем мяч */
     ball.setAttribute('id', 'ball');
     ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
     field.append(ball);
 
-    let leftRacket = document.createElement('div');
+    let leftRacket = document.createElement('div'); /* Создаем левую ракетку */
     leftRacket.setAttribute('id', 'leftRacket');
     leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(leftRacket);
 
-    let rightRacket = document.createElement('div');
+    let rightRacket = document.createElement('div'); /* Создаем правую ракетку */
     rightRacket.setAttribute('id', 'rightRacket');
     rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(rightRacket);
 
+    let backScore = document.createElement('div'); /* Создаем таймер обратного отсчета */
+    backScore.className = 'backScore';
+    document.body.prepend(backScore);
 
-    let backsScore = document.createElement('div');
-    backsScore.className = 'backsScore';
-    // backsScore.innerHTML = `текст`;
-    document.body.prepend(backsScore);
-
-    let scorePlayer1 = 0;
-    let scorePlayer2 = 0;
-
-    let score = document.createElement('div');
+    let score = document.createElement('div'); /* Создаем табло подсчета очков */
     score.className = 'score';
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
     score.innerHTML = `<span class="player1">${scorePlayer1}</span>:<span class="player2">${scorePlayer2}</span>`;
     document.body.prepend(score);
 
-    let player1 = document.body.querySelector('.player1');
-    let player2 = document.body.querySelector('.player2');
+    player1 = document.body.querySelector('.player1');
+    player2 = document.body.querySelector('.player2');
 
-    // console.log(player1)
-
-
-    let button = document.createElement('button');
+    let button = document.createElement('button'); /* Создаем кнопку запуска игры */
     button.className = 'start-btn';
     button.innerHTML = `START`;
     document.body.prepend(button);
@@ -132,8 +130,8 @@
         player1.innerHTML = `${scorePlayer1}`;
         player2.innerHTML = `${scorePlayer2}`;
 
-        backsScore.style.display = 'none';
-        backsScore.style.marginLeft = '320px';
+        backScore.style.display = 'none';
+        backScore.style.marginLeft = '320px';
 
         // console.log(scorePlayer1);
 
@@ -324,11 +322,11 @@
             let backStart = 4;
 
             function MoveScore() {
-                backsScore.style.display = 'inline-block';
-                backsScore.innerHTML = `${--backStart}...`;
+                backScore.style.display = 'inline-block';
+                backScore.innerHTML = `${--backStart}...`;
                 if (backStart === 0) {
                     clearInterval(timer2);
-                    backsScore.style.display = 'none';
+                    backScore.style.display = 'none';
                     backStart = 4;
                 }
             }
@@ -347,9 +345,9 @@
                 clearTimeout(timer3);
                 clearInterval(timer2);
                 clearInterval(timer5);
-                backsScore.style.display = 'inline-block';
-                backsScore.style.marginLeft = '150px';
-                backsScore.innerHTML = `win <span>Player1</span>`;
+                backScore.style.display = 'inline-block';
+                backScore.style.marginLeft = '150px';
+                backScore.innerHTML = `win <span>Player1</span>`;
                 button.disabled = false;
                 scorePlayer1 = 0;
                 scorePlayer2 = 0;
@@ -378,11 +376,11 @@
             let backStart = 4;
 
             function MoveScore() {
-                backsScore.style.display = 'inline-block';
-                backsScore.innerHTML = `${--backStart}...`;
+                backScore.style.display = 'inline-block';
+                backScore.innerHTML = `${--backStart}...`;
                 if (backStart === 0) {
                     clearInterval(timer2);
-                    backsScore.style.display = 'none';
+                    backScore.style.display = 'none';
                     backStart = 4;
                 }
             }
@@ -401,9 +399,9 @@
                 clearTimeout(timer3);
                 clearInterval(timer2);
                 clearInterval(timer5);
-                backsScore.style.display = 'inline-block';
-                backsScore.style.marginLeft = '150px';
-                backsScore.innerHTML = `win <span>Player2</span>`;
+                backScore.style.display = 'inline-block';
+                backScore.style.marginLeft = '150px';
+                backScore.innerHTML = `win <span>Player2</span>`;
                 button.disabled = false;
                 scorePlayer1 = 0;
                 scorePlayer2 = 0;
