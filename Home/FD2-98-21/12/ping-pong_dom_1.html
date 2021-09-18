@@ -72,9 +72,11 @@
     let player2; /* Переменная для работы со счетом второго игрока */
     let storage; /* Хранилище состояния движения/остановки ракеток */
     let backStart; /* Переменная для таймера обратного отсчета времени */
+
     let timerBall; /* Таймер для движения мяча по игровому полю */
     let timerRacket;  /* Таймер для движения ракеток по игровому полю */
     let timerBackScore;  /* Таймер обратного отсчета для начала раунда игры */
+    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
 
 
 
@@ -265,7 +267,7 @@
             console.log('Левая ракетка');
         }
 
-/* Вылет мяча за правую сторону */
+/* Вылет мяча за правую сторону поля */
         if (ballInfo.posX + ballInfo.width > widthField) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
@@ -277,89 +279,59 @@
 
             timerBackScore = setInterval(startBackScore, 1000); /* Устанавливаем таймер обратного отсчета для начала раунда игры */
 
-
-            let timer3 = setTimeout(Move111, 4000)
-
-            function Move111() {
-
-                ballInfo.randomBall();
-
-                timerBall = setInterval(ballMove, 20);
-            }
+            timerRepeatRound = setTimeout(startRound, 4000); /* Устанавливаем таймер повторного запуска раунда игры */
 
             if (scorePlayer1 === 5) {
-                clearTimeout(timer3);
-                clearInterval(timerBackScore);
-                clearInterval(timerRacket);
-                backScore.style.display = 'inline-block';
+
+                clearTimeout(timerRepeatRound); /* Останавливаем таймер повторного запуска раунда игры */
+                clearInterval(timerBackScore); /* Останавливаем таймер обратного отсчета для начала раунда игры */
+                clearInterval(timerRacket); /* Останавливаем таймер для движения ракеток по игровому полю */
+
+                backScore.style.display = 'inline-block'; /* Отображаем победителя игры */
                 backScore.style.marginLeft = '150px';
                 backScore.innerHTML = `win <span>Player1</span>`;
-                button.disabled = false;
-                scorePlayer1 = 0;
+
+                button.disabled = false; /* Активируем возможность старта новой игры */
+
+                scorePlayer1 = 0; /* Обнуляем счет игры */
                 scorePlayer2 = 0;
             }
-
-
-
         }
-        // вылетел ли мяч левее стены?
+
+
+/* Вылет мяча за левую сторону поля */
         if (ballInfo.posX < 0) {
 
+            clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            clearInterval(timerBall);
+            player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
 
-            // ball.style.display = 'none';
-
-            player2.innerHTML = `${++scorePlayer2}`;
-
-            ballInfo.posX = widthField / 2 - widthHeightBall / 2;
+            ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            // console.log(ballMove)
+            timerBackScore = setInterval(startBackScore, 1000); /* Устанавливаем таймер обратного отсчета для начала раунда игры */
 
-            timerBackScore = setInterval(MoveScore, 1000);
-
-            let backStart = 4;
-
-            function MoveScore() {
-                backScore.style.display = 'inline-block';
-                backScore.innerHTML = `${--backStart}...`;
-                if (backStart === 0) {
-                    clearInterval(timerBackScore);
-                    backScore.style.display = 'none';
-                    backStart = 4;
-                }
-            }
-
-
-            let timer3 = setTimeout(Move111, 4000)
-
-            function Move111() {
-
-                ballInfo.randomBall();
-
-                timerBall = setInterval(ballMove, 20);
-            }
+            timerRepeatRound = setTimeout(startRound, 4000); /* Устанавливаем таймер повторного запуска раунда игры */
 
             if (scorePlayer2 === 5) {
-                clearTimeout(timer3);
-                clearInterval(timerBackScore);
-                clearInterval(timerRacket);
-                backScore.style.display = 'inline-block';
+
+                clearTimeout(timerRepeatRound); /* Останавливаем таймер повторного запуска раунда игры */
+                clearInterval(timerBackScore); /* Останавливаем таймер обратного отсчета для начала раунда игры */
+                clearInterval(timerRacket); /* Останавливаем таймер для движения ракеток по игровому полю */
+
+                backScore.style.display = 'inline-block'; /* Отображаем победителя игры */
                 backScore.style.marginLeft = '150px';
                 backScore.innerHTML = `win <span>Player2</span>`;
-                button.disabled = false;
-                scorePlayer1 = 0;
+
+                button.disabled = false; /* Активируем возможность старта новой игры */
+
+                scorePlayer1 = 0; /* Обнуляем счет игры */
                 scorePlayer2 = 0;
             }
-
-
         }
 
 
-
-
-        // вылетел ли мяч ниже пола?
+/* Вылет мяча за нижнюю сторону поля */
         if (ballInfo.posY + ballInfo.height > heightField) {
 
             ballInfo.speedY =- ballInfo.speedY;
@@ -367,19 +339,24 @@
         }
 
 
-
-        // вылетел ли мяч выше потолка?
+/* Вылет мяча за верхнюю сторону поля */
         if (ballInfo.posY < 0) {
 
             ballInfo.speedY =- ballInfo.speedY;
             ballInfo.posY = 0;
         }
 
-        ballInfo.updateBall();
+
+/* Функция для повторного запуска раунда игры */
+        function startRound() {
+
+            ballInfo.randomBall(); /* Обноляем случайное направление вылета мяча */
+
+            timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
+        }
+
+        ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
     }
-
-
-
 
 
 
@@ -403,12 +380,7 @@
 
 
 
-
-
-
-
     button.addEventListener('click', startGame);
-
 
 
     function startGame() {
@@ -429,35 +401,7 @@
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	 
 
 </script>
 
