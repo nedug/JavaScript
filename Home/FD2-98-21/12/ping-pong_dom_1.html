@@ -84,15 +84,15 @@
     ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
     field.append(ball);
 
-    let leftRacket = document.createElement('div'); /* Создаем левую ракетку */
-    leftRacket.setAttribute('id', 'leftRacket');
-    leftRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
-    field.append(leftRacket);
+    let racketL = document.createElement('div'); /* Создаем левую ракетку */
+    racketL.setAttribute('id', 'leftRacket');
+    racketL.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(racketL);
 
-    let rightRacket = document.createElement('div'); /* Создаем правую ракетку */
-    rightRacket.setAttribute('id', 'rightRacket');
-    rightRacket.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
-    field.append(rightRacket);
+    let racketR = document.createElement('div'); /* Создаем правую ракетку */
+    racketR.setAttribute('id', 'rightRacket');
+    racketR.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
+    field.append(racketR);
 
     let backScore = document.createElement('div'); /* Создаем таймер обратного отсчета */
     backScore.className = 'backScore';
@@ -114,7 +114,8 @@
     document.body.prepend(button);
 
 
-    let ballInfo = { /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
+/* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
+    let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
         posY : heightField / 2 - widthHeightBall / 2,
         width : widthHeightBall,
@@ -147,9 +148,29 @@
     ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
 
 
+/* Создаем класс для создания экземпляров ракеток */
+	 class Racket {
+	     constructor(_posX, _posY, _speedY, _width, _height, _racket, _side) {
+	         this.posX = _posX;
+	         this.posY = _posY;
+	         this.speedY = _speedY;
+	         this.width = _width;
+	         this.height = _height;
+	         this.racket = _racket;
+	         this.side = _side;
+        }
+        updateRacket() {
+            this.racket.style[this.side] = this.posX + "px";
+            this.racket.style.top = this.posY + "px";
+		  }
+	 }
 
+	 let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
+    let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
+    leftRacket.updateRacket(); /* Устанавливаем левую ракетку перед началом игры */
+    rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
 
 
 
@@ -184,41 +205,11 @@
     }
 
 
-    let leftRacketInfo = {
-        posX : 0,
-        posY : 350,
-        speedY : 10,
-        width : widthRacket,
-        height: heightRacket,
-
-        updateRacket: function() {
-
-            leftRacket.style.left = this.posX + "px";
-            leftRacket.style.top = this.posY + "px";
-        }
-    }
-
-    let rightRacketInfo = {
-        posX : 0,
-        posY : 250,
-        speedY : 10,
-        width : widthRacket,
-        height: heightRacket,
-
-        updateRacket: function() {
-
-            rightRacket.style.right = this.posX + "px";
-            rightRacket.style.top = this.posY + "px";
-        }
-    }
-
-    leftRacketInfo.updateRacket();
-
-    rightRacketInfo.updateRacket();
 
 
 
-    let storage = [];
+
+    let storage = {};
 
     document.addEventListener('keydown', fillStorage);
     document.addEventListener('keyup', fillStorage);
@@ -234,6 +225,8 @@
         if (event.type === 'keyup') {
             storage[event.code] = false;
         }
+
+        console.log(storage);
     }
 
 
