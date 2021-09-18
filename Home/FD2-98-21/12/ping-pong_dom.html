@@ -68,7 +68,7 @@
 
     let timerBall; /* Таймер для движения мяча по игровому полю */
     let timerRacket;  /* Таймер для движения ракеток по игровому полю */
-    let timerBackScore;  /* Таймер обратного отсчета для начала раунда игры */
+    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
     let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
 
 
@@ -171,7 +171,7 @@
 
 	 let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
-    let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right'); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
     leftRacket.updateRacket(); /* Устанавливаем левую ракетку перед началом игры */
     rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
@@ -185,15 +185,16 @@
 
     function fillStorage(event) {
 
-        if (event.type === 'keydown') {
+        if (event.type === 'keydown') { /* При нажатии кнопки клавиатуры сохраняем в хранилище storage ключ (название клавиши) со значением (true) */
             storage[event.code] = true;
         }
-        if (event.type === 'keyup') {
+        if (event.type === 'keyup') { /* При отпускании кнопки клавиатуры обновляем в хранилище storage ключ (название клавиши) со значением (false) */
             storage[event.code] = false;
         }
         // console.log(event.type);
         // console.log(event.code);
     }
+
 
 /* Функция движения ракеток по игровому полю */
     function racketsMove() {
@@ -228,7 +229,7 @@
             rightRacket.updateRacket();
         }
 
-        if (storage['ArrowDown']) { /* Движение правой ракетки вверх */
+        if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
 
             rightRacket.posY = rightRacket.posY + rightRacket.speedY;
 
@@ -274,7 +275,7 @@
             ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            timerBackScore = setInterval(startBackScore, 1000); /* Устанавливаем таймер обратного отсчета для начала раунда игры */
+            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
             timerRepeatRound = setTimeout(startRound, 4000); /* Устанавливаем таймер повторного запуска раунда игры */
 
@@ -347,7 +348,7 @@
 /* Функция для повторного запуска раунда игры */
         function startRound() {
 
-            ballInfo.randomBall(); /* Обноляем случайное направление вылета мяча */
+            ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
             timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
         }
