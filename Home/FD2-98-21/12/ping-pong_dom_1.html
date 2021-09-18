@@ -70,6 +70,7 @@
     let scorePlayer2; /* Переменная для подсчета очков второго игрока */
     let player1; /* Переменная для работы со счетом первого игрока */
     let player2; /* Переменная для работы со счетом второго игрока */
+    let storage; /* Хранилище состояния движения/остановки ракеток */
 
 
 
@@ -174,59 +175,21 @@
 
 
 
+    storage = {}; /* Создаем объект хранилища */
 
-
-
-
-
-
-
-    button.addEventListener('click', startGame);
-
-    let timer1;
-    let timer5;
-
-    function startGame() {
-        ballInfo.randomBall();
-
-        timer5 = setInterval(racketsMove, 20);
-        timer1 = setInterval(ballMove, 20);
-
-        button.disabled = true;
-
-        player1.innerHTML = `${scorePlayer1}`;
-        player2.innerHTML = `${scorePlayer2}`;
-
-        backScore.style.display = 'none';
-        backScore.style.marginLeft = '320px';
-
-        // console.log(scorePlayer1);
-
-    }
-
-
-
-
-
-
-    let storage = {};
-
-    document.addEventListener('keydown', fillStorage);
-    document.addEventListener('keyup', fillStorage);
+    document.addEventListener('keydown', fillStorage); /* Обрабочик событий нажатия кнопок клавиатуры */
+    document.addEventListener('keyup', fillStorage); /* Обрабочик событий отпускания кнопок клавиатуры */
 
     function fillStorage(event) {
-
-        // console.log(event.code);
 
         if (event.type === 'keydown') {
             storage[event.code] = true;
         }
-
         if (event.type === 'keyup') {
             storage[event.code] = false;
         }
-
-        console.log(storage);
+        // console.log(event.type);
+        // console.log(event.code);
     }
 
 
@@ -272,6 +235,45 @@
             rightRacketInfo.updateRacket();
         }
     }
+
+
+
+
+
+
+
+
+
+
+    button.addEventListener('click', startGame);
+
+    let timer1;
+    let timer5;
+
+    function startGame() {
+        ballInfo.randomBall();
+
+        timer5 = setInterval(racketsMove, 20);
+        timer1 = setInterval(ballMove, 20);
+
+        button.disabled = true;
+
+        player1.innerHTML = `${scorePlayer1}`;
+        player2.innerHTML = `${scorePlayer2}`;
+
+        backScore.style.display = 'none';
+        backScore.style.marginLeft = '320px';
+
+        // console.log(scorePlayer1);
+
+    }
+
+
+
+
+
+
+
 
 
 
