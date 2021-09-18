@@ -195,7 +195,7 @@
 /* Функция движения ракеток по игровому полю */
     function racketsMove() {
 
-        if (storage['ShiftLeft']) {
+        if (storage['ShiftLeft']) { /* Движение левой ракетки вверх */
 
             leftRacket.posY = leftRacket.posY - leftRacket.speedY;
 
@@ -205,7 +205,7 @@
             leftRacket.updateRacket();
         }
 
-        if (storage['ControlLeft']) {
+        if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
 
             leftRacket.posY = leftRacket.posY + leftRacket.speedY;
 
@@ -215,7 +215,7 @@
             leftRacket.updateRacket();
         }
 
-        if (storage['ArrowUp']) {
+        if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
 
             rightRacket.posY = rightRacket.posY - rightRacket.speedY;
 
@@ -225,7 +225,7 @@
             rightRacket.updateRacket();
         }
 
-        if (storage['ArrowDown']) {
+        if (storage['ArrowDown']) { /* Движение правой ракетки вверх */
 
             rightRacket.posY = rightRacket.posY + rightRacket.speedY;
 
