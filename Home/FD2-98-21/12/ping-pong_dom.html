@@ -27,6 +27,7 @@
        .start-btn {
            height: 30px;
            width: 100px;
+			  letter-spacing: 3px;
            background-color: #c4e7c4;
            margin: 15px 0 20px 50px;
            border: none;
@@ -57,7 +58,7 @@
     const heightField = 500; /* Назначаем ширину игрового поля */
     const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
     const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
-    const heightRacket = heightField * 0.28; /* Назначаем длину игровой ракетки */
+    const heightRacket = heightField * 0.27; /* Назначаем длину игровой ракетки */
 
     let scorePlayer1; /* Переменная для подсчета очков первого игрока */
     let scorePlayer2; /* Переменная для подсчета очков второго игрока */
@@ -109,7 +110,7 @@
 
     let button = document.createElement('button'); /* Создаем кнопку запуска игры */
     button.className = 'start-btn';
-    button.innerHTML = `START`;
+    button.innerHTML = `START!`;
     document.body.prepend(button);
 
 
