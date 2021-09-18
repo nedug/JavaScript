@@ -121,6 +121,24 @@
     document.body.prepend(button);
 
 
+    button.addEventListener('click', startGame); /* Запускам игру по клику на кнопку START */
+
+    function startGame() {
+        ballInfo.randomBall(); /* Обноляем случайное направление вылета мяча */
+
+        timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
+        timerBall = setInterval(ballMove, 20); /* Запускаем функцию движения мяча по игровому полю */
+
+        button.disabled = true; /* Убираем возможность запуска игры до ее окончания */
+
+        player1.innerHTML = `${scorePlayer1}`; /* Обнуляем игровое табло при запуске новой игры */
+        player2.innerHTML = `${scorePlayer2}`;
+
+        backScore.style.display = 'none'; /* Скрываем победителя при запуске новой игры */
+        backScore.style.marginLeft = '320px';
+    }
+
+
 /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
     let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
@@ -137,19 +155,6 @@
             this.speedX = randomDirect() * 8;
             this.speedY = randomDirect() * randomDiap(2, 5);
         }
-    }
-
-    function randomDirect() { /* Функция для определения случайного направления вылета мяча */
-        let x = Math.random();
-        if (x < 0.5) x = -1;
-        else x = 1;
-        return x;
-    }
-
-    function randomDiap(n,m) { /* Функция для определения случайного угла вылета мяча */
-        return Math.floor(
-            Math.random() * (m - n + 1)
-        ) + n;
     }
 
     ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
@@ -376,32 +381,26 @@
         }
     }
 
-
-
-
-
-    button.addEventListener('click', startGame);
-
-
-    function startGame() {
-        ballInfo.randomBall();
-
-        timerRacket = setInterval(racketsMove, 20);
-        timerBall = setInterval(ballMove, 20);
-
-        button.disabled = true;
-
-        player1.innerHTML = `${scorePlayer1}`;
-        player2.innerHTML = `${scorePlayer2}`;
-
-        backScore.style.display = 'none';
-        backScore.style.marginLeft = '320px';
-
-        // console.log(scorePlayer1);
-
+    function randomDirect() { /* Функция для определения случайного направления вылета мяча */
+        let x = Math.random();
+        if (x < 0.5) x = -1;
+        else x = 1;
+        return x;
     }
 
-	 
+    function randomDiap(n,m) { /* Функция для определения случайного угла вылета мяча */
+        return Math.floor(
+            Math.random() * (m - n + 1)
+        ) + n;
+    }
+
+
+
+
+
+
+
+
 
 </script>
 
