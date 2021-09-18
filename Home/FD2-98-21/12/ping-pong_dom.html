@@ -117,7 +117,7 @@
 
     function startGame() {
 
-        ballInfo.randomBall(); /* Обноляем случайное направление вылета мяча */
+        ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
         timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
         timerBall = setInterval(ballMove, 20); /* Запускаем функцию движения мяча по игровому полю */
@@ -278,7 +278,7 @@
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
-            timerRepeatRound = setTimeout(startRound, 4000); /* Устанавливаем таймер повторного запуска раунда игры */
+            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
         }
 
 
@@ -292,9 +292,9 @@
             ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            timerBackScore = setInterval(startBackScore, 1000); /* Устанавливаем таймер обратного отсчета для начала раунда игры */
+            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
-            timerRepeatRound = setTimeout(startRound, 4000); /* Устанавливаем таймер повторного запуска раунда игры */
+            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
         }
 
 
@@ -325,7 +325,7 @@
             if(scorePlayer2 === 5) numPlayer = 2;
 
             backScore.style.display = 'inline-block'; /* Отображаем победителя игры */
-            backScore.style.marginLeft = '150px';
+            backScore.style.marginLeft = '140px';
             backScore.innerHTML = `win <span>Player ${numPlayer}</span>`;
 
             button.disabled = false; /* Активируем возможность старта новой игры */
@@ -347,11 +347,10 @@
     }
 
 
-
 /* Вспомогательне функции */
     backStart = 4;
 
-    function startBackScore() { /* Функция обратного отсчета времени для начала следующего раунда игры */
+    function startBackScore() { /* Функция обратного отсчета времени до начала следующего раунда игры */
 
         backScore.style.display = 'inline-block'; /* Отображаем обратный отсчет */
         backScore.innerHTML = `${--backStart}...`; /* Изменяем значения */
@@ -376,14 +375,6 @@
             Math.random() * (m - n + 1)
         ) + n;
     }
-
-
-
-
-
-
-
-
 
 </script>
 
