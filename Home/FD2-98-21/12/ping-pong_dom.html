@@ -281,7 +281,6 @@
             timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
         }
 
-
 /* Вылет мяча за левую сторону поля */
         if (ballInfo.posX < 0) {
 
@@ -297,7 +296,6 @@
             timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
         }
 
-
 /* Вылет мяча за нижнюю сторону поля */
         if (ballInfo.posY + ballInfo.height > heightField) {
 
@@ -305,14 +303,12 @@
             ballInfo.posY = heightField - ballInfo.height;
         }
 
-
 /* Вылет мяча за верхнюю сторону поля */
         if (ballInfo.posY < 0) {
 
             ballInfo.speedY =- ballInfo.speedY;
             ballInfo.posY = 0;
         }
-
 
 /* Окончание игры и объявление победителя */
         if (scorePlayer1 === 5 || scorePlayer2 === 5) {
@@ -333,7 +329,6 @@
             scorePlayer1 = 0; /* Обнуляем счет игры */
             scorePlayer2 = 0;
         }
-
 
 /* Функция для повторного запуска раунда игры */
         function startRound() {
