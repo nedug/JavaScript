@@ -8,7 +8,36 @@
 
 <script>
 
-	
+/* Выбрать четные числа из массива через Filter */
+
+	let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    function evenNumber(elem) {
+
+        return elem % 2 === 0;
+    }
+
+	console.log(arr.filter(evenNumber)); /* с помощью function */
+
+   console.log(arr.filter(elem => elem % 2 === 0));  /* с помощью стрелочной функции */
+
+
+/* Найти сумму всех элементов в квадрате через Reduce */
+
+	let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+	function sumNumber(start, elem) {
+
+		 return elem ** 2 + start;
+	}
+
+	console.log(arr1.reduce(sumNumber, 0)); /* с помощью function */
+
+	console.log(arr1.reduce((start, elem) => elem ** 2 + start, 0));  /* с помощью стрелочной функции */
+
+
+
+
 
 </script>
 
