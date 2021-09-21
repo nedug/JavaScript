@@ -200,7 +200,7 @@
         ballInfo.posY += ballInfo.speedY; /* Изменяем положение мяча по Y */
 
         /* Отскок мяча от правой ракетки */
-        if (ballInfo.posX + ballInfo.width >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
+        if (ballInfo.posX + ballInfo.width / 2 >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
@@ -209,16 +209,16 @@
         }
 
         /* Отскок мяча от левой ракетки */
-        if (ballInfo.posX <= leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
+        if (ballInfo.posX <= leftRacket.width + ballInfo.width / 2 && ballInfo.posY >= leftRacket.posY && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX;
-            ballInfo.posX = leftRacket.width;
+            ballInfo.posX = leftRacket.width + ballInfo.width / 2;
 
             console.log('Левая ракетка');
         }
 
         /* Вылет мяча за правую сторону поля */
-        if (ballInfo.posX + ballInfo.width > widthField) {
+        if (ballInfo.posX + ballInfo.width / 2 > widthField) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
@@ -233,7 +233,7 @@
         }
 
         /* Вылет мяча за левую сторону поля */
-        if (ballInfo.posX < 0) {
+        if (ballInfo.posX < ballInfo.width / 2) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
@@ -245,6 +245,8 @@
             // timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
             timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
+
+            console.log('Левая сторона');
         }
 
         /* Вылет мяча за нижнюю сторону поля */
