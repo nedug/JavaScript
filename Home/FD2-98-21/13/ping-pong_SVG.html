@@ -36,6 +36,11 @@
     let storage; /* Хранилище состояния движения/остановки ракеток */
     let backStart; /* Переменная для таймера обратного отсчета времени */
 
+    let timerBall; /* Таймер для движения мяча по игровому полю */
+    let timerRacket;  /* Таймер для движения ракеток по игровому полю */
+    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
+    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
+
 
     let field = document.createElementNS(svgNS, "rect"); /* Создаем игровое поле */
     field.setAttributeNS(null,"x", 0);
