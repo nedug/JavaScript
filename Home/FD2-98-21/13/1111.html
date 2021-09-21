@@ -1,10 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>Document for example create svg elements</title>
 </head>
 <body>
+
+<svg id="svg" height="500" width="850"/>
+
+<script>
+
+    const svgNS = "http://www.w3.org/2000/svg";
+
+
+	  const svg = document.getElementById("svg");
+
+	  const widthField = parseFloat(svg.getAttributeNS(null, "width"));
+	  const heightField = parseFloat(svg.getAttributeNS(null, "height"));
+
+	  const widthHeightBall = heightField * 0.09;
+
+	  const widthRacket = heightField * 0.03;
+	  const heightRacket = heightField * 0.26;
+
+
+	  let field = document.createElementNS(svgNS, "rect");
+
+	  field.setAttributeNS(null,"x", 0);
+	  field.setAttributeNS(null,"y", 0);
+	  field.setAttributeNS(null,"width", widthField);
+	  field.setAttributeNS(null,"height", heightField);
+	  field.setAttributeNS(null,"fill","#eee2a5");
+	  field.setAttributeNS(null,"stroke","black");
+
+	  svg.append(field);
+
+
+	  let ball = document.createElementNS(svgNS, "circle");
+
+	  ball.setAttributeNS(null,"cx", widthField / 2 - widthHeightBall / 2);
+	  ball.setAttributeNS(null,"cy", heightField / 2 - widthHeightBall / 2);
+	  ball.setAttributeNS(null,"r", widthHeightBall / 2);
+	  ball.setAttributeNS(null,"fill","#f3445b");
+	  ball.setAttributeNS(null,"stroke","none");
+
+	  svg.append(ball);
+
+
+	  let racketL = document.createElementNS(svgNS, "rect");
+
+	  // racketL.setAttributeNS(null,"x", 0);
+	  // racketL.setAttributeNS(null,"y", 150);
+	  racketL.setAttributeNS(null,"width", widthRacket);
+	  racketL.setAttributeNS(null,"height", heightRacket);
+	  racketL.setAttributeNS(null,"fill","#6cf189");
+	  racketL.setAttributeNS(null,"stroke","none");
+
+	  svg.append(racketL);
+
+
+    let racketR = document.createElementNS(svgNS, "rect");
+
+    // racketR.setAttributeNS(null,"x", 0);
+    // racketR.setAttributeNS(null,"y", 150);
+    racketR.setAttributeNS(null,"width", widthRacket);
+    racketR.setAttributeNS(null,"height", heightRacket);
+    racketR.setAttributeNS(null,"fill","#6c9df1");
+    racketR.setAttributeNS(null,"stroke","none");
+
+    svg.append(racketR);
+
+
+
+    class Racket {
+        constructor(_posX, _posY, _speedY, _width, _height, _racket, /*_side*/) {
+            this.posX = _posX;
+            this.posY = _posY;
+            this.speedY = _speedY;
+            this.width = _width;
+            this.height = _height;
+            this.racket = _racket;
+            // this.side = _side;
+        }
+        updateRacket() {
+
+            this.racket.setAttributeNS(null,"x", this.posX);
+
+            this.racket.setAttributeNS(null,"y", this.posY);
+
+            // this.racket.style[this.side] = this.posX + "px";
+            // this.racket.style.top = this.posY + "px";
+        }
+    }
+
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, /*'left'*/);
+
+    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, racketR, /*'right'*/);
+
+
+    leftRacket.updateRacket();
+    rightRacket.updateRacket();
+
+
+
+
+
+
+	 //
+    // let leftRacketInfo = {
+    //     posX : 0,
+    //     posY : 350,
+    //     speedY : 10,
+    //     width : widthRacket,
+    //     height: heightRacket,
+	 //
+    //     updateRacket: function() {
+	 //
+    //         // racketL.setAttributeNS(null,"x", 0);
+    //         racketL.setAttributeNS(null,"y", this.posY);
+	 //
+    //         // racketL.style.top = this.posY + "px";
+    //     }
+    // }
+	 //
+    // leftRacketInfo.updateRacket();
+
+
+
+
+    let storage = {};
+
+    document.addEventListener('keydown', fillStorage);
+    document.addEventListener('keyup', fillStorage);
+
+    function fillStorage(event) {
+
+        if (event.type === 'keydown') {
+            storage[event.code] = true;
+        }
+        if (event.type === 'keyup') {
+            storage[event.code] = false;
+        }
+        // console.log(event.type);
+        // console.log(event.code);
+    }
+
+
+    timerRacket = setInterval(racketsMove, 20);
+
+    function racketsMove() {
+
+        if (storage['ShiftLeft']) { /* Движение левой ракетки вверх */
+
+            leftRacket.posY = leftRacket.posY - leftRacket.speedY;
+
+            if (leftRacket.posY < 0) {
+                leftRacket.posY = 0;
+            }
+            leftRacket.updateRacket();
+        }
+
+        if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
+
+            leftRacket.posY = leftRacket.posY + leftRacket.speedY;
+
+            if (leftRacket.posY + leftRacket.height > heightField) {
+                leftRacket.posY = heightField - leftRacket.height;
+            }
+            leftRacket.updateRacket();
+        }
+
+        if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
+
+            rightRacket.posY = rightRacket.posY - rightRacket.speedY;
+
+            if (rightRacket.posY < 0) {
+                rightRacket.posY = 0;
+            }
+            rightRacket.updateRacket();
+        }
+
+        if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
+
+            rightRacket.posY = rightRacket.posY + rightRacket.speedY;
+
+            if (rightRacket.posY + rightRacket.height > heightField) {
+                rightRacket.posY = heightField - rightRacket.height;
+            }
+            rightRacket.updateRacket();
+        }
+    }
+
+
+
+
+</script>
 
 </body>
 </html>
