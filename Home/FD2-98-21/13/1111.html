@@ -11,12 +11,16 @@
        #text-score {
            margin-left: 275px;
        }
+       #back-score {
+           margin-left: 165px;
+       }
 	</style>
 </head>
 <body>
 
 <canvas id="start-btn">Ваш браузер не поддерживает canvas</canvas>
 <canvas id="text-score">Ваш браузер не поддерживает canvas</canvas>
+<canvas id="back-score">Ваш браузер не поддерживает canvas</canvas>
 
 <br>
 
@@ -33,6 +37,8 @@
 
     let scorePlayer1; /* Переменная для подсчета очков первого игрока */
     let scorePlayer2; /* Переменная для подсчета очков второго игрока */
+    let storage; /* Хранилище состояния движения/остановки ракеток */
+    let backStart; /* Переменная для таймера обратного отсчета времени */
 
 
     let timerBall; /* Таймер для движения мяча по игровому полю */
@@ -86,15 +92,22 @@
 
     let ctxScore = textScore.getContext('2d');
 
-    // ctxScore.beginPath();
-    // ctxScore.fillStyle = '#c4e7c4';
-    // ctxScore.fillRect(0, 0, widthField, heightField);
-
     ctxScore.font = "50px arial";
     ctxScore.fillStyle = 'black';
     scorePlayer1 = 0;
     scorePlayer2 = 0;
     ctxScore.fillText(`${scorePlayer1}:${scorePlayer2}`, 15, 40);
+
+
+    const backScore = document.getElementById('back-score');
+    backScore.width = 200;
+    backScore.height = 50;
+
+    let ctxBackScore = backScore.getContext('2d');
+
+    ctxBackScore.font = "50px arial";
+    ctxBackScore.fillStyle = 'black';
+    // ctxBackScore.fillText(`текст`, 60, 40);
 
 
     startBtn.addEventListener('click', startGame, {once:true}); /* Запускам игру по клику на кнопку START */
@@ -314,14 +327,12 @@
             ctxScore.clearRect(0, 0, 100, 50);
             ctxScore.fillText(`${++scorePlayer1}:${scorePlayer2}`, 15, 40);
 
-            // player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
-
             ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2;
 
+            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
             timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
-
 
             console.log('Правая сторона');
         }
@@ -337,8 +348,9 @@
             ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2;
 
-            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
+            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
+            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
 
             console.log('Левая сторона');
         }
@@ -387,7 +399,23 @@
 
 
 
+    /* Вспомогательные функции */
+    backStart = 4;
 
+    function startBackScore() { /* Функция обратного отсчета времени до начала следующего раунда игры */
+
+        backScore.style.display = ''; /* Отображаем обратный отсчет */
+        ctxBackScore.clearRect(0, 0, 200, 50);
+        ctxBackScore.fillText(`${--backStart}...`, 110, 40);
+        // backScore.innerHTML = `${--backStart}...`; /* Изменяем значения */
+
+        if (backStart === 0) {
+
+            clearInterval(timerBackScore);  /* Останавливаем таймер обратного отсчета времени */
+            backScore.style.display = 'none'; /* Скрываем обратный отсчет */
+            backStart = 4; /* Устанавливаем перовначальное положение обратного отсчета */
+        }
+    }
 
     function randomDirect() { /* Функция для определения случайного направления вылета мяча */
         let x = Math.random();
