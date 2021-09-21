@@ -46,6 +46,14 @@
     field.setAttributeNS(null,"stroke","black");
     svg.append(field);
 
+    let centerLine = document.createElementNS(svgNS, "line"); /* Создаем линию по центру поля */
+    centerLine.setAttributeNS(null,"x1", widthField / 2);
+    centerLine.setAttributeNS(null,"y1", 0);
+    centerLine.setAttributeNS(null,"x2", widthField / 2);
+    centerLine.setAttributeNS(null,"y2", heightField);
+    centerLine.setAttributeNS(null,"stroke","black");
+    svg.append(centerLine);
+
     let ball = document.createElementNS(svgNS, "circle"); /* Создаем мяч */
     ball.setAttributeNS(null,"r", widthHeightBall / 2);
     ball.setAttributeNS(null,"fill","#f3445b");
@@ -85,7 +93,7 @@
     svgScore.append(button);
 
     let textScore = document.createElementNS(svgNS, "text"); /* Создаем табло подсчета очков */
-    textScore.setAttributeNS(null,"x", 370);
+    textScore.setAttributeNS(null,"x", 393);
     textScore.setAttributeNS(null,"y", 50);
     textScore.setAttributeNS(null,"font-size", 50);
     scorePlayer1 = 0;
@@ -237,7 +245,7 @@
         ballInfo.posY += ballInfo.speedY; /* Изменяем положение мяча по Y */
 
 /* Отскок мяча от правой ракетки */
-        if (ballInfo.posX + ballInfo.width / 2 >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
+        if (ballInfo.posX + ballInfo.width / 2 >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height / 2 && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
@@ -246,7 +254,7 @@
         }
 
 /* Отскок мяча от левой ракетки */
-        if (ballInfo.posX <= leftRacket.width + ballInfo.width / 2 && ballInfo.posY >= leftRacket.posY && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
+        if (ballInfo.posX <= leftRacket.width + ballInfo.width / 2 && ballInfo.posY >= leftRacket.posY - ballInfo.height / 2 && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX;
             ballInfo.posX = leftRacket.width + ballInfo.width / 2;
