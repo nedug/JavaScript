@@ -47,11 +47,6 @@
     field.width = widthField;
     field.height = heightField;
     let ctx = field.getContext('2d');
-    // ctx.beginPath();
-    // ctx.fillStyle = '#eee2a5';
-    // ctx.strokeStyle = 'black';
-    // ctx.fillRect(0, 0, widthField, heightField);
-    // ctx.strokeRect(0, 0, widthField, heightField);
 
     const startBtn = document.getElementById('start-btn'); /* Создаем кнопку запуска игры */
     startBtn.width = 100;
@@ -346,10 +341,10 @@
             timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
         }
 
-        fieldInfo.updateField(); /* Обновлялем игровое поле */
+        fieldInfo.updateField(); /* Обновляем игровое поле */
         ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
-        leftRacket.updateRacket(); /* Обновлялем положение левой ракетки */
-        rightRacket.updateRacket(); /* Обновлялем положение правой ракетки */
+        leftRacket.updateRacket(); /* Обновляем положение левой ракетки */
+        rightRacket.updateRacket(); /* Обновляем положение правой ракетки */
     }
 
 
