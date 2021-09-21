@@ -131,6 +131,10 @@
     svgScore.append(textScore);
 
 
+    player1 = document.body.querySelector('.player1');
+    player2 = document.body.querySelector('.player2');
+
+
 
 
 
@@ -311,7 +315,7 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            // player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
+            player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
 
             ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
@@ -326,7 +330,7 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            // player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
+            player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
 
             ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
