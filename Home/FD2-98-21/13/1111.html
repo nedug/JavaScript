@@ -310,6 +310,12 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
+
+            ctxScore.clearRect(0, 0, 100, 50);
+            ctxScore.fillText(`${++scorePlayer1}:${scorePlayer2}`, 15, 40);
+
+            // player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
+
             ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2;
 
@@ -324,6 +330,9 @@
         if (ballInfo.posX < ballInfo.width / 2) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
+
+            ctxScore.clearRect(0, 0, 100, 50);
+            ctxScore.fillText(`${scorePlayer1}:${++scorePlayer2}`, 15, 40);
 
             ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2;
