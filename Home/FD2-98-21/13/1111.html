@@ -47,11 +47,11 @@
     field.width = widthField;
     field.height = heightField;
     let ctx = field.getContext('2d');
-    ctx.beginPath();
-    ctx.fillStyle = '#eee2a5';
-    ctx.strokeStyle = 'black';
-    ctx.fillRect(0, 0, widthField, heightField);
-    ctx.strokeRect(0, 0, widthField, heightField);
+    // ctx.beginPath();
+    // ctx.fillStyle = '#eee2a5';
+    // ctx.strokeStyle = 'black';
+    // ctx.fillRect(0, 0, widthField, heightField);
+    // ctx.strokeRect(0, 0, widthField, heightField);
 
     const startBtn = document.getElementById('start-btn'); /* Создаем кнопку запуска игры */
     startBtn.width = 100;
@@ -96,6 +96,25 @@
 
         backScore.style.display = 'none'; /* Скрываем победителя при запуске новой игры */
     }
+
+    /* Создаем объект игрового поля, где хранятся размеры, положение поля */
+    let fieldInfo = {
+        posX: 0,
+        posY: 0,
+        width : widthField,
+        height: heightField,
+        ctx: ctx,
+
+        updateField: function() {
+            ctx.beginPath();
+            ctx.fillStyle = '#eee2a5';
+            ctx.strokeStyle = 'black';
+            ctx.fillRect(this.posX, this.posY, this.width, this.height);
+            ctx.strokeRect(this.posX, this.posY, this.width, this.height);
+        },
+    }
+
+    fieldInfo.updateField(); /* Создаем игровое поле перед началом игры */
 
 
     /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
@@ -165,7 +184,8 @@
         // console.log(event.type);
         // console.log(event.code);
     }
-	 
+
+
 
     /* Функция движения ракеток по игровому полю */
     function racketsMove() {
@@ -177,6 +197,7 @@
             ctx.strokeStyle = 'black';
             ctx.fillRect(0, 0, widthField, heightField);
             ctx.strokeRect(0, 0, widthField, heightField);
+
 
             leftRacket.posY = leftRacket.posY - leftRacket.speedY;
 
