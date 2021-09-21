@@ -6,6 +6,9 @@
 </head>
 <body>
 
+<canvas id="start">Ваш браузер не поддерживает canvas</canvas>
+<br>
+
 <canvas id="field">Ваш браузер не поддерживает canvas</canvas>
 
 <script>
@@ -15,6 +18,14 @@
     const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
     const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
     const heightRacket = heightField * 0.26; /* Назначаем длину игровой ракетки */
+
+
+    let timerBall; /* Таймер для движения мяча по игровому полю */
+    let timerRacket;  /* Таймер для движения ракеток по игровому полю */
+    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
+    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
+
+
 
     const field = document.getElementById('field');
     field.width = widthField;
@@ -37,6 +48,17 @@
     // ctx.fillStyle = '#f3445b';
     // ctx.arc(widthField / 2, heightField / 2, widthHeightBall / 2, 0, 2 * Math.PI);
     // ctx.fill();
+
+
+    const start = document.getElementById('start');
+    start.width = 100;
+    start.height = 30;
+
+    let ctxStart = start.getContext('2d');
+
+    ctxStart.beginPath();
+    ctxStart.fillStyle = '#c4e7c4';
+    ctxStart.fillRect(0, 0, widthField, heightField);
 
 
 
@@ -91,7 +113,7 @@
     }
 
 
-    let timerRacket = setInterval(racketsMove, 20);
+    timerRacket = setInterval(racketsMove, 20);
 
     /* Функция движения ракеток по игровому полю */
     function racketsMove() {
@@ -202,7 +224,7 @@
 
 
 
-    let timerBall = setInterval(ballMove, 20);
+    timerBall = setInterval(ballMove, 20);
 
     function ballMove() {
 
@@ -243,6 +265,9 @@
             ballInfo.posY = heightField / 2;
 
 
+            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
+
+
             console.log('Правая сторона');
         }
 
@@ -253,6 +278,8 @@
 
             ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
             ballInfo.posY = heightField / 2;
+
+            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
 
 
             console.log('Левая сторона');
@@ -272,6 +299,16 @@
 
             ballInfo.speedY =- ballInfo.speedY;
             ballInfo.posY = ballInfo.height / 2;
+        }
+
+
+
+        /* Функция для повторного запуска раунда игры */
+        function startRound() {
+
+            ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
+
+            timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
         }
 
 
