@@ -3,10 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+       #start-btn {
+           cursor: pointer;
+           margin: 15px 0 15px 0;
+       }
+       #text-score {
+           margin-left: 275px;
+       }
+	</style>
 </head>
 <body>
 
-<canvas id="start">Ваш браузер не поддерживает canvas</canvas>
+<canvas id="start-btn">Ваш браузер не поддерживает canvas</canvas>
+<canvas id="text-score">Ваш браузер не поддерживает canvas</canvas>
+
 <br>
 
 <canvas id="field">Ваш браузер не поддерживает canvas</canvas>
@@ -18,6 +29,10 @@
     const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
     const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
     const heightRacket = heightField * 0.26; /* Назначаем длину игровой ракетки */
+
+
+    let scorePlayer1; /* Переменная для подсчета очков первого игрока */
+    let scorePlayer2; /* Переменная для подсчета очков второго игрока */
 
 
     let timerBall; /* Таймер для движения мяча по игровому полю */
@@ -50,15 +65,49 @@
     // ctx.fill();
 
 
-    const start = document.getElementById('start');
-    start.width = 100;
-    start.height = 30;
+    const startBtn = document.getElementById('start-btn');
+    startBtn.width = 100;
+    startBtn.height = 30;
 
-    let ctxStart = start.getContext('2d');
+    let ctxStart = startBtn.getContext('2d');
 
     ctxStart.beginPath();
     ctxStart.fillStyle = '#c4e7c4';
     ctxStart.fillRect(0, 0, widthField, heightField);
+
+    ctxStart.font = "20px arial";
+    ctxStart.fillStyle = 'black';
+    ctxStart.fillText(`START!`, 15, 22);
+
+
+    const textScore = document.getElementById('text-score');
+    textScore.width = 100;
+    textScore.height = 50;
+
+    let ctxScore = textScore.getContext('2d');
+
+    // ctxScore.beginPath();
+    // ctxScore.fillStyle = '#c4e7c4';
+    // ctxScore.fillRect(0, 0, widthField, heightField);
+
+    ctxScore.font = "50px arial";
+    ctxScore.fillStyle = 'black';
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
+    ctxScore.fillText(`${scorePlayer1}:${scorePlayer2}`, 15, 40);
+
+
+    startBtn.addEventListener('click', startGame, {once:true}); /* Запускам игру по клику на кнопку START */
+
+    function startGame() {
+
+        ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
+
+        timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
+        timerBall = setInterval(ballMove, 20); /* Запускаем функцию движения мяча по игровому полю */
+
+    }
+
 
 
 
@@ -113,7 +162,7 @@
     }
 
 
-    timerRacket = setInterval(racketsMove, 20);
+    // timerRacket = setInterval(racketsMove, 20);
 
     /* Функция движения ракеток по игровому полю */
     function racketsMove() {
@@ -220,11 +269,11 @@
 
     ballInfo.updateBall();
 
-    ballInfo.randomBall()
+    // ballInfo.randomBall()
 
 
 
-    timerBall = setInterval(ballMove, 20);
+    // timerBall = setInterval(ballMove, 20);
 
     function ballMove() {
 
