@@ -6,5 +6,174 @@
 </head>
 <body>
 
+<canvas id="field">Ваш браузер не поддерживает canvas</canvas>
+
+<script>
+
+    const widthField = 850; /* Назначаем длину игрового поля */
+    const heightField = 500; /* Назначаем ширину игрового поля */
+    const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
+    const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
+    const heightRacket = heightField * 0.26; /* Назначаем длину игровой ракетки */
+
+    const field = document.getElementById('field');
+    field.width = widthField;
+    field.height = heightField;
+
+    let ctx = field.getContext('2d');
+
+    ctx.beginPath();
+    ctx.fillStyle = '#eee2a5';
+    ctx.strokeStyle = 'black';
+    ctx.fillRect(0, 0, widthField, heightField);
+    ctx.strokeRect(0, 0, widthField, heightField);
+
+
+    // ctx.beginPath();
+    // ctx.fillStyle = '#6cf189';
+    // ctx.fillRect(0, 300, widthRacket, heightRacket);
+
+    ctx.beginPath();
+    ctx.fillStyle = '#6c9df1';
+    ctx.fillRect(widthField - widthRacket, 100, widthRacket, heightRacket);
+
+
+    /* Создаем класс для создания экземпляров ракеток */
+    class Racket {
+        constructor(_posX, _posY, _speedY, _width, _height, _ctx, _color) {
+            this.posX = _posX;
+            this.posY = _posY;
+            this.speedY = _speedY;
+            this.width = _width;
+            this.height = _height;
+            this.ctx = _ctx;
+            this.color = _color;
+        }
+
+        updateRacket() {
+
+
+            ctx.beginPath();
+            this.ctx.fillStyle = this.color;
+            this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+
+
+
+            // this.racket.style[this.side] = this.posX + "px";
+            // this.racket.style.top = this.posY + "px";
+        }
+    }
+
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, ctx, '#6cf189');
+
+    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, ctx, '#6c9df1');
+
+    leftRacket.updateRacket();
+    rightRacket.updateRacket();
+
+
+
+    /* Физика движения ракеток по игровому полю */
+    storage = {}; /* Создаем объект хранилища состояния движения/остановки ракеток */
+
+    document.addEventListener('keydown', fillStorage); /* Обрабочик событий нажатия кнопок клавиатуры */
+    document.addEventListener('keyup', fillStorage); /* Обрабочик событий отпускания кнопок клавиатуры */
+
+    function fillStorage(event) {
+
+        if (event.type === 'keydown') { /* При нажатии кнопки клавиатуры сохраняем в хранилище storage ключ (название клавиши) со значением (true) */
+            storage[event.code] = true;
+        }
+        if (event.type === 'keyup') { /* При отпускании кнопки клавиатуры обновляем в хранилище storage ключ (название клавиши) со значением (false) */
+            storage[event.code] = false;
+        }
+        // console.log(event.type);
+        // console.log(event.code);
+    }
+
+
+    let timerRacket = setInterval(racketsMove, 20);
+
+    /* Функция движения ракеток по игровому полю */
+    function racketsMove() {
+
+        if (storage['ShiftLeft']) { /* Движение левой ракетки вверх */
+
+            ctx.beginPath();
+            ctx.fillStyle = '#eee2a5';
+            ctx.strokeStyle = 'black';
+            ctx.fillRect(0, 0, widthField, heightField);
+            ctx.strokeRect(0, 0, widthField, heightField);
+
+            leftRacket.posY = leftRacket.posY - leftRacket.speedY;
+
+            if (leftRacket.posY < 0) {
+                leftRacket.posY = 0;
+            }
+            leftRacket.updateRacket();
+            rightRacket.updateRacket();
+        }
+
+        if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
+
+            ctx.beginPath();
+            ctx.fillStyle = '#eee2a5';
+            ctx.strokeStyle = 'black';
+            ctx.fillRect(0, 0, widthField, heightField);
+            ctx.strokeRect(0, 0, widthField, heightField);
+
+            leftRacket.posY = leftRacket.posY + leftRacket.speedY;
+
+            if (leftRacket.posY + leftRacket.height > heightField) {
+                leftRacket.posY = heightField - leftRacket.height;
+            }
+            leftRacket.updateRacket();
+            rightRacket.updateRacket();
+        }
+
+        if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
+
+            ctx.beginPath();
+            ctx.fillStyle = '#eee2a5';
+            ctx.strokeStyle = 'black';
+            ctx.fillRect(0, 0, widthField, heightField);
+            ctx.strokeRect(0, 0, widthField, heightField);
+
+            rightRacket.posY = rightRacket.posY - rightRacket.speedY;
+
+            if (rightRacket.posY < 0) {
+                rightRacket.posY = 0;
+            }
+            rightRacket.updateRacket();
+            leftRacket.updateRacket();
+        }
+
+        if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
+
+            ctx.beginPath();
+            ctx.fillStyle = '#eee2a5';
+            ctx.strokeStyle = 'black';
+            ctx.fillRect(0, 0, widthField, heightField);
+            ctx.strokeRect(0, 0, widthField, heightField);
+
+            rightRacket.posY = rightRacket.posY + rightRacket.speedY;
+
+            if (rightRacket.posY + rightRacket.height > heightField) {
+                rightRacket.posY = heightField - rightRacket.height;
+            }
+            rightRacket.updateRacket();
+            leftRacket.updateRacket();
+
+        }
+    }
+
+
+
+
+
+
+
+</script>
+
 </body>
 </html>
