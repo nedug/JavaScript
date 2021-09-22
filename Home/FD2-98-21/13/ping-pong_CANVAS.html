@@ -41,6 +41,7 @@
     let timerRacket; /* Таймер для движения ракеток по игровому полю */
     let timerBackScore; /* Таймер обратного отсчета до начала раунда игры */
     let timerRepeatRound; /* Таймер повторного запуска раунда игры */
+    let timerCenterBall; /* Таймер для установки мяча в центр поля после гола */
 
 
     const field = document.getElementById('field'); /* Создаем игровое поле */
@@ -263,7 +264,7 @@
         if (ballInfo.posX + ballInfo.width / 2 >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height / 2 && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX;
-            ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
+            ballInfo.posX = widthField - ballInfo.width / 2 - rightRacket.width;
 
             console.log('Правая ракетка');
         }
@@ -278,15 +279,30 @@
         }
 
         /* Вылет мяча за правую сторону поля */
-        if (ballInfo.posX + ballInfo.width / 2 > widthField) {
+        if (ballInfo.posX + ballInfo.width / 2 >= widthField) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
+
+            ballInfo.posX = widthField - ballInfo.width / 2; /* Устанавливаем мяч у стенки пока идет обратный отсчет */
 
             ctxScore.clearRect(0, 0, 100, 50);
             ctxScore.fillText(`${++scorePlayer1}:${scorePlayer2}`, 15, 40); /* Изменяем счет первого игрока */
 
-            ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
-            ballInfo.posY = heightField / 2;
+            // ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
+            // ballInfo.posY = heightField / 2;
+
+            timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+
+                ballInfo.posX = widthField / 2;
+                ballInfo.posY = heightField / 2;
+
+                fieldInfo.updateField();
+                leftRacket.updateRacket();
+                rightRacket.updateRacket()
+                ballInfo.updateBall();
+
+                ctx.drawImage(bufferField, 0, 0, field.width, field.height);
+            }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
@@ -300,11 +316,23 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
+            ballInfo.posX = ballInfo.width / 2; /* Устанавливаем мяч у стенки пока идет обратный отсчет */
+
             ctxScore.clearRect(0, 0, 100, 50);
             ctxScore.fillText(`${scorePlayer1}:${++scorePlayer2}`, 15, 40); /* Изменяем счет второго игрока */
 
-            ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
-            ballInfo.posY = heightField / 2;
+            timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+
+                ballInfo.posX = widthField / 2;
+                ballInfo.posY = heightField / 2;
+
+                fieldInfo.updateField();
+                leftRacket.updateRacket();
+                rightRacket.updateRacket()
+                ballInfo.updateBall();
+
+                ctx.drawImage(bufferField, 0, 0, field.width, field.height);
+            }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
