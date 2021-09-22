@@ -38,15 +38,20 @@
     let numPlayer; /* Переменная для сохранения победителя игры */
 
     let timerBall; /* Таймер для движения мяча по игровому полю */
-    let timerRacket;  /* Таймер для движения ракеток по игровому полю */
-    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
-    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
+    let timerRacket; /* Таймер для движения ракеток по игровому полю */
+    let timerBackScore; /* Таймер обратного отсчета до начала раунда игры */
+    let timerRepeatRound; /* Таймер повторного запуска раунда игры */
 
 
     const field = document.getElementById('field'); /* Создаем игровое поле */
     field.width = widthField;
     field.height = heightField;
     let ctx = field.getContext('2d');
+
+    const bufferField = document.createElement('canvas'); /* Создаем буферизирующий канвас игрового поля */
+    let ctxBufferField = bufferField.getContext('2d');
+    ctxBufferField.canvas.width = ctx.canvas.width;
+    ctxBufferField.canvas.height = ctx.canvas.height;
 
     const startBtn = document.getElementById('start-btn'); /* Создаем кнопку запуска игры */
     startBtn.width = 100;
@@ -92,39 +97,39 @@
         backScore.style.display = 'none'; /* Скрываем победителя при запуске новой игры */
     }
 
-    /* Создаем объект игрового поля, где хранятся размеры, положение поля */
+    /* Создаем объект игрового поля, где хранятся размеры, положение поля (используем буферизирующий канвас) */
     let fieldInfo = {
         posX: 0,
         posY: 0,
         width : widthField,
         height: heightField,
-        ctx: ctx,
+        ctx: ctxBufferField,
 
         updateField: function() {
-            ctx.beginPath();
-            ctx.fillStyle = '#eee2a5';
-            ctx.strokeStyle = 'black';
-            ctx.fillRect(this.posX, this.posY, this.width, this.height);
-            ctx.strokeRect(this.posX, this.posY, this.width, this.height);
+            ctxBufferField.beginPath();
+            ctxBufferField.fillStyle = '#eee2a5';
+            ctxBufferField.strokeStyle = 'black';
+            ctxBufferField.fillRect(this.posX, this.posY, this.width, this.height);
+            ctxBufferField.strokeRect(this.posX, this.posY, this.width, this.height);
         },
     }
 
     fieldInfo.updateField(); /* Создаем игровое поле перед началом игры */
 
 
-    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
+    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча (используем буферизирующий канвас) */
     let ballInfo = {
-        posX : widthField / 2 ,
+        posX : widthField / 2,
         posY : heightField / 2,
         width : widthHeightBall,
         height: widthHeightBall,
-        ctx: ctx,
+        ctx: ctxBufferField,
 
         updateBall: function() { /* Положение мяча */
-            ctx.beginPath();
-            ctx.fillStyle = '#f3445b';
-            ctx.arc(this.posX, this.posY, this.width / 2, 0, 2 * Math.PI);
-            ctx.fill();
+            ctxBufferField.beginPath();
+            ctxBufferField.fillStyle = '#f3445b';
+            ctxBufferField.arc(this.posX, this.posY, this.width / 2, 0, 2 * Math.PI);
+            ctxBufferField.fill();
         },
 
         randomBall: function() {  /* Случайное направление вылета мяча */
@@ -136,7 +141,7 @@
     ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
 
 
-    /* Создаем класс для создания экземпляров ракеток */
+    /* Создаем класс для создания экземпляров ракеток (используем буферизирующий канвас) */
     class Racket {
         constructor(_posX, _posY, _speedY, _width, _height, _ctx, _color) {
             this.posX = _posX;
@@ -148,18 +153,20 @@
             this.color = _color;
         }
         updateRacket() {
-            ctx.beginPath();
+            this.ctx.beginPath();
             this.ctx.fillStyle = this.color;
             this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
         }
     }
 
-    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, ctx, '#6cf189'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, ctxBufferField, '#6cf189'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
-    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, ctx, '#6c9df1'); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, ctxBufferField, '#6c9df1'); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
     leftRacket.updateRacket(); /* Устанавливаем левую ракетку перед началом игры */
     rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
+
+    ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируруем в основной канвас игрового поля буферизирующий для отображения поля, мяча и ракеток перед началом игры */
 
 
     /* Физика движения ракеток по игровому полю */
@@ -195,6 +202,8 @@
             leftRacket.updateRacket(); /* Обновлялем положение левой ракетки */
             rightRacket.updateRacket(); /* Обновлялем положение правой ракетки */
             ballInfo.updateBall(); /* Обновлялем положение мяча */
+
+				ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируруем в основной канвас игрового поля буферизирующий для отображения положения поля, мяча и ракеток */
         }
 
         if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
@@ -208,6 +217,8 @@
             leftRacket.updateRacket();
             rightRacket.updateRacket();
             ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
 
         if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
@@ -221,6 +232,8 @@
             rightRacket.updateRacket();
             leftRacket.updateRacket();
             ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
 
         if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
@@ -234,6 +247,8 @@
             rightRacket.updateRacket();
             leftRacket.updateRacket();
             ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
     }
 
@@ -345,6 +360,8 @@
         ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
         leftRacket.updateRacket(); /* Обновляем положение левой ракетки */
         rightRacket.updateRacket(); /* Обновляем положение правой ракетки */
+
+        ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируруем в основной канвас игрового поля буферизирующий для отображения положения поля, мяча и ракеток */
     }
 
 
@@ -362,7 +379,7 @@
 
             clearInterval(timerBackScore);  /* Останавливаем таймер обратного отсчета времени */
             backScore.style.display = 'none'; /* Скрываем обратный отсчет */
-            backStart = 4; /* Устанавливаем перовначальное положение обратного отсчета */
+            backStart = 4; /* Устанавливаем первоначальное значение обратного отсчета */
         }
     }
 
