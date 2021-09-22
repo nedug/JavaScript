@@ -4,183 +4,174 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-       .start-btn {
+       #start-btn {
            cursor: pointer;
-           opacity: 0.3;
+           margin: 15px 0 15px 0;
+       }
+       #text-score {
+           margin-left: 275px;
+       }
+       #back-score {
+           margin-left: 165px;
        }
 	</style>
 </head>
 <body>
 
-<svg id="svg_score" height="70" width="850"/>
-<svg id="svg" height="500" width="850"/>
+<canvas id="start-btn">Ваш браузер не поддерживает canvas</canvas>
+<canvas id="text-score">Ваш браузер не поддерживает canvas</canvas>
+<canvas id="back-score">Ваш браузер не поддерживает canvas</canvas><br>
+<canvas id="field">Ваш браузер не поддерживает canvas</canvas>
 
 <script>
 
-    const svgNS = "http://www.w3.org/2000/svg";
-
-    const svg = document.getElementById("svg");
-    const svgScore = document.getElementById("svg_score");
-
-    const widthField = parseFloat(svg.getAttributeNS(null, "width")); /* Забираем длину игрового поля */
-    const heightField = parseFloat(svg.getAttributeNS(null, "height")); /* Забираем ширину игрового поля */
+    const widthField = 850; /* Назначаем длину игрового поля */
+    const heightField = 500; /* Назначаем ширину игрового поля */
     const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
     const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
     const heightRacket = heightField * 0.26; /* Назначаем длину игровой ракетки */
 
     let scorePlayer1; /* Переменная для подсчета очков первого игрока */
     let scorePlayer2; /* Переменная для подсчета очков второго игрока */
-    let player1; /* Переменная для работы со счетом первого игрока */
-    let player2; /* Переменная для работы со счетом второго игрока */
-    let numPlayer; /* Переменная для сохранения победителя игры */
     let storage; /* Хранилище состояния движения/остановки ракеток */
     let backStart; /* Переменная для таймера обратного отсчета времени */
+    let numPlayer; /* Переменная для сохранения победителя игры */
 
     let timerBall; /* Таймер для движения мяча по игровому полю */
-    let timerRacket;  /* Таймер для движения ракеток по игровому полю */
-    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
-    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
+    let timerRacket; /* Таймер для движения ракеток по игровому полю */
+    let timerBackScore; /* Таймер обратного отсчета до начала раунда игры */
+    let timerRepeatRound; /* Таймер повторного запуска раунда игры */
+    let timerCenterBall; /* Таймер для установки мяча в центр поля после гола */
 
 
-    let field = document.createElementNS(svgNS, "rect"); /* Создаем игровое поле */
-    field.setAttributeNS(null,"x", 0);
-    field.setAttributeNS(null,"y", 0);
-    field.setAttributeNS(null,"width", widthField);
-    field.setAttributeNS(null,"height", heightField);
-    field.setAttributeNS(null,"fill","#eee2a5");
-    field.setAttributeNS(null,"stroke","black");
-    svg.append(field);
+    const field = document.getElementById('field'); /* Создаем игровое поле */
+    field.width = widthField;
+    field.height = heightField;
+    let ctx = field.getContext('2d');
 
-    let centerLine = document.createElementNS(svgNS, "line"); /* Создаем линию по центру поля */
-    centerLine.setAttributeNS(null,"x1", widthField / 2);
-    centerLine.setAttributeNS(null,"y1", 0);
-    centerLine.setAttributeNS(null,"x2", widthField / 2);
-    centerLine.setAttributeNS(null,"y2", heightField);
-    centerLine.setAttributeNS(null,"stroke","black");
-    svg.append(centerLine);
+    const bufferField = document.createElement('canvas'); /* Создаем буферизирующий канвас игрового поля */
+    let ctxBufferField = bufferField.getContext('2d');
+    ctxBufferField.canvas.width = ctx.canvas.width;
+    ctxBufferField.canvas.height = ctx.canvas.height;
 
-    let ball = document.createElementNS(svgNS, "circle"); /* Создаем мяч */
-    ball.setAttributeNS(null,"r", widthHeightBall / 2);
-    ball.setAttributeNS(null,"fill","#f3445b");
-    ball.setAttributeNS(null,"stroke","none");
-    svg.append(ball);
+    const startBtn = document.getElementById('start-btn'); /* Создаем кнопку запуска игры */
+    startBtn.width = 100;
+    startBtn.height = 30;
+    let ctxStart = startBtn.getContext('2d');
+    ctxStart.beginPath();
+    ctxStart.fillStyle = '#c4e7c4';
+    ctxStart.fillRect(0, 0, widthField, heightField);
+    ctxStart.font = "20px arial";
+    ctxStart.fillStyle = 'black';
+    ctxStart.fillText(`START!`, 15, 22);
 
-    let racketL = document.createElementNS(svgNS, "rect"); /* Создаем левую ракетку */
-    racketL.setAttributeNS(null,"width", widthRacket);
-    racketL.setAttributeNS(null,"height", heightRacket);
-    racketL.setAttributeNS(null,"fill","#6cf189");
-    racketL.setAttributeNS(null,"stroke","none");
-    svg.append(racketL);
-
-    let racketR = document.createElementNS(svgNS, "rect"); /* Создаем правую ракетку */
-    racketR.setAttributeNS(null,"width", widthRacket);
-    racketR.setAttributeNS(null,"height", heightRacket);
-    racketR.setAttributeNS(null,"fill","#6c9df1");
-    racketR.setAttributeNS(null,"stroke","none");
-    svg.append(racketR);
-
-    let textStart = document.createElementNS(svgNS, "text"); /* Создаем надпись START */
-    textStart.setAttributeNS(null,"x", 10);
-    textStart.setAttributeNS(null,"y", 40);
-    textStart.setAttributeNS(null,"textLength", 80);
-    textStart.setAttributeNS(null,"font-weight", 'bold');
-    textStart.innerHTML = `START!`;
-    svgScore.append(textStart);
-
-    let button = document.createElementNS(svgNS, "rect"); /* Создаем кнопку запуска игры */
-    button.setAttributeNS(null,"x", 0);
-    button.setAttributeNS(null,"y", 20);
-    button.setAttributeNS(null,"width", 100);
-    button.setAttributeNS(null,"height", 30);
-    button.setAttributeNS(null,"class", 'start-btn');
-    button.setAttributeNS(null,"fill","#00ff00");
-    button.setAttributeNS(null,"stroke","none");
-    svgScore.append(button);
-
-    let textScore = document.createElementNS(svgNS, "text"); /* Создаем табло подсчета очков */
-    textScore.setAttributeNS(null,"x", 393);
-    textScore.setAttributeNS(null,"y", 50);
-    textScore.setAttributeNS(null,"font-size", 50);
+    const textScore = document.getElementById('text-score'); /* Создаем табло подсчета очков */
+    textScore.width = 100;
+    textScore.height = 50;
+    let ctxScore = textScore.getContext('2d');
+    ctxScore.font = "50px arial";
+    ctxScore.fillStyle = 'black';
     scorePlayer1 = 0;
     scorePlayer2 = 0;
-    textScore.innerHTML = `<tspan class="player1">${scorePlayer1}</tspan>:<tspan class="player2">${scorePlayer2}</tspan>`;
-    svgScore.append(textScore);
+    ctxScore.fillText(`${scorePlayer1}:${scorePlayer2}`, 15, 40);
 
-    player1 = document.body.querySelector('.player1');
-    player2 = document.body.querySelector('.player2');
-
-    let backScore = document.createElementNS(svgNS, "text"); /* Создаем таймер обратного отсчета */
-    backScore.setAttributeNS(null,"y", 50);
-    backScore.setAttributeNS(null,"font-size", 50);
-    svgScore.append(backScore);
+    const backScore = document.getElementById('back-score'); /* Создаем таймер обратного отсчета */
+    backScore.width = 300;
+    backScore.height = 50;
+    let ctxBackScore = backScore.getContext('2d');
+    ctxBackScore.font = "50px arial";
+    ctxBackScore.fillStyle = 'black';
 
 
-    button.addEventListener('click', startGame, {once:true}); /* Запускам игру по клику на кнопку START */
+    startBtn.addEventListener('click', startGame, {once:true}); /* Запускам игру по клику на кнопку START */
 
     function startGame() {
 
         ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
         timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
-
         timerBall = setInterval(ballMove, 20); /* Запускаем функцию движения мяча по игровому полю */
 
-        player1.innerHTML = `${scorePlayer1}`; /* Обнуляем игровое табло при запуске новой игры */
-        player2.innerHTML = `${scorePlayer2}`;
+        ctxScore.clearRect(0, 0, 100, 50);
+        ctxScore.fillText(`${scorePlayer1}:${scorePlayer2}`, 15, 40); /* Обнуляем игровое табло при запуске новой игры */
 
         backScore.style.display = 'none'; /* Скрываем победителя при запуске новой игры */
-        backScore.setAttributeNS(null,"x", 780);
     }
 
+    /* Создаем объект игрового поля, где хранятся размеры, положение поля (используем буферизирующий канвас) */
+    let fieldInfo = {
+        posX: 0,
+        posY: 0,
+        width : widthField,
+        height: heightField,
+        ctx: ctxBufferField,
 
-    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
+        updateField: function() {
+            ctxBufferField.beginPath();
+            ctxBufferField.fillStyle = '#eee2a5';
+            ctxBufferField.strokeStyle = 'black';
+            ctxBufferField.fillRect(this.posX, this.posY, this.width, this.height);
+            ctxBufferField.strokeRect(this.posX, this.posY, this.width, this.height);
+        },
+    }
+
+    fieldInfo.updateField(); /* Создаем игровое поле перед началом игры */
+
+
+    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча (используем буферизирующий канвас) */
     let ballInfo = {
         posX : widthField / 2,
         posY : heightField / 2,
         width : widthHeightBall,
         height: widthHeightBall,
+        ctx: ctxBufferField,
 
         updateBall: function() { /* Положение мяча */
-            ball.setAttributeNS(null,"cx", this.posX);
-            ball.setAttributeNS(null,"cy", this.posY);
-
+            ctxBufferField.beginPath();
+            ctxBufferField.fillStyle = '#f3445b';
+            ctxBufferField.arc(this.posX, this.posY, this.width / 2, 0, 2 * Math.PI);
+            ctxBufferField.fill();
         },
 
-        randomBall: function() { /* Случайное направление вылета мяча */
-            this.speedX = randomDirect() * 8;
-            this.speedY = randomDirect() * randomDiap(2, 5);
+        randomBall: function() {  /* Случайное направление вылета мяча */
+            this.speedX = randomDirect() * 2;
+            this.speedY = randomDirect() * randomDiap(1, 2);
         }
     }
 
     ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
 
 
-    /* Создаем класс для создания экземпляров ракеток */
+    /* Создаем класс для создания экземпляров ракеток (используем буферизирующий канвас) */
     class Racket {
-        constructor(_posX, _posY, _speedY, _width, _height, _racket) {
+        constructor(_posX, _posY, _speedY, _width, _height, _ctx, _color) {
             this.posX = _posX;
             this.posY = _posY;
             this.speedY = _speedY;
             this.width = _width;
             this.height = _height;
-            this.racket = _racket;
+            this.ctx = _ctx;
+            this.color = _color;
         }
         updateRacket() {
-            this.racket.setAttributeNS(null,"x", this.posX);
-            this.racket.setAttributeNS(null,"y", this.posY);
+            this.ctx.beginPath();
+            this.ctx.fillStyle = this.color;
+            this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
         }
     }
 
-    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, ctxBufferField, '#6cf189'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
-    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, racketR); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let rightRacket = new Racket(widthField - widthRacket, 100, 10, widthRacket, heightRacket, ctxBufferField, '#6c9df1'); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
 
     leftRacket.updateRacket(); /* Устанавливаем левую ракетку перед началом игры */
     rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
 
+    ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируем в основной канвас игрового поля буферизирующий для отображения поля, мяча и ракеток перед началом игры */
+
 
     /* Физика движения ракеток по игровому полю */
-    storage = {};  /* Создаем объект хранилища состояния движения/остановки ракеток */
+    storage = {}; /* Создаем объект хранилища состояния движения/остановки ракеток */
 
     document.addEventListener('keydown', fillStorage); /* Обрабочик событий нажатия кнопок клавиатуры */
     document.addEventListener('keyup', fillStorage); /* Обрабочик событий отпускания кнопок клавиатуры */
@@ -208,7 +199,12 @@
             if (leftRacket.posY < 0) {
                 leftRacket.posY = 0;
             }
-            leftRacket.updateRacket();
+            fieldInfo.updateField(); /* Обновлялем игровое поле */
+            leftRacket.updateRacket(); /* Обновлялем положение левой ракетки */
+            rightRacket.updateRacket(); /* Обновлялем положение правой ракетки */
+            ballInfo.updateBall(); /* Обновлялем положение мяча */
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируем в основной канвас игрового поля буферизирующий для отображения положения поля, мяча и ракеток */
         }
 
         if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
@@ -218,7 +214,12 @@
             if (leftRacket.posY + leftRacket.height > heightField) {
                 leftRacket.posY = heightField - leftRacket.height;
             }
+            fieldInfo.updateField();
             leftRacket.updateRacket();
+            rightRacket.updateRacket();
+            ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
 
         if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
@@ -228,7 +229,12 @@
             if (rightRacket.posY < 0) {
                 rightRacket.posY = 0;
             }
+            fieldInfo.updateField();
             rightRacket.updateRacket();
+            leftRacket.updateRacket();
+            ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
 
         if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
@@ -238,7 +244,12 @@
             if (rightRacket.posY + rightRacket.height > heightField) {
                 rightRacket.posY = heightField - rightRacket.height;
             }
+            fieldInfo.updateField();
             rightRacket.updateRacket();
+            leftRacket.updateRacket();
+            ballInfo.updateBall();
+
+            ctx.drawImage(bufferField, 0, 0, field.width, field.height);
         }
     }
 
@@ -268,14 +279,30 @@
         }
 
         /* Вылет мяча за правую сторону поля */
-        if (ballInfo.posX + ballInfo.width / 2 > widthField) {
+        if (ballInfo.posX + ballInfo.width / 2 >= widthField) {
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
+            ballInfo.posX = widthField - ballInfo.width / 2;
 
-            ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
-            ballInfo.posY = heightField / 2;
+            ctxScore.clearRect(0, 0, 100, 50);
+            ctxScore.fillText(`${++scorePlayer1}:${scorePlayer2}`, 15, 40); /* Изменяем счет первого игрока */
+
+            // ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
+            // ballInfo.posY = heightField / 2;
+
+            timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+                ballInfo.posX = widthField / 2;
+                ballInfo.posY = heightField / 2;
+
+                fieldInfo.updateField();
+                leftRacket.updateRacket();
+                rightRacket.updateRacket()
+                ballInfo.updateBall();
+
+                ctx.drawImage(bufferField, 0, 0, field.width, field.height);
+
+            }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
@@ -289,10 +316,21 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
+            ctxScore.clearRect(0, 0, 100, 50);
+            ctxScore.fillText(`${scorePlayer1}:${++scorePlayer2}`, 15, 40); /* Изменяем счет второго игрока */
 
-            ballInfo.posX = widthField / 2; /* Устанавливаем мяч в центр поля */
-            ballInfo.posY = heightField / 2;
+            timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+                ballInfo.posX = widthField / 2;
+                ballInfo.posY = heightField / 2;
+
+                fieldInfo.updateField();
+                leftRacket.updateRacket();
+                rightRacket.updateRacket()
+                ballInfo.updateBall();
+
+                ctx.drawImage(bufferField, 0, 0, field.width, field.height);
+
+            }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
 
@@ -325,12 +363,12 @@
             if (scorePlayer1 === 5) numPlayer = 1; /* Определяем победителя игры */
             if (scorePlayer2 === 5) numPlayer = 2;
 
-            backScore.style.display = 'inline-block'; /* Отображаем победителя игры */
-            backScore.style.marginLeft = '140px';
-            backScore.setAttributeNS(null,"x", 590);
-            backScore.innerHTML = `win Player ${numPlayer}`;
+            backScore.style.display = ''; /* Отображаем победителя игры */
+            backScore.style.marginLeft = '95px';
+            ctxBackScore.clearRect(0, 0, 300, 50);
+            ctxBackScore.fillText(`win Player ${numPlayer}`, 0, 40);
 
-            button.addEventListener('click', startGame, {once:true}); /* Активируем возможность старта новой игры */
+            startBtn.addEventListener('click', startGame, {once:true}); /* Активируем возможность старта новой игры */
 
             scorePlayer1 = 0; /* Обнуляем счет игры */
             scorePlayer2 = 0;
@@ -344,7 +382,12 @@
             timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
         }
 
+        fieldInfo.updateField(); /* Обновляем игровое поле */
         ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
+        leftRacket.updateRacket(); /* Обновляем положение левой ракетки */
+        rightRacket.updateRacket(); /* Обновляем положение правой ракетки */
+
+        ctx.drawImage(bufferField, 0, 0, field.width, field.height); /* Копируем в основной канвас игрового поля буферизирующий для отображения положения поля, мяча и ракеток */
     }
 
 
@@ -354,13 +397,15 @@
     function startBackScore() { /* Функция обратного отсчета времени до начала следующего раунда игры */
 
         backScore.style.display = ''; /* Отображаем обратный отсчет */
-        backScore.innerHTML = `${--backStart}...`; /* Изменяем значения */
+        backScore.style.marginLeft = '165px';
+        ctxBackScore.clearRect(0, 0, 300, 50);
+        ctxBackScore.fillText(`${--backStart}...`, 125, 40); /* Изменяем значения */
 
         if (backStart === 0) {
 
             clearInterval(timerBackScore);  /* Останавливаем таймер обратного отсчета времени */
             backScore.style.display = 'none'; /* Скрываем обратный отсчет */
-            backStart = 4; /* Устанавливаем перовначальное положение обратного отсчета */
+            backStart = 4; /* Устанавливаем первоначальное значение обратного отсчета */
         }
     }
 
