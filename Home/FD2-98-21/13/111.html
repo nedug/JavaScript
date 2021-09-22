@@ -134,8 +134,8 @@
         },
 
         randomBall: function() {  /* Случайное направление вылета мяча */
-            this.speedX = randomDirect() * 2;
-            this.speedY = randomDirect() * randomDiap(1, 2);
+            this.speedX = randomDirect() * 8;
+            this.speedY = randomDirect() * randomDiap(2, 5);
         }
     }
 
@@ -283,7 +283,7 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
-            ballInfo.posX = widthField - ballInfo.width / 2;
+            ballInfo.posX = widthField - ballInfo.width / 2; /* Устанавливаем мяч у стенки пока идет обратный отсчет */
 
             ctxScore.clearRect(0, 0, 100, 50);
             ctxScore.fillText(`${++scorePlayer1}:${scorePlayer2}`, 15, 40); /* Изменяем счет первого игрока */
@@ -292,6 +292,7 @@
             // ballInfo.posY = heightField / 2;
 
             timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+
                 ballInfo.posX = widthField / 2;
                 ballInfo.posY = heightField / 2;
 
@@ -301,7 +302,6 @@
                 ballInfo.updateBall();
 
                 ctx.drawImage(bufferField, 0, 0, field.width, field.height);
-
             }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
@@ -316,10 +316,13 @@
 
             clearInterval(timerBall); /* Останавливаем движение мяча */
 
+            ballInfo.posX = ballInfo.width / 2; /* Устанавливаем мяч у стенки пока идет обратный отсчет */
+
             ctxScore.clearRect(0, 0, 100, 50);
             ctxScore.fillText(`${scorePlayer1}:${++scorePlayer2}`, 15, 40); /* Изменяем счет второго игрока */
 
             timerCenterBall = setTimeout(function () { /* Устанавливаем мяч в центр поля через 2,5с */
+
                 ballInfo.posX = widthField / 2;
                 ballInfo.posY = heightField / 2;
 
@@ -329,7 +332,6 @@
                 ballInfo.updateBall();
 
                 ctx.drawImage(bufferField, 0, 0, field.width, field.height);
-
             }, 2500);
 
             timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
