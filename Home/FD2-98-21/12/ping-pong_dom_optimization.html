@@ -15,7 +15,7 @@
            background-color: #f3445b;
            border-radius: 50%;
            position: absolute;
-           will-change: transform;
+           will-change: transform; /* Выносим элемент на GPU-слой */
        }
        #leftRacket {
            background-color: #6cf189;
@@ -121,8 +121,8 @@
 
         ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
-        timerRacket = requestAnimationFrame(racketsMove); /* Запускаем функцию движения ракеток по игровому полю */
-        timerBall = requestAnimationFrame(ballMove); /* Запускаем функцию движения мяча по игровому полю */
+        timerRacket = requestAnimationFrame(racketsMove); /* Запускаем функцию движения ракеток по игровому полю */ /* Используем AnimationFrame вместо setInterval */
+        timerBall = requestAnimationFrame(ballMove); /* Запускаем функцию движения мяча по игровому полю */ /* Используем AnimationFrame вместо setInterval */
 
         button.disabled = true; /* Убираем возможность запуска игры до ее окончания */
 
@@ -145,7 +145,7 @@
             // ball.style.left = this.posX + "px";
             // ball.style.top = this.posY + "px";
 
-            ball.style.transform = `translateX(${this.posX}px) translateY(${this.posY}px)`;
+            ball.style.transform = `translateX(${this.posX}px) translateY(${this.posY}px)`; /* Анимируем через стилевое свойство Transform, а не left/top */
         },
 
         randomBall: function() {  /* Случайное направление вылета мяча */
@@ -258,9 +258,10 @@
         timerBall = requestAnimationFrame(ballMove);
 
         /* Отскок мяча от правой ракетки */
-        if (ballInfo.posX + ballInfo.width >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
+        if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
-            ballInfo.speedX =- ballInfo.speedX * 1.02;
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
 
             console.log('Правая ракетка');
@@ -269,7 +270,7 @@
         /* Отскок мяча от левой ракетки */
         if (ballInfo.posX <= leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
 
-            ballInfo.speedX =- ballInfo.speedX * 1.02;
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
             ballInfo.posX = leftRacket.width;
 
             console.log('Левая ракетка');
