@@ -55,51 +55,51 @@
 
 <script>
 
-    const widthField = 850; /* Назначаем длину игрового поля */
-    const heightField = 500; /* Назначаем ширину игрового поля */
-    const widthHeightBall = heightField * 0.09; /* Назначаем размеры мяча */
-    const widthRacket = heightField * 0.03; /* Назначаем ширину игровой ракетки */
-    const heightRacket = heightField * 0.26; /* Назначаем длину игровой ракетки */
+    const widthField = 850;
+    const heightField = 500;
+    const widthHeightBall = heightField * 0.09;
+    const widthRacket = heightField * 0.03;
+    const heightRacket = heightField * 0.26;
 
-    let scorePlayer1; /* Переменная для подсчета очков первого игрока */
-    let scorePlayer2; /* Переменная для подсчета очков второго игрока */
-    let player1; /* Переменная для работы со счетом первого игрока */
-    let player2; /* Переменная для работы со счетом второго игрока */
-    let numPlayer; /* Переменная для сохранения победителя игры */
-    let storage; /* Хранилище состояния движения/остановки ракеток */
-    let backStart; /* Переменная для таймера обратного отсчета времени */
+    let scorePlayer1;
+    let scorePlayer2;
+    let player1;
+    let player2;
+    let numPlayer;
+    let storage;
+    let backStart;
 
-    let timerBall; /* Таймер для движения мяча по игровому полю */
-    let timerRacket;  /* Таймер для движения ракеток по игровому полю */
-    let timerBackScore;  /* Таймер обратного отсчета до начала раунда игры */
-    let timerRepeatRound;  /* Таймер повторного запуска раунда игры */
+    let timerBall;
+    let timerRacket;
+    let timerBackScore;
+    let timerRepeatRound;
 
 
-    let field = document.createElement('div'); /* Создаем игровое поле */
+    let field = document.createElement('div');
     field.className = 'field';
     field.style.cssText = `width: ${widthField}px; height: ${heightField}px;`;
     document.body.prepend(field);
 
-    let ball = document.createElement('div'); /* Создаем мяч */
+    let ball = document.createElement('div');
     ball.setAttribute('id', 'ball');
     ball.style.cssText = `width: ${widthHeightBall}px; height: ${widthHeightBall}px;`;
     field.append(ball);
 
-    let racketL = document.createElement('div'); /* Создаем левую ракетку */
+    let racketL = document.createElement('div');
     racketL.setAttribute('id', 'leftRacket');
     racketL.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(racketL);
 
-    let racketR = document.createElement('div'); /* Создаем правую ракетку */
+    let racketR = document.createElement('div');
     racketR.setAttribute('id', 'rightRacket');
     racketR.style.cssText = `width: ${widthRacket}px; height: ${heightRacket}px;`;
     field.append(racketR);
 
-    let backScore = document.createElement('div'); /* Создаем таймер обратного отсчета */
+    let backScore = document.createElement('div');
     backScore.className = 'backScore';
     document.body.prepend(backScore);
 
-    let score = document.createElement('div'); /* Создаем табло подсчета очков */
+    let score = document.createElement('div');
     score.className = 'score';
     scorePlayer1 = 0;
     scorePlayer2 = 0;
@@ -109,55 +109,53 @@
     player1 = document.body.querySelector('.player1');
     player2 = document.body.querySelector('.player2');
 
-    let button = document.createElement('button'); /* Создаем кнопку запуска игры */
+    let button = document.createElement('button');
     button.className = 'start-btn';
     button.innerHTML = `START!`;
     document.body.prepend(button);
 
 
-    button.addEventListener('click', startGame); /* Запускам игру по клику на кнопку START */
+    button.addEventListener('click', startGame);
 
     function startGame() {
 
-        ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
+        ballInfo.randomBall();
 
-        timerRacket = requestAnimationFrame(racketsMove); /* Запускаем функцию движения ракеток по игровому полю */ /* Используем AnimationFrame вместо setInterval */
-        timerBall = requestAnimationFrame(ballMove); /* Запускаем функцию движения мяча по игровому полю */ /* Используем AnimationFrame вместо setInterval */
+        timerRacket = requestAnimationFrame(racketsMove); /* Используем AnimationFrame вместо setInterval */
+        timerBall = requestAnimationFrame(ballMove); /* Используем AnimationFrame вместо setInterval */
 
-        button.disabled = true; /* Убираем возможность запуска игры до ее окончания */
+        button.disabled = true;
 
-        player1.innerHTML = `${scorePlayer1}`; /* Обнуляем игровое табло при запуске новой игры */
+        player1.innerHTML = `${scorePlayer1}`;
         player2.innerHTML = `${scorePlayer2}`;
 
-        backScore.style.display = 'none'; /* Скрываем победителя при запуске новой игры */
+        backScore.style.display = 'none';
         backScore.style.marginLeft = '320px';
     }
 
 
-    /* Создаем объект мяча, где хранятся размеры, положение и методы движения мяча */
     let ballInfo = {
         posX : widthField / 2 - widthHeightBall / 2,
         posY : heightField / 2 - widthHeightBall / 2,
         width : widthHeightBall,
         height: widthHeightBall,
 
-        updateBall: function() { /* Положение мяча */
+        updateBall: function() {
             // ball.style.left = this.posX + "px";
             // ball.style.top = this.posY + "px";
 
             ball.style.transform = `translateX(${this.posX}px) translateY(${this.posY}px)`; /* Анимируем через стилевое свойство Transform, а не left/top */
         },
 
-        randomBall: function() {  /* Случайное направление вылета мяча */
+        randomBall: function() {
             this.speedX = randomDirect() * 8;
             this.speedY = randomDirect() * randomDiap(2, 5);
         }
     }
 
-    ballInfo.updateBall(); /* Устанавливаем мяч в центр перед началом игры */
+    ballInfo.updateBall();
 
 
-    /* Создаем класс для создания экземпляров ракеток */
     class Racket {
         constructor(_posX, _posY, _speedY, _width, _height, _racket, _side) {
             this.posX = _posX;
@@ -174,40 +172,34 @@
         }
     }
 
-    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left'); /* Создаем объект левой ракетки, где хранятся размеры, положение и методы движения ракетки */
+    let leftRacket = new Racket(0, 300, 10, widthRacket, heightRacket, racketL, 'left');
+    let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right');
 
-    let rightRacket = new Racket(0, 100, 10, widthRacket, heightRacket, racketR, 'right'); /* Создаем объект правой ракетки, где хранятся размеры, положение и методы движения ракетки */
-
-    leftRacket.updateRacket(); /* Устанавливаем левую ракетку перед началом игры */
-    rightRacket.updateRacket(); /* Устанавливаем правую ракетку перед началом игры */
+    leftRacket.updateRacket();
+    rightRacket.updateRacket();
 
 
-    /* Физика движения ракеток по игровому полю */
-    storage = {}; /* Создаем объект хранилища состояния движения/остановки ракеток */
+    storage = {};
 
-    document.addEventListener('keydown', fillStorage); /* Обрабочик событий нажатия кнопок клавиатуры */
-    document.addEventListener('keyup', fillStorage); /* Обрабочик событий отпускания кнопок клавиатуры */
+    document.addEventListener('keydown', fillStorage);
+    document.addEventListener('keyup', fillStorage);
 
     function fillStorage(event) {
 
-        if (event.type === 'keydown') { /* При нажатии кнопки клавиатуры сохраняем в хранилище storage ключ (название клавиши) со значением (true) */
+        if (event.type === 'keydown') {
             storage[event.code] = true;
         }
-        if (event.type === 'keyup') { /* При отпускании кнопки клавиатуры обновляем в хранилище storage ключ (название клавиши) со значением (false) */
+        if (event.type === 'keyup') {
             storage[event.code] = false;
         }
-        // console.log(event.type);
-        // console.log(event.code);
-        // console.log(storage);
     }
 
 
-    /* Функция движения ракеток по игровому полю */
     function racketsMove() {
 
         timerRacket = requestAnimationFrame(racketsMove);
 
-        if (storage['ShiftLeft']) { /* Движение левой ракетки вверх */
+        if (storage['ShiftLeft']) {
 
             leftRacket.posY = leftRacket.posY - leftRacket.speedY;
 
@@ -217,7 +209,7 @@
             leftRacket.updateRacket();
         }
 
-        if (storage['ControlLeft']) { /* Движение левой ракетки вниз */
+        if (storage['ControlLeft']) {
 
             leftRacket.posY = leftRacket.posY + leftRacket.speedY;
 
@@ -227,7 +219,7 @@
             leftRacket.updateRacket();
         }
 
-        if (storage['ArrowUp']) { /* Движение правой ракетки вверх */
+        if (storage['ArrowUp']) {
 
             rightRacket.posY = rightRacket.posY - rightRacket.speedY;
 
@@ -237,7 +229,7 @@
             rightRacket.updateRacket();
         }
 
-        if (storage['ArrowDown']) { /* Движение правой ракетки вниз */
+        if (storage['ArrowDown']) {
 
             rightRacket.posY = rightRacket.posY + rightRacket.speedY;
 
@@ -249,22 +241,69 @@
     }
 
 
-    /* Физика движения/отскока мяча по игровому полю */
     function ballMove() {
 
-        ballInfo.posX += ballInfo.speedX; /* Изменяем положение мяча по Х */
-        ballInfo.posY += ballInfo.speedY; /* Изменяем положение мяча по Y */
+        ballInfo.posX += ballInfo.speedX;
+        ballInfo.posY += ballInfo.speedY;
 
         timerBall = requestAnimationFrame(ballMove);
 
-        /* Отскок мяча от правой ракетки */
+        /* Отскок мяча от движущейся правой ракетки вниз и мяче сверху */
+        if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height && storage['ArrowDown'] && ballInfo.speedY > 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+
+            ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 1.15; /* При каждом отскоке от движущейся правой ракетки вниз и мяче сверху угол увеличивается */
+
+            console.log('Правая ракетка вниз, угол больше');
+        }
+
+        /* Отскок мяча от движущейся правой ракетки вниз и мяче снизу */
+        if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height && storage['ArrowDown'] && ballInfo.speedY < 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+
+            ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 0.75; /* При каждом отскоке от движущейся правой ракетки вниз и мяче снизу угол уменьшается */
+
+            console.log('Правая ракетка вниз, угол меньше');
+        }
+
+        /* Отскок мяча от движущейся правой ракетки вверх и мяче сверху */
+        if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height && storage['ArrowUp'] && ballInfo.speedY > 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+
+            ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 0.75; /* При каждом отскоке от движущейся правой ракетки вверх и мяче сверху угол уменьшается */
+
+            console.log('Правая ракетка вверх, угол меньше');
+        }
+
+        /* Отскок мяча от движущейся правой ракетки вверх и мяче снизу */
+        if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height && storage['ArrowUp'] && ballInfo.speedY < 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+
+            ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 1.15; /* При каждом отскоке от движущейся правой ракетки вверх и мяче снизу угол увеличивается */
+
+            console.log('Правая ракетка вверх, угол больше');
+        }
+
+        /* Отскок мяча от неподвижной правой ракетки */
         if (ballInfo.posX + ballInfo.width > widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
             ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
 
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
 
-            console.log('Правая ракетка');
+            console.log('Правая ракетка без движения');
         }
 
         /* Отскок мяча от левой ракетки */
