@@ -267,7 +267,7 @@
 
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
 
-            ballInfo.speedY = ballInfo.speedY * 0.75; /* При каждом отскоке от движущейся правой ракетки вниз и мяче снизу угол уменьшается */
+            ballInfo.speedY = ballInfo.speedY * 0.8; /* При каждом отскоке от движущейся правой ракетки вниз и мяче снизу угол уменьшается */
 
             console.log('Правая ракетка вниз, угол меньше');
         }
@@ -279,7 +279,7 @@
 
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
 
-            ballInfo.speedY = ballInfo.speedY * 0.75; /* При каждом отскоке от движущейся правой ракетки вверх и мяче сверху угол уменьшается */
+            ballInfo.speedY = ballInfo.speedY * 0.8; /* При каждом отскоке от движущейся правой ракетки вверх и мяче сверху угол уменьшается */
 
             console.log('Правая ракетка вверх, угол меньше');
         }
@@ -305,6 +305,7 @@
 
             console.log('Правая ракетка без движения');
         }
+
 
         /* Отскок мяча от левой ракетки */
         if (ballInfo.posX <= leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
