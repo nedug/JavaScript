@@ -307,43 +307,87 @@
         }
 
 
-        /* Отскок мяча от левой ракетки */
-        if (ballInfo.posX <= leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
+        /* Отскок мяча от движущейся левой ракетки вниз и мяче сверху */
+        if (ballInfo.posX < leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height && storage['ControlLeft'] && ballInfo.speedY > 0) {
 
             ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
             ballInfo.posX = leftRacket.width;
 
-            console.log('Левая ракетка');
+            ballInfo.speedY = ballInfo.speedY * 1.15; /* При каждом отскоке от движущейся левой ракетки вниз и мяче сверху угол увеличивается */
+
+            console.log('Левая ракетка вниз, угол больше');
+        }
+
+        /* Отскок мяча от движущейся левой ракетки вниз и мяче снизу */
+        if (ballInfo.posX < leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height && storage['ControlLeft'] && ballInfo.speedY < 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+            ballInfo.posX = leftRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 0.8; /* При каждом отскоке от движущейся левой ракетки вниз и мяче снизу угол уменьшается */
+
+            console.log('Левая ракетка вниз, угол меньше');
+        }
+
+        /* Отскок мяча от движущейся левой ракетки вверх и мяче снизу */
+        if (ballInfo.posX < leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height && storage['ShiftLeft'] && ballInfo.speedY < 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+            ballInfo.posX = leftRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 1.15; /* При каждом отскоке от движущейся левой ракетки вверх и мяче снизу угол увеличивается */
+
+            console.log('Левая ракетка вверх, угол больше');
+        }
+
+        /* Отскок мяча от движущейся левой ракетки вверх и мяче сверху */
+        if (ballInfo.posX < leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height && storage['ShiftLeft'] && ballInfo.speedY > 0) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+            ballInfo.posX = leftRacket.width;
+
+            ballInfo.speedY = ballInfo.speedY * 0.8; /* При каждом отскоке от движущейся левой ракетки вверх и мяче сверху угол уменьшается */
+
+            console.log('Левая ракетка вверх, угол меньше');
+        }
+
+        /* Отскок мяча от неподвижной левой ракетки */
+        if (ballInfo.posX < leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
+
+            ballInfo.speedX =- ballInfo.speedX * 1.02; /* При каждом отскоке от ракетки скорость по Х увеличивается */
+            ballInfo.posX = leftRacket.width;
+
+            console.log('Левая ракетка без движения');
         }
 
         /* Вылет мяча за правую сторону поля */
         if (ballInfo.posX + ballInfo.width > widthField) {
 
-            cancelAnimationFrame(timerBall); /* Останавливаем движение мяча */
+            cancelAnimationFrame(timerBall);
 
-            player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
+            player1.innerHTML = `${++scorePlayer1}`;
 
-            ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
+            ballInfo.posX = widthField / 2 - widthHeightBall / 2;
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
+            timerBackScore = setInterval(startBackScore, 1000);
 
-            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
+            timerRepeatRound = setTimeout(startRound, 4000);
         }
 
         /* Вылет мяча за левую сторону поля */
         if (ballInfo.posX < 0) {
 
-            cancelAnimationFrame(timerBall); /* Останавливаем движение мяча */
+            cancelAnimationFrame(timerBall);
 
-            player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
+            player2.innerHTML = `${++scorePlayer2}`;
 
-            ballInfo.posX = widthField / 2 - widthHeightBall / 2; /* Устанавливаем мяч в центр поля */
+            ballInfo.posX = widthField / 2 - widthHeightBall / 2;
             ballInfo.posY = heightField / 2 - widthHeightBall / 2;
 
-            timerBackScore = setInterval(startBackScore, 1000); /* Запускаем таймер обратного отсчета до начала раунда игры */
+            timerBackScore = setInterval(startBackScore, 1000);
 
-            timerRepeatRound = setTimeout(startRound, 4000); /* Запускаем таймер повторного запуска раунда игры */
+            timerRepeatRound = setTimeout(startRound, 4000);
         }
 
         /* Вылет мяча за нижнюю сторону поля */
@@ -360,62 +404,60 @@
             ballInfo.posY = 0;
         }
 
-        /* Окончание игры и объявление победителя */
         if (scorePlayer1 === 5 || scorePlayer2 === 5) {
 
-            clearTimeout(timerRepeatRound); /* Останавливаем таймер повторного запуска раунда игры */
-            clearInterval(timerBackScore); /* Останавливаем таймер обратного отсчета до начала раунда игры */
-            cancelAnimationFrame(timerRacket); /* Останавливаем таймер для движения ракеток по игровому полю */
+            clearTimeout(timerRepeatRound);
+            clearInterval(timerBackScore);
+            cancelAnimationFrame(timerRacket);
 
-            if (scorePlayer1 === 5) numPlayer = 1; /* Определяем победителя игры */
+            if (scorePlayer1 === 5) numPlayer = 1;
             if (scorePlayer2 === 5) numPlayer = 2;
 
-            backScore.style.display = 'inline-block'; /* Отображаем победителя игры */
+            backScore.style.display = 'inline-block';
             backScore.style.marginLeft = '140px';
             backScore.innerHTML = `win <span>Player ${numPlayer}</span>`;
 
-            button.disabled = false; /* Активируем возможность старта новой игры */
+            button.disabled = false;
 
-            scorePlayer1 = 0; /* Обнуляем счет игры */
+            scorePlayer1 = 0;
             scorePlayer2 = 0;
         }
 
-        /* Функция для повторного запуска раунда игры */
         function startRound() {
 
-            ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
+            ballInfo.randomBall();
 
-            timerBall = requestAnimationFrame(ballMove); /* Повторно запускаем таймер для движения мяча по игровому полю */
+            timerBall = requestAnimationFrame(ballMove);
         }
 
-        ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
+        ballInfo.updateBall();
     }
 
 
-    /* Вспомогательне функции */
+
     backStart = 4;
 
-    function startBackScore() { /* Функция обратного отсчета времени до начала следующего раунда игры */
+    function startBackScore() {
 
-        backScore.style.display = 'inline-block'; /* Отображаем обратный отсчет */
-        backScore.innerHTML = `${--backStart}...`; /* Изменяем значения */
+        backScore.style.display = 'inline-block';
+        backScore.innerHTML = `${--backStart}...`;
 
         if (backStart === 0) {
 
-            clearInterval(timerBackScore);  /* Останавливаем таймер обратного отсчета времени */
-            backScore.style.display = 'none'; /* Скрываем обратный отсчет */
-            backStart = 4; /* Устанавливаем перовначальное положение обратного отсчета */
+            clearInterval(timerBackScore);
+            backScore.style.display = 'none';
+            backStart = 4;
         }
     }
 
-    function randomDirect() { /* Функция для определения случайного направления вылета мяча */
+    function randomDirect() {
         let x = Math.random();
         if (x < 0.5) x = -1;
         else x = 1;
         return x;
     }
 
-    function randomDiap(n,m) { /* Функция для определения случайного угла вылета мяча */
+    function randomDiap(n,m) {
         return Math.floor(Math.random() * (m - n + 1)) + n;
     }
 
