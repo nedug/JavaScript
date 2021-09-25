@@ -15,6 +15,7 @@
            background-color: #f3445b;
            border-radius: 50%;
            position: absolute;
+           will-change: transform;
        }
        #leftRacket {
            background-color: #6cf189;
@@ -120,8 +121,8 @@
 
         ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
-        timerRacket = setInterval(racketsMove, 20); /* Запускаем функцию движения ракеток по игровому полю */
-        timerBall = setInterval(ballMove, 20); /* Запускаем функцию движения мяча по игровому полю */
+        timerRacket = requestAnimationFrame(racketsMove); /* Запускаем функцию движения ракеток по игровому полю */
+        timerBall = requestAnimationFrame(ballMove); /* Запускаем функцию движения мяча по игровому полю */
 
         button.disabled = true; /* Убираем возможность запуска игры до ее окончания */
 
@@ -141,8 +142,10 @@
         height: widthHeightBall,
 
         updateBall: function() { /* Положение мяча */
-            ball.style.left = this.posX + "px";
-            ball.style.top = this.posY + "px";
+            // ball.style.left = this.posX + "px";
+            // ball.style.top = this.posY + "px";
+
+            ball.style.transform = `translateX(${this.posX}px) translateY(${this.posY}px)`;
         },
 
         randomBall: function() {  /* Случайное направление вылета мяча */
@@ -195,11 +198,14 @@
         }
         // console.log(event.type);
         // console.log(event.code);
+        // console.log(storage);
     }
 
 
     /* Функция движения ракеток по игровому полю */
     function racketsMove() {
+
+        timerRacket = requestAnimationFrame(racketsMove);
 
         if (storage['ShiftLeft']) { /* Движение левой ракетки вверх */
 
@@ -249,6 +255,8 @@
         ballInfo.posX += ballInfo.speedX; /* Изменяем положение мяча по Х */
         ballInfo.posY += ballInfo.speedY; /* Изменяем положение мяча по Y */
 
+        timerBall = requestAnimationFrame(ballMove);
+
         /* Отскок мяча от правой ракетки */
         if (ballInfo.posX + ballInfo.width >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
@@ -270,7 +278,7 @@
         /* Вылет мяча за правую сторону поля */
         if (ballInfo.posX + ballInfo.width > widthField) {
 
-            clearInterval(timerBall); /* Останавливаем движение мяча */
+            cancelAnimationFrame(timerBall); /* Останавливаем движение мяча */
 
             player1.innerHTML = `${++scorePlayer1}`; /* Изменяем счет первого игрока */
 
@@ -285,7 +293,7 @@
         /* Вылет мяча за левую сторону поля */
         if (ballInfo.posX < 0) {
 
-            clearInterval(timerBall); /* Останавливаем движение мяча */
+            cancelAnimationFrame(timerBall); /* Останавливаем движение мяча */
 
             player2.innerHTML = `${++scorePlayer2}`; /* Изменяем счет второго игрока */
 
@@ -316,7 +324,7 @@
 
             clearTimeout(timerRepeatRound); /* Останавливаем таймер повторного запуска раунда игры */
             clearInterval(timerBackScore); /* Останавливаем таймер обратного отсчета до начала раунда игры */
-            clearInterval(timerRacket); /* Останавливаем таймер для движения ракеток по игровому полю */
+            cancelAnimationFrame(timerRacket); /* Останавливаем таймер для движения ракеток по игровому полю */
 
             if (scorePlayer1 === 5) numPlayer = 1; /* Определяем победителя игры */
             if (scorePlayer2 === 5) numPlayer = 2;
@@ -336,7 +344,7 @@
 
             ballInfo.randomBall(); /* Обновляем случайное направление вылета мяча */
 
-            timerBall = setInterval(ballMove, 20); /* Повторно запускаем таймер для движения мяча по игровому полю */
+            timerBall = requestAnimationFrame(ballMove); /* Повторно запускаем таймер для движения мяча по игровому полю */
         }
 
         ballInfo.updateBall(); /* Обновляем положение мяча на игровом поле */
