@@ -260,7 +260,7 @@
         /* Отскок мяча от правой ракетки */
         if (ballInfo.posX + ballInfo.width >= widthField - rightRacket.width && ballInfo.posY >= rightRacket.posY - ballInfo.height && ballInfo.posY <= rightRacket.posY + rightRacket.height) {
 
-            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.speedX =- ballInfo.speedX * 1.02;
             ballInfo.posX = widthField - ballInfo.width - rightRacket.width;
 
             console.log('Правая ракетка');
@@ -269,7 +269,7 @@
         /* Отскок мяча от левой ракетки */
         if (ballInfo.posX <= leftRacket.width && ballInfo.posY >= leftRacket.posY - ballInfo.height && ballInfo.posY <= leftRacket.posY + leftRacket.height) {
 
-            ballInfo.speedX =- ballInfo.speedX;
+            ballInfo.speedX =- ballInfo.speedX * 1.02;
             ballInfo.posX = leftRacket.width;
 
             console.log('Левая ракетка');
