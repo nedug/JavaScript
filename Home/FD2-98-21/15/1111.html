@@ -76,9 +76,57 @@
        document.body.append(hello);
 
 
-       let birthdayInfo = localStorage.getItem('Birthday');
 
-       console.log(birthdayInfo);
+       let birthdayInfo = localStorage.getItem('Birthday').split('.');
+
+       // console.log(birthdayInfo);
+
+
+
+       let timeNow = new Date();
+       let currentYear = timeNow.getFullYear();
+       let currentMonth = timeNow.getMonth() + 1;
+
+
+
+       // let monthNow = timeNow.getMonth() + 1;
+
+       // let bornDate = new Date(1987,9,29);
+
+       let bornDate = new Date(+birthdayInfo[2], +birthdayInfo[1] - 1, +birthdayInfo[0]);
+
+       let bornMonth = bornDate.getMonth();
+       let bornDay = bornDate.getDate();
+
+       let birthdayDate = new Date (currentYear, bornMonth - 1, bornDay);
+
+       if (birthdayDate - timeNow < 0) {
+           birthdayDate = new Date (currentYear + 1, bornMonth - 1, bornDay);
+		 }
+
+
+       let differenceSec =  Math.round((birthdayDate - timeNow) / 1000);
+
+       if (bornMonth)
+
+
+
+
+
+       console.log(bornMonth);
+
+       // console.log(timeNow - xxx.getTime());
+
+
+
+
+
+
+
+
+
+       // console.log(birthdayInfo);
+       // console.log(monthNow);
 
        
 
