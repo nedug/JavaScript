@@ -3,14 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+		input {
+          height: 20px;
+          width: 200px;
+          padding: 3px;
+		}
+	</style>
 </head>
 <body>
 
 	<div id="user-info">
 
 		<h3>Дорогой пользователь!</h3>
-		<input type="text" id="user-name"> введите ваше ИМЯ <br><br>
-		<input type="text" id="user-birthday"> введите вашу дату рождения  <br><br>
+		<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
+		<input type="text" id="user-birthday" value="19.10.1987"> введите вашу дату рождения  <br><br>
 		<button id="btn-save">Сохранить</button>
 
 	</div>
@@ -24,7 +31,12 @@
 
     let nameValue; /* Переменная для имени пользователя */
     let birthdayValue; /* Переменная для даты рождения пользователя */
-    let countTime; /* Переменная для обратного отсчета до даты рождения  пользователя */
+
+    let hello = document.createElement('h2'); /* Привествуем пользователя */
+    document.body.append(hello);
+
+    let countTime = document.createElement('h3'); /* Показываем таймер обратного отсчета до даты рождения */
+    document.body.append(countTime);
 
 
     btnSave.addEventListener('click', clickHandler);
@@ -33,6 +45,11 @@
 
         nameValue = userName.value; /* Сохраняем значения в переменные */
         birthdayValue = userBirthday.value;
+
+		  if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
+            countTime.innerHTML = `Введите корректно дату рождения`;
+            return;
+		  }
 
         /* Сохраняем данные в localStorage; возможно можно использовать cookies, если нам нужны эти данные на стороне сервера, но в данном случае нам это не требуется */
         localStorage.setItem('Name', nameValue);
@@ -58,12 +75,7 @@
 
         userInfo.style.display = 'none';
 
-        let hello = document.createElement('h2');
         hello.innerHTML = `Рады видеть вас, ${localStorage.getItem('Name')}!`;
-        document.body.append(hello);
-
-        countTime = document.createElement('h3');
-        document.body.append(countTime);
 
         setInterval(timerBirthday, 1000); /* Таймер обратного отсчета до дня рождения пользователя */
     }
