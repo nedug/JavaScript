@@ -6,7 +6,84 @@
 </head>
 <body>
 
+	<div id="user-info">
+
+		<h3>Дорогой пользователь!</h3>
+
+		<input type="text" id="user-name"> введите ваше имя <br><br>
+
+		<input type="text" id="user-birthday"> введите вашу дату рождения  <br><br>
+
+		<button id="btn-save">Сохранить</button>
+
+	</div>
+
+
+
 <script>
+
+	let userName = document.getElementById('user-name');
+	let userBirthday = document.getElementById('user-birthday');
+	let btnSave = document.getElementById('btn-save');
+	let userInfo = document.getElementById('user-info');
+
+   let nameValue;
+   let birthdayValue;
+
+
+   btnSave.addEventListener('click', clickHandler);
+
+	function clickHandler() {
+
+	    nameValue = userName.value;
+       birthdayValue = userBirthday.value;
+
+	    console.log(typeof birthdayValue);
+
+	    localStorage.setItem('Name', nameValue);
+	    localStorage.setItem('Birthday', birthdayValue);
+
+
+       if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) {
+
+           sayHello();
+
+       }
+
+
+   }
+
+
+
+
+
+
+   if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) {
+
+       sayHello();
+
+   }
+
+
+
+
+   function sayHello() {
+
+       userInfo.style.display = 'none';
+
+       let hello = document.createElement('h2');
+       hello.innerHTML = `Рады видеть вас, ${localStorage.getItem('Name')}!`;
+       document.body.prepend(hello);
+
+
+       // let countTime = document.createElement('h3');
+       // countTime.innerHTML = `Рады видеть вас, ${localStorage.getItem('Name')}!`;
+       // document.body.prepend(countTime);
+
+
+
+   }
+
 
 
 
