@@ -95,7 +95,7 @@
        let sumMonth;
        if (currentMonth < bornMonth && bornDay - currentDay > 1) {
            sumMonth = bornMonth - currentMonth;
-           console.log(111)
+           // console.log(111)
        }
 
        if (currentMonth < bornMonth && bornDay - currentDay <= 1) {
@@ -113,12 +113,11 @@
        if (currentMonth > bornMonth && bornDay - currentDay > 1) {
            sumMonth = 12 - (currentMonth - bornMonth);
 
-           console.log(111)
        }
        if (currentMonth > bornMonth && bornDay - currentDay <= 1 || currentMonth === bornMonth && bornDay - currentDay < 0) {
            sumMonth = 11 - (currentMonth - bornMonth);
 
-           console.log(222)
+
        }
 
 
@@ -139,17 +138,46 @@
 
            sumDay = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
 
+           console.log(222)
+
 		 }
 
-       if (sumMonth > 0 && bornDay - currentDay > 0) {
+       if (sumMonth > 0 && bornDay - currentDay > 1 && currentMonth < bornMonth) {
 
            // sumDay = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
 
-           sumDay = bornDay - currentDay - 1;
+           sumDay = bornDay - currentDay - 2;
+
+           console.log(333)
 
        }
 
-       console.log(bornDay - currentDay);
+       if (sumMonth > 0 && bornDay - currentDay <= 1 && currentMonth < bornMonth) {
+
+
+           let nextMonth = new Date (currentYear, currentMonth, 1);
+           let sumCurrentMonth = Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24);
+
+           sumDay = sumCurrentMonth + bornDay - 1;
+
+
+           console.log(sumCurrentMonth)
+
+           console.log(Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24));
+
+
+           // sumDay = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
+
+           // sumDay = bornDay - currentDay - 1;
+
+           console.log(444)
+
+       }
+
+
+
+
+       // console.log(bornDay - currentDay);
 
 
 
