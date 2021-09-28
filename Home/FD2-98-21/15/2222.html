@@ -80,6 +80,7 @@
         let birthdayInfo = localStorage.getItem('Birthday').split('.');
         let bornDay = +birthdayInfo[0];
         let bornMonth = +birthdayInfo[1];
+        let bornMonthForDate = +birthdayInfo[1] - 1;
         let bornYear = +birthdayInfo[2];
 
         // console.log(bornDay);
@@ -124,10 +125,10 @@
 
         // let bornDate = new Date(bornYear, bornMonth - 1, bornDay);
 
-        let birthdayDate = new Date (currentYear, bornMonth - 1, bornDay);
+        let birthdayDate = new Date (currentYear, bornMonthForDate, bornDay);
 
         if (birthdayDate - timeNow < 0) {
-            birthdayDate = new Date (currentYear + 1, bornMonth - 1, bornDay);
+            birthdayDate = new Date (currentYear + 1, bornMonthForDate, bornDay);
         }
 
         let differenceSec = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
@@ -152,24 +153,39 @@
 
         }
 
-        if (sumMonth > 0 && bornDay - currentDay <= 1 && currentMonth < bornMonth) {
+        if (sumMonth > 0 && bornDay - currentDay <= 1 && currentMonth > bornMonth) {
+
+            let nextMonth = new Date (currentYear, bornMonthForDate, 1);
+
+            console.log(nextMonth)
+
+            if (bornMonthForDate - 1 === -1 ) {
+
+                bornMonthForDate = 11;
+
+                let prevMonth = new Date (currentYear, bornMonthForDate, currentDay + 1);
+
+                console.log(prevMonth)
+
+				}
 
 
-            let nextMonth = new Date (currentYear, currentMonth, 1);
-            let sumCurrentMonth = Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24);
+            let sumCurrentMonth = Math.floor((nextMonth - prevMonth) / 1000 / 60 / 60 / 24);
 
-            sumDay = sumCurrentMonth + bornDay - 2;
+            sumDay = (sumCurrentMonth - 1) + (bornDay - 1);
 
 
-            console.log(sumCurrentMonth)
+            // console.log(prevMonth)
+            console.log(bornMonthForDate)
 
-            console.log(Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24));
+            // console.log(Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24));
 
 
             console.log(444)
 
         }
 
+        console.log(bornMonthForDate)
 
 
 
