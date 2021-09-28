@@ -46,8 +46,13 @@
         nameValue = userName.value; /* Сохраняем значения в переменные */
         birthdayValue = userBirthday.value;
 
+        if (+nameValue) { /* Небольшая проверка на корректность ввода имени пользователя */
+            countTime.innerHTML = `Введите корректно имя!`;
+            return;
+        }
+
 		  if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
-            countTime.innerHTML = `Введите корректно дату рождения`;
+            countTime.innerHTML = `Введите корректно дату рождения!`;
             return;
 		  }
 
