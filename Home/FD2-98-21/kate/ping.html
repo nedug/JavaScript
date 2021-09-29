@@ -177,12 +177,20 @@
             }
 
         }
-        else{
-            ballH.update();
-            idAnim = requestAnimationFrame(startGame);
-        }
+
+
+/* +++++++++++++  эту часть кожа ниже чем левая ракетка  +++++++++++++ */
+        // else {
+        //     ballH.update();
+        //     idAnim = requestAnimationFrame(startGame);
+        // }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
         // если мяч вылетел за левую стену
-        if(ballH.posX<=0){
+         else if (ballH.posX<=0){ /* +++++++++++++++++++  else if вместо if   +++++++++++++++++++ */
+            console.log('левая сторона')
+
             rightPlayer++;
             score.textContent = `${leftPlayer}:${rightPlayer}`;
             if(rightPlayer>=5){
@@ -195,8 +203,16 @@
                 },1000);
 
             }
-
         }
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+        else{
+            ballH.update();
+            idAnim = requestAnimationFrame(startGame);
+        }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
 
         ballH.posY += ballH.speedY;
         // если мяч ударился о пол и потолок
@@ -210,6 +226,8 @@
             ballH.speedY =- ballH.speedY;
 
         }
+
+
 
     }
 
