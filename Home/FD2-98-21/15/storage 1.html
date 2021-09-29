@@ -17,7 +17,7 @@
 
 		<h3>Дорогой пользователь!</h3>
 		<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
-		<input type="text" id="user-birthday" value="19.10.1987"> введите вашу дату рождения  <br><br>
+		<input type="text" id="user-birthday" value="19.10.1991"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
 		<button id="btn-save">Сохранить</button>
 
 	</div>
@@ -32,10 +32,10 @@
     let nameValue; /* Переменная для имени пользователя */
     let birthdayValue; /* Переменная для даты рождения пользователя */
 
-    let hello = document.createElement('h2'); /* Привествуем пользователя */
+    let hello = document.createElement('h2'); /* Приветствуем пользователя */
     document.body.append(hello);
 
-    let countTime = document.createElement('h3'); /* Показываем таймер обратного отсчета до даты рождения */
+    let countTime = document.createElement('h3'); /* Таймер обратного отсчета до даты рождения */
     document.body.append(countTime);
 
 
@@ -43,7 +43,7 @@
 
     function clickHandler() {
 
-        nameValue = userName.value; /* Сохраняем значения в переменные */
+        nameValue = userName.value; /* Сохраняем значения пользователя в переменные */
         birthdayValue = userBirthday.value;
 
         if (+nameValue) { /* Небольшая проверка на корректность ввода имени пользователя */
@@ -113,11 +113,16 @@
 
         countTime.innerHTML = `До вашего дня рождения осталось:<br> ${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`; /* Обновляем данные таймера */
 
+
         if (birthdayDate.getDate() === new Date().getDate() && birthdayDate.getMonth() === new Date().getMonth()) { /* Проверяем на день рождения сегодня */
 
             countTime.innerHTML = `Поздравляем! Сегодня ваш День Рождения!`;
         }
     }
+
+
+    localStorage.removeItem('Name'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+    localStorage.removeItem('Birthday');
 
 </script>
 
