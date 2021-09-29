@@ -38,7 +38,7 @@
 	    nameValue = userName.value;
        birthdayValue = userBirthday.value;
 
-	    console.log(typeof birthdayValue);
+	    // console.log(typeof birthdayValue);
 
 	    localStorage.setItem('Name', nameValue);
 	    localStorage.setItem('Birthday', birthdayValue);
@@ -76,16 +76,159 @@
        document.body.append(hello);
 
 
-       let birthdayInfo = localStorage.getItem('Birthday');
 
-       console.log(birthdayInfo);
+       let birthdayInfo = localStorage.getItem('Birthday').split('.');
+       let bornDay = +birthdayInfo[0];
+       let bornMonth = +birthdayInfo[1];
+       let bornYear = +birthdayInfo[2];
+
+       // console.log(bornDay);
+       // console.log(bornMonth);
+       // console.log(bornYear);
+
+       let timeNow = new Date();
+       let currentDay = timeNow.getDate();
+       let currentMonth = timeNow.getMonth() + 1;
+       let currentYear = timeNow.getFullYear();
+
+
+       let sumMonth;
+       if (currentMonth < bornMonth && bornDay - currentDay > 1) {
+           sumMonth = bornMonth - currentMonth;
+           // console.log(111)
+       }
+
+       if (currentMonth < bornMonth && bornDay - currentDay <= 1) {
+           sumMonth = bornMonth - currentMonth - 1;
+       }
+
+       if (currentMonth === bornMonth && bornDay - currentDay > 0 || bornMonth - currentMonth === 1 && bornDay - currentDay <= 1) {
+           sumMonth = 0;
+       }
+
+       // if (currentMonth === bornMonth && bornDay - currentDay < 0) {
+       //     sumMonth = 11;
+       // }
+
+       if (currentMonth > bornMonth && bornDay - currentDay > 1) {
+           sumMonth = 12 - (currentMonth - bornMonth);
+
+       }
+       if (currentMonth > bornMonth && bornDay - currentDay <= 1 || currentMonth === bornMonth && bornDay - currentDay < 0) {
+           sumMonth = 11 - (currentMonth - bornMonth);
+
+
+       }
+
+
+
+       // let bornDate = new Date(bornYear, bornMonth - 1, bornDay);
+
+       let birthdayDate = new Date (currentYear, bornMonth - 1, bornDay);
+
+       if (birthdayDate - timeNow < 0) {
+           birthdayDate = new Date (currentYear + 1, bornMonth - 1, bornDay);
+       }
+
+       let differenceSec = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
+
+
+       let sumDay;
+       if (sumMonth === 0) {
+
+           sumDay = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
+
+           console.log(222)
+
+		 }
+
+       if (sumMonth > 0 && bornDay - currentDay > 1 && currentMonth < bornMonth) {
+
+           // sumDay = Math.round((birthdayDate - timeNow) / 1000 / 60 / 60 / 24);
+
+           sumDay = bornDay - currentDay - 2;
+
+           console.log(333)
+
+       }
+
+       if (sumMonth > 0 && bornDay - currentDay <= 1 && currentMonth < bornMonth) {
+
+
+           let nextMonth = new Date (currentYear, currentMonth, 1);
+           let sumCurrentMonth = Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24);
+
+           sumDay = sumCurrentMonth + bornDay - 2;
+
+
+           console.log(sumCurrentMonth)
+
+           console.log(Math.floor((nextMonth - timeNow) / 1000 / 60 / 60 / 24));
+
+
+           console.log(444)
+
+       }
+
+
+
+
+       // console.log(bornDay - currentDay);
+
+
+
+
+
+
+
+
+
+
+
+       // let monthNow = timeNow.getMonth() + 1;
+
+       // let bornDate = new Date(1987,9,29);
+
+       // let bornDate = new Date(+birthdayInfo[2], +birthdayInfo[1] - 1, +birthdayInfo[0]);
+
+       // let bornMonth = bornDate.getMonth() + 1;
+       // let bornDay = bornDate.getDate();
+
+
+
+
+
+
+
+
+
+
+
+       // console.log(+birthdayInfo[1] - currentMonth);
+		 //
+       // console.log(+birthdayInfo[1]);
+
+
+
+       // console.log(timeNow - xxx.getTime());
+
+
+
+
+
+
+
+
+
+       // console.log(birthdayInfo);
+       // console.log(monthNow);
 
        
 
 
 
        let countTime = document.createElement('h3');
-       countTime.innerHTML = `До вашего дня рождения осталось ХХ месяцев`;
+       countTime.innerHTML = `До вашего дня рождения осталось:<br> ${sumMonth} мес ${sumDay} дн`;
        document.body.append(countTime);
 
 
