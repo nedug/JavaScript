@@ -4,26 +4,30 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-		input {
-          height: 20px;
-          width: 200px;
-          padding: 3px;
-		}
-		button:hover {
-			 cursor: pointer;
-		}
+       input {
+           height: 20px;
+           width: 200px;
+           padding: 3px;
+       }
+       button:hover {
+           cursor: pointer;
+       }
+		 h3 span {
+			  display: inline-block;
+			  text-align: right;
+		 }
 	</style>
 </head>
 <body>
 
-	<div id="user-info">
+<div id="user-info">
 
-		<h3>Дорогой пользователь!</h3>
-		<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
-		<input type="text" id="user-birthday" value="19.12.1991"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
-		<button id="btn-save">Сохранить</button>
+	<h3>Дорогой пользователь!</h3>
+	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
+	<input type="text" id="user-birthday" value="19.12.1991"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
+	<button id="btn-save">Сохранить</button>
 
-	</div>
+</div>
 
 <script>
 
@@ -54,10 +58,10 @@
             return;
         }
 
-		  if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
+        if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
             countTime.innerHTML = `Введите корректно дату рождения!`;
             return;
-		  }
+        }
 
         /* Сохраняем данные в localStorage; возможно можно использовать cookies, если нам нужны эти данные на стороне сервера, но в данном случае нам это не требуется */
         localStorage.setItem('Name', nameValue);
@@ -114,18 +118,21 @@
 
         let sumSec = Math.floor((birthdayDate - timeNow) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60); /* Вычисляем количество секунд до дня рождения */
 
-        countTime.innerHTML = `До вашего дня рождения осталось:<br> ${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`; /* Обновляем данные таймера */
+		  let sumMonth = Math.floor(sumDay / 30); /* Вычисляем количество месяцев до дня рождения; условно принимаем 30 дней в одном месяце */
+
+		  let DayWithMonth = sumDay - sumMonth * 30; /* Вычисляем количество дней до дня рождения с учетом месяцев */
+
+        countTime.innerHTML = `<span>До вашего дня рождения осталось:<br>${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек<br> ${sumMonth} мес ${DayWithMonth} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек</span>`; /* Обновляем данные таймера */
 
 
-        if (birthdayDate.getDate() === new Date().getDate() && birthdayDate.getMonth() === new Date().getMonth()) { /* Проверяем на день рождения сегодня */
+        if (birthdayDate.getDate() === new Date().getDate() && birthdayDate.getMonth() === new Date().getMonth()) { /* Проверяем на день рождения СЕГОДНЯ */
 
             countTime.innerHTML = `Поздравляем! Сегодня ваш День Рождения!`;
         }
     }
 
-
-    localStorage.removeItem('Name'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
-    localStorage.removeItem('Birthday');
+    // localStorage.removeItem('Name'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+    // localStorage.removeItem('Birthday');
 
 </script>
 
