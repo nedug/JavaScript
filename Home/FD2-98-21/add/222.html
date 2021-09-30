@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /* Выбрать четные числа из массива через Filter */
+
+    const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    function evenNumber(elem) {
+
+        return elem % 2 === 0;
+    }
+
+    console.log(arr1.filter(evenNumber)); /* с помощью function */
+
+    console.log(arr1.filter(elem => elem % 2 === 0));  /* с помощью стрелочной функции */
+
+    console.log(arr1.filter(elem => !(elem % 2)));  /* с помощью стрелочной функции через Boolean */
+
+
+    /* Найти сумму всех элементов в квадрате через Reduce */
+
+    const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    function sumNumber(start, elem) {
+
+        return elem ** 2 + start;
+    }
+
+    console.log(arr2.reduce(sumNumber, 0)); /* с помощью function */
+
+    console.log(arr2.reduce((sum, elem) => elem ** 2 + sum, 0));  /* с помощью стрелочной функции */
+
+
+    /* Найти сумму всех четных элементов в квадрате через Reduce и Filter */
+
+    const arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    console.log(arr3.filter(elem => elem % 2 === 0).reduce((sum, elem) => elem ** 2 + sum, 0));  /* с помощью стрелочной функции */
+
+
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    const sumSquares = (arr) => arr.filter(elem => elem % 2 === 0).reduce((sum, elem) => elem ** 2 + sum, 0);
+
+    const sumSquares1 = (arr) => arr.filter(elem => !(elem % 2)).reduce((sum, elem) => elem ** 2 + sum, 0);
+
+    const sumSquaresUr = (arr) => arr.reduce((sum, elem) => !(elem % 2) ? elem ** 2 + sum : sum, 0);  /* решение Юрия, только Reduce */
+
+    console.log(sumSquares(arr));
+    console.log(sumSquares1(arr));
+    console.log(sumSquaresUr(arr));
+
+
+
+
+
+</script>
+
+</body>
+</html>
