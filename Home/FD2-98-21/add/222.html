@@ -31,7 +31,35 @@
         return result.join('');
     }
 
-    console.log(buildString(data));
+    // console.log(buildString(data));
+
+
+    const buildString1 = (obj) => {
+
+        let result = [];
+
+        for (let [key, value] of Object.entries(obj)) {
+
+            value.forEach(elem => result[elem] = key);
+        }
+        return result.join('');
+    }
+
+    console.log(buildString1(data));
+
+
+    const buildString2 = (obj) => {
+
+        let result = [];
+
+        for (let [key, value] of Object.entries(obj)) {
+
+            value.forEach(elem => result[elem] = key);
+
+        }
+        return result.join('');
+    }
+
 
 </script>
 
