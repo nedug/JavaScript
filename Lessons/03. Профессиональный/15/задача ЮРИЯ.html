@@ -46,6 +46,34 @@
 </form>
 
 <script>
+
+
+	 const value1 = document.getElementById('input_1');
+    const value2 = document.getElementById('input_2');
+    const value3 = document.getElementById('calculate-btn');
+    const value4 = document.getElementById('show-result');
+
+    let res;
+
+    value3.addEventListener('click', result);
+
+    function result(event) {
+
+        event.preventDefault();
+
+        let xxx = value1.value;
+
+        let yyy = value2.value;
+
+        res = xxx * yyy;
+
+        value4.innerText = `Результат вычислений = ${res}`;
+
+	 }
+
+
+
+
     /* Здесь пишем скрипт, который позволит решить поставленную задачу:
         1) Кнопка "вычислить" должна быть не активна, пока не введены оба числа
         2) Если введены оба числа (т.е. инпуты не пустые), то делаем кнопку активной
