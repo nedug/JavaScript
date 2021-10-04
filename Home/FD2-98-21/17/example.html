@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MVC Clocks</title>
+	<style>
+       .clock{
+           border: 1px dotted dimgray;
+       }
+       #container{
+           display: flex;
+           width: 1300px;
+           flex-wrap: wrap;
+       }
+       .clock-face {
+           border-radius: 50%;
+           border: 2px solid black;
+
+       }
+       .number {
+           border: 1px solid black;
+           position: absolute;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+       .hour-arrow{
+           background-color:black;
+           position: absolute;
+       }
+       .minute-arrow{
+           background-color:dimgray;
+           position: absolute;
+       }
+       .seconds-arrow{
+           background-color:red;
+           position: absolute;
+       }
+	</style>
+</head>
+<body>
+<div id="container"></div>
+<script src="script.js"></script>
+<script>
+
+    let clockModel = new Model();
+    let clockController = new Controller();
+    let container = document.getElementById('container');
+    let clockSettings = {       //обьект с настройками циферблата
+        _radius : 100,
+        _angle : 30,
+        _clockFaceSize : 250,
+        _numbersSize : 25,
+        _hourArrowHeight : 2.5,
+        _hourArrowWidth : 62.5,
+        _minuteArrowHeight : 1.5,
+        _minuteArrowWidth : 85.5,
+        _secondsArrowHeight : 1,
+        _secondsArrowWidth : 100
+    };
+
+    let clockViewDom1 = new ViewDOM();      //DOM #1
+    clockViewDom1.init(container);
+    clockModel.init(clockViewDom1);
+    clockController.init(container, clockModel, clockSettings);
+
+    let clockViewDom2 = new ViewDOM();      //DOM #2
+    let clockModelDOm2 = new Model();
+    let clockControllerDom2 = new Controller();
+    clockViewDom2.init(container);
+    clockModelDOm2.init(clockViewDom2);
+    clockControllerDom2.init(container, clockModelDOm2, clockSettings);
+
+    let clockViewSvg1 = new ViewSVG();      //SVG #1
+    let clockModelSvg1 = new Model();
+    let clockControllerSvg1 = new Controller();
+    clockViewSvg1.init(container);
+    clockModelSvg1.init(clockViewSvg1);
+    clockControllerSvg1.init(container, clockModelSvg1, clockSettings);
+
+    let clockViewSvg2 = new ViewSVG();      //SVG #2
+    let clockModelSvg2 = new Model();
+    let clockControllerSvg2 = new Controller();
+    clockViewSvg2.init(container);
+    clockModelSvg2.init(clockViewSvg2);
+    clockControllerSvg2.init(container, clockModelSvg2, clockSettings);
+
+    let clockViewCanvas1 = new ViewCanvas();        //Canvas #1
+    let clockModelCanvas1 = new Model();
+    let clockControllerCanvas1 = new Controller();
+    clockViewCanvas1.init(container);
+    clockModelCanvas1.init(clockViewCanvas1);
+    clockControllerCanvas1.init(container, clockModelCanvas1, clockSettings);
+
+    let clockViewCanvas2 = new ViewCanvas();       //Canvas #2
+    let clockModelCanvas2 = new Model();
+    let clockControllerCanvas2 = new Controller();
+    clockViewCanvas2.init(container);
+    clockModelCanvas2.init(clockViewCanvas2);
+    clockControllerCanvas2.init(container, clockModelCanvas2, clockSettings);
+</script>
+
+</body>
+</html>
