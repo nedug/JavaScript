@@ -23,10 +23,10 @@
            padding: 10px;
            border-radius: 5px;
        }
-		 select {
+       select {
            width: 50px;
            height: 30px;
-		 }
+       }
 	</style>
 </head>
 <body>
@@ -47,7 +47,7 @@
 
 			</select>
 
-<!--			<span class="mult-sign"> x </span>-->
+			<!--			<span class="mult-sign"> x </span>-->
 
 			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
 		</p>
@@ -61,7 +61,7 @@
 <script>
 
 
-	 const input1 = document.getElementById('input_1');
+    const input1 = document.getElementById('input_1');
     const input2 = document.getElementById('input_2');
     const btn = document.getElementById('calculate-btn');
     const showResult = document.getElementById('show-result');
@@ -72,13 +72,13 @@
 
     // model
 
-	 let results = {
+    let results = {
 
         // value111: null,
         // value222: null,
-		  //
-		  // resultAll: null,
-		  //
+        //
+        // resultAll: null,
+        //
         // isSelect: null,
 
 
@@ -86,17 +86,17 @@
 
             webPageView.update();
 
-		  },
+        },
 
 
-		  // setSelect: function (select) {
-		  //
+        // setSelect: function (select) {
+        //
         //     this.isSelect = select;
-		  //
-		  //
+        //
+        //
         //     this.updateView();
-		  //
-		  // },
+        //
+        // },
 
         operate: function (x, y, z) {
 
@@ -114,11 +114,11 @@
                 case '-':
                     this.resultAll = x - y;
                     break;
-				}
+            }
 
-				if (z === '/' && y === 0) {
+            if (z === '/' && y === 0) {
                 this.resultAll = 'на ноль делить нельзя!';
-				}
+            }
 
             // this.resultAll = `${x} ${this.isSelect} ${y}`
 
@@ -128,7 +128,7 @@
 
         },
 
-	 }
+    }
 
     // console.log(result.isSelect);
 
@@ -153,7 +153,7 @@
 
 
 
-	 // controller
+    // controller
 
 
     value3.addEventListener('click', getResult);
@@ -166,7 +166,7 @@
         // runSelect();
 
         // let xxx = value1.value;
-		  //
+        //
         // let yyy = value2.value;
 
 
