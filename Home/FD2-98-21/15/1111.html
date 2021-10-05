@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+       input {
+           height: 20px;
+           width: 200px;
+           padding: 3px;
+       }
+       button:hover {
+           cursor: pointer;
+       }
+       h3 span {
+           display: inline-block;
+           text-align: right;
+       }
+	</style>
+</head>
+<body>
+
+<div id="user-info">
+
+	<h3>Дорогой пользователь!</h3>
+	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
+	<input type="text" id="user-birthday" value="19.12.1991"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
+	<button id="btn-save">Сохранить</button>
+
+</div>
+
+<script>
+
+    let userName = document.getElementById('user-name');
+    let userBirthday = document.getElementById('user-birthday');
+    let btnSave = document.getElementById('btn-save');
+    let userInfo = document.getElementById('user-info');
+
+    let nameValue; /* Переменная для имени пользователя */
+    let birthdayValue; /* Переменная для даты рождения пользователя */
+
+    let hello = document.createElement('h2'); /* Приветствуем пользователя */
+    document.body.append(hello);
+
+    let countTime = document.createElement('h3'); /* Таймер обратного отсчета до даты рождения */
+    document.body.append(countTime);
+
+
+    btnSave.addEventListener('click', clickHandler);
+
+    function clickHandler() {
+
+        nameValue = userName.value; /* Сохраняем значения пользователя в переменные */
+        birthdayValue = userBirthday.value;
+
+        if (+nameValue) { /* Небольшая проверка на корректность ввода имени пользователя */
+            countTime.innerHTML = `Введите корректно имя!`;
+            return;
+        }
+
+        if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
+            countTime.innerHTML = `Введите корректно дату рождения!`;
+            return;
+        }
+
+        /* Сохраняем данные в localStorage; возможно можно использовать cookies, если нам нужны эти данные на стороне сервера, но в данном случае нам это не требуется */
+        localStorage.setItem('Name', nameValue);
+        localStorage.setItem('Birthday', birthdayValue);
+
+        if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+
+            sayHello();
+            timerBirthday();
+        }
+    }
+
+
+    if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+
+        sayHello();
+        timerBirthday();
+    }
+
+
+    /* Здороваемся с пользователем */
+    function sayHello() {
+
+        userInfo.style.display = 'none';
+
+        hello.innerHTML = `Рады видеть вас, ${localStorage.getItem('Name')}!`;
+
+        setInterval(timerBirthday, 1000); /* Таймер обратного отсчета до дня рождения пользователя */
+    }
+
+    function timerBirthday() {
+
+        let birthdayInfo = localStorage.getItem('Birthday').split('.'); /* Получаем данные о дате рождения из localStorage */
+        let bornDay = +birthdayInfo[0];
+        let bornMonth = +birthdayInfo[1];
+        // let bornYear = +birthdayInfo[2];
+
+        let timeNow = new Date(); /* Получаем текущее время */
+        let currentYear = timeNow.getFullYear();
+        // let currentDay = timeNow.getDate();
+        // let currentMonth = timeNow.getMonth() + 1;
+
+        let birthdayDate = new Date(currentYear, bornMonth - 1, bornDay); /* Устанавливаем дату будущего дня рождения пользователя */
+
+        if (birthdayDate - timeNow < 0) {
+            birthdayDate = new Date(currentYear + 1, bornMonth - 1, bornDay);
+        }
+
+        let sumDay = Math.floor((birthdayDate - timeNow) / 1000 / 60 / 60 / 24); /* Вычисляем количество дней до дня рождения */
+
+        let sumHour = Math.floor((birthdayDate - timeNow) / 1000 / 60 / 60 - sumDay * 24); /* Вычисляем количество часов до дня рождения */
+
+        let sumMin = Math.floor((birthdayDate - timeNow) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60); /* Вычисляем количество минут до дня рождения */
+
+        let sumSec = Math.floor((birthdayDate - timeNow) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60); /* Вычисляем количество секунд до дня рождения */
+
+        let sumMonth = Math.floor(sumDay / 30); /* Вычисляем количество месяцев до дня рождения; условно принимаем 30 дней в одном месяце */
+
+        let DayWithMonth = sumDay - sumMonth * 30; /* Вычисляем количество дней до дня рождения с учетом месяцев */
+
+        countTime.innerHTML = `<span>До вашего дня рождения осталось:<br>${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек<br> ${sumMonth} мес ${DayWithMonth} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек</span>`; /* Обновляем данные таймера */
+
+
+        if (birthdayDate.getDate() === new Date().getDate() && birthdayDate.getMonth() === new Date().getMonth()) { /* Проверяем на день рождения СЕГОДНЯ */
+
+            countTime.innerHTML = `Поздравляем! Сегодня ваш День Рождения!`;
+        }
+    }
+
+    // localStorage.removeItem('Name'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+    // localStorage.removeItem('Birthday');
+
+</script>
+
+</body>
+</html>
