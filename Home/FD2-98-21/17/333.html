@@ -126,29 +126,34 @@
 
 
     // controller
-    btn.addEventListener('click', getValues);
+    let webPageController = {
 
-    function getValues(event) {
+        init: function () {
 
-        event.preventDefault();
+            btn.addEventListener('click', function (event) {
 
-        result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
-    }
+                event.preventDefault();
+
+                result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+
+            });
+
+            input1.addEventListener('input', getChangeInput);
+            input2.addEventListener('input', getChangeInput);
+
+            function getChangeInput(event) {
+
+                event.preventDefault();
+
+                result.getInput(input1.value, input2.value);
+            }
+        },
+    };
 
 
-    input1.addEventListener('input', getChangeInput);
-    input2.addEventListener('input', getChangeInput);
+    webPageController.init(); /* Вешаем обработчики событий при загрузке страницы */
 
-    function getChangeInput(event) {
-
-        event.preventDefault();
-
-        result.getInput(input1.value, input2.value);
-    }
-
-
-    // Обновляем состояние кнопки при загрузке
-    result.updateViewBtn();
+    result.updateViewBtn(); /* Обновляем состояние кнопки при загрузке */
 
 
 

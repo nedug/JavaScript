@@ -108,14 +108,23 @@
 
 
     // controller
-    btn.addEventListener('click', getValues);
 
-    function getValues(event) {
+    let webPageController = {
 
-        event.preventDefault();
+        init: function () {
 
-        result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
-    }
+            btn.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+                result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+
+            });
+        },
+    };
+
+
+    webPageController.init(); /* Вешаем обработчики событий при загрузке страницы */
 
 
 

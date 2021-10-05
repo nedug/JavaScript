@@ -113,7 +113,7 @@
 
             if (result.valueResult || result.valueResult === 0) {
                 showResult.innerText = "Результат вычислений = " + result.valueResult;
-				}
+            }
 
             btn.disabled = result.inputChange;
         },
@@ -121,30 +121,35 @@
 
 
     // controller
-    btn.addEventListener('click', getValues);
 
-    function getValues(event) {
+	 let webPageController = {
 
-        event.preventDefault();
+	     init: function () {
 
-        result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
-    }
+            btn.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+                result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+
+            });
+
+            input1.addEventListener('input', getChangeInput);
+            input2.addEventListener('input', getChangeInput);
+
+            function getChangeInput(event) {
+
+                event.preventDefault();
+
+                result.getInput(input1.value, input2.value);
+            }
+		  },
+	 };
 
 
-    input1.addEventListener('input', getChangeInput);
-    input2.addEventListener('input', getChangeInput);
+    webPageController.init(); /* Вешаем обработчики событий при загрузке страницы */
 
-    function getChangeInput(event) {
-
-        event.preventDefault();
-
-        result.getInput(input1.value, input2.value);
-
-    }
-
-
-    // Обновляем состояние кнопки при загрузке
-    result.updateView();
+    result.updateView(); /* Обновляем состояние кнопки при загрузке */
 
 
 
