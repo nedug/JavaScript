@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVC example</title>
+	<style>
+       body {
+           font-size: 21px;
+           text-align: center;
+       }
+       input {
+           min-width: 180px;
+           padding: 8px 12px;
+           border: 1px gray solid;
+           border-radius: 3px;
+           margin: 0 5px;
+       }
+       button {
+           font-size: 18px;
+           line-height: 21px;
+           padding: 10px;
+           border-radius: 5px;
+       }
+       select {
+           border-radius: 3px;
+           padding: 7px 7px;
+       }
+	</style>
+</head>
+<body>
+
+<form>
+	<fieldset>
+		<legend>Магия чисел</legend>
+		<p>
+			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
+			<select id="operator">
+				<option value="*"> * </option>
+				<option value="/"> / </option>
+				<option value="+"> + </option>
+				<option value="-"> - </option>
+			</select>
+			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
+		</p>
+		<p>
+			<button id="calculate-btn">Вычислить</button>
+		</p>
+		<div id="show-result"></div>
+	</fieldset>
+</form>
+
+<script>
+
+    const input1 = document.getElementById('input_1');
+    const input2 = document.getElementById('input_2');
+    const btn = document.getElementById('calculate-btn');
+    const showResult = document.getElementById('show-result');
+    const operator = document.getElementById('operator');
+
+
+    // model
+    let result = {
+
+        valueResult: null,
+
+        updateView: function () {
+
+            webPageView.update();
+        },
+
+        operate: function (x, y, z) {
+
+            switch (z) {
+
+                case '*':
+                    this.valueResult = x * y;
+                    break;
+
+                case '/':
+                    this.valueResult = x / y;
+                    if (y === 0) this.valueResult = 'на ноль делить нельзя!';
+                    break;
+
+                case '+':
+                    this.valueResult = x + y;
+                    break;
+
+                case '-':
+                    this.valueResult = x - y;
+                    break;
+            }
+
+            this.updateView();
+        },
+    };
+
+
+
+    // view
+    let webPageView = {
+
+        update: function() {
+
+            showResult.innerText = "Результат вычислений = " + result.valueResult;
+        }
+    };
+
+
+
+    // controller
+    btn.addEventListener('click', getValues);
+
+    function getValues(event) {
+
+        event.preventDefault();
+
+        result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+    }
+
+
+
+    /* Здесь пишем скрипт, который позволит решить поставленную задачу:
+        1) Кнопка "вычислить" должна быть не активна, пока не введены оба числа
+        2) Если введены оба числа (т.е. инпуты не пустые), то делаем кнопку активной
+        3) по клику на эту кнопку - произвести вычисление и вывод результата в div с id="show-result" во формате:
+        "Результат вычислений = " + результат
+    */
+</script>
+</body>
+</html>
