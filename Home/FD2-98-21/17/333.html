@@ -58,14 +58,22 @@
     const operator = document.getElementById('operator');
 
 
+
     // model
     let result = {
 
         valueResult: null,
 
+		  inputs: true,
+
         updateView: function () {
 
             webPageView.update();
+        },
+
+        updateViewBtn: function () {
+
+            btnView.update();
         },
 
         operate: function (x, y, z) {
@@ -92,6 +100,15 @@
 
             this.updateView();
         },
+
+        getInput: function (x, y) {
+
+            if (x === '' || y === '') this.inputs = true;
+            else this.inputs = false;
+
+            this.updateViewBtn();
+
+		  }
     };
 
 
@@ -102,6 +119,15 @@
         update: function() {
 
             showResult.innerText = "Результат вычислений = " + result.valueResult;
+
+        }
+    };
+
+    let btnView = {
+
+        update: function() {
+
+            btn.disabled = result.inputs;
         }
     };
 
@@ -116,6 +142,20 @@
 
         result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
     }
+
+
+    input1.addEventListener('input', getChangeInput);
+    input2.addEventListener('input', getChangeInput);
+
+    function getChangeInput() {
+
+        result.getInput(input1.value, input2.value);
+
+    }
+
+    result.updateViewBtn();
+
+
 
 
 
