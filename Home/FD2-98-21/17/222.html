@@ -78,6 +78,7 @@
 
                 case '/':
                     this.valueResult = x / y;
+                    if (y === 0) this.valueResult = 'на ноль делить нельзя!';
                     break;
 
                 case '+':
@@ -87,10 +88,6 @@
                 case '-':
                     this.valueResult = x - y;
                     break;
-            }
-
-            if (z === '/' && y === 0) {
-                this.valueResult = 'на ноль делить нельзя!';
             }
 
             this.updateView();
