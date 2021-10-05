@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVC example</title>
+	<style>
+       body {
+           font-size: 21px;
+           text-align: center;
+       }
+       input {
+           min-width: 180px;
+           padding: 8px 12px;
+           border: 1px gray solid;
+           border-radius: 3px;
+           margin: 0 5px;
+       }
+       button {
+           font-size: 18px;
+           line-height: 21px;
+           padding: 10px;
+           border-radius: 5px;
+       }
+       select {
+           border-radius: 3px;
+           padding: 7px 7px;
+       }
+	</style>
+</head>
+<body>
+
+<form>
+	<fieldset>
+		<legend>Магия чисел</legend>
+		<p>
+			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
+			<select id="operator">
+				<option value="*"> * </option>
+				<option value="/"> / </option>
+				<option value="+"> + </option>
+				<option value="-"> - </option>
+			</select>
+			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
+		</p>
+		<p>
+			<button id="calculate-btn">Вычислить</button>
+		</p>
+		<div id="show-result"></div>
+	</fieldset>
+</form>
+
+<script>
+
+    const input1 = document.getElementById('input_1');
+    const input2 = document.getElementById('input_2');
+    const btn = document.getElementById('calculate-btn');
+    const showResult = document.getElementById('show-result');
+    const operator = document.getElementById('operator');
+
+
+
+    // model
+    let result = {
+
+        valueResult: null,
+        inputChange: true,
+
+        updateView: function () {
+
+            webPageView.update();
+        },
+
+        operate: function (x, y, z) {
+
+            switch (z) {
+
+                case '*':
+                    this.valueResult = x * y;
+                    break;
+
+                case '/':
+                    this.valueResult = x / y;
+                    if (y === 0) this.valueResult = 'на ноль делить нельзя!';
+                    break;
+
+                case '+':
+                    this.valueResult = x + y;
+                    break;
+
+                case '-':
+                    this.valueResult = x - y;
+                    break;
+            }
+
+            this.updateView();
+        },
+
+        getInput: function (x, y) {
+
+            if (x && y) this.inputChange = false;
+            else this.inputChange = true;
+
+            this.updateView();
+        }
+    };
+
+
+
+    // view
+    let webPageView = {
+
+        update: function() {
+
+            if (result.valueResult || result.valueResult === 0) {
+                showResult.innerText = "Результат вычислений = " + result.valueResult;
+            }
+
+            btn.disabled = result.inputChange;
+        },
+    };
+
+
+    // controller
+
+	 let webPageController = {
+
+	     init: function () {
+
+            btn.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+                result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+
+            });
+
+            input1.addEventListener('input', getChangeInput);
+            input2.addEventListener('input', getChangeInput);
+
+            function getChangeInput(event) {
+
+                event.preventDefault();
+
+                result.getInput(input1.value, input2.value);
+            }
+		  },
+	 };
+
+    webPageController.init();
+
+
+    // btn.addEventListener('click', getValues);
+	 //
+    // function getValues(event) {
+	 //
+    //     event.preventDefault();
+	 //
+    //     result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
+    // }
+	 //
+	 //
+    // input1.addEventListener('input', getChangeInput);
+    // input2.addEventListener('input', getChangeInput);
+	 //
+    // function getChangeInput(event) {
+	 //
+    //     event.preventDefault();
+	 //
+    //     result.getInput(input1.value, input2.value);
+	 //
+    // }
+
+
+    // Обновляем состояние кнопки при загрузке
+    result.updateView();
+
+
+
+    /* Здесь пишем скрипт, который позволит решить поставленную задачу:
+        1) Кнопка "вычислить" должна быть не активна, пока не введены оба числа
+        2) Если введены оба числа (т.е. инпуты не пустые), то делаем кнопку активной
+        3) по клику на эту кнопку - произвести вычисление и вывод результата в div с id="show-result" во формате:
+        "Результат вычислений = " + результат */
+
+</script>
+</body>
+</html>
