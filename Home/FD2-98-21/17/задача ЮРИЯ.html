@@ -23,19 +23,32 @@
            padding: 10px;
            border-radius: 5px;
        }
+		 select {
+           width: 50px;
+           height: 30px;
+		 }
 	</style>
 </head>
 <body>
 
-<h1>Пример решения задачи "в лоб"</h1>
 
-<h3>пример умножения двух чисел</h3>
 <form>
 	<fieldset>
 		<legend>Магия чисел</legend>
 		<p>
 			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
-			<span class="mult-sign"> x </span>
+
+			<select id="indication">
+
+				<option value="*"> * </option>
+				<option value="/"> / </option>
+				<option value="+"> + </option>
+				<option value="-"> - </option>
+
+			</select>
+
+<!--			<span class="mult-sign"> x </span>-->
+
 			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
 		</p>
 		<p>
@@ -52,24 +65,159 @@
     const value2 = document.getElementById('input_2');
     const value3 = document.getElementById('calculate-btn');
     const value4 = document.getElementById('show-result');
+    const indication = document.getElementById('indication');
 
-    let res;
+    let valSelect;
 
-    value3.addEventListener('click', result);
 
-    function result(event) {
+    // value3.addEventListener('click', summa);
+
+    function summa(event) {
+
+        // valSelect = indication.options[indication.selectedIndex].value;
 
         event.preventDefault();
+
+        // console.log(valSelect)
 
         let xxx = value1.value;
 
         let yyy = value2.value;
 
-        res = xxx * yyy;
+        let res = xxx * yyy;
 
-        value4.innerText = `Результат вычислений = ${res}`;
+        value4.innerText = "Результат вычислений = " + res;
 
 	 }
+
+
+    // model
+
+	 let result = {
+
+        value111: null,
+        value222: null,
+
+		  resultAll: null,
+
+        isSelect: null,
+
+
+        updateView: function () {
+
+            webPageView.update();
+
+		  },
+
+
+		  setSelect: function (select) {
+
+            this.isSelect = select;
+
+
+            this.updateView();
+
+		  },
+
+        operate: function (x, y) {
+
+            switch (this.isSelect) {
+
+                case '*':
+                    this.resultAll = x * y;
+                    break;
+                case '/':
+                    this.resultAll = x / y;
+                    break;
+                case '+':
+                    this.resultAll = x + y;
+                    break;
+                case '-':
+                    this.resultAll = x - y;
+                    break;
+				}
+
+				if (this.isSelect === '/' && y === 0) {
+                this.resultAll = 'на ноль делить нельзя!';
+				}
+
+            // this.resultAll = `${x} ${this.isSelect} ${y}`
+
+
+
+            this.updateView();
+
+        },
+
+	 }
+
+    // console.log(result.isSelect);
+
+
+
+
+    // view
+
+    let webPageView = {
+
+        update: function() {
+
+            value4.innerText = "Результат вычислений = " + result.resultAll;
+
+
+            // document.getElementById('IRun').checked=man.isRun;
+            // document.getElementById('IMan').style.left=man.posX+"px";
+            // document.getElementById('IMan').style.top=man.posY+"px";
+        }
+    };
+
+
+
+
+	 // controller
+
+
+    value3.addEventListener('click', getResult);
+
+
+    function getResult(event) {
+
+        event.preventDefault();
+
+        runSelect();
+
+        // let xxx = value1.value;
+		  //
+        // let yyy = value2.value;
+
+
+        result.operate(+value1.value, +value2.value);
+
+    }
+
+
+    function runSelect() {
+
+        valSelect = indication.options[indication.selectedIndex].value;
+
+        result.setSelect(valSelect);
+
+
+        // man.setRun(document.getElementById('indication').checked);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
