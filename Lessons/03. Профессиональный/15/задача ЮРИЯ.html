@@ -53,7 +53,18 @@
     const value3 = document.getElementById('calculate-btn');
     const value4 = document.getElementById('show-result');
 
-    let res;
+
+    value3.disabled = true;
+
+	 value1.addEventListener('input', something);
+	 value2.addEventListener('input', something);
+
+    function something() {
+
+        if (value1.value === '' || value2.value === '') value3.disabled = true;
+        else value3.disabled = false;
+
+    }
 
     value3.addEventListener('click', result);
 
@@ -65,7 +76,7 @@
 
         let yyy = value2.value;
 
-        res = xxx * yyy;
+        let res = xxx * yyy;
 
         value4.innerText = `Результат вычислений = ${res}`;
 
