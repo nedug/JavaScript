@@ -23,8 +23,8 @@
 <div id="user-info">
 
 	<h3>Дорогой пользователь!</h3>
-	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ <br><br>
-	<input type="text" id="user-birthday" value="19.12.1991"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
+	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ или НИКНЕЙМ <br><br>
+	<input type="date" id="user-birthday"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
 	<button id="btn-save">Сохранить</button>
 
 </div>
@@ -38,6 +38,9 @@
 
     let nameValue; /* Переменная для имени пользователя */
     let birthdayValue; /* Переменная для даты рождения пользователя */
+    let infoUser; /* Переменная для объекта-хранилища данных о пользователе */
+    let infoUserSerial; /* Переменная для преобразования объекта-хранилища о пользователе в JSON-строку */
+    let infoUserReturn; /* Переменная для обратного преобразования объекта-хранилища из JSON-строки */
 
     let hello = document.createElement('h2'); /* Приветствуем пользователя */
     document.body.append(hello);
@@ -46,28 +49,63 @@
     document.body.append(countTime);
 
 
+	 /* Устанавливаем предел выбора даты в инпуте, ограничивая сегодняшним числом */
+    let currentYear = new Date().getFullYear();
+
+    let currentDay = new Date().getDate();
+    if (currentDay < 10 ) {
+        currentDay = '0' + currentDay;
+    }
+
+    let currentMonth = new Date().getMonth() + 1;
+    if (currentMonth < 10 ) {
+        currentMonth = '0' + currentMonth;
+    }
+
+    let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
+
+    userBirthday.setAttribute('max', dateLimit);
+
+
     btnSave.addEventListener('click', clickHandler);
 
     function clickHandler() {
 
-        nameValue = userName.value; /* Сохраняем значения пользователя в переменные */
-        birthdayValue = userBirthday.value;
+        nameValue = userName.value; /* Сохраняем имя пользователя */
+        birthdayValue = userBirthday.value; /* Сохраняем дату рождения пользователя */
 
-        if (+nameValue) { /* Небольшая проверка на корректность ввода имени пользователя */
+        if (+nameValue || !nameValue) { /* Проверка на корректность ввода имени пользователя */
             countTime.innerHTML = `Введите корректно имя!`;
             return;
         }
 
-        if (!+birthdayValue.split('.').join('')) { /* Небольшая проверка на корректность ввода даты рождения */
+
+        infoUser = { /* Создаем объект-хранилище данных о пользователе */
+
+            userName: nameValue,
+				userDate: +birthdayValue.split('-')[2],
+				userMonth: +birthdayValue.split('-')[1],
+				userYear: +birthdayValue.split('-')[0],
+		  }
+
+
+        if (!infoUser.userYear) { /* Проверка на ввод даты рождения пользователя */
             countTime.innerHTML = `Введите корректно дату рождения!`;
             return;
         }
 
-        /* Сохраняем данные в localStorage; возможно можно использовать cookies, если нам нужны эти данные на стороне сервера, но в данном случае нам это не требуется */
-        localStorage.setItem('Name', nameValue);
-        localStorage.setItem('Birthday', birthdayValue);
+        /* Проверка на ввод даты рождения пользователя через клавиатуру */
+        if (infoUser.userYear > new Date().getFullYear() || infoUser.userYear === new Date().getFullYear() && infoUser.userDate > new Date().getDate() && infoUser.userMonth >= new Date().getMonth()+1 || infoUser.userYear === new Date().getFullYear() && infoUser.userMonth > new Date().getMonth()+1) {
+            countTime.innerHTML = `Несуществующая дата рождения!`;
+            return;
+        }
 
-        if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+
+		  infoUserSerial = JSON.stringify(infoUser); /* Преобразуем хранилище в JSON-строку */
+
+        localStorage.setItem('user', infoUserSerial); /* Сохраняем данные в localStorage */
+
+        if (localStorage.getItem('user')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
 
             sayHello();
             timerBirthday();
@@ -75,7 +113,7 @@
     }
 
 
-    if (localStorage.getItem('Name') && localStorage.getItem('Birthday')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+    if (localStorage.getItem('user')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
 
         sayHello();
         timerBirthday();
@@ -87,17 +125,18 @@
 
         userInfo.style.display = 'none';
 
-        hello.innerHTML = `Рады видеть вас, ${localStorage.getItem('Name')}!`;
+        infoUserReturn = JSON.parse(localStorage.getItem('user'));
+
+        hello.innerHTML = `Рады видеть вас, ${infoUserReturn.userName}!`;
 
         setInterval(timerBirthday, 1000); /* Таймер обратного отсчета до дня рождения пользователя */
     }
 
     function timerBirthday() {
 
-        let birthdayInfo = localStorage.getItem('Birthday').split('.'); /* Получаем данные о дате рождения из localStorage */
-        let bornDay = +birthdayInfo[0];
-        let bornMonth = +birthdayInfo[1];
-        // let bornYear = +birthdayInfo[2];
+        let bornDay = +infoUserReturn.userDate;
+        let bornMonth = +infoUserReturn.userMonth;
+        // let bornYear = +infoUserReturn.userYear;;
 
         let timeNow = new Date(); /* Получаем текущее время */
         let currentYear = timeNow.getFullYear();
@@ -131,8 +170,7 @@
         }
     }
 
-    // localStorage.removeItem('Name'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
-    // localStorage.removeItem('Birthday');
+    localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
 
 </script>
 
