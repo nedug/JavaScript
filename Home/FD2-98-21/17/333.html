@@ -64,7 +64,7 @@
 
         valueResult: null,
 
-		  inputs: true,
+		  inputChange: true,
 
         updateView: function () {
 
@@ -103,8 +103,8 @@
 
         getInput: function (x, y) {
 
-            if (x && y) this.inputs = false;
-            else this.inputs = true;
+            if (x && y) this.inputChange = false;
+            else this.inputChange = true;
 
             this.updateViewBtn();
 		  }
@@ -121,7 +121,7 @@
 
         btnUpdate: function() {
 
-            btn.disabled = result.inputs;
+            btn.disabled = result.inputChange;
         }
     };
 
