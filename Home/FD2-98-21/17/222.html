@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>MVC example</title>
@@ -8,7 +8,6 @@
            font-size: 21px;
            text-align: center;
        }
-
        input {
            min-width: 180px;
            padding: 8px 12px;
@@ -16,7 +15,6 @@
            border-radius: 3px;
            margin: 0 5px;
        }
-
        button {
            font-size: 18px;
            line-height: 21px;
@@ -24,31 +22,24 @@
            border-radius: 5px;
        }
        select {
-           width: 50px;
-           height: 30px;
+           border-radius: 3px;
+           padding: 7px 7px;
        }
 	</style>
 </head>
 <body>
-
 
 <form>
 	<fieldset>
 		<legend>Магия чисел</legend>
 		<p>
 			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
-
 			<select id="operator">
-
 				<option value="*"> * </option>
 				<option value="/"> / </option>
 				<option value="+"> + </option>
 				<option value="-"> - </option>
-
 			</select>
-
-			<!--			<span class="mult-sign"> x </span>-->
-
 			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
 		</p>
 		<p>
@@ -60,7 +51,6 @@
 
 <script>
 
-
     const input1 = document.getElementById('input_1');
     const input2 = document.getElementById('input_2');
     const btn = document.getElementById('calculate-btn');
@@ -68,136 +58,67 @@
     const operator = document.getElementById('operator');
 
 
-
-
     // model
+    let result = {
 
-    let results = {
-
-        // value111: null,
-        // value222: null,
-        //
-        // resultAll: null,
-        //
-        // isSelect: null,
-
+        valueResult: null,
 
         updateView: function () {
 
             webPageView.update();
-
         },
-
-
-        // setSelect: function (select) {
-        //
-        //     this.isSelect = select;
-        //
-        //
-        //     this.updateView();
-        //
-        // },
 
         operate: function (x, y, z) {
 
             switch (z) {
 
                 case '*':
-                    this.resultAll = x * y;
+                    this.valueResult = x * y;
                     break;
+
                 case '/':
-                    this.resultAll = x / y;
+                    this.valueResult = x / y;
                     break;
+
                 case '+':
-                    this.resultAll = x + y;
+                    this.valueResult = x + y;
                     break;
+
                 case '-':
-                    this.resultAll = x - y;
+                    this.valueResult = x - y;
                     break;
             }
 
             if (z === '/' && y === 0) {
-                this.resultAll = 'на ноль делить нельзя!';
+                this.valueResult = 'на ноль делить нельзя!';
             }
 
-            // this.resultAll = `${x} ${this.isSelect} ${y}`
-
-
-
             this.updateView();
-
         },
-
-    }
-
-    // console.log(result.isSelect);
-
+    };
 
 
 
     // view
-
     let webPageView = {
 
         update: function() {
 
-            value4.innerText = "Результат вычислений = " + result.resultAll;
-
-
-            // document.getElementById('IRun').checked=man.isRun;
-            // document.getElementById('IMan').style.left=man.posX+"px";
-            // document.getElementById('IMan').style.top=man.posY+"px";
+            showResult.innerText = "Результат вычислений = " + result.valueResult;
         }
     };
 
 
 
-
     // controller
+    btn.addEventListener('click', getValues);
 
-
-    value3.addEventListener('click', getResult);
-
-
-    function getResult(event) {
+    function getValues(event) {
 
         event.preventDefault();
 
-        // runSelect();
-
-        // let xxx = value1.value;
-        //
-        // let yyy = value2.value;
-
-
-        result.operate(+value1.value, +value2.value, indication.options[indication.selectedIndex].value);
-
+        result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
     }
-
-
-    function runSelect() {
-
-        let valSelect = indication.options[indication.selectedIndex].value;
-
-        result.setSelect(valSelect);
-
-
-        // man.setRun(document.getElementById('indication').checked);
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
