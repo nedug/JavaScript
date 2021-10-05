@@ -63,14 +63,12 @@
     let result = {
 
         valueResult: null,
-
-        inputs: true,
+        inputChange: true,
 
         updateView: function () {
 
             webPageView.update();
         },
-
 
         operate: function (x, y, z) {
 
@@ -99,11 +97,10 @@
 
         getInput: function (x, y) {
 
-            if (x && y) this.inputs = false;
-            else this.inputs = true;
+            if (x && y) this.inputChange = false;
+            else this.inputChange = true;
 
             this.updateView();
-
         }
     };
 
@@ -114,25 +111,13 @@
 
         update: function() {
 
-            console.log(result.valueResult );
-
-            if(result.valueResult || result.valueResult === 0) {
+            if (result.valueResult || result.valueResult === 0) {
                 showResult.innerText = "Результат вычислений = " + result.valueResult;
 				}
 
-            btn.disabled = result.inputs;
-
+            btn.disabled = result.inputChange;
         },
     };
-
-    // let btnView = {
-	 //
-    //     update: function() {
-	 //
-    //         btn.disabled = result.inputs;
-    //     }
-    // };
-
 
 
     // controller
@@ -158,10 +143,8 @@
     }
 
 
-
+    // Обновляем состояние кнопки при загрузке
     result.updateView();
-
-
 
 
 
@@ -171,6 +154,7 @@
         3) по клику на эту кнопку - произвести вычисление и вывод результата в div с id="show-result" во формате:
         "Результат вычислений = " + результат
     */
+	 
 </script>
 </body>
 </html>
