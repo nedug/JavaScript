@@ -103,8 +103,8 @@
 
         getInput: function (x, y) {
 
-            if (x === '' || y === '') this.inputs = true;
-            else this.inputs = false;
+            if (x && y) this.inputs = false;
+            else this.inputs = true;
 
             this.updateViewBtn();
 
@@ -152,9 +152,10 @@
         event.preventDefault();
 
         result.getInput(input1.value, input2.value);
-
     }
 
+
+    // Обновляем состояние кнопки при загрузке
     result.updateViewBtn();
 
 

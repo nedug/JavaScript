@@ -71,10 +71,6 @@
             webPageView.update();
         },
 
-        updateViewBtn: function () {
-
-            btnView.update();
-        },
 
         operate: function (x, y, z) {
 
@@ -103,10 +99,10 @@
 
         getInput: function (x, y) {
 
-            if (x === '' || y === '') this.inputs = true;
-            else this.inputs = false;
+            if (x && y) this.inputs = false;
+            else this.inputs = true;
 
-            this.updateViewBtn();
+            this.updateView();
 
         }
     };
@@ -118,18 +114,24 @@
 
         update: function() {
 
-            showResult.innerText = "Результат вычислений = " + result.valueResult;
+            console.log(result.valueResult );
 
-        }
-    };
-
-    let btnView = {
-
-        update: function() {
+            if(result.valueResult || result.valueResult === 0) {
+                showResult.innerText = "Результат вычислений = " + result.valueResult;
+				}
 
             btn.disabled = result.inputs;
-        }
+
+        },
     };
+
+    // let btnView = {
+	 //
+    //     update: function() {
+	 //
+    //         btn.disabled = result.inputs;
+    //     }
+    // };
 
 
 
@@ -155,7 +157,9 @@
 
     }
 
-    result.updateViewBtn();
+
+
+    result.updateView();
 
 
 
