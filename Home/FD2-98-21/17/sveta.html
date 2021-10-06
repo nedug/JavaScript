@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVC example</title>
+	<style>
+       body {
+           font-size: 21px;
+           text-align: center;
+       }
+
+       input {
+           min-width: 180px;
+           padding: 8px 12px;
+           border: 1px gray solid;
+           border-radius: 3px;
+           margin: 0 5px;
+       }
+
+       button {
+           font-size: 18px;
+           line-height: 21px;
+           padding: 10px;
+           border-radius: 5px;
+       }
+
+	</style>
+</head>
+<body>
+
+<h1>Пример использования MVC</h1>
+
+<h3>калькулятор двух чисел</h3>
+<form>
+	<fieldset>
+		<legend>Магия чисел</legend>
+		<p>
+			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1" />
+			<select id="operator">
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="+">+</option>
+				<option value="-">-</option>
+			</select>
+			<input type="number" placeholder="Введите второе значение" name="input_2" id="input_2" />
+		</p>
+		<p><button id="calculate-btn">Вычислить</button></p>
+		<div id="show-result"></div>
+	</fieldset>
+</form>
+
+<script>
+
+    const firstInput = document.getElementById("input_1");
+    const secondInput = document.getElementById("input_2");
+    const btn = document.getElementById("calculate-btn");
+    const select = document.getElementById("operator");
+    const showResult = document.getElementById("show-result");
+
+    let webPageModel = {
+        result: null,
+
+        updateResult: function() {
+            webPageView.viewResult(this.result);
+        },
+
+        calculate: function(n1, n2, sign) {
+            switch (sign) {
+                case "*":
+                    this.result = n1 * n2;
+                    break;
+
+                case "/":
+                    if (n2 === 0) {
+                        this.result = "на ноль делить нельзя";
+                    } else {
+                        this.result = n1 / n2;
+                    }
+                    break;
+
+                case "+":
+                    this.result = n1 + n2;
+                    break;
+
+                case "-":
+                    this.result = n1 - n2;
+                    break;
+            }
+            this.updateResult();
+        }
+    };
+
+    let webPageView = {
+        viewResult: function(result) {
+            showResult.innerText = "Результат вычислений = " + result;
+        }
+    };
+
+    let webPageController = {
+        init: function() {
+            btn.addEventListener("click", function(event) {
+                event.preventDefault();
+                webPageModel.calculate(+firstInput.value, +secondInput.value, select.options[select.selectedIndex].value);
+            });
+        }
+    };
+    webPageController.init();
+
+
+
+    /* Здесь пишем скрипт, который позволит решить поставленную задачу:
+        1) Кнопка "вычислить" должна быть не активна, пока не введены оба числа
+        2) Если введены оба числа (т.е. инпуты не пустые), то делаем кнопку активной
+        3) по клику на эту кнопку - произвести вычисление и вывод результата в div с id="show-result" во формате:
+        "Результат вычислений = " + результат */
+
+</script>
+</body>
+</html>
