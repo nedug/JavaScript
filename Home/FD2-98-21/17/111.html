@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Modal default</title>
 	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-	<link rel="stylesheet" href="styles.css">
+<!--	<link rel="stylesheet" href="styles.css">-->
 	<style>
        body {
            margin: 0;
@@ -257,6 +257,35 @@
     let btnSave = document.querySelector('#modal-save');
 
 
+
+    let btnOpen = document.getElementById('modal-open');
+    let modalWindow = document.getElementById('modal');
+
+    btnOpen.addEventListener("click", openWindow);
+
+    function openWindow () {
+        modalWindow.classList.remove('modal_closed');
+        userName.value = '';
+        userDate.value = '';
+        userMonth.value = '';
+        userYear.value = '';
+    }
+
+
+    let closeSign = document.getElementById('modal-close')
+    closeSign.addEventListener("click", closeModal);
+
+    let closeSign2 = document.getElementById('modal-cancel')
+    closeSign2.addEventListener("click", closeModal);
+
+    function closeModal () {
+        modalWindow.classList.add('modal_closed');
+    }
+
+    let fieldName = document.getElementById('name');
+
+
+
     btnSave.addEventListener('click', clickHandler);
 
     function clickHandler() {
@@ -279,15 +308,7 @@
         let infoUserSerial = JSON.stringify(infoUser);
 
         localStorage.setItem('user', infoUserSerial);
-
     }
-
-
-
-
-
-
-
 
 
 
