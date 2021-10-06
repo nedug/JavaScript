@@ -4,17 +4,34 @@
 	<meta charset="UTF-8">
 	<title>MVC example</title>
 	<style>
+       html,
        body {
-           font-size: 21px;
+           background: #666666;
+           font-size: 20px;
            text-align: center;
+           overflow-y: hidden;
        }
-
+       fieldset {
+           border-color: black
+       }
+       fieldset:hover {
+           box-shadow: inset 0 0 0 5px #898989;
+           transition-duration: 0.5s;
+           transition-timing-function: ease;
+       }
+       select {
+           min-width: 50px;
+           border: 5px solid rgba(0, 0, 0, 0.3);
+           box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.3);
+           border-radius: 50px;
+       }
        input {
            min-width: 180px;
            padding: 8px 12px;
-           border: 1px gray solid;
-           border-radius: 3px;
            margin: 0 5px;
+           border: 5px solid rgba(0, 0, 0, 0.3);
+           box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.3);
+           border-radius: 50px;
        }
 
        button {
@@ -22,18 +39,43 @@
            line-height: 21px;
            padding: 10px;
            border-radius: 5px;
-       }
 
+           background-image: linear-gradient(transparent 50%, black 50%);
+           background-size: 250% 210%;
+           background-repeat: no-repeat;
+           transition: .8s;
+       }
+       .anim {
+           background-position: 10% 100%;
+           color: white;
+       }
+       #show-result {
+           animation-duration: .8s;
+           animation-fill-mode: both;
+       }
+       @keyframes fadeInUpBig {
+           from {
+               opacity: 0;
+               transform: translate3d(0, 250px, 0);
+           }
+
+           to {
+               opacity: 1;
+               transform: translate3d(0, 0, 0);
+           }
+       }
+       .fadeInUpBig {
+           animation-name: fadeInUpBig;
+       }
 	</style>
 </head>
 <body>
 
-<h1>Пример использования MVC</h1>
+<h2>Пример использования MVC</h2>
 
-<h3>калькулятор двух чисел</h3>
+<h3>калькулятор двух чисел от команды "Undefined"</h3>
 <form>
 	<fieldset>
-		<legend>Магия чисел</legend>
 		<p>
 			<input type="number" placeholder="Введите первое значение" name="input_1" id="input_1" />
 			<select id="operator">
@@ -59,11 +101,21 @@
 
     let webPageModel = {
         result: null,
-
+        flag: true,
         updateResult: function() {
             webPageView.viewResult(this.result);
         },
-
+        updateBtn: function() {
+            webPageView.viewBtn(this.flag);
+        },
+        checkBtn: function(a, b) {
+            if (a && b) {
+                this.flag = false;
+            } else {
+                this.flag = true;
+            }
+            this.updateBtn();
+        },
         calculate: function(n1, n2, sign) {
             switch (sign) {
                 case "*":
@@ -93,11 +145,28 @@
     let webPageView = {
         viewResult: function(result) {
             showResult.innerText = "Результат вычислений = " + result;
+
+
+            showResult.classList.add('fadeInUpBig'); /* Анимация результата */
+        },
+        viewBtn: function(flag) {
+            btn.disabled = flag;
+
+
+            if (!btn.disabled) btn.classList.add('anim'); /* Анимация кнопки */
+            else btn.classList.remove('anim');
         }
     };
 
     let webPageController = {
         init: function() {
+            firstInput.addEventListener("input", getInput);
+            secondInput.addEventListener("input", getInput);
+
+            function getInput() {
+                webPageModel.checkBtn(firstInput.value, secondInput.value);
+            }
+
             btn.addEventListener("click", function(event) {
                 event.preventDefault();
                 webPageModel.calculate(+firstInput.value, +secondInput.value, select.options[select.selectedIndex].value);
@@ -105,6 +174,7 @@
         }
     };
     webPageController.init();
+    webPageModel.updateBtn();
 
 
 
