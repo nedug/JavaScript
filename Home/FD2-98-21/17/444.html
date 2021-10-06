@@ -7,6 +7,7 @@
        body {
            font-size: 21px;
            text-align: center;
+			  overflow-y: hidden;
        }
        input {
            min-width: 180px;
@@ -20,15 +21,45 @@
            line-height: 21px;
            padding: 10px;
            border-radius: 5px;
+
+           background-image: linear-gradient(transparent 50%, black 50%);
+           background-size: 200% 200%;
+           background-repeat: no-repeat;
+           transition: 1s;
        }
+		 .anim {
+           background-position: 0 100%;
+           color: white;
+		 }
        select {
            border-radius: 3px;
            padding: 7px 7px;
        }
+
+		 #show-result {
+           animation-duration: 1s;
+           animation-fill-mode: both;
+		 }
+
+       @keyframes fadeInUpBig {
+           from {
+               opacity: 0;
+               transform: translate3d(0, 500px, 0);
+           }
+
+           to {
+               opacity: 1;
+               transform: translate3d(0, 0, 0);
+           }
+       }
+       .fadeInUpBig {
+           animation-name: fadeInUpBig;
+       }
+
 	</style>
 </head>
 <body>
-
+<br><br><br><br><br><br>
 <form>
 	<fieldset>
 		<legend>Магия чисел</legend>
@@ -112,10 +143,16 @@
         update: function() {
 
             if (result.valueResult || result.valueResult === 0) {
+
                 showResult.innerText = "Результат вычислений = " + result.valueResult;
+
+                showResult.classList.add('fadeInUpBig');
             }
 
             btn.disabled = result.inputChange;
+
+            if(!btn.disabled) btn.classList.add('anim');
+            else btn.classList.remove('anim');
         },
     };
 
@@ -131,6 +168,7 @@
 
                 result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
             });
+
 
             input1.addEventListener('input', getChangeInput);
             input2.addEventListener('input', getChangeInput);
