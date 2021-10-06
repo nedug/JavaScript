@@ -98,7 +98,7 @@
 
         updateView: function () {
 
-            webPageView.update();
+            webPageView.update(this.valueResult, this.inputChange);
         },
 
         operate: function (x, y, z) {
@@ -140,16 +140,16 @@
     // view
     let webPageView = {
 
-        update: function() {
+        update: function(result, checkBtn) {
 
-            if (result.valueResult || result.valueResult === 0) {
+            if (result || result === 0) {
 
-                showResult.innerText = "Результат вычислений = " + result.valueResult;
+                showResult.innerText = "Результат вычислений = " + result;
 
                 showResult.classList.add('fadeInUpBig');
             }
 
-            btn.disabled = result.inputChange;
+            btn.disabled = checkBtn;
 
             if(!btn.disabled) btn.classList.add('anim');
             else btn.classList.remove('anim');
