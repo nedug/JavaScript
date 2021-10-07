@@ -78,10 +78,28 @@
             myModalView.hide();
         }
 
-        this.saveModalData = function() { //получить данные из модалки и сохранить
+        this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { //получить данные из модалки и сохранить
+
+            userData = {
+
+                userName: inputName,
+                userDate: inputDay,
+                userMonth: inputMonth,
+                userYear: inputYear,
+				}
+
+				console.log(userData)
+
+				this.storeData();
+
         }
 
         this.storeData = function() { // сохранить данные в localStorage, а если не доступно, то в cookies
+
+            let userDataSerial = JSON.stringify(userData);
+
+            localStorage.setItem('userDate', userDataSerial);
+
         }
 
         this.getData = function() { //достать данные из хранилища
@@ -198,7 +216,8 @@
             const inputName = myModalContainer.querySelector(".input__default");
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
-            myModalModel.saveModalData(inputName, inputBirth);
+
+            myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value,);
 
             // console.log(inputBirth);
 
