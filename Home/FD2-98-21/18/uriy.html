@@ -176,6 +176,9 @@
             const buttonCancel = myModalContainer.querySelector(".modal__cancel");
             buttonCancel.addEventListener("click", this.hideModal);
 
+            const buttonSave = myModalContainer.querySelector(".modal__save");
+            buttonSave.addEventListener("click", this.saveModal);
+
             // console.log(buttonClose)
 
         }
@@ -191,6 +194,18 @@
         }
 
         this.saveModal = function () {
+
+            const inputName = myModalContainer.querySelector(".input__default");
+            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            myModalModel.saveModalData(inputName, inputBirth);
+
+            // console.log(inputBirth);
+
+
+
+
+
         }
 
         this.clearData = function () {
