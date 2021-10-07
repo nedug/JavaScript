@@ -193,28 +193,54 @@
     /*
       настройка, инициализация первого комплекта
     */
+
+
     // создаём все три компонента
     const man1 = new ManModel();
     const view1 = new ManViewWebPage();
     const controller1 = new ManController();
+
+
+
     // связываем компоненты друг с другом, указывая в каком контейнере/поле им работать
     const containerElem1 = document.getElementById("man-container-1");
     man1.init(view1);
     view1.init(containerElem1);
     controller1.init(man1, containerElem1);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
       настройка, инициализация второго комплекта
     */
+
     // создаём все три компонента
     const man2 = new ManModel();
     const view2 = new ManViewWebPage();
     const controller2 = new ManController();
+
+
     // связываем компоненты друг с другом, указывая в каком контейнере/поле им работать
     const containerElem2 = document.getElementById("man-container-2");
     man2.init(view2);
     view2.init(containerElem2);
     controller2.init(man2, containerElem2);
+
+
+
+
 </script>
 </body>
 </html>
