@@ -107,7 +107,8 @@
             this.updateView(); // модель при любых изменениях вызывает обновление представления
         }
 
-    };
+    }
+
 
     // view
     function ManViewWebPage() {
@@ -133,7 +134,10 @@
             manDiv.style.top = data.posY + "px";
         }
 
-    };
+    }
+
+
+
 
     // controller
     function ManController() {
@@ -188,7 +192,7 @@
         this.runChanged=function() {
             myModel.setRun(runCheckbox.checked); // контроллер вызывает только методы модели
         }
-    };
+    }
 
     /*
       настройка, инициализация первого комплекта
