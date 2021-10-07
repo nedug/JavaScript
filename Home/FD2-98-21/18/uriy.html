@@ -100,9 +100,20 @@
 
             localStorage.setItem('userDate', userDataSerial);
 
+            // this.getData();
+
         }
 
         this.getData = function() { //достать данные из хранилища
+
+            // let userDataReturn = JSON.parse(localStorage.getItem('userDate'));
+            userData = JSON.parse(localStorage.getItem('userDate'));
+
+
+            // console.log(userData)
+
+            myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear);
+
         }
 
         this.updateData = function() {
@@ -156,7 +167,11 @@
         }
 
 
-        this.printViewData = function () { // вывести данные из хранилища в div.modal-data
+        this.printViewData = function (name, day, month, year) { // вывести данные из хранилища в div.modal-data
+
+            let modalData = myModalContainer.querySelector('.modal-data');
+            modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
+
         }
 
         this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
@@ -209,6 +224,7 @@
         this.hideModal = function () {
 
             myModalModel.closeModal();
+            myModalModel.getData();
         }
 
         this.saveModal = function () {
