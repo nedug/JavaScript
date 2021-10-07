@@ -160,11 +160,14 @@
 
         init: function () {
 
+            result.updateView(); /* Обновляем состояние кнопки при загрузке */
+
             btn.addEventListener('click', function (event) {
 
                 event.preventDefault();
 
                 result.operate(+input1.value, +input2.value, operator.value);
+                // result.operate(+input1.value, +input2.value, operator.options[operator.selectedIndex].value);
             });
 
 
@@ -183,7 +186,6 @@
 
     webPageController.init(); /* Вешаем обработчики событий при загрузке страницы */
 
-    result.updateView(); /* Обновляем состояние кнопки при загрузке */
 
 
 
