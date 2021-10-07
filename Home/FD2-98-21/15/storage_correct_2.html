@@ -4,45 +4,26 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="css/styles.css">
 	<style>
-       /*input {*/
-       /*    height: 20px;*/
-       /*    width: 200px;*/
-       /*    padding: 3px;*/
-       /*}*/
-       /*button:hover {*/
-       /*    cursor: pointer;*/
-       /*}*/
-       /*h3 span {*/
-       /*    display: inline-block;*/
-       /*    text-align: right;*/
-       /*}*/
-       /*.modal-open {*/
-       /*    display: inline-block;*/
-       /*    color: #fff;*/
-       /*    border: 1px #007bff solid;*/
-       /*    border-radius: 5px;*/
-       /*    padding: 8px 12px;*/
-       /*    font-size: 16px;*/
-       /*    font-family: 'Exo 2', sans-serif;*/
-       /*    background-color: #007bff;*/
-       /*    text-decoration: none;*/
-       /*}*/
-
-       /*.modal-open:hover {*/
-       /*    text-decoration: none;*/
-       /*    background-color: #0069d9;*/
-       /*    border-color: #0062cc;*/
-       /*}*/
+       button:hover {
+           cursor: pointer;
+       }
+       h3 span {
+           display: inline-block;
+           text-align: right;
+       }
+       h3 img {
+           padding-left: 70px;
+       }
 	</style>
 </head>
 <body>
 
-	<h3>Дорогой пользователь!</h3>
-
-	<p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Авторизуйтесь</a></p>
-
+	<div id="user-info">
+		<h3>Дорогой пользователь!</h3>
+		<p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Авторизуйтесь</a></p>
+	</div>
 
 	<div class="modal-overlay modal_closed" id="modal-overlay"></div>
 	<div class="modal modal_closed" id="modal">
@@ -55,75 +36,30 @@
 			<div class="form-field">
 				<label for="user-name">Ваше имя:</label>
 				<input type="text" id="user-name" class="input__default" value="Sasha">
-<!--				<input class="input__default" type="text" id="name" name="name">-->
 			</div>
 			<div class="form-field">
 				<label>Ваш день рождения:</label>
 				<input type="date" id="user-birthday" class="input__date-birth">
-
-
-<!--				<input type="text" class="input__date-birth" id="birth-day" name="name" placeholder="День"> - -->
-<!--				<input type="text" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> - -->
-<!--				<input type="text" class="input__date-birth" id="birth-year" name="name" placeholder="Год">-->
+				<h4 id="valid-value"></h4>
 			</div>
 		</main>
 
 		<footer class="modal__footer">
-<!--			<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>-->
-<!--			<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>-->
-
-
 			<button id="btn-save" class="modal__save">Сохранить</button>
 		</footer>
 	</div>
 
-
-
-
-
-<div id="user-info">
-
-<!--	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ или НИКНЕЙМ <br><br>-->
-<!--	<input type="date" id="user-birthday"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>-->
-
-<!--	<button id="btn-save">Сохранить</button>-->
-
-</div>
-
-
-
-
 <script>
-
 
     let btnOpen = document.getElementById('modal-open');
     let modalWindow = document.getElementById('modal');
     let modalOverlay = document.getElementById('modal-overlay');
-
-    btnOpen.addEventListener("click", openWindow); /* Открываем модальное окно */
-
-    function openWindow (e) {
-        e.preventDefault();
-        modalWindow.classList.remove('modal_closed');
-        modalOverlay.classList.remove('modal_closed');
-    }
-
-
-    let closeSign = document.getElementById('modal-close') /* Закрываем модальное окно */
-    closeSign.addEventListener("click", closeModal);
-
-    function closeModal (e) {
-        e.preventDefault();
-        modalWindow.classList.add('modal_closed');
-        modalOverlay.classList.add('modal_closed');
-    }
-
-
-
+    let closeSign = document.getElementById('modal-close');
     let userName = document.getElementById('user-name');
     let userBirthday = document.getElementById('user-birthday');
     let btnSave = document.getElementById('btn-save');
     let userInfo = document.getElementById('user-info');
+    let validValue = document.getElementById('valid-value');
 
     let nameValue; /* Переменная для имени пользователя */
     let birthdayValue; /* Переменная для даты рождения пользователя */
@@ -138,25 +74,37 @@
     document.body.append(countTime);
 
 
-    /* Устанавливаем предел выбора даты в инпуте, ограничивая сегодняшним числом */
-    let currentYear = new Date().getFullYear();
 
-    let currentDay = new Date().getDate();
-    if (currentDay < 10 ) {
-        currentDay = '0' + currentDay;
+    btnOpen.addEventListener("click", openWindow); /* Открываем модальное окно */
+
+    function openWindow (e) {
+
+        e.preventDefault();
+
+        modalWindow.classList.remove('modal_closed');
+        modalOverlay.classList.remove('modal_closed');
     }
 
-    let currentMonth = new Date().getMonth() + 1;
-    if (currentMonth < 10 ) {
-        currentMonth = '0' + currentMonth;
+
+    closeSign.addEventListener("click", closeModal); /* Закрываем модальное окно и показываем приветствие */
+
+    function closeModal (e) {
+
+        e.preventDefault();
+
+        modalWindow.classList.add('modal_closed');
+        modalOverlay.classList.add('modal_closed');
+
+        if (localStorage.getItem('user')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+
+            sayHello();
+            timerBirthday();
+        }
     }
 
-    let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
-
-    userBirthday.setAttribute('max', dateLimit);
 
 
-    btnSave.addEventListener('click', clickHandler);
+    btnSave.addEventListener('click', clickHandler); /* Сохраняем данные о пользовтеле в localStorage */
 
     function clickHandler() {
 
@@ -164,7 +112,7 @@
         birthdayValue = userBirthday.value; /* Сохраняем дату рождения пользователя */
 
         if (+nameValue || !nameValue) { /* Проверка на корректность ввода имени пользователя */
-            countTime.innerHTML = `Введите корректно имя!`;
+            validValue.innerHTML = `Введите корректно имя!`;
             return;
         }
 
@@ -179,13 +127,13 @@
 
 
         if (!infoUser.userYear) { /* Проверка на ввод даты рождения пользователя */
-            countTime.innerHTML = `Введите корректно дату рождения!`;
+            validValue.innerHTML = `Введите корректно дату рождения!`;
             return;
         }
 
         /* Проверка на ввод даты рождения пользователя через клавиатуру */
         if (infoUser.userYear > new Date().getFullYear() || infoUser.userYear === new Date().getFullYear() && infoUser.userDate > new Date().getDate() && infoUser.userMonth >= new Date().getMonth()+1 || infoUser.userYear === new Date().getFullYear() && infoUser.userMonth > new Date().getMonth()+1) {
-            countTime.innerHTML = `Несуществующая дата рождения!`;
+            validValue.innerHTML = `Несуществующая дата рождения!`;
             return;
         }
 
@@ -194,12 +142,12 @@
 
         localStorage.setItem('user', infoUserSerial); /* Сохраняем данные в localStorage */
 
-        if (localStorage.getItem('user')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+        if (localStorage.getItem('user')) {
 
-            sayHello();
-            timerBirthday();
+            validValue.innerHTML = `Данные сохранены!`;
         }
     }
+
 
 
     if (localStorage.getItem('user')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
@@ -207,6 +155,7 @@
         sayHello();
         timerBirthday();
     }
+
 
 
     /* Здороваемся с пользователем */
@@ -220,6 +169,8 @@
 
         setInterval(timerBirthday, 1000); /* Таймер обратного отсчета до дня рождения пользователя */
     }
+
+
 
     function timerBirthday() {
 
@@ -250,7 +201,7 @@
 
         let DayWithMonth = sumDay - sumMonth * 30; /* Вычисляем количество дней до дня рождения с учетом месяцев */
 
-        countTime.innerHTML = `<span>До вашего дня рождения осталось:<br>${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек<br> ${sumMonth} мес ${DayWithMonth} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек</span>`; /* Обновляем данные таймера */
+        countTime.innerHTML = `<br><span>До вашего дня рождения осталось:<br><br>${sumDay} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек<br> ${sumMonth} мес ${DayWithMonth} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек</span><br><br><img src="img/birthday.jpg" height="150">`; /* Обновляем данные таймера */
 
 
         if (birthdayDate.getDate() === new Date().getDate() && birthdayDate.getMonth() === new Date().getMonth()) { /* Проверяем на день рождения СЕГОДНЯ */
@@ -259,7 +210,29 @@
         }
     }
 
-    localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+
+
+    /* Устанавливаем предел выбора даты в инпуте DATE, ограничивая сегодняшним числом */
+    let currentYear = new Date().getFullYear();
+
+    let currentDay = new Date().getDate();
+    if (currentDay < 10 ) {
+        currentDay = '0' + currentDay;
+    }
+
+    let currentMonth = new Date().getMonth() + 1;
+    if (currentMonth < 10 ) {
+        currentMonth = '0' + currentMonth;
+    }
+
+    let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
+
+    userBirthday.setAttribute('max', dateLimit);
+
+
+
+
+    // localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
 
 </script>
 
