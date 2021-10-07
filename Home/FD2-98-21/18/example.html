@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Example from slides</title>
+
+	<style>
+       .container {
+           padding: 20px;
+       }
+	</style>
+</head>
+<body>
+
+<div id="man-container-1" class="container">
+	<table>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-up" value="&uarr;"></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn-left" value="&larr;"></td>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-right" value="&rarr;"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-down" value="&darr;"></td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<p>Бег: <input type="checkbox" class="btn-run"></p>
+
+	<div style="overflow: hidden; position: relative; width: 200px; height: 200px; border: solid red 1px;">
+		<div class="man" style="position: absolute; width: 10px; height: 10px; background-color: green;"></div>
+	</div>
+</div>
+
+<div id="man-container-2" class="container">
+	<table>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-up" value="&uarr;"></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn-left" value="&larr;"></td>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-right" value="&rarr;"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" class="btn-down" value="&darr;"></td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<p>Бег: <input type="checkbox" class="btn-run" checked></p>
+
+	<div style="overflow: hidden; position: relative; width: 400px; height: 200px; border: solid blue 1px;">
+		<div class="man" style="position: absolute; width: 10px; height: 10px; background-color: magenta;"></div>
+	</div>
+</div>
+
+<script>
+    "use strict";
+
+    // model
+    function ManModel() {
+        let myView = null;
+        let posX = 50;
+        let posY = 50;
+        let isRun = false;
+
+        this.init = function(view) {
+            myView = view;
+        };
+
+        this.updateView = function() {
+            // формируем объект данных для передачи во View
+            const modelData = {
+                posX: posX,
+                posY: posY,
+                isRun: isRun
+            }
+            // при любых изменениях модели попадаем сюда
+            // представление может быть любым, лишь бы имело метод update()
+            if (!myView) {
+                console.error("Нет данных об View!");
+                return;
+            }
+
+            myView.update(modelData);
+        };
+
+        this.shift = function(x, y) {
+            let speed = isRun ? 30 : 5;
+            posX += speed*x;
+            posY += speed*y;
+            this.updateView(); // модель при любых изменениях вызывает обновление представления
+        };
+
+        this.setRun = function(state) {
+            isRun = state;
+            this.updateView(); // модель при любых изменениях вызывает обновление представления
+        }
+
+    };
+
+    // view
+    function ManViewWebPage() {
+        let myField = null; // внутри какого элемента DOM наша вёрстка
+        let runCheckbox = null; // чекбокс "бег"
+        let manDiv = null; // сам человечек
+
+        this.init = function(field) {
+            myField = field;
+
+            // ищем и запоминаем интересующие нас элементы DOM
+            runCheckbox = myField.querySelector(".btn-run");
+            manDiv = myField.querySelector(".man");
+        }
+
+        this.update = function(data) {
+            if (!data) {
+                console.error("Ошибка получения данных из модели!");
+                return;
+            }
+            runCheckbox.checked = data.isRun;
+            manDiv.style.left = data.posX + "px";
+            manDiv.style.top = data.posY + "px";
+        }
+
+    };
+
+    // controller
+    function ManController() {
+        let myModel = null; // с какой моделью работаем
+        let myField = null; // внутри какого элемента DOM наша вёрстка
+        let runCheckbox = null; // чекбокс "бег"
+
+        this.init = function(model, field) {
+            myModel = model;
+            myField = field;
+
+            // ищем и запоминаем интересующие нам элементы в DOM и назначаем обработчики событий
+            runCheckbox = myField.querySelector(".btn-run");
+            runCheckbox.addEventListener("change", this.runChanged);
+
+            const buttonUp = myField.querySelector(".btn-up");
+            buttonUp.addEventListener("click", this.shiftUp);
+
+            const buttonDown = myField.querySelector(".btn-down");
+            buttonDown.addEventListener("click", this.shiftDown);
+
+            const buttonLeft = myField.querySelector(".btn-left");
+            buttonLeft.addEventListener("click", this.shiftLeft);
+
+            const buttonRight = myField.querySelector(".btn-right");
+            buttonRight.addEventListener("click", this.shiftRight);
+
+            if (myModel) {
+                this.runChanged(); // читаем значение из верстки и устанавливаем в модель
+                myModel.updateView(); // инициируем первичное отображение Model во View
+            } else {
+                console.error("Нет данных о модели!");
+            }
+        }
+
+        this.shiftLeft = function() {
+            myModel.shift(-1,0); // контроллер вызывает только методы модели
+        }
+
+        this.shiftRight = function() {
+            myModel.shift(1,0); // контроллер вызывает только методы модели
+        }
+
+        this.shiftUp = function() {
+            myModel.shift(0,-1); // контроллер вызывает только методы модели
+        }
+
+        this.shiftDown = function() {
+            myModel.shift(0,1); // контроллер вызывает только методы модели
+        }
+
+        this.runChanged=function() {
+            myModel.setRun(runCheckbox.checked); // контроллер вызывает только методы модели
+        }
+    };
+
+    /*
+      настройка, инициализация первого комплекта
+    */
+    // создаём все три компонента
+    const man1 = new ManModel();
+    const view1 = new ManViewWebPage();
+    const controller1 = new ManController();
+    // связываем компоненты друг с другом, указывая в каком контейнере/поле им работать
+    const containerElem1 = document.getElementById("man-container-1");
+    man1.init(view1);
+    view1.init(containerElem1);
+    controller1.init(man1, containerElem1);
+
+    /*
+      настройка, инициализация второго комплекта
+    */
+    // создаём все три компонента
+    const man2 = new ManModel();
+    const view2 = new ManViewWebPage();
+    const controller2 = new ManController();
+    // связываем компоненты друг с другом, указывая в каком контейнере/поле им работать
+    const containerElem2 = document.getElementById("man-container-2");
+    man2.init(view2);
+    view2.init(containerElem2);
+    controller2.init(man2, containerElem2);
+</script>
+</body>
+</html>
