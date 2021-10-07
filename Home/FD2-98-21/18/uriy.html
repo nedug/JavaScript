@@ -98,7 +98,7 @@
 
             let userDataSerial = JSON.stringify(userData);
 
-            localStorage.setItem('userDate', userDataSerial);
+            localStorage.setItem('userData', userDataSerial);
 
             // this.getData();
 
@@ -107,7 +107,12 @@
         this.getData = function() { //достать данные из хранилища
 
             // let userDataReturn = JSON.parse(localStorage.getItem('userDate'));
-            userData = JSON.parse(localStorage.getItem('userDate'));
+            userData = JSON.parse(localStorage.getItem('userData'));
+
+            if (!userData) {
+                console.error("Ошибка получения данных из модели!");
+                return;
+            }
 
 
             // console.log(userData)
@@ -120,6 +125,9 @@
         }
 
         this.clearData = function() { //очистить данные в хранилище
+
+            localStorage.removeItem('userData');
+
         }
 
         this.clearForm = function() { //очистить данные в форме
@@ -172,9 +180,15 @@
             let modalData = myModalContainer.querySelector('.modal-data');
             modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
 
+            let clearData = myModalContainer.querySelector('.clear-data');
+            clearData.style.display = '';
+
         }
 
         this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
+
+
+
         }
 
     }
@@ -194,10 +208,14 @@
         let myModalContainer = null;
 
 
+
+
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
 
             myModalModel = model;
             myModalContainer = field;
+
+            myModalModel.getData();
 
 
             const buttonOpen = myModalContainer.querySelector(".modal-open");
@@ -212,16 +230,23 @@
             const buttonSave = myModalContainer.querySelector(".modal__save");
             buttonSave.addEventListener("click", this.saveModal);
 
-            // console.log(buttonClose)
+            const buttonClear = myModalContainer.querySelector(".clear-data");
+            buttonClear.addEventListener("click", this.clearData);
+
+            console.log(buttonClear);
 
         }
 
-        this.openModal = function () {
+        this.openModal = function (e) {
+
+            e.preventDefault();
 
             myModalModel.openModal();
         }
 
-        this.hideModal = function () {
+        this.hideModal = function (e) {
+
+            e.preventDefault();
 
             myModalModel.closeModal();
             myModalModel.getData();
@@ -238,12 +263,16 @@
             // console.log(inputBirth);
 
 
-
-
-
         }
 
-        this.clearData = function () {
+        this.clearData = function (e) {
+
+            e.preventDefault();
+
+            // localStorage.removeItem('userData');
+            // localStorage.clear()
+
+            myModalModel.clearData();
         }
     }
 
