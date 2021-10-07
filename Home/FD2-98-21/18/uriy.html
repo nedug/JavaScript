@@ -71,14 +71,11 @@
 
             myModalView.show();
 
-            // let modalWindow = document.getElementById('modal');
-				//
-            // modalWindow.classList.remove('modal_closed');
-
-
         }
 
         this.closeModal = function() {
+
+            myModalView.hide();
         }
 
         this.saveModalData = function() { //получить данные из модалки и сохранить
@@ -115,7 +112,6 @@
 
         this.init = function(field) {
 
-
             myModalContainer = field;
 
             myModal = myModalContainer.querySelector('.modal');
@@ -124,9 +120,8 @@
 
         }
 
+
         this.show = function () {
-
-
 
             // console.log(modalWindow);
 
@@ -135,8 +130,13 @@
 
         }
 
+
         this.hide = function () {
+
+            myModal.classList.add('modal_closed');
+            myModalOverlay.classList.add('modal_closed');
         }
+
 
         this.printViewData = function () { // вывести данные из хранилища в div.modal-data
         }
@@ -170,15 +170,24 @@
             const buttonOpen = myModalContainer.querySelector(".modal-open");
             buttonOpen.addEventListener("click", this.openModal);
 
+            const buttonClose = myModalContainer.querySelector(".modal__close");
+            buttonClose.addEventListener("click", this.hideModal);
+
+            const buttonCancel = myModalContainer.querySelector(".modal__cancel");
+            buttonCancel.addEventListener("click", this.hideModal);
+
+            // console.log(buttonClose)
+
         }
 
         this.openModal = function () {
 
             myModalModel.openModal();
-
         }
 
         this.hideModal = function () {
+
+            myModalModel.closeModal();
         }
 
         this.saveModal = function () {
