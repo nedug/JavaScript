@@ -54,12 +54,14 @@
 <script>
 
 
-
     /* ------- begin model ------- */
+
     function ModalModel () {
+
         let myModalContainer = null;
         let myModalView = null;
         let userData = {};
+
 
         this.init = function(view) {
 
@@ -67,16 +69,19 @@
 
         }
 
+
         this.openModal = function() {
 
             myModalView.show();
 
         }
 
+
         this.closeModal = function() {
 
             myModalView.hide();
         }
+
 
         this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { //получить данные из модалки и сохранить
 
@@ -88,11 +93,12 @@
                 userYear: inputYear,
 				}
 
-				console.log(userData)
+				// console.log(userData)
 
 				this.storeData();
 
         }
+
 
         this.storeData = function() { // сохранить данные в localStorage, а если не доступно, то в cookies
 
@@ -103,6 +109,7 @@
             // this.getData();
 
         }
+
 
         this.getData = function() { //достать данные из хранилища
 
@@ -121,8 +128,10 @@
 
         }
 
+
         this.updateData = function() {
         }
+
 
         this.clearData = function() { //очистить данные в хранилище
 
@@ -132,7 +141,16 @@
 
         }
 
-        this.clearForm = function() { //очистить данные в форме
+
+        this.clearForm = function(inputName, inputDay, inputMonth, inputYear) { //очистить данные в форме
+
+
+
+            // inputName.value = '';
+            // inputDay.value = '';
+            // inputMonth.value = '';
+            // inputYear.value = '';
+
         }
 
     }
@@ -140,10 +158,11 @@
 
 
 
+
     /* ------- begin view -------- */
 
-
     function ModalView() {
+
         let myModal = null;
         let myModalOverlay = null;
         let myModalContainer = null;
@@ -174,6 +193,17 @@
 
             myModal.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
+
+
+
+            const inputName = myModalContainer.querySelector(".input__default");
+            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            inputName.value = '';
+            inputBirth[0].value = '';
+            inputBirth[1].value = '';
+            inputBirth[2].value = '';
+
         }
 
 
@@ -187,6 +217,7 @@
 
         }
 
+
         this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
 
             let modalData = myModalContainer.querySelector('.modal-data');
@@ -195,12 +226,9 @@
             let clearData = myModalContainer.querySelector('.clear-data');
             clearData.style.display = 'none';
 
-
         }
 
     }
-
-
 
 
 
@@ -213,8 +241,6 @@
 
         let myModalModel = null;
         let myModalContainer = null;
-
-
 
 
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
@@ -240,9 +266,10 @@
             const buttonClear = myModalContainer.querySelector(".clear-data");
             buttonClear.addEventListener("click", this.clearData);
 
-            console.log(buttonClear);
+            // console.log(buttonClear);
 
         }
+
 
         this.openModal = function (e) {
 
@@ -251,13 +278,23 @@
             myModalModel.openModal();
         }
 
+
         this.hideModal = function (e) {
 
             e.preventDefault();
 
-            myModalModel.closeModal();
             myModalModel.getData();
+
+            myModalModel.closeModal();
+
+
+            // const inputName = myModalContainer.querySelector(".input__default");
+            // const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            // myModalModel.clearForm(inputName, inputBirth[0], inputBirth[1], inputBirth[2]);
+
         }
+
 
         this.saveModal = function () {
 
@@ -265,12 +302,12 @@
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
 
-            myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value,);
+            myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
 
             // console.log(inputBirth);
 
-
         }
+
 
         this.clearData = function (e) {
 
@@ -292,6 +329,7 @@
     const appModalController = new ModalController();
 
 
+
     //вызвать init-методы...
 
     const containerElem = document.getElementById("container");
@@ -299,7 +337,6 @@
     appModalModel.init(appModalView);
     appModalView.init(containerElem);
     appModalController.init(appModalModel, containerElem);
-
 
 
 </script>
