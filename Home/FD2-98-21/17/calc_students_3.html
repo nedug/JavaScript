@@ -144,12 +144,12 @@
 
                 showResult.innerText = "Результат вычислений = " + result;
 
-                showResult.classList.add('fadeInUpBig');
+                showResult.classList.add('fadeInUpBig'); /* Анимация результата */
             }
 
             btn.disabled = checkBtn;
 
-            if(!checkBtn) btn.classList.add('anim');
+            if(!checkBtn) btn.classList.add('anim'); /* Анимация кнопки */
             else btn.classList.remove('anim');
         },
     };
