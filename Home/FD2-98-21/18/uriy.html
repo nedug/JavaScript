@@ -62,6 +62,8 @@
         let myModalView = null;
         let userData = {};
 
+        this.stateBtn = true;
+
 
         this.init = function(view) {
 
@@ -153,6 +155,19 @@
 
         }
 
+
+        this.checkInput = function(inputName, inputDay, inputMonth, inputYear) {
+
+            this.stateBtn = !(inputName && inputDay && inputMonth && inputYear);
+
+            this.updateViewBtn();
+		  }
+
+        this.updateViewBtn = function () {
+
+            myModalView.btnUpdate(this.stateBtn);
+        }
+
     }
 
 
@@ -204,6 +219,11 @@
             inputBirth[1].value = '';
             inputBirth[2].value = '';
 
+
+            const buttonSave = myModalContainer.querySelector(".modal__save");
+
+            buttonSave.disabled = true;
+
         }
 
 
@@ -228,6 +248,15 @@
 
         }
 
+
+        this.btnUpdate = function (stateBtn) {
+
+            const buttonSave = myModalContainer.querySelector(".modal__save");
+
+            buttonSave.disabled = stateBtn;
+
+        }
+
     }
 
 
@@ -245,10 +274,16 @@
 
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
 
+
             myModalModel = model;
             myModalContainer = field;
 
             myModalModel.getData();
+
+
+            myModalModel.updateViewBtn();
+
+
 
 
             const buttonOpen = myModalContainer.querySelector(".modal-open");
@@ -266,6 +301,26 @@
             const buttonClear = myModalContainer.querySelector(".clear-data");
             buttonClear.addEventListener("click", this.clearData);
 
+
+            const inputName = myModalContainer.querySelector(".input__default");
+            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            inputName.addEventListener('input', checkChangeInput);
+            inputBirth[0].addEventListener('input', checkChangeInput);
+            inputBirth[1].addEventListener('input', checkChangeInput);
+            inputBirth[2].addEventListener('input', checkChangeInput);
+
+
+
+            function checkChangeInput(e) {
+
+                e.preventDefault();
+
+                myModalModel.checkInput(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
+            }
+
+
+
             // console.log(buttonClear);
 
         }
@@ -276,6 +331,7 @@
             e.preventDefault();
 
             myModalModel.openModal();
+
         }
 
 
@@ -318,6 +374,16 @@
 
             myModalModel.clearData();
         }
+
+
+        // this.checkChangeInput = function () {
+			//
+		  //
+        //     // localStorage.removeItem('userData');
+        //     // localStorage.clear()
+		  //
+        //     myModalModel.clearData();
+        // }
     }
 
 
