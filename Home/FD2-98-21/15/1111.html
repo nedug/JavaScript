@@ -3,33 +3,122 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
 	<style>
-       input {
-           height: 20px;
-           width: 200px;
-           padding: 3px;
-       }
-       button:hover {
-           cursor: pointer;
-       }
-       h3 span {
-           display: inline-block;
-           text-align: right;
-       }
+       /*input {*/
+       /*    height: 20px;*/
+       /*    width: 200px;*/
+       /*    padding: 3px;*/
+       /*}*/
+       /*button:hover {*/
+       /*    cursor: pointer;*/
+       /*}*/
+       /*h3 span {*/
+       /*    display: inline-block;*/
+       /*    text-align: right;*/
+       /*}*/
+       /*.modal-open {*/
+       /*    display: inline-block;*/
+       /*    color: #fff;*/
+       /*    border: 1px #007bff solid;*/
+       /*    border-radius: 5px;*/
+       /*    padding: 8px 12px;*/
+       /*    font-size: 16px;*/
+       /*    font-family: 'Exo 2', sans-serif;*/
+       /*    background-color: #007bff;*/
+       /*    text-decoration: none;*/
+       /*}*/
+
+       /*.modal-open:hover {*/
+       /*    text-decoration: none;*/
+       /*    background-color: #0069d9;*/
+       /*    border-color: #0062cc;*/
+       /*}*/
 	</style>
 </head>
 <body>
 
+	<h3>Дорогой пользователь!</h3>
+
+	<p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Авторизуйтесь</a></p>
+
+
+	<div class="modal-overlay modal_closed" id="modal-overlay"></div>
+	<div class="modal modal_closed" id="modal">
+		<header class="modal__header">
+			<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+			<h2>Введите данные</h2>
+		</header>
+
+		<main class="modal__content">
+			<div class="form-field">
+				<label for="user-name">Ваше имя:</label>
+				<input type="text" id="user-name" class="input__default" value="Sasha">
+<!--				<input class="input__default" type="text" id="name" name="name">-->
+			</div>
+			<div class="form-field">
+				<label>Ваш день рождения:</label>
+				<input type="date" id="user-birthday" class="input__date-birth">
+
+
+<!--				<input type="text" class="input__date-birth" id="birth-day" name="name" placeholder="День"> - -->
+<!--				<input type="text" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> - -->
+<!--				<input type="text" class="input__date-birth" id="birth-year" name="name" placeholder="Год">-->
+			</div>
+		</main>
+
+		<footer class="modal__footer">
+<!--			<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>-->
+<!--			<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>-->
+
+
+			<button id="btn-save" class="modal__save">Сохранить</button>
+		</footer>
+	</div>
+
+
+
+
+
 <div id="user-info">
 
-	<h3>Дорогой пользователь!</h3>
-	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ или НИКНЕЙМ <br><br>
-	<input type="date" id="user-birthday"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>
-	<button id="btn-save">Сохранить</button>
+<!--	<input type="text" id="user-name" value="Sasha"> введите ваше ИМЯ или НИКНЕЙМ <br><br>-->
+<!--	<input type="date" id="user-birthday"> введите вашу ДАТУ РОЖДЕНИЯ <br><br>-->
+
+<!--	<button id="btn-save">Сохранить</button>-->
 
 </div>
 
+
+
+
 <script>
+
+
+    let btnOpen = document.getElementById('modal-open');
+    let modalWindow = document.getElementById('modal');
+    let modalOverlay = document.getElementById('modal-overlay');
+
+    btnOpen.addEventListener("click", openWindow); /* Открываем модальное окно */
+
+    function openWindow (e) {
+        e.preventDefault();
+        modalWindow.classList.remove('modal_closed');
+        modalOverlay.classList.remove('modal_closed');
+    }
+
+
+    let closeSign = document.getElementById('modal-close') /* Закрываем модальное окно */
+    closeSign.addEventListener("click", closeModal);
+
+    function closeModal (e) {
+        e.preventDefault();
+        modalWindow.classList.add('modal_closed');
+        modalOverlay.classList.add('modal_closed');
+    }
+
+
 
     let userName = document.getElementById('user-name');
     let userBirthday = document.getElementById('user-birthday');
@@ -170,7 +259,7 @@
         }
     }
 
-    // localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+    localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
 
 </script>
 
