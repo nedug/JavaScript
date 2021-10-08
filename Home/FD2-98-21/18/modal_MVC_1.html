@@ -39,6 +39,7 @@
 				<input required type="number" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
 				<input required type="number" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
 			</div>
+			<div class="valid-date"></div>
 		</main>
 
 		<footer class="modal__footer">
@@ -86,6 +87,11 @@
 
 
         this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
+
+            if (inputDay > 31 || inputDay <1) {
+
+
+            }
 
             userData = {
 
