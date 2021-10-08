@@ -38,7 +38,7 @@
 				<input required type="number" class="input__date-birth" id="birth-day" name="name" placeholder="День"> -
 				<input required type="number" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
 				<input required type="number" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
-			</div>
+			</div><br>
 			<div class="valid-date"></div>
 		</main>
 
@@ -88,9 +88,10 @@
 
         this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
 
-            if (inputDay > 31 || inputDay <1) {
+            if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > 2021) {
 
-
+                myModalView.validDate();
+                return;
             }
 
             userData = {
@@ -207,6 +208,10 @@
 
 
             buttonSave.disabled = true;
+
+            const validDate = myModalContainer.querySelector(".valid-date");
+
+            validDate.style.display = 'none';
         }
 
 
@@ -215,6 +220,7 @@
             modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
 
             clearData.style.display = '';
+
         }
 
 
@@ -229,6 +235,16 @@
         this.btnUpdate = function (stateBtn) {
 
             buttonSave.disabled = stateBtn;
+        }
+
+
+        this.validDate = function () {
+
+            const validDate = myModalContainer.querySelector(".valid-date");
+
+            validDate.style.display = '';
+
+            validDate.innerHTML = 'Введите корректно данные!';
         }
     }
 
