@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
-	 <script src="Clock.js"></script>
-	 <script src="ClockControllerButtons.js"></script>
-	 <script src="ClockViewDom.js" type="text/javascript"></script>
-	 <script src="ClockViewSvg.js" type="text/javascript"></script>
-	 <script src="ClockViewCanvas.js" type="text/javascript"></script>
-
-	 <style type="text/css">
-
-	 	body{
+	<meta charset="UTF-8">
+	<title>Tittle</title>
+	 <style>
+	 	body {
 	 		position: relative;
 	 		display: flex;
 	 		flex-wrap: wrap;
 	 		width: 1200px;
 	 	}
-	 		.clock_ {
+	 	.clock_ {
 			width: 300px;
 			height: 300px;
 			background-color: orange;
@@ -26,8 +20,6 @@
 			align-items: center;
 			justify-content: center;
 			position: relative;
-			
-
 		}
 		.center_ {
 			width: 10px;
@@ -37,7 +29,6 @@
 			position: relative;
 		}
 		.green {
-		  
 			position: absolute;
 			width: 45px;
 			height: 45px;
@@ -51,7 +42,6 @@
 		}
 		.secondHand_ {
 			position: absolute;
-
 			left: 4px;
 			top: 5px;
 			height: 135px;
@@ -81,70 +71,58 @@
 </head>
 <body>
 
-<div id="clockContainer">
-	<div class="clock_">
-		<div class="center_">
-			
+	<div id="clockContainer"> <!-- DOM -->
+		<div class="clock_">
+			<div class="center_"></div>
 		</div>
 	</div>
-</div>
 
 
+	<div id="clockContainer2" style="position: relative;"> <!-- SVG -->
+		<svg class="clock_"/>
+	</div>
 
-<div id="clockContainer2" style="position: relative;">
-	<svg class="clock_">
-</div>	
+	<div id="clockContainer4" style="position: relative;"> <!-- Canvas -->
+		<canvas class="clock_" width="300" height="300"></canvas>
+	</div>
 
-<div id="clockContainer4" style="position: relative;">
-	<canvas class="clock_" width="300" height="300"></canvas> 
-</div>	
-<div id="clockContainer1">
-	<div class="clock_">
-		<div class="center_">
-			
+
+	<div id="clockContainer1"> <!-- DOM -->
+		<div class="clock_">
+			<div class="center_"></div>
 		</div>
 	</div>
-</div>
+
+
+	<div id="clockContainer3" style="position: relative;"> <!-- SVG -->
+		<svg class="clock_"/>
+	</div>
+
+
+	<div id="clockContainer5" style="position: relative;"> <!-- Canvas -->
+		<canvas class="clock_" width="300" height="300"></canvas>
+	</div>
 
 
 
 
-	
-
-<div id="clockContainer3" style="position: relative;">
-	<svg class="clock_">
-</div>	
-
-
+<script src="Clock.js"></script>
+<script src="ClockControllerButtons.js"></script>
+<script src="ClockViewDom.js"></script>
+<script src="ClockViewSvg.js"></script>
+<script src="ClockViewCanvas.js"></script>
 
 
-
-<div id="clockContainer5" style="position: relative;">
-	<canvas class="clock_" width="300" height="300"></canvas> 
-</div>	
+	<script>
 
 
-
-
-
-
-
-	<script type="text/javascript">
-
-
-
-
-		const clockDom = new Clock();
+		const clockDom = new ClockModel();
 		const clockDomView = new ClockViewDom();
 		const clockDomController = new ClockControllerButtons();
 
-		//console.log(clockDom);
-		//console.log(clockDomView);
-		//console.log(clockDomController);
-
-
 
 		const clockDomContainer = document.getElementById('clockContainer');
+
 		clockDom.init(clockDomView);
 		clockDomView.init(clockDomContainer);
 		clockDomController.init(clockDom, clockDomContainer);
@@ -152,81 +130,84 @@
 		clockDomController.startClock();
 
 
-		const clockDom1 = new Clock();
-		const clockDomView1 = new ClockViewDom();
-		const clockDomController1 = new ClockControllerButtons();
-
-		const clockDomContainer1 = document.getElementById('clockContainer1');
-
-		clockDom1.init(clockDomView1);
-		clockDomView1.init(clockDomContainer1);
-		clockDomController1.init(clockDom1, clockDomContainer1);
-
-		clockDomController1.startClock(1);
 
 
 
-
-
-
-		const clockSvg = new Clock();
-		const clockSvgView = new ClockViewSvg();
-		const clockSvgController = new ClockControllerButtons();
-
-				console.log(clockSvg);
-		console.log(clockSvgView);
-		console.log(clockSvgController);
-
-
-		const clockSvgContainer = document.getElementById('clockContainer2');
-		clockSvg.init(clockSvgView);
-		clockSvgView.init(clockSvgContainer);
-		clockSvgController.init(clockSvg, clockSvgContainer);
-
-		clockSvgController.startClock();
-
-		const clockSvg1 = new Clock();
-		const clockSvgView1 = new ClockViewSvg();
-		const clockSvgController1 = new ClockControllerButtons();
-
-		
-
-
-
-		const clockSvgContainer1 = document.getElementById('clockContainer3');
-		clockSvg1.init(clockSvgView1);
-		clockSvgView1.init(clockSvgContainer1);
-		clockSvgController1.init(clockSvg1, clockSvgContainer1);
-
-		clockSvgController1.startClock(5);
+		// const clockDom1 = new ClockModel();
+		// const clockDomView1 = new ClockViewDom();
+		// const clockDomController1 = new ClockControllerButtons();
+		//
+		// const clockDomContainer1 = document.getElementById('clockContainer1');
+		//
+		// clockDom1.init(clockDomView1);
+		// clockDomView1.init(clockDomContainer1);
+		// clockDomController1.init(clockDom1, clockDomContainer1);
+		//
+		// clockDomController1.startClock(1);
 
 
 
 
-		const clockCanvas = new Clock();
-		const clockCanvasView = new ClockViewCanvas();
-		const clockCanvasController = new ClockControllerButtons();
 
 
-		const clockCanvasContainer = document.getElementById('clockContainer4');
-		clockCanvas.init(clockCanvasView);
-		clockCanvasView.init(clockCanvasContainer);
-		clockCanvasController.init(clockCanvas, clockCanvasContainer);
-
-		clockCanvasController.startClock();
-
-
-		const clockCanvas1 = new Clock();
-		const clockCanvasView1 = new ClockViewCanvas();
-		const clockCanvasController1 = new ClockControllerButtons();
-
-
-		const clockCanvasContainer1 = document.getElementById('clockContainer5');
-		clockCanvas1.init(clockCanvasView1);
-		clockCanvasView1.init(clockCanvasContainer1);
-		clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
-
-		clockCanvasController1.startClock();
+		// const clockSvg = new ClockModel();
+		// const clockSvgView = new ClockViewSvg();
+		// const clockSvgController = new ClockControllerButtons();
+		//
+		// 		console.log(clockSvg);
+		// console.log(clockSvgView);
+		// console.log(clockSvgController);
+		//
+		//
+		// const clockSvgContainer = document.getElementById('clockContainer2');
+		// clockSvg.init(clockSvgView);
+		// clockSvgView.init(clockSvgContainer);
+		// clockSvgController.init(clockSvg, clockSvgContainer);
+		//
+		// clockSvgController.startClock();
+		//
+		// const clockSvg1 = new ClockModel();
+		// const clockSvgView1 = new ClockViewSvg();
+		// const clockSvgController1 = new ClockControllerButtons();
+		//
+		//
+		//
+		//
+		//
+		// const clockSvgContainer1 = document.getElementById('clockContainer3');
+		// clockSvg1.init(clockSvgView1);
+		// clockSvgView1.init(clockSvgContainer1);
+		// clockSvgController1.init(clockSvg1, clockSvgContainer1);
+		//
+		// clockSvgController1.startClock(5);
+		//
+		//
+		//
+		//
+		// const clockCanvas = new ClockModel();
+		// const clockCanvasView = new ClockViewCanvas();
+		// const clockCanvasController = new ClockControllerButtons();
+		//
+		//
+		// const clockCanvasContainer = document.getElementById('clockContainer4');
+		// clockCanvas.init(clockCanvasView);
+		// clockCanvasView.init(clockCanvasContainer);
+		// clockCanvasController.init(clockCanvas, clockCanvasContainer);
+		//
+		// clockCanvasController.startClock();
+		//
+		//
+		// const clockCanvas1 = new ClockModel();
+		// const clockCanvasView1 = new ClockViewCanvas();
+		// const clockCanvasController1 = new ClockControllerButtons();
+		//
+		//
+		// const clockCanvasContainer1 = document.getElementById('clockContainer5');
+		// clockCanvas1.init(clockCanvasView1);
+		// clockCanvasView1.init(clockCanvasContainer1);
+		// clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
+		//
+		// clockCanvasController1.startClock();
 
 
 

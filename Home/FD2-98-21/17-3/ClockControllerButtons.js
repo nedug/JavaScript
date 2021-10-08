@@ -1,41 +1,47 @@
 
-function ClockControllerButtons(){
-//	console.log('controller')
-	let myModel = null; // с какой моделью работаем
-  let myField = null; // внутри какого элемента DOM наша вёрстка
+function ClockControllerButtons() {
 
-      this.init = function(model, field) {
-      	console.log('init')
-        myModel = model;
-        myField = field;
-        	myModel.drawNumbers();
-        	myModel.drawHands();
+    let clockModel = null; // с какой моделью работаем
+    let clockContainer = null; // внутри какого элемента DOM наша вёрстка
 
 
-            let stopBtn = myField.querySelector('.stop');
-            stopBtn.addEventListener('click', this.stop)
+    this.init = function(model, field) {
 
-            let startBtn = myField.querySelector('.start');
-            startBtn.addEventListener('click', this.start)
-
-
-	}
+        clockModel = model;
+        clockContainer = field;
 
 
-	this.startClock = function(timezone){
-		myModel.startClock();
-	}
+        clockModel.drawNumbers(); /* Рисуем цифры */
 
-  this.stop = function() {
-    console.log(event.target.value)
-    myModel.startClock(event.target.value);
-  }
-
-  this.start = function() {
-    console.log(event.target)
-        myModel.startClock();
-
-  }
+        clockModel.drawHands(); /* Рисуем стрелки */
 
 
+        // clockModel.startClock(); /* Запускаем часы */
+
+
+        // let stopBtn = clockContainer.querySelector('.stop');
+        // stopBtn.addEventListener('click', this.stop)
+        //
+        // let startBtn = clockContainer.querySelector('.start');
+        // startBtn.addEventListener('click', this.start)
+    }
+
+
+	// this.startClock = function(timezone){
+    //     clockModel.startClock();
+	// }
+
+
+    // this.stop = function(event) {
+    //
+    //     clockModel.startClock(event.target.value);
+    //
+    //     console.log(event.target)
+    // }
+
+
+    // this.start = function() {
+    //
+    //     clockModel.startClock();
+    // }
 }
