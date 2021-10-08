@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Modal default MVC</title>
@@ -54,38 +54,37 @@
 <script>
 
 
-    /* ------- begin model ------- */
+    /* -------  model ------- */
 
     function ModalModel () {
 
-        let myModalContainer = null;
+        // let myModalContainer = null;
+
         let myModalView = null;
         let userData = {};
 
-        this.stateBtn = true;
+        let stateBtn = true;
 
 
-        this.init = function(view) {
+        this.init = function(view) { /* Получаем View */
 
             myModalView = view;
-
         }
 
 
-        this.openModal = function() {
+        this.openModal = function() { /* Открываем модальное окно */
 
             myModalView.show();
-
         }
 
 
-        this.closeModal = function() {
+        this.closeModal = function() { /* Закрываем модальное окно */
 
             myModalView.hide();
         }
 
 
-        this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { //получить данные из модалки и сохранить
+        this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
 
             userData = {
 
@@ -95,58 +94,44 @@
                 userYear: inputYear,
             }
 
-            // console.log(userData)
-
-            this.storeData();
-
+            this.storeData(); /* Сохраняем данные в localStorage */
         }
 
 
-        this.storeData = function() { // сохранить данные в localStorage, а если не доступно, то в cookies
+        this.storeData = function() { // Сохраняем данные в localStorage, а если не доступно, то в cookies
 
             let userDataSerial = JSON.stringify(userData);
 
             localStorage.setItem('userData', userDataSerial);
-
-            // this.getData();
-
         }
 
 
-        this.getData = function() { //достать данные из хранилища
+        this.getData = function() { // Достаем данные из хранилища
 
-            // let userDataReturn = JSON.parse(localStorage.getItem('userDate'));
             userData = JSON.parse(localStorage.getItem('userData'));
 
-            if (!userData) {
+            if (!userData) { /* Проверяем на наличие данных в localStorage */
                 console.error("Ошибка получения данных из модели!");
                 return;
             }
 
-
-            // console.log(userData)
-
-            myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear);
-
+            myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear); /* Передаем данные на отображение во View */
         }
 
 
-        this.updateData = function() {
+        this.updateData = function() { /* Пока не ясно... */
         }
 
 
-        this.clearData = function() { //очистить данные в хранилище
+        this.clearData = function() { // Очищаем данные в хранилище
 
             localStorage.removeItem('userData');
 
             myModalView.clearViewData();
-
         }
 
 
-        this.clearForm = function(inputName, inputDay, inputMonth, inputYear) { //очистить данные в форме
-
-
+        this.clearForm = function(inputName, inputDay, inputMonth, inputYear) { // очистить данные в форме (пока не используется)
 
             // inputName.value = '';
             // inputDay.value = '';
@@ -156,27 +141,19 @@
         }
 
 
-        this.checkInput = function(inputName, inputDay, inputMonth, inputYear) {
+        this.checkInput = function(inputName, inputDay, inputMonth, inputYear) { /* Проверяем состоянин кнопки 'Сохранить' */
 
-            this.stateBtn = !(inputName && inputDay && inputMonth && inputYear);
+            stateBtn = !(inputName && inputDay && inputMonth && inputYear);
 
-            // this.updateViewBtn();
-
-            myModalView.btnUpdate(this.stateBtn);
+            myModalView.btnUpdate(stateBtn); /* Отображаем состояние кнопки 'Сохранить' */
         }
-
-        // this.updateViewBtn = function () {
-		  //
-        //     myModalView.btnUpdate(this.stateBtn);
-        // }
-
     }
 
 
 
 
 
-    /* ------- begin view -------- */
+    /* ------- view -------- */
 
     function ModalView() {
 
@@ -265,8 +242,7 @@
 
 
 
-
-    /* ----- begin controller ---- */
+    /* ----- controller ---- */
 
     function ModalController () {
 
