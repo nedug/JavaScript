@@ -309,7 +309,6 @@
             inputName.addEventListener('input', checkChangeInput);
             inputBirth.forEach(elem => elem.addEventListener('input', checkChangeInput));
 
-
             // inputBirth[0].addEventListener('input', checkChangeInput);
             // inputBirth[1].addEventListener('input', checkChangeInput);
             // inputBirth[2].addEventListener('input', checkChangeInput);
@@ -335,46 +334,25 @@
 
             e.preventDefault();
 
-            myModalModel.getData(); /* Здороваемся с пользователем если данные сохранены */
-
             myModalModel.closeModal();
+
+            myModalModel.getData(); /* Здороваемся с пользователем если данные сохранены */
         }
 
 
-        this.saveModal = function () {
-
-            // const inputName = myModalContainer.querySelector(".input__default");
-            // const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
-
+        this.saveModal = function () { /* Сохраняем данные из инпутов в localStorage */
 
             myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
-
-            // console.log(inputBirth);
-
         }
 
 
-        this.clearData = function (e) {
+        this.clearData = function (e) { /* Очищаем данные из localStorage */
 
             e.preventDefault();
 
-            // localStorage.removeItem('userData');
-            // localStorage.clear()
-
             myModalModel.clearData();
         }
-
-
-        // this.checkChangeInput = function () {
-        //
-        //
-        //     // localStorage.removeItem('userData');
-        //     // localStorage.clear()
-        //
-        //     myModalModel.clearData();
-        // }
     }
-
 
 
 
@@ -385,8 +363,7 @@
 
 
 
-    //вызвать init-методы...
-
+    //вызываем init-методы
     const containerElem = document.getElementById("container");
 
     appModalModel.init(appModalView);
