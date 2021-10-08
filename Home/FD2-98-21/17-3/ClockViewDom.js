@@ -1,12 +1,20 @@
 function ClockViewDom(){
 		console.log("viewDOM")
 
-		let myField = null; // внутри какого элемента DOM наша вёрстка
+
+
+  let myField = null; // внутри какого элемента DOM наша вёрстка
     let myClock = null;
+
+
       this.init = function(field) {
         myField = field;
         myClock = myField.querySelector('.clock_')
       }
+
+
+
+
       this.drawNumbers = function(left, top, clock){
 
 
@@ -20,6 +28,12 @@ function ClockViewDom(){
        		number.textContent = clock;
 
       }
+
+
+
+
+
+
 
       this.drawHands = function(){
 

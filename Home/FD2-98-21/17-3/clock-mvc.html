@@ -106,113 +106,355 @@
 
 
 
-<script src="Clock.js"></script>
-<script src="ClockControllerButtons.js"></script>
-<script src="ClockViewDom.js"></script>
-<script src="ClockViewSvg.js"></script>
-<script src="ClockViewCanvas.js"></script>
+<!--<script src="Clock.js"></script>-->
+<!--<script src="ClockControllerButtons.js"></script>-->
+<!--<script src="ClockViewDom.js"></script>-->
+<!--<script src="ClockViewSvg.js"></script>-->
+<!--<script src="ClockViewCanvas.js"></script>-->
 
 
-	<script>
+<script>
 
 
-		const clockDom = new ClockModel();
-		const clockDomView = new ClockViewDom();
-		const clockDomController = new ClockControllerButtons();
+    /* -------  model ------- */
+
+    function ClockModel() {
+
+        let clockView = null;
+
+        let angle = 30;
+        let clockFirst = 1;
+        let centerOfClockX = 5;
+        let centerOfClockY = 5;
+        let radius = 120;
+        let diamOfNumber = 45;
 
 
-		const clockDomContainer = document.getElementById('clockContainer');
+        this.init = function(view){
 
-		clockDom.init(clockDomView);
-		clockDomView.init(clockDomContainer);
-		clockDomController.init(clockDom, clockDomContainer);
-
-		clockDomController.startClock();
+            clockView = view;
+        }
 
 
+        this.drawNumbers = function() {
+
+            for (let i = 0; i < 12; i++) {
+
+                let angleRadians = parseFloat(parseFloat(angle)) / 180 * Math.PI;
+                let greenCenterX = centerOfClockX + radius * Math.sin(angleRadians);
+                let greenCenterY = centerOfClockY - radius * Math.cos(angleRadians);
+
+                let numberLeft = Math.round(greenCenterX - diamOfNumber / 2);
+                let numberTop = Math.round(greenCenterY - diamOfNumber / 2);
+
+                clockView.drawNumbers(numberLeft, numberTop, clockFirst)
+
+                clockFirst++;
+                angle += 30;
+            }
+        }
 
 
+        this.drawHands = function(city){
 
-		// const clockDom1 = new ClockModel();
-		// const clockDomView1 = new ClockViewDom();
-		// const clockDomController1 = new ClockControllerButtons();
-		//
-		// const clockDomContainer1 = document.getElementById('clockContainer1');
-		//
-		// clockDom1.init(clockDomView1);
-		// clockDomView1.init(clockDomContainer1);
-		// clockDomController1.init(clockDom1, clockDomContainer1);
-		//
-		// clockDomController1.startClock(1);
+            clockView.drawHands(city);
+        }
 
 
+        this.startClock = function(IDInterval, timezone) {
+
+            if (IDInterval) {
+
+                clearInterval(IDInterval);
+            }
 
 
+            else {
+
+                let clockGoSeconds = setInterval(goClock, 1000); /* Запускаем часы */
+
+                goClock();
+
+                function goClock() {
+
+                    let soonSeconds = new Date().getUTCSeconds();
+                    let soonMinutes = new Date().getUTCMinutes();
+                    let soonHour = new Date().getUTCHours() + timezone;
 
 
-		// const clockSvg = new ClockModel();
-		// const clockSvgView = new ClockViewSvg();
-		// const clockSvgController = new ClockControllerButtons();
-		//
-		// 		console.log(clockSvg);
-		// console.log(clockSvgView);
-		// console.log(clockSvgController);
-		//
-		//
-		// const clockSvgContainer = document.getElementById('clockContainer2');
-		// clockSvg.init(clockSvgView);
-		// clockSvgView.init(clockSvgContainer);
-		// clockSvgController.init(clockSvg, clockSvgContainer);
-		//
-		// clockSvgController.startClock();
-		//
-		// const clockSvg1 = new ClockModel();
-		// const clockSvgView1 = new ClockViewSvg();
-		// const clockSvgController1 = new ClockControllerButtons();
-		//
-		//
-		//
-		//
-		//
-		// const clockSvgContainer1 = document.getElementById('clockContainer3');
-		// clockSvg1.init(clockSvgView1);
-		// clockSvgView1.init(clockSvgContainer1);
-		// clockSvgController1.init(clockSvg1, clockSvgContainer1);
-		//
-		// clockSvgController1.startClock(5);
-		//
-		//
-		//
-		//
-		// const clockCanvas = new ClockModel();
-		// const clockCanvasView = new ClockViewCanvas();
-		// const clockCanvasController = new ClockControllerButtons();
-		//
-		//
-		// const clockCanvasContainer = document.getElementById('clockContainer4');
-		// clockCanvas.init(clockCanvasView);
-		// clockCanvasView.init(clockCanvasContainer);
-		// clockCanvasController.init(clockCanvas, clockCanvasContainer);
-		//
-		// clockCanvasController.startClock();
-		//
-		//
-		// const clockCanvas1 = new ClockModel();
-		// const clockCanvasView1 = new ClockViewCanvas();
-		// const clockCanvasController1 = new ClockControllerButtons();
-		//
-		//
-		// const clockCanvasContainer1 = document.getElementById('clockContainer5');
-		// clockCanvas1.init(clockCanvasView1);
-		// clockCanvasView1.init(clockCanvasContainer1);
-		// clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
-		//
-		// clockCanvasController1.startClock();
+                    let secondHand = soonSeconds * 6; /* Поворот секундой стрелки */
+                    let minuteHand = soonMinutes * 6; /* Поворот минутной стрелки */
+                    let hourHand = soonHour * 30 + soonMinutes / 2; /* Поворот часовой стрелки */
+
+                    clockView.startClock(secondHand, minuteHand, hourHand, clockGoSeconds);
+                }
+				}
+        }
+    }
 
 
 
 
-	</script>
+
+
+    /* ------- view -------- */
+
+    function ClockViewDom() {
+
+        let clockContainer = null;
+        let myClock = null;
+
+
+        this.init = function(field) {
+
+            clockContainer = field;
+
+            myClock = clockContainer.querySelector('.clock_');
+        }
+
+
+        this.drawNumbers = function(left, top, clock) {
+
+            let number = document.createElement('div');
+            number.setAttribute("class", "green");
+            myClock.querySelector('.center_').append(number);
+
+            number.style.left = left + "px";
+            number.style.top = top + "px";
+            number.textContent = clock;
+        }
+
+
+        this.drawHands = function(city) {
+
+            let secondHand = document.createElement('div'); /* Рисуем стрелки */
+            secondHand.setAttribute("class", "secondHand_");
+            myClock.querySelector('.center_').append(secondHand);
+            secondHand.style.transformOrigin = "0 0 0";
+
+            let minuteHand = document.createElement('div');
+            minuteHand.setAttribute("class", "minuteHand_");
+            myClock.querySelector('.center_').append(minuteHand);
+            minuteHand.style.transformOrigin = "2.5px 0 0";
+
+            let hourHand = document.createElement('div');
+            hourHand.setAttribute("class", "hourHand_");
+            myClock.querySelector('.center_').append(hourHand);
+            hourHand.style.transformOrigin = "5px 5.25px 0";
+
+
+
+            let header = document.createElement('div'); /* Рисуем кнопки */
+            header.style.position = "absolute";
+            header.style.top = "-170px";
+            header.style.left = "-150px";
+            header.style.width = "250px";
+            header.style.display = "flex";
+            header.style.justifyContent = "space-between";
+
+            header.style.hight = "40px";
+            myClock.querySelector('.center_').append(header);
+
+
+            let startBtn = document.createElement('button');
+            startBtn.classList.add('start');
+            startBtn.textContent = "START";
+            header.append(startBtn);
+
+            let stopBtn = document.createElement('button');
+            stopBtn.classList.add('stop');
+            stopBtn.textContent = "STOP";
+            header.append(stopBtn);
+
+            let h2 = document.createElement('h3');
+            h2.textContent = city;
+            h2.style.padding = "0"
+            h2.style.margin = "0"
+
+            header.append(h2);
+        }
+
+
+        this.startClock = function(seconds, minutes, hours, timerID) {
+
+            let stopBtn = clockContainer.querySelector('.stop');
+            stopBtn.value = timerID;
+
+            let secondHand = "rotate(" + (seconds + 180) + "deg)";
+            let minuteHand = "rotate(" + (minutes + 180) + "deg)";
+            let hourHand = "rotate(" + (hours + 180) + "deg)";
+
+
+            myClock.querySelector('.secondHand_').style.transform = secondHand;
+            myClock.querySelector('.minuteHand_').style.transform = minuteHand;
+            myClock.querySelector('.hourHand_').style.transform = hourHand;
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+    /* ----- controller ---- */
+
+	 function ClockControllerButtons(city) {
+
+		  let clockModel = null; // с какой моделью работаем
+		  let clockContainer = null; // внутри какого элемента DOM наша вёрстка
+        let stopBtn = null;
+
+
+		  this.init = function(model, field) {
+
+				clockModel = model;
+				clockContainer = field;
+
+
+				clockModel.drawNumbers(); /* Рисуем цифры */
+
+				clockModel.drawHands(city); /* Рисуем стрелки */
+
+
+
+
+				// clockModel.startClock(); /* Запускаем часы */
+
+
+            stopBtn = clockContainer.querySelector('.stop');
+            stopBtn.addEventListener('click', this.stop);
+
+            let startBtn = clockContainer.querySelector('.start');
+            startBtn.addEventListener('click', this.start);
+
+
+		  }
+
+
+
+        this.startClock = function(timezone) {
+            clockModel.startClock(null, timezone);
+        }
+
+
+        this.stop = function() {
+
+            clockModel.startClock(stopBtn.value);
+
+            console.log(stopBtn.value)
+        }
+
+
+        this.start = function() {
+
+            clockModel.startClock();
+        }
+	 }
+
+
+
+
+	const clockDom = new ClockModel();
+	const clockDomView = new ClockViewDom();
+	const clockDomController = new ClockControllerButtons('Нью-Йорк');
+
+
+	const clockDomContainer = document.getElementById('clockContainer');
+
+	clockDom.init(clockDomView);
+	clockDomView.init(clockDomContainer);
+	clockDomController.init(clockDom, clockDomContainer);
+
+	clockDomController.startClock(-4); /* Нью-Йорк */
+
+
+
+
+
+	// const clockDom1 = new ClockModel();
+	// const clockDomView1 = new ClockViewDom();
+	// const clockDomController1 = new ClockControllerButtons();
+	//
+	// const clockDomContainer1 = document.getElementById('clockContainer1');
+	//
+	// clockDom1.init(clockDomView1);
+	// clockDomView1.init(clockDomContainer1);
+	// clockDomController1.init(clockDom1, clockDomContainer1);
+	//
+	// clockDomController1.startClock(1);
+
+
+
+
+
+
+	// const clockSvg = new ClockModel();
+	// const clockSvgView = new ClockViewSvg();
+	// const clockSvgController = new ClockControllerButtons();
+	//
+	// 		console.log(clockSvg);
+	// console.log(clockSvgView);
+	// console.log(clockSvgController);
+	//
+	//
+	// const clockSvgContainer = document.getElementById('clockContainer2');
+	// clockSvg.init(clockSvgView);
+	// clockSvgView.init(clockSvgContainer);
+	// clockSvgController.init(clockSvg, clockSvgContainer);
+	//
+	// clockSvgController.startClock();
+	//
+	// const clockSvg1 = new ClockModel();
+	// const clockSvgView1 = new ClockViewSvg();
+	// const clockSvgController1 = new ClockControllerButtons();
+	//
+	//
+	//
+	//
+	//
+	// const clockSvgContainer1 = document.getElementById('clockContainer3');
+	// clockSvg1.init(clockSvgView1);
+	// clockSvgView1.init(clockSvgContainer1);
+	// clockSvgController1.init(clockSvg1, clockSvgContainer1);
+	//
+	// clockSvgController1.startClock(5);
+	//
+	//
+	//
+	//
+	// const clockCanvas = new ClockModel();
+	// const clockCanvasView = new ClockViewCanvas();
+	// const clockCanvasController = new ClockControllerButtons();
+	//
+	//
+	// const clockCanvasContainer = document.getElementById('clockContainer4');
+	// clockCanvas.init(clockCanvasView);
+	// clockCanvasView.init(clockCanvasContainer);
+	// clockCanvasController.init(clockCanvas, clockCanvasContainer);
+	//
+	// clockCanvasController.startClock();
+	//
+	//
+	// const clockCanvas1 = new ClockModel();
+	// const clockCanvasView1 = new ClockViewCanvas();
+	// const clockCanvasController1 = new ClockControllerButtons();
+	//
+	//
+	// const clockCanvasContainer1 = document.getElementById('clockContainer5');
+	// clockCanvas1.init(clockCanvasView1);
+	// clockCanvasView1.init(clockCanvasContainer1);
+	// clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
+	//
+	// clockCanvasController1.startClock();
+
+
+
+
+</script>
 
 </body>
 </html>
