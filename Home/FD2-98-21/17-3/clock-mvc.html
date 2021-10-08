@@ -130,7 +130,7 @@
         let diamOfNumber = 45;
 
 
-        this.init = function(view){
+        this.init = function(view) {
 
             clockView = view;
         }
@@ -140,7 +140,7 @@
 
             for (let i = 0; i < 12; i++) {
 
-                let angleRadians = parseFloat(parseFloat(angle)) / 180 * Math.PI;
+                let angleRadians = angle / 180 * Math.PI;
                 let greenCenterX = centerOfClockX + radius * Math.sin(angleRadians);
                 let greenCenterY = centerOfClockY - radius * Math.cos(angleRadians);
 
@@ -155,7 +155,7 @@
         }
 
 
-        this.drawHands = function(city){
+        this.drawHands = function(city) {
 
             clockView.drawHands(city);
         }
@@ -190,6 +190,7 @@
                 }
 				}
         }
+
     }
 
 
