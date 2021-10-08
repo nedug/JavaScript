@@ -1,5 +1,8 @@
-"use strict";
+
+
 var modelDOM1 = new UpdateTime(-5);
+var modelDOM5 = new UpdateTime(-5);
+
 var viewDOM1 = new ClockViewDOM("clock1");
 var controllerDom1 = new ClockController();
 
