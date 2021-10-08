@@ -376,17 +376,17 @@
 
 
 
-	// const clockDom1 = new ClockModel();
-	// const clockDomView1 = new ClockViewDom();
-	// const clockDomController1 = new ClockControllerButtons();
-	//
-	// const clockDomContainer1 = document.getElementById('clockContainer1');
-	//
-	// clockDom1.init(clockDomView1);
-	// clockDomView1.init(clockDomContainer1);
-	// clockDomController1.init(clockDom1, clockDomContainer1);
-	//
-	// clockDomController1.startClock(1);
+	const clockDom1 = new ClockModel();
+	const clockDomView1 = new ClockViewDom();
+	const clockDomController1 = new ClockControllerButtons();
+
+	const clockDomContainer1 = document.getElementById('clockContainer1');
+
+	clockDom1.init(clockDomView1);
+	clockDomView1.init(clockDomContainer1);
+	clockDomController1.init(clockDom1, clockDomContainer1);
+
+	clockDomController1.startClock(1);
 
 
 
