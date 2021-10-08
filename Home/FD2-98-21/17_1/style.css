@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+}
+
+.clock {
+  height: 300px;
+  width: 200px;
+  position: relative;
+  margin-top: 5px;
+}
+
+button {
+  margin-left: 5px;
+}
+
+.clockSVG{
+  margin-top: 10px;
+}
