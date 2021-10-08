@@ -54,6 +54,7 @@
 <script>
 
 
+
     /* -------  model ------- */
 
     function ModalModel () {
@@ -137,7 +138,6 @@
             // inputDay.value = '';
             // inputMonth.value = '';
             // inputYear.value = '';
-
         }
 
 
@@ -152,7 +152,6 @@
 
 
 
-
     /* ------- view -------- */
 
     function ModalView() {
@@ -160,6 +159,10 @@
         let myModal = null;
         let myModalOverlay = null;
         let myModalContainer = null;
+
+        let buttonSave = null;
+        let modalData = null;
+        let clearData = null;
 
 
         this.init = function(field) {
@@ -169,25 +172,23 @@
             myModal = myModalContainer.querySelector('.modal');
             myModalOverlay = myModalContainer.querySelector('.modal-overlay');
 
-
+            buttonSave = myModalContainer.querySelector(".modal__save");
+            modalData = myModalContainer.querySelector('.modal-data');
+            clearData = myModalContainer.querySelector('.clear-data');
         }
 
 
-        this.show = function () {
-
-            // console.log(modalWindow);
+        this.show = function () { /* Открываем модальное окно */
 
             myModal.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
-
         }
 
 
-        this.hide = function () {
+        this.hide = function () { /* Закрываем модальное окно */
 
             myModal.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
-
 
 
             const inputName = myModalContainer.querySelector(".input__default");
@@ -199,43 +200,30 @@
             inputBirth[2].value = '';
 
 
-            const buttonSave = myModalContainer.querySelector(".modal__save");
-
             buttonSave.disabled = true;
-
         }
 
 
-        this.printViewData = function (name, day, month, year) { // вывести данные из хранилища в div.modal-data
+        this.printViewData = function (name, day, month, year) { // Выводим данные из хранилища в div.modal-data
 
-            let modalData = myModalContainer.querySelector('.modal-data');
             modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
 
-            let clearData = myModalContainer.querySelector('.clear-data');
             clearData.style.display = '';
-
         }
 
 
         this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
 
-            let modalData = myModalContainer.querySelector('.modal-data');
             modalData.innerHTML = `Данные отсутствуют...`;
 
-            let clearData = myModalContainer.querySelector('.clear-data');
             clearData.style.display = 'none';
-
         }
 
 
         this.btnUpdate = function (stateBtn) {
 
-            const buttonSave = myModalContainer.querySelector(".modal__save");
-
             buttonSave.disabled = stateBtn;
-
         }
-
     }
 
 
