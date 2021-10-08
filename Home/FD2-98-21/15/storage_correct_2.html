@@ -98,7 +98,7 @@
         modalWindow.classList.add('modal_closed');
         modalOverlay.classList.add('modal_closed');
 
-        if (localStorage.getItem('user')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+        if (localStorage.getItem('userData')) { /* При наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
 
             sayHello();
             timerBirthday();
@@ -143,9 +143,9 @@
 
         infoUserSerial = JSON.stringify(infoUser); /* Преобразуем хранилище в JSON-строку */
 
-        localStorage.setItem('user', infoUserSerial); /* Сохраняем данные в localStorage */
+        localStorage.setItem('userData', infoUserSerial); /* Сохраняем данные в localStorage */
 
-        if (localStorage.getItem('user')) {
+        if (localStorage.getItem('userData')) {
 
             validValue.innerHTML = `Данные сохранены!`;
         }
@@ -153,7 +153,7 @@
 
 
 
-    if (localStorage.getItem('user')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
+    if (localStorage.getItem('userData')) { /* При повторной загрузке страницы и при наличии в localStorage таких данных, скрываем поля ввода данных и выводим приветствие с пользователем */
 
         sayHello();
         timerBirthday();
@@ -166,7 +166,7 @@
 
         userInfo.style.display = 'none';
 
-        infoUserReturn = JSON.parse(localStorage.getItem('user'));
+        infoUserReturn = JSON.parse(localStorage.getItem('userData'));
 
         hello.innerHTML = `Рады видеть вас, ${infoUserReturn.userName}!`;
 
@@ -235,7 +235,7 @@
 
 
 
-    // localStorage.removeItem('user'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
+    // localStorage.removeItem('userData'); /* Удаляем данные из localStorage; к примеру можно использовать для кнопки ВЫХОД */
 
 </script>
 

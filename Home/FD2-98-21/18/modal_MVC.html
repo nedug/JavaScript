@@ -160,13 +160,15 @@
 
             this.stateBtn = !(inputName && inputDay && inputMonth && inputYear);
 
-            this.updateViewBtn();
-        }
-
-        this.updateViewBtn = function () {
+            // this.updateViewBtn();
 
             myModalView.btnUpdate(this.stateBtn);
         }
+
+        // this.updateViewBtn = function () {
+		  //
+        //     myModalView.btnUpdate(this.stateBtn);
+        // }
 
     }
 
@@ -271,6 +273,9 @@
         let myModalModel = null;
         let myModalContainer = null;
 
+        let inputName = null;
+        let inputBirth = null;
+
 
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
 
@@ -278,12 +283,9 @@
             myModalModel = model;
             myModalContainer = field;
 
-            myModalModel.getData();
+            myModalModel.getData(); /* Проверка на наличие данных в localStorage */
 
-
-            myModalModel.updateViewBtn();
-
-
+            myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить' */
 
 
             const buttonOpen = myModalContainer.querySelector(".modal-open");
@@ -301,16 +303,16 @@
             const buttonClear = myModalContainer.querySelector(".clear-data");
             buttonClear.addEventListener("click", this.clearData);
 
-
-            const inputName = myModalContainer.querySelector(".input__default");
-            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+            inputName = myModalContainer.querySelector(".input__default");
+            inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
             inputName.addEventListener('input', checkChangeInput);
-            inputBirth[0].addEventListener('input', checkChangeInput);
-            inputBirth[1].addEventListener('input', checkChangeInput);
-            inputBirth[2].addEventListener('input', checkChangeInput);
+            inputBirth.forEach(elem => elem.addEventListener('input', checkChangeInput));
 
 
+            // inputBirth[0].addEventListener('input', checkChangeInput);
+            // inputBirth[1].addEventListener('input', checkChangeInput);
+            // inputBirth[2].addEventListener('input', checkChangeInput);
 
             function checkChangeInput(e) {
 
@@ -318,44 +320,31 @@
 
                 myModalModel.checkInput(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
             }
-
-
-
-            // console.log(buttonClear);
-
         }
 
 
-        this.openModal = function (e) {
+        this.openModal = function (e) { /* Открываем модальное окно */
 
             e.preventDefault();
 
             myModalModel.openModal();
-
         }
 
 
-        this.hideModal = function (e) {
+        this.hideModal = function (e) { /* Закрываем модальное окно */
 
             e.preventDefault();
 
-            myModalModel.getData();
+            myModalModel.getData(); /* Здороваемся с пользователем если данные сохранены */
 
             myModalModel.closeModal();
-
-
-            // const inputName = myModalContainer.querySelector(".input__default");
-            // const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
-
-            // myModalModel.clearForm(inputName, inputBirth[0], inputBirth[1], inputBirth[2]);
-
         }
 
 
         this.saveModal = function () {
 
-            const inputName = myModalContainer.querySelector(".input__default");
-            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+            // const inputName = myModalContainer.querySelector(".input__default");
+            // const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
 
             myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
