@@ -45,9 +45,10 @@
 <script src="script.js"></script>
 <script>
 
-    let clockModel = new Model();
-    let clockController = new Controller();
-    let container = document.getElementById('container');
+    const clockModel = new ClockModel();
+    const clockViewDom1 = new ClockViewDOM();
+    const clockController = new ClockController();
+
 
     let clockSettings = {       //обьект с настройками циферблата
         _radius : 100,
@@ -62,7 +63,8 @@
         _secondsArrowWidth : 100
     };
 
-    let clockViewDom1 = new ViewDOM();      //DOM #1
+
+    const container = document.getElementById('container');
 
     clockModel.init(clockViewDom1);
     clockViewDom1.init(container);

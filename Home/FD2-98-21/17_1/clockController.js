@@ -4,7 +4,7 @@ function ClockController() {
   var myClock = null;
   var myModel = null;
 
-  this.onloadPage = function (model, clockDiv) {
+  this.init = function (model, clockDiv) {
     myModel = model;
     myClock = clockDiv;
 

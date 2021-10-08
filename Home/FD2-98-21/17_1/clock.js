@@ -2,10 +2,11 @@
 
 const circleRadius = 100;
 
-function UpdateTime(timeDiference) {
+function ClockModel(timeDifference) {
+
   this.valPosition = []; //часовые значения
 
-  this.timeDiference = timeDiference; //числом от -12 до +12 при созднании класса мы будем задавать разницу во времени от стандартной по гринвичу
+  this.timeDifference = timeDifference; //числом от -12 до +12 при созднании класса мы будем задавать разницу во времени от стандартной по гринвичу
 
   //текущее время
   this.hour = 0;
@@ -18,7 +19,7 @@ function UpdateTime(timeDiference) {
 
   //методы
   //находим координаты всех часовых значений
-  this.onloadPage = function (view) {
+  this.init = function (view) {
     myView = view;
     this.timeUpdate();
 
@@ -27,7 +28,7 @@ function UpdateTime(timeDiference) {
 
   this.timeUpdate = function () {
     currTime = new Date();
-    this.hour = currTime.getUTCHours() + this.timeDiference;
+    this.hour = currTime.getUTCHours() + this.timeDifference;
     this.minute = currTime.getUTCMinutes();
     this.second = currTime.getUTCSeconds();
     var ms = currTime.getUTCMilliseconds();
@@ -48,4 +49,6 @@ function UpdateTime(timeDiference) {
     clearTimeout(this.timerID);
     this.timer = 0;
   };
+
+
 }

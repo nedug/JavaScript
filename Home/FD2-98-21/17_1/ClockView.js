@@ -11,7 +11,7 @@ function ClockViewDOM(clockDiv) {
 
   var myModel = null;
 
-  this.onloadPage = function (model) {
+  this.init = function (model) {
     myModel = model;
     //часовой пояс
     this.clock.appendChild(utc);
@@ -20,9 +20,9 @@ function ClockViewDOM(clockDiv) {
     utc.style.top = "2px";
     utc.style.left = "115px";
     var utcStr =
-      myModel.timeDiference <= 0
-        ? myModel.timeDiference
-        : "+" + myModel.timeDiference;
+      myModel.timeDifference <= 0
+        ? myModel.timeDifference
+        : "+" + myModel.timeDifference;
     utc.innerHTML = "UTC" + " " + utcStr;
 
     //циферблат
@@ -103,6 +103,19 @@ function ClockViewDOM(clockDiv) {
     this.minuteArrow.style.transform = `rotate(${minuteDeg}deg)`;
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function ClockViewSVG(clockDiv) {
   this.clockDiv = clockDiv;
