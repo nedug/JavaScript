@@ -28,7 +28,7 @@
            background-color: black;
            position: relative;
        }
-       .green {
+       .green-number {
            position: absolute;
            width: 45px;
            height: 45px;
@@ -40,7 +40,7 @@
            justify-content: center;
            font-size: 20px;
        }
-       .secondHand_ {
+       .second-hand {
            position: absolute;
            left: 4px;
            top: 5px;
@@ -49,7 +49,7 @@
            background-color: black;
            border-radius:10px;
        }
-       .minuteHand_{
+       .minute-hand {
            position: absolute;
            left: 2.5px;
            top: 5px;
@@ -58,7 +58,7 @@
            background-color: black;
            border-radius:10px;
        }
-       .hourHand_{
+       .hour-hand {
            position: absolute;
            left: 0px;
            top: 0px;
@@ -67,6 +67,9 @@
            background-color: black;
            border-radius:10px;
        }
+		 button {
+           margin: 0 7px;
+		 }
 	</style>
 </head>
 <body>
@@ -142,54 +145,54 @@
 
 
     /* SVG 1 */
-    const clockSvg1 = new Clock();
-    const clockSvgView1 = new ClockViewSvg();
-    const clockSvgController1 = new ClockControllerButtons(+1, 'Лондон');
-
-	 const clockSvgContainer1 = document.getElementById('clock-container-svg1');
-
-    clockSvg1.init(clockSvgView1);
-    clockSvgView1.init(clockSvgContainer1);
-    clockSvgController1.init(clockSvg1, clockSvgContainer1);
-
-
-
-    /* SVG 2 */
-    const clockSvg2 = new Clock();
-    const clockSvgView2 = new ClockViewSvg();
-    const clockSvgController2 = new ClockControllerButtons(+9, 'Токио');
-
-    const clockSvgContainer2 = document.getElementById('clock-container-svg2');
-
-    clockSvg2.init(clockSvgView2);
-    clockSvgView2.init(clockSvgContainer2);
-    clockSvgController2.init(clockSvg2, clockSvgContainer2);
-
-
-
-    /* CANVAS 1 */
-    const clockCanvas1 = new Clock();
-    const clockCanvasView1 = new ClockViewCanvas();
-    const clockCanvasController1 = new ClockControllerButtons(+2, 'Берлин');
-
-    const clockCanvasContainer1 = document.getElementById('clock-container-can1');
-
-    clockCanvas1.init(clockCanvasView1);
-    clockCanvasView1.init(clockCanvasContainer1);
-    clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
-
-
-
-    /* CANVAS 2 */
-    const clockCanvas2 = new Clock();
-    const clockCanvasView2 = new ClockViewCanvas();
-    const clockCanvasController2 = new ClockControllerButtons(+10, 'Владивосток');
-
-    const clockCanvasContainer2 = document.getElementById('clock-container-can2');
-
-    clockCanvas2.init(clockCanvasView2);
-    clockCanvasView2.init(clockCanvasContainer2);
-    clockCanvasController2.init(clockCanvas2, clockCanvasContainer2);
+    // const clockSvg1 = new Clock();
+    // const clockSvgView1 = new ClockViewSvg();
+    // const clockSvgController1 = new ClockControllerButtons(+1, 'Лондон');
+	 //
+	 // const clockSvgContainer1 = document.getElementById('clock-container-svg1');
+	 //
+    // clockSvg1.init(clockSvgView1);
+    // clockSvgView1.init(clockSvgContainer1);
+    // clockSvgController1.init(clockSvg1, clockSvgContainer1);
+	 //
+	 //
+	 //
+    // /* SVG 2 */
+    // const clockSvg2 = new Clock();
+    // const clockSvgView2 = new ClockViewSvg();
+    // const clockSvgController2 = new ClockControllerButtons(+9, 'Токио');
+	 //
+    // const clockSvgContainer2 = document.getElementById('clock-container-svg2');
+	 //
+    // clockSvg2.init(clockSvgView2);
+    // clockSvgView2.init(clockSvgContainer2);
+    // clockSvgController2.init(clockSvg2, clockSvgContainer2);
+	 //
+	 //
+	 //
+    // /* CANVAS 1 */
+    // const clockCanvas1 = new Clock();
+    // const clockCanvasView1 = new ClockViewCanvas();
+    // const clockCanvasController1 = new ClockControllerButtons(+2, 'Берлин');
+	 //
+    // const clockCanvasContainer1 = document.getElementById('clock-container-can1');
+	 //
+    // clockCanvas1.init(clockCanvasView1);
+    // clockCanvasView1.init(clockCanvasContainer1);
+    // clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
+	 //
+	 //
+	 //
+    // /* CANVAS 2 */
+    // const clockCanvas2 = new Clock();
+    // const clockCanvasView2 = new ClockViewCanvas();
+    // const clockCanvasController2 = new ClockControllerButtons(+10, 'Владивосток');
+	 //
+    // const clockCanvasContainer2 = document.getElementById('clock-container-can2');
+	 //
+    // clockCanvas2.init(clockCanvasView2);
+    // clockCanvasView2.init(clockCanvasContainer2);
+    // clockCanvasController2.init(clockCanvas2, clockCanvasContainer2);
 
 
 </script>

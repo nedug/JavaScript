@@ -38,9 +38,15 @@ function Clock() {
     }
 
 
-    this.drawHands = function(city, timezone) { /* Рисуем стрелки */
+    this.drawHands = function() { /* Рисуем стрелки */
 
-        clockView.drawHands(city, timezone);
+        clockView.drawHands();
+    }
+
+
+    this.drawButtons = function(city, timezone) { /* Рисуем кнопки СТАРТ и СТОП */
+
+        clockView.drawButtons(city, timezone);
     }
 
 

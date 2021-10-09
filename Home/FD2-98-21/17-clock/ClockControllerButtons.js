@@ -12,7 +12,9 @@ function ClockControllerButtons(timezone, city) {
         clockContainer = field;
 
         clockModel.drawNumbers(); /* Рисуем цифры */
-        clockModel.drawHands(city, timezone); /* Рисуем стрелки */
+        clockModel.drawHands(); /* Рисуем стрелки */
+        clockModel.drawButtons(city, timezone); /* Рисуем кнопки СТАРТ и СТОП */
+
         clockModel.startClock(timezone); /* Запускаем часы при загрузке страницы */
 
 

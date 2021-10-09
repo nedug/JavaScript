@@ -1,97 +1,89 @@
-/* ------- view -------- */
+/* ------- view DOM -------- */
 
 function ClockViewDom() {
 
-  let clockContainer = null;
-  let myClock = null;
+    let clockContainer = null;
+    let myClock = null;
+    let centerClock = null;
+    let secondHand = null;
+    let minuteHand = null;
+    let hourHand = null;
 
 
-  this.init = function(field) {
+    this.init = function(field) {
 
-    clockContainer = field;
-
-    myClock = clockContainer.querySelector('.clock');
-  }
-
-
-  this.drawNumbers = function(left, top, clock) {
-
-    let number = document.createElement('div');
-    number.setAttribute("class", "green");
-    myClock.querySelector('.center').append(number);
-
-    number.style.left = left + "px";
-    number.style.top = top + "px";
-    number.textContent = clock;
-  }
+        clockContainer = field;
+        myClock = clockContainer.querySelector('.clock');
+        centerClock = clockContainer.querySelector('.center');
+    }
 
 
-  this.drawHands = function(city) {
+    this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
 
-    let secondHand = document.createElement('div'); /* Рисуем стрелки */
-    secondHand.setAttribute("class", "secondHand_");
-    myClock.querySelector('.center').append(secondHand);
-    secondHand.style.transformOrigin = "0 0 0";
+        let number = document.createElement('div');
+        number.setAttribute("class", "green-number");
+        centerClock.append(number);
 
-    let minuteHand = document.createElement('div');
-    minuteHand.setAttribute("class", "minuteHand_");
-    myClock.querySelector('.center').append(minuteHand);
-    minuteHand.style.transformOrigin = "2.5px 0 0";
-
-    let hourHand = document.createElement('div');
-    hourHand.setAttribute("class", "hourHand_");
-    myClock.querySelector('.center').append(hourHand);
-    hourHand.style.transformOrigin = "5px 5.25px 0";
+        number.style.left = left + "px";
+        number.style.top = top + "px";
+        number.textContent = clock;
+    }
 
 
+    this.drawHands = function() { /* Рисуем стрелки */
 
-    let header = document.createElement('div'); /* Рисуем кнопки */
-    header.style.position = "absolute";
-    header.style.top = "-170px";
-    header.style.left = "-150px";
-    header.style.width = "250px";
-    header.style.display = "flex";
-    header.style.justifyContent = "space-between";
+        secondHand = document.createElement('div');
+        secondHand.setAttribute("class", "second-hand");
+        centerClock.append(secondHand);
+        secondHand.style.transformOrigin = "0 0 0";
 
-    header.style.hight = "40px";
-    myClock.querySelector('.center').append(header);
+        minuteHand = document.createElement('div');
+        minuteHand.setAttribute("class", "minute-hand");
+        centerClock.append(minuteHand);
+        minuteHand.style.transformOrigin = "2.5px 0 0";
 
-
-    let startBtn = document.createElement('button');
-    startBtn.classList.add('start');
-    startBtn.textContent = "START";
-    header.append(startBtn);
-
-    let stopBtn = document.createElement('button');
-    stopBtn.classList.add('stop');
-    stopBtn.textContent = "STOP";
-    header.append(stopBtn);
-
-    let h2 = document.createElement('h3');
-    h2.textContent = city;
-    h2.style.padding = "0"
-    h2.style.margin = "0"
-
-    header.append(h2);
-  }
+        hourHand = document.createElement('div');
+        hourHand.setAttribute("class", "hour-hand");
+        centerClock.append(hourHand);
+        hourHand.style.transformOrigin = "5px 5.25px 0";
+    }
 
 
-  this.startClock = function(seconds, minutes, hours) {
+    this.drawButtons = function(city, timezone) { /* Создаем кнопки СТАРТ и СТОП */
 
-    // let stopBtn = clockContainer.querySelector('.stop');
-    // stopBtn.value = timerID;
-
-    let secondHand = "rotate(" + (seconds + 180) + "deg)";
-    let minuteHand = "rotate(" + (minutes + 180) + "deg)";
-    let hourHand = "rotate(" + (hours + 180) + "deg)";
-
-
-    myClock.querySelector('.secondHand_').style.transform = secondHand;
-    myClock.querySelector('.minuteHand_').style.transform = minuteHand;
-    myClock.querySelector('.hourHand_').style.transform = hourHand;
-  }
+        let header = document.createElement('div');
+        header.style.cssText = `position: absolute;
+                                top: -170px;
+                                left: -150px;
+                                width: 310px;
+                                display: flex;`;
+        centerClock.append(header);
 
 
+        let startBtn = document.createElement('button');
+        startBtn.classList.add('start');
+        startBtn.textContent = "START";
+        header.append(startBtn);
 
+        let stopBtn = document.createElement('button');
+        stopBtn.classList.add('stop');
+        stopBtn.textContent = "STOP";
+        header.append(stopBtn);
+
+        let cityName = document.createElement('h3');
+        if (timezone >= 0) cityName.textContent = `${city} (GMT+${timezone})`;
+        else cityName.textContent = `${city} (GMT${timezone})`;
+        cityName.style.cssText = `padding: 0; margin: 0;`;
+
+        header.append(cityName);
+    }
+
+
+    this.startClock = function(seconds, minutes, hours) { /* Запускаем часы */
+
+        secondHand.style.transform = `rotate(${seconds + 180}deg)`;
+        minuteHand.style.transform = `rotate(${minutes + 180}deg)`;
+        hourHand.style.transform = `rotate(${hours + 180}deg)`;
+    }
 
 }
