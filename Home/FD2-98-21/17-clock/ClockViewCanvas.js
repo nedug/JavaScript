@@ -66,8 +66,8 @@ function ClockViewCanvas() {
         let ctx = myClock.getContext("2d");
 
         //DRAW ORANGE BACKGROUND
-        ctx.strokeStyle = "orange";
-        ctx.fillStyle = "orange";
+        ctx.strokeStyle = "#fdc45d";
+        ctx.fillStyle = "#fdc45d";
         ctx.lineCap = "round";
 
 
@@ -96,8 +96,8 @@ function ClockViewCanvas() {
             let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
             let numberTop = Math.round(greenCenterY-diamOfNumber/2);
 
-            ctx.strokeStyle = "green";
-            ctx.fillStyle = "green";
+            ctx.strokeStyle = "#55b155";
+            ctx.fillStyle = "#55b155";
 
             ctx.beginPath();
             ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI )
