@@ -10,7 +10,7 @@ function ClockViewCanvas() {
       this.init = function(field) {
 
         myField = field;
-        myClock = myField.querySelector('.clock_')
+        myClock = myField.querySelector('.clock')
         ctx = myClock.getContext("2d");
 
       }

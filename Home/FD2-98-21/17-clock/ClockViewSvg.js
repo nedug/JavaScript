@@ -11,7 +11,7 @@
 
     this.init = function(field) {
         myField = field;
-        myClock = myField.querySelector('.clock_')
+        myClock = myField.querySelector('.clock')
                 let clockSvgCenter = document.createElementNS(svgNS,"circle");
                 clockSvgCenter.setAttributeNS(null,"cx", 145);
                 clockSvgCenter.setAttributeNS(null,"cy", 150);

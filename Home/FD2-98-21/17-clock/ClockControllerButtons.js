@@ -1,8 +1,9 @@
+/* ----- controller ---- */
 
-function ClockControllerButtons() {
+function ClockControllerButtons(timezone, city) {
 
-    let clockModel = null; // с какой моделью работаем
-    let clockContainer = null; // внутри какого элемента DOM наша вёрстка
+    let clockModel = null;
+    let clockContainer = null;
 
 
     this.init = function(model, field) {
@@ -10,38 +11,28 @@ function ClockControllerButtons() {
         clockModel = model;
         clockContainer = field;
 
-
         clockModel.drawNumbers(); /* Рисуем цифры */
-
-        clockModel.drawHands(); /* Рисуем стрелки */
-
-
-        // clockModel.startClock(); /* Запускаем часы */
+        clockModel.drawHands(city, timezone); /* Рисуем стрелки */
+        clockModel.startClock(timezone); /* Запускаем часы при загрузке страницы */
 
 
-        // let stopBtn = clockContainer.querySelector('.stop');
-        // stopBtn.addEventListener('click', this.stop)
-        //
-        // let startBtn = clockContainer.querySelector('.start');
-        // startBtn.addEventListener('click', this.start)
+        let stopBtn = clockContainer.querySelector('.stop');
+        stopBtn.addEventListener('click', this.stop);
+
+        let startBtn = clockContainer.querySelector('.start');
+        startBtn.addEventListener('click', this.start);
     }
 
 
-	// this.startClock = function(timezone){
-    //     clockModel.startClock();
-	// }
+    this.stop = function() { /* Останавливаем часы по кнопке "СТОП" */
+
+        clockModel.stopClock();
+    }
 
 
-    // this.stop = function(event) {
-    //
-    //     clockModel.startClock(event.target.value);
-    //
-    //     console.log(event.target)
-    // }
+    this.start = function() { /* Запускаем часы по кнопке "СТАРТ" */
 
+        clockModel.startClock(timezone);
+    }
 
-    // this.start = function() {
-    //
-    //     clockModel.startClock();
-    // }
 }
