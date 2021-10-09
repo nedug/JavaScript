@@ -17,7 +17,6 @@ function ClockViewSvg() {
 
         clockContainer = field;
         myClock = clockContainer.querySelector('.clock');
-
     }
 
 
