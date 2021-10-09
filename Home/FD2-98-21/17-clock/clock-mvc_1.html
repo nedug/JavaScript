@@ -110,7 +110,7 @@
 <!--<script src="ClockControllerButtons.js"></script>-->
 <!--<script src="ClockViewDom.js"></script>-->
 <script src="ClockViewSvg.js"></script>
-<!--<script src="ClockViewCanvas.js"></script>-->
+<script src="ClockViewCanvas.js"></script>
 
 
 <script>
@@ -165,6 +165,8 @@
 
         this.startClock = function(timezone) {
 
+            console.log(timezone);
+
             clockGoSeconds = setInterval(goClock, 1000); /* Запускаем часы */
 
             goClock();
@@ -180,7 +182,7 @@
                 let minuteHand = soonMinutes * 6; /* Поворот минутной стрелки */
                 let hourHand = soonHour * 30 + soonMinutes / 2; /* Поворот часовой стрелки */
 
-                clockView.startClock(secondHand, minuteHand, hourHand, clockGoSeconds);
+                clockView.startClock(secondHand, minuteHand, hourHand);
             }
 
         }
@@ -277,7 +279,7 @@
         }
 
 
-        this.startClock = function(seconds, minutes, hours, timerID) {
+        this.startClock = function(seconds, minutes, hours) {
 
             // let stopBtn = clockContainer.querySelector('.stop');
             // stopBtn.value = timerID;
@@ -304,7 +306,7 @@
 
     /* ----- controller ---- */
 
-    function ClockControllerButtons(city) {
+    function ClockControllerButtons(timezone, city) {
 
         let clockModel = null; // с какой моделью работаем
         let clockContainer = null; // внутри какого элемента DOM наша вёрстка
@@ -324,7 +326,8 @@
 
 
 
-            // clockModel.startClock(); /* Запускаем часы */
+            clockModel.startClock(timezone); /* Запускаем часы */
+
 
 
             stopBtn = clockContainer.querySelector('.stop');
@@ -339,6 +342,8 @@
 
 
         this.startClock = function(timezone) {
+
+            // console.log(timezone);
 
             clockModel.startClock(timezone);
         }
@@ -356,7 +361,7 @@
 
         this.start = function() {
 
-            clockModel.startClock();
+            clockModel.startClock(timezone);
         }
     }
 
@@ -366,7 +371,7 @@
     /* DOM 1 */
     const clockDom = new Clock();
     const clockDomView = new ClockViewDom();
-    const clockDomController = new ClockControllerButtons('Нью-Йорк');
+    const clockDomController = new ClockControllerButtons(-4, 'Нью-Йорк');
 
     const clockDomContainer = document.getElementById('clockContainer');
 
@@ -374,14 +379,14 @@
     clockDomView.init(clockDomContainer);
     clockDomController.init(clockDom, clockDomContainer);
 
-    clockDomController.startClock(-4); /* Нью-Йорк */
+    // clockDomController.startClock(-4); /* Нью-Йорк */
 
 
 
     /* DOM 2 */
     const clockDom1 = new Clock();
     const clockDomView1 = new ClockViewDom();
-    const clockDomController1 = new ClockControllerButtons('Минск');
+    const clockDomController1 = new ClockControllerButtons(+3, 'Минск');
 
     const clockDomContainer1 = document.getElementById('clockContainer1');
 
@@ -389,16 +394,14 @@
     clockDomView1.init(clockDomContainer1);
     clockDomController1.init(clockDom1, clockDomContainer1);
 
-    clockDomController1.startClock(+3); /* Минск */
-
-
+    // clockDomController1.startClock(+3); /* Минск */
 
 
 
     /* SVG 1 */
     const clockSvg = new Clock();
     const clockSvgView = new ClockViewSvg();
-    const clockSvgController = new ClockControllerButtons('Лондон');
+    const clockSvgController = new ClockControllerButtons(+1, 'Лондон');
 
 	 const clockSvgContainer = document.getElementById('clockContainer2');
 
@@ -406,59 +409,53 @@
     clockSvgView.init(clockSvgContainer);
     clockSvgController.init(clockSvg, clockSvgContainer);
 
-    clockSvgController.startClock(+1); /* Лондон */
+    // clockSvgController.startClock(+1); /* Лондон */
+
+
+
+    /* SVG 2 */
+    const clockSvg1 = new Clock();
+    const clockSvgView1 = new ClockViewSvg();
+    const clockSvgController1 = new ClockControllerButtons(+9, 'Токио');
+
+    const clockSvgContainer1 = document.getElementById('clockContainer3');
+
+    clockSvg1.init(clockSvgView1);
+    clockSvgView1.init(clockSvgContainer1);
+    clockSvgController1.init(clockSvg1, clockSvgContainer1);
+
+    // clockSvgController1.startClock(+9); /* Токио */
+
+
+
+    /* CANVAS 1 */
+    const clockCanvas = new Clock();
+    const clockCanvasView = new ClockViewCanvas();
+    const clockCanvasController = new ClockControllerButtons(+2, 'Берлин');
+
+    const clockCanvasContainer = document.getElementById('clockContainer4');
+
+    clockCanvas.init(clockCanvasView);
+    clockCanvasView.init(clockCanvasContainer);
+    clockCanvasController.init(clockCanvas, clockCanvasContainer);
+
+    // clockCanvasController.startClock(+2); /* Берлин +2 */
 
 
 
 
+    /* CANVAS 2 */
+    const clockCanvas1 = new Clock();
+    const clockCanvasView1 = new ClockViewCanvas();
+    const clockCanvasController1 = new ClockControllerButtons(+10, 'Владивосток');
 
+    const clockCanvasContainer1 = document.getElementById('clockContainer5');
 
+    clockCanvas1.init(clockCanvasView1);
+    clockCanvasView1.init(clockCanvasContainer1);
+    clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
 
-    //
-    // const clockSvg1 = new Clock();
-    // const clockSvgView1 = new ClockViewSvg();
-    // const clockSvgController1 = new ClockControllerButtons();
-    //
-    //
-    //
-    //
-    //
-    // const clockSvgContainer1 = document.getElementById('clockContainer3');
-    // clockSvg1.init(clockSvgView1);
-    // clockSvgView1.init(clockSvgContainer1);
-    // clockSvgController1.init(clockSvg1, clockSvgContainer1);
-    //
-    // clockSvgController1.startClock(5);
-    //
-    //
-    //
-    //
-    // const clockCanvas = new Clock();
-    // const clockCanvasView = new ClockViewCanvas();
-    // const clockCanvasController = new ClockControllerButtons();
-    //
-    //
-    // const clockCanvasContainer = document.getElementById('clockContainer4');
-    // clockCanvas.init(clockCanvasView);
-    // clockCanvasView.init(clockCanvasContainer);
-    // clockCanvasController.init(clockCanvas, clockCanvasContainer);
-    //
-    // clockCanvasController.startClock();
-    //
-    //
-    // const clockCanvas1 = new Clock();
-    // const clockCanvasView1 = new ClockViewCanvas();
-    // const clockCanvasController1 = new ClockControllerButtons();
-    //
-    //
-    // const clockCanvasContainer1 = document.getElementById('clockContainer5');
-    // clockCanvas1.init(clockCanvasView1);
-    // clockCanvasView1.init(clockCanvasContainer1);
-    // clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
-    //
-    // clockCanvasController1.startClock();
-
-
+    // clockCanvasController1.startClock(+10); /* Владивосток */
 
 
 </script>
