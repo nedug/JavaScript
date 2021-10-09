@@ -157,15 +157,16 @@
         }
 
 
-        this.drawHands = function(city) {
+        this.drawHands = function(city, timezone) {
 
-            clockView.drawHands(city);
+            clockView.drawHands(city, timezone);
+
         }
 
 
         this.startClock = function(timezone) {
 
-            console.log(timezone);
+            // console.log(timezone);
 
             clockGoSeconds = setInterval(goClock, 1000); /* Запускаем часы */
 
@@ -321,7 +322,7 @@
 
             clockModel.drawNumbers(); /* Рисуем цифры */
 
-            clockModel.drawHands(city); /* Рисуем стрелки */
+            clockModel.drawHands(city, timezone); /* Рисуем стрелки */
 
 
 
@@ -379,8 +380,6 @@
     clockDomView.init(clockDomContainer);
     clockDomController.init(clockDom, clockDomContainer);
 
-    // clockDomController.startClock(-4); /* Нью-Йорк */
-
 
 
     /* DOM 2 */
@@ -393,8 +392,6 @@
     clockDom1.init(clockDomView1);
     clockDomView1.init(clockDomContainer1);
     clockDomController1.init(clockDom1, clockDomContainer1);
-
-    // clockDomController1.startClock(+3); /* Минск */
 
 
 
@@ -409,8 +406,6 @@
     clockSvgView.init(clockSvgContainer);
     clockSvgController.init(clockSvg, clockSvgContainer);
 
-    // clockSvgController.startClock(+1); /* Лондон */
-
 
 
     /* SVG 2 */
@@ -423,8 +418,6 @@
     clockSvg1.init(clockSvgView1);
     clockSvgView1.init(clockSvgContainer1);
     clockSvgController1.init(clockSvg1, clockSvgContainer1);
-
-    // clockSvgController1.startClock(+9); /* Токио */
 
 
 
@@ -439,9 +432,6 @@
     clockCanvasView.init(clockCanvasContainer);
     clockCanvasController.init(clockCanvas, clockCanvasContainer);
 
-    // clockCanvasController.startClock(+2); /* Берлин +2 */
-
-
 
 
     /* CANVAS 2 */
@@ -454,8 +444,6 @@
     clockCanvas1.init(clockCanvasView1);
     clockCanvasView1.init(clockCanvasContainer1);
     clockCanvasController1.init(clockCanvas1, clockCanvasContainer1);
-
-    // clockCanvasController1.startClock(+10); /* Владивосток */
 
 
 </script>

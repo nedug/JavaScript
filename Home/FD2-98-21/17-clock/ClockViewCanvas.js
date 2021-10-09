@@ -23,7 +23,7 @@ function ClockViewCanvas() {
       }
 
 
-      this.drawHands = function() {
+      this.drawHands = function(city, timezone) {
 
 
         //draw header + buttons
@@ -51,8 +51,10 @@ function ClockViewCanvas() {
         stopBtn.textContent = "STOP";
         header.append(stopBtn);  
 
-        let h2 = document.createElement('h3');
-        h2.textContent = "CANVAS clock";
+        let h2 = document.createElement('h4');
+        if (timezone>=0) h2.textContent = `${city} (GMT+${timezone})`;
+        else h2.textContent = `${city} (GMT${timezone})`;
+
         h2.style.padding = "0"
         h2.style.margin = "0"
 
