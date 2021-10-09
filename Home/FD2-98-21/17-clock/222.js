@@ -1,30 +1,29 @@
-/* ------- view CANVAS -------- */
 
 function ClockViewCanvas() {
 
 
-    let clockContainer = null;
+    let myField = null; // внутри какого элемента DOM наша вёрстка
     let myClock = null;
     let ctx = null;
 
 
-    this.init = function(field) {
+      this.init = function(field) {
 
-        clockContainer = field;
-        myClock = clockContainer.querySelector('.clock')
+        myField = field;
+        myClock = myField.querySelector('.clock')
         ctx = myClock.getContext("2d");
 
-    }
+      }
 
 
-    this.drawNumbers = function(left, top, clock) {
+      this.drawNumbers = function(left, top, clock) {
 
         // console.log('CANVAS numbers')
 
-    }
+      }
 
 
-    this.drawHands = function() {
+      this.drawHands = function(city, timezone) {
 
 
         //draw header + buttons
@@ -39,7 +38,7 @@ function ClockViewCanvas() {
         header.style.justifyContent = "space-between";
 
         header.style.hight = "40px";
-        clockContainer.append(header);
+        myField.append(header);
 
 
         let startBtn = document.createElement('button');
@@ -50,7 +49,7 @@ function ClockViewCanvas() {
         let stopBtn = document.createElement('button');
         stopBtn.classList.add('stop');
         stopBtn.textContent = "STOP";
-        header.append(stopBtn);
+        header.append(stopBtn);  
 
         let h2 = document.createElement('h4');
         if (timezone>=0) h2.textContent = `${city} (GMT+${timezone})`;
@@ -61,17 +60,17 @@ function ClockViewCanvas() {
 
         header.append(h2);
 
-    }
+      }
 
 
 
-    this.startClock = function(seconds, minutes, hours) {
+      this.startClock = function(seconds, minutes, hours) {
 
         // let stopBtn = myField.querySelector('.stop');
         //
         // stopBtn.value = timerID;
 
-
+        
         let ctx = myClock.getContext("2d");
 
         //DRAW ORANGE BACKGROUND
@@ -95,106 +94,106 @@ function ClockViewCanvas() {
         let diamOfNumber = 45;
 
 
-        //DRAW NUMBERS
+    //DRAW NUMBERS
 
 
-        for (let i = 0; i<12; i++) {
+for (let i = 0; i<12; i++) {
 
 
-            var angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
-            var greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
-            var greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
+      var angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
+      var greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
+          var greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
 
-            let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
-            let numberTop = Math.round(greenCenterY-diamOfNumber/2);
-
-
-
-
-            ctx.strokeStyle = "green";
-            ctx.fillStyle = "green";
+          let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
+          let numberTop = Math.round(greenCenterY-diamOfNumber/2);
+          
 
 
 
-
-            ctx.beginPath();
-            ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI )
-            ctx.fill();
-            ctx.stroke();
+           ctx.strokeStyle = "green";
+        ctx.fillStyle = "green";
 
 
-            ctx.font = "20px Georgia";
+
+
+        ctx.beginPath();
+        ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI )
+        ctx.fill();
+        ctx.stroke();
+
+
+        ctx.font = "20px Georgia";
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
 
             ctx.fillText(clockFirst, numberLeft+160,  numberTop+171 )
 
-            clockFirst++;
-            angle+=30;
+          clockFirst++;
+          angle+=30;
         }
 
-        ctx.save()
+     ctx.save()
 
 
         //SECONDS
 
-        let secondHandRadians = seconds*(Math.PI/180)+3.14;
+    let secondHandRadians = seconds*(Math.PI/180)+3.14;
         ctx.lineWidth = 2.5;
         ctx.beginPath();
-        ctx.save();
+    ctx.save();
 
-        ctx.translate(145, 150);
-
+    ctx.translate(145, 150);
+  
         ctx.rotate(secondHandRadians)
 
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 125);
-        ctx.stroke();
-        ctx.restore();
+                ctx.stroke();
+    ctx.restore();
 
 
 
-        //MINUTES
+    //MINUTES
 
 
-        let minuteHandRadians = minutes*(Math.PI/180)+3.14;
+    let minuteHandRadians = minutes*(Math.PI/180)+3.14;
         ctx.lineWidth = 7.5;
         ctx.beginPath();
-        ctx.save();
+    ctx.save();
 
-        ctx.translate(145, 150);
-
-        ctx.rotate(minuteHandRadians)
+    ctx.translate(145, 150);
+  
+                ctx.rotate(minuteHandRadians)
 
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 100);
-        ctx.stroke();
-        ctx.restore();
+                ctx.stroke();
+    ctx.restore();
 
 
 
-        //HOURS
+    //HOURS
 
-        let hourHandRadians = hours * (Math.PI/180)+3.14;
+    let hourHandRadians = hours * (Math.PI/180)+3.14;
         ctx.lineWidth = 12.5;
         ctx.beginPath();
-        ctx.save();
+    ctx.save();
 
-        ctx.translate(145, 150);
+    ctx.translate(145, 150);
 
         ctx.rotate(hourHandRadians)
 
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 75);
         ctx.stroke();
-        ctx.restore();
+    ctx.restore();
 
 
-        ctx.restore();
+ctx.restore();
 
 
 
-
-    }
+       
+      }
 
 }
