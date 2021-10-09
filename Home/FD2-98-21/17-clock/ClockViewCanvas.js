@@ -12,18 +12,49 @@ function ClockViewCanvas() {
     this.init = function(field) {
 
         clockContainer = field;
-        myClock = clockContainer.querySelector('.clock')
+        myClock = clockContainer.querySelector('.clock');
         ctx = myClock.getContext("2d");
     }
 
 
     this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
 
+        // xxxx();
+        //
+        //
+        // setInterval(xxxx, 1000);
+        //
+        // function xxxx() {
+        //
+        //
+        //
+        //
+        //
+        //     ctx.strokeStyle = "#55b155";
+        //     ctx.fillStyle = "#55b155";
+        //
+        //     ctx.beginPath();
+        //     ctx.arc(left+167.5, top+167.5, 22.5, 0, 2*Math.PI);
+        //     ctx.fill();
+        //     ctx.stroke();
+        //
+        //
+        //     ctx.font = "20px Georgia";
+        //     ctx.strokeStyle = "black";
+        //     ctx.fillStyle = "black";
+        //
+        //     ctx.fillText(clock, left+160,  top+171);
+        // }
+
+
+
+
 
     }
 
 
     this.drawHands = function() { /* Рисуем стрелки */
+
 
 
     }
@@ -59,20 +90,16 @@ function ClockViewCanvas() {
     }
 
 
-
     this.startClock = function(seconds, minutes, hours) { /* Запускаем часы */
 
-
-        let ctx = myClock.getContext("2d");
-
-        //DRAW ORANGE BACKGROUND
+        // DRAW ORANGE BACKGROUND
         ctx.strokeStyle = "#fdc45d";
         ctx.fillStyle = "#fdc45d";
         ctx.lineCap = "round";
 
 
         ctx.beginPath();
-        ctx.arc(150, 150, 150, 0, 2*Math.PI )
+        ctx.arc(150, 150, 150, 0, 2 * Math.PI);
         ctx.fill();
         ctx.stroke();
 
@@ -86,12 +113,12 @@ function ClockViewCanvas() {
 
         //DRAW NUMBERS
 
-        for (let i = 0; i<12; i++) {
+        for (let i = 0; i < 12; i++) {
 
 
-            var angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
-            var greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
-            var greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
+            let angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
+            let greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
+            let greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
 
             let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
             let numberTop = Math.round(greenCenterY-diamOfNumber/2);
@@ -100,7 +127,7 @@ function ClockViewCanvas() {
             ctx.fillStyle = "#55b155";
 
             ctx.beginPath();
-            ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI )
+            ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI);
             ctx.fill();
             ctx.stroke();
 
@@ -109,25 +136,26 @@ function ClockViewCanvas() {
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
 
-            ctx.fillText(clockFirst, numberLeft+160,  numberTop+171 )
+            ctx.fillText(clockFirst, numberLeft+160,  numberTop+171);
 
             clockFirst++;
-            angle+=30;
+            angle += 30;
         }
 
-        ctx.save()
+        ctx.save();
+
 
 
         //SECONDS
 
-        let secondHandRadians = seconds*(Math.PI/180)+3.14;
-        ctx.lineWidth = 2.5;
+        let secondHandRadians = seconds*(Math.PI/180) + Math.PI;
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.save();
 
         ctx.translate(145, 150);
 
-        ctx.rotate(secondHandRadians)
+        ctx.rotate(secondHandRadians);
 
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 125);
@@ -135,33 +163,35 @@ function ClockViewCanvas() {
         ctx.restore();
 
 
+
         //MINUTES
 
         let minuteHandRadians = minutes*(Math.PI/180)+3.14;
-        ctx.lineWidth = 7.5;
+        ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.save();
 
         ctx.translate(145, 150);
 
-        ctx.rotate(minuteHandRadians)
+        ctx.rotate(minuteHandRadians);
 
         ctx.moveTo(0, 0);
-        ctx.lineTo(0, 100);
+        ctx.lineTo(0, 110);
         ctx.stroke();
         ctx.restore();
+
 
 
         //HOURS
 
         let hourHandRadians = hours * (Math.PI/180)+3.14;
-        ctx.lineWidth = 12.5;
+        ctx.lineWidth = 9;
         ctx.beginPath();
         ctx.save();
 
         ctx.translate(145, 150);
 
-        ctx.rotate(hourHandRadians)
+        ctx.rotate(hourHandRadians);
 
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 75);
@@ -169,6 +199,10 @@ function ClockViewCanvas() {
         ctx.restore();
 
         ctx.restore();
+
+
+
+
 
     }
 
