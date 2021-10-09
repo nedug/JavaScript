@@ -145,31 +145,31 @@
 
 
     /* SVG 1 */
-    // const clockSvg1 = new Clock();
-    // const clockSvgView1 = new ClockViewSvg();
-    // const clockSvgController1 = new ClockControllerButtons(+1, 'Лондон');
-	 //
-	 // const clockSvgContainer1 = document.getElementById('clock-container-svg1');
-	 //
-    // clockSvg1.init(clockSvgView1);
-    // clockSvgView1.init(clockSvgContainer1);
-    // clockSvgController1.init(clockSvg1, clockSvgContainer1);
-	 //
-	 //
-	 //
-    // /* SVG 2 */
-    // const clockSvg2 = new Clock();
-    // const clockSvgView2 = new ClockViewSvg();
-    // const clockSvgController2 = new ClockControllerButtons(+9, 'Токио');
-	 //
-    // const clockSvgContainer2 = document.getElementById('clock-container-svg2');
-	 //
-    // clockSvg2.init(clockSvgView2);
-    // clockSvgView2.init(clockSvgContainer2);
-    // clockSvgController2.init(clockSvg2, clockSvgContainer2);
-	 //
-	 //
-	 //
+    const clockSvg1 = new Clock();
+    const clockSvgView1 = new ClockViewSvg();
+    const clockSvgController1 = new ClockControllerButtons(+1, 'Лондон');
+
+	 const clockSvgContainer1 = document.getElementById('clock-container-svg1');
+
+    clockSvg1.init(clockSvgView1);
+    clockSvgView1.init(clockSvgContainer1);
+    clockSvgController1.init(clockSvg1, clockSvgContainer1);
+
+
+
+    /* SVG 2 */
+    const clockSvg2 = new Clock();
+    const clockSvgView2 = new ClockViewSvg();
+    const clockSvgController2 = new ClockControllerButtons(+9, 'Токио');
+
+    const clockSvgContainer2 = document.getElementById('clock-container-svg2');
+
+    clockSvg2.init(clockSvgView2);
+    clockSvgView2.init(clockSvgContainer2);
+    clockSvgController2.init(clockSvg2, clockSvgContainer2);
+
+
+
     // /* CANVAS 1 */
     // const clockCanvas1 = new Clock();
     // const clockCanvasView1 = new ClockViewCanvas();
