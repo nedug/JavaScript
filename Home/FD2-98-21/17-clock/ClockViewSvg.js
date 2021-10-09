@@ -8,6 +8,9 @@ function ClockViewSvg() {
     let myClock = null;
     let startBtn = null;
     let stopBtn = null;
+    let secondHand = null;
+    let minuteHand = null;
+    let hourHand = null;
 
 
     this.init = function(field) {
@@ -22,11 +25,10 @@ function ClockViewSvg() {
         clockSvgCenter.setAttributeNS(null,"fill","black");
         clockSvgCenter.setAttributeNS(null,"stroke","none");
         myClock.append(clockSvgCenter);
-
     }
 
-    this.drawNumbers = function(left, top, clock) {
 
+    this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
 
         let number = document.createElementNS(svgNS, "circle");
         number.setAttributeNS(null,"cx", left+162.5);
@@ -45,13 +47,12 @@ function ClockViewSvg() {
         myClock.append(number);
 
         myClock.append(text);
-
     }
 
 
-    this.drawHands = function() {
+    this.drawHands = function() { /* Рисуем стрелки */
 
-        let secondHand = document.createElementNS(svgNS, 'line');
+        secondHand = document.createElementNS(svgNS, 'line');
         secondHand.setAttributeNS(null,"x1", 145);
         secondHand.setAttributeNS(null,"x2", 145);
         secondHand.setAttributeNS(null,"y1", 150);
@@ -64,7 +65,7 @@ function ClockViewSvg() {
         myClock.append(secondHand);
 
 
-        let minuteHand = document.createElementNS(svgNS, 'line');
+        minuteHand = document.createElementNS(svgNS, 'line');
         minuteHand.setAttributeNS(null,"x1", 145);
         minuteHand.setAttributeNS(null,"x2", 145);
         minuteHand.setAttributeNS(null,"y1", 150);
@@ -77,7 +78,7 @@ function ClockViewSvg() {
 
         myClock.append(minuteHand);
 
-        let hourHand = document.createElementNS(svgNS, 'line');
+        hourHand = document.createElementNS(svgNS, 'line');
         hourHand.setAttributeNS(null,"x1", 145);
         hourHand.setAttributeNS(null,"x2", 145);
         hourHand.setAttributeNS(null,"y1", 150);
@@ -123,37 +124,12 @@ function ClockViewSvg() {
     }
 
 
+    this.startClock = function(seconds, minutes, hours) { /* Запускаем часы */
 
-    this.changeGMT = function(timezone){
-
-        if(timezone<0){
-            let arrCities = ["London", "Reykjavik", "Azores", "Rio de Janeiro", "New York", "Mexico", "Calgary", "Seattle", "Unalaska", "Taiohao", "Pappeete", "Honolulu"];
-
-            myField.querySelector('h3').textContent = "SVG "+arrCities[timezone*(-1)]+" GMT "+timezone;
-
-        } else {
-            let arrCities = ["London", "Berlin", "Budapest", "Moscow", "Karachi", "Ekaterinburg", "Novosibirsk", "Pekin", "Tokio", "Canberra", "Vellington", "Anadir"];
-
-            myField.querySelector('h3').textContent = "SVG "+arrCities[timezone]+" GMT+ "+timezone;
-
-        }
+        secondHand.style.transform = `rotate(${seconds}deg)`;
+        minuteHand.style.transform = `rotate(${minutes}deg)`;
+        hourHand.style.transform = `rotate(${hours}deg)`;
     }
-
-
-    this.startClock = function(seconds, minutes, hours, timerID){
-        let stopBtn = clockContainer.querySelector('.stop');
-        stopBtn.value = timerID;
-        //console.log(seconds, minutes, hours)
-
-        let secondHand = "rotate(" + (seconds + 180) + "deg)";
-
-        let minuteHand = "rotate(" + (minutes + 180) + "deg)";
-        let hourHand = "rotate(" + (hours + 180) + "deg)";
-        clockContainer.querySelector('.secondHand_').style.transform = "rotate(" + seconds + "deg)";
-        clockContainer.querySelector('.minuteHand_').style.transform = "rotate(" + minutes + "deg)";
-        clockContainer.querySelector('.hourHand_').style.transform = "rotate(" + hours + "deg)";
-    }
-
 
 
     this.updateStateBtn = function (stateBtnStop, stateBtnStart) { /* Обновляем состояние кнопок */
