@@ -18,34 +18,35 @@ function ClockViewSvg() {
         clockContainer = field;
         myClock = clockContainer.querySelector('.clock');
 
-        let clockSvgCenter = document.createElementNS(svgNS,"circle");
-        clockSvgCenter.setAttributeNS(null,"cx", 145);
-        clockSvgCenter.setAttributeNS(null,"cy", 150);
-        clockSvgCenter.setAttributeNS(null,"r", 5);
-        clockSvgCenter.setAttributeNS(null,"fill","black");
-        clockSvgCenter.setAttributeNS(null,"stroke","none");
-        myClock.append(clockSvgCenter);
     }
 
 
-    this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
+    this.drawNumbers = function(left, top, clock) { /* Рисуем циферблат часов */
 
-        let number = document.createElementNS(svgNS, "circle");
-        number.setAttributeNS(null,"cx", left+162.5);
-        number.setAttributeNS(null,"cy", top+165);
+        let number = document.createElementNS(svgNS, "circle"); /* зеленые круги */
+        number.setAttributeNS(null,"cx", left + 167);
+        number.setAttributeNS(null,"cy", top + 167);
         number.setAttributeNS(null,"r", 22.5);
-        number.setAttributeNS(null,"fill","green");
-
-
-
-        let text = document.createElementNS(svgNS, "text");
-
-        text.textContent = clock;
-        text.setAttributeNS(null,"x", left+162.5-9);
-        text.setAttributeNS(null,"y", top+165+5);
-        text.setAttributeNS(null,"fill","black");
+        number.setAttributeNS(null,"fill","#55b155");
         myClock.append(number);
 
+        let text;
+        if (clock < 10) { /* цифры */
+            text = document.createElementNS(svgNS, "text");
+            text.textContent = clock;
+            text.setAttributeNS(null,"x", left + 161);
+            text.setAttributeNS(null,"y", top + 171);
+            text.setAttributeNS(null,"fill","black");
+            text.setAttributeNS(null,"font-size","20");
+        }
+        else {
+            text = document.createElementNS(svgNS, "text");
+            text.textContent = clock;
+            text.setAttributeNS(null,"x", left + 157);
+            text.setAttributeNS(null,"y", top + 171);
+            text.setAttributeNS(null,"fill","black");
+            text.setAttributeNS(null,"font-size","20");
+        }
         myClock.append(text);
     }
 
@@ -56,26 +57,22 @@ function ClockViewSvg() {
         secondHand.setAttributeNS(null,"x1", 145);
         secondHand.setAttributeNS(null,"x2", 145);
         secondHand.setAttributeNS(null,"y1", 150);
-        secondHand.setAttributeNS(null,"y2", 25);
+        secondHand.setAttributeNS(null,"y2", 20);
         secondHand.setAttributeNS(null,"stroke", "black");
         secondHand.setAttributeNS(null,"stroke-width", 2);
-        secondHand.setAttribute("class", "secondHand_");
         secondHand.setAttributeNS(null,"transform-origin", 145, 150, 0);
         secondHand.setAttributeNS(null,"transform", "rotate(0)");
         myClock.append(secondHand);
-
 
         minuteHand = document.createElementNS(svgNS, 'line');
         minuteHand.setAttributeNS(null,"x1", 145);
         minuteHand.setAttributeNS(null,"x2", 145);
         minuteHand.setAttributeNS(null,"y1", 150);
-        minuteHand.setAttributeNS(null,"y2", 50);
+        minuteHand.setAttributeNS(null,"y2", 35);
         minuteHand.setAttributeNS(null,"stroke", "black");
-        minuteHand.setAttributeNS(null,"stroke-width", 4);
-        minuteHand.setAttribute("class", "minuteHand_");
+        minuteHand.setAttributeNS(null,"stroke-width", 5);
         minuteHand.setAttributeNS(null,"transform-origin", 145, 150, 0);
         minuteHand.setAttributeNS(null,"transform", "rotate(0)");
-
         myClock.append(minuteHand);
 
         hourHand = document.createElementNS(svgNS, 'line');
@@ -84,13 +81,18 @@ function ClockViewSvg() {
         hourHand.setAttributeNS(null,"y1", 150);
         hourHand.setAttributeNS(null,"y2", 70);
         hourHand.setAttributeNS(null,"stroke", "black");
-        hourHand.setAttributeNS(null,"stroke-width", 6);
-        hourHand.setAttribute("class", "hourHand_");
+        hourHand.setAttributeNS(null,"stroke-width", 8);
         hourHand.setAttributeNS(null,"transform-origin", 145, 150, 0);
         hourHand.setAttributeNS(null,"transform", "rotate(0)");
-
         myClock.append(hourHand);
 
+        let clockSvgCenter = document.createElementNS(svgNS,"circle");
+        clockSvgCenter.setAttributeNS(null,"cx", 145);
+        clockSvgCenter.setAttributeNS(null,"cy", 150);
+        clockSvgCenter.setAttributeNS(null,"r", 6);
+        clockSvgCenter.setAttributeNS(null,"fill","black");
+        clockSvgCenter.setAttributeNS(null,"stroke","none");
+        myClock.append(clockSvgCenter);
     }
 
 
