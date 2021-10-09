@@ -67,6 +67,8 @@ function Clock() {
             let hourHand = soonHour * 30 + soonMinutes / 2; /* Поворот часовой стрелки */
 
             clockView.startClock(secondHand, minuteHand, hourHand);
+
+            clockView.updateStateBtn(false, true);
         }
     }
 
@@ -74,6 +76,8 @@ function Clock() {
     this.stopClock = function() { /* Останавливаем часы */
 
         clearInterval(clockGoTimer);
+
+        clockView.updateStateBtn(true, false);
     }
 
 }

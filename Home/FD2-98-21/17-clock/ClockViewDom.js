@@ -8,6 +8,8 @@ function ClockViewDom() {
     let secondHand = null;
     let minuteHand = null;
     let hourHand = null;
+    let startBtn = null;
+    let stopBtn = null;
 
 
     this.init = function(field) {
@@ -60,12 +62,12 @@ function ClockViewDom() {
         centerClock.append(header);
 
 
-        let startBtn = document.createElement('button');
+        startBtn = document.createElement('button');
         startBtn.classList.add('start');
         startBtn.textContent = "START";
         header.append(startBtn);
 
-        let stopBtn = document.createElement('button');
+        stopBtn = document.createElement('button');
         stopBtn.classList.add('stop');
         stopBtn.textContent = "STOP";
         header.append(stopBtn);
@@ -84,6 +86,13 @@ function ClockViewDom() {
         secondHand.style.transform = `rotate(${seconds + 180}deg)`;
         minuteHand.style.transform = `rotate(${minutes + 180}deg)`;
         hourHand.style.transform = `rotate(${hours + 180}deg)`;
+    }
+
+
+    this.updateStateBtn = function (stateBtnStop, stateBtnStart) { /* Обновляем состояние кнопок */
+
+        stopBtn.disabled = stateBtnStop;
+        startBtn.disabled = stateBtnStart;
     }
 
 }
