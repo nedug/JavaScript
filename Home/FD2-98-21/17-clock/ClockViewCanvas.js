@@ -2,10 +2,11 @@
 
 function ClockViewCanvas() {
 
-
     let clockContainer = null;
     let myClock = null;
     let ctx = null;
+    let startBtn = null;
+    let stopBtn = null;
 
 
     this.init = function(field) {
@@ -13,63 +14,53 @@ function ClockViewCanvas() {
         clockContainer = field;
         myClock = clockContainer.querySelector('.clock')
         ctx = myClock.getContext("2d");
+    }
+
+
+    this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
+
 
     }
 
 
-    this.drawNumbers = function(left, top, clock) {
+    this.drawHands = function() { /* Рисуем стрелки */
 
-        // console.log('CANVAS numbers')
 
     }
 
 
-    this.drawHands = function() {
-
-
-        //draw header + buttons
-
+    this.drawButtons = function(city, timezone) { /* Создаем кнопки СТАРТ и СТОП */
 
         let header = document.createElement('div');
-        header.style.position = "absolute";
-        header.style.top = "25px";
-        header.style.left = "50px";
-        header.style.width = "300px";
-        header.style.display = "flex";
-        header.style.justifyContent = "space-between";
-
-        header.style.hight = "40px";
+        header.style.cssText = `position: absolute;
+                                top: 25px;
+                                left: 15px;
+                                width: 340px;
+                                display: flex;`;
         clockContainer.append(header);
 
 
-        let startBtn = document.createElement('button');
+        startBtn = document.createElement('button');
         startBtn.classList.add('start');
         startBtn.textContent = "START";
         header.append(startBtn);
 
-        let stopBtn = document.createElement('button');
+        stopBtn = document.createElement('button');
         stopBtn.classList.add('stop');
         stopBtn.textContent = "STOP";
         header.append(stopBtn);
 
-        let h2 = document.createElement('h4');
-        if (timezone>=0) h2.textContent = `${city} (GMT+${timezone})`;
-        else h2.textContent = `${city} (GMT${timezone})`;
+        let cityName = document.createElement('h3');
+        if (timezone >= 0) cityName.textContent = `${city} (GMT+${timezone})`;
+        else cityName.textContent = `${city} (GMT${timezone})`;
+        cityName.style.cssText = `padding: 0; margin: 0;`;
 
-        h2.style.padding = "0"
-        h2.style.margin = "0"
-
-        header.append(h2);
-
+        header.append(cityName);
     }
 
 
 
-    this.startClock = function(seconds, minutes, hours) {
-
-        // let stopBtn = myField.querySelector('.stop');
-        //
-        // stopBtn.value = timerID;
+    this.startClock = function(seconds, minutes, hours) { /* Запускаем часы */
 
 
         let ctx = myClock.getContext("2d");
@@ -80,12 +71,10 @@ function ClockViewCanvas() {
         ctx.lineCap = "round";
 
 
-
         ctx.beginPath();
         ctx.arc(150, 150, 150, 0, 2*Math.PI )
         ctx.fill();
         ctx.stroke();
-
 
         let angle = 30;
         let clockFirst = 1;
@@ -97,7 +86,6 @@ function ClockViewCanvas() {
 
         //DRAW NUMBERS
 
-
         for (let i = 0; i<12; i++) {
 
 
@@ -108,14 +96,8 @@ function ClockViewCanvas() {
             let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
             let numberTop = Math.round(greenCenterY-diamOfNumber/2);
 
-
-
-
             ctx.strokeStyle = "green";
             ctx.fillStyle = "green";
-
-
-
 
             ctx.beginPath();
             ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI )
@@ -153,9 +135,7 @@ function ClockViewCanvas() {
         ctx.restore();
 
 
-
         //MINUTES
-
 
         let minuteHandRadians = minutes*(Math.PI/180)+3.14;
         ctx.lineWidth = 7.5;
@@ -170,7 +150,6 @@ function ClockViewCanvas() {
         ctx.lineTo(0, 100);
         ctx.stroke();
         ctx.restore();
-
 
 
         //HOURS
@@ -189,12 +168,15 @@ function ClockViewCanvas() {
         ctx.stroke();
         ctx.restore();
 
-
         ctx.restore();
 
+    }
 
 
+    this.updateStateBtn = function (stateBtnStop, stateBtnStart) { /* Обновляем состояние кнопок */
 
+        stopBtn.disabled = stateBtnStop;
+        startBtn.disabled = stateBtnStart;
     }
 
 }
