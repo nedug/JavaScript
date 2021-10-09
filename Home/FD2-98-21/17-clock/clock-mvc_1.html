@@ -118,7 +118,7 @@
 
     /* -------  model ------- */
 
-    function ClockModel() {
+    function Clock() {
 
         let clockView = null;
 
@@ -279,8 +279,8 @@
 
         this.startClock = function(seconds, minutes, hours, timerID) {
 
-            let stopBtn = clockContainer.querySelector('.stop');
-            stopBtn.value = timerID;
+            // let stopBtn = clockContainer.querySelector('.stop');
+            // stopBtn.value = timerID;
 
             let secondHand = "rotate(" + (seconds + 180) + "deg)";
             let minuteHand = "rotate(" + (minutes + 180) + "deg)";
@@ -362,7 +362,7 @@
 
 
 
-    const clockDom = new ClockModel();
+    const clockDom = new Clock();
     const clockDomView = new ClockViewDom();
     const clockDomController = new ClockControllerButtons('Нью-Йорк');
 
@@ -379,9 +379,9 @@
 
 
 
-    const clockDom1 = new ClockModel();
+    const clockDom1 = new Clock();
     const clockDomView1 = new ClockViewDom();
-    const clockDomController1 = new ClockControllerButtons();
+    const clockDomController1 = new ClockControllerButtons('Минск');
 
     const clockDomContainer1 = document.getElementById('clockContainer1');
 
@@ -389,14 +389,14 @@
     clockDomView1.init(clockDomContainer1);
     clockDomController1.init(clockDom1, clockDomContainer1);
 
-    clockDomController1.startClock(1);
+    clockDomController1.startClock(+3);
 
 
 
 
 
 
-    // const clockSvg = new ClockModel();
+    // const clockSvg = new Clock();
     // const clockSvgView = new ClockViewSvg();
     // const clockSvgController = new ClockControllerButtons();
     //
@@ -412,7 +412,7 @@
     //
     // clockSvgController.startClock();
     //
-    // const clockSvg1 = new ClockModel();
+    // const clockSvg1 = new Clock();
     // const clockSvgView1 = new ClockViewSvg();
     // const clockSvgController1 = new ClockControllerButtons();
     //
@@ -430,7 +430,7 @@
     //
     //
     //
-    // const clockCanvas = new ClockModel();
+    // const clockCanvas = new Clock();
     // const clockCanvasView = new ClockViewCanvas();
     // const clockCanvasController = new ClockControllerButtons();
     //
@@ -443,7 +443,7 @@
     // clockCanvasController.startClock();
     //
     //
-    // const clockCanvas1 = new ClockModel();
+    // const clockCanvas1 = new Clock();
     // const clockCanvasView1 = new ClockViewCanvas();
     // const clockCanvasController1 = new ClockControllerButtons();
     //
