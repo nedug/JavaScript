@@ -109,7 +109,7 @@
 <!--<script src="Clock.js"></script>-->
 <!--<script src="ClockControllerButtons.js"></script>-->
 <!--<script src="ClockViewDom.js"></script>-->
-<!--<script src="ClockViewSvg.js"></script>-->
+<script src="ClockViewSvg.js"></script>
 <!--<script src="ClockViewCanvas.js"></script>-->
 
 
@@ -339,6 +339,7 @@
 
 
         this.startClock = function(timezone) {
+
             clockModel.startClock(timezone);
         }
 
@@ -362,10 +363,10 @@
 
 
 
+    /* DOM 1 */
     const clockDom = new Clock();
     const clockDomView = new ClockViewDom();
     const clockDomController = new ClockControllerButtons('Нью-Йорк');
-
 
     const clockDomContainer = document.getElementById('clockContainer');
 
@@ -377,8 +378,7 @@
 
 
 
-
-
+    /* DOM 2 */
     const clockDom1 = new Clock();
     const clockDomView1 = new ClockViewDom();
     const clockDomController1 = new ClockControllerButtons('Минск');
@@ -389,28 +389,31 @@
     clockDomView1.init(clockDomContainer1);
     clockDomController1.init(clockDom1, clockDomContainer1);
 
-    clockDomController1.startClock(+3);
+    clockDomController1.startClock(+3); /* Минск */
+
+
+
+
+
+    /* SVG 1 */
+    const clockSvg = new Clock();
+    const clockSvgView = new ClockViewSvg();
+    const clockSvgController = new ClockControllerButtons('Лондон');
+
+	 const clockSvgContainer = document.getElementById('clockContainer2');
+
+    clockSvg.init(clockSvgView);
+    clockSvgView.init(clockSvgContainer);
+    clockSvgController.init(clockSvg, clockSvgContainer);
+
+    clockSvgController.startClock(+1); /* Лондон */
 
 
 
 
 
 
-    // const clockSvg = new Clock();
-    // const clockSvgView = new ClockViewSvg();
-    // const clockSvgController = new ClockControllerButtons();
-    //
-    // 		console.log(clockSvg);
-    // console.log(clockSvgView);
-    // console.log(clockSvgController);
-    //
-    //
-    // const clockSvgContainer = document.getElementById('clockContainer2');
-    // clockSvg.init(clockSvgView);
-    // clockSvgView.init(clockSvgContainer);
-    // clockSvgController.init(clockSvg, clockSvgContainer);
-    //
-    // clockSvgController.startClock();
+
     //
     // const clockSvg1 = new Clock();
     // const clockSvgView1 = new ClockViewSvg();
