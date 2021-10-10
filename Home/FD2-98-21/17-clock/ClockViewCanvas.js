@@ -127,6 +127,12 @@ function ClockViewCanvas() {
         ctx.fill();
         ctx.stroke();
 
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(150, 150, 7, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
 
         for (let i = 1; i <= 12; i++) { /* Отображаем цифры часов */
 
@@ -138,76 +144,57 @@ function ClockViewCanvas() {
             ctx.fill();
             ctx.stroke();
 
-
-            ctx.font = "20px Georgia";
+            ctx.font = "20px Times New Roman";
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
 
-            ctx.fillText(i, objNum[i][0] + 160,  objNum[i][1] + 171);
+            if (i < 10) {
+                ctx.fillText(i, objNum[i][0] + 163,  objNum[i][1] + 172);
+            }
+            else {
+                ctx.fillText(i, objNum[i][0] + 157,  objNum[i][1] + 172);
+            }
         }
 
         ctx.save();
 
 
-
-        //SECONDS
-
-        let secondHandRadians = seconds*(Math.PI/180) + Math.PI;
-        ctx.lineWidth = 2;
+        /* Отображаем секундную стрелку */
+        let secondHandRadians = seconds * Math.PI / 180 + Math.PI;
+        ctx.translate(150, 150);
         ctx.beginPath();
-        ctx.save();
-
-        ctx.translate(145, 150);
-
         ctx.rotate(secondHandRadians);
-
+        ctx.lineWidth = 2;
         ctx.moveTo(0, 0);
-        ctx.lineTo(0, 125);
+        ctx.lineTo(0, 130);
         ctx.stroke();
         ctx.restore();
 
 
-
-        //MINUTES
-
-        let minuteHandRadians = minutes*(Math.PI/180)+3.14;
-        ctx.lineWidth = 5;
-        ctx.beginPath();
+        /* Отображаем минутную стрелку */
+        let minuteHandRadians = minutes * Math.PI / 180 + Math.PI;
         ctx.save();
-
-        ctx.translate(145, 150);
-
+        ctx.translate(150, 150);
+        ctx.beginPath();
         ctx.rotate(minuteHandRadians);
-
+        ctx.lineWidth = 5;
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 110);
         ctx.stroke();
         ctx.restore();
 
 
-
-        //HOURS
-
-        let hourHandRadians = hours * (Math.PI/180)+3.14;
-        ctx.lineWidth = 9;
-        ctx.beginPath();
+        /* Отображаем часовую стрелку */
+        let hourHandRadians = hours * Math.PI / 180 + Math.PI;
         ctx.save();
-
-        ctx.translate(145, 150);
-
+        ctx.translate(150, 150);
+        ctx.beginPath();
         ctx.rotate(hourHandRadians);
-
+        ctx.lineWidth = 9;
         ctx.moveTo(0, 0);
         ctx.lineTo(0, 75);
         ctx.stroke();
         ctx.restore();
-
-        ctx.restore();
-
-
-
-
-
     }
 
 
