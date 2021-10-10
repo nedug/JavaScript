@@ -7,11 +7,6 @@ function ClockViewCanvas() {
     let ctx = null;
     let startBtn = null;
     let stopBtn = null;
-
-    // let leftNum = null;
-    // let topNum = null;
-    // let clockNum = null;
-
     let objNum = {};
 
 
@@ -30,60 +25,6 @@ function ClockViewCanvas() {
         arrNum[1] = top;
 
         objNum[clock] = arrNum;
-
-
-        // console.log(objNum);
-
-
-        // leftNum = left;
-        // topNum = top;
-        // clockNum = clock;
-
-        // console.log(leftNum);
-        // console.log(topNum);
-        // console.log(clockNum);
-
-
-
-        // xxxx();
-        //
-        //
-        // setInterval(xxxx, 1000);
-        //
-        // function xxxx() {
-        //
-        //
-        //
-        //
-        //
-        //     ctx.strokeStyle = "#55b155";
-        //     ctx.fillStyle = "#55b155";
-        //
-        //     ctx.beginPath();
-        //     ctx.arc(left+167.5, top+167.5, 22.5, 0, 2*Math.PI);
-        //     ctx.fill();
-        //     ctx.stroke();
-        //
-        //
-        //     ctx.font = "20px Georgia";
-        //     ctx.strokeStyle = "black";
-        //     ctx.fillStyle = "black";
-        //
-        //     ctx.fillText(clock, left+160,  top+171);
-        // }
-
-
-
-
-
-    }
-
-
-    this.drawHands = function() { /* Рисуем стрелки */
-
-
-
-
     }
 
 
@@ -202,6 +143,11 @@ function ClockViewCanvas() {
 
         stopBtn.disabled = stateBtnStop;
         startBtn.disabled = stateBtnStart;
+    }
+
+
+    this.drawHands = function() {
+
     }
 
 }
