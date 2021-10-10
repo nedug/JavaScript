@@ -61,7 +61,6 @@ function ClockViewDom() {
                                 display: flex;`;
         centerClock.append(header);
 
-
         startBtn = document.createElement('button');
         startBtn.classList.add('start');
         startBtn.textContent = "START";

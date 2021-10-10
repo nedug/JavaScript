@@ -105,7 +105,6 @@ function ClockViewSvg() {
                                 display: flex;`;
         clockContainer.append(header);
 
-
         startBtn = document.createElement('button');
         startBtn.classList.add('start');
         startBtn.textContent = "START";
