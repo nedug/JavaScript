@@ -8,6 +8,10 @@ function ClockViewCanvas() {
     let startBtn = null;
     let stopBtn = null;
 
+    let leftNum = null;
+    let topNum = null;
+    let clockNum = null;
+
 
     this.init = function(field) {
 
@@ -18,6 +22,19 @@ function ClockViewCanvas() {
 
 
     this.drawNumbers = function(left, top, clock) { /* Рисуем цифры часов */
+
+        // console.log('draw');
+
+
+        leftNum = left;
+        topNum = top;
+        clockNum = clock;
+
+        // console.log(leftNum);
+        // console.log(topNum);
+        // console.log(clockNum);
+
+
 
         // xxxx();
         //
@@ -57,6 +74,7 @@ function ClockViewCanvas() {
 
 
 
+
     }
 
 
@@ -92,6 +110,10 @@ function ClockViewCanvas() {
 
     this.startClock = function(seconds, minutes, hours) { /* Запускаем часы */
 
+        // console.log(leftNum);
+        // console.log(topNum);
+        // console.log(clockNum);
+
         // DRAW ORANGE BACKGROUND
         ctx.strokeStyle = "#fdc45d";
         ctx.fillStyle = "#fdc45d";
@@ -113,21 +135,57 @@ function ClockViewCanvas() {
 
         //DRAW NUMBERS
 
+        // for (let i = 0; i < 12; i++) {
+        //
+        //
+        //     let angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
+        //     let greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
+        //     let greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
+        //
+        //     let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
+        //     let numberTop = Math.round(greenCenterY-diamOfNumber/2);
+        //
+        //     ctx.strokeStyle = "#55b155";
+        //     ctx.fillStyle = "#55b155";
+        //
+        //     ctx.beginPath();
+        //     ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI);
+        //     ctx.fill();
+        //     ctx.stroke();
+        //
+        //
+        //     ctx.font = "20px Georgia";
+        //     ctx.strokeStyle = "black";
+        //     ctx.fillStyle = "black";
+        //
+        //     ctx.fillText(clockFirst, numberLeft+160,  numberTop+171);
+        //
+        //     clockFirst++;
+        //     angle += 30;
+        // }
+
+
+
+
         for (let i = 0; i < 12; i++) {
 
+            // console.log(leftNum);
+            // console.log(topNum);
+            // console.log(clockNum);
 
-            let angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
-            let greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
-            let greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
 
-            let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
-            let numberTop = Math.round(greenCenterY-diamOfNumber/2);
+            // let angleRadians = parseFloat(parseFloat(angle))/180*Math.PI;
+            // let greenCenterX = centerOfClockX+radius*Math.sin(angleRadians);
+            // let greenCenterY = centerOfClockY-radius*Math.cos(angleRadians);
+            //
+            // let numberLeft = Math.round(greenCenterX-diamOfNumber/2);
+            // let numberTop = Math.round(greenCenterY-diamOfNumber/2);
 
             ctx.strokeStyle = "#55b155";
             ctx.fillStyle = "#55b155";
 
             ctx.beginPath();
-            ctx.arc(numberLeft+167.5, numberTop+167.5, 22.5, 0, 2*Math.PI);
+            ctx.arc(leftNum+167.5, topNum+167.5, 22.5, 0, 2*Math.PI);
             ctx.fill();
             ctx.stroke();
 
@@ -136,11 +194,16 @@ function ClockViewCanvas() {
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
 
-            ctx.fillText(clockFirst, numberLeft+160,  numberTop+171);
+            ctx.fillText(clockNum, leftNum+160,  topNum+171);
 
-            clockFirst++;
-            angle += 30;
+            // clockFirst++;
+            // angle += 30;
         }
+
+
+
+
+
 
         ctx.save();
 
