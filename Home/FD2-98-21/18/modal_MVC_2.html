@@ -19,36 +19,34 @@
 
 	<div class="modal-data"></div>
 	<p class="btn"><a href="#" id="clear-data" class="clear-data" style="display: none;">Очистить данные</a></p>
+</div>
 
+<div class="modal-overlay modal_closed" id="modal-overlay"></div>
+<div class="modal modal_closed" id="modal">
+	<header class="modal__header">
+		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+		<h2>Введите данные</h2>
+	</header>
 
-	<div class="modal-overlay modal_closed" id="modal-overlay"></div>
-	<div class="modal modal_closed" id="modal">
-		<header class="modal__header">
-			<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
-			<h2>Введите данные</h2>
-		</header>
+	<main class="modal__content">
+		<div class="form-field">
+			<label for="name">Ваше имя:</label>
+			<input required class="input__default" type="text" id="name" name="name">
+		</div>
+		<div class="form-field">
+			<label>Ваш день рождения:</label>
+			<input required type="number" class="input__date-birth" id="birth-day" name="name" placeholder="День"> -
+			<input required type="number" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
+			<input required type="number" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
+		</div><br>
+		<div class="valid-date"></div>
+	</main>
 
-		<main class="modal__content">
-			<div class="form-field">
-				<label for="name">Ваше имя:</label>
-				<input required class="input__default" type="text" id="name" name="name">
-			</div>
-			<div class="form-field">
-				<label>Ваш день рождения:</label>
-				<input required type="number" class="input__date-birth" id="birth-day" name="name" placeholder="День"> -
-				<input required type="number" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
-				<input required type="number" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
-			</div><br>
-			<div class="valid-date"></div>
-		</main>
-
-		<footer class="modal__footer">
-			<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
-			<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
-		</footer>
-
-
-	</div>
+	<footer class="modal__footer">
+		<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
+		<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
+	</footer>
+</div>
 
 <script>
 
