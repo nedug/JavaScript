@@ -56,8 +56,6 @@
 
     function ModalModel () {
 
-        // let myModalContainer = null;
-
         let myModalView = null;
         let userData = {};
 
@@ -82,7 +80,7 @@
 
         this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
 
-            if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > 2021) {
+            if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
 
                 myModalView.validDate(false);
                 return;
@@ -104,43 +102,126 @@
 
         this.storeData = function() { // Сохраняем данные в localStorage, а если не доступно, то в cookies
 
-            let userDataSerial = JSON.stringify(userData);
+            if (('localStorage' in window) && (window.localStorage !== null)) {
 
-            localStorage.setItem('userData', userDataSerial);
+                let userDataSerial = JSON.stringify(userData);
+
+                localStorage.setItem('userData', userDataSerial);
+				}
+
+            else {
+
+                setCookie('userData', userData);
+
+                function setCookie(name, value, options = { path: '/' }) {
+
+                    if (options.expires instanceof Date) {
+                        options.expires = options.expires.toUTCString();
+                    }
+
+                    if (value instanceof Object) {
+                        value = JSON.stringify(value);
+                    }
+
+                    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+                    for (let optionKey in options) {
+                        updatedCookie += "; " + optionKey;
+                        if (options[optionKey] !== true) {
+                            updatedCookie += "=" + options[optionKey];
+                        }
+                    }
+                    document.cookie = updatedCookie;
+                }
+				}
+
         }
 
 
         this.getData = function() { // Достаем данные из хранилища
 
-            userData = JSON.parse(localStorage.getItem('userData'));
+            if (('localStorage' in window) && (window.localStorage !== null)) {
 
-            if (!userData) { /* Проверяем на наличие данных в localStorage */
-                console.error("Ошибка получения данных из модели!");
-                return;
+                userData = JSON.parse(localStorage.getItem('userData'));
+
+                if (!userData) { /* Проверяем на наличие данных в localStorage */
+                    console.error("Ошибка получения данных из модели!");
+                    return;
+                }
             }
+
+            else {
+
+                userData = getCookie('userData', json = true);
+
+                if (!userData) { /* Проверяем на наличие данных в cookies */
+                    console.error("Ошибка получения данных из модели!");
+                    return;
+                }
+
+                function getCookie(name, json = false) {
+                    if (!name) {
+                        return undefined;
+                    }
+                    const regExpStr = "(?:^|; )" + name.replace(/([.$?*|{}()\[\]\\\/+^])/g, '\\$1') + "=([^;]*)";
+                    let matches = document.cookie.match(new RegExp(regExpStr));
+                    if (matches) {
+                        let res = decodeURIComponent(matches[1]);
+                        if (json) {
+                            try {
+                                return JSON.parse(res);
+                            } catch (e) {}
+                        }
+                        return res;
+                    }
+                    return undefined;
+                }
+				}
 
             myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear); /* Передаем данные на отображение во View */
         }
 
 
-        this.updateData = function() { /* Пока не ясно... */
-        }
-
-
         this.clearData = function() { // Очищаем данные в хранилище
 
-            localStorage.removeItem('userData');
+            if (('localStorage' in window) && (window.localStorage !== null)) {
+
+                localStorage.removeItem('userData');
+            }
+
+            else {
+
+                deleteCookie('userData');
+
+                function deleteCookie(name) {
+
+                    setCookie(name, null, {
+                        expires: new Date(),
+                        path: '/'
+                    });
+
+                    function setCookie(name, value, options = { path: '/' }) {
+
+                        if (options.expires instanceof Date) {
+                            options.expires = options.expires.toUTCString();
+                        }
+
+                        if (value instanceof Object) {
+                            value = JSON.stringify(value);
+                        }
+
+                        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+                        for (let optionKey in options) {
+                            updatedCookie += "; " + optionKey;
+                            if (options[optionKey] !== true) {
+                                updatedCookie += "=" + options[optionKey];
+                            }
+                        }
+                        document.cookie = updatedCookie;
+                    }
+                }
+				}
 
             myModalView.clearViewData();
-        }
-
-
-        this.clearForm = function(inputName, inputDay, inputMonth, inputYear) { // очистить данные в форме (пока не используется)
-
-            // inputName.value = '';
-            // inputDay.value = '';
-            // inputMonth.value = '';
-            // inputYear.value = '';
         }
 
 
@@ -159,25 +240,24 @@
 
     function ModalView() {
 
-        // let myModal = null;
         let myModalContainer = null;
         let myModalOverlay = null;
 
         let buttonSave = null;
         let modalData = null;
         let clearData = null;
+        let validDate = null;
 
 
         this.init = function(field) {
 
             myModalContainer = field;
 
-            // myModal = myModalContainer.querySelector('.modal');
             myModalOverlay = myModalContainer.parentNode.querySelector('.modal-overlay');
-
             buttonSave = myModalContainer.querySelector(".modal__save");
             modalData = myModalContainer.parentNode.querySelector('.modal-data');
             clearData = myModalContainer.parentNode.querySelector('.clear-data');
+            validDate = myModalContainer.querySelector(".valid-date");
         }
 
 
@@ -193,7 +273,6 @@
             myModalContainer.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
 
-
             const inputName = myModalContainer.querySelector(".input__default");
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
@@ -205,8 +284,6 @@
             // inputBirth[2].value = '';
 
             buttonSave.disabled = true;
-
-            const validDate = myModalContainer.querySelector(".valid-date");
 
             validDate.style.display = 'none';
         }
@@ -228,15 +305,13 @@
         }
 
 
-        this.btnUpdate = function (stateBtn) {
+        this.btnUpdate = function (stateBtn) { /* Показываем состояние кнопки 'Сохранить данные' */
 
             buttonSave.disabled = stateBtn;
         }
 
 
-        this.validDate = function (checkData) {
-
-            const validDate = myModalContainer.querySelector(".valid-date");
+        this.validDate = function (checkData) { /* Показываем валидацию данных */
 
             validDate.style.display = '';
 
@@ -261,13 +336,12 @@
 
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
 
-
             myModalModel = model;
             myModalContainer = field;
 
-            myModalModel.getData(); /* Проверка на наличие данных в localStorage */
+            myModalModel.getData(); /* Проверка на наличие данных в localStorage или Cookies */
 
-            myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить' */
+            myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить данные' */
 
 
             const buttonOpen = myModalContainer.parentNode.querySelector(".modal-open");
@@ -291,9 +365,6 @@
             inputName.addEventListener('input', checkChangeInput);
             inputBirth.forEach(elem => elem.addEventListener('input', checkChangeInput));
 
-            // inputBirth[0].addEventListener('input', checkChangeInput);
-            // inputBirth[1].addEventListener('input', checkChangeInput);
-            // inputBirth[2].addEventListener('input', checkChangeInput);
 
             function checkChangeInput(e) {
 
@@ -322,7 +393,7 @@
         }
 
 
-        this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage */
+        this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage или Cookies */
 
             e.preventDefault();
 
@@ -330,7 +401,7 @@
         }
 
 
-        this.clearData = function (e) { /* Очищаем данные из localStorage */
+        this.clearData = function (e) { /* Очищаем данные из localStorage или Cookies */
 
             e.preventDefault();
 
