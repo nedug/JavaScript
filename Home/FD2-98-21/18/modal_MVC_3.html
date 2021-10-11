@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Modal default MVC</title>
+	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container" id="container">
+
+	<h1>Создание уже и не такого простого модального окошка!</h1>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Открыть окно</a></p>
+
+	<div class="modal-data"></div>
+	<p class="btn"><a href="#" id="clear-data" class="clear-data" style="display: none;">Очистить данные</a></p>
+</div>
+
+<div class="modal-overlay modal_closed" id="modal-overlay"></div>
+<div class="modal modal_closed" id="modal">
+	<header class="modal__header">
+		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+		<h2>Введите данные</h2>
+	</header>
+
+	<main class="modal__content">
+		<div class="form-field">
+			<label for="name">Ваше имя:</label>
+			<input required class="input__default" type="text" id="name" name="name">
+		</div>
+		<div class="form-field">
+			<label>Ваш день рождения:</label>
+			<input required type="number" class="input__date-birth" id="birth-day" name="name" placeholder="День"> -
+			<input required type="number" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
+			<input required type="number" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
+		</div><br>
+		<div class="valid-date"></div>
+	</main>
+
+	<footer class="modal__footer">
+		<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
+		<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
+	</footer>
+</div>
+
+<script>
+
+
+
+    /* -------  model ------- */
+
+    function ModalModel () {
+
+        // let myModalContainer = null;
+
+        let myModalView = null;
+        let userData = {};
+
+
+        this.init = function(view) { /* Получаем View */
+
+            myModalView = view;
+        }
+
+
+        this.openModal = function() { /* Открываем модальное окно */
+
+            myModalView.show();
+        }
+
+
+        this.closeModal = function() { /* Закрываем модальное окно */
+
+            myModalView.hide();
+        }
+
+
+        this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
+
+            if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > 2021) {
+
+                myModalView.validDate(false);
+                return;
+            }
+
+            userData = {
+
+                userName: inputName,
+                userDate: inputDay,
+                userMonth: inputMonth,
+                userYear: inputYear,
+            }
+
+            this.storeData(); /* Сохраняем данные в localStorage */
+
+            myModalView.validDate(true);
+        }
+
+
+        this.storeData = function() { // Сохраняем данные в localStorage, а если не доступно, то в cookies
+
+            let userDataSerial = JSON.stringify(userData);
+
+            localStorage.setItem('userData', userDataSerial);
+        }
+
+
+        this.getData = function() { // Достаем данные из хранилища
+
+            userData = JSON.parse(localStorage.getItem('userData'));
+
+            if (!userData) { /* Проверяем на наличие данных в localStorage */
+                console.error("Ошибка получения данных из модели!");
+                return;
+            }
+
+            myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear); /* Передаем данные на отображение во View */
+        }
+
+
+        this.updateData = function() { /* Пока не ясно... */
+        }
+
+
+        this.clearData = function() { // Очищаем данные в хранилище
+
+            localStorage.removeItem('userData');
+
+            myModalView.clearViewData();
+        }
+
+
+        this.clearForm = function(inputName, inputDay, inputMonth, inputYear) { // очистить данные в форме (пока не используется)
+
+            // inputName.value = '';
+            // inputDay.value = '';
+            // inputMonth.value = '';
+            // inputYear.value = '';
+        }
+
+
+        this.checkInput = function(inputName, inputDay, inputMonth, inputYear) { /* Проверяем состоянин кнопки 'Сохранить' */
+
+            let stateBtn = !(inputName && inputDay && inputMonth && inputYear);
+
+            myModalView.btnUpdate(stateBtn); /* Отображаем состояние кнопки 'Сохранить' */
+        }
+    }
+
+
+
+
+    /* ------- view -------- */
+
+    function ModalView() {
+
+        // let myModal = null;
+        let myModalContainer = null;
+        let myModalOverlay = null;
+
+        let buttonSave = null;
+        let modalData = null;
+        let clearData = null;
+
+
+        this.init = function(field) {
+
+            myModalContainer = field;
+
+            // myModal = myModalContainer.querySelector('.modal');
+            myModalOverlay = myModalContainer.parentNode.querySelector('.modal-overlay');
+
+            buttonSave = myModalContainer.querySelector(".modal__save");
+            modalData = myModalContainer.parentNode.querySelector('.modal-data');
+            clearData = myModalContainer.parentNode.querySelector('.clear-data');
+        }
+
+
+        this.show = function () { /* Открываем модальное окно */
+
+            myModalContainer.classList.remove('modal_closed');
+            myModalOverlay.classList.remove('modal_closed');
+        }
+
+
+        this.hide = function () { /* Закрываем модальное окно */
+
+            myModalContainer.classList.add('modal_closed');
+            myModalOverlay.classList.add('modal_closed');
+
+
+            const inputName = myModalContainer.querySelector(".input__default");
+            const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            inputName.value = '';
+            inputBirth.forEach(elem => elem.value = '');
+
+            // inputBirth[0].value = '';
+            // inputBirth[1].value = '';
+            // inputBirth[2].value = '';
+
+            buttonSave.disabled = true;
+
+            const validDate = myModalContainer.querySelector(".valid-date");
+
+            validDate.style.display = 'none';
+        }
+
+
+        this.printViewData = function (name, day, month, year) { // Выводим данные из хранилища в div.modal-data
+
+            modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
+
+            clearData.style.display = '';
+        }
+
+
+        this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
+
+            modalData.innerHTML = `Данные отсутствуют...`;
+
+            clearData.style.display = 'none';
+        }
+
+
+        this.btnUpdate = function (stateBtn) {
+
+            buttonSave.disabled = stateBtn;
+        }
+
+
+        this.validDate = function (checkData) {
+
+            const validDate = myModalContainer.querySelector(".valid-date");
+
+            validDate.style.display = '';
+
+            if (checkData) validDate.innerHTML = 'Данные сохранены!';
+            else validDate.innerHTML = 'Введите корректно данные!';
+        }
+    }
+
+
+
+
+    /* ----- controller ---- */
+
+    function ModalController () {
+
+        let myModalModel = null;
+        let myModalContainer = null;
+
+        let inputName = null;
+        let inputBirth = null;
+
+
+        this.init = function(model, field) { // получаем кнопки и вешаем обработчики
+
+
+            myModalModel = model;
+            myModalContainer = field;
+
+            myModalModel.getData(); /* Проверка на наличие данных в localStorage */
+
+            myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить' */
+
+
+            const buttonOpen = myModalContainer.parentNode.querySelector(".modal-open");
+            buttonOpen.addEventListener("click", this.openModal);
+
+            const buttonClose = myModalContainer.querySelector(".modal__close");
+            buttonClose.addEventListener("click", this.hideModal);
+
+            const buttonCancel = myModalContainer.querySelector(".modal__cancel");
+            buttonCancel.addEventListener("click", this.hideModal);
+
+            const buttonSave = myModalContainer.querySelector(".modal__save");
+            buttonSave.addEventListener("click", this.saveModal);
+
+            const buttonClear = myModalContainer.parentNode.querySelector(".clear-data");
+            buttonClear.addEventListener("click", this.clearData);
+
+            inputName = myModalContainer.querySelector(".input__default");
+            inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
+
+            inputName.addEventListener('input', checkChangeInput);
+            inputBirth.forEach(elem => elem.addEventListener('input', checkChangeInput));
+
+            // inputBirth[0].addEventListener('input', checkChangeInput);
+            // inputBirth[1].addEventListener('input', checkChangeInput);
+            // inputBirth[2].addEventListener('input', checkChangeInput);
+
+            function checkChangeInput(e) {
+
+                e.preventDefault();
+
+                myModalModel.checkInput(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
+            }
+        }
+
+
+        this.openModal = function (e) { /* Открываем модальное окно */
+
+            e.preventDefault();
+
+            myModalModel.openModal();
+        }
+
+
+        this.hideModal = function (e) { /* Закрываем модальное окно */
+
+            e.preventDefault();
+
+            myModalModel.closeModal();
+
+            myModalModel.getData(); /* Здороваемся с пользователем если данные сохранены */
+        }
+
+
+        this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage */
+
+            e.preventDefault();
+
+            myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
+        }
+
+
+        this.clearData = function (e) { /* Очищаем данные из localStorage */
+
+            e.preventDefault();
+
+            myModalModel.clearData();
+        }
+    }
+
+
+
+    // глобальная инициализация
+    const appModalModel = new ModalModel();
+    const appModalView = new ModalView();
+    const appModalController = new ModalController();
+
+
+
+    //вызываем init-методы
+    const containerElem = document.getElementById("modal");
+
+    appModalModel.init(appModalView);
+    appModalView.init(containerElem);
+    appModalController.init(appModalModel, containerElem);
+
+
+</script>
+</body>
+</html>
