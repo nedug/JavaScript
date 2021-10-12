@@ -5,32 +5,6 @@
 	<title>Modal default MVC</title>
 	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 	<link rel="stylesheet" href="styles.css">
-	<style>
-       .modal__close__new {
-           position: fixed;
-           top: 15px;
-           right: 15px;
-           width: 28px;
-           height: 28px;
-           border-radius: 50%;
-           background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAEFCu8CAAAABGdBTUEAALGPC/xhBQAAAqpJREFUSA2tljtyFEEMhsdgHJpb2NyAxwkgcQHGHGE3Bs4B8RICV6G4ARSERH4QGaog4vF/qv7HWu3MzrqMqjR69C9puls9PV13QU9Rr13Y3Vfpf7GPxLdRROGw0hs43vHYFuM9wYAMOcbYaQ47u7fJgRMGFMkwIgyHyIDesNMgAD3dkvZDvGWPlSVUG4wxBu43h0HIGT4UO7Hv2EeoB1wCQPhYzi/i12JHSA26acWpLV96IMtDGQZU+TEDrT9qAb8lD8RnzXbwC9mL5vsjGbSvpwGnzWfB+5s8F7C/cLLSDrS8y0Ci+gbguutiBzxLYCoQkMm4D0NOD47JwVUl0Vz8U5wD38veFa8ldptDw9xpfhZvkj4JkStlnT1eoXxmMrjqHKUlYlMBsclsdg5gZWkKmgP/Q3EQi2Fgc/WNe2yH5IOKowscWDslxXV0lXF7DNiwzMEOpLLHkTHX7ECv3XKvBIH5Ll7KlOfEmIm3yAWeMEDf2Ylt+iYlv/Zz2cbR39FKdmBDeU4O5jMB7jMA0yspDp6SjunlJsE3enRROAGchFyVkzIruEmTT91cTLJ61GpyMGApfinioGwy3VxwSCcHudbS/yhUi5NzhXbl4QbJ4EVB0T65nYzF59ZyiFvMGFqNGkE0a25yg/KHuUFDkJxjB9dCAdAjHwbno0YcDP4s7KySt/dfh9RJ4gWGVsF54wgP3VMGWDKbenfl6nxYwBg/JuNjw8UwBsA/tEdyr9DU7MgVn8V9Kflj7OL8kY0tJ8nH9g9//mg7HzX2xEFzPT1g6V+pBglRZzE2+3y9ON8sJ0LnD8eXHCAus4X4QMyFt26PGAMDliPhi5A85OwvROlLtCOLdfZbXVWSi5wb0WOh+Nm7bFFiiL0S8btDc/HL80Z83hgdH2NgJukfa8ehuEonW4wAAAAASUVORK5CYII=');
-           overflow: hidden;
-           text-indent: -999em;
-           text-decoration: none;
-			  z-index: 1000;
-			  color: #ff1c1a;
-			  display: none;
-		 }
-       .modal__close__new:hover {
-           background-color: #dc3545;
-           text-decoration: none;
-       }
-       .modal__new__content {
-           width: 600px;
-           height: 380px;
-			  padding: 15px;
-       }
-	</style>
 </head>
 <body>
 
@@ -41,19 +15,15 @@
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
-	<p class="btn">
 
+	<p class="btn">
 
 		<a href="#" class="modal-open" data-supermodal="modal" title="Покажите мне модальное окошко">Открыть окно 1</a>
 
-
 		<a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!">Открыть окно 2</a>
-
 
 		<a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/__-vp0g_BhA" title="Покажите мне модальное окошко">Открыть окно 3</a>
 	</p>
-
-
 
 	<div class="modal-data"></div>
 	<p class="btn"><a href="#" id="clear-data" class="clear-data" style="display: none;">Очистить данные</a></p>
@@ -93,7 +63,8 @@
 
 <script>
 
-	 (function() {
+
+const myPlugin = (function() {
 
     /* -------  model ------- */
 
@@ -588,22 +559,34 @@
 
 
 
-    // глобальная инициализация
-    const appModalModel = new ModalModel();
-    const appModalView = new ModalView();
-    const appModalController = new ModalController();
+        return {
 
+            version: "0.0.1",
 
-    //вызываем init-методы
-    const containerElem = document.getElementById("modal");
+            init: function(containerElem) {
 
-    appModalModel.init(appModalView);
-    appModalView.init(containerElem);
-    appModalController.init(appModalModel, containerElem);
+                this.main();
 
+                const appModalModel = new ModalModel();
+                const appModalView = new ModalView();
+                const appModalController = new ModalController();
+
+                //связываем части модуля
+                appModalModel.init(appModalView);
+                appModalView.init(containerElem);
+                appModalController.init(appModalModel, containerElem);
+            },
+
+            main: function () {
+
+                console.log(`Modal plugin (v${this.version}) was initialized.`);
+            },
+        }
 }());
 
 
+
+myPlugin.init(document.getElementById("modal")); //инициализируем модуль с нужным контейнером
 
 
 </script>
