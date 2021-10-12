@@ -296,30 +296,20 @@ const myPlugin = (function() {
             myModalContainer.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
 
-            valueHeader.style.display = '';
-            valueFooter.style.display = '';
-            valueField.style.display = '';
-            headerText.style.display = 'none';
-            contentText.style.display = 'none';
-
-
             if (modalNew) {
                 modalNew.classList.add("modal_closed");
+                valueHeader.style.display = '';
+                valueFooter.style.display = '';
+                valueField.style.display = '';
+                headerText.style.display = 'none';
+                contentText.style.display = 'none';
             }
-
-            // modalNew.classList.add("modal_closed");
 
             const inputName = myModalContainer.querySelector(".input__default");
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
 
             inputName.value = '';
             inputBirth.forEach(elem => elem.value = '');
-
-            // inputBirth[0].value = '';
-            // inputBirth[1].value = '';
-            // inputBirth[2].value = '';
-
-            // buttonSave.disabled = true;
 
             validDate.style.display = 'none';
         }
