@@ -209,13 +209,12 @@ body {
   overflow: hidden;
   text-indent: -999em;
   text-decoration: none;
-  z-index: 1000;
   color: #ff1c1a;
-  display: none;
 }
 .modal__close__new:hover {
   background-color: #dc3545;
   text-decoration: none;
+  cursor: pointer;
 }
 .modal__new__content {
   width: 600px;

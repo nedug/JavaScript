@@ -15,7 +15,7 @@ const myPlugin = (function() {
         }
 
 
-        this.openModal = function(modal, tittle, content) { /* Открываем модальное окно */
+        this.openModal = function(modal, tittle, content, buttonCloseNew) { /* Открываем модальное окно */
 
             if (modal && !tittle && !content) { /* Первое модально окно */
 
@@ -31,7 +31,7 @@ const myPlugin = (function() {
 
             if (!modal && tittle && content) { /* Третье модально окно */
 
-                myModalView.showModal3(tittle, content);
+                myModalView.showModal3(tittle, content, buttonCloseNew);
             }
         }
 
@@ -228,6 +228,11 @@ const myPlugin = (function() {
             modalData = document.querySelector('.modal-data');
             clearData = document.querySelector('.clear-data');
             validDate = myModalContainer.querySelector(".valid-date");
+            valueHeader = myModalContainer.querySelector("h2");
+            valueFooter = myModalContainer.querySelector(".modal__footer");
+            valueField = myModalContainer.querySelector(".modal__content");
+            headerText = myModalContainer.querySelector(".header-text");
+            contentText = myModalContainer.querySelector(".content-text");
         }
 
 
@@ -243,26 +248,17 @@ const myPlugin = (function() {
             myModalContainer.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
 
-            valueHeader = myModalContainer.querySelector("h2");
             valueHeader.style.display = 'none';
-
-            valueFooter = myModalContainer.querySelector(".modal__footer");
             valueFooter.style.display = 'none';
-
-            valueField = myModalContainer.querySelector(".modal__content");
             valueField.style.display = 'none';
-
-            headerText = myModalContainer.querySelector(".header-text");
             headerText.style.display = '';
             headerText.innerHTML = `<h2>${tittle}<h2>`;
-
-            contentText = myModalContainer.querySelector(".content-text");
             contentText.style.display = '';
             contentText.innerHTML = content;
         }
 
 
-        this.showModal3 = function (tittle, content) { /* Открываем модальное окно */
+        this.showModal3 = function (tittle, content, buttonCloseNew) { /* Открываем модальное окно */
 
             myModalOverlay.classList.remove('modal_closed');
 
@@ -279,9 +275,8 @@ const myPlugin = (function() {
             modalNewTittle.innerHTML = tittle;
             modalNewHeader.append(modalNewTittle);
 
-            const buttonCloseNew = document.querySelector(".modal__close__new");
             modalNewHeader.append(buttonCloseNew);
-            buttonCloseNew.style.display = 'block';
+            buttonCloseNew.classList.add("modal__close__new");
 
             const modalNewContent = document.createElement("iframe");
             modalNewContent.setAttribute("src", content);
@@ -358,6 +353,7 @@ const myPlugin = (function() {
 
         let inputName = null;
         let inputBirth = null;
+        let buttonCloseNew = null;
 
 
         this.init = function(model, field) { // получаем кнопки и вешаем обработчики
@@ -376,7 +372,7 @@ const myPlugin = (function() {
             const buttonClose = myModalContainer.querySelector(".modal__close");
             buttonClose.addEventListener("click", this.hideModal);
 
-            const buttonCloseNew = document.querySelector(".modal__close__new");
+            buttonCloseNew = document.createElement("a");
             buttonCloseNew.addEventListener("click", this.hideModal);
 
             const buttonCancel = myModalContainer.querySelector(".modal__cancel");
@@ -413,7 +409,7 @@ const myPlugin = (function() {
             const dataModalTittle = e.target.dataset.supermodalTitle;
             const dataModalContent = e.target.dataset.supermodalContent;
 
-            myModalModel.openModal(modal, dataModalTittle, dataModalContent);
+            myModalModel.openModal(modal, dataModalTittle, dataModalContent, buttonCloseNew);
         }
 
 
