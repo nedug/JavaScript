@@ -5,6 +5,32 @@
 	<title>Modal default MVC</title>
 	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 	<link rel="stylesheet" href="styles.css">
+	<style>
+       .modal__close__new {
+           position: fixed;
+           top: 15px;
+           right: 15px;
+           width: 28px;
+           height: 28px;
+           border-radius: 50%;
+           background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAEFCu8CAAAABGdBTUEAALGPC/xhBQAAAqpJREFUSA2tljtyFEEMhsdgHJpb2NyAxwkgcQHGHGE3Bs4B8RICV6G4ARSERH4QGaog4vF/qv7HWu3MzrqMqjR69C9puls9PV13QU9Rr13Y3Vfpf7GPxLdRROGw0hs43vHYFuM9wYAMOcbYaQ47u7fJgRMGFMkwIgyHyIDesNMgAD3dkvZDvGWPlSVUG4wxBu43h0HIGT4UO7Hv2EeoB1wCQPhYzi/i12JHSA26acWpLV96IMtDGQZU+TEDrT9qAb8lD8RnzXbwC9mL5vsjGbSvpwGnzWfB+5s8F7C/cLLSDrS8y0Ci+gbguutiBzxLYCoQkMm4D0NOD47JwVUl0Vz8U5wD38veFa8ldptDw9xpfhZvkj4JkStlnT1eoXxmMrjqHKUlYlMBsclsdg5gZWkKmgP/Q3EQi2Fgc/WNe2yH5IOKowscWDslxXV0lXF7DNiwzMEOpLLHkTHX7ECv3XKvBIH5Ll7KlOfEmIm3yAWeMEDf2Ylt+iYlv/Zz2cbR39FKdmBDeU4O5jMB7jMA0yspDp6SjunlJsE3enRROAGchFyVkzIruEmTT91cTLJ61GpyMGApfinioGwy3VxwSCcHudbS/yhUi5NzhXbl4QbJ4EVB0T65nYzF59ZyiFvMGFqNGkE0a25yg/KHuUFDkJxjB9dCAdAjHwbno0YcDP4s7KySt/dfh9RJ4gWGVsF54wgP3VMGWDKbenfl6nxYwBg/JuNjw8UwBsA/tEdyr9DU7MgVn8V9Kflj7OL8kY0tJ8nH9g9//mg7HzX2xEFzPT1g6V+pBglRZzE2+3y9ON8sJ0LnD8eXHCAus4X4QMyFt26PGAMDliPhi5A85OwvROlLtCOLdfZbXVWSi5wb0WOh+Nm7bFFiiL0S8btDc/HL80Z83hgdH2NgJukfa8ehuEonW4wAAAAASUVORK5CYII=');
+           overflow: hidden;
+           text-indent: -999em;
+           text-decoration: none;
+			  z-index: 1000;
+			  color: #ff1c1a;
+			  display: none;
+		 }
+       .modal__close__new:hover {
+           background-color: #dc3545;
+           text-decoration: none;
+       }
+       .modal__new__content {
+           width: 600px;
+           height: 380px;
+			  padding: 15px;
+       }
+	</style>
 </head>
 <body>
 
@@ -18,13 +44,14 @@
 	<p class="btn">
 
 
-		<a href="#" class="modal-open" data-supermodal="modal" title="Покажите мне модальное окошко">Открыть окно 1</a></p><br>
+		<a href="#" class="modal-open" data-supermodal="modal" title="Покажите мне модальное окошко">Открыть окно 1</a>
 
 
-		<a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!">Открыть окно 2</a></p><br>
+		<a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!">Открыть окно 2</a>
 
 
-		<a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/j8YcLyzJOEg" title="Покажите мне модальное окошко">Открыть окно 3</a></p>
+		<a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/__-vp0g_BhA" title="Покажите мне модальное окошко">Открыть окно 3</a>
+	</p>
 
 
 
@@ -61,6 +88,8 @@
 	</footer>
 	<div class="content-text"></div>
 </div>
+
+<a href="#" class="modal__close__new" title="Закрыть модальное окно">Закрыть</a>
 
 <script>
 
@@ -276,6 +305,7 @@
         let modalData = null;
         let clearData = null;
         let validDate = null;
+        let modalNew = null;
 
 
         this.init = function(field) {
@@ -328,13 +358,13 @@
             myModalOverlay.classList.remove('modal_closed');
 
 
-            const modalNew = document.createElement("div");
+            modalNew = document.createElement("div");
             modalNew.classList.add("modal");
             modalNew.style.height = "500px";
             document.body.append(modalNew);
 
             const modalNewHeader = document.createElement("header");
-            modalNew.classList.add("modal__header");
+            modalNewHeader.classList.add("modal__header");
             // modalNewHeader.style.padding = "10px 15px";
             modalNew.append(modalNewHeader);
 
@@ -342,19 +372,25 @@
             modalNewTittle.innerHTML = tittle;
             modalNewHeader.append(modalNewTittle);
 
-            const modalNewClose = document.createElement("a");
-            modalNewClose.classList.add("modal__close");
-            modalNewClose.classList.add("modal__close__new");
-            // modalNewTittle.innerHTML = tittle;
-            modalNewHeader.append(modalNewClose);
+
+            const buttonCloseNew = document.querySelector(".modal__close__new");
+            modalNewHeader.append(buttonCloseNew);
+            buttonCloseNew.style.display = 'block';
 
 
-            
-            // let myModalNewContent = document.createElement("iframe");
-            // myModalNewContent.setAttribute("src", content);
-            // myModalNewContent.classList.add("modal_iframe");
-            // myModalNewContent.setAttribute("frameborder", 0);
-            // myModalNew.append(myModalNewContent);
+            // const modalNewClose = document.createElement("a");
+            // modalNewClose.classList.add("modal__close");
+            // modalNewClose.classList.add("modal__close__new");
+            // // modalNewTittle.innerHTML = tittle;
+            // modalNewHeader.append(modalNewClose);
+
+
+
+            const modalNewContent = document.createElement("iframe");
+            modalNewContent.setAttribute("src", content);
+            modalNewContent.classList.add("modal__new__content");
+            modalNewContent.setAttribute("frameborder", 0);
+            modalNew.append(modalNewContent);
 
 
 
@@ -381,6 +417,12 @@
 
             const contentText = myModalContainer.querySelector(".content-text");
             contentText.style.display = 'none';
+
+
+
+            if (modalNew) {
+                modalNew.classList.add("modal_closed");
+            }
 
 
 
@@ -471,8 +513,12 @@
             buttonCancel.addEventListener("click", this.hideModal);
 
 
-            const buttonCancelNew = document.querySelector(".modal__cancel__new");
-            buttonCancelNew.addEventListener("click", this.hideModal);
+
+
+            const buttonCloseNew = document.querySelector(".modal__close__new");
+            buttonCloseNew.addEventListener("click", this.hideModal);
+
+
 
 
             const buttonSave = myModalContainer.querySelector(".modal__save");

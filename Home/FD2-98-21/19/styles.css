@@ -28,6 +28,11 @@ body {
 .container .btn {
   text-align: center;
   margin-top: 50px;
+
+}
+.container .btn a {
+  margin-right: 25px;
+
 }
 
 .modal-overlay {
