@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Modal default</title>
+	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+	<h1>Создание уже и не такого простого модального окошка!</h1>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+	<p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Открыть окно</a></p>
+
+	<div class="modal-data"></div>
+	<p class="btn"><a href="#" id="clear-data" class="clear-data hide">Очистить данные</a></p>
+</div>
+
+<div class="modal-overlay modal_closed" id="modal-overlay"></div>
+<div class="modal modal_closed" id="modal">
+	<header class="modal__header">
+		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+		<h2>Введите данные</h2>
+	</header>
+
+	<main class="modal__content">
+		<div class="form-field">
+			<label for="name">Ваше имя:</label>
+			<input required class="input__default" type="text" id="name" name="name">
+		</div>
+		<div class="form-field">
+			<label>Ваш день рождения:</label>
+			<input required type="number" class="input__date-birth" id="birth-day" name="birth-day" placeholder="День"> -
+			<input required type="number" class="input__date-birth" id="birth-month" name="birth-month" placeholder="Месяц"> -
+			<input required type="number" class="input__date-birth" id="birth-year" name="birth-year" placeholder="Год">
+		</div>
+	</main>
+
+	<footer class="modal__footer">
+		<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
+		<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
+	</footer>
+</div>
+
+<script>
+    /* ----- modal init module --- */
+    const MyPlugin = (function () {
+        /* ------- begin view -------- */
+        function ModalView() {
+            let myModal = null;
+            let myModalOverlay = null;
+            const modalData = document.querySelector(".modal-data");
+            const clearBtn = document.querySelector("#clear-data");
+            let saveBtn = null;
+
+            this.init = function(modal, modalOverlay) {
+                myModal = modal;
+                myModalOverlay = modalOverlay || document.querySelector("#modal-overlay");
+                saveBtn = myModal.querySelector("#modal-save");
+            }
+
+            this.show = function() {
+                myModal.classList.remove("modal_closed");
+                myModalOverlay.classList.remove("modal_closed");
+            }
+
+            this.hide = function() {
+                myModal.classList.add("modal_closed");
+                myModalOverlay.classList.add("modal_closed");
+            }
+
+            this.clearForm = function() {
+                const inputs = myModal.querySelectorAll("input");
+                for (let item of inputs) {
+                    item.value = "";
+                }
+            }
+
+            this.printViewData = function(data) {
+                modalData.innerHTML = `<h3>Привет, ${data.name}!!!</h3><p>Да у тебя ДР ${data.birthDay}/${data.birthMonth}/${data.birthYear}.</p>`;
+                clearBtn.classList.remove("hide");
+            }
+
+            this.clearViewData = function() {
+                modalData.innerHTML = "Данные отсутствуют...";
+                clearBtn.classList.add("hide");
+            }
+
+            this.disableSaveBtn = function(state) {
+                saveBtn.disabled = state;
+            }
+
+            this.printError = function(erorr = "Error!") {
+                console.error(erorr);
+            }
+
+            this.printInfo = function(msg = "") {
+                console.info(msg);
+            }
+
+        };
+        /* -------- end view --------- */
+        /* ------- begin model ------- */
+        function ModalModel () {
+            let myModalView = null;
+
+            this.btnDisableState = true;
+
+            this.init = function(modalView) {
+                myModalView = modalView;
+                this.showData();
+            }
+
+            this.openModal = function() {
+                myModalView.disableSaveBtn(this.btnDisableState);
+                myModalView.show();
+            }
+
+            this.closeModal = function() {
+                this.clearForm();
+                myModalView.hide();
+            }
+
+            this.saveModalData = function(data) {
+                if (data) {
+                    this.storeData(data);
+                    myModalView.printViewData(data);
+                } else {
+                    myModalView.clearViewData();
+                    myModalView.printError("Nothing to save!");
+                }
+
+                this.clearForm();
+                myModalView.hide();
+            }
+
+            this.checkInputs = function(data) {
+                btnDisableState = Object.values(data).some(value => value === "");
+                myModalView.disableSaveBtn(btnDisableState);
+            }
+
+            this.showData = function() {
+                const data = this.getData();
+                data ? myModalView.printViewData(data) : myModalView.printInfo("Nothing to display!");
+            }
+
+            this.storeData = function(userData) {
+                if (typeof localStorage !== "undefined") {
+                    localStorage.setItem("userData", JSON.stringify(userData));
+                } else {
+                    myModalView.printError("localStorage is not defined and you can try to use cookies");
+                }
+            }
+
+            this.getData = function() {
+                if (typeof localStorage !== "undefined") {
+                    return (JSON.parse(localStorage.getItem("userData")));
+                } else {
+                    myModalView.printError("localStorage is not defined and you can try to use cookies");
+                    return false;
+                }
+            }
+
+            this.clearData = function() {
+                if (typeof localStorage !== "undefined") {
+                    localStorage.removeItem("userData");
+                    myModalView.clearViewData();
+                    myModalView.printInfo("Data removed...");
+                } else {
+                    myModalView.printError("localStorage is not defined and you can try to use cookies");
+                }
+            }
+
+            this.clearForm = function() {
+                myModalView.clearForm();
+                this.btnDisableState = true;
+            }
+        }
+        /* -------- end model -------- */
+        /* ----- begin controller ---- */
+        function ModalController () {
+            let myModalContainer = null;
+            let myModalModel = null;
+            let closeButton = null;
+            let cancelButton = null;
+            let saveButton = null;
+            let openButton = null;
+            let modalInputName = null;
+            let modalInputDay = null
+            let modalInputMonth = null;
+            let modalInputYear = null;
+
+            this.init = function(modal, model) {
+                myModalContainer = modal;
+                myModalModel = model;
+
+                closeButton = myModalContainer.querySelector("#modal-close");
+                closeButton.addEventListener("click", this.hideModal);
+
+                cancelButton = myModalContainer.querySelector("#modal-cancel");
+                cancelButton.addEventListener("click", this.hideModal);
+
+                saveButton = myModalContainer.querySelector("#modal-save");
+                saveButton.addEventListener("click", this.saveModal);
+
+                openButton = document.querySelector("#modal-open");
+                openButton.addEventListener("click", this.openModal);
+
+                openButton = document.querySelector("#clear-data");
+                openButton.addEventListener("click", this.clearData);
+
+                modalInputName = myModalContainer.querySelector("#name");
+                modalInputDay = myModalContainer.querySelector("#birth-day");
+                modalInputMonth = myModalContainer.querySelector("#birth-month");
+                modalInputYear = myModalContainer.querySelector("#birth-year");
+
+                myModalContainer.addEventListener("input", this.checkInputs);
+            }
+
+            this.openModal = function(event) {
+                event.preventDefault();
+                myModalModel.openModal();
+            }
+
+            this.hideModal = function(event) {
+                event.preventDefault();
+                myModalModel.closeModal();
+            }
+
+            this.saveModal = function(event) {
+                event.preventDefault();
+                myModalModel.saveModalData(
+                    {
+                        name: modalInputName.value,
+                        birthDay: modalInputDay.value,
+                        birthMonth: modalInputMonth.value,
+                        birthYear: modalInputYear.value,
+                    }
+                );
+            }
+
+            this.clearData = function(event) {
+                event.preventDefault();
+                myModalModel.clearData();
+            }
+
+            this.checkInputs = function(event) {
+                myModalModel.checkInputs(
+                    {
+                        name: modalInputName.value,
+                        birthDay: modalInputDay.value,
+                        birthMonth: modalInputMonth.value,
+                        birthYear: modalInputYear.value,
+                    }
+                );
+            }
+
+        }
+        /* ------ end controller ----- */
+        /* ------ public methods ----- */
+        return {
+            version: "0.0.1",
+
+            init: function(modalContainer) {
+                this.main();
+
+                const appModalView = new ModalView();
+                const appModalModel = new ModalModel();
+                const appModalController = new ModalController();
+
+                //связываем части модуля
+                appModalView.init(modalContainer);
+                appModalModel.init(appModalView);
+                appModalController.init(modalContainer, appModalModel);
+            },
+
+            main: function () {
+                //предварительно что то можно сделать, например
+                console.log(`Modal plugin (v${this.version}) was initialized.`);
+            },
+        }
+
+    })();
+    /* ------ end app module ----- */
+
+    MyPlugin.init(document.getElementById("modal")); //инициализируем модуль с нужным контейнером
+</script>
+</body>
+</html>
