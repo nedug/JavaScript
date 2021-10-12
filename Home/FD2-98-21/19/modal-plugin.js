@@ -15,21 +15,21 @@ const myPlugin = (function() {
         }
 
 
-        this.openModal = function(modal, tittle, content ) { /* Открываем модальное окно */
+        this.openModal = function(modal, tittle, content) { /* Открываем модальное окно */
 
-            if (modal && !tittle && !content) {
+            if (modal && !tittle && !content) { /* Первое модально окно */
 
                 myModalView.showModal1();
 
                 myModalView.btnUpdate(true);
             }
 
-            if (modal && tittle && content) {
+            if (modal && tittle && content) { /* Второе модально окно */
 
                 myModalView.showModal2(tittle, content);
             }
 
-            if (!modal && tittle && content) {
+            if (!modal && tittle && content) { /* Третье модально окно */
 
                 myModalView.showModal3(tittle, content);
             }
@@ -212,16 +212,21 @@ const myPlugin = (function() {
         let clearData = null;
         let validDate = null;
         let modalNew = null;
+        let valueHeader = null;
+        let headerText = null;
+        let valueFooter = null;
+        let valueField = null;
+        let contentText = null;
 
 
         this.init = function(field) {
 
             myModalContainer = field;
 
-            myModalOverlay = myModalContainer.parentNode.querySelector('.modal-overlay');
+            myModalOverlay = document.querySelector('.modal-overlay');
             buttonSave = myModalContainer.querySelector(".modal__save");
-            modalData = myModalContainer.parentNode.querySelector('.modal-data');
-            clearData = myModalContainer.parentNode.querySelector('.clear-data');
+            modalData = document.querySelector('.modal-data');
+            clearData = document.querySelector('.clear-data');
             validDate = myModalContainer.querySelector(".valid-date");
         }
 
@@ -238,31 +243,28 @@ const myPlugin = (function() {
             myModalContainer.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
 
-            const valueHeader = myModalContainer.querySelector("h2");
+            valueHeader = myModalContainer.querySelector("h2");
             valueHeader.style.display = 'none';
 
-            const headerText = myModalContainer.querySelector(".header-text");
+            valueFooter = myModalContainer.querySelector(".modal__footer");
+            valueFooter.style.display = 'none';
+
+            valueField = myModalContainer.querySelector(".modal__content");
+            valueField.style.display = 'none';
+
+            headerText = myModalContainer.querySelector(".header-text");
             headerText.style.display = '';
             headerText.innerHTML = `<h2>${tittle}<h2>`;
 
-            const valueFooter = myModalContainer.querySelector(".modal__footer");
-            valueFooter.style.display = 'none';
-
-            const valueField = myModalContainer.querySelector(".modal__content");
-            valueField.style.display = 'none';
-
-            const contentText = myModalContainer.querySelector(".content-text");
+            contentText = myModalContainer.querySelector(".content-text");
             contentText.style.display = '';
             contentText.innerHTML = content;
-
-
         }
 
 
         this.showModal3 = function (tittle, content) { /* Открываем модальное окно */
 
             myModalOverlay.classList.remove('modal_closed');
-
 
             modalNew = document.createElement("div");
             modalNew.classList.add("modal");
@@ -271,36 +273,21 @@ const myPlugin = (function() {
 
             const modalNewHeader = document.createElement("header");
             modalNewHeader.classList.add("modal__header");
-            // modalNewHeader.style.padding = "10px 15px";
             modalNew.append(modalNewHeader);
 
             const modalNewTittle = document.createElement("h2");
             modalNewTittle.innerHTML = tittle;
             modalNewHeader.append(modalNewTittle);
 
-
             const buttonCloseNew = document.querySelector(".modal__close__new");
             modalNewHeader.append(buttonCloseNew);
             buttonCloseNew.style.display = 'block';
-
-
-            // const modalNewClose = document.createElement("a");
-            // modalNewClose.classList.add("modal__close");
-            // modalNewClose.classList.add("modal__close__new");
-            // // modalNewTittle.innerHTML = tittle;
-            // modalNewHeader.append(modalNewClose);
-
-
 
             const modalNewContent = document.createElement("iframe");
             modalNewContent.setAttribute("src", content);
             modalNewContent.classList.add("modal__new__content");
             modalNewContent.setAttribute("frameborder", 0);
             modalNew.append(modalNewContent);
-
-
-
-
         }
 
 
@@ -309,28 +296,18 @@ const myPlugin = (function() {
             myModalContainer.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
 
-            const valueHeader = myModalContainer.querySelector("h2");
             valueHeader.style.display = '';
-
-            const valueFooter = myModalContainer.querySelector(".modal__footer");
             valueFooter.style.display = '';
-
-            const valueField = myModalContainer.querySelector(".modal__content");
             valueField.style.display = '';
-
-            const headerText = myModalContainer.querySelector(".header-text");
             headerText.style.display = 'none';
-
-            const contentText = myModalContainer.querySelector(".content-text");
             contentText.style.display = 'none';
-
 
 
             if (modalNew) {
                 modalNew.classList.add("modal_closed");
             }
 
-
+            // modalNew.classList.add("modal_closed");
 
             const inputName = myModalContainer.querySelector(".input__default");
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
@@ -403,34 +380,22 @@ const myPlugin = (function() {
             myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить данные' */
 
 
-            // const buttonOpen = myModalContainer.parentNode.querySelector(".modal-open");
             const buttonOpen = document.querySelectorAll(".modal-open");
             buttonOpen.forEach(elem => elem.addEventListener('click', this.openModal));
-
-
-            // buttonOpen.addEventListener("click", this.openModal);
-
-
 
             const buttonClose = myModalContainer.querySelector(".modal__close");
             buttonClose.addEventListener("click", this.hideModal);
 
-            const buttonCancel = myModalContainer.querySelector(".modal__cancel");
-            buttonCancel.addEventListener("click", this.hideModal);
-
-
-
-
             const buttonCloseNew = document.querySelector(".modal__close__new");
             buttonCloseNew.addEventListener("click", this.hideModal);
 
-
-
+            const buttonCancel = myModalContainer.querySelector(".modal__cancel");
+            buttonCancel.addEventListener("click", this.hideModal);
 
             const buttonSave = myModalContainer.querySelector(".modal__save");
             buttonSave.addEventListener("click", this.saveModal);
 
-            const buttonClear = myModalContainer.parentNode.querySelector(".clear-data");
+            const buttonClear = document.querySelector(".clear-data");
             buttonClear.addEventListener("click", this.clearData);
 
             inputName = myModalContainer.querySelector(".input__default");
@@ -457,10 +422,6 @@ const myPlugin = (function() {
             const modal = document.getElementById(dataModalId);
             const dataModalTittle = e.target.dataset.supermodalTitle;
             const dataModalContent = e.target.dataset.supermodalContent;
-
-            // console.log(modal);
-            // console.log(dataModalTittle);
-            // console.log(dataModalContent);
 
             myModalModel.openModal(modal, dataModalTittle, dataModalContent);
         }
