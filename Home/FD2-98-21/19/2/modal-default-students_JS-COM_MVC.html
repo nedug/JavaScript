@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>modal-plugin_JS-COM</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Модальные окна команды IT-COM</h1>
+
+        <p>Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!!</p>
+        <p>Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!!</p>
+        <p>Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!! Наш плагин самый лучший? Да, наш плагин самый лучший!!!</p>
+
+
+        <p class="btn">
+            <a href="#" class="modal-open" data-supermodal="modal">Показать модальное окно 1</a><br>
+
+
+
+            <a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарственное письмо" data-supermodal-content="Особая благодарность команде IT-COM за их работу! <br> Искренне заинтересованы в продолжение сотрудничества, желаем вам тепла, здоровья и любви!">Показать модальное окно 2</a><br>
+
+
+
+            <a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Шутка-минутка" data-supermodal-content="https://www.youtube.com/embed/j8YcLyzJOEg">Показать модальное окно 3</a>
+        </p>
+
+    </div>
+
+
+
+
+
+
+    <div class="modal-overlay modal_closed" id="modal-overlay"></div>
+    <div class="modal modal_closed" id="modal">
+        <header class="modal__header">
+            <a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+            <h2>Введите данные</h2>
+            <h2 class="title-guest"></h2>
+        </header>
+
+        <main class="modal__content">
+            <div class="form-field">
+                <label for="name">Ваше имя:</label>
+                <input class="input__default" type="text" id="name" name="name">
+            </div>
+            <div class="form-field">
+                <label>Ваш день рождения:</label>
+                <input type="text" class="input__date-birth" id="birth-day" name="name" placeholder="День"> -
+                <input type="text" class="input__date-birth" id="birth-month" name="name" placeholder="Месяц"> -
+                <input type="text" class="input__date-birth" id="birth-year" name="name" placeholder="Год">
+            </div>
+            <div class="content-guest"></div>
+        </main>
+
+        <footer class="modal__footer">
+            <button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
+            <button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
+        </footer>
+    </div>
+
+    <script src="modal-plugin_JS-COM.js"></script>
+
+</body>
+
+</html>
