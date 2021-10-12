@@ -106,7 +106,7 @@ body {
   text-decoration: none;
 }
 
-.modal__content {
+.modal__content, .content-text {
   padding: 10px 15px;
   min-height: 200px;
 }

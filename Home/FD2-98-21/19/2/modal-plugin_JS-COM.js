@@ -189,6 +189,11 @@
                 let valueDataContent = elemLink.dataset.supermodalContent;
                 let modal = document.getElementById(valueDataId);
 
+
+                console.log(modal);
+                console.log(valueDataTitle);
+                console.log(valueDataTitle);
+
                 myModalModel.openModal(modal, valueDataTitle, valueDataContent);
             }
 

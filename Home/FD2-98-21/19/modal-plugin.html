@@ -17,14 +17,14 @@
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
 	<p class="btn">
 
-		<a href="#" class="modal-open" data-supermodal="modal-1" title="Покажите мне модальное окошко">Открыть окно 1</a></p><br>
+
+		<a href="#" class="modal-open" data-supermodal="modal" title="Покажите мне модальное окошко">Открыть окно 1</a></p><br>
 
 
-		<a href="#" class="modal-open" data-supermodal="modal-2" title="Покажите мне модальное окошко">Открыть окно 2</a></p><br>
+		<a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!">Открыть окно 2</a></p><br>
 
 
-		<a href="#" class="modal-open" data-supermodal="modal-3" title="Покажите мне модальное окошко">Открыть окно 3</a></p>
-
+		<a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/j8YcLyzJOEg" title="Покажите мне модальное окошко">Открыть окно 3</a></p>
 
 
 
@@ -33,10 +33,12 @@
 </div>
 
 <div class="modal-overlay modal_closed" id="modal-overlay"></div>
+
 <div class="modal modal_closed" id="modal">
 	<header class="modal__header">
 		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
 		<h2>Введите данные</h2>
+		<div class="header-text"></div>
 	</header>
 
 	<main class="modal__content">
@@ -57,6 +59,7 @@
 		<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
 		<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
 	</footer>
+	<div class="content-text"></div>
 </div>
 
 <script>
@@ -77,9 +80,24 @@
         }
 
 
-        this.openModal = function() { /* Открываем модальное окно */
+        this.openModal = function(modal, tittle, content ) { /* Открываем модальное окно */
 
-            myModalView.show();
+            if (modal && !tittle && !content) {
+
+                myModalView.showModal1();
+
+                myModalView.btnUpdate(true);
+				}
+
+            if (modal && tittle && content) {
+
+                myModalView.showModal2(tittle, content);
+				}
+
+            if (!modal && tittle && content) {
+
+                myModalView.showModal3(tittle, content);
+            }
         }
 
 
@@ -272,10 +290,74 @@
         }
 
 
-        this.show = function () { /* Открываем модальное окно */
+        this.showModal1 = function () { /* Открываем модальное окно */
 
             myModalContainer.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
+        }
+
+
+        this.showModal2 = function (tittle, content) { /* Открываем модальное окно */
+
+            myModalContainer.classList.remove('modal_closed');
+            myModalOverlay.classList.remove('modal_closed');
+
+            const valueHeader = myModalContainer.querySelector("h2");
+            valueHeader.style.display = 'none';
+
+            const headerText = myModalContainer.querySelector(".header-text");
+            headerText.style.display = '';
+            headerText.innerHTML = `<h2>${tittle}<h2>`;
+
+            const valueFooter = myModalContainer.querySelector(".modal__footer");
+            valueFooter.style.display = 'none';
+
+            const valueField = myModalContainer.querySelector(".modal__content");
+            valueField.style.display = 'none';
+
+            const contentText = myModalContainer.querySelector(".content-text");
+            contentText.style.display = '';
+            contentText.innerHTML = content;
+
+
+        }
+
+
+        this.showModal3 = function (tittle, content) { /* Открываем модальное окно */
+
+            myModalOverlay.classList.remove('modal_closed');
+
+
+            const modalNew = document.createElement("div");
+            modalNew.classList.add("modal");
+            modalNew.style.height = "500px";
+            document.body.append(modalNew);
+
+            const modalNewHeader = document.createElement("header");
+            modalNew.classList.add("modal__header");
+            // modalNewHeader.style.padding = "10px 15px";
+            modalNew.append(modalNewHeader);
+
+            const modalNewTittle = document.createElement("h2");
+            modalNewTittle.innerHTML = tittle;
+            modalNewHeader.append(modalNewTittle);
+
+            const modalNewClose = document.createElement("a");
+            modalNewClose.classList.add("modal__close");
+            modalNewClose.classList.add("modal__close__new");
+            // modalNewTittle.innerHTML = tittle;
+            modalNewHeader.append(modalNewClose);
+
+
+            // let myModalNewContent = document.createElement("iframe");
+            // myModalNewContent.setAttribute("src", content);
+            // myModalNewContent.classList.add("modal_iframe");
+            // myModalNewContent.setAttribute("frameborder", 0);
+            // myModalNew.append(myModalNewContent);
+
+
+
+
         }
 
 
@@ -283,6 +365,23 @@
 
             myModalContainer.classList.add('modal_closed');
             myModalOverlay.classList.add('modal_closed');
+
+            const valueHeader = myModalContainer.querySelector("h2");
+            valueHeader.style.display = '';
+
+            const valueFooter = myModalContainer.querySelector(".modal__footer");
+            valueFooter.style.display = '';
+
+            const valueField = myModalContainer.querySelector(".modal__content");
+            valueField.style.display = '';
+
+            const headerText = myModalContainer.querySelector(".header-text");
+            headerText.style.display = 'none';
+
+            const contentText = myModalContainer.querySelector(".content-text");
+            contentText.style.display = 'none';
+
+
 
             const inputName = myModalContainer.querySelector(".input__default");
             const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
@@ -294,7 +393,7 @@
             // inputBirth[1].value = '';
             // inputBirth[2].value = '';
 
-            buttonSave.disabled = true;
+            // buttonSave.disabled = true;
 
             validDate.style.display = 'none';
         }
@@ -355,14 +454,25 @@
             myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить данные' */
 
 
-            const buttonOpen = myModalContainer.parentNode.querySelector(".modal-open");
-            buttonOpen.addEventListener("click", this.openModal);
+            // const buttonOpen = myModalContainer.parentNode.querySelector(".modal-open");
+            const buttonOpen = document.querySelectorAll(".modal-open");
+            buttonOpen.forEach(elem => elem.addEventListener('click', this.openModal));
+
+
+            // buttonOpen.addEventListener("click", this.openModal);
+
+
 
             const buttonClose = myModalContainer.querySelector(".modal__close");
             buttonClose.addEventListener("click", this.hideModal);
 
             const buttonCancel = myModalContainer.querySelector(".modal__cancel");
             buttonCancel.addEventListener("click", this.hideModal);
+
+
+            const buttonCancelNew = document.querySelector(".modal__cancel__new");
+            buttonCancelNew.addEventListener("click", this.hideModal);
+
 
             const buttonSave = myModalContainer.querySelector(".modal__save");
             buttonSave.addEventListener("click", this.saveModal);
@@ -390,7 +500,16 @@
 
             e.preventDefault();
 
-            myModalModel.openModal();
+            const dataModalId = e.target.dataset.supermodal;
+            const modal = document.getElementById(dataModalId);
+            const dataModalTittle = e.target.dataset.supermodalTitle;
+            const dataModalContent = e.target.dataset.supermodalContent;
+
+            // console.log(modal);
+            // console.log(dataModalTittle);
+            // console.log(dataModalContent);
+
+            myModalModel.openModal(modal, dataModalTittle, dataModalContent);
         }
 
 
