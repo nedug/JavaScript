@@ -1,5 +1,5 @@
 
-const myPlugin = (function() {
+const MyPlugin = (function() {
 
     /* -------  model ------- */
 
@@ -468,4 +468,4 @@ const myPlugin = (function() {
 
 
 
-myPlugin.init(document.getElementById("modal")); //инициализируем модуль с нужным контейнером
+MyPlugin.init(document.getElementById("modal")); //инициализируем модуль с нужным контейнером
