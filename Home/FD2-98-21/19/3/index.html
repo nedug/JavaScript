@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HW-JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <script defer src="task.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Создание простейшего модального окошка!</h1>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
+        <p><br><br></p>
+        <div class="link-wrapper-container">
+
+            <div class="link-wrapper">
+                <a href="#" data-supermodal="modal1" class="video-open">Barcelona</a>
+                <a href="#" data-supermodal="modal2" class="video-open">Iceland</a>
+                <a href="#" data-supermodal="modal3" class="video-open">New Zeland</a>
+            </div>
+
+            <div class="link-wrapper">
+                <a href="#" data-supermodal-title="Дорогой гость!" data-supermodal-content="Благодарим, что воспользовались нашими услугами!" class="thanks-open">Спасибо</a>
+                <a href="#" data-supermodal-title="Dear friends!" data-supermodal-content="Thanks for using our service!" class="thanks-open">Thanks</a>
+                <a href="#" data-supermodal-title="Gracias!" data-supermodal-content="Gracias por utilizar nuestros servicios!" class="thanks-open">Gracias</a>
+            </div>
+
+            <div class="link-wrapper">
+                <a href="#" data-supermodal-title="Введите данные 1" data-supermodal-content="Форма 1" data-supermodal="modal4" class="form-open">Contact1</a>
+                <a href="#" data-supermodal-title="Введите данные 2" data-supermodal-content="Форма 2" data-supermodal="modal5" class="form-open">Contact2</a>
+                <a href="#" data-supermodal-title="Введите данные 3" data-supermodal-content="Форма 3" data-supermodal="modal6" class="form-open">Contact3</a>
+            </div>
+
+        </div>
+        <div id="wraper"></div>
+    </div>
+
+
+    <div class="modal-overlay modal_closed"></div>
+    <div class="modal modal_closed" id="modal1">
+        <header class="modal__header">
+            <h3> Barcelona - city of dreams</h3>
+            <a href="#" class="modal__close" title="Закрыть модальное окно">Закрыть</a>
+        </header>
+
+        <main class="modal__content">
+            <iframe width="566" height="261" src="https://www.youtube.com/embed/-pr5MFD0m4M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </main>
+    </div>
+
+    <div class="modal-overlay modal_closed"></div>
+    <div class="modal modal_closed" id="modal2">
+        <header class="modal__header">
+            <h3> Iceland - land of fire and ice</h3>
+            <a href="#" class="modal__close" title="Закрыть модальное окно">Закрыть</a>
+        </header>
+
+        <main class="modal__content">
+            <iframe width="566" height="261" src="https://www.youtube.com/embed/e8QKBu-qAPA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </main>
+    </div>
+
+    <div class="modal-overlay modal_closed"></div>
+    <div class="modal modal_closed" id="modal3">
+        <header class="modal__header">
+            <h3> New Zealand - 'The adventure' by Drone</h3>
+            <a href="#" class="modal__close" title="Закрыть модальное окно">Закрыть</a>
+        </header>
+
+        <main class="modal__content">
+            <iframe width="566" height="261" src="https://www.youtube.com/embed/Yo4ueevKfdE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </main>
+    </div>
+
+    <div class="modal-overlay modal_closed"></div>
+    <div class="modal modal_closed thanks">
+        <header class="modal__header">
+            <h3 class="mod-title"> </h3>
+            <a href="#" class="modal__close close-add" id="close-add-modal" title="Закрыть модальное окно">Закрыть</a>
+        </header>
+
+        <main class="modal__content">
+            <p class="body-text"></p>
+            <img src="img/thanks.jpg">
+        </main>
+
+    </div>
+</body>
+</html>

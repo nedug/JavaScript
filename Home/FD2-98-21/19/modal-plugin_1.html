@@ -18,11 +18,18 @@
 
 	<p class="btn">
 
-		<a href="#" class="modal-open" data-supermodal="modal" title="Покажите мне модальное окошко">Открыть окно 1</a>
 
-		<a href="#" class="modal-open" data-supermodal="modal" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!" title="Покажите мне модальное окошко">Открыть окно 2</a>
+		<a href="#" class="modal-open" data-supermodal="modal-1" title="Покажите мне модальное окошко">Открыть окно 1</a>
 
-		<a href="#" class="modal-open" data-supermodal="modal-none" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/__-vp0g_BhA" title="Покажите мне модальное окошко">Открыть окно 3</a>
+
+		<a href="#" class="modal-open" data-supermodal="modal-2" data-supermodal-title="Благодарность!" data-supermodal-content="Благодарим Вас за многолетний добросовестный труд и огромный личный вклад в развитие компании!<br><br>Спасибо за проявленные старания, ответственность, добросовестность, трудолюбие, за удачно примененные глубокие знания и огромный практический опыт!" title="Покажите мне модальное окошко">Открыть окно 2</a>
+
+
+		<a href="#" class="modal-open" data-supermodal="modal-2" data-supermodal-title="Благоlllдарность!" data-supermodal-content="всяка муть" title="Покажите мне модальное окошко">Открыть окно 2</a>
+
+
+		<a href="#" class="modal-open" data-supermodal="modal-3" data-supermodal-title="Смотрим видео!" data-supermodal-content="https://www.youtube.com/embed/__-vp0g_BhA" title="Покажите мне модальное окошко">Открыть окно 3</a>
+
 	</p>
 
 	<div class="modal-data"></div>
@@ -31,9 +38,11 @@
 
 <div class="modal-overlay modal_closed" id="modal-overlay"></div>
 
-<div class="modal modal_closed" id="modal">
+
+
+<div class="modal modal_closed" id="modal-1">
 	<header class="modal__header">
-		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+		<a href="#" class="modal__close"  title="Закрыть модальное окно">Закрыть</a>
 		<h2>Введите данные</h2>
 		<div class="header-text"></div>
 	</header>
@@ -56,6 +65,15 @@
 		<button id="modal-cancel" class="modal__cancel" title="Отмена">Отмена</button>
 		<button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
 	</footer>
+	<div class="content-text"></div>
+</div>
+
+
+<div class="modal modal_closed" id="modal-2">
+	<header class="modal__header">
+		<a href="#" class="modal__close" id="modal-close" title="Закрыть модальное окно">Закрыть</a>
+		<div class="header-text"></div>
+	</header>
 	<div class="content-text"></div>
 </div>
 
