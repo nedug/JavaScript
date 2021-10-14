@@ -6,7 +6,6 @@ const MyPlugin = (function() {
     function ModalModel () {
 
         let myModalView = null;
-        // let userData = {};
 
 
         this.init = function(view) { /* Получаем View */
@@ -20,8 +19,6 @@ const MyPlugin = (function() {
             if (container && !tittle && !content) { /* Первое модально окно */
 
                 myModalView.showModal1(container);
-
-                // myModalView.btnUpdate(true);
             }
 
             if (container && tittle && content) { /* Второе модально окно */
@@ -34,9 +31,6 @@ const MyPlugin = (function() {
                 myModalView.showModal3(tittle, content, buttonCloseNew);
             }
 
-
-            // myModalView.showModal(modal, tittle, content);
-
         }
 
 
@@ -44,161 +38,6 @@ const MyPlugin = (function() {
 
             myModalView.hide(container);
         }
-
-
-        // this.saveModalData = function(inputName, inputDay, inputMonth, inputYear) { // Получаем данные из модалки и сохраняем в объект 'userData'
-        //
-        //     if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
-        //
-        //         myModalView.validDate(false);
-        //         return;
-        //     }
-        //
-        //     userData = {
-        //
-        //         userName: inputName,
-        //         userDate: inputDay,
-        //         userMonth: inputMonth,
-        //         userYear: inputYear,
-        //     }
-        //
-        //     this.storeData(); /* Сохраняем данные в localStorage */
-        //
-        //     myModalView.validDate(true);
-        // }
-        //
-        //
-        // this.storeData = function() { // Сохраняем данные в localStorage, а если не доступно, то в cookies
-        //
-        //     if (('localStorage' in window) && (window.localStorage !== null)) {
-        //
-        //         let userDataSerial = JSON.stringify(userData);
-        //
-        //         localStorage.setItem('userData', userDataSerial);
-        //     }
-        //
-        //     else {
-        //
-        //         setCookie('userData', userData);
-        //
-        //         function setCookie(name, value, options = { path: '/' }) {
-        //
-        //             if (options.expires instanceof Date) {
-        //                 options.expires = options.expires.toUTCString();
-        //             }
-        //
-        //             if (value instanceof Object) {
-        //                 value = JSON.stringify(value);
-        //             }
-        //
-        //             let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-        //             for (let optionKey in options) {
-        //                 updatedCookie += "; " + optionKey;
-        //                 if (options[optionKey] !== true) {
-        //                     updatedCookie += "=" + options[optionKey];
-        //                 }
-        //             }
-        //             document.cookie = updatedCookie;
-        //         }
-        //     }
-        //
-        // }
-        //
-        //
-        // this.getData = function() { // Достаем данные из хранилища
-        //
-        //     if (('localStorage' in window) && (window.localStorage !== null)) {
-        //
-        //         userData = JSON.parse(localStorage.getItem('userData'));
-        //
-        //         if (!userData) { /* Проверяем на наличие данных в localStorage */
-        //             // console.error("Ошибка получения данных из модели!");
-        //             return;
-        //         }
-        //     }
-        //
-        //     else {
-        //
-        //         userData = getCookie('userData', json = true);
-        //
-        //         if (!userData) { /* Проверяем на наличие данных в cookies */
-        //             console.error("Ошибка получения данных из модели!");
-        //             return;
-        //         }
-        //
-        //         function getCookie(name, json = false) {
-        //             if (!name) {
-        //                 return undefined;
-        //             }
-        //             const regExpStr = "(?:^|; )" + name.replace(/([.$?*|{}()\[\]\\\/+^])/g, '\\$1') + "=([^;]*)";
-        //             let matches = document.cookie.match(new RegExp(regExpStr));
-        //             if (matches) {
-        //                 let res = decodeURIComponent(matches[1]);
-        //                 if (json) {
-        //                     try {
-        //                         return JSON.parse(res);
-        //                     } catch (e) {}
-        //                 }
-        //                 return res;
-        //             }
-        //             return undefined;
-        //         }
-        //     }
-        //
-        //     myModalView.printViewData(userData.userName, userData.userDate, userData.userMonth, userData.userYear); /* Передаем данные на отображение во View */
-        // }
-        //
-        //
-        // this.clearData = function() { // Очищаем данные в хранилище
-        //
-        //     if (('localStorage' in window) && (window.localStorage !== null)) {
-        //
-        //         localStorage.removeItem('userData');
-        //     }
-        //
-        //     else {
-        //
-        //         deleteCookie('userData');
-        //
-        //         function deleteCookie(name) {
-        //
-        //             setCookie(name, null, {
-        //                 expires: new Date(),
-        //                 path: '/'
-        //             });
-        //
-        //             function setCookie(name, value, options = { path: '/' }) {
-        //
-        //                 if (options.expires instanceof Date) {
-        //                     options.expires = options.expires.toUTCString();
-        //                 }
-        //
-        //                 if (value instanceof Object) {
-        //                     value = JSON.stringify(value);
-        //                 }
-        //
-        //                 let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-        //                 for (let optionKey in options) {
-        //                     updatedCookie += "; " + optionKey;
-        //                     if (options[optionKey] !== true) {
-        //                         updatedCookie += "=" + options[optionKey];
-        //                     }
-        //                 }
-        //                 document.cookie = updatedCookie;
-        //             }
-        //         }
-        //     }
-        //
-        //     myModalView.clearViewData();
-        // }
-        //
-        //
-        // this.checkInput = function(inputName, inputDay, inputMonth, inputYear) { /* Проверяем состоянин кнопки 'Сохранить' */
-        //
-        //     let stateBtn = !(inputName && inputDay && inputMonth && inputYear);
-        //
-        //     myModalView.btnUpdate(stateBtn); /* Отображаем состояние кнопки 'Сохранить' */
-        // }
     }
 
 
@@ -208,62 +47,34 @@ const MyPlugin = (function() {
 
     function ModalView() {
 
-        let myModalContainer = null;
         let myModalOverlay = null;
-
-        let buttonSave = null;
-        let modalData = null;
-        let clearData = null;
-        let validDate = null;
         let modalNew = null;
-        let valueHeader = null;
-        let headerText = null;
-        let valueFooter = null;
-        let valueField = null;
-        let contentText = null;
 
 
-        this.init = function(field) {
-
-            myModalContainer = field;
-
-            // console.log(myModalContainer)
+        this.init = function() {
 
             myModalOverlay = document.querySelector('.modal-overlay');
-            // buttonSave = myModalContainer.querySelector(".modal__save");
-            // modalData = document.querySelector('.modal-data');
-            // clearData = document.querySelector('.clear-data');
-            // validDate = myModalContainer.querySelector(".valid-date");
-            // valueHeader = myModalContainer.querySelector("h2");
-            // valueFooter = myModalContainer.querySelector(".modal__footer");
-            // valueField = myModalContainer.querySelector(".modal__content");
-            // headerText = myModalContainer.querySelector(".header-text");
-            // contentText = myModalContainer.querySelector(".content-text");
         }
 
 
         this.showModal1 = function (container) { /* Открываем модальное окно */
 
-            container.classList.remove('modal_closed');
-            container.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
+            container.classList.remove('modal_closed');
+            container.classList.remove('modal_closed');
+
         }
 
 
         this.showModal2 = function (container, tittle, content) { /* Открываем модальное окно */
 
-            container.classList.remove('modal_closed');
             myModalOverlay.classList.remove('modal_closed');
+            container.classList.remove('modal_closed');
 
-            headerText = container.querySelector(".header-text");
-            contentText = container.querySelector(".content-text");
+            const headerText = container.querySelector(".header-text");
+            const contentText = container.querySelector(".content-text");
 
-            // valueHeader.style.display = 'none';
-            // valueFooter.style.display = 'none';
-            // valueField.style.display = 'none';
-            // headerText.style.display = '';
             headerText.innerHTML = `<h2>${tittle}<h2>`;
-            // contentText.style.display = '';
             contentText.innerHTML = content;
         }
 
@@ -298,8 +109,7 @@ const MyPlugin = (function() {
 
         this.hide = function (container) { /* Закрываем модальное окно */
 
-            // console.log(container)
-
+            myModalOverlay.classList.add('modal_closed');
 
             if (container) {
                 container.classList.add('modal_closed');
@@ -308,58 +118,7 @@ const MyPlugin = (function() {
             else {
                 modalNew.classList.add('modal_closed');
             }
-
-
-            myModalOverlay.classList.add('modal_closed');
-
-            // if (modalNew) {
-            //     modalNew.classList.add("modal_closed");
-            //     valueHeader.style.display = '';
-            //     valueFooter.style.display = '';
-            //     valueField.style.display = '';
-            //     headerText.style.display = 'none';
-            //     contentText.style.display = 'none';
-            // }
-
-            // const inputName = myModalContainer.querySelector(".input__default");
-            // const inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
-
-            // inputName.value = '';
-            // inputBirth.forEach(elem => elem.value = '');
-            //
-            // validDate.style.display = 'none';
         }
-
-
-        // this.printViewData = function (name, day, month, year) { // Выводим данные из хранилища в div.modal-data
-        //
-        //     modalData.innerHTML = `<h3>Привет, ${name}!</h3><p>У тебя День Рождения ${day}/${month}/${year}</p>`;
-        //
-        //     clearData.style.display = '';
-        // }
-
-
-        // this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
-        //
-        //     modalData.innerHTML = `Данные отсутствуют...`;
-        //
-        //     clearData.style.display = 'none';
-        // }
-
-
-        // this.btnUpdate = function (stateBtn) { /* Показываем состояние кнопки 'Сохранить данные' */
-        //
-        //     // buttonSave.disabled = stateBtn;
-        // }
-
-
-        // this.validDate = function (checkData) { /* Показываем валидацию данных */
-        //
-        //     validDate.style.display = '';
-        //
-        //     if (checkData) validDate.innerHTML = 'Данные сохранены!';
-        //     else validDate.innerHTML = 'Введите корректно данные!';
-        // }
     }
 
 
@@ -369,73 +128,17 @@ const MyPlugin = (function() {
 
     function ModalController () {
 
-        let that = this;
-
         let myModalModel = null;
-        let myModalContainer = null;
-
-        let inputName = null;
-        let inputBirth = null;
-        let buttonCloseNew = null;
-
-        let dataModalTittle1 = null;
-        let dataModalContent1 = null;
-
+        let that = this;
         let container = null;
 
 
         this.init = function(model) { // получаем кнопки и вешаем обработчики
 
             myModalModel = model;
-            // myModalContainer = field;
-            //
-            // dataModalTittle1 = dataModalTittle;
-            // dataModalContent1 = dataModalContent;
-
-
-            // console.log(myModalContainer);
-
-
-            // myModalModel.getData(); /* Проверка на наличие данных в localStorage или Cookies */
-            //
-            // myModalModel.checkInput(); /* Проверка состояния кнопки 'Сохранить данные' */
-
-
-            // myModalModel.openModal(myModalContainer, dataModalTittle, dataModalContent);
-
 
             const buttonOpen = document.querySelectorAll('[data-supermodal]');
-            buttonOpen.forEach(elem => elem.addEventListener('click', this.openModal));
-
-            // const buttonClose = container.querySelector(".modal__close");
-            // // console.log(buttonClose);
-            // buttonClose.addEventListener("click", this.hideModal);
-            //
-            // buttonCloseNew = document.createElement("a");
-            // buttonCloseNew.addEventListener("click", this.hideModal);
-            //
-            // const buttonCancel = myModalContainer.querySelector(".modal__cancel");
-            // buttonCancel.addEventListener("click", this.hideModal);
-            //
-            // const buttonSave = myModalContainer.querySelector(".modal__save");
-            // buttonSave.addEventListener("click", this.saveModal);
-            //
-            // const buttonClear = document.querySelector(".clear-data");
-            // buttonClear.addEventListener("click", this.clearData);
-            //
-            // inputName = myModalContainer.querySelector(".input__default");
-            // inputBirth = myModalContainer.querySelectorAll(".input__date-birth");
-            //
-            // inputName.addEventListener('input', checkChangeInput);
-            // inputBirth.forEach(elem => elem.addEventListener('input', checkChangeInput));
-
-
-            // function checkChangeInput(e) {
-            //
-            //     e.preventDefault();
-            //
-            //     myModalModel.checkInput(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
-            // }
+            buttonOpen.forEach(elem => elem.addEventListener('click', that.openModal));
         }
 
 
@@ -446,25 +149,15 @@ const MyPlugin = (function() {
             let element = e.target;
             container = document.getElementById(element.dataset.supermodal);
 
-            console.log(container)
-            console.log(element.hasAttribute("data-supermodal-title"))
-            console.log(element.hasAttribute("data-supermodal-content"))
-
-
-
-
             if (
                 container &&
                 !element.hasAttribute("data-supermodal-title") &&
                 !element.hasAttribute("data-supermodal-content")) {
-                // do first variant
 
                 myModalModel.openModal(container);
 
                 const buttonClose = container.querySelector(".modal__close");
-                console.log(buttonClose);
                 buttonClose.addEventListener("click", that.hideModal);
-
 
 
             } else if (
@@ -472,12 +165,10 @@ const MyPlugin = (function() {
                 element.hasAttribute("data-supermodal-title") &&
                 element.hasAttribute("data-supermodal-content")
             ) {
-                // do second variant
 
                 myModalModel.openModal(container, element.dataset.supermodalTitle, element.dataset.supermodalContent);
 
                 const buttonClose = container.querySelector(".modal__close");
-                console.log(buttonClose);
                 buttonClose.addEventListener("click", that.hideModal);
 
             } else if (
@@ -486,20 +177,12 @@ const MyPlugin = (function() {
                 element.hasAttribute("data-supermodal-title") &&
                 element.hasAttribute("data-supermodal-content")
             ) {
-                // do third
 
                 let buttonCloseNew = document.createElement("a");
                 buttonCloseNew.addEventListener("click", that.hideModal);
 
-
                 myModalModel.openModal(container, element.dataset.supermodalTitle, element.dataset.supermodalContent, buttonCloseNew);
-
             }
-
-            // const dataModalTittle = e.target.dataset.supermodalTitle;
-            // const dataModalContent = e.target.dataset.supermodalContent;
-
-
         }
 
 
@@ -507,28 +190,8 @@ const MyPlugin = (function() {
 
             e.preventDefault();
 
-            console.log(container)
-
             myModalModel.closeModal(container);
-
-            // myModalModel.getData(); /* Здороваемся с пользователем если данные сохранены */
         }
-
-
-        // this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage или Cookies */
-        //
-        //     e.preventDefault();
-        //
-        //     myModalModel.saveModalData(inputName.value, inputBirth[0].value, inputBirth[1].value, inputBirth[2].value);
-        // }
-
-
-        // this.clearData = function (e) { /* Очищаем данные из localStorage или Cookies */
-        //
-        //     e.preventDefault();
-        //
-        //     myModalModel.clearData();
-        // }
     }
 
 
@@ -541,26 +204,6 @@ const MyPlugin = (function() {
 
             this.main();
 
-            // let dataModal = document.querySelectorAll('.modal-open').dataset.supermodal;
-            let dataModal = document.querySelectorAll('[data-supermodal]');
-            // console.log(dataModal)
-
-            let xxx = [];
-            let containerElem = [];
-            for (let i = 0; i < dataModal.length; i++) {
-                xxx[i] = dataModal[i].dataset.supermodal;
-                containerElem[i] = document.getElementById(xxx[i]);
-
-            }
-
-            // dataModal.forEach(elem => elem.addEventListener('click', this.makeModal));
-
-
-
-
-            // console.log(xxx)
-            // console.log(containerElem)
-
             const appModalModel = new ModalModel();
             const appModalView = new ModalView();
             const appModalController = new ModalController();
@@ -568,60 +211,11 @@ const MyPlugin = (function() {
             appModalModel.init(appModalView);
             appModalView.init();
             appModalController.init(appModalModel);
-
-            //
-            //
-            // let xxx;
-            // let containerElem;
-            // for (let i = 0; i < dataModal.length; i++) {
-            //     xxx = dataModal[i].dataset.supermodal;
-            //     // console.log(xxx)
-            //     containerElem = document.getElementById(xxx);
-            //     // console.log(containerElem)
-            //     appModalView.init(containerElem);
-            //     appModalController.init(appModalModel, containerElem);
-            // }
-            //
-            //
-            //
-            // appModalModel.init(appModalView);
-            // appModalView.init(containerElem);
-
-
-            // appModalController.init(appModalModel, containerElem);
         },
-
-        // makeModal: function (e) {
-        //
-        //
-        //
-        //     const dataModalId = e.target.dataset.supermodal;
-        //
-        //     // console.log(dataModalId)
-        //
-        //     const containerElem = document.getElementById(dataModalId);
-        //     const dataModalTittle = e.target.dataset.supermodalTitle;
-        //     const dataModalContent = e.target.dataset.supermodalContent;
-        //
-        //     // console.log(containerElem)
-        //
-        //     const appModalModel = new ModalModel();
-        //     const appModalView = new ModalView();
-        //     const appModalController = new ModalController();
-        //
-        //     appModalModel.init(appModalView);
-        //     appModalView.init(containerElem);
-        //     appModalController.init(appModalModel, containerElem, dataModalTittle, dataModalContent);
-        //
-        //
-        //
-        //
-        //     // console.log(`Modal plugin (v${this.version}) was initialized.`);
-        // },
 
         main: function () {
 
-            // console.log(`Modal plugin (v${this.version}) was initialized.`);
+            console.log(`Modal plugin (v${this.version}) was initialized.`);
         },
     }
 }());
