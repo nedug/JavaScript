@@ -21,19 +21,18 @@ function WeatherWidget() {
     
             <h1>Погода</h1>
             
-            <div id="forecast-3-days">
-               <div class="today"></div>       
-               <div class="tomorrow"></div>       
-               <div class="afterTomorrow"></div>       
-            </div>
-            
             <div id="forecast-now">
                 <div class="icon-weather"></div>
                 <h2 class="location"></h2>
                 <h1 class="temperature"></h1>
                 <div class="description"></div>
                 <div class="wind"></div>
-             
+            </div>
+            
+            <div id="forecast-3-days">
+               <div class="today"></div>       
+               <div class="tomorrow"></div>       
+               <div class="after-tomorrow"></div>       
             </div>
             
             <div id="loader"></div>
@@ -55,6 +54,7 @@ function WeatherWidget() {
     this.getNowWeather = function() {
 
         forecastNow.style.display = "none";
+        forecast3day.style.display = "none";
         loader.style.display = "";
 
 
@@ -100,7 +100,7 @@ function WeatherWidget() {
 
     this.showNowWeather = function(data) {
 
-        forecast3day.style.display = "none";
+        // forecast3day.style.display = "none";
         forecastNow.style.display = "block";
 
         let icon = forecastNow.querySelector('.icon-weather');
@@ -124,34 +124,35 @@ function WeatherWidget() {
 
     this.show3dayWeather = function(data3day) {
 
-        // console.log(data3day.list[0].main.temp)
-
         forecast3day.style.display = "flex";
         forecastNow.style.display = "none";
 
-        let today = forecast3day.querySelector('.today');
+        const today = forecast3day.querySelector('.today');
         today.innerHTML = `
-        Сегодня: ${data3day.list[1].main.temp} °C <br> 
-        <img src="http://openweathermap.org/img/w/${data3day.list[0].weather[0]["icon"]}.png"> <br>
-        ${dataForThreeDays.list[0].weather[0]["description"]} <br>
-        Ветер: <br>" + dataForThreeDays.list[0].wind.speed + "м/с"`;
+        Сегодня:<br>
+        <img src="http://openweathermap.org/img/w/${data3day.list[1].weather[0]["icon"]}.png">
+        <h3>${Math.round(data3day.list[1].main.temp)} °C</h3> 
+        <p>${data3day.list[1].weather[0]["description"]}</p>
+        Ветер:<br>
+        ${data3day.list[1].wind.speed} м/с`;
 
-        // let tomorrow = document.createElement('div');
-        // forecast3day.append(tomorrow);
-        //
-        // let afterTomorrow = document.createElement('div');
-        // forecast3day.append(afterTomorrow);
+        const tomorrow = forecast3day.querySelector('.tomorrow');
+        tomorrow.innerHTML = `
+        Завтра:<br>
+        <img src="http://openweathermap.org/img/w/${data3day.list[9].weather[0]["icon"]}.png">
+        <h3>${Math.round(data3day.list[9].main.temp)} °C</h3>
+        <p>${data3day.list[9].weather[0]["description"]}</p>
+        Ветер:<br>
+        ${data3day.list[9].wind.speed} м/с`;
 
-
-
-
-        // let iconOne = `${data3day.list[0].weather[0]["icon"]}`;
-        // let iconTwo = `${data3day.list[8].weather[0]["icon"]}`;
-        // let iconThree = `${data3day.list[16].weather[0]["icon"]}`;
-        // today.innerHTML = "Сегодня: " + data3day.list[0].main.temp + "°C <br> " + `<img src="http://openweathermap.org/img/w/${iconOne}.png"></img>` + " <br>" + data3day.list[0].weather[0]["description"] + " <br> Скорость ветра: <br>" + data3day.list[0].wind.speed + "м/с";
-        // tomorrow.innerHTML = "Завтра: " + data3day.list[8].main.temp + "°C <br> " + `<img src="http://openweathermap.org/img/w/${iconTwo}.png"></img>` + " <br>" + data3day.list[8].weather[0]["description"] + " <br> Скорость ветра: <br>" + data3day.list[8].wind.speed + "м/с";
-        // afterTomorrow.innerHTML = "Послезавтра: " + data3day.list[16].main.temp + "°C <br> " + `<img src="http://openweathermap.org/img/w/${iconThree}.png"></img>` + " <br>" + data3day.list[16].weather[0]["description"] + " <br> Скорость ветра: <br>" + data3day.list[16].wind.speed + "м/с";
-
+        const afterTomorrow = forecast3day.querySelector('.after-tomorrow');
+        afterTomorrow.innerHTML = `
+        Послезавтра:<br>
+        <img src="http://openweathermap.org/img/w/${data3day.list[17].weather[0]["icon"]}.png">
+        <h3>${Math.round(data3day.list[17].main.temp)} °C</h3>
+        <p>${data3day.list[17].weather[0]["description"]}</p>
+        Ветер:<br>
+        ${data3day.list[17].wind.speed} м/с`;
 
     };
 
