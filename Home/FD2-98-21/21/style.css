@@ -1,7 +1,7 @@
 #weather-widget {
     font-family: 'Exo 2', sans-serif;
     font-size: 16px;
-    /*background-image: url(nebo.jpg);*/
+    background-image: url(nebo.jpg);
     width: 320px;
     height: 300px;
     padding: 5px;
@@ -74,4 +74,7 @@
 }
 .title {
     margin: 17px 0 12px;
+}
+#loader {
+    margin-top: 40px;
 }

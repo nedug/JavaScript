@@ -34,7 +34,7 @@ function WeatherWidget() {
                <div class="after-tomorrow"></div>       
             </div>
             
-            <div id="loader"><img src="loader.gif"></div>
+            <div id="loader"><img src="loader.gif" height="110" width="auto"></div>
     
             <a href="#" class="modal__close"></a>`;
 
