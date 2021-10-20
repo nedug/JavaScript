@@ -1,12 +1,11 @@
 function WeatherWidget() {
 
+    let that = this;
     let cityID = null;
     let field = null;
     let forecastNow = null;
     let forecast3day = null;
     let loader = null;
-    let that = this;
-
 
     this.createWrapWidget = function() {
 
@@ -35,7 +34,7 @@ function WeatherWidget() {
                <div class="after-tomorrow"></div>       
             </div>
             
-            <div id="loader"></div>
+            <div id="loader"><img src="loader.gif"></div>
     
             <a href="#" class="modal__close" title="Закрыть"></a>`;
 
@@ -46,9 +45,7 @@ function WeatherWidget() {
         forecast3day = document.getElementById('forecast-3-days');
 
         loader = document.getElementById('loader');
-        loader.innerHTML = '<img src="spinner.gif">';
     };
-
 
 
     this.getNowWeather = function() {
@@ -75,32 +72,29 @@ function WeatherWidget() {
     };
 
 
-
     this.get3dayWeather = function() {
 
+        forecastNow.style.display = "none";
+        forecast3day.style.display = "none";
+        loader.style.display = "";
 
         let apiUrl = "https://api.openweathermap.org/data/2.5/";
         let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
         let apiQuery = apiUrl+"/forecast?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
 
-
         fetch(apiQuery, {method: 'get'})
             .then(response => response.json())
             .then(data3day => {
                 // console.log(data3day);
-                //forecast.style.display = "block";
+                loader.style.display = "none";
                 this.show3dayWeather(data3day);
-                //forecast.innerHTML = "Прогноз погоды на 12 часов дня:" + "<br>" + "Сегодня: " + dataForThreeDays.list[0].main.temp + "°C <br> Завтра: " + dataForThreeDays.list[8].main.temp + "°C <br> Послезавтра: " + dataForThreeDays.list[16].main.temp + '°C';
-
             })
             .catch(error => console.error("Ошибка получение погоды. Причина: " + error));
-    }
-
+    };
 
 
     this.showNowWeather = function(data) {
 
-        // forecast3day.style.display = "none";
         forecastNow.style.display = "block";
 
         let icon = forecastNow.querySelector('.icon-weather');
@@ -117,15 +111,12 @@ function WeatherWidget() {
 
         let wind = forecastNow.querySelector('.wind');
         wind.innerHTML = `Ветер ${data.wind.speed} м/с`;
-
     };
-
 
 
     this.show3dayWeather = function(data3day) {
 
         forecast3day.style.display = "flex";
-        forecastNow.style.display = "none";
 
         const today = forecast3day.querySelector('.today');
         today.innerHTML = `
@@ -153,14 +144,7 @@ function WeatherWidget() {
         <p>${data3day.list[17].weather[0]["description"]}</p>
         Ветер:<br>
         ${data3day.list[17].wind.speed} м/с`;
-
     };
-
-
-
-
-
-
 
 
     this.controller = function() {
@@ -172,7 +156,6 @@ function WeatherWidget() {
             field.style.display = "none";
         });
 
-
         const btnNowWeather = field.querySelector('.now-weather');
         btnNowWeather.addEventListener('click', function(e) {
 
@@ -180,31 +163,13 @@ function WeatherWidget() {
             that.getNowWeather();
         });
 
-
         const btnDay3Weather = field.querySelector('.day3-weather');
         btnDay3Weather.addEventListener('click', function(e) {
 
             e.preventDefault();
             that.get3dayWeather();
         });
-
-
-        // const btnNowWeather = field.querySelector('.now-weather');
-        // btnNowWeather.addEventListener('click', that.getNowWeather);
-
-
     };
-
-
-
-
-
-
-
-
-
-
-
 
 
     this.getWeather = function(_cityID) {
@@ -212,13 +177,8 @@ function WeatherWidget() {
         cityID = _cityID;
 
         this.createWrapWidget();
-
         this.controller();
-
         this.getNowWeather();
-
-        // this.getThreeDaysWheather(625144);
     };
-
 
 }
