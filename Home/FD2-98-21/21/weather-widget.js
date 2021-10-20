@@ -3,6 +3,7 @@ function WeatherWidget() {
     let field = null;
     let forecastNow = null;
     let forecast3day = null;
+    let loader = null;
 
 
     this.createWrapWidget = function() {
@@ -26,8 +27,10 @@ function WeatherWidget() {
                 <h1 class="temperature"></h1>
                 <div class="description"></div>
                 <div class="wind"></div>
-                <div id="image"></div>
+             
             </div>
+            
+            <div id="loader"></div>
     
             <a href="#" class="modal__close" title="Закрыть"></a>`;
 
@@ -36,6 +39,9 @@ function WeatherWidget() {
 
         forecastNow = document.getElementById('forecast-now');
         forecast3day = document.getElementById('forecast-3-days');
+
+        loader = document.getElementById('loader');
+        loader.innerHTML = '<img src="spinner.gif">';
     };
 
 
@@ -50,7 +56,10 @@ function WeatherWidget() {
 
         fetch(apiQuery, {method: 'get'})
             .then((response) => response.json())
-            .then((data) => this.showNowWeather(data))
+            .then((data) => {
+                loader.style.display = "none";
+                this.showNowWeather(data)
+            })
             .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
 
     };

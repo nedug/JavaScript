@@ -81,6 +81,7 @@ body {
             height: 100px;
         }
         #forecast-now {
+            display: none;
             width: 200px;
             height: 200px;
         }
