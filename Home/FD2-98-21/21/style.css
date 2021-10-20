@@ -14,7 +14,7 @@ body {
         strong {
             color: red;
         }
-        #forecast {
+        #forecast3day {
             font-size: 12px;
             display: flex;
             justify-content: space-around;

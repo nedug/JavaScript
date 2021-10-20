@@ -90,6 +90,7 @@ var WeatherWidget = function() {
             forecast.appendChild(tomorrow);
             let afterTomorrow = document.createElement('div');
             forecast.appendChild(afterTomorrow);
+
             let iconOne = `${dataForThreeDays.list[0].weather[0]["icon"]}`;
             let iconTwo = `${dataForThreeDays.list[8].weather[0]["icon"]}`;
             let iconThree = `${dataForThreeDays.list[16].weather[0]["icon"]}`;
