@@ -33,17 +33,18 @@ body {
             position: fixed;
             border-radius: 10%; 
         }
-        #moreinf {
+        #more-info {
             position: relative;
             top: 15px;
             left: 15px;
             margin-bottom: 15px;
 
         }
-        #temp-with-icon {
-            width: 70px;
-            float: left;
-            padding-top: 20px;
+        .icon-weather {
+            /*width: 70px;*/
+            /*float: left;*/
+            /*padding-top: 20px;*/
+            text-align: center;
         }
         #profile {
             width: 130px;
@@ -79,10 +80,10 @@ body {
             width: 100px;
             height: 100px;
         }
-        #section {
+        #forecast-now {
             width: 200px;
             height: 200px;
         }
-        #location {
+        .location {
             width: 310px;
         }

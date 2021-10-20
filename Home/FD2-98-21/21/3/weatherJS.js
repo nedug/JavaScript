@@ -34,6 +34,15 @@ var WeatherWidget = function() {
             })
             .catch(error => console.error("Ошибка получение погоды. Причина: " + error));
         }
+
+
+
+
+
+
+
+
+
         this.getWeatherForThreeDays = function() {
             forecast.style.display = "flex";
             section.style.display = "none";
