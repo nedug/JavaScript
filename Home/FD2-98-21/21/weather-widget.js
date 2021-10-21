@@ -54,7 +54,6 @@ function WeatherWidget() {
         forecast3day.style.display = "none";
         loader.style.display = "";
 
-
         let apiUrl = "https://api.openweathermap.org/data/2.5/";
         let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
         let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
@@ -64,7 +63,7 @@ function WeatherWidget() {
             .then((response) => response.json())
             .then((data) => {
                 // console.log(data);
-                loader.style.display = "none";
+                // loader.style.display = "none";
                 this.showNowWeather(data)
             })
             .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
@@ -86,7 +85,7 @@ function WeatherWidget() {
             .then(response => response.json())
             .then(data3day => {
                 // console.log(data3day);
-                loader.style.display = "none";
+                // loader.style.display = "none";
                 this.show3dayWeather(data3day);
             })
             .catch(error => console.error("Ошибка получение погоды. Причина: " + error));
@@ -95,27 +94,33 @@ function WeatherWidget() {
 
     this.showNowWeather = function(data) {
 
+        loader.style.display = "none";
         forecastNow.style.display = "block";
 
-        let icon = forecastNow.querySelector('.icon-weather');
+        const icon = forecastNow.querySelector('.icon-weather');
         icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
 
-        let location = forecastNow.querySelector('.location');
+        const location = forecastNow.querySelector('.location');
         location.innerHTML = `${data.name}`;
 
-        let temperature = forecastNow.querySelector('.temperature');
+        const temperature = forecastNow.querySelector('.temperature');
         temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
 
-        let description = forecastNow.querySelector('.description');
+        const description = forecastNow.querySelector('.description');
         description.innerHTML = data.weather[0].description;
 
-        let wind = forecastNow.querySelector('.wind');
-        wind.innerHTML = `Ветер: ${data.wind.speed} м/с`;
+        const wind = forecastNow.querySelector('.wind');
+        wind.innerHTML = `Ветер: ${round(data.wind.speed, 1)} м/с`;
+
+        function round(value, decimals) {
+            return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+        }
     };
 
 
     this.show3dayWeather = function(data3day) {
 
+        loader.style.display = "none";
         forecast3day.style.display = "flex";
 
         const today = forecast3day.querySelector('.today');
@@ -124,7 +129,7 @@ function WeatherWidget() {
         <img src="http://openweathermap.org/img/w/${data3day.list[1].weather[0]["icon"]}.png">
         <h3>${Math.round(data3day.list[1].main.temp)} °C</h3> 
         <p>Ветер:<br>
-        ${data3day.list[1].wind.speed} м/с</p>
+        ${round(data3day.list[1].wind.speed, 1)} м/с</p>
         ${data3day.list[1].weather[0]["description"]}`;
 
         const tomorrow = forecast3day.querySelector('.tomorrow');
@@ -133,7 +138,7 @@ function WeatherWidget() {
         <img src="http://openweathermap.org/img/w/${data3day.list[9].weather[0]["icon"]}.png">
         <h3>${Math.round(data3day.list[9].main.temp)} °C</h3>
         <p>Ветер:<br>
-        ${data3day.list[9].wind.speed} м/с</p>
+        ${round(data3day.list[9].wind.speed, 1)} м/с</p>
         ${data3day.list[9].weather[0]["description"]}`;
 
         const afterTomorrow = forecast3day.querySelector('.after-tomorrow');
@@ -142,8 +147,12 @@ function WeatherWidget() {
         <img src="http://openweathermap.org/img/w/${data3day.list[17].weather[0]["icon"]}.png">
         <h3>${Math.round(data3day.list[17].main.temp)} °C</h3>
         <p>Ветер:<br>
-        ${data3day.list[17].wind.speed} м/с</p>
+        ${round(data3day.list[17].wind.speed, 1)} м/с</p>
         ${data3day.list[17].weather[0]["description"]}`;
+
+        function round(value, decimals) {
+            return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+        }
     };
 
 
