@@ -2,6 +2,8 @@
     font-family: 'Exo 2', sans-serif;
     font-size: 16px;
     background-image: url(wind-atlas.gif);
+    background-size: auto 100%;
+    background-position: -115px;
     width: 320px;
     height: 300px;
     padding: 5px;
