@@ -15,11 +15,43 @@ const LoginWeb = {
             <input type="date" id="user-date-last" class="input__date-last"><br>
             <label>Среднее количество сигарет в день:</label>
             <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="20"><br>
+            <label>Стоимость одной пачки, руб.:</label>
+            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4"><br>
             <h4 id="valid-value"></h4>
           </div>
         </main>
         <footer class="modal__footer">
-          <button id="btn-save" class="modal__save">Сохранить</button>
+          <button id="btn-save" class="data__save">Сохранить</button>
+        </footer>
+      </section>
+    `;
+  }
+};
+
+const Options = {
+  id: "options",
+  title: "Настройки пользователя",
+  render: (className = "container") => {
+    return `
+      <section class="${className}">
+        <h3>Изменить данные пользователя:</h3>
+        <main class="modal__content">
+          <div class="form-field">
+            <label for="user-name">Ваше имя:</label>
+            <input type="text" id="user-name" class="input__default" value="${nameUser}">
+          </div>
+          <div class="form-field">
+            <label>Дата последней сигареты:</label>
+            <input type="date" id="user-date-last" class="input__date-last"><br>
+            <label>Среднее количество сигарет в день:</label>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${nameUser}"><br>
+            <label>Стоимость одной пачки, руб.:</label>
+            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${nameUser}"><br>
+            <h4 id="valid-value"></h4>
+          </div>
+        </main>
+        <footer class="modal__footer">
+          <button id="btn-save" class="data__save">Изменить</button>
         </footer>
       </section>
     `;
@@ -67,7 +99,7 @@ const Contacts = {
 
 const ErrorPage = {
   id: "error",
-  title: "Achtung, warning, kujdes, attenzione, pozornost...",
+  title: "warning",
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
