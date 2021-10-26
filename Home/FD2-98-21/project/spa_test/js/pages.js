@@ -1,3 +1,31 @@
+const LoginWeb = {
+  id: "login",
+  title: "Авторизация пользователя",
+  render: (className = "container") => {
+    return `
+      <section class="${className}">
+        <h3>Дорогой пользователь, введите ваши данные!</h3>
+        <main class="modal__content">
+          <div class="form-field">
+            <label for="user-name">Ваше имя:</label>
+            <input type="text" id="user-name" class="input__default" value="Sasha">
+          </div>
+          <div class="form-field">
+            <label>Дата последней сигареты:</label>
+            <input type="date" id="user-date-last" class="input__date-last"><br>
+            <label>Среднее количество сигарет в день:</label>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="20"><br>
+            <h4 id="valid-value"></h4>
+          </div>
+        </main>
+        <footer class="modal__footer">
+          <button id="btn-save" class="modal__save">Сохранить</button>
+        </footer>
+      </section>
+    `;
+  }
+};
+
 const HomePage = {
   id: "main",
   title: "Главная страница примера SPA",

@@ -8,6 +8,7 @@ const components = {
 
 // Список поддердживаемых роутов (from pages.js)
 const routes = {
+  login: LoginWeb,
   main: HomePage,
   about: About,
   contacts: Contacts,
@@ -15,7 +16,8 @@ const routes = {
   error: ErrorPage,
 };
 
-/* ----- spa init module --- */
+
+/* ----- SPA module --- */
 const mySPA = (function() {
 
   /* ------- begin view -------- */
@@ -51,8 +53,9 @@ const mySPA = (function() {
         currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
       }
     }
-  };
-  /* -------- end view --------- */
+  }
+
+
   /* ------- begin model ------- */
   function ModuleModel () {
       let myModuleView = null;
@@ -66,7 +69,8 @@ const mySPA = (function() {
       }
   }
 
-  /* -------- end model -------- */
+
+
   /* ----- begin controller ---- */
   function ModuleController () {
       let myModuleContainer = null;
@@ -86,8 +90,8 @@ const mySPA = (function() {
         const hashPageName = location.hash.slice(1).toLowerCase();
         myModuleModel.updateState(hashPageName);
       }
-  };
-  /* ------ end controller ----- */
+  }
+
 
   return {
       init: function({container, routes, components}) {
@@ -113,11 +117,11 @@ const mySPA = (function() {
   };
 
 }());
-/* ------ end app module ----- */
+
 
 /*** --- init module --- ***/
 document.addEventListener("DOMContentLoaded", mySPA.init({
   container: "spa",
   routes: routes,
-  components: components
+  components: components,
 }));

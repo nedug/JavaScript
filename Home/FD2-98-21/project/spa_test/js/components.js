@@ -3,8 +3,7 @@ const Header = {
     return `
       <header class="header ${customClass}" id="header">
         <a href="#main">Some logo here</a>
-      </header>
-    `;
+      </header>`;
   }
 };
 
@@ -13,12 +12,12 @@ const NavBar = {
     return `
       <nav class="mainmenu ${customClass}" id="mainmenu">
         <ul class="mainmenu__list">
+          <li><a class="mainmenu__link" href="#login">Авторизация</a></li>
           <li><a class="mainmenu__link" href="#main">Главная</a></li>
           <li><a class="mainmenu__link" href="#about">О нас</a></li>
           <li><a class="mainmenu__link" href="#contacts">Контакты</a></li>
         </ul>
-      </nav>
-    `;
+      </nav>`;
   }
 };
 
