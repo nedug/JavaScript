@@ -4,7 +4,7 @@ const LoginWeb = {
   render: (className = "container") => {
     return `
       <section class="${className}">
-        <h3>Дорогой пользователь, введите ваши данные!</h3>
+        <h3 class="user__content">Дорогой пользователь, введите ваши данные!</h3>
         <main class="modal__content">
           <div class="form-field">
             <label for="user-name">Ваше имя:</label>
@@ -34,7 +34,7 @@ const Options = {
   render: (className = "container") => {
     return `
       <section class="${className}">
-        <h3>Изменить данные пользователя:</h3>
+        <h3 class="user__content">Изменить данные пользователя:</h3>
         <main class="modal__content">
           <div class="form-field">
             <label for="user-name">Ваше имя:</label>

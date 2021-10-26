@@ -12,7 +12,7 @@ const routes = {
   main: HomePage,
   about: About,
   contacts: Contacts,
-  default: HomePage,
+  default: LoginWeb,
   error: ErrorPage,
 };
 
@@ -32,13 +32,19 @@ const mySPA = (function() {
 
         this.updateState = function(pageName) {
 
-            // if(!userData) {
+            // if(!JSON.parse(localStorage.getItem('userData'))) {
             //     console.log(userData);
-            //     myModuleView.renderContent("error");
+            //     myModuleView.renderContent(pageName);
+            // }
+            // else if (JSON.parse(localStorage.getItem('userData')) && (pageName === '' || pageName === 'login')) {
+            //     console.log('111')
+            //     myModuleView.renderContent(pageName);
+            //     myModuleView.renderContentLogin();
             // }
             // else {
             //     myModuleView.renderContent(pageName);
             // }
+
             myModuleView.renderContent(pageName);
 
         }
@@ -85,6 +91,7 @@ const mySPA = (function() {
         let menu = null;
         let contentContainer = null;
         let routesObj = null;
+        let that = this;
 
         this.init = function(container, routes) {
             myModuleContainer = container;
@@ -96,23 +103,47 @@ const mySPA = (function() {
         this.renderContent = function(hashPageName) {
             let routeName = "default";
 
-            if (hashPageName.length > 0) {
-                routeName = hashPageName in routes ? hashPageName : "error";
+
+            if (hashPageName.length > 0 && hashPageName !== 'login' && !JSON.parse(localStorage.getItem('userData'))) {
+                routeName = "error";
+                console.log(1111)
+                something();
             }
+            // else if ( )
+            else if ((hashPageName === '' || hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
 
-            console.log(hashPageName);
-
-
-
-
-
-            window.document.title = routesObj[routeName].title;
-            contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
-            this.updateButtons(routesObj[routeName].id);
-
-            if(JSON.parse(localStorage.getItem('userData')) && hashPageName === 'login') {
+                console.log(2222)
+                routeName = "login";
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                something();
                 this.renderContentLogin();
             }
+            else {
+                console.log(3333)
+                routeName = hashPageName in routes ? hashPageName : "error";
+                something();
+            }
+
+            // console.log(hashPageName);
+            // console.log(routeName);
+
+
+
+
+
+            function something() {
+                window.document.title = routesObj[routeName].title;
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                that.updateButtons(routesObj[routeName].id);
+            }
+
+
+
+            // console.log(JSON.parse(localStorage.getItem('userData')))
+
+            // if(JSON.parse(localStorage.getItem('userData'))) {
+            //     this.renderContentLogin();
+            // }
         }
 
         this.updateButtons = function(currentPage) {
@@ -130,7 +161,7 @@ const mySPA = (function() {
             linkLogin.innerHTML = 'Настройки';
             // linkLogin.setAttribute('href', '#fff');
 
-            const h3 = myModuleContainer.querySelector(".login-page h3");
+            const h3 = myModuleContainer.querySelector(".user__content");
             h3.innerHTML = 'Изменить данные пользователя:';
 
             const inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
@@ -183,7 +214,17 @@ const mySPA = (function() {
         this.updateState = function() {
 
             const hashPageName = location.hash.slice(1).toLowerCase();
+            console.log(hashPageName);
+
+            // if (!JSON.parse(localStorage.getItem('userData'))) {
+            //     myModuleModel.updateState('error');
+            // }
+            // else {
+            //     myModuleModel.updateState(hashPageName);
+            // }
+
             myModuleModel.updateState(hashPageName);
+
 
             if (hashPageName === 'login') {
                 const buttonSave = myModuleContainer.querySelector(".data__save");
