@@ -20,77 +20,79 @@ const routes = {
 /* ----- SPA module --- */
 const mySPA = (function() {
 
-  /* ------- begin view -------- */
-  function ModuleView() {
-    let myModuleContainer = null;
-    let menu = null;
-    let contentContainer = null;
-    let routesObj = null;
+    /* ------- begin model ------- */
+    function ModuleModel () {
+        let myModuleView = null;
 
-    this.init = function(container, routes) {
-      myModuleContainer = container;
-      routesObj = routes;
-      menu = myModuleContainer.querySelector("#mainmenu");
-      contentContainer = myModuleContainer.querySelector("#content");
+        this.init = function(view) {
+            myModuleView = view;
+        }
+
+        this.updateState = function(pageName) {
+            myModuleView.renderContent(pageName);
+        }
     }
 
-    this.renderContent = function(hashPageName) {
-      let routeName = "default";
 
-      if (hashPageName.length > 0) {
-        routeName = hashPageName in routes ? hashPageName : "error";
-      }
 
-      window.document.title = routesObj[routeName].title;
-      contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
-      this.updateButtons(routesObj[routeName].id);
+    /* ------- begin view -------- */
+    function ModuleView() {
+        let myModuleContainer = null;
+        let menu = null;
+        let contentContainer = null;
+        let routesObj = null;
+
+        this.init = function(container, routes) {
+            myModuleContainer = container;
+            routesObj = routes;
+            menu = myModuleContainer.querySelector("#mainmenu");
+            contentContainer = myModuleContainer.querySelector("#content");
+        }
+
+        this.renderContent = function(hashPageName) {
+            let routeName = "default";
+
+            if (hashPageName.length > 0) {
+                routeName = hashPageName in routes ? hashPageName : "error";
+            }
+
+            window.document.title = routesObj[routeName].title;
+            contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+            this.updateButtons(routesObj[routeName].id);
+        }
+
+        this.updateButtons = function(currentPage) {
+            const menuLinks = menu.querySelectorAll(".mainmenu__link");
+
+            for (let link of menuLinks) {
+                currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
+            }
+        }
     }
 
-     this.updateButtons = function(currentPage) {
-      const menuLinks = menu.querySelectorAll(".mainmenu__link");
 
-      for (let link of menuLinks) {
-        currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
-      }
+
+    /* ----- begin controller ---- */
+    function ModuleController () {
+        let myModuleContainer = null;
+        let myModuleModel = null;
+
+        this.init = function(container, model) {
+            myModuleContainer = container;
+            myModuleModel = model;
+
+            // вешаем слушателей на событие hashchange и кликам по пунктам меню
+            window.addEventListener("hashchange", this.updateState);
+
+            this.updateState(); //первая отрисовка
+        }
+
+        this.updateState = function() {
+            const hashPageName = location.hash.slice(1).toLowerCase();
+            myModuleModel.updateState(hashPageName);
+        }
     }
-  }
 
-
-  /* ------- begin model ------- */
-  function ModuleModel () {
-      let myModuleView = null;
-
-      this.init = function(view) {
-        myModuleView = view;
-      }
-
-      this.updateState = function(pageName) {
-        myModuleView.renderContent(pageName);
-      }
-  }
-
-
-
-  /* ----- begin controller ---- */
-  function ModuleController () {
-      let myModuleContainer = null;
-      let myModuleModel = null;
-
-      this.init = function(container, model) {
-        myModuleContainer = container;
-        myModuleModel = model;
-
-        // вешаем слушателей на событие hashchange и кликам по пунктам меню
-        window.addEventListener("hashchange", this.updateState);
-
-        this.updateState(); //первая отрисовка
-      }
-
-      this.updateState = function() {
-        const hashPageName = location.hash.slice(1).toLowerCase();
-        myModuleModel.updateState(hashPageName);
-      }
-  }
 
 
   return {
