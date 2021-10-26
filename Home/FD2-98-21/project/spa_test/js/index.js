@@ -110,16 +110,24 @@ const mySPA = (function() {
                 something();
             }
             // else if ( )
-            else if ((hashPageName === '' || hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
+            else if ((hashPageName === '' || hashPageName === 'login') && !JSON.parse(localStorage.getItem('userData'))) {
 
                 console.log(2222)
+                routeName = "login";
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                something();
+                // this.renderContentLogin();
+            }
+            else if ((hashPageName === '' || hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
+
+                console.log(333)
                 routeName = "login";
                 contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
                 something();
                 this.renderContentLogin();
             }
             else {
-                console.log(3333)
+                console.log(4444)
                 routeName = hashPageName in routes ? hashPageName : "error";
                 something();
             }
@@ -226,7 +234,7 @@ const mySPA = (function() {
             myModuleModel.updateState(hashPageName);
 
 
-            if (hashPageName === 'login') {
+            if (hashPageName === 'login' || hashPageName === '') {
                 const buttonSave = myModuleContainer.querySelector(".data__save");
 
                 // console.log(buttonSave);
