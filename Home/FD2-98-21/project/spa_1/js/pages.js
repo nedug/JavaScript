@@ -63,12 +63,14 @@ const Options = {
 
 const HomePage = {
   id: "main",
-  title: "Главная страница примера SPA",
-  render: (className = "container", ...rest) => {
+  title: "Основная статистика",
+  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}) => {
     return `
       <section class="${className}">
-        <h1>Главная</h1>
-        <p>Здесь будет контент <strong>Главной</strong> страницы.</p>
+        <h2>Отлично держитесь, ${userName}:</h2>
+        <p>Вы уже не курите: </p>
+        <p>Не выкурено сигарет: </p>
+        <p>Сэкономлено средств, руб.: </p>
       </section>
     `;
   }

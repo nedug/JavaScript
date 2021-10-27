@@ -13,7 +13,7 @@ const NavBar = {
     return `
       <nav class="mainmenu ${customClass}" id="mainmenu">
         <ul class="mainmenu__list">
-          <li><a class="mainmenu__link" href="#main">Главная</a></li>
+          <li><a class="mainmenu__link" href="#main">Статистика</a></li>
           <li><a class="mainmenu__link" href="#about">О нас</a></li>
           <li><a class="mainmenu__link" href="#contacts">Контакты</a></li>
           <li><a class="mainmenu__link" href="#login">Настройка</a></li>
