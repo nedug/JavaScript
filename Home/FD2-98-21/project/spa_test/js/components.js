@@ -7,6 +7,7 @@ const Header = {
   }
 };
 
+
 const NavBar = {
   render: (customClass = "") => {
     return `
@@ -21,11 +22,13 @@ const NavBar = {
   }
 };
 
+
 const Content = {
   render: (customClass = "") => {
     return `<div class="content ${customClass}" id="content"></div>`;
   }
 };
+
 
 const Footer = {
   render: (customClass = "") => {
