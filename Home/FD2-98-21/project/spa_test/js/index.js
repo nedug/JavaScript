@@ -49,7 +49,7 @@ const mySPA = (function() {
         }
 
 
-        this.saveData = function(inputName, inputDate, inputNumCig, inputCostCig) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig]) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
             // if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
             //
@@ -58,10 +58,10 @@ const mySPA = (function() {
             // }
 
             userData = {
-                userName: inputName,
-                userDate: inputDate,
-                userNumCigarette: inputNumCig,
-                userCostCigarette: inputCostCig,
+                userName: inputName.value,
+                userDate: inputDate.value,
+                userNumCigarette: inputNumCig.value,
+                userCostCigarette: inputCostCig.value,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -75,7 +75,6 @@ const mySPA = (function() {
             localStorage.setItem('userData', userDataSerial);
 
             this.updateState(pageNameLink); /* Обновляем приложение */
-
         }
 
 
@@ -129,7 +128,6 @@ const mySPA = (function() {
             }
 
             else if (hashPageName === '' && userStorage) {
-
                 // console.log(333)
                 routeName = "main";
                 updateContent();
@@ -139,6 +137,10 @@ const mySPA = (function() {
                 // console.log(444)
                 routeName = "options";
                 updateContent();
+
+                // window.document.title = routesObj[routeName].title;
+                // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage);
+                // that.updateButtons(routesObj[routeName].id);
             }
 
             else {
@@ -150,7 +152,7 @@ const mySPA = (function() {
             function updateContent() {
 
                 window.document.title = routesObj[routeName].title;
-                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage);
                 that.updateButtons(routesObj[routeName].id);
             }
         }
@@ -219,12 +221,15 @@ const mySPA = (function() {
 
         this.saveDataUser = function() { /* Сохраняем данные из инпутов в localStorage */
 
-            inputName = myModuleContainer.querySelector(".input__default");
-            inputDate = myModuleContainer.querySelector(".input__date-last");
-            inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
-            inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+            // inputName = myModuleContainer.querySelector(".input__default");
+            // inputDate = myModuleContainer.querySelector(".input__date-last");
+            // inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
+            // inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+            // myModuleModel.saveData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
 
-            myModuleModel.saveData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
+            let inputData = myModuleContainer.querySelectorAll("#content input");
+
+            myModuleModel.saveData(inputData);
         }
 
 

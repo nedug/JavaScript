@@ -32,22 +32,22 @@ const LoginWeb = {
 const Options = {
   id: "login",
   title: "Настройки пользователя",
-  render: (className = "container") => {
+  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}) => {
     return `
       <section class="${className}">
         <h3 class="user__content">Изменить данные пользователя:</h3>
         <main class="modal__content">
           <div class="form-field">
             <label for="user-name">Ваше имя:</label>
-            <input type="text" id="user-name" class="input__default" value="">
+            <input type="text" id="user-name" class="input__default" value="${userName}">
           </div>
           <div class="form-field">
             <label>Дата последней сигареты:</label>
-            <input type="date" id="user-date-last" class="input__date-last"><br>
+            <input type="date" id="user-date-last" class="input__date-last" value="${userDate}"><br>
             <label>Среднее количество сигарет в день:</label>
-            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value=""><br>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${userNumCigarette}"><br>
             <label>Стоимость одной пачки, руб.:</label>
-            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value=""><br>
+            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}"><br>
             <h4 id="valid-value"></h4>
           </div>
         </main>
@@ -59,6 +59,7 @@ const Options = {
     `;
   }
 };
+
 
 const HomePage = {
   id: "main",
@@ -73,6 +74,7 @@ const HomePage = {
   }
 };
 
+
 const About = {
   id: "about",
   title: "Какой-то описательный текст данного SPA",
@@ -85,6 +87,7 @@ const About = {
     `;
   }
 };
+
 
 const Contacts = {
   id: "contacts",
@@ -99,6 +102,7 @@ const Contacts = {
   }
 };
 
+
 const ErrorPage = {
   id: "error",
   title: "warning",
@@ -111,6 +115,7 @@ const ErrorPage = {
     `;
   }
 };
+
 
 const AuthorPage = {
   id: "authorization",
