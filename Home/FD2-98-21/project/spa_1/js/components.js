@@ -2,7 +2,7 @@ const Header = {
   render: (customClass = "") => {
     return `
       <header class="header ${customClass}" id="header">
-        <a href="#main">Some logo here</a>
+        <a href="#statistics">Some logo here</a>
       </header>`;
   }
 };
@@ -13,9 +13,10 @@ const NavBar = {
     return `
       <nav class="mainmenu ${customClass}" id="mainmenu">
         <ul class="mainmenu__list">
-          <li><a class="mainmenu__link" href="#main">Статистика</a></li>
-          <li><a class="mainmenu__link" href="#about">О нас</a></li>
-          <li><a class="mainmenu__link" href="#contacts">Контакты</a></li>
+          <li><a class="mainmenu__link" href="#statistics">Статистика</a></li>
+          <li><a class="mainmenu__link" href="#health">Состояние здоровья</a></li>
+          <li><a class="mainmenu__link" href="#motivation">Мотивация</a></li>
+          <li><a class="mainmenu__link" href="#other">Разное</a></li>
           <li><a class="mainmenu__link" href="#login">Настройка</a></li>
         </ul>
       </nav>`;

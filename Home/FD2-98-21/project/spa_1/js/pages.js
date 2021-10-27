@@ -13,10 +13,12 @@ const LoginWeb = {
           <div class="form-field">
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last"><br>
-            <label>Среднее количество сигарет в день:</label>
-            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="20"><br>
+            <label>Среднее количество сигарет в день, шт.:</label>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="15"><br>
             <label>Стоимость одной пачки, руб.:</label>
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4"><br>
+            <label>Количество сигарет в пачке, шт.:</label>
+            <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20"><br>
             <h4 id="valid-value"></h4>
           </div>
         </main>
@@ -32,7 +34,7 @@ const LoginWeb = {
 const Options = {
   id: "login",
   title: "Настройки пользователя",
-  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}) => {
+  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate, cigarettesInBlock}) => {
     return `
       <section class="${className}">
         <h3 class="user__content">Изменить данные пользователя:</h3>
@@ -48,6 +50,8 @@ const Options = {
             <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${userNumCigarette}"><br>
             <label>Стоимость одной пачки, руб.:</label>
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}"><br>
+            <label>Количество сигарет в пачке, шт.:</label>
+            <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}"><br>
             <h4 id="valid-value"></h4>
           </div>
         </main>
@@ -61,8 +65,8 @@ const Options = {
 };
 
 
-const HomePage = {
-  id: "main",
+const Statistics = {
+  id: "statistics",
   title: "Основная статистика",
   render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}) => {
     return `
@@ -77,8 +81,8 @@ const HomePage = {
 };
 
 
-const About = {
-  id: "about",
+const Health = {
+  id: "health",
   title: "Какой-то описательный текст данного SPA",
   render: (className = "container", ...rest) => {
     return `
@@ -91,8 +95,8 @@ const About = {
 };
 
 
-const Contacts = {
-  id: "contacts",
+const Motivation = {
+  id: "motivation",
   title: "Ну и страница Контакты, как без нее?",
   render: (className = "container", ...rest) => {
     return `
@@ -112,7 +116,7 @@ const ErrorPage = {
     return `
       <section class="${className}">
         <h1>Ошибка 404</h1>
-        <p>Страница не найдена, попробуйте вернуться на <a href="#main">главную</a>.</p>
+        <p>Страница не найдена, попробуйте вернуться на <a href="#statistics">главную</a>.</p>
       </section>
     `;
   }

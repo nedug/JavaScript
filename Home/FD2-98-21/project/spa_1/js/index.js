@@ -11,10 +11,10 @@ const routes = {
   login: LoginWeb,
   options: Options,
   authorization: AuthorPage,
-  main: HomePage,
-  about: About,
-  contacts: Contacts,
-  default: HomePage,
+  statistics: Statistics,
+  health: Health,
+  motivation: Motivation,
+  default: Statistics,
   error: ErrorPage,
 };
 
@@ -49,7 +49,7 @@ const mySPA = (function() {
         }
 
 
-        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig]) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock]) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
             // if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
             //
@@ -62,6 +62,7 @@ const mySPA = (function() {
                 userDate: inputDate.value,
                 userNumCigarette: inputNumCig.value,
                 userCostCigarette: inputCostCig.value,
+                cigarettesInBlock: inputCigInBlock.value,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -75,6 +76,9 @@ const mySPA = (function() {
             localStorage.setItem('userData', userDataSerial);
 
             this.updateState(pageNameLink); /* Обновляем приложение */
+
+
+            this.calculateData();
         }
 
 
@@ -83,6 +87,25 @@ const mySPA = (function() {
             localStorage.removeItem('userData');
 
             this.updateState(pageNameLink); /* Обновляем приложение */
+        }
+
+
+        this.calculateData = function() {
+
+
+            const time = 10;
+
+            const sumSig = time * userDataStorage.userNumCigarette;
+
+            const costSig = sumSig / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette;
+
+            console.log(sumSig)
+            console.log(costSig)
+
+
+            // localStorage.removeItem('userData');
+            //
+            // this.updateState(pageNameLink);
         }
 
 
@@ -129,7 +152,7 @@ const mySPA = (function() {
 
             else if (hashPageName === '' && userStorage) {
                 // console.log(333)
-                routeName = "main";
+                routeName = "statistics";
                 updateContent();
             }
 
