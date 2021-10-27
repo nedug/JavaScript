@@ -9,10 +9,12 @@ const components = {
 // Список поддердживаемых роутов (from pages.js)
 const routes = {
   login: LoginWeb,
+  options: Options,
+  authorization: AuthorPage,
   main: HomePage,
   about: About,
   contacts: Contacts,
-  default: LoginWeb,
+  default: HomePage,
   error: ErrorPage,
 };
 
@@ -25,12 +27,16 @@ const mySPA = (function() {
 
         let myModuleView = null;
         let userData = null;
+        let pageNameId = null;
+
 
         this.init = function(view) {
             myModuleView = view;
         }
 
         this.updateState = function(pageName) {
+
+            pageNameId = pageName;
 
             // if(!JSON.parse(localStorage.getItem('userData'))) {
             //     console.log(userData);
@@ -77,7 +83,11 @@ const mySPA = (function() {
 
             localStorage.setItem('userData', userDataSerial);
 
-            myModuleView.renderContentLogin();
+            // myModuleView.renderContentLogin();
+
+            // console.log(pageNameId)
+
+            myModuleView.renderContent(pageNameId);
 
 
         }
@@ -105,7 +115,7 @@ const mySPA = (function() {
 
 
             if (hashPageName.length > 0 && hashPageName !== 'login' && !JSON.parse(localStorage.getItem('userData'))) {
-                routeName = "error";
+                routeName = "authorization";
                 console.log(1111)
                 something();
             }
@@ -114,20 +124,28 @@ const mySPA = (function() {
 
                 console.log(2222)
                 routeName = "login";
-                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
                 something();
                 // this.renderContentLogin();
             }
-            else if ((hashPageName === '' || hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
+            else if ((hashPageName === '') && JSON.parse(localStorage.getItem('userData'))) {
 
                 console.log(333)
-                routeName = "login";
-                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                routeName = "main";
+                // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
                 something();
-                this.renderContentLogin();
+                // this.renderContentLogin();
+            }
+            else if ((hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
+
+                console.log(444)
+                routeName = "options";
+                // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+                something();
+                // this.renderContentLogin();
             }
             else {
-                console.log(4444)
+                console.log(555)
                 routeName = hashPageName in routes ? hashPageName : "error";
                 something();
             }
@@ -141,7 +159,15 @@ const mySPA = (function() {
 
             function something() {
                 window.document.title = routesObj[routeName].title;
+
+                // console.log(routesObj)
+                // console.log(routesObj[routeName].render(`${routeName}-page`))
+                // console.log(routesObj[routeName].id)
+
                 contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
+
+                // contentContainer.innerHTML = routesObj['options11'].render();
+
                 that.updateButtons(routesObj[routeName].id);
             }
 
@@ -156,6 +182,8 @@ const mySPA = (function() {
 
         this.updateButtons = function(currentPage) {
             const menuLinks = menu.querySelectorAll(".mainmenu__link");
+
+            // console.log(currentPage)
 
             for (let link of menuLinks) {
                 currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
@@ -217,12 +245,31 @@ const mySPA = (function() {
             // inputDate = myModuleContainer.querySelector(".input__date-last");
             // inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
             // inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+
+            myModuleContainer.addEventListener("click", clickHandler);
+
+            function clickHandler(e) {
+
+                let target = e.target;
+
+                // console.log(target.getAttribute('class'))
+
+                if(target.getAttribute('class') === 'data__save') {
+
+                    // console.log('текст')
+
+                    that.saveModal();
+                }
+
+
+            }
         }
 
         this.updateState = function() {
 
             const hashPageName = location.hash.slice(1).toLowerCase();
-            console.log(hashPageName);
+
+            // console.log(hashPageName);
 
             // if (!JSON.parse(localStorage.getItem('userData'))) {
             //     myModuleModel.updateState('error');
@@ -234,25 +281,31 @@ const mySPA = (function() {
             myModuleModel.updateState(hashPageName);
 
 
-            if (hashPageName === 'login' || hashPageName === '') {
-                const buttonSave = myModuleContainer.querySelector(".data__save");
-
-                // console.log(buttonSave);
-
-                buttonSave.addEventListener("click", that.saveModal);
-
-                inputName = myModuleContainer.querySelector(".input__default");
-                inputDate = myModuleContainer.querySelector(".input__date-last");
-                inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
-                inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
-            }
+            // if (hashPageName === 'login' || hashPageName === '') {
+            //     const buttonSave = myModuleContainer.querySelector(".data__save");
+            //
+            //     // console.log(buttonSave);
+            //
+            //     buttonSave.addEventListener("click", that.saveModal);
+            //
+            //     inputName = myModuleContainer.querySelector(".input__default");
+            //     inputDate = myModuleContainer.querySelector(".input__date-last");
+            //     inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
+            //     inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+            // }
 
 
         }
 
         this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage */
 
-            e.preventDefault();
+            // e.preventDefault();
+
+            inputName = myModuleContainer.querySelector(".input__default");
+            inputDate = myModuleContainer.querySelector(".input__date-last");
+            inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
+            inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+
             myModuleModel.saveModalData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
         }
     }
