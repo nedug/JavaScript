@@ -53,7 +53,7 @@ const Options = {
         </main>
         <footer class="modal__footer">
           <button id="btn-save" class="data__save">Изменить</button>
-          <button id="btn-save--" class="data__save--">Выйти</button>
+          <button id="btn-delete" class="data__delete">Выйти</button>
         </footer>
       </section>
     `;

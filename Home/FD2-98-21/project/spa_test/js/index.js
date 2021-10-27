@@ -22,40 +22,34 @@ const routes = {
 /* ----- SPA module --- */
 const mySPA = (function() {
 
+
     /* ------- begin model ------- */
-    function ModuleModel () {
+    function ModuleModel() {
 
         let myModuleView = null;
-        let userData = null;
-        let pageNameId = null;
+        let userData = {};
+
+        let pageNameLink = null;
+        let userDataStorage = null;
 
 
         this.init = function(view) {
+
             myModuleView = view;
         }
 
+
         this.updateState = function(pageName) {
 
-            pageNameId = pageName;
+            pageNameLink = pageName;
 
-            // if(!JSON.parse(localStorage.getItem('userData'))) {
-            //     console.log(userData);
-            //     myModuleView.renderContent(pageName);
-            // }
-            // else if (JSON.parse(localStorage.getItem('userData')) && (pageName === '' || pageName === 'login')) {
-            //     console.log('111')
-            //     myModuleView.renderContent(pageName);
-            //     myModuleView.renderContentLogin();
-            // }
-            // else {
-            //     myModuleView.renderContent(pageName);
-            // }
+            userDataStorage = JSON.parse(localStorage.getItem('userData'));
 
-            myModuleView.renderContent(pageName);
-
+            myModuleView.renderContent(pageNameLink, userDataStorage);
         }
 
-        this.saveModalData = function(inputName, inputDate, inputNumCig, inputCostCig) { // Получаем данные из модалки и сохраняем в объект 'userData'
+
+        this.saveData = function(inputName, inputDate, inputNumCig, inputCostCig) { // Получаем данные из модалки и сохраняем в объект 'userData'
 
             // if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
             //
@@ -64,7 +58,6 @@ const mySPA = (function() {
             // }
 
             userData = {
-
                 userName: inputName,
                 userDate: inputDate,
                 userNumCigarette: inputNumCig,
@@ -77,7 +70,7 @@ const mySPA = (function() {
         }
 
 
-        this.storeData = function() { // Сохраняем данные в localStorage, а если не доступно, то в cookies
+        this.storeData = function() { // Сохраняем данные в localStorage
 
             let userDataSerial = JSON.stringify(userData);
 
@@ -87,10 +80,39 @@ const mySPA = (function() {
 
             // console.log(pageNameId)
 
-            myModuleView.renderContent(pageNameId);
+            // userDataStorage = JSON.parse(localStorage.getItem('userData'));
+            //
+            // myModuleView.renderContent(pageNameLink, userDataStorage);
 
+            this.updateState(pageNameLink); /* Обновляем приложение */
 
         }
+
+
+        // this.getData = function(pageName) { // Достаем данные из хранилища
+        //
+        //     pageNameLink = pageName;
+        //
+        //     userDataStorage = JSON.parse(localStorage.getItem('userData'));
+        //
+        //     // this.updateState();
+        //
+        //     // if (!userDataStorage) return; /* Проверяем на наличие данных в localStorage */
+        //
+        //     // this.updateState(pageNameLink);
+        //     myModuleView.renderContent(pageNameLink, userDataStorage);
+        // }
+
+
+        this.clearData = function() { // Очищаем данные в хранилище
+
+
+            localStorage.removeItem('userData');
+
+
+            this.updateState(pageNameLink);
+        }
+
     }
 
 
@@ -103,6 +125,8 @@ const mySPA = (function() {
         let routesObj = null;
         let that = this;
 
+        let userStorage = null;
+
         this.init = function(container, routes) {
             myModuleContainer = container;
             routesObj = routes;
@@ -110,25 +134,29 @@ const mySPA = (function() {
             contentContainer = myModuleContainer.querySelector("#content");
         }
 
-        this.renderContent = function(hashPageName) {
+        this.renderContent = function(hashPageName, userData) {
+
             let routeName = "default";
 
+            userStorage = userData;
 
-            if (hashPageName.length > 0 && hashPageName !== 'login' && !JSON.parse(localStorage.getItem('userData'))) {
+            // console.log(userStorage);
+
+            if (hashPageName.length > 0 && hashPageName !== 'login' && !userStorage) {
                 routeName = "authorization";
                 console.log(1111)
                 something();
             }
             // else if ( )
-            else if ((hashPageName === '' || hashPageName === 'login') && !JSON.parse(localStorage.getItem('userData'))) {
+            else if ((hashPageName === '' || hashPageName === 'login') && !userStorage) {
 
                 console.log(2222)
-                routeName = "login";
+                routeName = hashPageName in routes ? hashPageName : "login";
                 // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`);
                 something();
                 // this.renderContentLogin();
             }
-            else if ((hashPageName === '') && JSON.parse(localStorage.getItem('userData'))) {
+            else if ((hashPageName === '') && userStorage) {
 
                 console.log(333)
                 routeName = "main";
@@ -136,7 +164,7 @@ const mySPA = (function() {
                 something();
                 // this.renderContentLogin();
             }
-            else if ((hashPageName === 'login') && JSON.parse(localStorage.getItem('userData'))) {
+            else if ((hashPageName === 'login') && userStorage) {
 
                 console.log(444)
                 routeName = "options";
@@ -216,7 +244,7 @@ const mySPA = (function() {
 
 
     /* ----- begin controller ---- */
-    function ModuleController () {
+    function ModuleController() {
 
         let myModuleContainer = null;
         let myModuleModel = null;
@@ -238,6 +266,8 @@ const mySPA = (function() {
             this.updateState(); //первая отрисовка
 
 
+
+
             // const buttonSave = myModuleContainer.querySelector(".data__save");
             // buttonSave.addEventListener("click", this.saveModal);
             //
@@ -245,6 +275,7 @@ const mySPA = (function() {
             // inputDate = myModuleContainer.querySelector(".input__date-last");
             // inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
             // inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
+
 
             myModuleContainer.addEventListener("click", clickHandler);
 
@@ -254,59 +285,47 @@ const mySPA = (function() {
 
                 // console.log(target.getAttribute('class'))
 
-                if(target.getAttribute('class') === 'data__save') {
+                if (target.getAttribute('class') === 'data__save') {
 
                     // console.log('текст')
 
-                    that.saveModal();
+                    that.saveDataUser();
+                }
+
+                if (target.getAttribute('class') === 'data__delete') {
+
+                    // console.log('текст')
+
+                    that.clearData();
                 }
 
 
             }
         }
 
+
         this.updateState = function() {
 
-            const hashPageName = location.hash.slice(1).toLowerCase();
-
-            // console.log(hashPageName);
-
-            // if (!JSON.parse(localStorage.getItem('userData'))) {
-            //     myModuleModel.updateState('error');
-            // }
-            // else {
-            //     myModuleModel.updateState(hashPageName);
-            // }
+            const hashPageName = location.hash.slice(1).toLowerCase(); /* Линк после # */
 
             myModuleModel.updateState(hashPageName);
-
-
-            // if (hashPageName === 'login' || hashPageName === '') {
-            //     const buttonSave = myModuleContainer.querySelector(".data__save");
-            //
-            //     // console.log(buttonSave);
-            //
-            //     buttonSave.addEventListener("click", that.saveModal);
-            //
-            //     inputName = myModuleContainer.querySelector(".input__default");
-            //     inputDate = myModuleContainer.querySelector(".input__date-last");
-            //     inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
-            //     inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
-            // }
-
-
         }
 
-        this.saveModal = function (e) { /* Сохраняем данные из инпутов в localStorage */
 
-            // e.preventDefault();
+        this.saveDataUser = function () { /* Сохраняем данные из инпутов в localStorage */
 
             inputName = myModuleContainer.querySelector(".input__default");
             inputDate = myModuleContainer.querySelector(".input__date-last");
             inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
             inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
 
-            myModuleModel.saveModalData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
+            myModuleModel.saveData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
+        }
+
+
+        this.clearData = function () { /* Очищаем данные из localStorage */
+
+            myModuleModel.clearData();
         }
     }
 
