@@ -32,6 +32,9 @@ const mySPA = (function() {
         let pageNameLink = null;
         let userDataStorage = null;
 
+        let sumSig = null;
+        let costSig = null;
+
 
         this.init = function(view) {
 
@@ -43,9 +46,36 @@ const mySPA = (function() {
 
             pageNameLink = pageName;
 
-            userDataStorage = JSON.parse(localStorage.getItem('userData'));
+            this.getData();
 
-            myModuleView.renderContent(pageNameLink, userDataStorage);
+            this.calculateData();
+
+            // console.log(userDataStorage)
+
+            // sumSig = 10 * userDataStorage.userNumCigarette;
+
+            console.log(pageNameLink);
+
+            // if (pageNameLink === 'statistics') {
+            //
+            //
+            //
+            //     setInterval(something, 1000);
+            //
+            //     function something() {
+            //
+            //         console.log('тест')
+            //
+            //         myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
+            //     }
+            // }
+            //
+            // else {
+            //     myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
+            // }
+
+            myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
+
         }
 
 
@@ -78,7 +108,13 @@ const mySPA = (function() {
             this.updateState(pageNameLink); /* Обновляем приложение */
 
 
-            this.calculateData();
+            // this.calculateData();
+        }
+
+
+        this.getData = function() {
+
+            userDataStorage = JSON.parse(localStorage.getItem('userData'));
         }
 
 
@@ -92,19 +128,45 @@ const mySPA = (function() {
 
         this.calculateData = function() {
 
+            if (!userDataStorage) return
 
-            const time = 10;
-
-            const sumSig = time * userDataStorage.userNumCigarette;
-
-            const costSig = sumSig / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette;
-
-            console.log(sumSig)
-            console.log(costSig)
+            const time = 9;
 
 
-            // localStorage.removeItem('userData');
+            const time11 = new Date().getSeconds();
+
+            console.log(time11)
+
+
+            // const clockGoTimer = setInterval(goClock, 1000); /* Запускаем часы */
             //
+            // function goClock() {
+            //
+            //     let soonSeconds = new Date().getUTCSeconds();
+            //     let soonMinutes = new Date().getUTCMinutes();
+            //     let soonHour = new Date().getUTCHours() + timezone;
+            //
+            //     let secondHand = soonSeconds * 6; /* Поворот секундой стрелки */
+            //     let minuteHand = soonMinutes * 6; /* Поворот минутной стрелки */
+            //     let hourHand = soonHour * 30 + soonMinutes / 2; /* Поворот часовой стрелки */
+            //
+            //     clockView.startClock(secondHand, minuteHand, hourHand);
+            //
+            //     clockView.updateStateBtn(false, true);
+            // }
+
+
+
+
+            sumSig = time11 * userDataStorage.userNumCigarette;
+
+            costSig = sumSig / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette;
+
+            // console.log(sumSig)
+            // console.log(costSig)
+
+
+
             // this.updateState(pageNameLink);
         }
 
@@ -123,6 +185,8 @@ const mySPA = (function() {
         let that = this;
         let userStorage = null;
 
+        let timer = null;
+
 
         this.init = function(container, routes) {
 
@@ -133,7 +197,7 @@ const mySPA = (function() {
         }
 
 
-        this.renderContent = function(hashPageName, userData) {
+        this.renderContent = function(hashPageName, userData, sumSig, costSig) {
 
             let routeName = "default";
             userStorage = userData;
@@ -150,14 +214,19 @@ const mySPA = (function() {
                 updateContent();
             }
 
-            else if (hashPageName === '' && userStorage) {
+            else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
                 // console.log(333)
                 routeName = "statistics";
-                updateContent();
+                // updateContent();
+
+                timer = setInterval(updateContent, 1000);
             }
 
             else if (hashPageName === 'login' && userStorage) {
                 // console.log(444)
+
+                clearInterval(timer);
+
                 routeName = "options";
                 updateContent();
 
@@ -167,6 +236,7 @@ const mySPA = (function() {
             }
 
             else {
+                clearInterval(timer);
                 // console.log(555)
                 routeName = hashPageName in routes ? hashPageName : "error";
                 updateContent();
@@ -174,8 +244,10 @@ const mySPA = (function() {
 
             function updateContent() {
 
+                const time11 = new Date().getSeconds();
+
                 window.document.title = routesObj[routeName].title;
-                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage);
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage, sumSig, costSig, time11);
                 that.updateButtons(routesObj[routeName].id);
             }
         }
@@ -237,6 +309,8 @@ const mySPA = (function() {
         this.updateState = function() {
 
             const hashPageName = location.hash.slice(1).toLowerCase(); /* Линк после # */
+
+            // myModuleModel.calculateData();
 
             myModuleModel.updateState(hashPageName);
         }

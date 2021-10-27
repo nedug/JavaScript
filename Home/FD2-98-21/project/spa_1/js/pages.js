@@ -46,7 +46,7 @@ const Options = {
           <div class="form-field">
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last" value="${userDate}"><br>
-            <label>Среднее количество сигарет в день:</label>
+            <label>Среднее количество сигарет в день, шт.:</label>
             <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${userNumCigarette}"><br>
             <label>Стоимость одной пачки, руб.:</label>
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}"><br>
@@ -68,13 +68,13 @@ const Options = {
 const Statistics = {
   id: "statistics",
   title: "Основная статистика",
-  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}) => {
+  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}, sumSig, costSig, time11) => {
     return `
       <section class="${className}">
         <h2>Отлично держитесь, ${userName}:</h2>
         <p>Вы уже не курите: </p>
-        <p>Не выкурено сигарет: </p>
-        <p>Сэкономлено средств, руб.: </p>
+        <p>Не выкурено сигарет, шт.: ${userNumCigarette * time11}</p>
+        <p>Сэкономлено средств, руб.: ${costSig}</p>
       </section>
     `;
   }
