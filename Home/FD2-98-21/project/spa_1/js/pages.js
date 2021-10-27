@@ -68,13 +68,13 @@ const Options = {
 const Statistics = {
   id: "statistics",
   title: "Основная статистика",
-  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate}, sumSig, costSig, time11) => {
+  render: (className = "container", {userName}) => {
     return `
       <section class="${className}">
         <h2>Отлично держитесь, ${userName}:</h2>
-        <p>Вы уже не курите: </p>
-        <p class="num__cigarette">Не выкурено сигарет, шт.: ${userNumCigarette * time11}</p>
-        <p>Сэкономлено средств, руб.: ${costSig}</p>
+        <p class="sum__time__stop"></p>
+        <p class="num__cigarette"></p>
+        <p class="num__money"></p>
       </section>
     `;
   }
@@ -87,7 +87,7 @@ const Health = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <h1>О нас</h1>
+        <h2>О нас</h2>
         <p>А здесь что-то как бы <strong>О нас</strong> или о них =)</p>
       </section>
     `;
@@ -101,7 +101,7 @@ const Motivation = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <h1>Контакты</h1>
+        <h2>Контакты</h2>
         <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>
       </section>
     `;
@@ -115,7 +115,7 @@ const ErrorPage = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <h1>Ошибка 404</h1>
+        <h2>Ошибка 404</h2>
         <p>Страница не найдена, попробуйте вернуться на <a href="#statistics">главную</a>.</p>
       </section>
     `;
