@@ -73,7 +73,7 @@ const Statistics = {
       <section class="${className}">
         <h2>Отлично держитесь, ${userName}:</h2>
         <p>Вы уже не курите: </p>
-        <p>Не выкурено сигарет, шт.: ${userNumCigarette * time11}</p>
+        <p class="num__cigarette">Не выкурено сигарет, шт.: ${userNumCigarette * time11}</p>
         <p>Сэкономлено средств, руб.: ${costSig}</p>
       </section>
     `;

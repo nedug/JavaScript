@@ -35,6 +35,8 @@ const mySPA = (function() {
         let sumSig = null;
         let costSig = null;
 
+        let goTimerStatistic = null;
+
 
         this.init = function(view) {
 
@@ -44,19 +46,22 @@ const mySPA = (function() {
 
         this.updateState = function(pageName) {
 
+            console.log('updateState')
+            // console.log(userDataStorage)
+
             pageNameLink = pageName;
 
             this.getData();
 
-            this.calculateData();
+            // this.calculateData();
 
             // console.log(userDataStorage)
 
             // sumSig = 10 * userDataStorage.userNumCigarette;
 
-            console.log(pageNameLink);
+            // console.log(pageNameLink);
 
-            // if (pageNameLink === 'statistics') {
+            // if (pageNameLink === 'statistics' ) {
             //
             //
             //
@@ -74,7 +79,23 @@ const mySPA = (function() {
             //     myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
             // }
 
+            // clearInterval(clockGoTimer)
+
             myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
+
+
+            if ((pageNameLink === 'statistics' || pageNameLink === '') && userDataStorage) {
+
+                console.log('включить таймер')
+
+                this.calculateData();
+            }
+            else {
+
+                // console.log('выкл таймер')
+
+                clearInterval(goTimerStatistic)
+            }
 
         }
 
@@ -128,46 +149,45 @@ const mySPA = (function() {
 
         this.calculateData = function() {
 
+            // console.log('тест');
+
             if (!userDataStorage) return
 
-            const time = 9;
+            // const time = 9;
 
 
-            const time11 = new Date().getSeconds();
+            // const time11 = new Date().getSeconds();
 
-            console.log(time11)
-
-
-            // const clockGoTimer = setInterval(goClock, 1000); /* Запускаем часы */
-            //
-            // function goClock() {
-            //
-            //     let soonSeconds = new Date().getUTCSeconds();
-            //     let soonMinutes = new Date().getUTCMinutes();
-            //     let soonHour = new Date().getUTCHours() + timezone;
-            //
-            //     let secondHand = soonSeconds * 6; /* Поворот секундой стрелки */
-            //     let minuteHand = soonMinutes * 6; /* Поворот минутной стрелки */
-            //     let hourHand = soonHour * 30 + soonMinutes / 2; /* Поворот часовой стрелки */
-            //
-            //     clockView.startClock(secondHand, minuteHand, hourHand);
-            //
-            //     clockView.updateStateBtn(false, true);
-            // }
+            // console.log(time11)
 
 
 
+            goTimerStatistic = setInterval(goClock, 1000); /* Запускаем часы */
 
-            sumSig = time11 * userDataStorage.userNumCigarette;
+            console.log(goTimerStatistic);
 
-            costSig = sumSig / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette;
+            function goClock() {
 
-            // console.log(sumSig)
-            // console.log(costSig)
+                let soonSeconds = new Date().getUTCSeconds();
+                // let soonMinutes = new Date().getUTCMinutes();
+                // let soonHour = new Date().getUTCHours();
+
+                let secondHand = soonSeconds * userDataStorage.userNumCigarette;
+
+                // let minuteHand = soonMinutes * 6;
+                // let hourHand = soonHour * 30 + soonMinutes
+
+                myModuleView.renderStatistic(secondHand);
+
+                // clockView.startClock(secondHand, minuteHand, hourHand);
+
+                // clockView.updateStateBtn(false, true);
+            }
 
 
 
-            // this.updateState(pageNameLink);
+
+
         }
 
 
@@ -217,9 +237,9 @@ const mySPA = (function() {
             else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
                 // console.log(333)
                 routeName = "statistics";
-                // updateContent();
+                updateContent();
 
-                timer = setInterval(updateContent, 1000);
+                // timer = setInterval(updateContent, 1000);
             }
 
             else if (hashPageName === 'login' && userStorage) {
@@ -260,6 +280,18 @@ const mySPA = (function() {
             for (let link of menuLinks) {
                 currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
             }
+        }
+
+
+
+        this.renderStatistic = function(secondHand) {
+
+            const sumCigarette = myModuleContainer.querySelector("#content .num__cigarette");
+
+            // console.log(sumCigarette)
+
+
+            sumCigarette.innerHTML = `Не выкурено сигарет, шт.:${secondHand}`;
         }
 
 
