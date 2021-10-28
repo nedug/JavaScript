@@ -89,15 +89,32 @@ const Health = {
     return `
       <section class="${className}">
         <h2>Состояние здоровья и самочувствие:</h2>
-        <p class="state__heart"><strong>Сердце:</strong> <span class="description">пульс уменьшается..</span><span class="percent"></span>%</p>
-        <p class="state__carbonMonoxide"><strong>Угарный газ:</strong> выводится из организма..<span class="percent"></span>%</p>
-        <p class="state__nicotine"><strong>Никотин:</strong> обогощение кислородом..<span class="percent"></span>%</p>
-        <p class="state__lung"><strong>Работа легких:</strong> <span class="description">становится легче дышать..</span><span class="percent"></span>%</p>
-        <p class="state__liver"><strong>Работа печени:</strong> восстанавливаются клетки..<span style="width: 200px; height: 12px; display: inline-block; border: 1px solid black;"> <span class="chart" style="height: 10px; width: 0; background-color: #ff1c1a; display: block; transition: 1.5s"></span></span><span class="percent"></span>%</p>     
-        <p class="state__risk__heart"><strong>Риск сердечного приступа:</strong> <span class="description">риск снижается..</span><span style="width: 200px; height: 12px; display: inline-block; border: 1px solid black; "> <span class="chart" style="height: 10px; width: 0; background-color: #ff1c1a; display: block; transition: 1.5s"></span></span><span class="percent"></span>%</p>
-        
-        
-        
+        <div class="state__wrap">
+           <p class="state__heart"><strong>Сердце</strong><i class="fas fa-heartbeat"></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+        <div class="state__wrap">
+           <p class="state__carbonMonoxide"><strong>Угарный газ</strong><i class="fas fa-bong"></i></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__carbonMonoxide__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+        <div class="state__wrap">
+           <p class="state__nicotine"><strong>Никотин</strong><i class="fas fa-smoking"></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__nicotine__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+        <div class="state__wrap">
+           <p class="state__lung"><strong>Работа легких</strong><i class="fas fa-lungs"></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__lung__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+        <div class="state__wrap">
+           <p class="state__liver"><strong>Работа печени</strong><i class="fas fa-mercury"></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__liver__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+        <div class="state__wrap">
+           <p class="state__risk__heart"><strong>Риск сердечного приступа</strong><i class="fas fa-user-md"></i><br><br><span class="description">Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.</p>
+           <p class="state__risk__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+        </div>
+                        
+                
       </section>
     `;
   }
