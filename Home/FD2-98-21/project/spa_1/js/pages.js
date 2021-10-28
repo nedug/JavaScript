@@ -75,6 +75,7 @@ const Statistics = {
         <p class="sum__time__stop"></p>
         <p class="num__cigarette"></p>
         <p class="num__money"></p>
+        <p class="free__time"></p>
       </section>
     `;
   }
