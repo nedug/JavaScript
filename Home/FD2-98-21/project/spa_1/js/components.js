@@ -14,7 +14,7 @@ const NavBar = {
       <nav class="mainmenu ${customClass}" id="mainmenu">
         <ul class="mainmenu__list">
           <li><a class="mainmenu__link" href="#statistics">Статистика</a></li>
-          <li><a class="mainmenu__link" href="#health">Состояние здоровья</a></li>
+          <li><a class="mainmenu__link" href="#health">Здоровье</a></li>
           <li><a class="mainmenu__link" href="#motivation">Мотивация</a></li>
           <li><a class="mainmenu__link" href="#other">Разное</a></li>
           <li><a class="mainmenu__link" href="#login">Настройка</a></li>

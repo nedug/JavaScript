@@ -56,9 +56,15 @@ const mySPA = (function() {
 
                 this.calculateData();
             }
+            else if (pageNameLink === 'health' && userDataStorage) {
+
+                clearInterval(goTimerStatistic);
+
+                this.calculateHealth();
+            }
             else {
 
-                clearInterval(goTimerStatistic)
+                clearInterval(goTimerStatistic);
             }
         }
 
@@ -146,6 +152,59 @@ const mySPA = (function() {
 
                 myModuleView.renderStatistic(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin);
             }
+        }
+
+
+        this.calculateHealth = function() {
+
+            if (!userDataStorage) return
+
+
+            let stopDay = +userDataStorage.userDate.split('-')[2];
+            let stopMonth = +userDataStorage.userDate.split('-')[1];
+            let stopYear = +userDataStorage.userDate.split('-')[0];
+
+            let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
+
+            let timeNow = new Date();
+
+            let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
+
+            let heart = sumMin * 100 / 20;
+            if (heart > 100) heart = 100;
+
+
+            console.log(heart)
+
+
+            myModuleView.renderHealth(heart);
+
+
+
+
+
+
+            // let sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
+            // let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60);
+            // let sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60);
+            // let sumYear = Math.floor(sumDay / 365);
+            // let dayWithYear = sumDay - sumYear * 365;
+            //
+            // let sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
+            // let timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
+            // let sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
+            //
+            // let costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
+            // let costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
+            //
+            // let freeTimeMinFull = 4 * sumFullCigarette; /* Всего минут */
+            // let freeTimeHourFull = Math.floor(freeTimeMinFull / 60); /* Всего часов */
+            // let freeTimeMin = freeTimeMinFull - 60 * freeTimeHourFull; /* минут с учетом часов */
+            // let freeTimeDayFull = Math.floor(freeTimeHourFull / 24); /* Всего дней */
+            // let freeTimeHour = freeTimeHourFull - 24 * freeTimeDayFull; /* часов с учетом дней */
+
+            // myModuleView.renderStatistic(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin);
+
         }
 
     }
@@ -241,6 +300,20 @@ const mySPA = (function() {
             sumTimeStop.innerHTML = `Вы уже не курите: ${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
             sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
             freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
+        }
+
+
+        this.renderHealth = function(heart) {
+
+            const stateHeart = myModuleContainer.querySelector("#content .state__heart .percent");
+            // const sumTimeStop = myModuleContainer.querySelector("#content .sum__time__stop");
+            // const sumMoney = myModuleContainer.querySelector("#content .num__money");
+            // const freeTime = myModuleContainer.querySelector("#content .free__time");
+
+            stateHeart.innerHTML = ` ${heart}`;
+            // sumTimeStop.innerHTML = `Вы уже не курите: ${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
+            // sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
+            // freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
         }
 
     }

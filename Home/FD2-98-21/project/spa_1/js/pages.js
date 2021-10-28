@@ -84,12 +84,13 @@ const Statistics = {
 
 const Health = {
   id: "health",
-  title: "Какой-то описательный текст данного SPA",
+  title: "Состояние здоровья пользователя",
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <h2>О нас</h2>
-        <p>А здесь что-то как бы <strong>О нас</strong> или о них =)</p>
+        <h2>Состояние здоровья и самочувствие:</h2>
+        <p class="state__heart"><strong>Сердце:</strong> пульс уменьшается..<span class="percent"></span>%</p>
+        <p><strong>Угарный газ:</strong> выводится из организма..</p>
       </section>
     `;
   }
@@ -98,7 +99,7 @@ const Health = {
 
 const Motivation = {
   id: "motivation",
-  title: "Ну и страница Контакты, как без нее?",
+  title: "Мотивация и поддержка",
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
