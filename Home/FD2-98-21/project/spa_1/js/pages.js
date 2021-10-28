@@ -89,8 +89,12 @@ const Health = {
     return `
       <section class="${className}">
         <h2>Состояние здоровья и самочувствие:</h2>
-        <p class="state__heart"><strong>Сердце:</strong> пульс уменьшается..<span class="percent"></span>%</p>
-        <p><strong>Угарный газ:</strong> выводится из организма..</p>
+        <p class="state__heart"><strong>Сердце:</strong> <span class="description">пульс уменьшается..</span><span class="percent"></span>%</p>
+        <p class="state__carbonMonoxide"><strong>Угарный газ:</strong> выводится из организма..<span class="percent"></span>%</p>
+        <p class="state__nicotine"><strong>Никотин:</strong> обогощение кислородом..<span class="percent"></span>%</p>
+        <p class="state__lung"><strong>Работа легких:</strong> <span class="description">становится легче дышать..</span><span class="percent"></span>%</p>
+        <p class="state__liver"><strong>Работа печени:</strong> восстанавливаются клетки..<span class="percent"></span>%</p>
+        <p class="state__risk__heart"><strong>Риск сердечного приступа:</strong> <span class="description">риск снижается..</span><span class="percent"></span>%</p>
       </section>
     `;
   }

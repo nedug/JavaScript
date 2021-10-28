@@ -170,14 +170,29 @@ const mySPA = (function() {
 
             let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
 
-            let heart = sumMin * 100 / 20;
+            let heart = Math.floor(sumMin * 100 / 20); /* Сердце */
             if (heart > 100) heart = 100;
 
+            let carbonMonoxide = Math.floor(sumMin * 100 / 720); /* Угарный газ */
+            if (carbonMonoxide > 100) carbonMonoxide = 100;
 
-            console.log(heart)
+            let nicotine = Math.floor(sumMin * 100 / 2880); /* Никотин */
+            if (nicotine > 100) nicotine = 100;
+
+            let lung = Math.floor(sumMin * 100 / 129600); /* Легкие */
+            if (lung > 100) lung = 100;
+
+            let liver = Math.floor(sumMin * 100 / 259200); /* Легкие */
+            if (liver > 100) liver = 100;
+
+            let riskHeart = Math.floor(sumMin * 100 / 518400); /* Риск сердечного приступа */
+            if (riskHeart > 100) riskHeart = 100;
 
 
-            myModuleView.renderHealth(heart);
+            console.log(carbonMonoxide)
+
+
+            myModuleView.renderHealth(heart, carbonMonoxide, nicotine, lung, liver, riskHeart);
 
 
 
@@ -303,17 +318,28 @@ const mySPA = (function() {
         }
 
 
-        this.renderHealth = function(heart) {
+        this.renderHealth = function(heart, carbonMonoxide, nicotine, lung, liver, riskHeart) {
 
             const stateHeart = myModuleContainer.querySelector("#content .state__heart .percent");
-            // const sumTimeStop = myModuleContainer.querySelector("#content .sum__time__stop");
-            // const sumMoney = myModuleContainer.querySelector("#content .num__money");
-            // const freeTime = myModuleContainer.querySelector("#content .free__time");
+            const stateCarbonMonoxide = myModuleContainer.querySelector("#content .state__carbonMonoxide .percent");
+            const stateNicotine = myModuleContainer.querySelector("#content .state__nicotine .percent");
+            const stateLung = myModuleContainer.querySelector("#content .state__lung .percent");
+            const lungDescription = myModuleContainer.querySelector("#content .state__lung .description");
+            const stateLiver = myModuleContainer.querySelector("#content .state__liver .percent");
+            const stateRiskHeart = myModuleContainer.querySelector("#content .state__risk__heart .percent");
+
 
             stateHeart.innerHTML = ` ${heart}`;
-            // sumTimeStop.innerHTML = `Вы уже не курите: ${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
-            // sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
-            // freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
+            stateCarbonMonoxide.innerHTML = ` ${carbonMonoxide}`;
+            stateNicotine.innerHTML = ` ${nicotine}`;
+            stateLung.innerHTML = ` ${lung}`;
+            stateLiver.innerHTML = ` ${liver}`;
+            stateRiskHeart.innerHTML = ` ${riskHeart}`;
+
+
+            if (lung === 100) lungDescription.innerHTML = `работа легких восстановлена`
+
+
         }
 
     }
