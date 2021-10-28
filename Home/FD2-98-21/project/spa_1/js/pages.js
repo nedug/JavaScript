@@ -93,8 +93,10 @@ const Health = {
         <p class="state__carbonMonoxide"><strong>Угарный газ:</strong> выводится из организма..<span class="percent"></span>%</p>
         <p class="state__nicotine"><strong>Никотин:</strong> обогощение кислородом..<span class="percent"></span>%</p>
         <p class="state__lung"><strong>Работа легких:</strong> <span class="description">становится легче дышать..</span><span class="percent"></span>%</p>
-        <p class="state__liver"><strong>Работа печени:</strong> восстанавливаются клетки..<span class="percent"></span>%</p>
+        <p class="state__liver"><strong>Работа печени:</strong> восстанавливаются клетки..<span style="width: 200px; height: 12px; display: inline-block; border: 1px solid black;"> <span class="chart" style="height: 10px; width: 0; background-color: #ff1c1a; display: block; transition: 1.5s"></span></span><span class="percent"></span>%</p>     
         <p class="state__risk__heart"><strong>Риск сердечного приступа:</strong> <span class="description">риск снижается..</span><span class="percent"></span>%</p>
+        <span style="width: 200px; height: 12px; display: inline-block; border: 1px solid black; "> <span class="chart" style="height: 10px; width: 0; background-color: #ff1c1a; display: block; transition: 1.5s"></span></span>
+      
       </section>
     `;
   }

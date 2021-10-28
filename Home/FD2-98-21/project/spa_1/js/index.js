@@ -66,6 +66,7 @@ const mySPA = (function() {
 
                 clearInterval(goTimerStatistic);
             }
+
         }
 
 
@@ -189,7 +190,10 @@ const mySPA = (function() {
             if (riskHeart > 100) riskHeart = 100;
 
 
-            console.log(carbonMonoxide)
+
+
+
+            // console.log(carbonMonoxide)
 
 
             myModuleView.renderHealth(heart, carbonMonoxide, nicotine, lung, liver, riskHeart);
@@ -291,6 +295,7 @@ const mySPA = (function() {
                 contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage, sumSig, costSig);
                 that.updateButtons(routesObj[routeName].id);
             }
+
         }
 
 
@@ -327,7 +332,10 @@ const mySPA = (function() {
             const lungDescription = myModuleContainer.querySelector("#content .state__lung .description");
             const stateLiver = myModuleContainer.querySelector("#content .state__liver .percent");
             const stateRiskHeart = myModuleContainer.querySelector("#content .state__risk__heart .percent");
+            const stateRiskHeartChart = myModuleContainer.querySelector("#content .state__risk__heart .chart");
+            const stateRiskLiverChart = myModuleContainer.querySelector("#content .state__liver .chart");
 
+            // console.log(stateRiskHeart)
 
             stateHeart.innerHTML = ` ${heart}`;
             stateCarbonMonoxide.innerHTML = ` ${carbonMonoxide}`;
@@ -335,6 +343,49 @@ const mySPA = (function() {
             stateLung.innerHTML = ` ${lung}`;
             stateLiver.innerHTML = ` ${liver}`;
             stateRiskHeart.innerHTML = ` ${riskHeart}`;
+
+
+
+
+
+            // setInterval(something, 500)
+            //
+            // function something() {
+            //     for (let i = 0; i <= riskHeart; i++) {
+            //         stateRiskHeartChart.style.width = `${i}%`;
+            //     }
+            // }
+
+
+            // stateRiskHeartChart.style.transition = 3+'s';
+
+
+            setTimeout(something, 10)
+
+            function something() {
+
+                if (riskHeart > 50) {
+                    stateRiskHeartChart.style.backgroundColor = `green`;
+                    stateRiskHeartChart.style.width = `${riskHeart}%`;
+
+                }
+                else {
+                    stateRiskHeartChart.style.width = `${riskHeart}%`;
+                }
+
+                if (liver > 50) {
+                    stateRiskLiverChart.style.backgroundColor = `green`;
+                    stateRiskLiverChart.style.width = `${liver}%`;
+
+                }
+                else {
+                    stateRiskLiverChart.style.width = `${liver}%`;
+                }
+
+            }
+
+
+            // stateRiskHeartChart.style.cssText = `transition: 3s; width: ${riskHeart}%; height: 10px; background-color: #ff1c1a; display: block;`;
 
 
             if (lung === 100) lungDescription.innerHTML = `работа легких восстановлена`
@@ -404,6 +455,7 @@ const mySPA = (function() {
             let inputData = myModuleContainer.querySelectorAll("#content input");
 
             myModuleModel.saveData(inputData);
+
         }
 
 
