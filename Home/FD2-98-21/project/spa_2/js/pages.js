@@ -72,25 +72,34 @@ const Statistics = {
     return `
       <section class="${className}">
         <h2>Отлично держитесь, ${userName}:</h2>
-        <div class="state__wrap">
+        <div class="state__wrap wrap__less">
            <p><strong>Вы уже не курите</strong></p>
            <i class="fas fa-smoking-ban"></i>
            <p class="sum__time__stop"></p>
+           <i class="fas fa-angle-double-down"></i>
+           
+           <p class="more__info">дополнительная инфа</p>
         </div>
-        <div class="state__wrap">
+        <div class="state__wrap wrap__less">
            <p><strong>Не выкурено сигарет</strong></p>
            <i class="fas fa-smoking"></i>
            <p class="num__cigarette"></p>
+           <i class="fas fa-angle-double-down"></i>
+           
         </div>
-        <div class="state__wrap">
+        <div class="state__wrap wrap__less">
            <p><strong>Сэкономлено средств</strong></p>
            <i class="fas fa-ruble-sign"></i>
            <p class="num__money"></p>
+           <i class="fas fa-angle-double-down"></i>
+           
         </div>
-        <div class="state__wrap">
+        <div class="state__wrap wrap__less">
            <p><strong>Сэкономлено времени</strong></p>
            <i class="fas fa-clock"></i>
            <p class="free__time"></p>
+           <i class="fas fa-angle-double-down"></i>
+           
         </div>        
       </section>
     `;

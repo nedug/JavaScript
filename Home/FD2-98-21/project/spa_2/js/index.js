@@ -93,7 +93,6 @@ const mySPA = (function() {
 
                 clearInterval(goTimerStatistic);
             }
-
         }
 
 
@@ -215,29 +214,14 @@ const mySPA = (function() {
             if (riskCancer > 100) riskCancer = 100;
 
             myModuleView.renderHealth(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer);
+        }
 
 
-            // let sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
-            // let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60);
-            // let sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60);
-            // let sumYear = Math.floor(sumDay / 365);
-            // let dayWithYear = sumDay - sumYear * 365;
-            //
-            // let sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
-            // let timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
-            // let sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
-            //
-            // let costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
-            // let costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
-            //
-            // let freeTimeMinFull = 4 * sumFullCigarette; /* Всего минут */
-            // let freeTimeHourFull = Math.floor(freeTimeMinFull / 60); /* Всего часов */
-            // let freeTimeMin = freeTimeMinFull - 60 * freeTimeHourFull; /* минут с учетом часов */
-            // let freeTimeDayFull = Math.floor(freeTimeHourFull / 24); /* Всего дней */
-            // let freeTimeHour = freeTimeHourFull - 24 * freeTimeDayFull; /* часов с учетом дней */
+        this.showMoreInfo = function(parent, btn) {
 
-            // myModuleView.renderStatistic(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin);
+            /* Логика */
 
+            myModuleView.renderMoreInfo(parent, btn);
         }
 
     }
@@ -291,10 +275,6 @@ const mySPA = (function() {
                 // console.log(444)
                 routeName = "options";
                 updateContent();
-
-                // window.document.title = routesObj[routeName].title;
-                // contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage);
-                // that.updateButtons(routesObj[routeName].id);
             }
 
             else {
@@ -425,6 +405,13 @@ const mySPA = (function() {
             }
         }
 
+
+        this.renderMoreInfo = function(parent, btn) {
+
+            parent.classList.toggle('wrap__more');
+            btn.classList.toggle('arrow__click');
+        }
+
     }
 
 
@@ -464,6 +451,11 @@ const mySPA = (function() {
 
                     that.clearData();
                 }
+
+                if (e.target.getAttribute('class') === 'fas fa-angle-double-down' || e.target.getAttribute('class') === 'fas fa-angle-double-down arrow__click') {
+
+                    that.showMoreInfo(e.target.parentNode, e.target);
+                }
             }
         }
 
@@ -496,6 +488,11 @@ const mySPA = (function() {
             myModuleModel.clearData();
         }
 
+
+        this.showMoreInfo = function(parent, btn) {
+
+            myModuleModel.showMoreInfo(parent, btn);
+        }
 
     }
 

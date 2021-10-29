@@ -89,7 +89,7 @@ html, body {
   /*background-color: #5eef5e;*/
   display: block;
   border-radius: 2px;
-  transition: 1.5s
+  transition: 1.5s;
 }
 .state__wrap {
   width: 700px;
@@ -98,7 +98,7 @@ html, body {
   border-radius: 8px;
   text-align: center;
   margin: 7px 0;
-  transition: .3s
+  transition: .3s;
 }
 .state__wrap:hover {
   border: 1px solid #7c7c7c;
@@ -138,6 +138,29 @@ html, body {
 .statistics-page .fa:hover,
 .statistics-page .fas:hover {
   color: #dec157;
+}
+.statistics-page .fa-angle-double-down {
+  color: #7c7c7c;
+  font-size: 21px;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+}
+.statistics-page .fa-angle-double-down:hover {
+  cursor: pointer;
+  color: #000000;
+}
+.wrap__less {
+  height: 150px;
+  transition: .6s;
+  overflow: hidden;
+  position: relative;
+}
+.wrap__more {
+  height: 250px;
+}
+.arrow__click {
+  transform: rotate(-180deg);
 }
 
 
