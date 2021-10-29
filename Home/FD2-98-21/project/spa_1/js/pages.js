@@ -77,9 +77,14 @@ const Statistics = {
            <i class="fas fa-smoking-ban"></i>
            <p class="sum__time__stop"></p>
         </div>
+        <div class="state__wrap">
+           <p><strong>Не выкурено сигарет</strong></p>
+           <i class="fas fa-smoking"></i>
+           <p class="num__cigarette"></p>
+        </div>
         
         
-        <p class="num__cigarette"></p>
+        
         <p class="num__money"></p>
         <p class="free__time"></p>
       </section>

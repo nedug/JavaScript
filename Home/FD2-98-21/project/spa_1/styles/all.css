@@ -4620,6 +4620,15 @@ readers do not read off random characters that represent icons */
   color: dodgerblue;
   transition: .3s;
 }
+/*.statistics-page .fa,*/
+/*.statistics-page .fas {*/
+/*  font-size: 50px;*/
+/*  margin-left: 20px;*/
+/*  margin-bottom: 7px;*/
+/*  color: dodgerblue;*/
+/*  transition: .3s;*/
+/*}*/
+
 .fa:hover,
 .fas:hover {
   color: aquamarine;

@@ -112,12 +112,26 @@ html, body {
 .state__wrap strong {
   font-size: 17px;
 }
-.sum__time__stop span {
+.sum__time__stop span, .num__cigarette span {
   font-family: 'Oxygen Mono', monospace;
   margin-left: 10px;
   font-size: 35px;
 }
-.sum__time__stop {
+.sum__time__stop, .num__cigarette {
   font-size: 20px;
 }
+.statistics-page .fa,
+.statistics-page .fas {
+  font-size: 55px;
+  margin: 2px 0;
+  transition: .3s;
+}
+.statistics-page .fa-smoking-ban {
+  color: #f54b4b;
+}
+.statistics-page .fa:hover,
+.statistics-page .fas:hover {
+  color: #dec157;
+}
+
 

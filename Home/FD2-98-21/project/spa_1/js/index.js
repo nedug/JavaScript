@@ -336,7 +336,7 @@ const mySPA = (function() {
 
             if (sumYear > 0) sumTimeStop.innerHTML = `<span>${sumYear}</span> г <span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`
             else sumTimeStop.innerHTML = `<span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`;
-            sumCigarette.innerHTML = `Не выкурено сигарет: ${sumFullCigarette} шт.`;
+            sumCigarette.innerHTML = `<span>${sumFullCigarette}</span> шт.`;
             sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
             freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
         }
