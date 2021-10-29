@@ -190,15 +190,10 @@ const mySPA = (function() {
 
 
 
-
-
             // console.log(carbonMonoxide)
 
 
             myModuleView.renderHealth(heart, carbonMonoxide, nicotine, lung, liver, riskHeart);
-
-
-
 
 
 
@@ -335,7 +330,7 @@ const mySPA = (function() {
 
             const stateLung = myModuleContainer.querySelector("#content .state__lung__chart .percent");
             const stateLungChart = myModuleContainer.querySelector("#content .state__lung__chart .chart");
-            const lungDescription = myModuleContainer.querySelector("#content .state__lung__chart .description");
+            const lungDescription = myModuleContainer.querySelector("#content .state__lung .description");
 
             const stateLiver = myModuleContainer.querySelector("#content .state__liver__chart .percent");
             const stateRiskLiverChart = myModuleContainer.querySelector("#content .state__liver__chart .chart");
@@ -353,45 +348,23 @@ const mySPA = (function() {
 
 
 
-            setTimeout(something, 10)
+            setTimeout(showChart, 10)
 
-            function something() {
+            function showChart() {
 
-                if (heart > 50) {
-                    stateHeartChart.style.backgroundColor = `#5eef5e`;
-                    stateHeartChart.style.width = `${heart}%`;
-                }
-                else stateHeartChart.style.width = `${heart}%`;
+                stateHeartChart.style.width = `${heart}%`;
+                stateCarbonMonoxideChart.style.width = `${carbonMonoxide}%`;
+                stateNicotineChart.style.width = `${nicotine}%`;
+                stateLungChart.style.width = `${lung}%`;
+                stateRiskLiverChart.style.width = `${liver}%`;
+                stateRiskHeartChart.style.width = `${riskHeart}%`;
 
-                if (carbonMonoxide > 50) {
-                    stateCarbonMonoxideChart.style.backgroundColor = `#5eef5e`;
-                    stateCarbonMonoxideChart.style.width = `${carbonMonoxide}%`;
-                }
-                else stateCarbonMonoxideChart.style.width = `${carbonMonoxide}%`;
-
-                if (nicotine > 50) {
-                    stateNicotineChart.style.backgroundColor = `#5eef5e`;
-                    stateNicotineChart.style.width = `${nicotine}%`;
-                }
-                else stateNicotineChart.style.width = `${nicotine}%`;
-
-                if (lung > 50) {
-                    stateLungChart.style.backgroundColor = `#5eef5e`;
-                    stateLungChart.style.width = `${lung}%`;
-                }
-                else stateLungChart.style.width = `${lung}%`;
-
-                if (liver > 50) {
-                    stateRiskLiverChart.style.backgroundColor = `#5eef5e`;
-                    stateRiskLiverChart.style.width = `${liver}%`;
-                }
-                else stateRiskLiverChart.style.width = `${liver}%`;
-
-                if (riskHeart > 50) {
-                    stateRiskHeartChart.style.backgroundColor = `#5eef5e`;
-                    stateRiskHeartChart.style.width = `${riskHeart}%`;
-                }
-                else stateRiskHeartChart.style.width = `${riskHeart}%`;
+                if (heart > 50) stateHeartChart.style.backgroundColor = `#5eef5e`;
+                if (carbonMonoxide > 50) stateCarbonMonoxideChart.style.backgroundColor = `#5eef5e`;
+                if (nicotine > 50) stateNicotineChart.style.backgroundColor = `#5eef5e`;
+                if (lung > 50) stateLungChart.style.backgroundColor = `#5eef5e`;
+                if (liver > 50) stateRiskLiverChart.style.backgroundColor = `#5eef5e`;
+                if (riskHeart > 50) stateRiskHeartChart.style.backgroundColor = `#5eef5e`;
             }
 
 
