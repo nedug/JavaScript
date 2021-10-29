@@ -37,6 +37,33 @@ const mySPA = (function() {
 
         let goTimerStatistic = null;
 
+        let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
+                                  'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
+                                ['Концентрация угарного газа в организме уменьшается.',
+                                 'Угарный газ полностью выведен из организма. Ткани и органы лучше снобжаются кислородом'],
+                                ['Никотин постепенно выводится из организма, скоро вы почувствуете себя лучше.',
+                                 'Никотин выведен из организма. Обогощение крови кислородом снова в норме'],
+                                ['Восстанавливается обоняние и вкус. Скоро вы заметите разницу.',
+                                 'Возвращаются настоящие запахи и вкус: раньше рецепторы угнетали табачный дым.'],
+                                ['Если в прошлые недели у вас был влажный кашель, то теперь он пойдет на спад. Одышка уменьшается.',
+                                 'Легкие очистились от слизи, одышка и кашель исчезли'],
+                                ['Восстанавливаются клетки печени, нормализируется работа желчного пузыря.',
+                                 'Клетки печени и работа желчного пузыря нормализованы'],
+                                ['Риск сердечного приступа постепенно снижается.',
+                                 'Риск сердечного приступа снижен до уровня, как у некурящего человека.'],
+                                ['Вероятность развития рака легких медленно снижается.',
+                                 'Вероятность развития рака легких снижена до уровня, как у некурящего человека.'],];
+
+        let rangeStateHealth = {
+            heart: 20,
+            carbonMonoxide: 720,
+            nicotine: 2880,
+            smell: 14400,
+            lung: 129600,
+            liver: 259200,
+            riskHeart: 518400,
+            riskCancer: 3628800,
+        };
 
         this.init = function(view) {
 
@@ -170,30 +197,36 @@ const mySPA = (function() {
 
             let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
 
-            let heart = Math.floor(sumMin * 100 / 20); /* Сердце */
+            let heart = Math.floor(sumMin * 100 / rangeStateHealth.heart); /* Сердце */
             if (heart > 100) heart = 100;
 
-            let carbonMonoxide = Math.floor(sumMin * 100 / 720); /* Угарный газ */
+            let carbonMonoxide = Math.floor(sumMin * 100 / rangeStateHealth.carbonMonoxide); /* Угарный газ */
             if (carbonMonoxide > 100) carbonMonoxide = 100;
 
-            let nicotine = Math.floor(sumMin * 100 / 2880); /* Никотин */
+            let nicotine = Math.floor(sumMin * 100 / rangeStateHealth.nicotine); /* Никотин */
             if (nicotine > 100) nicotine = 100;
 
-            let lung = Math.floor(sumMin * 100 / 129600); /* Легкие */
+            let smell = Math.floor(sumMin * 100 / rangeStateHealth.smell); /* Запахи */
+            if (smell > 100) smell = 100;
+
+            let lung = Math.floor(sumMin * 100 / rangeStateHealth.lung); /* Легкие */
             if (lung > 100) lung = 100;
 
-            let liver = Math.floor(sumMin * 100 / 259200); /* Легкие */
+            let liver = Math.floor(sumMin * 100 / rangeStateHealth.liver); /* Печень */
             if (liver > 100) liver = 100;
 
-            let riskHeart = Math.floor(sumMin * 100 / 518400); /* Риск сердечного приступа */
+            let riskHeart = Math.floor(sumMin * 100 / rangeStateHealth.riskHeart); /* Риск сердечного приступа */
             if (riskHeart > 100) riskHeart = 100;
+
+            let riskCancer = Math.floor(sumMin * 100 / rangeStateHealth.riskCancer); /* Риск рака */
+            if (riskCancer > 100) riskCancer = 100;
 
 
 
             // console.log(carbonMonoxide)
 
 
-            myModuleView.renderHealth(heart, carbonMonoxide, nicotine, lung, liver, riskHeart);
+            myModuleView.renderHealth(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer);
 
 
 
@@ -317,13 +350,15 @@ const mySPA = (function() {
         }
 
 
-        this.renderHealth = function(heart, carbonMonoxide, nicotine, lung, liver, riskHeart) {
+        this.renderHealth = function(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer) {
 
             const stateHeart = myModuleContainer.querySelector("#content .state__heart__chart .percent");
             const stateHeartChart = myModuleContainer.querySelector("#content .state__heart__chart .chart");
+            const heartDescription = myModuleContainer.querySelector("#content .state__heart .description");
 
             const stateCarbonMonoxide = myModuleContainer.querySelector("#content .state__carbonMonoxide__chart .percent");
             const stateCarbonMonoxideChart = myModuleContainer.querySelector("#content .state__carbonMonoxide__chart .chart");
+            const CarbonMonoxideDescription = myModuleContainer.querySelector("#content .state__carbonMonoxide .description");
 
             const stateNicotine = myModuleContainer.querySelector("#content .state__nicotine__chart .percent");
             const stateNicotineChart = myModuleContainer.querySelector("#content .state__nicotine__chart .chart");
@@ -346,10 +381,14 @@ const mySPA = (function() {
             stateLiver.innerHTML = ` ${liver}`;
             stateRiskHeart.innerHTML = ` ${riskHeart}`;
 
+            if (heart < 100) heartDescription.innerHTML = descriptionHealth[0][0]
+            else heartDescription.innerHTML = descriptionHealth[0][1];
+            if (carbonMonoxide < 100) CarbonMonoxideDescription.innerHTML = descriptionHealth[1][0]
+            else CarbonMonoxideDescription.innerHTML = descriptionHealth[1][1];
+
 
 
             setTimeout(showChart, 10)
-
             function showChart() {
 
                 stateHeartChart.style.width = `${heart}%`;
@@ -368,7 +407,6 @@ const mySPA = (function() {
             }
 
 
-            if (lung === 100) lungDescription.innerHTML = `работа легких восстановлена`
 
         }
 
