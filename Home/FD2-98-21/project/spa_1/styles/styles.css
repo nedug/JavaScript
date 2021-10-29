@@ -113,6 +113,7 @@ html, body {
   font-size: 17px;
 }
 .sum__time__stop span {
+  font-family: 'Oxygen Mono', monospace;
   margin-left: 10px;
   font-size: 35px;
 }
