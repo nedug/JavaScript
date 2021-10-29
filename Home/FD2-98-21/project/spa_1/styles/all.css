@@ -4616,5 +4616,12 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
   font-size: 25px;
   margin-left: 15px;
+  margin-bottom: 7px;
+  color: dodgerblue;
+  transition: .3s;
+}
+.fa:hover,
+.fas:hover {
+  color: aquamarine;
 }
 
