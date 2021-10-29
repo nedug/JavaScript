@@ -331,7 +331,7 @@ const mySPA = (function() {
             const freeTime = myModuleContainer.querySelector("#content .free__time");
 
             sumCigarette.innerHTML = `Не выкурено сигарет: ${sumFullCigarette} шт.`;
-            sumTimeStop.innerHTML = `Вы уже не курите: ${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
+            sumTimeStop.innerHTML = `${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
             sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
             freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
         }

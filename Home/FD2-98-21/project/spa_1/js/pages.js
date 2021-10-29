@@ -72,7 +72,12 @@ const Statistics = {
     return `
       <section class="${className}">
         <h2>Отлично держитесь, ${userName}:</h2>
-        <p class="sum__time__stop"></p>
+        <div class="state__wrap">
+           <p><strong>Вы уже не курите</strong><i class="fas fa-smoking-ban"></i></p>
+           <p class="sum__time__stop"></p>
+        </div>
+        
+        
         <p class="num__cigarette"></p>
         <p class="num__money"></p>
         <p class="free__time"></p>
