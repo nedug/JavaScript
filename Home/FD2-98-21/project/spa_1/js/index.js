@@ -199,35 +199,22 @@ const mySPA = (function() {
 
             let heart = Math.floor(sumMin * 100 / rangeStateHealth.heart); /* Сердце */
             if (heart > 100) heart = 100;
-
             let carbonMonoxide = Math.floor(sumMin * 100 / rangeStateHealth.carbonMonoxide); /* Угарный газ */
             if (carbonMonoxide > 100) carbonMonoxide = 100;
-
             let nicotine = Math.floor(sumMin * 100 / rangeStateHealth.nicotine); /* Никотин */
             if (nicotine > 100) nicotine = 100;
-
             let smell = Math.floor(sumMin * 100 / rangeStateHealth.smell); /* Запахи */
             if (smell > 100) smell = 100;
-
             let lung = Math.floor(sumMin * 100 / rangeStateHealth.lung); /* Легкие */
             if (lung > 100) lung = 100;
-
             let liver = Math.floor(sumMin * 100 / rangeStateHealth.liver); /* Печень */
             if (liver > 100) liver = 100;
-
             let riskHeart = Math.floor(sumMin * 100 / rangeStateHealth.riskHeart); /* Риск сердечного приступа */
             if (riskHeart > 100) riskHeart = 100;
-
             let riskCancer = Math.floor(sumMin * 100 / rangeStateHealth.riskCancer); /* Риск рака */
             if (riskCancer > 100) riskCancer = 100;
 
-
-
-            // console.log(carbonMonoxide)
-
-
             myModuleView.renderHealth(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer);
-
 
 
             // let sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
@@ -358,10 +345,15 @@ const mySPA = (function() {
 
             const stateCarbonMonoxide = myModuleContainer.querySelector("#content .state__carbonMonoxide__chart .percent");
             const stateCarbonMonoxideChart = myModuleContainer.querySelector("#content .state__carbonMonoxide__chart .chart");
-            const CarbonMonoxideDescription = myModuleContainer.querySelector("#content .state__carbonMonoxide .description");
+            const carbonMonoxideDescription = myModuleContainer.querySelector("#content .state__carbonMonoxide .description");
 
             const stateNicotine = myModuleContainer.querySelector("#content .state__nicotine__chart .percent");
             const stateNicotineChart = myModuleContainer.querySelector("#content .state__nicotine__chart .chart");
+            const nicotineDescription = myModuleContainer.querySelector("#content .state__nicotine .description");
+
+            const stateSmell = myModuleContainer.querySelector("#content .state__smell__chart .percent");
+            const stateSmellChart = myModuleContainer.querySelector("#content .state__smell__chart .chart");
+            const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
 
             const stateLung = myModuleContainer.querySelector("#content .state__lung__chart .percent");
             const stateLungChart = myModuleContainer.querySelector("#content .state__lung__chart .chart");
@@ -369,24 +361,41 @@ const mySPA = (function() {
 
             const stateLiver = myModuleContainer.querySelector("#content .state__liver__chart .percent");
             const stateRiskLiverChart = myModuleContainer.querySelector("#content .state__liver__chart .chart");
+            const liverDescription = myModuleContainer.querySelector("#content .state__liver .description");
 
             const stateRiskHeart = myModuleContainer.querySelector("#content .state__risk__heart__chart .percent");
             const stateRiskHeartChart = myModuleContainer.querySelector("#content .state__risk__heart__chart .chart");
+            const riskHeartDescription = myModuleContainer.querySelector("#content .state__risk__heart .description");
 
+            const stateRiskCancer = myModuleContainer.querySelector("#content .state__risk__cancer__chart .percent");
+            const stateRiskCancerChart = myModuleContainer.querySelector("#content .state__risk__cancer__chart .chart");
+            const riskCancerDescription = myModuleContainer.querySelector("#content .state__risk__cancer .description");
 
             stateHeart.innerHTML = ` ${heart}`;
             stateCarbonMonoxide.innerHTML = ` ${carbonMonoxide}`;
             stateNicotine.innerHTML = ` ${nicotine}`;
+            stateSmell.innerHTML = ` ${smell}`;
             stateLung.innerHTML = ` ${lung}`;
             stateLiver.innerHTML = ` ${liver}`;
             stateRiskHeart.innerHTML = ` ${riskHeart}`;
+            stateRiskCancer.innerHTML = ` ${riskCancer}`;
 
             if (heart < 100) heartDescription.innerHTML = descriptionHealth[0][0]
             else heartDescription.innerHTML = descriptionHealth[0][1];
-            if (carbonMonoxide < 100) CarbonMonoxideDescription.innerHTML = descriptionHealth[1][0]
-            else CarbonMonoxideDescription.innerHTML = descriptionHealth[1][1];
-
-
+            if (carbonMonoxide < 100) carbonMonoxideDescription.innerHTML = descriptionHealth[1][0]
+            else carbonMonoxideDescription.innerHTML = descriptionHealth[1][1];
+            if (nicotine < 100) nicotineDescription.innerHTML = descriptionHealth[2][0]
+            else nicotineDescription.innerHTML = descriptionHealth[2][1];
+            if (smell < 100) smellDescription.innerHTML = descriptionHealth[3][0]
+            else smellDescription.innerHTML = descriptionHealth[3][1];
+            if (lung < 100) lungDescription.innerHTML = descriptionHealth[4][0]
+            else lungDescription.innerHTML = descriptionHealth[4][1];
+            if (liver < 100) liverDescription.innerHTML = descriptionHealth[5][0]
+            else liverDescription.innerHTML = descriptionHealth[5][1];
+            if (riskHeart < 100) riskHeartDescription.innerHTML = descriptionHealth[6][0]
+            else riskHeartDescription.innerHTML = descriptionHealth[6][1];
+            if (riskCancer < 100) riskCancerDescription.innerHTML = descriptionHealth[7][0]
+            else riskCancerDescription.innerHTML = descriptionHealth[7][1];
 
             setTimeout(showChart, 10)
             function showChart() {
@@ -394,20 +403,21 @@ const mySPA = (function() {
                 stateHeartChart.style.width = `${heart}%`;
                 stateCarbonMonoxideChart.style.width = `${carbonMonoxide}%`;
                 stateNicotineChart.style.width = `${nicotine}%`;
+                stateSmellChart.style.width = `${smell}%`;
                 stateLungChart.style.width = `${lung}%`;
                 stateRiskLiverChart.style.width = `${liver}%`;
                 stateRiskHeartChart.style.width = `${riskHeart}%`;
+                stateRiskCancerChart.style.width = `${riskCancer}%`;
 
                 if (heart > 50) stateHeartChart.style.backgroundColor = `#5eef5e`;
                 if (carbonMonoxide > 50) stateCarbonMonoxideChart.style.backgroundColor = `#5eef5e`;
                 if (nicotine > 50) stateNicotineChart.style.backgroundColor = `#5eef5e`;
+                if (smell > 50) stateSmellChart.style.backgroundColor = `#5eef5e`;
                 if (lung > 50) stateLungChart.style.backgroundColor = `#5eef5e`;
                 if (liver > 50) stateRiskLiverChart.style.backgroundColor = `#5eef5e`;
                 if (riskHeart > 50) stateRiskHeartChart.style.backgroundColor = `#5eef5e`;
+                if (riskCancer > 50) stateRiskCancerChart.style.backgroundColor = `#5eef5e`;
             }
-
-
-
         }
 
     }

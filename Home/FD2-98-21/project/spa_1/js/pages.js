@@ -102,8 +102,8 @@ const Health = {
            <p class="state__nicotine__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
         </div>
         <div class="state__wrap">
-           <p class="state__taste"><strong>Обоняние и вкус</strong><i class="fas fa-air-freshener"></i><br><span class="description"></p>
-           <p class="state__heart__taste"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__smell"><strong>Обоняние и вкус</strong><i class="fas fa-air-freshener"></i><br><span class="description"></p>
+           <p class="state__smell__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
         </div>
         <div class="state__wrap">
            <p class="state__lung"><strong>Работа легких</strong><i class="fas fa-lungs"></i><br><span class="description"></p>
@@ -120,9 +120,7 @@ const Health = {
         <div class="state__wrap">
            <p class="state__risk__cancer"><strong>Риск рака</strong><i class="fas fa-skull-crossbones"></i><br><span class="description"></p>
            <p class="state__risk__cancer__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
-        </div>
-                        
-                
+        </div>      
       </section>
     `;
   }
