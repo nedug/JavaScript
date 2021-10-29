@@ -82,11 +82,16 @@ const Statistics = {
            <i class="fas fa-smoking"></i>
            <p class="num__cigarette"></p>
         </div>
-        
-        
-        
-        <p class="num__money"></p>
-        <p class="free__time"></p>
+        <div class="state__wrap">
+           <p><strong>Сэкономлено средств</strong></p>
+           <i class="fas fa-ruble-sign"></i>
+           <p class="num__money"></p>
+        </div>
+        <div class="state__wrap">
+           <p><strong>Сэкономлено времени</strong></p>
+           <i class="fas fa-clock"></i>
+           <p class="free__time"></p>
+        </div>        
       </section>
     `;
   }
