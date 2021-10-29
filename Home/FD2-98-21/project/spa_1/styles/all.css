@@ -4615,7 +4615,7 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   font-size: 25px;
-  margin-left: 15px;
+  margin-left: 20px;
   margin-bottom: 7px;
   color: dodgerblue;
   transition: .3s;

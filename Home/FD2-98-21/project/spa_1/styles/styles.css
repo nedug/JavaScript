@@ -79,7 +79,7 @@ html, body {
   width: 300px;
   height: 12px;
   display: inline-block;
-  border: 1px solid black;
+  border: 1px solid #bab9b9;
   border-radius: 3px;
 }
 .chart {
@@ -111,5 +111,12 @@ html, body {
 }
 .state__wrap strong {
   font-size: 17px;
+}
+.sum__time__stop span {
+  margin-left: 10px;
+  font-size: 35px;
+}
+.sum__time__stop {
+  font-size: 20px;
 }
 

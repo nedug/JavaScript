@@ -330,8 +330,9 @@ const mySPA = (function() {
             const sumMoney = myModuleContainer.querySelector("#content .num__money");
             const freeTime = myModuleContainer.querySelector("#content .free__time");
 
+            if (sumYear > 0) sumTimeStop.innerHTML = `<span>${sumYear}</span> г <span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`
+            else sumTimeStop.innerHTML = `<span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`;
             sumCigarette.innerHTML = `Не выкурено сигарет: ${sumFullCigarette} шт.`;
-            sumTimeStop.innerHTML = `${sumYear} г ${dayWithYear} дн ${sumHour} ч ${sumMin} мин ${sumSec} сек`;
             sumMoney.innerHTML = `Сэкономлено средств: ${costFullCigarette} руб.`;
             freeTime.innerHTML = `Сэкономлено времени: ${freeTimeDayFull} дн ${freeTimeHour} ч ${freeTimeMin} мин`;
         }
