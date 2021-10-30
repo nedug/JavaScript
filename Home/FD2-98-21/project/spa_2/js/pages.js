@@ -12,11 +12,11 @@ const LoginWeb = {
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last"><br>
             <label>Среднее количество сигарет в день, шт.:</label>
-            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="15"><br>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="15" min="1" max="60"><br>
             <label>Стоимость одной пачки, руб.:</label>
-            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4"><br>
+            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
-            <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20"><br>
+            <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20" min="1" max="50"><br>
 <!--            <h4 id="valid-value"></h4>-->
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Сохранить</button>
@@ -42,11 +42,11 @@ const Options = {
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last" value="${userDate}"><br>
             <label>Среднее количество сигарет в день, шт.:</label>
-            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${userNumCigarette}"><br>
+            <input type="number" id="user-num-cigarette" class="input__num-cigarette" value="${userNumCigarette}" min="1" max="60"><br>
             <label>Стоимость одной пачки, руб.:</label>
-            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}"><br>
+            <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
-            <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}"><br>
+            <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}" min="1" max="50"><br>
 <!--            <h4 id="valid-value"></h4>-->
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Изменить</button>
