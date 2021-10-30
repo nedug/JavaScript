@@ -8,9 +8,7 @@ const LoginWeb = {
         <main class="modal__content">
           <div class="form-field">
             <label for="user-name">Ваше имя:</label>
-            <input type="text" id="user-name" class="input__default" value="Sasha">
-          </div>
-          <div class="form-field">
+            <input type="text" id="user-name" class="input__default" value="Sasha"><br>
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last"><br>
             <label>Среднее количество сигарет в день, шт.:</label>
@@ -19,12 +17,11 @@ const LoginWeb = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20"><br>
-            <h4 id="valid-value"></h4>
+<!--            <h4 id="valid-value"></h4>-->
+            <i class="fas fa-user-cog"></i>
+            <button id="btn-save" class="data__save">Сохранить</button>
           </div>
         </main>
-        <footer class="modal__footer">
-          <button id="btn-save" class="data__save">Сохранить</button>
-        </footer>
       </section>
     `;
   }
@@ -41,9 +38,7 @@ const Options = {
         <main class="modal__content">
           <div class="form-field">
             <label for="user-name">Ваше имя:</label>
-            <input type="text" id="user-name" class="input__default" value="${userName}">
-          </div>
-          <div class="form-field">
+            <input type="text" id="user-name" class="input__default" value="${userName}"><br>       
             <label>Дата последней сигареты:</label>
             <input type="date" id="user-date-last" class="input__date-last" value="${userDate}"><br>
             <label>Среднее количество сигарет в день, шт.:</label>
@@ -52,11 +47,12 @@ const Options = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}"><br>
-            <h4 id="valid-value"></h4>
+<!--            <h4 id="valid-value"></h4>-->
+            <i class="fas fa-user-cog"></i>
+            <button id="btn-save" class="data__save">Изменить</button>
           </div>
         </main>
         <footer class="modal__footer">
-          <button id="btn-save" class="data__save">Изменить</button>
           <button id="btn-delete" class="data__delete">Выйти</button>
         </footer>
       </section>
@@ -186,7 +182,7 @@ const AuthorPage = {
     return `
       <section class="${className}">
         <h2>Необходима авторизация пользователя!</h2>
-        <p>Перейдите в раздел <a href="#login">Настройки</a>.</p>
+        <p>Перейдите в раздел <a href="#login" class="btn_set">Настройки</a></p>
       </section>
     `;
   }

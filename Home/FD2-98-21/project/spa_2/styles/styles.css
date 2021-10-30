@@ -175,5 +175,95 @@ html, body {
 .state__wrap .more__info {
   margin-top: 20px;
 }
-
+.modal__content {
+  width: 700px;
+  padding: 10px 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  /*text-align: center;*/
+  /*margin: 7px 0;*/
+  transition: .3s;
+  position: relative;
+}
+.modal__content input {
+  margin: 6px 70px;
+  border: 1px solid #bab9b9;
+  border-radius: 3px;
+  padding: 4px;
+}
+.modal__content input:nth-of-type(1) {
+   width: 359px;
+ }
+.modal__content input:nth-of-type(2) {
+  width: 239px;
+}
+.modal__content input:nth-of-type(3) {
+  width: 136px;
+}
+.modal__content input:nth-of-type(4) {
+  width: 219px;
+}
+.modal__content input:nth-of-type(5) {
+   width: 194px;
+ }
+#content .fa-user-cog {
+  color: dodgerblue;
+  font-size: 75px;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+}
+#content .login-page .fa-user-cog {
+  color: #bab9b9;
+}
+.data__save {
+  color: #fff;
+  border: 1px solid #bab9b9;
+  border-radius: 4px;
+  padding: 7px 11px;
+  background-color: #303030;
+  margin: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 25px;
+  cursor: pointer;
+  transition: .3s;
+}
+.data__save:hover {
+  background-color: black;
+}
+.data__delete {
+  width: 390px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 11px;
+  background-color: #e57e7e;
+  margin: 10px 10px 10px 150px;
+  /*position: absolute;*/
+  /*bottom: 10px;*/
+  /*right: 25px;*/
+  cursor: pointer;
+  transition: .3s;
+}
+.data__delete:hover {
+  background-color: #ee4f4f;
+}
+.btn_set {
+  color: #fff;
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 13px 100px;
+  background-color: #bab9b9;
+  margin: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .3s;
+}
+.btn_set:hover {
+  background-color: #303030;
+}
+.authorization-page p {
+  margin: 55px 0;
+}
 
