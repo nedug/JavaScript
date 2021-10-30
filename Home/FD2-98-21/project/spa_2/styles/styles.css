@@ -10,7 +10,7 @@ html, body {
 }
 
 .app {
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   min-height: 100vh;
   min-width: 100%;
@@ -19,7 +19,7 @@ html, body {
 }
 
 .header {
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
 }
 
@@ -122,7 +122,7 @@ html, body {
 }
 .statistics-page .fa,
 .statistics-page .fas {
-  font-size: 45px;
+  font-size: 43px;
   margin: 2px 0;
   transition: .3s;
 }
@@ -151,16 +151,29 @@ html, body {
   color: #000000;
 }
 .wrap__less {
-  height: 150px;
+  height: 145px;
   transition: .6s;
   overflow: hidden;
   position: relative;
 }
 .wrap__more {
-  height: 250px;
+  height: 195px;
 }
 .arrow__click {
   transform: rotate(-180deg);
+}
+.nicotine, .resin, .month, .year, .add__health span {
+  font-family: 'Oxygen Mono', monospace;
+  font-size: 20px;
+}
+.nicotine {
+  margin-right: 45px;
+}
+.year, .month, .add__health {
+  margin-left: 30px;
+}
+.state__wrap .more__info {
+  margin-top: 20px;
 }
 
 

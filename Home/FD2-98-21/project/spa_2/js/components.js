@@ -17,7 +17,7 @@ const NavBar = {
           <li><a class="mainmenu__link" href="#health">Здоровье</a></li>
           <li><a class="mainmenu__link" href="#motivation">Мотивация</a></li>
           <li><a class="mainmenu__link" href="#other">Разное</a></li>
-          <li><a class="mainmenu__link" href="#login">Настройка</a></li>
+          <li><a class="mainmenu__link" href="#login">Настройки</a></li>
         </ul>
       </nav>`;
   }

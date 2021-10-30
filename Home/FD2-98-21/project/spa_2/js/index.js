@@ -167,17 +167,26 @@ const mySPA = (function() {
                 let sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
                 let timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
                 let sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
+                let nicotineMg = Math.floor(sumFullCigarette * 0.6);
+                let resinMg = Math.floor(sumFullCigarette * 5);
 
                 let costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
                 let costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
+                let costOneMonth = Math.floor(userDataStorage.userNumCigarette * 30 / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette);
+                let costOneYear = costOneMonth * 12;
 
                 let freeTimeMinFull = 4 * sumFullCigarette; /* Всего минут */
                 let freeTimeHourFull = Math.floor(freeTimeMinFull / 60); /* Всего часов */
                 let freeTimeMin = freeTimeMinFull - 60 * freeTimeHourFull; /* минут с учетом часов */
                 let freeTimeDayFull = Math.floor(freeTimeHourFull / 24); /* Всего дней */
                 let freeTimeHour = freeTimeHourFull - 24 * freeTimeDayFull; /* часов с учетом дней */
+                let addTimeMinFull = 5.5 * sumFullCigarette;
+                let addTimeHourFull = Math.floor(addTimeMinFull / 60);
+                let addTimeMin = Math.floor(addTimeMinFull - 60 * addTimeHourFull);
+                let addTimeDayFull = Math.floor(addTimeHourFull / 24);
+                let addTimeHour = addTimeHourFull - 24 * addTimeDayFull;
 
-                myModuleView.renderStatistic(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin);
+                myModuleView.renderStatistic(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin);
             }
         }
 
@@ -303,12 +312,17 @@ const mySPA = (function() {
         }
 
 
-        this.renderStatistic = function(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin) {
+        this.renderStatistic = function(sumYear, dayWithYear, sumHour, sumMin, sumSec, sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin) {
 
             const sumCigarette = myModuleContainer.querySelector("#content .num__cigarette");
             const sumTimeStop = myModuleContainer.querySelector("#content .sum__time__stop");
             const sumMoney = myModuleContainer.querySelector("#content .num__money");
             const freeTime = myModuleContainer.querySelector("#content .free__time");
+            const nicotine = myModuleContainer.querySelector("#content .nicotine");
+            const resin = myModuleContainer.querySelector("#content .resin");
+            const month = myModuleContainer.querySelector("#content .month");
+            const year = myModuleContainer.querySelector("#content .year");
+            const addHealth = myModuleContainer.querySelector("#content .add__health");
 
             if (sumSec < 10) sumSec = '0' + sumSec;
             if (sumMin < 10) sumMin = '0' + sumMin;
@@ -319,6 +333,11 @@ const mySPA = (function() {
             sumCigarette.innerHTML = `<span>${sumFullCigarette}</span> шт`;
             sumMoney.innerHTML = `<span>${costFullCigarette}</span> руб`;
             freeTime.innerHTML = `<span>${freeTimeDayFull}</span> дн <span>${freeTimeHour}</span> ч <span>${freeTimeMin}</span> мин`;
+            nicotine.innerHTML = nicotineMg + 'мг';
+            resin.innerHTML = resinMg + 'мг';
+            month.innerHTML = costOneMonth;
+            year.innerHTML = costOneYear;
+            addHealth.innerHTML = `+<span>${addTimeDayFull}</span> дн <span>${addTimeHour}</span> ч <span>${addTimeMin}</span> мин`;
         }
 
 

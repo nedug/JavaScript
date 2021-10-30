@@ -4,10 +4,36 @@
 	<meta charset="UTF-8">
 
 	<title>Title</title>
-	<link rel="stylesheet" href="styles/all.css">
 </head>
 <body>
 <i class="fab fa-linkedin-in"></i>
 <i class="far fa-comment-alt"></i>
+
+<div id="out" class="out-num">0</div>
+
+<script>
+
+    const time = 5000;
+    const step = 25;
+
+    function outNum(num, elem) {
+        let e = document.querySelector(elem);
+        n = 0;
+        let t = Math.round(time/(num/step));
+        let interval = setInterval(() => {
+                n = n + step;
+                if(n == num) {
+                    clearInterval(interval);
+                }
+                e.innerHTML = n;
+            },
+            t);
+    };
+
+    outNum(2550, '#out');
+
+
+</script>
+
 </body>
 </html>
