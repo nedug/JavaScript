@@ -13,8 +13,8 @@
 
 <script>
 
-    const time = 5000;
-    const step = 25;
+    const time = 500;
+    const step = 1;
 
     function outNum(num, elem) {
         let e = document.querySelector(elem);
@@ -22,15 +22,15 @@
         let t = Math.round(time/(num/step));
         let interval = setInterval(() => {
                 n = n + step;
-                if(n == num) {
+                if(n === num) {
                     clearInterval(interval);
                 }
                 e.innerHTML = n;
             },
             t);
-    };
+    }
 
-    outNum(2550, '#out');
+    outNum(1500, '#out');
 
 
 </script>
