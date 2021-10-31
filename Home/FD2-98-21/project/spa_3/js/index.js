@@ -31,10 +31,8 @@ const mySPA = (function() {
 
         let pageNameLink = null;
         let userDataStorage = null;
-
         let sumSig = null;
         let costSig = null;
-
         let timerStatisticTime = null;
         let timerStatisticOther = null;
 
