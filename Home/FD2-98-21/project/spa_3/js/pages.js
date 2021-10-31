@@ -53,6 +53,7 @@ const Options = {
           </div>
         </main>
         <footer class="modal__footer">
+          <input type="checkbox" id="night">
           <button id="btn-delete" class="data__delete">Выйти</button>
         </footer>
       </section>
@@ -153,7 +154,10 @@ const Motivation = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <h2>Контакты</h2>
+        <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
+        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>
+        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>
+        
         <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>
       </section>
     `;
