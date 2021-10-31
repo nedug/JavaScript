@@ -401,7 +401,7 @@ const mySPA = (function() {
             if (riskCancer < 100) riskCancerDescription.innerHTML = descriptionHealth[7][0]
             else riskCancerDescription.innerHTML = descriptionHealth[7][1];
 
-            setTimeout(showChart, 10)
+            setTimeout(showChart, 300)
             function showChart() {
 
                 stateHeartChart.style.width = `${heart}%`;
