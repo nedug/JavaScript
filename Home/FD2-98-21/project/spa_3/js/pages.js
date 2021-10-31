@@ -168,7 +168,7 @@ const ErrorPage = {
     return `
       <section class="${className}">
         <h2>Ошибка 404</h2>
-        <p>Страница не найдена, попробуйте вернуться на <a href="#statistics">главную</a>.</p>
+        <p>Страница не найдена,<br> попробуйте вернуться на <a href="#statistics" class="btn_set">главную</a></p>
       </section>
     `;
   }
