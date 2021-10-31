@@ -144,16 +144,16 @@ const mySPA = (function() {
 
             if (!userDataStorage) return
 
+            let stopDay = +userDataStorage.userDate.split('-')[2];
+            let stopMonth = +userDataStorage.userDate.split('-')[1];
+            let stopYear = +userDataStorage.userDate.split('-')[0];
+
+            let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
+
             goTimer();
             goTimerStatistic = setInterval(goTimer, 1000); /* Запускаем таймер статистики */
 
             function goTimer() {
-
-                let stopDay = +userDataStorage.userDate.split('-')[2];
-                let stopMonth = +userDataStorage.userDate.split('-')[1];
-                let stopYear = +userDataStorage.userDate.split('-')[0];
-
-                let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
 
                 let timeNow = new Date();
 
