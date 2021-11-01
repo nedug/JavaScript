@@ -173,6 +173,15 @@ const Other = {
       <section class="${className}">
         <button id="btn-weather" class="btn-weather">Погода <i class="fas fa-random"></i></button>
         
+        
+        <div id="forecast-now">
+                <div class="icon-weather"></div>
+                <h1 class="location"></h1>
+                <h1 class="temperature"></h1>
+                <div class="description"></div>
+                <div class="wind"></div>
+        </div>
+        
 <!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
 <!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->
         

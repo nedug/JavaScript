@@ -241,6 +241,41 @@ const mySPA = (function() {
             myModuleView.renderMoreInfo(parent, btn);
         }
 
+
+        this.getWeather = function() {
+
+            navigator.geolocation.getCurrentPosition(success);
+
+            function success(pos) {
+                var crd = pos.coords;
+
+                console.log('Ваше текущее местоположение:');
+                console.log(`Широта: ${crd.latitude}`);
+                console.log(`Долгота: ${crd.longitude}`);
+                console.log(`Плюс-минус ${crd.accuracy} метров.`);
+            }
+
+
+
+
+            let cityID = 625144;
+            let apiUrl = "https://api.openweathermap.org/data/2.5/";
+            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
+
+
+            fetch(apiQuery, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log(data);
+                    // loader.style.display = "none";
+                    myModuleView.renderWeather(data);
+                })
+                .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
+
+
+        }
+
     }
 
 
@@ -460,6 +495,30 @@ const mySPA = (function() {
             btn.classList.toggle('arrow__click');
         }
 
+
+        this.renderWeather = function(data) {
+
+
+
+
+
+            const icon = myModuleContainer.querySelector('#content .icon-weather');
+            const temperature = myModuleContainer.querySelector('#content .temperature');
+            const location = myModuleContainer.querySelector('#content .location');
+
+            icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
+            temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
+            location.innerHTML = `${data.name}`;
+
+            // const stateSmellChart = myModuleContainer.querySelector("#content .state__smell__chart .chart");
+            // const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
+
+
+
+            // parent.classList.toggle('wrap__more');
+            // btn.classList.toggle('arrow__click');
+        }
+
     }
 
 
@@ -504,6 +563,11 @@ const mySPA = (function() {
 
                     that.showMoreInfo(e.target.parentNode, e.target);
                 }
+
+                if (e.target.getAttribute('class') === 'btn-weather') {
+
+                    that.showWeather();
+                }
             }
         }
 
@@ -540,6 +604,12 @@ const mySPA = (function() {
         this.showMoreInfo = function(parent, btn) {
 
             myModuleModel.showMoreInfo(parent, btn);
+        }
+
+
+        this.showWeather = function() {
+
+            myModuleModel.getWeather();
         }
 
     }
