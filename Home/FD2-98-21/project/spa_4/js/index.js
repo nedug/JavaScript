@@ -260,7 +260,7 @@ const mySPA = (function() {
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data.data);
+                    // console.log(data.data);
                     myModuleView.renderFutbol(data);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
@@ -526,8 +526,6 @@ const mySPA = (function() {
         }
 
     }
-
-
 
     /* ----- controller ---- */
     function ModuleController() {
