@@ -182,6 +182,8 @@ const Other = {
                 <div class="wind"></div>
         </div>
         
+        <div id="loader" style="display: none"><img src="img/loader.gif" height="110" width="auto"></div>
+        
 <!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
 <!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->
         

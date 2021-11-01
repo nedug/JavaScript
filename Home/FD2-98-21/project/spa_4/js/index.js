@@ -253,6 +253,10 @@ const mySPA = (function() {
             //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
             // }
 
+
+            let loader = document.getElementById('loader');
+            loader.style.display = "block";
+
             let cityID = 625144;
             let apiUrl = "https://api.openweathermap.org/data/2.5/";
             let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
@@ -490,6 +494,9 @@ const mySPA = (function() {
 
 
         this.renderWeather = function(data) {
+
+            let loader = myModuleContainer.querySelector('#loader');
+            loader.style.display = "none";
 
             const icon = myModuleContainer.querySelector('#content .icon-weather');
             const temperature = myModuleContainer.querySelector('#content .temperature');
