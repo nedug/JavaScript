@@ -257,15 +257,40 @@ const mySPA = (function() {
             let loader = document.getElementById('loader');
             loader.style.display = "block";
 
+            // let cityID = 625144;
+            // let apiUrl = "https://api.openweathermap.org/data/2.5/";
+            // let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            // let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
+            //
+            //
+            // fetch(apiQuery, {method: 'get'})
+            //     .then((response) => response.json())
+            //     .then((data) => {
+            //         myModuleView.renderWeather(data);
+            //     })
+            //     .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
+
+
+
+
+
+
             let cityID = 625144;
             let apiUrl = "https://api.openweathermap.org/data/2.5/";
             let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
             let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
 
+            // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1/seasons';
+            // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1';
+            let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=2021&sort=asc';
 
-            fetch(apiQuery, {method: 'get'})
+
+
+
+            fetch(xxx, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
+                    console.log(data.data);
                     myModuleView.renderWeather(data);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
@@ -286,6 +311,7 @@ const mySPA = (function() {
         let routesObj = null;
         let that = this;
         let userStorage = null;
+        let xxx = null;
 
 
         this.init = function(container, routes) {
@@ -298,6 +324,8 @@ const mySPA = (function() {
 
 
         this.renderContent = function(hashPageName, userData, sumSig, costSig) {
+
+            xxx = 0;
 
             let routeName = "default";
             userStorage = userData;
@@ -495,20 +523,39 @@ const mySPA = (function() {
 
         this.renderWeather = function(data) {
 
+            // let loader = myModuleContainer.querySelector('#loader');
+            // loader.style.display = "none";
+            //
+            // const icon = myModuleContainer.querySelector('#content .icon-weather');
+            // const temperature = myModuleContainer.querySelector('#content .temperature');
+            // const location = myModuleContainer.querySelector('#content .location');
+            //
+            // icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
+            // temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
+            // location.innerHTML = `${data.name}`;
+
+            // const stateSmellChart = myModuleContainer.querySelector("#content .state__smell__chart .chart");
+            // const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
+
+
             let loader = myModuleContainer.querySelector('#loader');
             loader.style.display = "none";
+
+
+
 
             const icon = myModuleContainer.querySelector('#content .icon-weather');
             const temperature = myModuleContainer.querySelector('#content .temperature');
             const location = myModuleContainer.querySelector('#content .location');
 
-            icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
-            temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
-            location.innerHTML = `${data.name}`;
+            // icon.innerHTML = `${data.data.name}<br>${data.data.seasons[0].displayName}<br>${data.data.seasons[0].startDate}<br>${data.data.seasons[0].endDate}`;
 
-            // const stateSmellChart = myModuleContainer.querySelector("#content .state__smell__chart .chart");
-            // const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
+            // temperature.innerHTML = `<img src="${data.data.logos.light}" >`;
 
+            temperature.innerHTML = `${data.data.standings[xxx].stats[6].type}: ${data.data.standings[xxx].stats[6].value}`;
+
+            xxx++;
+            console.log(xxx)
 
         }
 

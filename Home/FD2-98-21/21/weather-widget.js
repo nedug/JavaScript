@@ -62,7 +62,7 @@ function WeatherWidget() {
         fetch(apiQuery, {method: 'get'})
             .then((response) => response.json())
             .then((data) => {
-                // console.log(data);
+                console.log(data);
                 // loader.style.display = "none";
                 this.showNowWeather(data)
             })
