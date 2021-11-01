@@ -244,24 +244,14 @@ const mySPA = (function() {
 
         this.getWeather = function() {
 
-            navigator.geolocation.getCurrentPosition(success);
-
-            const icon = document.querySelector('#content .icon-weather');
-
-            function success(pos) {
-                var crd = pos.coords;
-
-                icon.innerHTML = `Широта: ${crd.latitude} </br>    
-                Долгота: ${crd.longitude}</br>   
-                Плюс-минус ${crd.accuracy} метров.`;
-                console.log('Ваше текущее местоположение:');
-                console.log(`Широта: ${crd.latitude}`);
-                console.log(`Долгота: ${crd.longitude}`);
-                console.log(`Плюс-минус ${crd.accuracy} метров.`);
-            }
-
-
-
+            // navigator.geolocation.getCurrentPosition(success);
+            // function success(pos) {
+            //     var crd = pos.coords;
+            //     console.log('Ваше текущее местоположение:');
+            //     console.log(`Широта: ${crd.latitude}`);
+            //     console.log(`Долгота: ${crd.longitude}`);
+            //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
+            // }
 
             let cityID = 625144;
             let apiUrl = "https://api.openweathermap.org/data/2.5/";
@@ -272,8 +262,6 @@ const mySPA = (function() {
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
-                    // console.log(data);
-                    // loader.style.display = "none";
                     myModuleView.renderWeather(data);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
@@ -503,15 +491,11 @@ const mySPA = (function() {
 
         this.renderWeather = function(data) {
 
-
-
-
-
             const icon = myModuleContainer.querySelector('#content .icon-weather');
             const temperature = myModuleContainer.querySelector('#content .temperature');
             const location = myModuleContainer.querySelector('#content .location');
 
-            // icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
+            icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
             temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
             location.innerHTML = `${data.name}`;
 
@@ -519,9 +503,6 @@ const mySPA = (function() {
             // const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
 
 
-
-            // parent.classList.toggle('wrap__more');
-            // btn.classList.toggle('arrow__click');
         }
 
     }
