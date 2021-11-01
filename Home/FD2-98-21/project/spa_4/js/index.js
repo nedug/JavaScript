@@ -246,9 +246,14 @@ const mySPA = (function() {
 
             navigator.geolocation.getCurrentPosition(success);
 
+            const icon = document.querySelector('#content .icon-weather');
+
             function success(pos) {
                 var crd = pos.coords;
 
+                icon.innerHTML = `Широта: ${crd.latitude} </br>    
+                Долгота: ${crd.longitude}</br>   
+                Плюс-минус ${crd.accuracy} метров.`;
                 console.log('Ваше текущее местоположение:');
                 console.log(`Широта: ${crd.latitude}`);
                 console.log(`Долгота: ${crd.longitude}`);
@@ -506,7 +511,7 @@ const mySPA = (function() {
             const temperature = myModuleContainer.querySelector('#content .temperature');
             const location = myModuleContainer.querySelector('#content .location');
 
-            icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
+            // icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
             temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
             location.innerHTML = `${data.name}`;
 
