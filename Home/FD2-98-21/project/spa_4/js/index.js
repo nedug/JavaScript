@@ -242,7 +242,7 @@ const mySPA = (function() {
         }
 
 
-        this.getWeather = function() {
+        this.getFutbol = function() {
 
             // navigator.geolocation.getCurrentPosition(success);
             // function success(pos) {
@@ -253,9 +253,6 @@ const mySPA = (function() {
             //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
             // }
 
-
-            let loader = document.getElementById('loader');
-            loader.style.display = "block";
 
             // let cityID = 625144;
             // let apiUrl = "https://api.openweathermap.org/data/2.5/";
@@ -271,27 +268,26 @@ const mySPA = (function() {
             //     .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
 
 
-
-
-
-
-            let cityID = 625144;
-            let apiUrl = "https://api.openweathermap.org/data/2.5/";
-            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
+            // let cityID = 625144;
+            // let apiUrl = "https://api.openweathermap.org/data/2.5/";
+            // let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            // let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
 
             // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1/seasons';
             // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1';
-            let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=2021&sort=asc';
 
 
+            let loader = document.getElementById('loader');
+            loader.style.display = "block";
+
+            let apiQuery = 'https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=2021&sort=asc';
 
 
-            fetch(xxx, {method: 'get'})
+            fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data.data);
-                    myModuleView.renderWeather(data);
+                    myModuleView.renderFutbol(data);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
 
@@ -311,7 +307,7 @@ const mySPA = (function() {
         let routesObj = null;
         let that = this;
         let userStorage = null;
-        let xxx = null;
+        let placeChampion = null;
 
 
         this.init = function(container, routes) {
@@ -325,7 +321,7 @@ const mySPA = (function() {
 
         this.renderContent = function(hashPageName, userData, sumSig, costSig) {
 
-            xxx = 0;
+            placeChampion = 0;
 
             let routeName = "default";
             userStorage = userData;
@@ -521,7 +517,7 @@ const mySPA = (function() {
         }
 
 
-        this.renderWeather = function(data) {
+        this.renderFutbol = function(data) {
 
             // let loader = myModuleContainer.querySelector('#loader');
             // loader.style.display = "none";
@@ -541,21 +537,34 @@ const mySPA = (function() {
             let loader = myModuleContainer.querySelector('#loader');
             loader.style.display = "none";
 
+            let futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
+            futbolLeague.style.display = "block";
 
+            const league = myModuleContainer.querySelector('#content .futbol-league .league');
+            const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
+            const team = myModuleContainer.querySelector('#content .futbol-league .team');
+            const teamPlace = myModuleContainer.querySelector('#content .futbol-league .team-place');
+            const points = myModuleContainer.querySelector('#content .futbol-league .points');
+            const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
+            const wins = myModuleContainer.querySelector('#content .futbol-league .wins');
+            const losses = myModuleContainer.querySelector('#content .futbol-league .losses');
+            const draws = myModuleContainer.querySelector('#content .futbol-league .draws');
+            const goalsFor = myModuleContainer.querySelector('#content .futbol-league .goals-for');
+            const goalsAgainst = myModuleContainer.querySelector('#content .futbol-league .goals-against');
 
+            league.innerHTML = `<h3>${data.data.name}</h3>`;
+            icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="70" width="auto"> <span>${data.data.standings[placeChampion].team.location}</span>`;
+            // team.innerHTML = `<h3>${data.data.standings[placeChampion].team.location}</h3>`;
+            teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
+            // points.innerHTML = `<h4>Очки: ${data.data.standings[placeChampion].stats[6].value}</h4>`;
+            matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}</h4>`;
+            wins.innerHTML = `<span>Побед: ${data.data.standings[placeChampion].stats[0].value}</span> <span>Поражений: ${data.data.standings[placeChampion].stats[1].value}</span> <span>Ничей: ${data.data.standings[placeChampion].stats[2].value}</span>`;
+            // losses.innerHTML = `<span>Поражений: ${data.data.standings[placeChampion].stats[1].value}</span>`;
+            // draws.innerHTML = `<span>Ничей: ${data.data.standings[placeChampion].stats[2].value}</span>`;
+            goalsFor.innerHTML = `<span>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</span> <span>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</span>`;
+            // goalsAgainst.innerHTML = `<span>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</span>`;
 
-            const icon = myModuleContainer.querySelector('#content .icon-weather');
-            const temperature = myModuleContainer.querySelector('#content .temperature');
-            const location = myModuleContainer.querySelector('#content .location');
-
-            // icon.innerHTML = `${data.data.name}<br>${data.data.seasons[0].displayName}<br>${data.data.seasons[0].startDate}<br>${data.data.seasons[0].endDate}`;
-
-            // temperature.innerHTML = `<img src="${data.data.logos.light}" >`;
-
-            temperature.innerHTML = `${data.data.standings[xxx].stats[6].type}: ${data.data.standings[xxx].stats[6].value}`;
-
-            xxx++;
-            console.log(xxx)
+            placeChampion++;
 
         }
 
@@ -604,9 +613,9 @@ const mySPA = (function() {
                     that.showMoreInfo(e.target.parentNode, e.target);
                 }
 
-                if (e.target.getAttribute('class') === 'btn-weather') {
+                if (e.target.getAttribute('class') === 'btn-futbol') {
 
-                    that.showWeather();
+                    that.showFutbol();
                 }
             }
         }
@@ -647,9 +656,9 @@ const mySPA = (function() {
         }
 
 
-        this.showWeather = function() {
+        this.showFutbol = function() {
 
-            myModuleModel.getWeather();
+            myModuleModel.getFutbol();
         }
 
     }

@@ -171,15 +171,20 @@ const Other = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <button id="btn-weather" class="btn-weather">Погода <i class="fas fa-random"></i></button>
-        
-        
-        <div id="forecast-now">
-                <div class="icon-weather"></div>
-                <h1 class="location"></h1>
-                <h1 class="temperature"></h1>
-                <div class="description"></div>
-                <div class="wind"></div>
+        <button id="btn-futbol" class="btn-futbol">Футбол - чемпионат <i class="fas fa-futbol"></i></button>
+                
+        <div class="futbol-league">
+          <div class="league"></div>
+          <div class="icon"></div>
+          <div class="team"></div>
+          <div class="team-place"></div>
+          <div class="points"></div>
+          <div class="matches"></div>
+          <div class="wins"></div>
+          <div class="losses"></div>
+          <div class="draws"></div>
+          <div class="goals-for"></div>
+          <div class="goals-against"></div>
         </div>
         
         <div id="loader" style="display: none"><img src="img/loader.gif" height="110" width="auto"></div>

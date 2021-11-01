@@ -333,3 +333,17 @@ input:checked[type="checkbox"]::before {
 button {
   cursor: pointer;
 }
+.futbol-league {
+  width: 600px;
+  padding: 0 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  text-align: center;
+  margin: 7px 0;
+  transition: .3s;
+  display: none;
+}
+.futbol-league .icon img {
+  /*width: 70px;*/
+  /*height: auto;*/
+}
