@@ -334,7 +334,8 @@ button {
   cursor: pointer;
 }
 .futbol-league {
-  width: 600px;
+  width: 400px;
+  height: 395px;
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -342,8 +343,36 @@ button {
   margin: 7px 0;
   transition: .3s;
   display: none;
+  position: relative;
+  overflow: auto;
 }
-.futbol-league .icon img {
-  /*width: 70px;*/
-  /*height: auto;*/
+.futbol-league:hover {
+  border: 1px solid #7c7c7c;
+}
+.futbol-league .team {
+  font-size: 30px;
+  margin: 10px 0;
+}
+.futbol-league .team-place {
+  margin: 20px 0 5px;
+  display: flex;
+  justify-content: center;
+}
+.futbol-league span {
+  margin: 0 40px;
+}
+.futbol-league .wrap {
+  display: flex;
+  justify-content: center;
+}
+.futbol-league .matches {
+  text-align: left;
+  margin: 0 20px;
+}
+.futbol-league .stats {
+  text-align: right;
+  margin: 0 20px;
+}
+#loader {
+  margin-top: 130px;
 }

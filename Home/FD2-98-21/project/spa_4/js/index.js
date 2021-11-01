@@ -253,35 +253,9 @@ const mySPA = (function() {
             //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
             // }
 
-
-            // let cityID = 625144;
-            // let apiUrl = "https://api.openweathermap.org/data/2.5/";
-            // let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            // let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
-            //
-            //
-            // fetch(apiQuery, {method: 'get'})
-            //     .then((response) => response.json())
-            //     .then((data) => {
-            //         myModuleView.renderWeather(data);
-            //     })
-            //     .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
-
-
-            // let cityID = 625144;
-            // let apiUrl = "https://api.openweathermap.org/data/2.5/";
-            // let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            // let apiQuery = apiUrl+"/weather?id=" + cityID + "&units=metric&lang=ru&appid="+apiKey;
-
-            // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1/seasons';
-            // let xxx = 'https://api-football-standings.azharimm.site/leagues/eng.1';
-
-
-            let loader = document.getElementById('loader');
-            loader.style.display = "block";
+            myModuleView.renderFutbolLoader();
 
             let apiQuery = 'https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=2021&sort=asc';
-
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -290,8 +264,6 @@ const mySPA = (function() {
                     myModuleView.renderFutbol(data);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
-
-
         }
 
     }
@@ -519,53 +491,38 @@ const mySPA = (function() {
 
         this.renderFutbol = function(data) {
 
-            // let loader = myModuleContainer.querySelector('#loader');
-            // loader.style.display = "none";
-            //
-            // const icon = myModuleContainer.querySelector('#content .icon-weather');
-            // const temperature = myModuleContainer.querySelector('#content .temperature');
-            // const location = myModuleContainer.querySelector('#content .location');
-            //
-            // icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
-            // temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
-            // location.innerHTML = `${data.name}`;
-
-            // const stateSmellChart = myModuleContainer.querySelector("#content .state__smell__chart .chart");
-            // const smellDescription = myModuleContainer.querySelector("#content .state__smell .description");
-
-
             let loader = myModuleContainer.querySelector('#loader');
             loader.style.display = "none";
-
-            let futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
-            futbolLeague.style.display = "block";
+            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
+            futbolLeagueWrap.style.display = "block";
 
             const league = myModuleContainer.querySelector('#content .futbol-league .league');
             const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
             const team = myModuleContainer.querySelector('#content .futbol-league .team');
             const teamPlace = myModuleContainer.querySelector('#content .futbol-league .team-place');
-            const points = myModuleContainer.querySelector('#content .futbol-league .points');
             const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
-            const wins = myModuleContainer.querySelector('#content .futbol-league .wins');
-            const losses = myModuleContainer.querySelector('#content .futbol-league .losses');
-            const draws = myModuleContainer.querySelector('#content .futbol-league .draws');
-            const goalsFor = myModuleContainer.querySelector('#content .futbol-league .goals-for');
-            const goalsAgainst = myModuleContainer.querySelector('#content .futbol-league .goals-against');
+            const stats = myModuleContainer.querySelector('#content .futbol-league .stats');
 
             league.innerHTML = `<h3>${data.data.name}</h3>`;
-            icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="70" width="auto"> <span>${data.data.standings[placeChampion].team.location}</span>`;
-            // team.innerHTML = `<h3>${data.data.standings[placeChampion].team.location}</h3>`;
+            icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="80" width="auto">`;
+            team.innerHTML = `${data.data.standings[placeChampion].team.location}`;
             teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
-            // points.innerHTML = `<h4>Очки: ${data.data.standings[placeChampion].stats[6].value}</h4>`;
-            matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}</h4>`;
-            wins.innerHTML = `<span>Побед: ${data.data.standings[placeChampion].stats[0].value}</span> <span>Поражений: ${data.data.standings[placeChampion].stats[1].value}</span> <span>Ничей: ${data.data.standings[placeChampion].stats[2].value}</span>`;
-            // losses.innerHTML = `<span>Поражений: ${data.data.standings[placeChampion].stats[1].value}</span>`;
-            // draws.innerHTML = `<span>Ничей: ${data.data.standings[placeChampion].stats[2].value}</span>`;
-            goalsFor.innerHTML = `<span>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</span> <span>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</span>`;
-            // goalsAgainst.innerHTML = `<span>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</span>`;
+            matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}<h4><h4>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</h4> <h4>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</h4>`;
+            stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
 
             placeChampion++;
+            if (placeChampion === 20) placeChampion = 0;
+        }
 
+
+        this.renderFutbolLoader = function() {
+
+            const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
+            futbolLeague.style.display = "block";
+            const loader = myModuleContainer.querySelector('#loader');
+            loader.style.display = "block";
+            const futbol = myModuleContainer.querySelector('#content .futbol_wrap');
+            futbol.style.display = "none";
         }
 
     }

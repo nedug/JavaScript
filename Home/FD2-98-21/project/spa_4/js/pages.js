@@ -174,20 +174,26 @@ const Other = {
         <button id="btn-futbol" class="btn-futbol">Футбол - чемпионат <i class="fas fa-futbol"></i></button>
                 
         <div class="futbol-league">
+         <div class="futbol_wrap">
           <div class="league"></div>
           <div class="icon"></div>
-          <div class="team"></div>
-          <div class="team-place"></div>
-          <div class="points"></div>
-          <div class="matches"></div>
-          <div class="wins"></div>
-          <div class="losses"></div>
-          <div class="draws"></div>
-          <div class="goals-for"></div>
-          <div class="goals-against"></div>
+          <h2 class="team"></h2>
+          <h3 class="team-place"></h3>
+<!--          <div class="points"></div>-->
+          <div class="wrap">
+            <div class="matches"></div>
+            <div class="stats"></div>
+          </div>
+         </div>
+         <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
+         
+<!--          <div class="losses"></div>-->
+<!--          <div class="draws"></div>-->
+<!--          <div class="goals"></div>-->
+<!--          <div class="goals-against"></div>-->
         </div>
         
-        <div id="loader" style="display: none"><img src="img/loader.gif" height="110" width="auto"></div>
+       
         
 <!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
 <!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->
