@@ -14,6 +14,7 @@ const routes = {
   statistics: Statistics,
   health: Health,
   motivation: Motivation,
+  other: Other,
   default: Statistics,
   error: ErrorPage,
 };

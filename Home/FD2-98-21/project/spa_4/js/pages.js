@@ -165,6 +165,24 @@ const Motivation = {
 };
 
 
+const Other = {
+  id: "other",
+  title: "Развелечение и информация",
+  render: (className = "container", ...rest) => {
+    return `
+      <section class="${className}">
+        <button id="btn-weather" class="btn-weather">Погода <i class="fas fa-random"></i></button>
+        
+<!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
+<!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->
+        
+<!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
+      </section>
+    `;
+  }
+};
+
+
 const ErrorPage = {
   id: "error",
   title: "warning",
