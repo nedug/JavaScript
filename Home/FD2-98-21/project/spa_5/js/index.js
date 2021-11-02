@@ -37,7 +37,7 @@ const mySPA = (function() {
         let timerStatisticTime = null;
         let timerStatisticOther = null;
         let placeChampionFut = null;
-        let stateBtn = true;
+        // let stateBtn = true;
 
         let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                                   'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
@@ -101,9 +101,6 @@ const mySPA = (function() {
                 clearInterval(timerStatisticOther);
             }
 
-            if (pageNameLink === 'login' || pageNameLink === '') {
-                // myModuleView.btnUpdate(stateBtn);
-            }
         }
 
 
@@ -295,10 +292,7 @@ const mySPA = (function() {
 
         this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) {
 
-            console.log(inputDate)
-
-            stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
-
+            let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
             myModuleView.btnUpdate(stateBtn);
         }
 
@@ -563,14 +557,8 @@ const mySPA = (function() {
 
         this.btnUpdate = function(stateBtn) {
 
-
             const buttonSave = myModuleContainer.querySelector('#content .data__save');
             buttonSave.disabled = stateBtn;
-
-            console.log(stateBtn)
-            console.log(buttonSave)
-
-
         }
 
     }
