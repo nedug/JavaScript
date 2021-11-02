@@ -37,6 +37,7 @@ const mySPA = (function() {
         let timerStatisticTime = null;
         let timerStatisticOther = null;
         let placeChampionFut = null;
+        let stateBtn = true;
 
         let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                                   'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
@@ -81,6 +82,8 @@ const mySPA = (function() {
 
             myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
 
+
+
             if ((pageNameLink === 'statistics' || pageNameLink === '') && userDataStorage) {
 
                 this.calculateStatistics();
@@ -96,6 +99,10 @@ const mySPA = (function() {
 
                 clearInterval(timerStatisticTime);
                 clearInterval(timerStatisticOther);
+            }
+
+            if (pageNameLink === 'login' || pageNameLink === '') {
+                // myModuleView.btnUpdate(stateBtn);
             }
         }
 
@@ -283,6 +290,16 @@ const mySPA = (function() {
             placeChampionFut--;
             if (placeChampionFut === -1) placeChampionFut = 19;
             this.getFutbol();
+        }
+
+
+        this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) {
+
+            console.log(inputDate)
+
+            stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
+
+            myModuleView.btnUpdate(stateBtn);
         }
 
     }
@@ -543,6 +560,19 @@ const mySPA = (function() {
             futbol.style.display = "none";
         }
 
+
+        this.btnUpdate = function(stateBtn) {
+
+
+            const buttonSave = myModuleContainer.querySelector('#content .data__save');
+            buttonSave.disabled = stateBtn;
+
+            console.log(stateBtn)
+            console.log(buttonSave)
+
+
+        }
+
     }
 
     /* ----- controller ---- */
@@ -565,6 +595,23 @@ const mySPA = (function() {
             window.addEventListener("hashchange", this.updateState); // вешаем слушателей на событие hashchange и кликам по пунктам меню
 
             this.updateState(); //первая отрисовка
+
+
+
+
+            // let inputAll = myModuleContainer.querySelectorAll("input");
+            // console.log(inputAll);
+            // inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
+            //
+            //
+            // function checkChangeInput(e) {
+            //
+            //     e.preventDefault();
+            //
+            //     myModuleModel.checkInput(inputAll[0].value, inputAll[1].value, inputAll[2].value, inputAll[3].value, inputAll[4].value);
+            // }
+
+
 
 
             myModuleContainer.addEventListener("click", clickHandler);
@@ -609,6 +656,7 @@ const mySPA = (function() {
             const hashPageName = location.hash.slice(1).toLowerCase(); /* Линк после # */
 
             myModuleModel.updateState(hashPageName);
+            that.checkInputChange();
         }
 
 
@@ -624,13 +672,14 @@ const mySPA = (function() {
             let typeFutbol = myModuleContainer.querySelector('#type-futbol');
 
             myModuleModel.saveData(inputData, typeFutbol);
-
+            that.checkInputChange();
         }
 
 
         this.clearData = function() { /* Очищаем данные из localStorage */
 
             myModuleModel.clearData();
+            that.checkInputChange();
         }
 
 
@@ -655,6 +704,19 @@ const mySPA = (function() {
         this.showFutbolBack = function() {
 
             myModuleModel.getFutbolBack();
+        }
+
+
+        this.checkInputChange = function() {
+
+            let inputAll = myModuleContainer.querySelectorAll("input");
+            inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
+
+            function checkChangeInput(e) {
+
+                e.preventDefault();
+                myModuleModel.checkInput(inputAll[0].value, inputAll[1].value, inputAll[2].value, inputAll[3].value, inputAll[4].value);
+            }
         }
 
     }

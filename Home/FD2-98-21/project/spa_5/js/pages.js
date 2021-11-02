@@ -49,7 +49,7 @@ const LoginWeb = {
             </select>
 <!--            <h4 id="valid-value"></h4>-->
             <i class="fas fa-user-cog"></i>
-            <button id="btn-save" class="data__save">Сохранить</button>
+            <button id="btn-save" class="data__save" disabled>Сохранить</button>
           </div>
         </main>
       </section>

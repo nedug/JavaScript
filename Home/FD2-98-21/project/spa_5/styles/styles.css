@@ -390,3 +390,6 @@ button {
 #loader {
   margin-top: 130px;
 }
+.data__save:disabled {
+  background-color: #7c7c7c;
+}
