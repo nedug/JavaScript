@@ -17,6 +17,36 @@ const LoginWeb = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20" min="1" max="50"><br>
+             <hr>
+            <label>Футбольная лига:</label>
+            <select id="type-futbol">
+              <optgroup label="Англия">
+                <option value="eng.1">Премьер-лига</option>
+                <option value="eng.2">Чемпионшип</option>
+                <option value="eng.3">Англия - Лига 1</option>
+                <option value="eng.4">Англия - Лига 2</option>
+                <option value="eng.5">Национальная лига</option>
+              </optgroup>
+              <optgroup label="Испания">
+                <option value="esp.1">Ла лига</option>
+                <option value="esp.2">Ла лига 2</option>
+              </optgroup>
+              <optgroup label="Италия">
+                <option value="ita.1">Серия А</option>
+                <option value="ita.2">Серия B</option>
+              </optgroup>
+              <optgroup label="Германия">
+                <option value="ger.1">Бундеслига</option>
+                <option value="ger.2">Вторая Бундеслига</option>
+              </optgroup>
+              <optgroup label="Франция">
+                <option value="fra.1">Франция - Лига 1</option>
+                <option value="fra.2">Франция - Лига 2</option>
+              </optgroup>
+              <optgroup label="Россия">
+                <option value="rus.1">Премьер-лига</option>
+              </optgroup>
+            </select>
 <!--            <h4 id="valid-value"></h4>-->
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Сохранить</button>
@@ -47,6 +77,36 @@ const Options = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}" min="1" max="50"><br>
+            <hr>
+            <label>Футбольная лига:</label>
+            <select id="type-futbol">
+              <optgroup label="Англия">
+                <option value="eng.1">Премьер-лига</option>
+                <option value="eng.2">Чемпионшип</option>
+                <option value="eng.3">Англия - Лига 1</option>
+                <option value="eng.4">Англия - Лига 2</option>
+                <option value="eng.5">Национальная лига</option>
+              </optgroup>
+              <optgroup label="Испания">
+                <option value="esp.1">Ла лига</option>
+                <option value="esp.2">Ла лига 2</option>
+              </optgroup>
+              <optgroup label="Италия">
+                <option value="ita.1">Серия А</option>
+                <option value="ita.2">Серия B</option>
+              </optgroup>
+              <optgroup label="Германия">
+                <option value="ger.1">Бундеслига</option>
+                <option value="ger.2">Вторая Бундеслига</option>
+              </optgroup>
+              <optgroup label="Франция">
+                <option value="fra.1">Франция - Лига 1</option>
+                <option value="fra.2">Франция - Лига 2</option>
+              </optgroup>
+              <optgroup label="Россия">
+                <option value="rus.1">Премьер-лига</option>
+              </optgroup>
+            </select>
 <!--            <h4 id="valid-value"></h4>-->
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Изменить</button>
@@ -171,33 +231,25 @@ const Other = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <button id="btn-futbol" class="btn-futbol">Футбол - чемпионат <i class="fas fa-futbol"></i></button>
-                
+        <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>       
         <div class="futbol-league">
          <div class="futbol_wrap">
+         <button class="btn-futbol-back"><i class="fas fa-chevron-left"></i></button>
+         <button class="btn-futbol-foward"><i class="fas fa-chevron-right"></i></button>
           <div class="league"></div>
           <div class="icon"></div>
           <h2 class="team"></h2>
           <h3 class="team-place"></h3>
-<!--          <div class="points"></div>-->
           <div class="wrap">
             <div class="matches"></div>
             <div class="stats"></div>
           </div>
          </div>
          <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
-         
-<!--          <div class="losses"></div>-->
-<!--          <div class="draws"></div>-->
-<!--          <div class="goals"></div>-->
-<!--          <div class="goals-against"></div>-->
         </div>
-        
-       
-        
+          
 <!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
-<!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->
-        
+<!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->  
 <!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
       </section>
     `;

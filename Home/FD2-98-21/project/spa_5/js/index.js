@@ -36,6 +36,7 @@ const mySPA = (function() {
         let costSig = null;
         let timerStatisticTime = null;
         let timerStatisticOther = null;
+        let placeChampionFut = null;
 
         let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                                   'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
@@ -73,6 +74,7 @@ const mySPA = (function() {
 
         this.updateState = function(pageName) {
 
+            placeChampionFut = 0;
             pageNameLink = pageName;
 
             this.getData();
@@ -98,7 +100,7 @@ const mySPA = (function() {
         }
 
 
-        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock]) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
             // if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
             //
@@ -112,6 +114,7 @@ const mySPA = (function() {
                 userNumCigarette: inputNumCig.value,
                 userCostCigarette: inputCostCig.value,
                 cigarettesInBlock: inputCigInBlock.value,
+                typeFutbolUser: typeFutbol.value,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -255,15 +258,31 @@ const mySPA = (function() {
 
             myModuleView.renderFutbolLoader();
 
-            let apiQuery = 'https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=2021&sort=asc';
+            let apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=2021&sort=asc`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
-                    myModuleView.renderFutbol(data);
+                    myModuleView.renderFutbol(data, placeChampionFut);
                 })
                 .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
+        }
+
+
+        this.getFutbolFoward = function() {
+
+            placeChampionFut++;
+            if (placeChampionFut === 20) placeChampionFut = 0;
+            this.getFutbol();
+        }
+
+
+        this.getFutbolBack = function() {
+
+            placeChampionFut--;
+            if (placeChampionFut === -1) placeChampionFut = 19;
+            this.getFutbol();
         }
 
     }
@@ -293,8 +312,6 @@ const mySPA = (function() {
 
         this.renderContent = function(hashPageName, userData, sumSig, costSig) {
 
-            placeChampion = 0;
-
             let routeName = "default";
             userStorage = userData;
 
@@ -320,6 +337,8 @@ const mySPA = (function() {
                 // console.log(444)
                 routeName = "options";
                 updateContent();
+                const typeSoccer = myModuleContainer.querySelector(`option[value="${userStorage.typeFutbolUser}"]`);
+                typeSoccer.selected='true';
             }
 
             else {
@@ -489,7 +508,9 @@ const mySPA = (function() {
         }
 
 
-        this.renderFutbol = function(data) {
+        this.renderFutbol = function(data, placeChampionFut) {
+
+            placeChampion = placeChampionFut;
 
             let loader = myModuleContainer.querySelector('#loader');
             loader.style.display = "none";
@@ -509,9 +530,6 @@ const mySPA = (function() {
             teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
             matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}<h4><h4>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</h4> <h4>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</h4>`;
             stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
-
-            placeChampion++;
-            if (placeChampion === 20) placeChampion = 0;
         }
 
 
@@ -572,6 +590,16 @@ const mySPA = (function() {
 
                     that.showFutbol();
                 }
+
+                if (e.target.getAttribute('class') === 'fas fa-chevron-right' || e.target.getAttribute('class') === 'btn-futbol-foward') {
+
+                    that.showFutbolFoward();
+                }
+
+                if (e.target.getAttribute('class') === 'fas fa-chevron-left' || e.target.getAttribute('class') === 'btn-futbol-back') {
+
+                    that.showFutbolBack();
+                }
             }
         }
 
@@ -593,8 +621,9 @@ const mySPA = (function() {
             // myModuleModel.saveData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
 
             let inputData = myModuleContainer.querySelectorAll("#content input");
+            let typeFutbol = myModuleContainer.querySelector('#type-futbol');
 
-            myModuleModel.saveData(inputData);
+            myModuleModel.saveData(inputData, typeFutbol);
 
         }
 
@@ -614,6 +643,18 @@ const mySPA = (function() {
         this.showFutbol = function() {
 
             myModuleModel.getFutbol();
+        }
+
+
+        this.showFutbolFoward = function() {
+
+            myModuleModel.getFutbolFoward();
+        }
+
+
+        this.showFutbolBack = function() {
+
+            myModuleModel.getFutbolBack();
         }
 
     }

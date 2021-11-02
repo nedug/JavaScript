@@ -185,11 +185,14 @@ html, body {
   transition: .3s;
   position: relative;
 }
-.modal__content input {
+.modal__content input, .modal__content select {
   margin: 6px 70px;
   border: 1px solid #bab9b9;
   border-radius: 3px;
   padding: 4px;
+}
+.modal__content select {
+  width: 305px;
 }
 .modal__content input:nth-of-type(1) {
    width: 359px;
@@ -215,6 +218,17 @@ html, body {
 }
 #content .login-page .fa-user-cog {
   color: #bab9b9;
+}
+#content .btn-futbol-back, #content .btn-futbol-foward {
+  border: none;
+  padding: 0;
+}
+#content .fa-chevron-left, #content .fa-chevron-right {
+  margin: 10px 15px 0;
+  font-size: 25px;
+}
+#content .fa-chevron-left:hover, #content .fa-chevron-right:hover {
+  color: black;
 }
 .data__save {
   color: #fff;
@@ -335,7 +349,7 @@ button {
 }
 .futbol-league {
   width: 400px;
-  height: 395px;
+  height: 430px;
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
