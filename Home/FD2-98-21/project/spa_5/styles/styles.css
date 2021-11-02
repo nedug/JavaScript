@@ -244,6 +244,13 @@ html, body {
   cursor: pointer;
   transition: .3s;
 }
+.valid-value {
+  position: absolute;
+  top: 120px;
+  right: 44px;
+  color: red;
+  text-align: center;
+}
 .data__save:hover {
   background-color: black;
 }

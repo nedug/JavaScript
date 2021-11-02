@@ -82,8 +82,6 @@ const mySPA = (function() {
 
             myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
 
-
-
             if ((pageNameLink === 'statistics' || pageNameLink === '') && userDataStorage) {
 
                 this.calculateStatistics();
@@ -106,11 +104,17 @@ const mySPA = (function() {
 
         this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
-            // if (inputDay > 31 || inputDay < 1 || inputMonth > 12 || inputMonth < 1 || inputYear < 1 || inputYear > new Date().getFullYear()) { /* Проверка на корректность данных */
-            //
-            //     myModalView.validDate(false);
-            //     return;
-            // }
+            if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) { /* Проверка на корректность данных */
+
+                myModuleView.validDate(false);
+                return;
+            }
+
+            if (+inputDate.value.split('-')[0] > new Date().getFullYear() || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[2] > new Date().getDate() && +inputDate.value.split('-')[1] >= new Date().getMonth()+1 || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[1] > new Date().getMonth()+1) { /* Проверка на ввод даты пользователя через клавиатуру */
+
+                myModuleView.validDate(false);
+                return;
+            }
 
             userData = {
                 userName: inputName.value,
@@ -122,6 +126,8 @@ const mySPA = (function() {
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
+
+            myModuleView.validDate(true);
         }
 
 
@@ -336,6 +342,7 @@ const mySPA = (function() {
                 // console.log(2222)
                 routeName = hashPageName in routes ? hashPageName : "login";
                 updateContent();
+                setMaxDate();
             }
 
             else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
@@ -350,6 +357,7 @@ const mySPA = (function() {
                 updateContent();
                 const typeSoccer = myModuleContainer.querySelector(`option[value="${userStorage.typeFutbolUser}"]`);
                 typeSoccer.selected='true';
+                setMaxDate();
             }
 
             else {
@@ -363,6 +371,18 @@ const mySPA = (function() {
                 window.document.title = routesObj[routeName].title;
                 contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage, sumSig, costSig);
                 that.updateButtons(routesObj[routeName].id);
+            }
+
+            function setMaxDate() {
+
+                let currentYear = new Date().getFullYear();
+                let currentDay = new Date().getDate();
+                if (currentDay < 10) currentDay = '0' + currentDay;
+                let currentMonth = new Date().getMonth() + 1;
+                if (currentMonth < 10) currentMonth = '0' + currentMonth;
+                let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
+                const userStopSmok = myModuleContainer.querySelector(`.input__date-last`);
+                userStopSmok.setAttribute('max', dateLimit);
             }
 
         }
@@ -561,7 +581,24 @@ const mySPA = (function() {
             buttonSave.disabled = stateBtn;
         }
 
+
+        this.validDate = function(checkData) { /* Показываем валидацию данных */
+
+            let validDate = myModuleContainer.querySelector("#content .valid-value");
+            validDate.style.display = '';
+
+            if (checkData) validDate.innerHTML = 'Данные <br> сохранены!';
+            else validDate.innerHTML = 'Введите <br> корректно <br> данные!';
+
+            setTimeout(function() {
+                validDate.style.display = 'none';
+            }, 1500)
+        }
+
     }
+
+
+
 
     /* ----- controller ---- */
     function ModuleController() {
@@ -583,24 +620,6 @@ const mySPA = (function() {
             window.addEventListener("hashchange", this.updateState); // вешаем слушателей на событие hashchange и кликам по пунктам меню
 
             this.updateState(); //первая отрисовка
-
-
-
-
-            // let inputAll = myModuleContainer.querySelectorAll("input");
-            // console.log(inputAll);
-            // inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
-            //
-            //
-            // function checkChangeInput(e) {
-            //
-            //     e.preventDefault();
-            //
-            //     myModuleModel.checkInput(inputAll[0].value, inputAll[1].value, inputAll[2].value, inputAll[3].value, inputAll[4].value);
-            // }
-
-
-
 
             myModuleContainer.addEventListener("click", clickHandler);
 
