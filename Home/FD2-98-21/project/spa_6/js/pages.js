@@ -216,24 +216,20 @@ const Motivation = {
       <section class="${className}">
         <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
         <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>
-        
         <button id="btn-links" class="btn-chat">Онлайн чат <i class="far fa-comments"></i></button>
-        
-        
+                
         <div class="chat-spa">
-<!--            Ваше имя: <input type='text' id='IName'><br/>-->
             <p><strong>${userName}</strong>, тут вы можете оставить свой отзыв о приложении или поделиться опытом с другими пользователями! Будьте вежливы!</p>
-<!--            <i class="fas fa-chalkboard-teacher"></i>-->
             <div class='chat-border'></div>
-            
             <input type='text' class='message-chat' placeholder="введите сообщение">
-            
-<!--            <div class="chat_wrap">-->
-              <button class="btn_chat_send"><i class="far fa-envelope"></i></button>
-              <button class="btn_chat_update"><i class="fas fa-cloud-upload-alt"></i></button>
-<!--            <input type='button' value='отправить' class="btn_chat_send">-->
-<!--            <input type='button' value='обновить' class="btn_chat_update"><br>-->
-<!--            </div>-->
+            <button class="btn_chat_send"><i class="far fa-envelope"></i></button>
+            <button class="btn_chat_update"><i class="fas fa-cloud-upload-alt"></i></button>
+        </div>
+        
+        
+        <div class="advice-spa">
+            <p><strong>${userName}</strong>, тут вы можете получить случайные полезные советы как снизить вред от курения и сохранить необходимую мотивацию!</p>
+            <div></div>
         </div>
         
 <!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->

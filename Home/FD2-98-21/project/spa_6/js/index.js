@@ -39,6 +39,8 @@ const mySPA = (function() {
         let placeChampionFut = null;
         // let stateBtn = true;
         let that = this;
+        let numDiap = null;
+        let advice = null;
 
         var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
         var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
@@ -81,6 +83,22 @@ const mySPA = (function() {
 
         this.updateState = function(pageName) {
 
+            advice = ['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
+                'Поймите, что курение давно уже не модно.',
+                'Избегайте курящих компаний.',
+                'Не докуривайте сигарету до конца, оставляйте треть или даже половину. Таким образом, вы фактически выкуриваете меньше и не курите тогда, когда фильтр сигареты наиболее загрязнен.',
+                'Стоит отказаться от ароматизированных сигарет. Их химический состав более обширен, и они могут содержать еще большее число опасных веществ, чем обычные.',
+                'Не курите больше одной сигареты в час.',
+                'Старайтесь курить в одно и то же время. Если организм в одно и то же время будет получать токсины, то со временем у него выработаются «биологические часы», которые будут активизировать защитные механизмы.',
+                'Не стоит курить на голодный желудок, или натощак, поскольку в этом случае слюна смешивается с табаком и повреждает слизистую оболочку желудка. А при всасывании из кишечника токсичные вещества попадают сразу в кровь, по этой же причине не следует курить во время питья и еды.',
+                'Постарайтесь не курить при ходьбе, особенно взбираясь в гору или поднимаясь по лестнице. При нагрузке дыхание становится интенсивнее, и токсичные вещества достигают самых отдаленных участков легких.',
+                'Повышайте иммунный статус организма всеми доступными средствами: закаливание, сауна, прививки против гриппа, отпуск на море или в горах.',
+                'Чаще гуляйте на свежем воздухе. Такие прогулки способствуют «проветриванию» легких и выведению из них канцерогенных и болезнетворных веществ.',
+                'Не обманывайте себя мыслями о том, что можете начинать и прекращать курить, когда захотите.',
+                'Курильщики обоих полов, отказавшись от курения в возрасте между 35 и 39 годами добавляют в среднем от трех до пяти лет к своей жизни.',
+            ];
+
+            numDiap = 12;
             placeChampionFut = 0;
             pageNameLink = pageName;
 
@@ -427,6 +445,21 @@ const mySPA = (function() {
             }
         }
 
+
+        this.getAdviceUser = function() {
+
+            let randomNumberAdvice = randomDiap(0, numDiap);
+            function randomDiap(n, m) {
+                return Math.floor(Math.random() * (m - n + 1)) + n;
+            }
+
+            myModuleView.renderAdviceUser(advice[randomNumberAdvice]);
+
+            advice.splice(randomNumberAdvice, 1);
+            --numDiap;
+        }
+
+
         function errorHandler(jqXHR, statusStr, errorStr) {
             alert(statusStr+' '+errorStr);
         }
@@ -730,6 +763,8 @@ const mySPA = (function() {
 
             let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'block';
+            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            adviceSpa.style.display = 'none';
         }
 
 
@@ -739,6 +774,21 @@ const mySPA = (function() {
             chatBorder.innerHTML = str;
             let messageChat = myModuleContainer.querySelector(".chat-spa .message-chat");
             messageChat.value = '';
+        }
+
+
+        this.renderAdviceUser = function(textAdvice) {
+
+            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            adviceSpa.style.display = 'block';
+            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            chatSpa.style.display = 'none';
+            let messageAdvice = myModuleContainer.querySelector(".advice-spa div");
+            messageAdvice.innerHTML = textAdvice;
+            if (!textAdvice) {
+                messageAdvice.style.color = 'red';
+                messageAdvice.innerHTML = 'Советы закончились! Заходите позже!';
+            }
         }
 
     }
@@ -814,6 +864,11 @@ const mySPA = (function() {
                 if (e.target.getAttribute('class') === 'fas fa-cloud-upload-alt') {
 
                     that.updateMessageChat();
+                }
+
+                if (e.target.getAttribute('class') === 'btn-advice') {
+
+                    that.getAdviceUser();
                 }
             }
         }
@@ -905,6 +960,12 @@ const mySPA = (function() {
         this.updateMessageChat = function() {
 
             myModuleModel.updateMessageChat();
+        }
+
+
+        this.getAdviceUser = function() {
+
+            myModuleModel.getAdviceUser();
         }
 
     }
