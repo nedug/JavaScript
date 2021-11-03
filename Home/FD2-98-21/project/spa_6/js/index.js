@@ -38,6 +38,7 @@ const mySPA = (function() {
         let timerStatisticOther = null;
         let placeChampionFut = null;
         // let stateBtn = true;
+        let that = this;
 
         var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
         var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
@@ -314,7 +315,7 @@ const mySPA = (function() {
         }
 
 
-        this.sendMessageChat = function() {
+        this.sendMessageChat = function(inputChat) {
 
             updatePassword = Math.random();
             $.ajax( {
@@ -329,25 +330,27 @@ const mySPA = (function() {
             );
 
             function lockGetReady(callresult) {
-                if ( callresult.error!=undefined )
+                if (callresult.error != undefined)
                     alert(callresult.error);
                 else {
-                    messages=[];
-                    if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
+                    messages = [];
+                    if (callresult.result != "") { // либо строка пустая - сообщений нет
                         // либо в строке - JSON-представление массива сообщений
-                        messages=JSON.parse(callresult.result);
-                        // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
-                        if ( !Array.isArray(messages) )
-                            messages=[];
+                        messages = JSON.parse(callresult.result);
+                        // вдруг кто-то сохранил мусор вместо SASHA1_CHAT_MESSAGES?
+                        if (!Array.isArray(messages))
+                            messages = [];
                     }
 
-                    var senderName=document.getElementById('IName').value;
-                    var message=document.getElementById('IMess').value;
+                    let senderName = userDataStorage.userName;
+                    // let message = document.getElementById('IMess').value;
+                    let message = inputChat.value;
+                    if (message === '') message = '/тут должен быть текст/';
                     messages.push( { name:senderName, mess:message } );
-                    if ( messages.length>10 )
-                        messages=messages.slice(messages.length-10);
+                    if (messages.length > 10)
+                        messages = messages.slice(messages.length - 10);
 
-                    showMessages();
+                    that.showMessagesForChat();
 
                     $.ajax( {
                             url : ajaxHandlerScript,
@@ -362,84 +365,16 @@ const mySPA = (function() {
                 }
             }
 
-            // сообщения вместе с новым сохранены на сервере
-            function updateReady(callresult) {
-                if ( callresult.error!=undefined )
+            function updateReady(callresult) { // сообщения вместе с новым сохранены на сервере
+                if (callresult.error != undefined)
                     alert(callresult.error);
             }
-
-
-            function errorHandler(jqXHR,statusStr,errorStr) {
-                alert(statusStr+' '+errorStr);
-            }
-
-
-            function showMessages() {
-                var str='';
-                for ( var m=0; m<messages.length; m++ ) {
-                    var message=messages[m];
-                    str+="<b>"+escapeHTML(message.name)+":</b> "
-                        +escapeHTML(message.mess)+"<br />";
-                }
-                document.getElementById('IChat').innerHTML=str;
-            }
-
-
-            function escapeHTML(text) {
-                if ( !text )
-                    return text;
-                text=text.toString()
-                    .split("&").join("&amp;")
-                    .split("<").join("&lt;")
-                    .split(">").join("&gt;")
-                    .split('"').join("&quot;")
-                    .split("'").join("&#039;");
-                return text;
-            }
-
-
-            // получает сообщения с сервера и потом показывает
-            // function refreshMessages() {
-            //     $.ajax( {
-            //             url : ajaxHandlerScript,
-            //             type : 'POST', dataType:'json',
-            //             data : { f : 'READ', n : stringName },
-            //             cache : false,
-            //             success : readReady,
-            //             error : errorHandler
-            //         }
-            //     );
-            // }
-            //
-            //
-            // function readReady(callresult) { // сообщения получены - показывает
-            //     if ( callresult.error!=undefined )
-            //         alert(callresult.error);
-            //     else {
-            //         messages=[];
-            //         if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
-            //             // либо в строке - JSON-представление массива сообщений
-            //             messages=JSON.parse(callresult.result);
-            //             // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
-            //             if ( !Array.isArray(messages) )
-            //                 messages=[];
-            //         }
-            //         showMessages();
-            //     }
-            // }
-            //
-            //
-            // refreshMessages();
-
-
         }
 
 
         this.updateMessageChat = function() {
 
-
             // получает сообщения с сервера и потом показывает
-
             $.ajax( {
                     url : ajaxHandlerScript,
                     type : 'POST', dataType:'json',
@@ -451,42 +386,38 @@ const mySPA = (function() {
             );
 
             function readReady(callresult) { // сообщения получены - показывает
-                if ( callresult.error!=undefined )
+                if (callresult.error != undefined)
                     alert(callresult.error);
                 else {
                     messages=[];
-                    if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
+                    if (callresult.result != "") { // либо строка пустая - сообщений нет
                         // либо в строке - JSON-представление массива сообщений
-                        messages=JSON.parse(callresult.result);
+                        messages = JSON.parse(callresult.result);
                         // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
-                        if ( !Array.isArray(messages) )
-                            messages=[];
+                        if (!Array.isArray(messages))
+                            messages = [];
                     }
-                    showMessages();
+                    that.showMessagesForChat();
                 }
             }
+        }
 
 
-            function errorHandler(jqXHR,statusStr,errorStr) {
-                alert(statusStr+' '+errorStr);
+        this.showMessagesForChat = function() {
+
+            var str = '';
+            for (var m = 0; m < messages.length; m++) {
+                var message = messages[m];
+                str+="<b>"+escapeHTML(message.name) + ":</b> "
+                    + escapeHTML(message.mess) + "<br/>";
             }
 
-
-            function showMessages() {
-                var str='';
-                for ( var m=0; m<messages.length; m++ ) {
-                    var message=messages[m];
-                    str+="<b>"+escapeHTML(message.name)+":</b> "
-                        +escapeHTML(message.mess)+"<br />";
-                }
-                document.getElementById('IChat').innerHTML=str;
-            }
-
+            myModuleView.renderChat(str);
 
             function escapeHTML(text) {
-                if ( !text )
+                if (!text)
                     return text;
-                text=text.toString()
+                text = text.toString()
                     .split("&").join("&amp;")
                     .split("<").join("&lt;")
                     .split(">").join("&gt;")
@@ -494,12 +425,12 @@ const mySPA = (function() {
                     .split("'").join("&#039;");
                 return text;
             }
-
-
-            // refreshMessages();
-
-
         }
+
+        function errorHandler(jqXHR, statusStr, errorStr) {
+            alert(statusStr+' '+errorStr);
+        }
+
 
     }
 
@@ -799,7 +730,15 @@ const mySPA = (function() {
 
             let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'block';
+        }
 
+
+        this.renderChat = function(str) {
+
+            let chatBorder = myModuleContainer.querySelector(".chat-spa .chat-border");
+            chatBorder.innerHTML = str;
+            let messageChat = myModuleContainer.querySelector(".chat-spa .message-chat");
+            messageChat.value = '';
         }
 
     }
@@ -958,7 +897,8 @@ const mySPA = (function() {
 
         this.sendMessageChat = function() {
 
-            myModuleModel.sendMessageChat();
+            let inputChat = myModuleContainer.querySelector(".chat-spa .message-chat");
+            myModuleModel.sendMessageChat(inputChat);
         }
 
 
