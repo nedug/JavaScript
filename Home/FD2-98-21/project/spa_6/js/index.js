@@ -316,18 +316,17 @@ const mySPA = (function() {
 
         this.sendMessageChat = function() {
 
-                updatePassword=Math.random();
-                $.ajax( {
-                        url : ajaxHandlerScript,
-                        type : 'POST', dataType:'json',
-                        data : { f : 'LOCKGET', n : stringName,
-                            p : updatePassword },
-                        cache : false,
-                        success : lockGetReady,
-                        error : errorHandler
-                    }
-                );
-
+            updatePassword = Math.random();
+            $.ajax( {
+                    url : ajaxHandlerScript,
+                    type : 'POST', dataType:'json',
+                    data : { f : 'LOCKGET', n : stringName,
+                        p : updatePassword },
+                    cache : false,
+                    success : lockGetReady,
+                    error : errorHandler,
+                }
+            );
 
             function lockGetReady(callresult) {
                 if ( callresult.error!=undefined )
@@ -363,17 +362,17 @@ const mySPA = (function() {
                 }
             }
 
-
-            function errorHandler(jqXHR,statusStr,errorStr) {
-                alert(statusStr+' '+errorStr);
-            }
-
-
             // сообщения вместе с новым сохранены на сервере
             function updateReady(callresult) {
                 if ( callresult.error!=undefined )
                     alert(callresult.error);
             }
+
+
+            function errorHandler(jqXHR,statusStr,errorStr) {
+                alert(statusStr+' '+errorStr);
+            }
+
 
             function showMessages() {
                 var str='';
@@ -400,18 +399,56 @@ const mySPA = (function() {
 
 
             // получает сообщения с сервера и потом показывает
-            function refreshMessages() {
-                $.ajax( {
-                        url : ajaxHandlerScript,
-                        type : 'POST', dataType:'json',
-                        data : { f : 'READ', n : stringName },
-                        cache : false,
-                        success : readReady,
-                        error : errorHandler
-                    }
-                );
-            }
+            // function refreshMessages() {
+            //     $.ajax( {
+            //             url : ajaxHandlerScript,
+            //             type : 'POST', dataType:'json',
+            //             data : { f : 'READ', n : stringName },
+            //             cache : false,
+            //             success : readReady,
+            //             error : errorHandler
+            //         }
+            //     );
+            // }
+            //
+            //
+            // function readReady(callresult) { // сообщения получены - показывает
+            //     if ( callresult.error!=undefined )
+            //         alert(callresult.error);
+            //     else {
+            //         messages=[];
+            //         if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
+            //             // либо в строке - JSON-представление массива сообщений
+            //             messages=JSON.parse(callresult.result);
+            //             // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
+            //             if ( !Array.isArray(messages) )
+            //                 messages=[];
+            //         }
+            //         showMessages();
+            //     }
+            // }
+            //
+            //
+            // refreshMessages();
 
+
+        }
+
+
+        this.updateMessageChat = function() {
+
+
+            // получает сообщения с сервера и потом показывает
+
+            $.ajax( {
+                    url : ajaxHandlerScript,
+                    type : 'POST', dataType:'json',
+                    data : { f : 'READ', n : stringName },
+                    cache : false,
+                    success : readReady,
+                    error : errorHandler
+                }
+            );
 
             function readReady(callresult) { // сообщения получены - показывает
                 if ( callresult.error!=undefined )
@@ -430,7 +467,36 @@ const mySPA = (function() {
             }
 
 
-            refreshMessages();
+            function errorHandler(jqXHR,statusStr,errorStr) {
+                alert(statusStr+' '+errorStr);
+            }
+
+
+            function showMessages() {
+                var str='';
+                for ( var m=0; m<messages.length; m++ ) {
+                    var message=messages[m];
+                    str+="<b>"+escapeHTML(message.name)+":</b> "
+                        +escapeHTML(message.mess)+"<br />";
+                }
+                document.getElementById('IChat').innerHTML=str;
+            }
+
+
+            function escapeHTML(text) {
+                if ( !text )
+                    return text;
+                text=text.toString()
+                    .split("&").join("&amp;")
+                    .split("<").join("&lt;")
+                    .split(">").join("&gt;")
+                    .split('"').join("&quot;")
+                    .split("'").join("&#039;");
+                return text;
+            }
+
+
+            // refreshMessages();
 
 
         }
@@ -805,6 +871,11 @@ const mySPA = (function() {
 
                     that.showMessageChat();
                 }
+
+                if (e.target.getAttribute('class') === 'btn_chat_update') {
+
+                    that.updateMessageChat();
+                }
             }
         }
 
@@ -878,15 +949,22 @@ const mySPA = (function() {
         }
 
 
+        this.showMessageChat = function() {
+
+            myModuleModel.showMessageChat();
+            myModuleModel.updateMessageChat();
+        }
+
+
         this.sendMessageChat = function() {
 
             myModuleModel.sendMessageChat();
         }
 
 
-        this.showMessageChat = function() {
+        this.updateMessageChat = function() {
 
-            myModuleModel.showMessageChat();
+            myModuleModel.updateMessageChat();
         }
 
     }

@@ -225,7 +225,7 @@ const Motivation = {
             Текст сообщения:<br />
             <input type='text' id='IMess' style='width: 300px'><br/>
             <input type='button' value='отправить' class="btn_chat_send">
-            <input type='button' value='освежить' class="btn_chat_update"><br/>
+            <input type='button' value='обновить' class="btn_chat_update"><br/>
             Окно чата:<br/>
             <div id='IChat' style='border: solid red 1px; overflow-x: hidden'></div>
         </div>
