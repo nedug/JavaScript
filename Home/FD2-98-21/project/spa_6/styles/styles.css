@@ -307,7 +307,7 @@ html, body {
   background-color: #303030;
   color: white;
 }
-.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-external-link-alt, .btn-futbol .fa-futbol {
+.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-comments, .btn-futbol .fa-futbol {
   font-size: 25px;
   margin: 6px 0 6px 20px;
   color: white;
@@ -402,5 +402,70 @@ button {
   background-color: #7c7c7c;
 }
 .chat-spa {
+  width: 600px;
+  height: 430px;
+  padding: 0 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  /*text-align: center;*/
+  margin: 7px 0;
+  transition: .3s;
   display: none;
+  /*position: relative;*/
+  /*overflow: auto;*/
 }
+.chat-spa:hover {
+  border: 1px solid black;
+}
+.chat-border b {
+  display: inline-block;
+  padding: 0 20px 0 5px;
+  height: 25px;
+
+}
+.chat-spa p {
+  font-size: 18px;
+}
+.chat-border {
+  padding: 7px;
+  border: 1px solid dodgerblue;
+  border-radius: 8px;
+  margin: 30px 10px 20px 10px;
+  height: 265px;
+}
+.message-chat {
+  width: 430px;
+  padding: 7px;
+  border: 1px solid #bab9b9;
+  border-radius: 5px;
+  transition: .3s;
+}
+.message-chat:hover {
+  border: 1px solid black;
+}
+.chat-spa .fa-envelope {
+  font-size: 30px;
+  color: #5b5b5b;
+  padding: 5px;
+  margin: 0 0 0 15px;
+  transition: .3s;
+}
+.chat-spa .fa-envelope:hover {
+  color: black;
+}
+.btn_chat_send, .btn_chat_update {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.chat-spa .fa-cloud-upload-alt {
+  font-size: 30px;
+  padding: 5px;
+  margin: 0 0 0 15px;
+}
+.chat-spa .fa-cloud-upload-alt:hover {
+  color: #007fff;
+}
+
+
+

@@ -801,7 +801,7 @@ const mySPA = (function() {
                     that.showFutbolBack();
                 }
 
-                if (e.target.getAttribute('class') === 'btn_chat_send') {
+                if (e.target.getAttribute('class') === 'far fa-envelope') {
 
                     that.sendMessageChat();
                 }
@@ -811,7 +811,7 @@ const mySPA = (function() {
                     that.showMessageChat();
                 }
 
-                if (e.target.getAttribute('class') === 'btn_chat_update') {
+                if (e.target.getAttribute('class') === 'fas fa-cloud-upload-alt') {
 
                     that.updateMessageChat();
                 }
