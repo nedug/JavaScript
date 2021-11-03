@@ -216,9 +216,21 @@ const Motivation = {
       <section class="${className}">
         <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
         <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>
-        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>
         
-        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>
+        <button id="btn-links" class="btn-chat">Онлайн чат <i class="fas fa-external-link-alt"></i></button>
+        
+        
+        <div class="chat-spa">
+            Ваше имя: <input type='text' id='IName'><br/>
+            Текст сообщения:<br />
+            <input type='text' id='IMess' style='width: 300px'><br/>
+            <input type='button' value='отправить' class="btn_chat_send">
+            <input type='button' value='освежить' class="btn_chat_update"><br/>
+            Окно чата:<br/>
+            <div id='IChat' style='border: solid red 1px; overflow-x: hidden'></div>
+        </div>
+        
+<!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
       </section>
     `;
   }
@@ -244,7 +256,7 @@ const Other = {
             <div class="matches"></div>
             <div class="stats"></div>
           </div>
-         </div>
+        </div>
          <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
         </div>
           

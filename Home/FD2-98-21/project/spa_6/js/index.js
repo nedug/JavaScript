@@ -39,6 +39,11 @@ const mySPA = (function() {
         let placeChampionFut = null;
         // let stateBtn = true;
 
+        var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+        var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
+        var updatePassword;
+        var stringName='SASHA1_CHAT_MESSAGES';
+
         let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                                   'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
                                 ['Концентрация угарного газа в организме уменьшается.',
@@ -296,10 +301,138 @@ const mySPA = (function() {
         }
 
 
+        this.showMessageChat = function() {
+
+            myModuleView.showMessageChat();
+        }
+
+
         this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) {
 
             let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
             myModuleView.btnUpdate(stateBtn);
+        }
+
+
+        this.sendMessageChat = function() {
+
+                updatePassword=Math.random();
+                $.ajax( {
+                        url : ajaxHandlerScript,
+                        type : 'POST', dataType:'json',
+                        data : { f : 'LOCKGET', n : stringName,
+                            p : updatePassword },
+                        cache : false,
+                        success : lockGetReady,
+                        error : errorHandler
+                    }
+                );
+
+
+            function lockGetReady(callresult) {
+                if ( callresult.error!=undefined )
+                    alert(callresult.error);
+                else {
+                    messages=[];
+                    if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
+                        // либо в строке - JSON-представление массива сообщений
+                        messages=JSON.parse(callresult.result);
+                        // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
+                        if ( !Array.isArray(messages) )
+                            messages=[];
+                    }
+
+                    var senderName=document.getElementById('IName').value;
+                    var message=document.getElementById('IMess').value;
+                    messages.push( { name:senderName, mess:message } );
+                    if ( messages.length>10 )
+                        messages=messages.slice(messages.length-10);
+
+                    showMessages();
+
+                    $.ajax( {
+                            url : ajaxHandlerScript,
+                            type : 'POST', dataType:'json',
+                            data : { f : 'UPDATE', n : stringName,
+                                v : JSON.stringify(messages), p : updatePassword },
+                            cache : false,
+                            success : updateReady,
+                            error : errorHandler
+                        }
+                    );
+                }
+            }
+
+
+            function errorHandler(jqXHR,statusStr,errorStr) {
+                alert(statusStr+' '+errorStr);
+            }
+
+
+            // сообщения вместе с новым сохранены на сервере
+            function updateReady(callresult) {
+                if ( callresult.error!=undefined )
+                    alert(callresult.error);
+            }
+
+            function showMessages() {
+                var str='';
+                for ( var m=0; m<messages.length; m++ ) {
+                    var message=messages[m];
+                    str+="<b>"+escapeHTML(message.name)+":</b> "
+                        +escapeHTML(message.mess)+"<br />";
+                }
+                document.getElementById('IChat').innerHTML=str;
+            }
+
+
+            function escapeHTML(text) {
+                if ( !text )
+                    return text;
+                text=text.toString()
+                    .split("&").join("&amp;")
+                    .split("<").join("&lt;")
+                    .split(">").join("&gt;")
+                    .split('"').join("&quot;")
+                    .split("'").join("&#039;");
+                return text;
+            }
+
+
+            // получает сообщения с сервера и потом показывает
+            function refreshMessages() {
+                $.ajax( {
+                        url : ajaxHandlerScript,
+                        type : 'POST', dataType:'json',
+                        data : { f : 'READ', n : stringName },
+                        cache : false,
+                        success : readReady,
+                        error : errorHandler
+                    }
+                );
+            }
+
+
+            function readReady(callresult) { // сообщения получены - показывает
+                if ( callresult.error!=undefined )
+                    alert(callresult.error);
+                else {
+                    messages=[];
+                    if ( callresult.result!="" ) { // либо строка пустая - сообщений нет
+                        // либо в строке - JSON-представление массива сообщений
+                        messages=JSON.parse(callresult.result);
+                        // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
+                        if ( !Array.isArray(messages) )
+                            messages=[];
+                    }
+                    showMessages();
+                }
+            }
+
+
+            refreshMessages();
+
+
         }
 
     }
@@ -595,6 +728,14 @@ const mySPA = (function() {
             }, 1500)
         }
 
+
+        this.showMessageChat = function() {
+
+            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            chatSpa.style.display = 'block';
+
+        }
+
     }
 
 
@@ -653,6 +794,16 @@ const mySPA = (function() {
                 if (e.target.getAttribute('class') === 'fas fa-chevron-left' || e.target.getAttribute('class') === 'btn-futbol-back') {
 
                     that.showFutbolBack();
+                }
+
+                if (e.target.getAttribute('class') === 'btn_chat_send') {
+
+                    that.sendMessageChat();
+                }
+
+                if (e.target.getAttribute('class') === 'btn-chat') {
+
+                    that.showMessageChat();
                 }
             }
         }
@@ -716,7 +867,7 @@ const mySPA = (function() {
 
         this.checkInputChange = function() {
 
-            let inputAll = myModuleContainer.querySelectorAll("input");
+            let inputAll = myModuleContainer.querySelectorAll(".modal__content input");
             inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
 
             function checkChangeInput(e) {
@@ -724,6 +875,18 @@ const mySPA = (function() {
                 e.preventDefault();
                 myModuleModel.checkInput(inputAll[0].value, inputAll[1].value, inputAll[2].value, inputAll[3].value, inputAll[4].value);
             }
+        }
+
+
+        this.sendMessageChat = function() {
+
+            myModuleModel.sendMessageChat();
+        }
+
+
+        this.showMessageChat = function() {
+
+            myModuleModel.showMessageChat();
         }
 
     }

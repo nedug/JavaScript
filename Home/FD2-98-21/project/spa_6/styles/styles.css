@@ -288,7 +288,7 @@ html, body {
 .authorization-page p {
   margin: 55px 0;
 }
-.btn-advice, .btn-facts, .btn-links, .btn-futbol {
+.btn-advice, .btn-facts, .btn-chat, .btn-futbol {
   color: white;
   border: none;
   /*border: 1px solid #addb78;*/
@@ -303,11 +303,11 @@ html, body {
   /*right: 25px;*/
   transition: .3s;
 }
-.btn-advice:hover, .btn-facts:hover, .btn-links:hover, .btn-futbol:hover {
+.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover {
   background-color: #303030;
   color: white;
 }
-.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-links .fa-external-link-alt, .btn-futbol .fa-futbol {
+.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-external-link-alt, .btn-futbol .fa-futbol {
   font-size: 25px;
   margin: 6px 0 6px 20px;
   color: white;
@@ -400,4 +400,7 @@ button {
 }
 .data__save:disabled {
   background-color: #7c7c7c;
+}
+.chat-spa {
+  display: none;
 }
