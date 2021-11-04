@@ -18,6 +18,20 @@ const LoginWeb = {
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20" min="1" max="50"><br>
              <hr>
+             <label>Город:</label>
+            <select id="type-city">
+              <optgroup label="Беларусь">
+                <option value="625144">Минск</option>
+                <option value="627907">Гомель</option>
+                <option value="629634">Брест</option>
+                <option value="627904">Гродно</option>
+                <option value="620127">Витебск</option>
+                <option value="625665">Могилев</option>              
+              </optgroup>
+              <optgroup label="Россия">
+                <option value="1220988">Москва</option>
+              </optgroup>
+            </select> <br>
             <label>Футбольная лига:</label>
             <select id="type-futbol">
               <optgroup label="Англия">
@@ -78,6 +92,20 @@ const Options = {
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}" min="1" max="50"><br>
             <hr>
+            <label>Город:</label>
+            <select id="type-city">
+              <optgroup label="Беларусь">
+                <option value="625144">Минск</option>
+                <option value="627907">Гомель</option>
+                <option value="629634">Брест</option>
+                <option value="627904">Гродно</option>
+                <option value="620127">Витебск</option>
+                <option value="625665">Могилев</option>              
+              </optgroup>
+              <optgroup label="Россия">
+                <option value="1220988">Москва</option>
+              </optgroup>
+            </select> <br>
             <label>Футбольная лига:</label>
             <select id="type-futbol">
               <optgroup label="Англия">
@@ -249,7 +277,9 @@ const Other = {
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
-        <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>       
+        <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>
+        <button id="btn-weather" class="btn-weather">Погода<i class="fas fa-cloud-moon-rain"></i></button>
+               
         <div class="futbol-league">
          <div class="futbol_wrap">
          <button class="btn-futbol-back"><i class="fas fa-chevron-left"></i></button>
@@ -265,10 +295,18 @@ const Other = {
         </div>
          <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
         </div>
-          
-<!--        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>-->
-<!--        <button id="btn-links" class="btn-links">Полезные ссылки <i class="fas fa-external-link-alt"></i></button>-->  
-<!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
+        
+        <div id="forecast-now">
+         <div class="forecast_wrap">
+          <div class="icon-weather"></div>
+          <h1 class="location"></h1>
+          <h1 class="temperature"></h1>
+          <div class="description"></div>
+          <div class="wind"></div>
+         </div>
+          <div id="loader-W" style=""><img src="img/loader.gif" height="110" width="auto"></div>
+        </div>
+        
       </section>
     `;
   }

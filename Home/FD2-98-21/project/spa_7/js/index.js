@@ -144,7 +144,7 @@ const mySPA = (function() {
         }
 
 
-        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
             if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) { /* Проверка на корректность данных */
 
@@ -165,6 +165,7 @@ const mySPA = (function() {
                 userCostCigarette: inputCostCig.value,
                 cigarettesInBlock: inputCigInBlock.value,
                 typeFutbolUser: typeFutbol.value,
+                typeWeatherUser: typeCity.value,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -299,15 +300,6 @@ const mySPA = (function() {
 
         this.getFutbol = function() {
 
-            // navigator.geolocation.getCurrentPosition(success);
-            // function success(pos) {
-            //     var crd = pos.coords;
-            //     console.log('Ваше текущее местоположение:');
-            //     console.log(`Широта: ${crd.latitude}`);
-            //     console.log(`Долгота: ${crd.longitude}`);
-            //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
-            // }
-
             myModuleView.renderFutbolLoader();
 
             let apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=2021&sort=asc`;
@@ -318,7 +310,34 @@ const mySPA = (function() {
                     // console.log(data.data);
                     myModuleView.renderFutbol(data, placeChampionFut);
                 })
-                .catch((error) => console.error("Ошибка получение погоды. Причина: " + error));
+                .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
+        }
+
+
+        this.getWeather = function() {
+
+            // navigator.geolocation.getCurrentPosition(success);
+            // function success(pos) {
+            //     var crd = pos.coords;
+            //     console.log('Ваше текущее местоположение:');
+            //     console.log(`Широта: ${crd.latitude}`);
+            //     console.log(`Долгота: ${crd.longitude}`);
+            //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
+            // }
+
+            myModuleView.renderWeatherLoader();
+
+            let apiUrl = "https://api.openweathermap.org/data/2.5/";
+            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            let apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser + "&units=metric&lang=ru&appid="+apiKey;
+
+            fetch(apiQuery, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log(data.data);
+                    myModuleView.renderWeather(data);
+                })
+                .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
 
@@ -555,6 +574,8 @@ const mySPA = (function() {
                 updateContent();
                 const typeSoccer = myModuleContainer.querySelector(`option[value="${userStorage.typeFutbolUser}"]`);
                 typeSoccer.selected='true';
+                const typeWeather = myModuleContainer.querySelector(`option[value="${userStorage.typeWeatherUser}"]`);
+                typeWeather.selected='true';
                 setMaxDate();
             }
 
@@ -745,6 +766,8 @@ const mySPA = (function() {
             loader.style.display = "none";
             let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
             futbolLeagueWrap.style.display = "block";
+            let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
+            weatherWrap.style.display = "none";
 
             const league = myModuleContainer.querySelector('#content .futbol-league .league');
             const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
@@ -762,6 +785,33 @@ const mySPA = (function() {
         }
 
 
+        this.renderWeather = function(data) {
+
+            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
+            futbolLeagueWrap.style.display = "none";
+            let loaderW = myModuleContainer.querySelector('#loader-W');
+            loaderW.style.display = "none";
+            let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
+            weatherWrap.style.display = "block";
+
+
+            const icon = myModuleContainer.querySelector('#content .icon-weather');
+            icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" height="50" width="auto">`;
+            const location = myModuleContainer.querySelector('#content .location');
+            location.innerHTML = `${data.name}`;
+            const temperature = myModuleContainer.querySelector('#content .temperature');
+            temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
+            const description = myModuleContainer.querySelector('#content .description');
+            description.innerHTML = data.weather[0].description;
+            const wind = myModuleContainer.querySelector('#content .wind');
+            wind.innerHTML = `Ветер: ${round(data.wind.speed, 1)} м/с`;
+
+            function round(value, decimals) {
+                return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+            }
+        }
+
+
         this.renderFutbolLoader = function() {
 
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
@@ -770,6 +820,17 @@ const mySPA = (function() {
             loader.style.display = "block";
             const futbol = myModuleContainer.querySelector('#content .futbol_wrap');
             futbol.style.display = "none";
+        }
+
+
+        this.renderWeatherLoader = function() {
+
+            const futbolWeather = myModuleContainer.querySelector('#content #forecast-now');
+            futbolWeather.style.display = "block";
+            const loaderW = myModuleContainer.querySelector('#loader-W');
+            loaderW.style.display = "block";
+            const weather = myModuleContainer.querySelector('#content .forecast_wrap');
+            weather.style.display = "none";
         }
 
 
@@ -907,6 +968,12 @@ const mySPA = (function() {
                     that.setActiveBtn(e.target);
                 }
 
+                if (e.target.getAttribute('class') === 'btn-weather') {
+
+                    that.showWeather();
+                    that.setActiveBtn(e.target);
+                }
+
                 if (e.target.getAttribute('class') === 'fas fa-chevron-right' || e.target.getAttribute('class') === 'btn-futbol-foward') {
 
                     that.showFutbolFoward();
@@ -967,8 +1034,9 @@ const mySPA = (function() {
 
             let inputData = myModuleContainer.querySelectorAll("#content input");
             let typeFutbol = myModuleContainer.querySelector('#type-futbol');
+            let typeCity = myModuleContainer.querySelector('#type-city');
 
-            myModuleModel.saveData(inputData, typeFutbol);
+            myModuleModel.saveData(inputData, typeFutbol, typeCity);
             that.checkInputChange();
         }
 
@@ -989,6 +1057,11 @@ const mySPA = (function() {
         this.showFutbol = function() {
 
             myModuleModel.getFutbol();
+        }
+
+        this.showWeather = function() {
+
+            myModuleModel.getWeather();
         }
 
 

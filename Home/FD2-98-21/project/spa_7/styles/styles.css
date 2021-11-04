@@ -191,8 +191,11 @@ html, body {
   border-radius: 3px;
   padding: 4px;
 }
-.modal__content select {
+.modal__content #type-futbol {
   width: 305px;
+}
+.modal__content #type-city {
+  width: 390px;
 }
 .modal__content input:nth-of-type(1) {
    width: 359px;
@@ -288,7 +291,7 @@ html, body {
 .authorization-page p {
   margin: 55px 0;
 }
-.btn-advice, .btn-facts, .btn-chat, .btn-futbol {
+.btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather {
   color: white;
   border: none;
   /*border: 1px solid #addb78;*/
@@ -303,11 +306,11 @@ html, body {
   /*right: 25px;*/
   transition: .3s;
 }
-.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover {
+.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover {
   background-color: #303030;
   color: white;
 }
-.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-comments, .btn-futbol .fa-futbol {
+.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain {
   font-size: 25px;
   margin: 6px 0 6px 20px;
   color: white;
@@ -362,7 +365,7 @@ button {
   border: 1px solid #bab9b9;
   border-radius: 8px;
   text-align: center;
-  margin: 7px 0;
+  margin: 10px 5px;
   transition: .3s;
   display: none;
   position: relative;
@@ -398,6 +401,26 @@ button {
 #loader {
   margin-top: 130px;
 }
+#forecast-now {
+  width: 320px;
+  height: 250px;
+  padding: 0 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px 5px;
+  transition: .3s;
+  display: none;
+  background-image: url(../img/wind-atlas.gif);
+  background-size: auto 104%;
+  background-position: -70px;
+}
+#forecast-now:hover {
+  border: 1px solid #7c7c7c;
+}
+#loader-W {
+  margin-top: 70px;
+}
 .data__save:disabled {
   background-color: #7c7c7c;
 }
@@ -407,7 +430,7 @@ button {
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
-  margin: 7px 0;
+  margin: 10px 5px;
   transition: .3s;
   display: none;
 }
@@ -470,7 +493,7 @@ button {
   border: 1px solid #bab9b9;
   border-radius: 8px;
   /*text-align: center;*/
-  margin: 7px 0;
+  margin: 10px 5px;
   transition: .3s;
   display: none;
   /*position: relative;*/
