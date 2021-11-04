@@ -40,7 +40,9 @@ const mySPA = (function() {
         // let stateBtn = true;
         let that = this;
         let numDiap = null;
+        let numDiapF = null;
         let advice = null;
+        let facts = null;
 
         var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
         var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
@@ -98,7 +100,23 @@ const mySPA = (function() {
                 'Курильщики обоих полов, отказавшись от курения в возрасте между 35 и 39 годами добавляют в среднем от трех до пяти лет к своей жизни.',
             ];
 
+            facts = ['Табак - коварный "убийца". Вначале он увлекает, как правило, молодых, неопытных людей. Затем крепко привязывает к себе, заставляет курить, доставляя некоторое удовольствие, и только потом, спустя годы, убивает свою жертву.',
+                'Из 10 000 видов ядовитых растений планеты наибольшее внимание людей привлекает табак, потому что в нем есть никотин.',
+                'Табачный дым содержит более 4000 химических соединений, более сорока, из которых, вызывают рак, а также несколько сотен ядов, включая никотин, цианид, мышьяк, формальдегид, углекислый газ, окись углерода, синильную кислоту и т. д.',
+                'Некоторые производители включают в свою продукцию следующие крайне опасные соединения: ацетальдегид, ацетон, аммиак, бензол, бутиламин, диметиламин, ДДТ, этиламин, формальдегид, сероводород, гидрохинон, метиловый спирт, метиламин, соединения никеля и пиридин.',
+                'Размеры аэрозольных частичек, из которых состоит табачный дым, варьируются от 0,15 мкм до 1,3 мкм (в среднем 0,4 мкм). В дыме от сигареты, поступающем в окружающую среду, размер частичек значительно меньше - от 0,01 мкм до 0,1 мкм. Таким образом, эти частички при вдыхании могут достигать альвеол. Показано, что табачный дым проникает во все отделы трахеи, бронхов и легких. Установлено, что содержащиеся в табачном дыме химические соединения подвергаются фагоцитозу альвеолярными макрофагами.',
+                'Концентратом табачных ядов является деготь, вызывающий раковую опухоль у многих курильщиков. Разорвите бумажный мундштук выкуренной сигареты. На его внутренних стенках, на фильтре, вы увидите маслянистую черноту. Это и есть смертоносный деготь.',
+                'В сигаретном дыме присутствуют радиоактивные вещества: полоний, свинец, висмут. Особую опасность представляет выделенный из табачных листьев в 1964 г. радиоактивный изотоп полоний-210.',
+                'Температура тлеющей сигареты 500 – 900 градусов. В тот момент, когда курильщик затягивается, температура на кончике сигареты достигает 600 °С.',
+                'Урина, химический компонент, входящий в состав мочи, используется при производстве сигарет для придания специфического «аромата» и «вкуса» дыму.',
+                'Никотин вызывает быстрое привыкание и является НАРКОТИЧЕСКИМ СРЕДСТВОМ, легко доступным и практически беспрепятственно распространяемым!',
+                'По степени ядовитости никотин сравним с синильной кислотой, и даже обладает одинаковой смертельной дозой для человека.',
+                'Если никотин частично выводится из организма, то остальные яды оседают надолго, накапливаются и вызывают различные болезни. От табачных ядов неминуемо страдает не только тот, кто курит табак, но и те, кого окуривают.',
+                'Целых два года необходимо освобождаться от этих ядов организму человека, который бросил курить. Но последствия отравления остаются на всю жизнь. Через несколько лет человека начинают одолевать болезни, а он и не предполагает, что их причиной является курение табака в молодые годы. Чем раньше человек бросает курить, тем больше у него шансов остаться здоровым.',
+            ];
+
             numDiap = 12;
+            numDiapF = 12;
             placeChampionFut = 0;
             pageNameLink = pageName;
 
@@ -449,9 +467,6 @@ const mySPA = (function() {
         this.getAdviceUser = function() {
 
             let randomNumberAdvice = randomDiap(0, numDiap);
-            function randomDiap(n, m) {
-                return Math.floor(Math.random() * (m - n + 1)) + n;
-            }
 
             myModuleView.renderAdviceUser(advice[randomNumberAdvice]);
 
@@ -460,10 +475,30 @@ const mySPA = (function() {
         }
 
 
+        this.getFactsUser = function() {
+
+            let randomNumberFacts = randomDiap(0, numDiapF);
+
+            myModuleView.renderFactsUser(facts[randomNumberFacts]);
+
+            facts.splice(randomNumberFacts, 1);
+            --numDiapF;
+        }
+
+
+        this.setActiveBtn = function(activeBtn) {
+
+            myModuleView.renderActiveBtn(activeBtn);
+        }
+
+
+        function randomDiap(n, m) {
+            return Math.floor(Math.random() * (m - n + 1)) + n;
+        }
+
         function errorHandler(jqXHR, statusStr, errorStr) {
             alert(statusStr+' '+errorStr);
         }
-
 
     }
 
@@ -645,14 +680,14 @@ const mySPA = (function() {
             const stateRiskCancerChart = myModuleContainer.querySelector("#content .state__risk__cancer__chart .chart");
             const riskCancerDescription = myModuleContainer.querySelector("#content .state__risk__cancer .description");
 
-            stateHeart.innerHTML = ` ${heart}`;
-            stateCarbonMonoxide.innerHTML = ` ${carbonMonoxide}`;
-            stateNicotine.innerHTML = ` ${nicotine}`;
-            stateSmell.innerHTML = ` ${smell}`;
-            stateLung.innerHTML = ` ${lung}`;
-            stateLiver.innerHTML = ` ${liver}`;
-            stateRiskHeart.innerHTML = ` ${riskHeart}`;
-            stateRiskCancer.innerHTML = ` ${riskCancer}`;
+            stateHeart.innerHTML = `<strong class="percent-H">${heart}%</strong>`;
+            stateCarbonMonoxide.innerHTML = `<strong class="percent-H">${carbonMonoxide}%</strong>`;
+            stateNicotine.innerHTML = `<strong class="percent-H">${nicotine}%</strong>`;
+            stateSmell.innerHTML = `<strong class="percent-H">${smell}%</strong>`;
+            stateLung.innerHTML = `<strong class="percent-H">${lung}%</strong>`;
+            stateLiver.innerHTML = `<strong class="percent-H">${liver}%</strong>`;
+            stateRiskHeart.innerHTML = `<strong class="percent-H">${riskHeart}%</strong>`;
+            stateRiskCancer.innerHTML = `<strong class="percent-H">${riskCancer}%</strong>`;
 
             if (heart < 100) heartDescription.innerHTML = descriptionHealth[0][0]
             else heartDescription.innerHTML = descriptionHealth[0][1];
@@ -765,6 +800,8 @@ const mySPA = (function() {
             chatSpa.style.display = 'block';
             let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
+            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            factsSpa.style.display = 'none';
         }
 
 
@@ -783,12 +820,40 @@ const mySPA = (function() {
             adviceSpa.style.display = 'block';
             let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
+            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            factsSpa.style.display = 'none';
             let messageAdvice = myModuleContainer.querySelector(".advice-spa div");
             messageAdvice.innerHTML = textAdvice;
             if (!textAdvice) {
                 messageAdvice.style.color = 'red';
                 messageAdvice.innerHTML = 'Советы закончились! Заходите позже!';
             }
+        }
+
+
+        this.renderFactsUser = function(textFacts) {
+
+            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            factsSpa.style.display = 'block';
+            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            chatSpa.style.display = 'none';
+            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            adviceSpa.style.display = 'none';
+
+            let messageFacts = myModuleContainer.querySelector(".facts-spa div");
+            messageFacts.innerHTML = textFacts;
+            if (!textFacts) {
+                messageFacts.style.color = 'red';
+                messageFacts.innerHTML = 'Факты закончились! Заходите позже!';
+            }
+        }
+
+
+        this.renderActiveBtn = function(activeBtn) {
+
+            let buttonAll = myModuleContainer.querySelectorAll("#content > section > button");
+            buttonAll.forEach(elem => elem.style.backgroundColor = '#919191');
+            activeBtn.style.backgroundColor = '#303030'
         }
 
     }
@@ -839,6 +904,7 @@ const mySPA = (function() {
                 if (e.target.getAttribute('class') === 'btn-futbol') {
 
                     that.showFutbol();
+                    that.setActiveBtn(e.target);
                 }
 
                 if (e.target.getAttribute('class') === 'fas fa-chevron-right' || e.target.getAttribute('class') === 'btn-futbol-foward') {
@@ -859,6 +925,7 @@ const mySPA = (function() {
                 if (e.target.getAttribute('class') === 'btn-chat') {
 
                     that.showMessageChat();
+                    that.setActiveBtn(e.target);
                 }
 
                 if (e.target.getAttribute('class') === 'fas fa-cloud-upload-alt') {
@@ -869,6 +936,13 @@ const mySPA = (function() {
                 if (e.target.getAttribute('class') === 'btn-advice') {
 
                     that.getAdviceUser();
+                    that.setActiveBtn(e.target);
+                }
+
+                if (e.target.getAttribute('class') === 'btn-facts') {
+
+                    that.getFactsUser();
+                    that.setActiveBtn(e.target);
                 }
             }
         }
@@ -966,6 +1040,18 @@ const mySPA = (function() {
         this.getAdviceUser = function() {
 
             myModuleModel.getAdviceUser();
+        }
+
+
+        this.getFactsUser = function() {
+
+            myModuleModel.getFactsUser();
+        }
+
+
+        this.setActiveBtn = function(activeBtn) {
+
+            myModuleModel.setActiveBtn(activeBtn);
         }
 
     }

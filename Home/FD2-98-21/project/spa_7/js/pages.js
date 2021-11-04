@@ -172,35 +172,35 @@ const Health = {
         <h2>Состояние здоровья и самочувствие:</h2>
         <div class="state__wrap">
            <p class="state__heart"><strong>Сердце</strong><i class="fas fa-heartbeat"></i><br><span class="description"></p>
-           <p class="state__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__carbonMonoxide"><strong>Угарный газ</strong><i class="fas fa-bong"></i></i><br><span class="description"></p>
-           <p class="state__carbonMonoxide__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__carbonMonoxide__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__nicotine"><strong>Никотин</strong><i class="fas fa-smoking"></i><br><span class="description"></p>
-           <p class="state__nicotine__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__nicotine__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__smell"><strong>Обоняние и вкус</strong><i class="fas fa-air-freshener"></i><br><span class="description"></p>
-           <p class="state__smell__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__smell__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__lung"><strong>Работа легких</strong><i class="fas fa-lungs"></i><br><span class="description"></p>
-           <p class="state__lung__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__lung__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__liver"><strong>Работа печени</strong><i class="fas fa-mercury"></i><br><span class="description"></p>
-           <p class="state__liver__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__liver__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__risk__heart"><strong>Риск сердечного приступа</strong><i class="fas fa-user-md"></i><br><span class="description"></p>
-           <p class="state__risk__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__risk__heart__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>
         <div class="state__wrap">
            <p class="state__risk__cancer"><strong>Риск рака</strong><i class="fas fa-skull-crossbones"></i><br><span class="description"></p>
-           <p class="state__risk__cancer__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span>%</p>
+           <p class="state__risk__cancer__chart"></span><span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
         </div>      
       </section>
     `;
@@ -226,9 +226,13 @@ const Motivation = {
             <button class="btn_chat_update"><i class="fas fa-cloud-upload-alt"></i></button>
         </div>
         
-        
         <div class="advice-spa">
             <p><strong>${userName}</strong>, тут вы можете получить случайные полезные советы как снизить вред от курения и сохранить необходимую мотивацию!</p>
+            <div></div>
+        </div>
+        
+         <div class="facts-spa">
+            <p><strong>${userName}</strong>, тут вы можете получить случайные факты о вреде курения, которые помогут понять опасность данной привычки!</p>
             <div></div>
         </div>
         

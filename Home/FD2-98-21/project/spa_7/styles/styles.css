@@ -420,7 +420,7 @@ button {
   height: 25px;
 
 }
-.chat-spa p, .advice-spa p {
+.chat-spa p, .advice-spa p, .facts-spa p {
   font-size: 18px;
 }
 .chat-border {
@@ -463,7 +463,7 @@ button {
 .chat-spa .fa-cloud-upload-alt:hover {
   color: #007fff;
 }
-.advice-spa {
+.advice-spa, .facts-spa {
   width: 600px;
   /*height: 430px;*/
   padding: 0 15px;
@@ -476,27 +476,16 @@ button {
   /*position: relative;*/
   /*overflow: auto;*/
 }
-.advice-spa:hover {
+.advice-spa:hover, .facts-spa:hover {
   border: 1px solid black;
 }
-.advice-spa {
-  width: 600px;
-  /*height: 430px;*/
-  padding: 0 15px;
-  border: 1px solid #bab9b9;
-  border-radius: 8px;
-  /*text-align: center;*/
-  margin: 7px 0;
-  transition: .3s;
-  display: none;
-  /*position: relative;*/
-  /*overflow: auto;*/
-}
-.advice-spa div {
+.advice-spa div, .facts-spa div {
   font-size: 20px;
   padding: 10px;
   line-height: 32px;
-
+}
+.percent-H {
+  padding-left: 7px;
 }
 
 
