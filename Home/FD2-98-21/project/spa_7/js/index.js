@@ -794,7 +794,6 @@ const mySPA = (function() {
             let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
             weatherWrap.style.display = "block";
 
-
             const icon = myModuleContainer.querySelector('#content .icon-weather');
             icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" height="50" width="auto">`;
             const location = myModuleContainer.querySelector('#content .location');
