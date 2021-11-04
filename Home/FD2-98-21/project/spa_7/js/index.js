@@ -44,6 +44,8 @@ const mySPA = (function() {
         let advice = null;
         let facts = null;
 
+        var clickAudio = new Audio('sound/1.mp3');
+
         var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
         var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
         var updatePassword;
@@ -141,6 +143,12 @@ const mySPA = (function() {
                 clearInterval(timerStatisticOther);
             }
 
+            clickAudio.currentTime=0;
+            clickAudio.play().then(() => {
+                // Autoplay started!
+            }).catch(error => {
+                // Autoplay was prevented.
+            });
         }
 
 
