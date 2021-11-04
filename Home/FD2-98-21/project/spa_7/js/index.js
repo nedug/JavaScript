@@ -1095,6 +1095,13 @@ const mySPA = (function() {
 
             myModuleModel.showMessageChat();
             myModuleModel.updateMessageChat();
+
+            let inputChat = myModuleContainer.querySelector(".chat-spa input");
+            inputChat.addEventListener('keyup', pressEnterHandler);
+
+            function pressEnterHandler(e) {
+                if (e.code === 'Enter') that.sendMessageChat();
+            }
         }
 
 
