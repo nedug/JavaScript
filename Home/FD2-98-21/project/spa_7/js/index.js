@@ -401,7 +401,9 @@ const mySPA = (function() {
                     // let message = document.getElementById('IMess').value;
                     let message = inputChat.value;
                     if (message === '') message = '/тут должен быть текст/';
-                    messages.push( { name:senderName, mess:message } );
+                    let timeNow = ` [${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}]`;
+                    let messageAll = message + timeNow;
+                    messages.push( { name:senderName, mess:messageAll } );
                     if (messages.length > 10)
                         messages = messages.slice(messages.length - 10);
 
