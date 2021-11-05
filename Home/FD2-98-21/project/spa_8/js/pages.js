@@ -280,7 +280,7 @@ const Motivation = {
 
 const Other = {
   id: "other",
-  title: "Развелечение и информация",
+  title: "Полезная информация",
   render: (className = "container", ...rest) => {
     return `
       <section class="${className}">
@@ -304,8 +304,8 @@ const Other = {
          <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
         </div>
         
-        <div id="currency-exchange">       
-         
+        <div id="currency-exchange">
+          <h3>Онлайн конвертер валют</h3>
           <input type="number" class="input_sum-currency" value="1">
           <select id="currency-1">
               <option value="byn">BYN</option>
@@ -314,8 +314,8 @@ const Other = {
               <option value="rub">RUB</option>
               <option value="pln">PLN</option>
               <option value="uah">UAH</option>
-           </select>
-          
+           </select><br>
+          <input type="number" class="input_res-currency" value="1">
           <select id="currency-2">
               <option value="usd">USD</option>
               <option value="byn">BYN</option>
@@ -323,9 +323,8 @@ const Other = {
               <option value="rub">RUB</option>
               <option value="pln">PLN</option>
               <option value="uah">UAH</option>
-           </select>
-          <input type="number" class="input_res-currency" value="1">
-       
+           </select><br>
+           <button class="btn-clean-currency"><i class="fas fa-eraser"></i>Очистить</button>
         </div>
         
         <div id="forecast-now">

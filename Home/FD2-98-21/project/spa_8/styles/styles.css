@@ -294,16 +294,11 @@ html, body {
 .btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather, .btn-currency {
   color: white;
   border: none;
-  /*border: 1px solid #addb78;*/
   border-radius: 4px;
   padding: 7px 20px;
-  /*background-color: #addb78;*/
   background-color: #919191;
   margin: 10px;
   font-size: 20px;
-  /*position: absolute;*/
-  /*bottom: 10px;*/
-  /*right: 25px;*/
   transition: .3s;
 }
 .btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover, .btn-currency:hover {
@@ -316,7 +311,6 @@ html, body {
   color: white;
   transition: .3s;
 }
-
 .sound_wrap {
   margin: 11px 0;
   position: relative;
@@ -339,7 +333,6 @@ input[type="checkbox"] {
   box-shadow: inset 0 0 5px rgba(0,0,0, .2);
   transition: 0.5s;
   position: relative;
-  /*top: 50px;*/
 }
 input:checked[type="checkbox"] {
   background: black;
@@ -363,7 +356,6 @@ input:checked[type="checkbox"]::before {
   background: black;
   border: 1px solid white;
 }
-
 
 
 button {
@@ -433,18 +425,62 @@ button {
   margin-top: 70px;
 }
 #currency-exchange {
-  width: 550px;
-  height: 400px;
+  width: 500px;
+  /*height: 400px;*/
   padding: 20px 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
-  /*text-align: center;*/
   margin: 10px 5px;
   transition: .3s;
   display: none;
 }
 #currency-exchange:hover {
   border: 1px solid #7c7c7c;
+}
+#currency-exchange h3 {
+  margin: 5px 5px 20px 25px;
+}
+#currency-exchange input {
+  margin: 15px 20px 15px 10px;
+  padding: 8px;
+  width: 350px;
+  border: 1px solid dodgerblue;
+  border-radius: 3px;
+}
+#currency-exchange input:focus {
+  outline: none;
+  border: 1px solid #0080ff;
+  box-shadow: 0 0 4px 0 #0080ff;
+}
+#currency-exchange select {
+  border: 1px solid black;
+  width: 75px;
+  height: 35px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+#currency-exchange select:focus {
+  outline: none;
+  box-shadow: 0 0 4px 0 black;
+}
+.btn-clean-currency {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  background-color: #64a5e5;
+  margin: 15px 5px 0 10px;
+  font-size: 16px;
+  transition: .3s;
+}
+.btn-clean-currency:hover {
+  background-color: #4098ee;
+}
+#currency-exchange .fa-eraser {
+  color: white;
+  padding-right: 15px;
+  margin: 3px;
+  font-size: 22px;
 }
 .data__save:disabled {
   background-color: #7c7c7c;

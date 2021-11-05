@@ -147,8 +147,6 @@ const mySPA = (function() {
                 clearInterval(timerStatisticOther);
                 clearInterval(timerTick);
             }
-
-
         }
 
 
@@ -368,7 +366,7 @@ const mySPA = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('первый');
-                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value / 0.001) * 0.001);
+                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value * 1000) / 1000);
                 })
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
@@ -382,9 +380,15 @@ const mySPA = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('второй');
-                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value / 0.001) * 0.001);
+                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value * 1000) / 1000);
                 })
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
+        }
+
+
+        this.cleanCurrency = function() {
+
+            myModuleView.renderCleanCurrency();
         }
 
 
@@ -445,7 +449,6 @@ const mySPA = (function() {
                     }
 
                     let senderName = userDataStorage.userName;
-                    // let message = document.getElementById('IMess').value;
                     let message = inputChat.value;
                     if (message === '') message = '/тут должен быть текст/';
                     let timeNow = ` [${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}]`;
@@ -853,30 +856,12 @@ const mySPA = (function() {
 
         this.renderCurrency = function() {
 
-            // placeChampion = placeChampionFut;
-
-            // let loader = myModuleContainer.querySelector('#loader');
-            // loader.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "none";
             const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
             nowWeather.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "block";
-
-            // const league = myModuleContainer.querySelector('#content .futbol-league .league');
-            // const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
-            // const team = myModuleContainer.querySelector('#content .futbol-league .team');
-            // const teamPlace = myModuleContainer.querySelector('#content .futbol-league .team-place');
-            // const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
-            // const stats = myModuleContainer.querySelector('#content .futbol-league .stats');
-            //
-            // league.innerHTML = `<h3>${data.data.name}</h3>`;
-            // icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="80" width="auto">`;
-            // team.innerHTML = `${data.data.standings[placeChampion].team.location}`;
-            // teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
-            // matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}<h4><h4>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</h4> <h4>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</h4>`;
-            // stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
         }
 
 
@@ -891,6 +876,15 @@ const mySPA = (function() {
 
             let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.value = resultCurrency;
+        }
+
+
+        this.renderCleanCurrency = function() {
+
+            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            inputCurrency1.value = 0;
+            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            inputCurrency2.value = 0;
         }
 
 
@@ -1131,6 +1125,11 @@ const mySPA = (function() {
                     that.showCurrency();
                     that.setActiveBtn(e.target);
                 }
+
+                if (e.target.getAttribute('class') === 'btn-clean-currency' || e.target.getAttribute('class') === 'fas fa-eraser') {
+
+                    that.cleanCurrency();
+                }
             }
         }
 
@@ -1278,7 +1277,14 @@ const mySPA = (function() {
             function inputHandler2() {
                 myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2);
             }
-            inputHandler1();
+
+            that.cleanCurrency();
+        }
+
+
+        this.cleanCurrency = function() {
+
+            myModuleModel.cleanCurrency();
         }
 
     }
