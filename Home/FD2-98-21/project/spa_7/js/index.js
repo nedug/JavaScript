@@ -776,8 +776,6 @@ const mySPA = (function() {
             loader.style.display = "none";
             let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
             futbolLeagueWrap.style.display = "block";
-            let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
-            weatherWrap.style.display = "none";
 
             const league = myModuleContainer.querySelector('#content .futbol-league .league');
             const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
@@ -797,8 +795,6 @@ const mySPA = (function() {
 
         this.renderWeather = function(data) {
 
-            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
-            futbolLeagueWrap.style.display = "none";
             let loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
             let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
@@ -823,6 +819,8 @@ const mySPA = (function() {
 
         this.renderFutbolLoader = function() {
 
+            let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
+            weatherWrap.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "block";
             const loader = myModuleContainer.querySelector('#loader');
@@ -834,6 +832,8 @@ const mySPA = (function() {
 
         this.renderWeatherLoader = function() {
 
+            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
+            futbolLeagueWrap.style.display = "none";
             const futbolWeather = myModuleContainer.querySelector('#content #forecast-now');
             futbolWeather.style.display = "block";
             const loaderW = myModuleContainer.querySelector('#loader-W');
