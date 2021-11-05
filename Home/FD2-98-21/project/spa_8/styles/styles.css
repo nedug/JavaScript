@@ -291,7 +291,7 @@ html, body {
 .authorization-page p {
   margin: 55px 0;
 }
-.btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather {
+.btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather, .btn-currency {
   color: white;
   border: none;
   /*border: 1px solid #addb78;*/
@@ -306,11 +306,11 @@ html, body {
   /*right: 25px;*/
   transition: .3s;
 }
-.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover {
+.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover, .btn-currency:hover {
   background-color: #303030;
   color: white;
 }
-.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain {
+.btn-advice .fa-random, .btn-facts .fa-exchange-alt, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign {
   font-size: 25px;
   margin: 6px 0 6px 20px;
   color: white;
@@ -431,6 +431,20 @@ button {
 }
 #loader-W {
   margin-top: 70px;
+}
+#currency-exchange {
+  width: 550px;
+  height: 400px;
+  padding: 20px 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  /*text-align: center;*/
+  margin: 10px 5px;
+  transition: .3s;
+  display: none;
+}
+#currency-exchange:hover {
+  border: 1px solid #7c7c7c;
 }
 .data__save:disabled {
   background-color: #7c7c7c;

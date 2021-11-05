@@ -285,6 +285,7 @@ const Other = {
     return `
       <section class="${className}">
         <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>
+        <button id="btn-currency" class="btn-currency">Обмен Валют<i class="fas fa-yen-sign"></i></button>
         <button id="btn-weather" class="btn-weather">Погода<i class="fas fa-cloud-moon-rain"></i></button>
                
         <div class="futbol-league">
@@ -301,6 +302,22 @@ const Other = {
           </div>
         </div>
          <div id="loader" style=""><img src="img/loader.gif" height="110" width="auto"></div>
+        </div>
+        
+        <div id="currency-exchange">       
+         
+          <input type="number" class="input_sum-currency">
+          <select id="currency-1">
+              <option value="byn">BYN</option>
+              <option value="usd">USD</option>
+           </select>
+          
+          <select id="currency-2">
+              <option value="usd">USD</option>
+              <option value="byn">BYN</option>
+           </select>
+          <input type="number" class="input_res-currency">
+       
         </div>
         
         <div id="forecast-now">

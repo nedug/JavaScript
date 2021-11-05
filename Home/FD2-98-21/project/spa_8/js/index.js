@@ -354,6 +354,27 @@ const mySPA = (function() {
         }
 
 
+        this.getCurrency = function() {
+
+            myModuleView.renderCurrency();
+
+            // myModuleView.renderWeatherLoader();
+
+            // let apiUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json";
+            // let apiUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/byn.json";
+
+            let apiQuery = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/byn.json";
+
+            fetch(apiQuery, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    // myModuleView.renderCurrency(data);
+                })
+                .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
+        }
+
+
         this.getFutbolFoward = function() {
 
             placeChampionFut++;
@@ -817,6 +838,35 @@ const mySPA = (function() {
         }
 
 
+        this.renderCurrency = function() {
+
+            // placeChampion = placeChampionFut;
+
+            // let loader = myModuleContainer.querySelector('#loader');
+            // loader.style.display = "none";
+            const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
+            futbolLeague.style.display = "none";
+            const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
+            nowWeather.style.display = "none";
+            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            currencyExchange.style.display = "block";
+
+            // const league = myModuleContainer.querySelector('#content .futbol-league .league');
+            // const icon = myModuleContainer.querySelector('#content .futbol-league .icon');
+            // const team = myModuleContainer.querySelector('#content .futbol-league .team');
+            // const teamPlace = myModuleContainer.querySelector('#content .futbol-league .team-place');
+            // const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
+            // const stats = myModuleContainer.querySelector('#content .futbol-league .stats');
+            //
+            // league.innerHTML = `<h3>${data.data.name}</h3>`;
+            // icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="80" width="auto">`;
+            // team.innerHTML = `${data.data.standings[placeChampion].team.location}`;
+            // teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
+            // matches.innerHTML = `<h4>Сыграно матчей: ${data.data.standings[placeChampion].stats[3].value}<h4><h4>Забитых голов: ${data.data.standings[placeChampion].stats[4].value}</h4> <h4>Пропущенных голов: ${data.data.standings[placeChampion].stats[5].value}</h4>`;
+            // stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
+        }
+
+
         this.renderWeather = function(data) {
 
             let loaderW = myModuleContainer.querySelector('#loader-W');
@@ -845,6 +895,8 @@ const mySPA = (function() {
 
             let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
             weatherWrap.style.display = "none";
+            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            currencyExchange.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "block";
             const loader = myModuleContainer.querySelector('#loader');
@@ -858,8 +910,10 @@ const mySPA = (function() {
 
             let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeagueWrap.style.display = "none";
-            const futbolWeather = myModuleContainer.querySelector('#content #forecast-now');
-            futbolWeather.style.display = "block";
+            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            currencyExchange.style.display = "none";
+            const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
+            nowWeather.style.display = "block";
             const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "block";
             const weather = myModuleContainer.querySelector('#content .forecast_wrap');
@@ -1044,6 +1098,12 @@ const mySPA = (function() {
                     that.getFactsUser();
                     that.setActiveBtn(e.target);
                 }
+
+                if (e.target.getAttribute('class') === 'btn-currency') {
+
+                    that.showCurrency();
+                    that.setActiveBtn(e.target);
+                }
             }
         }
 
@@ -1166,6 +1226,12 @@ const mySPA = (function() {
         this.setActiveBtn = function(activeBtn) {
 
             myModuleModel.setActiveBtn(activeBtn);
+        }
+
+
+        this.showCurrency = function() {
+
+            myModuleModel.getCurrency();
         }
 
     }
