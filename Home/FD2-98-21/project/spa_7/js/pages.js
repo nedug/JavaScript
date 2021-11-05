@@ -60,7 +60,11 @@ const LoginWeb = {
               <optgroup label="Россия">
                 <option value="rus.1">Премьер-лига</option>
               </optgroup>
-            </select>
+            </select><br>
+            <div class="sound_wrap">
+              <label>Звук в приложении:</label>
+              <input type="checkbox" id="sound">
+            </div>
             <h4 class="valid-value"></h4>
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save" disabled>Сохранить</button>
@@ -134,14 +138,17 @@ const Options = {
               <optgroup label="Россия">
                 <option value="rus.1">Премьер-лига</option>
               </optgroup>
-            </select>
+            </select><br>
+            <div class="sound_wrap">
+              <label>Звук в приложении:</label>
+              <input type="checkbox" id="sound">
+            </div>
             <h4 class="valid-value"></h4>
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Изменить</button>
           </div>
         </main>
         <footer class="modal__footer">
-          <input type="checkbox" id="night">
           <button id="btn-delete" class="data__delete">Выйти</button>
         </footer>
       </section>

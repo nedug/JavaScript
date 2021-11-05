@@ -122,12 +122,7 @@ const mySPA = (function() {
             placeChampionFut = 0;
             pageNameLink = pageName;
 
-            clickAudio.currentTime=0;
-            clickAudio.play().then(() => {
-                // Autoplay started!
-            }).catch(error => {
-                // Autoplay was prevented.
-            });
+            if (userDataStorage && userDataStorage.soundSpaUser) playSound();
 
             this.getData();
 
@@ -154,7 +149,7 @@ const mySPA = (function() {
         }
 
 
-        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity, soundSpa) { // Получаем данные пользователя и сохраняем в объект 'userData'
 
             if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) { /* Проверка на корректность данных */
 
@@ -176,6 +171,7 @@ const mySPA = (function() {
                 cigarettesInBlock: inputCigInBlock.value,
                 typeFutbolUser: typeFutbol.value,
                 typeWeatherUser: typeCity.value,
+                soundSpaUser: soundSpa.checked,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -523,6 +519,15 @@ const mySPA = (function() {
         }
 
 
+        function playSound() {
+            clickAudio.currentTime=0;
+            clickAudio.play().then(() => {
+                // Autoplay started!
+            }).catch(error => {
+                // Autoplay was prevented.
+            });
+        }
+
         function randomDiap(n, m) {
             return Math.floor(Math.random() * (m - n + 1)) + n;
         }
@@ -588,6 +593,8 @@ const mySPA = (function() {
                 typeSoccer.selected='true';
                 const typeWeather = myModuleContainer.querySelector(`option[value="${userStorage.typeWeatherUser}"]`);
                 typeWeather.selected='true';
+                let soundSpa = myModuleContainer.querySelector('#content #sound');
+                soundSpa.checked = userStorage.soundSpaUser;
                 setMaxDate();
             }
 
@@ -1046,8 +1053,9 @@ const mySPA = (function() {
             let inputData = myModuleContainer.querySelectorAll("#content input");
             let typeFutbol = myModuleContainer.querySelector('#type-futbol');
             let typeCity = myModuleContainer.querySelector('#type-city');
+            let soundSpa = myModuleContainer.querySelector('#content #sound');
 
-            myModuleModel.saveData(inputData, typeFutbol, typeCity);
+            myModuleModel.saveData(inputData, typeFutbol, typeCity, soundSpa);
             that.checkInputChange();
         }
 
