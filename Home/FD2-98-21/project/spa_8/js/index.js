@@ -357,19 +357,32 @@ const mySPA = (function() {
         this.getCurrency = function() {
 
             myModuleView.renderCurrency();
+        }
 
-            // myModuleView.renderWeatherLoader();
 
-            // let apiUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json";
-            // let apiUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/byn.json";
+        this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2) {
 
-            let apiQuery = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/byn.json";
+            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
-                    // myModuleView.renderCurrency(data);
+                    // console.log('первый');
+                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value / 0.001) * 0.001);
+                })
+                .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
+        }
+
+
+        this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2) {
+
+            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
+
+            fetch(apiQuery, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log('второй');
+                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value / 0.001) * 0.001);
                 })
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
@@ -867,6 +880,20 @@ const mySPA = (function() {
         }
 
 
+        this.renderCurrencyInput1 = function(resultCurrency) {
+
+            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            inputCurrency2.value = resultCurrency;
+        }
+
+
+        this.renderCurrencyInput2 = function(resultCurrency) {
+
+            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            inputCurrency1.value = resultCurrency;
+        }
+
+
         this.renderWeather = function(data) {
 
             let loaderW = myModuleContainer.querySelector('#loader-W');
@@ -1232,6 +1259,26 @@ const mySPA = (function() {
         this.showCurrency = function() {
 
             myModuleModel.getCurrency();
+
+            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            inputCurrency1.addEventListener('input', inputHandler1);
+
+            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            inputCurrency2.addEventListener('input', inputHandler2);
+
+            let selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
+            selectCurrency1.addEventListener('click', inputHandler1);
+
+            let selectCurrency2 = myModuleContainer.querySelector("#currency-exchange #currency-2");
+            selectCurrency2.addEventListener('click', inputHandler1);
+
+            function inputHandler1() {
+                myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2);
+            }
+            function inputHandler2() {
+                myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2);
+            }
+            inputHandler1();
         }
 
     }

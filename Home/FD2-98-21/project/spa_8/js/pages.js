@@ -306,17 +306,25 @@ const Other = {
         
         <div id="currency-exchange">       
          
-          <input type="number" class="input_sum-currency">
+          <input type="number" class="input_sum-currency" value="1">
           <select id="currency-1">
               <option value="byn">BYN</option>
               <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="rub">RUB</option>
+              <option value="pln">PLN</option>
+              <option value="uah">UAH</option>
            </select>
           
           <select id="currency-2">
               <option value="usd">USD</option>
               <option value="byn">BYN</option>
+              <option value="eur">EUR</option>
+              <option value="rub">RUB</option>
+              <option value="pln">PLN</option>
+              <option value="uah">UAH</option>
            </select>
-          <input type="number" class="input_res-currency">
+          <input type="number" class="input_res-currency" value="1">
        
         </div>
         
