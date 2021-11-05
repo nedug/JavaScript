@@ -122,6 +122,13 @@ const mySPA = (function() {
             placeChampionFut = 0;
             pageNameLink = pageName;
 
+            clickAudio.currentTime=0;
+            clickAudio.play().then(() => {
+                // Autoplay started!
+            }).catch(error => {
+                // Autoplay was prevented.
+            });
+
             this.getData();
 
             myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
@@ -143,12 +150,7 @@ const mySPA = (function() {
                 clearInterval(timerStatisticOther);
             }
 
-            clickAudio.currentTime=0;
-            clickAudio.play().then(() => {
-                // Autoplay started!
-            }).catch(error => {
-                // Autoplay was prevented.
-            });
+
         }
 
 
