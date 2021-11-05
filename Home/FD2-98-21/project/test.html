@@ -11,6 +11,8 @@
 
 <div id="out" class="out-num">0</div>
 
+<input type='button' value='Пуск!' onclick='start()'>
+
 <script>
 
     const time = 500;
@@ -80,6 +82,20 @@
         'https://youtu.be/nXPoii1SwqU',
         'https://youtu.be/EfN9VpZNeD0',
     ];
+
+
+
+    var clickAudio=new Audio("http://fe.it-academy.by/Examples/Sounds/button-16.mp3");
+
+    function start() {
+        clickSound(); // важно "запустить" звук по событию, т.е. нажатию кнопки
+
+    }
+
+    function clickSound() {
+        clickAudio.currentTime=0; // в секундах
+        clickAudio.play();
+    }
 
 
 
