@@ -36,15 +36,16 @@ const mySPA = (function() {
         let costSig = null;
         let timerStatisticTime = null;
         let timerStatisticOther = null;
+        let timerTick = null;
         let placeChampionFut = null;
-        // let stateBtn = true;
         let that = this;
         let numDiap = null;
         let numDiapF = null;
         let advice = null;
         let facts = null;
 
-        var clickAudio = new Audio('sound/1.mp3');
+        let clickAudio = new Audio('sound/1.mp3');
+        let tickAudio = new Audio('sound/2.mp3');
 
         var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
         var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
@@ -136,6 +137,7 @@ const mySPA = (function() {
 
                 clearInterval(timerStatisticTime);
                 clearInterval(timerStatisticOther);
+                clearInterval(timerTick);
 
                 this.calculateHealth();
             }
@@ -143,6 +145,7 @@ const mySPA = (function() {
 
                 clearInterval(timerStatisticTime);
                 clearInterval(timerStatisticOther);
+                clearInterval(timerTick);
             }
 
 
@@ -218,6 +221,10 @@ const mySPA = (function() {
             timerStatisticTime = setInterval(goTimer, 1000); /* Запускаем таймер статистики */
 
             function goTimer() {
+
+                if (userDataStorage && userDataStorage.soundSpaUser) {
+                    timerTick = setTimeout(playSoundTick, 1000)
+                }
 
                 let timeNow = new Date();
                 let sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
@@ -522,6 +529,14 @@ const mySPA = (function() {
         function playSound() {
             clickAudio.currentTime = 0;
             clickAudio.play().then(() => {
+                // Autoplay started!
+            }).catch(error => {
+                // Autoplay was prevented.
+            });
+        }
+        function playSoundTick() {
+            tickAudio.currentTime = 0;
+            tickAudio.play().then(() => {
                 // Autoplay started!
             }).catch(error => {
                 // Autoplay was prevented.
