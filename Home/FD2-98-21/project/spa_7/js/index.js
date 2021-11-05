@@ -520,7 +520,7 @@ const mySPA = (function() {
 
 
         function playSound() {
-            clickAudio.currentTime=0;
+            clickAudio.currentTime = 0;
             clickAudio.play().then(() => {
                 // Autoplay started!
             }).catch(error => {
