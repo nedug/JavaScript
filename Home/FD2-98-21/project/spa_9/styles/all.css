@@ -4621,7 +4621,8 @@ readers do not read off random characters that represent icons */
   transition: .3s;
 }
 .fa:hover,
-.fas:hover {
+.fas:hover,
+.far:hover {
   color: aquamarine;
 }
 

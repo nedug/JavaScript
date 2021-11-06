@@ -42,7 +42,7 @@ const mySPA = (function() {
         let numDiap = null;
         let numDiapF = null;
         let advice = null;
-        let facts = null;
+        let links = null;
 
         let clickAudio = new Audio('sound/1.mp3');
         let tickAudio = new Audio('sound/2.mp3');
@@ -101,9 +101,7 @@ const mySPA = (function() {
                 'Чаще гуляйте на свежем воздухе. Такие прогулки способствуют «проветриванию» легких и выведению из них канцерогенных и болезнетворных веществ.',
                 'Не обманывайте себя мыслями о том, что можете начинать и прекращать курить, когда захотите.',
                 'Курильщики обоих полов, отказавшись от курения в возрасте между 35 и 39 годами добавляют в среднем от трех до пяти лет к своей жизни.',
-            ];
-
-            facts = ['Табак - коварный "убийца". Вначале он увлекает, как правило, молодых, неопытных людей. Затем крепко привязывает к себе, заставляет курить, доставляя некоторое удовольствие, и только потом, спустя годы, убивает свою жертву.',
+                'Табак - коварный "убийца". Вначале он увлекает, как правило, молодых, неопытных людей. Затем крепко привязывает к себе, заставляет курить, доставляя некоторое удовольствие, и только потом, спустя годы, убивает свою жертву.',
                 'Из 10 000 видов ядовитых растений планеты наибольшее внимание людей привлекает табак, потому что в нем есть никотин.',
                 'Табачный дым содержит более 4000 химических соединений, более сорока, из которых, вызывают рак, а также несколько сотен ядов, включая никотин, цианид, мышьяк, формальдегид, углекислый газ, окись углерода, синильную кислоту и т. д.',
                 'Некоторые производители включают в свою продукцию следующие крайне опасные соединения: ацетальдегид, ацетон, аммиак, бензол, бутиламин, диметиламин, ДДТ, этиламин, формальдегид, сероводород, гидрохинон, метиловый спирт, метиламин, соединения никеля и пиридин.',
@@ -118,8 +116,20 @@ const mySPA = (function() {
                 'Целых два года необходимо освобождаться от этих ядов организму человека, который бросил курить. Но последствия отравления остаются на всю жизнь. Через несколько лет человека начинают одолевать болезни, а он и не предполагает, что их причиной является курение табака в молодые годы. Чем раньше человек бросает курить, тем больше у него шансов остаться здоровым.',
             ];
 
-            numDiap = 12;
-            numDiapF = 12;
+            links = ['https://www.youtube.com/embed/PBR-Yev5vO8',
+                'https://www.youtube.com/embed/2DQxagQZTLg',
+                'https://www.youtube.com/embed/lOx4HgqchUw',
+                'https://www.youtube.com/embed/a15y8r382Cw',
+                'https://www.youtube.com/embed/scEVwgfn1_A',
+                'https://www.youtube.com/embed/tM-G_VVIj9M',
+                'https://www.youtube.com/embed/nXPoii1SwqU',
+                'https://www.youtube.com/embed/EfN9VpZNeD0',
+                'https://www.youtube.com/embed/3CPrJmZahJE',
+                'https://www.youtube.com/embed/nKVeRDiZaes',
+            ];
+
+            numDiap = 25;
+            numDiapF = 9;
             placeChampionFut = 0;
             pageNameLink = pageName;
 
@@ -546,13 +556,13 @@ const mySPA = (function() {
         }
 
 
-        this.getFactsUser = function() {
+        this.getVideoFactsUser = function() {
 
             let randomNumberFacts = randomDiap(0, numDiapF);
 
-            myModuleView.renderFactsUser(facts[randomNumberFacts]);
+            myModuleView.renderVideoFactsUser(links[randomNumberFacts]);
 
-            facts.splice(randomNumberFacts, 1);
+            links.splice(randomNumberFacts, 1);
             --numDiapF;
         }
 
@@ -1000,7 +1010,7 @@ const mySPA = (function() {
         }
 
 
-        this.renderFactsUser = function(textFacts) {
+        this.renderVideoFactsUser = function(videoFacts) {
 
             let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'block';
@@ -1008,12 +1018,15 @@ const mySPA = (function() {
             chatSpa.style.display = 'none';
             let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
+            let messageFacts = myModuleContainer.querySelector(".facts-spa iframe");
+            messageFacts.setAttribute("src", videoFacts);
 
-            let messageFacts = myModuleContainer.querySelector(".facts-spa div");
-            messageFacts.innerHTML = textFacts;
-            if (!textFacts) {
-                messageFacts.style.color = 'red';
-                messageFacts.innerHTML = 'Факты закончились! Заходите позже!';
+            if (!videoFacts) {
+                messageFacts.setAttribute("src", '');
+                messageFacts.style.display = 'none';
+                factsSpa.style.height = 'auto';
+                let factNone = myModuleContainer.querySelector("#content .fact_none");
+                factNone.style.display = 'block';
             }
         }
 
@@ -1116,7 +1129,7 @@ const mySPA = (function() {
 
                 if (e.target.getAttribute('class') === 'btn-facts') {
 
-                    that.getFactsUser();
+                    that.getVideoFactsUser();
                     that.setActiveBtn(e.target);
                 }
 
@@ -1243,9 +1256,9 @@ const mySPA = (function() {
         }
 
 
-        this.getFactsUser = function() {
+        this.getVideoFactsUser = function() {
 
-            myModuleModel.getFactsUser();
+            myModuleModel.getVideoFactsUser();
         }
 
 

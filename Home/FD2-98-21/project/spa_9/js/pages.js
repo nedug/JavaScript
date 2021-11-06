@@ -250,7 +250,7 @@ const Motivation = {
     return `
       <section class="${className}">
         <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
-        <button id="btn-facts" class="btn-facts">Факты <i class="fas fa-exchange-alt"></i></button>
+        <button id="btn-facts" class="btn-facts">Видео <i class="fas fa-video"></i></button>
         <button id="btn-links" class="btn-chat">Онлайн чат <i class="far fa-comments"></i></button>
                 
         <div class="chat-spa">
@@ -262,15 +262,15 @@ const Motivation = {
         </div>
         
         <div class="advice-spa">
-            <p><strong>${userName}</strong>, тут вы можете получить случайные полезные советы как снизить вред от курения и сохранить необходимую мотивацию!</p>
+            <p><strong>${userName}</strong>, тут вы можете получить случайные полезные советы и факты как снизить вред от курения и сохранить необходимую мотивацию!</p>
             <div></div>
         </div>
         
-         <div class="facts-spa">
-            <p><strong>${userName}</strong>, тут вы можете получить случайные факты о вреде курения, которые помогут понять опасность данной привычки!</p>
-            <div></div>
+        <div class="facts-spa">
+            <p><strong>${userName}</strong>, тут вы можете посмотреть случайные видео о вреде курения, последствиях отказа и много другой полезной информации!</p>
+            <iframe src="" frameborder="0" class="video-fact"></iframe>
+            <p class="fact_none">Факты закончились! Заходите позже!</p>
         </div>
-        
 <!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
       </section>
     `;
