@@ -21,7 +21,7 @@ const routes = {
 
 
 /* ----- SPA module --- */
-const mySPA = (function() {
+const SPA_Smoking = (function() {
 
 
     /* -------  model ------- */
@@ -1331,8 +1331,8 @@ const mySPA = (function() {
 
 
 /*** --- init module --- ***/
-document.addEventListener("DOMContentLoaded", mySPA.init({
-  container: "spa",
+document.addEventListener("DOMContentLoaded", SPA_Smoking.init({
+  container: "spa-smoking",
   routes: routes,
   components: components,
 }));
