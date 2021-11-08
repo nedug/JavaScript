@@ -3,7 +3,7 @@ const components = {
   header: Header,
   navbar: NavBar,
   content: Content,
-  footer: Footer,
+  // footer: Footer,
 };
 
 // Список поддердживаемых роутов (from pages.js)
@@ -573,6 +573,12 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.showAboutSpa = function() {
+
+            myModuleView.renderAboutSpa();
+        }
+
+
         function playSound() {
             clickAudio.currentTime = 0;
             clickAudio.play().then(() => {
@@ -1038,6 +1044,26 @@ const SPA_Smoking = (function() {
             activeBtn.style.backgroundColor = '#303030'
         }
 
+
+        this.renderAboutSpa = function() {
+
+            let modalAboutSpa = myModuleContainer.querySelector("#content .modal_about_spa");
+            modalAboutSpa.classList.remove('modal_closed');
+            let modalOverlay = myModuleContainer.querySelector("#content .modal-overlay");
+            modalOverlay.classList.remove('modal_closed');
+
+
+            $(document).ready(function(){
+                $('.modal_about_spa').animate({scrollTop: 0}, 0).animate({scrollTop: 200}, 7000);
+
+            });
+
+            setTimeout(function() {
+                modalAboutSpa.classList.add('modal_closed');
+                modalOverlay.classList.add('modal_closed');
+            }, 6000)
+        }
+
     }
 
 
@@ -1142,6 +1168,11 @@ const SPA_Smoking = (function() {
                 if (e.target.getAttribute('class') === 'btn-clean-currency' || e.target.getAttribute('class') === 'fas fa-eraser') {
 
                     that.cleanCurrency();
+                }
+
+                if (e.target.getAttribute('class') === 'about_spa') {
+
+                    that.showAboutSpa();
                 }
             }
         }
@@ -1298,6 +1329,12 @@ const SPA_Smoking = (function() {
         this.cleanCurrency = function() {
 
             myModuleModel.cleanCurrency();
+        }
+
+
+        this.showAboutSpa = function() {
+
+            myModuleModel.showAboutSpa();
         }
 
     }

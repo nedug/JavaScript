@@ -31,10 +31,10 @@ const Content = {
 };
 
 
-const Footer = {
-  render: (customClass = "") => {
-    return `<footer class="footer ${customClass}">
-      <p>&copy; 2021 все будет хорошо!</p>
-    </footer>`;
-  }
-};
+// const Footer = {
+//   render: (customClass = "") => {
+//     return `<footer class="footer ${customClass}">
+//       <p>&copy; 2021 все будет хорошо!</p>
+//     </footer>`;
+//   }
+// };
