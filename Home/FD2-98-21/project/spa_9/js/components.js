@@ -2,7 +2,7 @@ const Header = {
   render: (customClass = "") => {
     return `
       <header class="header ${customClass}" id="header">
-        <a href="#statistics">Some logo here</a>
+        <a href="#statistics">STOP SMOKING<i class="fas fa-smoking-ban"></i></a>
       </header>`;
   }
 };
