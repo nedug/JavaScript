@@ -42,6 +42,7 @@ const SPA_Smoking = (function() {
         let numDiapF = null;
         let advice = null;
         let links = null;
+        let classBtn = null
 
         let clickAudio = new Audio('sound/1.mp3');
         let tickAudio = new Audio('sound/2.mp3');
@@ -182,6 +183,7 @@ const SPA_Smoking = (function() {
                 typeFutbolUser: typeFutbol.value,
                 typeWeatherUser: typeCity.value,
                 soundSpaUser: soundSpa.checked,
+                colorSpaUser: classBtn,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -575,6 +577,14 @@ const SPA_Smoking = (function() {
         this.showAboutSpa = function() {
 
             myModuleView.renderAboutSpa();
+        }
+
+
+        this.changeColorSpa = function(btnColor) {
+
+            classBtn = btnColor.getAttribute('class').split(' ')[1];
+            console.log(classBtn);
+            myModuleView.changeColorSpa(btnColor);
         }
 
 
@@ -1071,6 +1081,18 @@ const SPA_Smoking = (function() {
             }, 6000)
         }
 
+
+        this.changeColorSpa = function(btnColor) {
+
+            // let styleCSS = document.head.querySelector("link[href$='styles.css']");
+            // styleCSS.setAttribute('href', './styles/styles-black.css')
+
+            let btnColorSpa = myModuleContainer.querySelectorAll("#content .color_wrap .color-spa");
+            btnColorSpa.forEach(elem => elem.style.height = '13px');
+            btnColor.style.height = '20px';
+
+        }
+
     }
 
 
@@ -1181,6 +1203,12 @@ const SPA_Smoking = (function() {
 
                     that.showAboutSpa();
                 }
+
+                if (e.target.classList.contains('color-spa')) {
+
+                    that.changeColorSpa(e.target);
+                }
+
             }
         }
 
@@ -1342,6 +1370,12 @@ const SPA_Smoking = (function() {
         this.showAboutSpa = function() {
 
             myModuleModel.showAboutSpa();
+        }
+
+
+        this.changeColorSpa = function(btnColor) {
+
+            myModuleModel.changeColorSpa(btnColor);
         }
 
     }

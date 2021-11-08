@@ -146,6 +146,14 @@ const Options = {
               <label>Звук в приложении:</label>
               <input type="checkbox" id="sound">
             </div>
+            <div class="color_wrap">
+              <label>Цветовая схема:</label>
+<!--              <input type="checkbox" id="color-spa">-->
+            <button class="color-spa black"></button>
+            <button class="color-spa red" ></button>
+            <button class="color-spa blue"></button>
+            <button class="color-spa green"></button>
+            </div>
             <h4 class="valid-value"></h4>
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save">Изменить</button>
