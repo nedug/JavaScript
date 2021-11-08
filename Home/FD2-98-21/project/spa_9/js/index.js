@@ -3,7 +3,6 @@ const components = {
   header: Header,
   navbar: NavBar,
   content: Content,
-  // footer: Footer,
 };
 
 // Список поддердживаемых роутов (from pages.js)
@@ -861,7 +860,7 @@ const SPA_Smoking = (function() {
             const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
             const stats = myModuleContainer.querySelector('#content .futbol-league .stats');
 
-            league.innerHTML = `<h3>${data.data.name}</h3>`;
+            league.innerHTML = `<h3>${data.data.name} / ${data.data.seasonDisplay}</h3>`;
             icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="80" width="auto">`;
             team.innerHTML = `${data.data.standings[placeChampion].team.location}`;
             teamPlace.innerHTML = `<span>Место в турнире: ${data.data.standings[placeChampion].stats[8].value}</span> <span>Очки: ${data.data.standings[placeChampion].stats[6].value}</span>`;
@@ -878,6 +877,14 @@ const SPA_Smoking = (function() {
             nowWeather.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "block";
+
+            let date = new Date().getDate();
+            if (date < 10) date = '0' + date;
+            let month = new Date().getMonth();
+            if (month < 10) month = '0' + month;
+            let year = new Date().getFullYear();
+            let currencyDate = myModuleContainer.querySelector('#content .currency_date');
+            currencyDate.innerHTML = `${date}.${month + 1}.${year}`;
         }
 
 

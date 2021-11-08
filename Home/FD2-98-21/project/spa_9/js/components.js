@@ -29,12 +29,3 @@ const Content = {
     return `<div class="content ${customClass}" id="content"></div>`;
   }
 };
-
-
-// const Footer = {
-//   render: (customClass = "") => {
-//     return `<footer class="footer ${customClass}">
-//       <p>&copy; 2021 все будет хорошо!</p>
-//     </footer>`;
-//   }
-// };
