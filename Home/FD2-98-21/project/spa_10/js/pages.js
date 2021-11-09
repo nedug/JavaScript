@@ -17,7 +17,7 @@ const LoginWeb = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="4" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="num-cigarette-block" class="input__cigarette-block" value="20" min="1" max="50"><br>
-             <hr>
+             <br><hr><br>
              <label>Город:</label>
             <select id="type-city">
               <optgroup label="Беларусь">
@@ -108,7 +108,7 @@ const Options = {
             <input type="number" id="user-cost-cigarette" class="input__cost-cigarette" value="${userCostCigarette}" min="1" max="20"><br>
             <label>Количество сигарет в пачке, шт.:</label>
             <input type="number" id="cigarette-in-block" class="input__cigarette-block" value="${cigarettesInBlock}" min="1" max="50"><br>
-            <hr>
+            <br><hr><br>
             <label>Город:</label>
             <select id="type-city">
               <optgroup label="Беларусь">

@@ -238,7 +238,7 @@ html, body {
   position: relative;
 }
 .modal__content input, .modal__content select {
-  margin: 6px 70px;
+  margin: 8px 70px;
   border: 1px solid #bab9b9;
   border-radius: 3px;
   padding: 4px;
@@ -316,7 +316,7 @@ html, body {
   border-radius: 4px;
   padding: 7px 11px;
   background-color: #e57e7e;
-  margin: 15px 10px 10px 150px;
+  margin: 20px 10px 10px 150px;
   /*position: absolute;*/
   /*bottom: 10px;*/
   /*right: 25px;*/
@@ -333,16 +333,16 @@ html, body {
   background-color: #2d2d2d
 }
 .about_spa {
-  width: 125px;
+  width: 135px;
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 7px 11px;
+  padding: 12px 11px;
   background-color: #8de290;
   margin: 10px 10px 10px 40px;
   position: absolute;
-  bottom: 65px;
-  right: 15px;
+  bottom: 120px;
+  right: 12px;
   cursor: pointer;
   transition: .3s;
 }
@@ -703,7 +703,7 @@ button {
   max-height: 100%;
   position: fixed;
   z-index: 100;
-  left: 20%;
+  left: 25%;
   top: 50%;
   border-radius: 7px;
   padding: 17px;
@@ -764,5 +764,8 @@ button {
   /*border: 1px solid black;*/
   transition: .3s;
 }
-
+.user__content {
+  font-size: 21px;
+  margin: 19px 0 19px 30px;
+}
 
