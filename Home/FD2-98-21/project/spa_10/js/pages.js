@@ -65,6 +65,16 @@ const LoginWeb = {
               <label>Звук в приложении:</label>
               <input type="checkbox" id="sound">
             </div>
+            <div class="color_wrap">
+              <label>Цветовая схема:</label>
+              <div class="btn_wrap">
+                <button class="color-spa white"></button>
+                <button class="color-spa black"></button>
+                <button class="color-spa red"></button>
+                <button class="color-spa blue"></button>
+                <button class="color-spa green"></button>
+              </div>
+            </div>
             <h4 class="valid-value"></h4>
             <i class="fas fa-user-cog"></i>
             <button id="btn-save" class="data__save" disabled>Сохранить</button>
@@ -148,11 +158,13 @@ const Options = {
             </div>
             <div class="color_wrap">
               <label>Цветовая схема:</label>
-<!--              <input type="checkbox" id="color-spa">-->
-            <button class="color-spa black"></button>
-            <button class="color-spa red" ></button>
-            <button class="color-spa blue"></button>
-            <button class="color-spa green"></button>
+              <div class="btn_wrap">
+                <button class="color-spa white"></button>
+                <button class="color-spa black"></button>
+                <button class="color-spa red"></button>
+                <button class="color-spa blue"></button>
+                <button class="color-spa green"></button>
+              </div>
             </div>
             <h4 class="valid-value"></h4>
             <i class="fas fa-user-cog"></i>

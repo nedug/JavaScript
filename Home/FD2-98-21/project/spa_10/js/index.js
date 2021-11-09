@@ -42,7 +42,7 @@ const SPA_Smoking = (function() {
         let numDiapF = null;
         let advice = null;
         let links = null;
-        let classBtn = null
+        let stateColorSpa = 'white';
 
         let clickAudio = new Audio('sound/1.mp3');
         let tickAudio = new Audio('sound/2.mp3');
@@ -157,6 +157,9 @@ const SPA_Smoking = (function() {
                 clearInterval(timerStatisticOther);
                 clearInterval(timerTick);
             }
+            // if (userDataStorage) {
+                myModuleView.changeColorSpa();
+            // }
         }
 
 
@@ -183,7 +186,7 @@ const SPA_Smoking = (function() {
                 typeFutbolUser: typeFutbol.value,
                 typeWeatherUser: typeCity.value,
                 soundSpaUser: soundSpa.checked,
-                colorSpaUser: classBtn,
+                colorSpaUser: stateColorSpa,
             }
 
             this.storeData(); /* Сохраняем данные в localStorage */
@@ -211,6 +214,8 @@ const SPA_Smoking = (function() {
         this.clearData = function() { /* Очищаем данные в хранилище */
 
             localStorage.removeItem('userData');
+
+            stateColorSpa = 'white';
 
             this.updateState(pageNameLink); /* Обновляем приложение */
         }
@@ -582,9 +587,9 @@ const SPA_Smoking = (function() {
 
         this.changeColorSpa = function(btnColor) {
 
-            classBtn = btnColor.getAttribute('class').split(' ')[1];
-            console.log(classBtn);
-            myModuleView.changeColorSpa(btnColor);
+            stateColorSpa = btnColor.getAttribute('class').split(' ')[1];
+            // console.log(stateColorSpa);
+            myModuleView.changeColorBtn(btnColor);
         }
 
 
@@ -654,6 +659,9 @@ const SPA_Smoking = (function() {
                 routeName = hashPageName in routes ? hashPageName : "login";
                 updateContent();
                 setMaxDate();
+                let btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .white`);
+                // console.log(btnColorSpa);
+                btnColorSpa.style.height = '20px';
             }
 
             else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
@@ -667,11 +675,14 @@ const SPA_Smoking = (function() {
                 routeName = "options";
                 updateContent();
                 const typeSoccer = myModuleContainer.querySelector(`option[value="${userStorage.typeFutbolUser}"]`);
-                typeSoccer.selected='true';
+                typeSoccer.selected = 'true';
                 const typeWeather = myModuleContainer.querySelector(`option[value="${userStorage.typeWeatherUser}"]`);
-                typeWeather.selected='true';
+                typeWeather.selected = 'true';
                 let soundSpa = myModuleContainer.querySelector('#content #sound');
                 soundSpa.checked = userStorage.soundSpaUser;
+                let btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .${userStorage.colorSpaUser}`);
+                // console.log(btnColorSpa);
+                btnColorSpa.style.height = '20px';
                 setMaxDate();
             }
 
@@ -1082,7 +1093,7 @@ const SPA_Smoking = (function() {
         }
 
 
-        this.changeColorSpa = function(btnColor) {
+        this.changeColorBtn = function(btnColor) {
 
             // let styleCSS = document.head.querySelector("link[href$='styles.css']");
             // styleCSS.setAttribute('href', './styles/styles-black.css')
@@ -1090,7 +1101,14 @@ const SPA_Smoking = (function() {
             let btnColorSpa = myModuleContainer.querySelectorAll("#content .color_wrap .color-spa");
             btnColorSpa.forEach(elem => elem.style.height = '13px');
             btnColor.style.height = '20px';
+        }
 
+
+        this.changeColorSpa = function() {
+
+            let styleCSS = document.head.querySelector("link[href$='styles.css']");
+            if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
+            else styleCSS.setAttribute('href', `./styles/styles.css`);
         }
 
     }

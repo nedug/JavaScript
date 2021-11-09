@@ -41,7 +41,7 @@ html, body {
 
 .header > a {
   font-size: 30px;
-  color: #f62222;
+  color: black;
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 17px;
@@ -110,7 +110,7 @@ html, body {
 }
 .mainmenu__link.active {
   text-decoration: none;
-  background-color: #f81717;
+  background-color: #000;
   color: #fff;
 }
 
@@ -228,7 +228,7 @@ html, body {
   margin-top: 20px;
 }
 .modal__content {
-  width: 700px;
+  width: 715px;
   padding: 10px 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -269,7 +269,7 @@ html, body {
   font-size: 75px;
   position: absolute;
   top: 25px;
-  right: 30px;
+  right: 35px;
 }
 #content .login-page .fa-user-cog {
   color: #bab9b9;
@@ -302,7 +302,7 @@ html, body {
 .valid-value {
   position: absolute;
   top: 120px;
-  right: 44px;
+  right: 49px;
   color: red;
   text-align: center;
 }
@@ -408,15 +408,23 @@ html, body {
   position: absolute;
   top: -5px;
 }
+
+
 .color_wrap {
-  margin: 11px 0;
+  margin: 23px 0 13px;
   position: relative;
+  /*height: 35px;*/
 }
-#color-spa {
-  margin: 6px 100px;
-  width: 40px;
+.btn_wrap {
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: flex-end;
   position: absolute;
-  top: -5px;
+  top: 0;
+  left: 195px;
+  /*display: inline-block;*/
+  height: 20px;
+  /*padding: 10px;*/
 }
 
 input[type="checkbox"] {
@@ -719,6 +727,42 @@ button {
 }
 .currency_date {
   color: #ff4949;
+}
+#content .black {
+  width: 30px;
+  height: 13px;
+  background-color: black;
+  border: none;
+  transition: .3s;
+}
+#content .red {
+  width: 30px;
+  height: 13px;
+  background-color: #ff4848;
+  border: none;
+  transition: .3s;
+}
+#content .blue {
+  width: 30px;
+  height: 13px;
+  background-color: #059cd9;
+  border: none;
+  transition: .3s;
+}
+#content .green {
+  width: 30px;
+  height: 13px;
+  background-color: #19d619;
+  border: none;
+  transition: .3s;
+}
+#content .white {
+  width: 30px;
+  height: 13px;
+  background-color: #bab9b9;
+  border: none;
+  /*border: 1px solid black;*/
+  transition: .3s;
 }
 
 
