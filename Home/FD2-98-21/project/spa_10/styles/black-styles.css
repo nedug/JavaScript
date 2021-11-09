@@ -131,7 +131,6 @@ html, body {
   height: 10px;
   width: 0;
   background-color: #ff4847;
-  /*background-color: #5eef5e;*/
   display: block;
   border-radius: 2px;
   transition: 1.5s;
@@ -225,8 +224,6 @@ html, body {
   padding: 10px 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
-  /*text-align: center;*/
-  /*margin: 7px 0;*/
   transition: .3s;
   position: relative;
 }
@@ -318,9 +315,6 @@ html, body {
   padding: 7px 11px;
   background-color: #e57e7e;
   margin: 15px 10px 10px 150px;
-  /*position: absolute;*/
-  /*bottom: 10px;*/
-  /*right: 25px;*/
   cursor: pointer;
   transition: .3s;
 }
@@ -409,23 +403,17 @@ html, body {
   position: absolute;
   top: -5px;
 }
-
-
 .color_wrap {
   margin: 23px 0 13px;
   position: relative;
-  /*height: 35px;*/
 }
 .btn_wrap {
   display: flex;
-  /*justify-content: space-between;*/
   align-items: flex-end;
   position: absolute;
   top: 0;
   left: 195px;
-  /*display: inline-block;*/
   height: 20px;
-  /*padding: 10px;*/
 }
 
 input[type="checkbox"] {
@@ -462,8 +450,6 @@ input:checked[type="checkbox"]::before {
   background: black;
   border: 1px solid white;
 }
-
-
 button {
   cursor: pointer;
 }
@@ -533,7 +519,6 @@ button {
 }
 #currency-exchange {
   width: 700px;
-  /*height: 400px;*/
   padding: 20px 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -661,7 +646,6 @@ button {
 }
 .advice-spa {
   width: 700px;
-  /*height: 430px;*/
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -717,7 +701,6 @@ button {
   transform: translate(-50%, -50%);
   background: white;
   border: 1px solid #bab9b9;
-  /*box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);*/
   overflow: auto;
 }
 .modal_closed {
@@ -768,7 +751,6 @@ button {
   height: 13px;
   background-color: #bab9b9;
   border: none;
-  /*border: 1px solid black;*/
   transition: .3s;
 }
 
