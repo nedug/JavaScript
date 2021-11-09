@@ -157,9 +157,9 @@ const SPA_Smoking = (function() {
                 clearInterval(timerStatisticOther);
                 clearInterval(timerTick);
             }
-            // if (userDataStorage) {
-                myModuleView.changeColorSpa();
-            // }
+
+            if (userDataStorage) stateColorSpa = userDataStorage.colorSpaUser;
+            myModuleView.changeColorSpa();
         }
 
 

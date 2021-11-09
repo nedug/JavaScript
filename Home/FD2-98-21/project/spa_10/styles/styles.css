@@ -589,6 +589,7 @@ button {
 }
 .data__save:disabled {
   background-color: #7c7c7c;
+  cursor: not-allowed;
 }
 .chat-spa {
   width: 700px;
