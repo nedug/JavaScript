@@ -12,15 +12,14 @@ html, body {
 .app {
   padding: 15px 20px 10px;
   display: flex;
-  /*min-height: 100vh;*/
-  /*min-width: 100%;*/
   width: 760px;
   height: 815px;
-  border: 1px solid #919191;
+  border: 1px solid #e3e3e3; /* тут */
   flex-direction: column;
   justify-content: space-between;
   margin: 20px;
   border-radius: 10px;
+  background-color: #373737; /* тут */
 }
 #mainmenu {
   margin-left: -21px;
@@ -35,13 +34,13 @@ html, body {
 .header .fa-smoking-ban {
   font-size: 30px;
   margin: 0 0 0 40px;
-  color: #c3c3c3;
+  color: #e3e3e3; /* тут */
   transition: .3s;
 }
 
 .header > a {
   font-size: 30px;
-  color: black;
+  color: white; /* тут */
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 17px;
@@ -56,41 +55,35 @@ html, body {
   padding: 0;
   margin: 0;
   list-style: none;
-  border: 1px gray solid;
+  border: 1px #b5b4b4 solid; /* тут */
   display: flex;
-  /*justify-content: space-between;*/
 }
 
 .mainmenu li {
   list-style: none;
   width: 152px;
   text-align: center;
-  /*border-left: 1px solid darkgray;*/
 }
 .mainmenu li:not(:first-of-type) {
-  border-left: 1px solid darkgray;
+  border-left: 1px solid #e3e3e3; /* тут */
 }
 
 .mainmenu__link {
   display: block;
   padding: 16px 25px;
-  color: #000;
+  color: #8f8f8f; /* тут */
   text-decoration: none;
   font-size: 19px;
-  /*border: 1px solid darkgray;*/
+  background-color: black;
 }
 
 .mainmenu__link:hover {
   text-decoration: none;
-  background-color: darkgray;
-  color: #fff;
+  background-color: #8f8f8f; /* тут */
+  color: black; /* тут */
 }
-/*.mainmenu__link .fa-cog{*/
-/*  color: #fff;*/
-/*  margin: 5px;*/
-/*}*/
 .header:hover .fa-smoking-ban{
-  color: #f54b4b;
+  color: #ff6969;  /* тут */
   animation: my_1;
   animation-duration: 3s;
   animation-fill-mode: forwards;
@@ -110,13 +103,13 @@ html, body {
 }
 .mainmenu__link.active {
   text-decoration: none;
-  background-color: #000;
-  color: #fff;
+  background-color: white; /* тут */
+  color: black; /* тут */
 }
 
 .content {
-  /*padding: 0.8em 0;*/
   flex-grow: 1;
+  color: white; /* тут */
 }
 
 /*------------------------------*/
@@ -192,7 +185,7 @@ html, body {
   color: #dec157;
 }
 .statistics-page .fa-angle-double-down {
-  color: #7c7c7c;
+  color: #d6d6d6;  /* тут */
   font-size: 21px;
   position: absolute;
   bottom: 5px;
@@ -244,24 +237,31 @@ html, body {
   padding: 4px;
 }
 .modal__content #type-futbol {
+  background-color: #d4d3d3; /* тут */
   width: 305px;
 }
 .modal__content #type-city {
+  background-color: #d4d3d3; /* тут */
   width: 392px;
 }
 .modal__content input:nth-of-type(1) {
+   background-color: #d4d3d3; /* тут */
    width: 359px;
  }
 .modal__content input:nth-of-type(2) {
+  background-color: #d4d3d3; /* тут */
   width: 239px;
 }
 .modal__content input:nth-of-type(3) {
+  background-color: #d4d3d3; /* тут */
   width: 136px;
 }
 .modal__content input:nth-of-type(4) {
+  background-color: #d4d3d3; /* тут */
   width: 219px;
 }
 .modal__content input:nth-of-type(5) {
+  background-color: #d4d3d3; /* тут */
    width: 194px;
  }
 #content .fa-user-cog {
@@ -277,6 +277,7 @@ html, body {
 #content .btn-futbol-back, #content .btn-futbol-foward {
   border: none;
   padding: 0;
+  background-color: #373737; /* тут */
 }
 #content .fa-chevron-left, #content .fa-chevron-right {
   margin: 10px 15px 0;
@@ -367,35 +368,35 @@ html, body {
   margin: 55px 0;
 }
 .btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather {
-  color: white;
+  color: black; /* тут */
   width: 200px;
   border: none;
   border-radius: 4px;
   padding: 6px 20px;
-  background-color: #919191;
+  background-color: #e3e3e3; /* тут */
   margin: 20px 15px;
   font-size: 20px;
   transition: .3s;
 }
 .btn-currency {
-  color: white;
+  color: black;/* тут */
   width: 200px;
   border: none;
   border-radius: 4px;
   padding: 6px 15px;
-  background-color: #919191;
+  background-color: #e3e3e3; /* тут */
   margin: 20px 15px;
   font-size: 20px;
   transition: .3s;
 }
 .btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover, .btn-currency:hover {
-  background-color: #303030;
-  color: white;
+  background-color: white; /* тут */
+  color: black; /* тут */
 }
 .btn-advice .fa-random, .btn-facts .fa-video, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign {
   font-size: 25px;
   margin: 6px 0 6px 20px;
-  color: white;
+  color: black; /* тут */
   transition: .3s;
 }
 .sound_wrap {
@@ -522,6 +523,7 @@ button {
   background-image: url(../img/wind-atlas.gif);
   background-size: auto 104%;
   background-position: -70px;
+  color: black; /* тут */
 }
 #forecast-now:hover {
   border: 1px solid #7c7c7c;
@@ -549,8 +551,10 @@ button {
   margin: 15px 30px 15px 10px;
   padding: 8px;
   width: 535px;
-  border: 1px solid dodgerblue;
+  border: 1px solid white; /* тут */;
   border-radius: 3px;
+  color: white; /* тут */;
+  background-color: #969090; /* тут */;
 }
 #currency-exchange input:focus {
   outline: none;
@@ -625,6 +629,8 @@ button {
   border: 1px solid #bab9b9;
   border-radius: 5px;
   transition: .3s;
+  color: white; /* тут */
+  background-color: #cdcccc; /* тут */
 }
 .message-chat:hover {
   border: 1px solid black;
@@ -643,6 +649,7 @@ button {
   padding: 0;
   margin: 0;
   border: none;
+  background-color: #373737; /* тут */
 }
 .chat-spa .fa-cloud-upload-alt {
   font-size: 30px;

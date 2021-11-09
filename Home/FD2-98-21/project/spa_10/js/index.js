@@ -1069,7 +1069,12 @@ const SPA_Smoking = (function() {
 
             let buttonAll = myModuleContainer.querySelectorAll("#content > section > button");
             buttonAll.forEach(elem => elem.style.backgroundColor = '#919191');
-            activeBtn.style.backgroundColor = '#303030'
+            activeBtn.style.backgroundColor = '#303030';
+
+            if (userStorage.colorSpaUser === 'black') {
+                buttonAll.forEach(elem => elem.style.backgroundColor = '#c3c3c3');
+                activeBtn.style.backgroundColor = '#ffffff';
+            }
         }
 
 
