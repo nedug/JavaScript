@@ -326,11 +326,19 @@ const SPA_Smoking = (function() {
         }
 
 
-        this.getFutbol = function() {
+        this.getFutbolSeason = function() {
+
+            myModuleView.renderFutbolSeason();
+        }
+
+
+        this.getFutbol = function(inputDateFutbol) {
 
             myModuleView.renderFutbolLoader();
 
-            let apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=2021&sort=asc`;
+            if (inputDateFutbol.value < 2015 || inputDateFutbol.value > new Date().getFullYear()) return;
+
+            let apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=${inputDateFutbol.value}&sort=asc`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -379,6 +387,7 @@ const SPA_Smoking = (function() {
         this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
 
             let dateCurrency = selectDate.value;
+            if (!dateCurrency) return;
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
             let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
@@ -416,19 +425,19 @@ const SPA_Smoking = (function() {
         }
 
 
-        this.getFutbolFoward = function() {
+        this.getFutbolFoward = function(inputDateFutbol) {
 
             placeChampionFut++;
             if (placeChampionFut === 20) placeChampionFut = 0;
-            this.getFutbol();
+            this.getFutbol(inputDateFutbol);
         }
 
 
-        this.getFutbolBack = function() {
+        this.getFutbolBack = function(inputDateFutbol) {
 
             placeChampionFut--;
             if (placeChampionFut === -1) placeChampionFut = 19;
-            this.getFutbol();
+            this.getFutbol(inputDateFutbol);
         }
 
 
@@ -908,6 +917,14 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.renderFutbolSeason = function() {
+
+            let futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
+            futbolSeason.value = new Date().getFullYear();
+
+        }
+
+
         this.renderCurrency = function(dateNow) {
 
             const dateCurrency = myModuleContainer.querySelector(`#content .input__date-currency`);
@@ -915,6 +932,8 @@ const SPA_Smoking = (function() {
             dateCurrency.setAttribute('min', '2020-11-22');
             dateCurrency.setAttribute('value', dateNow);
 
+            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            futbolSeason.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "none";
             const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
@@ -973,6 +992,8 @@ const SPA_Smoking = (function() {
 
         this.renderFutbolLoader = function() {
 
+            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            futbolSeason.style.display = "block";
             let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
             weatherWrap.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
@@ -988,6 +1009,8 @@ const SPA_Smoking = (function() {
 
         this.renderWeatherLoader = function() {
 
+            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            futbolSeason.style.display = "none";
             let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeagueWrap.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
@@ -1304,7 +1327,16 @@ const SPA_Smoking = (function() {
 
         this.showFutbol = function() {
 
-            myModuleModel.getFutbol();
+            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            inputDateFutbol.addEventListener('input', inputDateHandler);
+
+            myModuleModel.getFutbolSeason();
+            myModuleModel.getFutbol(inputDateFutbol);
+
+
+            function inputDateHandler() {
+                myModuleModel.getFutbol(inputDateFutbol);
+            }
         }
 
         this.showWeather = function() {
@@ -1315,13 +1347,15 @@ const SPA_Smoking = (function() {
 
         this.showFutbolFoward = function() {
 
-            myModuleModel.getFutbolFoward();
+            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            myModuleModel.getFutbolFoward(inputDateFutbol);
         }
 
 
         this.showFutbolBack = function() {
 
-            myModuleModel.getFutbolBack();
+            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            myModuleModel.getFutbolBack(inputDateFutbol);
         }
 
 

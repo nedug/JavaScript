@@ -311,7 +311,11 @@ const Other = {
         <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>
         <button id="btn-currency" class="btn-currency">Обмен Валют<i class="fas fa-yen-sign"></i></button>
         <button id="btn-weather" class="btn-weather">Погода<i class="fas fa-cloud-moon-rain"></i></button>
-               
+        
+        <div class="futbol-season">
+          <label>Футбольный сезон:</label><br>
+          <input type="number" class="input__date-futbol" min="2015"><br>
+        </div>       
         <div class="futbol-league">
          <div class="futbol_wrap">
          <button class="btn-futbol-back"><i class="fas fa-chevron-left"></i></button>

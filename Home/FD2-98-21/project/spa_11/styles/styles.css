@@ -151,6 +151,7 @@ html, body {
   display: block;
   border-radius: 2px;
   transition: 1.5s;
+  transition-timing-function: ease-in;
 }
 .state__wrap {
   width: 700px;
@@ -780,4 +781,13 @@ button {
   outline: none;
   border: 1px solid red;
   box-shadow: 0 0 4px 0 red;
+}
+.other-page {
+  position: relative;
+}
+.futbol-season {
+  display: none;
+  position: absolute;
+  top: 125px;
+  right: 20px;
 }
