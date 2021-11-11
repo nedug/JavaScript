@@ -358,15 +358,26 @@ const Other = {
            <button class="btn-clean-currency"><i class="fas fa-eraser"></i>Очистить</button>
         </div>
         
+        <div class="btn-forecast_wrap">
+          <button class="btn-forecast-now">Сегодня</button><br>
+          <button class="btn-forecast-3days">Прогноз на 3 дня</button><br>
+          <button class="btn-forecast-pollution">Загрязнение воздуха</button>
+        </div>  
+        
         <div id="forecast-now">
          <div class="forecast_wrap">
-          <div class="icon-weather"></div>
-          <h1 class="location"></h1>
-          <h1 class="temperature"></h1>
-          <div class="description"></div>
-          <div class="wind"></div>
+            <div class="icon-weather"></div>
+            <h1 class="location"></h1>
+            <h1 class="temperature"></h1>
+            <div class="description"></div>
+            <div class="wind"></div>
          </div>
-          <div id="loader-W" style=""><img src="img/loader.gif" height="110" width="auto"></div>
+         <div class="forecast-3-days">
+             <div class="today"></div>       
+             <div class="tomorrow"></div>       
+             <div class="after-tomorrow"></div>       
+         </div>
+         <div id="loader-W" style=""><img src="img/loader.gif" height="110" width="auto"></div>
         </div>
         
       </section>
