@@ -1233,6 +1233,17 @@ const SPA_Smoking = (function() {
                 }
 
             }
+
+            document.addEventListener("keyup", keyHandler);
+            function keyHandler(e) {
+
+                if (e.code === 'KeyZ' && e.shiftKey) window.location.hash = 'statistics';
+                if (e.code === 'KeyX' && e.shiftKey) window.location.hash = 'health';
+                if (e.code === 'KeyC' && e.shiftKey) window.location.hash = 'motivation';
+                if (e.code === 'KeyV' && e.shiftKey) window.location.hash = 'other';
+                if (e.code === 'KeyB' && e.shiftKey) window.location.hash = 'login';
+            }
+
         }
 
 

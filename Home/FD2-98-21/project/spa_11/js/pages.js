@@ -338,6 +338,7 @@ const Other = {
               <option value="rub">RUB</option>
               <option value="pln">PLN</option>
               <option value="uah">UAH</option>
+              <option value="btc">BTC</option>
            </select><br>
           <input type="number" class="input_res-currency" value="1">
           <select id="currency-2">
@@ -347,6 +348,7 @@ const Other = {
               <option value="rub">RUB</option>
               <option value="pln">PLN</option>
               <option value="uah">UAH</option>
+              <option value="btc">BTC</option>
            </select><br>
            <button class="btn-clean-currency"><i class="fas fa-eraser"></i>Очистить</button>
         </div>

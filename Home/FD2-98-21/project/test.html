@@ -15,6 +15,9 @@
 
 <input type='text' value='Пуск!'>
 
+<input type="date" id="user-date-last" class="input__date-last" value="2021-12-01"><br>
+
+
 <script>
 
     const time = 500;
@@ -35,6 +38,16 @@
     }
 
     outNum(1500, '#out');
+
+
+    let currentYear = new Date().getFullYear();
+    let currentDay = new Date().getDate();
+    if (currentDay < 10) currentDay = '0' + currentDay;
+    let currentMonth = new Date().getMonth() + 1;
+    if (currentMonth < 10) currentMonth = '0' + currentMonth;
+    let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
+    const userStopSmok = document.querySelector(`.input__date-last`);
+    userStopSmok.setAttribute('value', dateLimit);
 
 
 
@@ -98,6 +111,9 @@
         clickAudio.currentTime=0; // в секундах
         clickAudio.play();
     }
+
+
+
 
 
 
