@@ -846,7 +846,7 @@ button {
   transition: .3s;
 }
 .btn-forecast_wrap .btn-forecast-pollution {
-  background-color: #696969;
+  background-color: #666666;
   transition: .3s;
 }
 .btn-forecast_wrap button:hover {
