@@ -42,6 +42,7 @@ const SPA_Smoking = (function() {
         let numDiapF = null;
         let advice = null;
         let links = null;
+        let dateNow = null;
         let stateColorSpa = 'white';
 
         let clickAudio = new Audio('sound/1.mp3');
@@ -370,13 +371,17 @@ const SPA_Smoking = (function() {
 
         this.getCurrency = function() {
 
-            myModuleView.renderCurrency();
+            setTimeNow();
+            myModuleView.renderCurrency(dateNow);
         }
 
 
-        this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2) {
+        this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
 
-            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
+            let dateCurrency = selectDate.value;
+            if (dateCurrency === dateNow) dateCurrency = 'latest';
+
+            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -388,9 +393,12 @@ const SPA_Smoking = (function() {
         }
 
 
-        this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2) {
+        this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
 
-            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
+            let dateCurrency = selectDate.value;
+            if (dateCurrency === dateNow) dateCurrency = 'latest';
+
+            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -616,6 +624,16 @@ const SPA_Smoking = (function() {
 
         function errorHandler(jqXHR, statusStr, errorStr) {
             alert(statusStr+' '+errorStr);
+        }
+
+        function setTimeNow() {
+
+            let currentYear = new Date().getFullYear();
+            let currentDay = new Date().getDate();
+            if (currentDay < 10) currentDay = '0' + currentDay;
+            let currentMonth = new Date().getMonth() + 1;
+            if (currentMonth < 10) currentMonth = '0' + currentMonth;
+            dateNow = `${currentYear}-${currentMonth}-${currentDay}`;
         }
 
     }
@@ -890,7 +908,12 @@ const SPA_Smoking = (function() {
         }
 
 
-        this.renderCurrency = function() {
+        this.renderCurrency = function(dateNow) {
+
+            const dateCurrency = myModuleContainer.querySelector(`#content .input__date-currency`);
+            dateCurrency.setAttribute('max', dateNow);
+            dateCurrency.setAttribute('min', '2020-11-22');
+            dateCurrency.setAttribute('value', dateNow);
 
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "none";
@@ -898,14 +921,6 @@ const SPA_Smoking = (function() {
             nowWeather.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "block";
-
-            let date = new Date().getDate();
-            if (date < 10) date = '0' + date;
-            let month = new Date().getMonth();
-            if (month < 10) month = '0' + month;
-            let year = new Date().getFullYear();
-            let currencyDate = myModuleContainer.querySelector('#content .currency_date');
-            currencyDate.innerHTML = `${date}.${month + 1}.${year}`;
         }
 
 
@@ -1384,11 +1399,14 @@ const SPA_Smoking = (function() {
             let selectCurrency2 = myModuleContainer.querySelector("#currency-exchange #currency-2");
             selectCurrency2.addEventListener('click', inputHandler1);
 
+            let selectDate = myModuleContainer.querySelector("#currency-exchange .input__date-currency");
+            selectDate.addEventListener('input', inputHandler1);
+
             function inputHandler1() {
-                myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2);
+                myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
             function inputHandler2() {
-                myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2);
+                myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
 
             that.cleanCurrency();

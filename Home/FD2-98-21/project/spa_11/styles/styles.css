@@ -8,6 +8,15 @@ html, body {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+.sum__time__stop span, .num__cigarette span, .num__money span, .free__time span {
+  font-family: 'Oxygen Mono', monospace;
+  margin-left: 10px;
+  font-size: 35px;
+}
+.nicotine, .resin, .month, .year, .add__health span {
+  font-family: 'Oxygen Mono', monospace;
+  font-size: 20px;
+}
 
 .app {
   padding: 15px 20px 10px;
@@ -164,11 +173,6 @@ html, body {
 .state__wrap strong {
   font-size: 17px;
 }
-.sum__time__stop span, .num__cigarette span, .num__money span, .free__time span {
-  font-family: 'Oxygen Mono', monospace;
-  margin-left: 10px;
-  font-size: 35px;
-}
 .sum__time__stop, .num__cigarette, .num__money, .free__time {
   font-size: 20px;
 }
@@ -213,10 +217,6 @@ html, body {
 }
 .arrow__click {
   transform: rotate(-180deg);
-}
-.nicotine, .resin, .month, .year, .add__health span {
-  font-family: 'Oxygen Mono', monospace;
-  font-size: 20px;
 }
 .nicotine {
   margin-right: 45px;
@@ -507,7 +507,7 @@ button {
   margin: 0 20px;
 }
 #loader {
-  margin-top: 130px;
+  margin-top: 140px;
 }
 #forecast-now {
   width: 320px;
@@ -769,4 +769,15 @@ button {
   font-size: 21px;
   margin: 19px 0 19px 30px;
 }
-
+#currency-exchange .input__date-currency {
+  width: 170px;
+  margin: 0 0 0 10px;
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+#currency-exchange .input__date-currency:focus {
+  outline: none;
+  border: 1px solid red;
+  box-shadow: 0 0 4px 0 red;
+}

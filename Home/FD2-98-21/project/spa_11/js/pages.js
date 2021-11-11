@@ -329,7 +329,7 @@ const Other = {
         </div>
         
         <div id="currency-exchange">
-          <h3>Онлайн конвертер валют на <span class="currency_date"></span></h3>
+          <h3>Онлайн конвертер валют на <input type="date" class="input__date-currency"></h3>
           <input type="number" class="input_sum-currency" value="1">
           <select id="currency-1">
               <option value="byn">BYN</option>
