@@ -469,7 +469,7 @@ button {
 }
 .futbol-league {
   width: 410px;
-  height: 430px;
+  height: 455px;
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -490,7 +490,10 @@ button {
 .futbol-league .team-place {
   margin: 20px 0 5px;
   display: flex;
+  padding: 10px;
   justify-content: center;
+  border: 1px solid #838383;
+  border-radius: 5px;
 }
 .futbol-league span {
   margin: 0 40px;
@@ -788,6 +791,27 @@ button {
 .futbol-season {
   display: none;
   position: absolute;
-  top: 125px;
-  right: 20px;
+  top: 120px;
+  right: 35px;
+}
+.futbol-season h3 {
+  font-size: 18px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+.futbol-season .input__date-futbol {
+  width: 165px;
+  padding: 7px;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+.futbol-season .input__date-futbol:focus {
+  outline: none;
+  border: 1px solid red;
+  box-shadow: 0 0 4px 0 red;
+}
+.logo_wrap {
+  margin-left: 17px;
+  width: 120px;
+  height: 120px;
 }

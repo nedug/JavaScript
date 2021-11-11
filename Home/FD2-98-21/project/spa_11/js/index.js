@@ -347,6 +347,16 @@ const SPA_Smoking = (function() {
                     myModuleView.renderFutbol(data, placeChampionFut);
                 })
                 .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
+
+            let apiQueryLogo = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}`;
+
+            fetch(apiQueryLogo, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log(data.data);
+                    myModuleView.renderFutbolLogo(data);
+                })
+                .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
         }
 
 
@@ -920,8 +930,20 @@ const SPA_Smoking = (function() {
         this.renderFutbolSeason = function() {
 
             let futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
-            futbolSeason.value = new Date().getFullYear();
+            if (new Date().getMonth() + 1 === 1 || new Date().getMonth() + 1 === 2 || new Date().getMonth() + 1 === 3 || new Date().getMonth() + 1 === 4 || new Date().getMonth() + 1 === 5 || new Date().getMonth() + 1 === 6  || new Date().getMonth() + 1 === 7) {
+                futbolSeason.value = new Date().getFullYear() - 1;
+            }
+            if (new Date().getMonth() + 1 === 8 || new Date().getMonth() + 1 === 9 || new Date().getMonth() + 1 === 10 || new Date().getMonth() + 1 === 11 || new Date().getMonth() + 1 === 12) {
+                futbolSeason.value = new Date().getFullYear();
+            }
+            futbolSeason.setAttribute('max', `${new Date().getFullYear()}`);
+        }
 
+
+        this.renderFutbolLogo = function(data) {
+
+            let logoWrap = myModuleContainer.querySelector('#content .logo_wrap');
+            logoWrap.innerHTML = `<img src="${data.data.logos.light}" height="120" width="120">`;
         }
 
 

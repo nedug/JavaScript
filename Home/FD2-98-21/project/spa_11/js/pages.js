@@ -313,7 +313,8 @@ const Other = {
         <button id="btn-weather" class="btn-weather">Погода<i class="fas fa-cloud-moon-rain"></i></button>
         
         <div class="futbol-season">
-          <label>Футбольный сезон:</label><br>
+          <div class="logo_wrap"></div>  
+          <h3>Футбольный сезон:</h3>
           <input type="number" class="input__date-futbol" min="2015"><br>
         </div>       
         <div class="futbol-league">
