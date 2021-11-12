@@ -810,9 +810,14 @@ button {
 .futbol-season .input__date-futbol {
   width: 165px;
   padding: 7px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
+  background-color: #cef5c7;
+  border: none;
   border-radius: 3px;
   text-align: center;
+}
+.futbol-season .input__date-futbol::-webkit-inner-spin-button {
+  opacity: 1;
 }
 .futbol-season .input__date-futbol:focus {
   outline: none;

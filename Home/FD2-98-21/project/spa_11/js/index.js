@@ -657,7 +657,6 @@ const SPA_Smoking = (function() {
         this.changeColorSpa = function(btnColor) {
 
             stateColorSpa = btnColor.getAttribute('class').split(' ')[1];
-            // console.log(stateColorSpa);
             myModuleView.changeColorBtn(btnColor);
         }
 
