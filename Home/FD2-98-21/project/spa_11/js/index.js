@@ -469,6 +469,13 @@ const SPA_Smoking = (function() {
             myModuleView.renderCleanCurrency();
         }
 
+        this.addCurrency = function(inputAddCurrency) {
+
+            if (inputAddCurrency.value === '') return;
+
+            myModuleView.renderAddCurrency(inputAddCurrency.value);
+        }
+
 
         this.getFutbolFoward = function(inputDateFutbol) {
 
@@ -1025,6 +1032,18 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.renderAddCurrency = function(currency) {
+
+            let selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
+            let newCurrency = document.createElement('option');
+            newCurrency.value = currency.toLowerCase();
+            newCurrency.innerHTML = currency.toUpperCase();
+            selectCurrency1.append(newCurrency);
+            let inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
+            inputAddCurrency.value = '';
+        }
+
+
         this.renderWeather = function(data) {
 
             let loaderW = myModuleContainer.querySelector('#loader-W');
@@ -1431,6 +1450,11 @@ const SPA_Smoking = (function() {
                     that.showPollution();
                 }
 
+                if (e.target.getAttribute('class') === 'btn-add-currency') {
+
+                    that.addCurrency();
+                }
+
             }
 
             document.addEventListener("keyup", keyHandler);
@@ -1623,6 +1647,15 @@ const SPA_Smoking = (function() {
         this.cleanCurrency = function() {
 
             myModuleModel.cleanCurrency();
+        }
+
+
+        this.addCurrency = function() {
+
+            let inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
+            // inputCurrency1.addEventListener('input', inputHandler1);
+
+            myModuleModel.addCurrency(inputAddCurrency);
         }
 
 

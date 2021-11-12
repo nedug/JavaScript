@@ -593,9 +593,9 @@ button {
 .btn-clean-currency:hover {
   background-color: #4098ee;
 }
-#currency-exchange .fa-eraser {
+#currency-exchange .fa-eraser, #currency-exchange .fa-plus {
   color: white;
-  padding-right: 15px;
+  padding-right: 12px;
   margin: 3px;
   font-size: 22px;
 }
@@ -867,4 +867,26 @@ button {
 }
 .level-pollution {
   font-size: 15px;
+}
+#currency-exchange .input_add-currency {
+  width: 75px;
+  height: 39px;
+  border: none;
+  margin: 0;
+  text-align: center;
+  background-color: #d0d0d0;
+}
+
+.btn-add-currency {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  background-color: #ef8c8c;
+  margin: 30px 30px 0 192px;
+  font-size: 16px;
+  transition: .3s;
+}
+.btn-add-currency:hover {
+  background-color: #f86c6c;
 }

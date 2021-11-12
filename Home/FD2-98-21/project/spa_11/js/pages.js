@@ -356,6 +356,8 @@ const Other = {
               <option value="btc">BTC</option>
            </select><br>
            <button class="btn-clean-currency"><i class="fas fa-eraser"></i>Очистить</button>
+           <button class="btn-add-currency"><i class="fas fa-plus"></i>Добавить валюту</button>
+           <input type="text" class="input_add-currency" placeholder="KZT">
         </div>
         
         <div class="btn-forecast_wrap">
