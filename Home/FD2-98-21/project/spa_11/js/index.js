@@ -375,7 +375,7 @@ const SPA_Smoking = (function() {
 
             let apiUrl = "https://api.openweathermap.org/data/2.5/";
             let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser + "&units=metric&lang=ru&appid="+apiKey;
+            let apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -384,27 +384,16 @@ const SPA_Smoking = (function() {
                     myModuleView.renderWeather(data);
                 })
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
-
-
-            let apiQuery1 = 'http://api.openweathermap.org/data/2.5/air_pollution?lat=53.48&lon=29.52&appid='+apiKey;
-
-            fetch(apiQuery1, {method: 'get'})
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data.list[0].main.aqi);
-                    // myModuleView.renderWeather(data);
-                })
-                .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
 
         this.getWeather3days = function() {
 
-            // myModuleView.renderWeatherLoader();
+            myModuleView.renderWeather3daysLoader();
 
             let apiUrl = "https://api.openweathermap.org/data/2.5/";
             let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = apiUrl+"/forecast?id=" + userDataStorage.typeWeatherUser + "&units=metric&lang=ru&appid="+apiKey;
+            let apiQuery = apiUrl+"/forecast?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -413,6 +402,23 @@ const SPA_Smoking = (function() {
                     myModuleView.renderWeather3days(data);
                 })
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
+        }
+
+
+        this.getPollution = function() {
+
+            myModuleView.renderWeather3daysLoader();
+
+            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            let apiQuery = 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+ userDataStorage.typeWeatherUser.split('/')[1] +'&lon=' + userDataStorage.typeWeatherUser.split('/')[2] +'&appid='+apiKey;
+
+            fetch(apiQuery, {method: 'get'})
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log(data);
+                    myModuleView.renderPollution(data);
+                })
+                .catch((error) => console.error("Ошибка получения загрязнение воздуха. Причина: " + error));
         }
 
 
@@ -1045,46 +1051,70 @@ const SPA_Smoking = (function() {
 
         this.renderWeather3days = function(data3day) {
 
-            // let loaderW = myModuleContainer.querySelector('#loader-W');
-            // loaderW.style.display = "none";
-            // let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
-            // weatherWrap.style.display = "block";
+            let loaderW = myModuleContainer.querySelector('#loader-W');
+            loaderW.style.display = "none";
 
-            let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
-            weatherWrap.style.display = "none";
+            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            weather3days.style.display = "flex";
+            const afterTomorrow = myModuleContainer.querySelector('#forecast-now .after-tomorrow');
+            afterTomorrow.style.display = "block";
+
+            const today = myModuleContainer.querySelector('#forecast-now .today');
+            today.innerHTML = `
+                Сегодня:<br>
+                <img src="http://openweathermap.org/img/w/${data3day.list[1].weather[0]["icon"]}.png">
+                <h3>${Math.round(data3day.list[1].main.temp)} °C</h3> 
+                <p>Ветер:<br>
+                ${round(data3day.list[1].wind.speed, 1)} м/с</p>
+                ${data3day.list[1].weather[0]["description"]}`;
+
+            const tomorrow = myModuleContainer.querySelector('#forecast-now .tomorrow');
+            tomorrow.innerHTML = `
+                Завтра:<br>
+                <img src="http://openweathermap.org/img/w/${data3day.list[9].weather[0]["icon"]}.png">
+                <h3>${Math.round(data3day.list[9].main.temp)} °C</h3>
+                <p>Ветер:<br>
+                ${round(data3day.list[9].wind.speed, 1)} м/с</p>
+                ${data3day.list[9].weather[0]["description"]}`;
+
+            afterTomorrow.innerHTML = `
+                Послезавтра:<br>
+                <img src="http://openweathermap.org/img/w/${data3day.list[17].weather[0]["icon"]}.png">
+                <h3>${Math.round(data3day.list[17].main.temp)} °C</h3>
+                <p>Ветер:<br>
+                ${round(data3day.list[17].wind.speed, 1)} м/с</p>
+                ${data3day.list[17].weather[0]["description"]}`;
+
+            function round(value, decimals) {
+                return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+            }
+        }
+
+
+        this.renderPollution = function(data) {
+
+            let loaderW = myModuleContainer.querySelector('#loader-W');
+            loaderW.style.display = "none";
             let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "flex";
 
             const today = myModuleContainer.querySelector('#forecast-now .today');
             today.innerHTML = `
-        Сегодня:<br>
-        <img src="http://openweathermap.org/img/w/${data3day.list[1].weather[0]["icon"]}.png">
-        <h3>${Math.round(data3day.list[1].main.temp)} °C</h3> 
-        <p>Ветер:<br>
-        ${round(data3day.list[1].wind.speed, 1)} м/с</p>
-        ${data3day.list[1].weather[0]["description"]}`;
+                Индекс загрязнение воздуха:<br>
+                <h3>${data.list[0].main.aqi}</h3>
+                <div class="level-pollution">1 - хорошо;<br> 2 - удовлетво-льно;<br> 3 - умеренно;<br> 4 - плохо;<br> 5 - очень плохо;</div>`;
 
             const tomorrow = myModuleContainer.querySelector('#forecast-now .tomorrow');
             tomorrow.innerHTML = `
-        Завтра:<br>
-        <img src="http://openweathermap.org/img/w/${data3day.list[9].weather[0]["icon"]}.png">
-        <h3>${Math.round(data3day.list[9].main.temp)} °C</h3>
-        <p>Ветер:<br>
-        ${round(data3day.list[9].wind.speed, 1)} м/с</p>
-        ${data3day.list[9].weather[0]["description"]}`;
+                Концентрация (мкг/м3):<br>
+                <p>CO - ${data.list[0].components.co}</p>
+                <p>NO - ${data.list[0].components.no}</p>
+                <p>NO<sub>2</sub> - ${data.list[0].components.no2}</p>
+                <p>O<sub>3</sub> - ${data.list[0].components.o3}</p>
+                <p>SO<sub>2</sub> - ${data.list[0].components.so2}</p>`;
 
             const afterTomorrow = myModuleContainer.querySelector('#forecast-now .after-tomorrow');
-            afterTomorrow.innerHTML = `
-        Послезавтра:<br>
-        <img src="http://openweathermap.org/img/w/${data3day.list[17].weather[0]["icon"]}.png">
-        <h3>${Math.round(data3day.list[17].main.temp)} °C</h3>
-        <p>Ветер:<br>
-        ${round(data3day.list[17].wind.speed, 1)} м/с</p>
-        ${data3day.list[17].weather[0]["description"]}`;
-
-            function round(value, decimals) {
-                return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-            }
+            afterTomorrow.style.display = "none";
         }
 
 
@@ -1111,6 +1141,8 @@ const SPA_Smoking = (function() {
 
             let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "none";
+            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            weather3days.style.display = "none";
             let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeagueWrap.style.display = "none";
             let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
@@ -1123,6 +1155,18 @@ const SPA_Smoking = (function() {
             weather.style.display = "none";
             let btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
             btnForecast.style.display = "block";
+        }
+
+
+        this.renderWeather3daysLoader = function() {
+
+
+            let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
+            weatherWrap.style.display = "none";
+            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            weather3days.style.display = "none";
+            const loaderW = myModuleContainer.querySelector('#loader-W');
+            loaderW.style.display = "block";
         }
 
 
@@ -1377,6 +1421,16 @@ const SPA_Smoking = (function() {
                     that.showWeather3days();
                 }
 
+                if (e.target.getAttribute('class') === 'btn-forecast-now') {
+
+                    that.showWeather();
+                }
+
+                if (e.target.getAttribute('class') === 'btn-forecast-pollution') {
+
+                    that.showPollution();
+                }
+
             }
 
             document.addEventListener("keyup", keyHandler);
@@ -1455,6 +1509,12 @@ const SPA_Smoking = (function() {
         this.showWeather3days = function() {
 
             myModuleModel.getWeather3days();
+        }
+
+
+        this.showPollution = function() {
+
+            myModuleModel.getPollution();
         }
 
 

@@ -168,8 +168,9 @@ html, body {
 .state__wrap p {
   margin: 10px 0;
 }
-.description {
-  padding-top: 10px;
+.description, .wind {
+  padding-top: 15px;
+  font-size: 18px;
 }
 .state__wrap strong {
   font-size: 17px;
@@ -474,7 +475,7 @@ button {
   border: 1px solid #bab9b9;
   border-radius: 8px;
   text-align: center;
-  margin: 10px 40px;
+  margin: 10px 30px;
   transition: .3s;
   display: none;
   position: relative;
@@ -514,18 +515,18 @@ button {
   margin-top: 140px;
 }
 #forecast-now {
-  width: 320px;
-  height: 250px;
+  width: 380px;
+  height: 280px;
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
   text-align: center;
-  margin: 10px 40px;
+  margin: 10px 30px;
   transition: .3s;
   display: none;
   background-image: url(../img/wind-atlas.gif);
-  background-size: auto 104%;
-  background-position: -70px;
+  background-size: auto 101%;
+  background-position: -45px;
 }
 #forecast-now:hover {
   border: 1px solid #7c7c7c;
@@ -855,6 +856,15 @@ button {
 .forecast-3-days {
   display: none;
   justify-content: space-around;
-  margin-top: 25px;
+  margin-top: 20px;
   font-size: 18px;
+}
+#forecast-now .temperature {
+  font-size: 35px;
+}
+.forecast-3-days div {
+  width: 115px;
+}
+.level-pollution {
+  font-size: 15px;
 }

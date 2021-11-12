@@ -21,15 +21,15 @@ const LoginWeb = {
              <label>Город:</label>
             <select id="type-city">
               <optgroup label="Беларусь">
-                <option value="625144">Минск</option>
-                <option value="627907">Гомель</option>
-                <option value="629634">Брест</option>
-                <option value="627904">Гродно</option>
-                <option value="620127">Витебск</option>
-                <option value="625665">Могилев</option>              
+                <option value="625144/53.9/27.55">Минск</option>
+                <option value="627907/52.42/31.0">Гомель</option>
+                <option value="629634/52.09/23.69">Брест</option>
+                <option value="627904/53.67/23.83">Гродно</option>
+                <option value="620127/55.19/30.2">Витебск</option>
+                <option value="625665/53.9/30.33">Могилев</option>              
               </optgroup>
               <optgroup label="Россия">
-                <option value="1220988">Москва</option>
+                <option value="1220988/55.73/37.62">Москва</option>
               </optgroup>
             </select> <br>
             <label>Футбольная лига:</label>
@@ -112,15 +112,15 @@ const Options = {
             <label>Город:</label>
             <select id="type-city">
               <optgroup label="Беларусь">
-                <option value="625144">Минск</option>
-                <option value="627907">Гомель</option>
-                <option value="629634">Брест</option>
-                <option value="627904">Гродно</option>
-                <option value="620127">Витебск</option>
-                <option value="625665">Могилев</option>              
+                <option value="625144/53.9/27.55">Минск</option>
+                <option value="627907/52.42/31.0">Гомель</option>
+                <option value="629634/52.09/23.69">Брест</option>
+                <option value="627904/53.67/23.83">Гродно</option>
+                <option value="620127/55.19/30.2">Витебск</option>
+                <option value="625665/53.9/30.33">Могилев</option>              
               </optgroup>
               <optgroup label="Россия">
-                <option value="1220988">Москва</option>
+                <option value="1220988/55.73/37.62">Москва</option>
               </optgroup>
             </select> <br>
             <label>Футбольная лига:</label>
