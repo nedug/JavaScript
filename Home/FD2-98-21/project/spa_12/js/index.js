@@ -28,6 +28,7 @@ const SPA_Smoking = (function() {
 
         let myModuleView = null;
         let userData = {};
+        let userDataGoals = {};
 
         let pageNameLink = null;
         let userDataStorage = null;
@@ -44,6 +45,8 @@ const SPA_Smoking = (function() {
         let links = null;
         let dateNow = null;
         let stateColorSpa = 'white';
+        let costFullCigarette = null;
+        let sumDay = null;
 
         let clickAudio = new Audio('sound/1.mp3');
         let tickAudio = new Audio('sound/2.mp3');
@@ -661,6 +664,50 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.setGoalsUser = function([textGoal, costGoals]) {
+
+            // console.log(textGoal);
+            // console.log(costGoals);
+
+            userDataGoals = {
+                userText: textGoal.value,
+                userCost: costGoals.value,
+            }
+
+            // userDataGoals['userText' + textGoal.value] = textGoal.value;
+            // userDataGoals['userCost' + textGoal.value] = costGoals.value;
+
+            // console.log(userDataGoals);
+
+            localStorage.setItem('userDataGoals', JSON.stringify(userDataGoals));
+
+            this.getGoalsUser();
+        }
+
+
+        this.getGoalsUser = function() {
+
+
+            let userDataGoalsStorage = JSON.parse(localStorage.getItem('userDataGoals'));
+
+            // this.calculateStatistics();
+
+            calculateDateUser();
+
+            if (!userDataGoalsStorage) return;
+
+            // console.log(sumDay)
+
+            let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
+            if (percentGoals > 100) percentGoals = 100;
+
+            let restDay = Math.ceil(sumDay * 100 / percentGoals) - sumDay;
+
+            myModuleView.renderGoalsUser(userDataGoalsStorage, percentGoals, costFullCigarette, restDay);
+
+        }
+
+
         function playSound() {
             clickAudio.currentTime = 0;
             clickAudio.play().then(() => {
@@ -694,6 +741,20 @@ const SPA_Smoking = (function() {
             let currentMonth = new Date().getMonth() + 1;
             if (currentMonth < 10) currentMonth = '0' + currentMonth;
             dateNow = `${currentYear}-${currentMonth}-${currentDay}`;
+        }
+
+        function calculateDateUser() {
+            let stopDay = +userDataStorage.userDate.split('-')[2];
+            let stopMonth = +userDataStorage.userDate.split('-')[1];
+            let stopYear = +userDataStorage.userDate.split('-')[0];
+            let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
+            let timeNow = new Date();
+            let sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
+            let timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
+            let sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
+            let costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
+            costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
+            sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
         }
 
     }
@@ -1318,6 +1379,28 @@ const SPA_Smoking = (function() {
             else styleCSS.setAttribute('href', `./styles/styles.css`);
         }
 
+
+        this.renderGoalsUser = function({userText, userCost}, percentGoals, moneyNowUser, restDay) {
+
+            const stateGoals = myModuleContainer.querySelector("#content .state__goals__chart .percent");
+            const stateGoalsChart = myModuleContainer.querySelector("#content .state__goals__chart .chart");
+            const stateGoalsText = myModuleContainer.querySelector("#content .state__goals__chart .state__text__goals");
+            const moneyNow = myModuleContainer.querySelector("#content .state__goals__dicription .money_now");
+            const moneyFull = myModuleContainer.querySelector("#content .state__goals__dicription .money_full");
+            const restTime = myModuleContainer.querySelector("#content .state__goals__dicription .rest_time");
+
+            stateGoals.innerHTML = `<strong class="percent-H">${percentGoals}%</strong>`;
+            stateGoalsChart.style.width = `${percentGoals}%`;
+            stateGoalsText.innerHTML = userText;
+            moneyNow.innerHTML = moneyNowUser;
+            moneyFull.innerHTML = userCost;
+            restTime.innerHTML = 'примерно через ' + restDay + ' дн';
+
+            // let styleCSS = document.head.querySelector("link[href$='styles.css']");
+            // if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
+            // else styleCSS.setAttribute('href', `./styles/styles.css`);
+        }
+
     }
 
 
@@ -1452,6 +1535,16 @@ const SPA_Smoking = (function() {
                 if (e.target.getAttribute('class') === 'btn-add-currency') {
 
                     that.addCurrency();
+                }
+
+                if (e.target.getAttribute('class') === 'btn_goals_add') {
+
+                    that.setGoalsUser();
+                }
+
+                if (e.target.getAttribute('class') === 'btn-goals') {
+
+                    that.getGoalsUser();
                 }
 
             }
@@ -1667,6 +1760,22 @@ const SPA_Smoking = (function() {
         this.changeColorSpa = function(btnColor) {
 
             myModuleModel.changeColorSpa(btnColor);
+        }
+
+
+        this.setGoalsUser = function() {
+
+            let inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
+
+            // console.log(inputGoalsUser);
+
+            myModuleModel.setGoalsUser(inputGoalsUser);
+        }
+
+
+        this.getGoalsUser = function() {
+
+            myModuleModel.getGoalsUser();
         }
 
     }

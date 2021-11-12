@@ -276,6 +276,7 @@ const Motivation = {
         <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
         <button id="btn-facts" class="btn-facts">Видео <i class="fas fa-video"></i></button>
         <button id="btn-links" class="btn-chat">Онлайн чат <i class="far fa-comments"></i></button>
+        <button class="btn-goals">Цели <i class="far fa-comments"></i></button>
                 
         <div class="chat-spa">
             <p><strong>${userName}</strong>, тут вы можете оставить свой отзыв о приложении или поделиться опытом с другими пользователями! Будьте вежливы!</p>
@@ -294,6 +295,18 @@ const Motivation = {
             <p><strong>${userName}</strong>, тут вы можете посмотреть случайные видео о вреде курения, последствиях отказа и много другой полезной информации!</p>
             <iframe src="" frameborder="0" class="video-fact"></iframe>
             <p class="fact_none">Факты закончились! Заходите позже!</p>
+        </div>
+        
+        <div class="goals-spa">
+            <p><strong>${userName}</strong>, тут вы можете установить цель и следить за прогрессом её достижения!</p>
+            <input type='text' class='goals-text' placeholder="MacBook Air">
+            <input type='number' class='goals-cost' placeholder="3310">
+            <button class="btn_goals_add"><i class="far fa-envelope"></i> добавить</button>
+            
+            <div class="state__wrap">
+               <p class="state__goals__chart"><strong class="state__text__goals"></strong> <span class="chart__wrap"><span class="chart"></span></span><span class="percent"></span></p>
+               <p class="state__goals__dicription"><span class="money_now"></span> руб из <span class="money_full"></span> руб <span class="rest_time"></span></p>
+            </div>
         </div>
 <!--        <p>Ну а тут классически будет страница <strong>Контакты</strong>.</p>-->
       </section>
