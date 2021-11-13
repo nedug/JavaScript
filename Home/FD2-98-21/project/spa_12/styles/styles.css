@@ -146,8 +146,7 @@ html, body {
 .chart {
   height: 10px;
   width: 0;
-  background-color: #ff4847;
-  /*background-color: #5eef5e;*/
+  background: linear-gradient(90deg, #ffa6a3,#eb26b4);
   display: block;
   border-radius: 2px;
   transition: 1.5s;
@@ -368,7 +367,21 @@ html, body {
 .authorization-page p {
   margin: 55px 0;
 }
-.btn-advice, .btn-facts, .btn-chat, .btn-futbol, .btn-weather {
+.btn-advice, .btn-facts, .btn-chat, .btn-goals {
+  color: white;
+  width: 300px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 20px;
+  background-color: #919191;
+  margin: 20px 27px 0;
+  font-size: 20px;
+  transition: .3s;
+}
+.btn-chat, .btn-goals {
+  margin-bottom: 20px;
+}
+.btn-futbol, .btn-weather {
   color: white;
   width: 200px;
   border: none;
@@ -390,11 +403,11 @@ html, body {
   font-size: 20px;
   transition: .3s;
 }
-.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover, .btn-currency:hover {
+.btn-advice:hover, .btn-facts:hover, .btn-chat:hover, .btn-futbol:hover, .btn-weather:hover, .btn-currency:hover, .btn-goals:hover {
   background-color: #303030;
   color: white;
 }
-.btn-advice .fa-random, .btn-facts .fa-video, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign {
+.btn-advice .fa-random, .btn-facts .fa-video, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign, .btn-goals .fa-crosshairs {
   font-size: 25px;
   margin: 6px 0 6px 20px;
   color: white;
@@ -605,7 +618,7 @@ button {
 }
 .chat-spa {
   width: 700px;
-  height: 535px;
+  height: 507px;
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
@@ -618,10 +631,10 @@ button {
 }
 .chat-border b {
   display: inline-block;
-  padding: 15px 20px 0 5px;
+  padding: 13px 20px 0 5px;
   height: 25px;
 }
-.chat-spa p, .advice-spa p, .facts-spa p {
+.chat-spa p, .advice-spa p, .facts-spa p, .goals-spa > p {
   font-size: 18px;
   margin-bottom: 30px;
 }
@@ -630,12 +643,12 @@ button {
   border: 1px solid dodgerblue;
   border-radius: 8px;
   margin: 30px 10px 20px 10px;
-  height: 360px;
+  height: 338px;
 }
 .message-chat {
   width: 530px;
   padding: 7px;
-  border: 1px solid #bab9b9;
+  border: 1px solid #927b7b;
   border-radius: 5px;
   transition: .3s;
 }
@@ -685,13 +698,23 @@ button {
   transition: .3s;
   display: none;
 }
-.advice-spa:hover, .facts-spa:hover {
+.goals-spa {
+  width: 700px;
+  /*height: 430px;*/
+  padding: 0 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  margin: 10px 5px;
+  transition: .3s;
+  display: none;
+}
+.advice-spa:hover, .facts-spa:hover, .goals-spa:hover {
   border: 1px solid black;
 }
 .facts-spa .video-fact {
   width: 100%;
-  height: 480px;
-  padding: 15px 0;
+  height: 415px;
+  padding: 0 0 15px;
 }
 .advice-spa div {
   font-size: 20px;
@@ -895,5 +918,98 @@ button {
   background-color: #f86c6c;
 }
 .goals-spa {
-
+  display: none;
+}
+.goals-spa input {
+  margin: 10px 15px 20px 10px;
+  padding: 8px;
+  width: 265px;
+  background-color: #e0e5ee;
+  border: 1px solid #6cb6fd;
+  border-radius: 3px;
+}
+.goals-spa input:focus {
+  outline: none;
+  border: 1px solid #0080ff;
+  box-shadow: 0 0 4px 0 #0080ff;
+}
+.btn_goals_add {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  background-color: #7a7a7a;
+  margin: 0 0 0 10px;
+  font-size: 16px;
+  transition: .3s;
+}
+.btn_goals_add:hover {
+  background-color: #3c3c3c;
+}
+.goals-spa .fa-fast-forward {
+  color: white;
+  /*padding-right: 12px;*/
+  margin: 3px;
+  font-size: 22px;
+}
+.goals__wrap {
+  display: none;
+  width: 668px;
+  padding: 0 15px;
+  border: 1px solid #bab9b9;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px 0;
+  transition: .3s;
+  position: relative;
+}
+.goals__wrap:hover .modal__close {
+  display: block;
+}
+.state__text__goals {
+  font-size: 18px;
+  margin-right: 15px;
+}
+.percent {
+  margin-left: 8px;
+  font-size: 18px;
+}
+.goals__wrap .chart__wrap {
+  width: 390px;
+  height: 12px;
+  display: inline-block;
+  border: 1px solid #bab9b9;
+  border-radius: 3px;
+}
+.goals__wrap .chart {
+  height: 10px;
+  width: 0;
+  background: linear-gradient(90deg, #baec6b,#229a87,#1dabfd);
+  display: block;
+  border-radius: 2px;
+  transition: 1.5s;
+  transition-timing-function: ease-in;
+}
+.money_now, .money_full, .rest_time {
+  font-weight: bold;
+}
+.money_now, .rest_time {
+  margin-left: 10px;
+}
+.state__goals__dicription {
+  font-size: 17px;
+  margin-top: 30px;
+}
+.modal__close {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 7px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAEFCu8CAAAABGdBTUEAALGPC/xhBQAAAqpJREFUSA2tljtyFEEMhsdgHJpb2NyAxwkgcQHGHGE3Bs4B8RICV6G4ARSERH4QGaog4vF/qv7HWu3MzrqMqjR69C9puls9PV13QU9Rr13Y3Vfpf7GPxLdRROGw0hs43vHYFuM9wYAMOcbYaQ47u7fJgRMGFMkwIgyHyIDesNMgAD3dkvZDvGWPlSVUG4wxBu43h0HIGT4UO7Hv2EeoB1wCQPhYzi/i12JHSA26acWpLV96IMtDGQZU+TEDrT9qAb8lD8RnzXbwC9mL5vsjGbSvpwGnzWfB+5s8F7C/cLLSDrS8y0Ci+gbguutiBzxLYCoQkMm4D0NOD47JwVUl0Vz8U5wD38veFa8ldptDw9xpfhZvkj4JkStlnT1eoXxmMrjqHKUlYlMBsclsdg5gZWkKmgP/Q3EQi2Fgc/WNe2yH5IOKowscWDslxXV0lXF7DNiwzMEOpLLHkTHX7ECv3XKvBIH5Ll7KlOfEmIm3yAWeMEDf2Ylt+iYlv/Zz2cbR39FKdmBDeU4O5jMB7jMA0yspDp6SjunlJsE3enRROAGchFyVkzIruEmTT91cTLJ61GpyMGApfinioGwy3VxwSCcHudbS/yhUi5NzhXbl4QbJ4EVB0T65nYzF59ZyiFvMGFqNGkE0a25yg/KHuUFDkJxjB9dCAdAjHwbno0YcDP4s7KySt/dfh9RJ4gWGVsF54wgP3VMGWDKbenfl6nxYwBg/JuNjw8UwBsA/tEdyr9DU7MgVn8V9Kflj7OL8kY0tJ8nH9g9//mg7HzX2xEFzPT1g6V+pBglRZzE2+3y9ON8sJ0LnD8eXHCAus4X4QMyFt26PGAMDliPhi5A85OwvROlLtCOLdfZbXVWSi5wb0WOh+Nm7bFFiiL0S8btDc/HL80Z83hgdH2NgJukfa8ehuEonW4wAAAAASUVORK5CYII=');
+  overflow: hidden;
+  text-indent: -999em;
+  text-decoration: none;
 }

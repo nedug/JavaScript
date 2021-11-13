@@ -664,21 +664,22 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.showGoalsUser = function() {
+
+            myModuleView.showGoalsUser();
+
+            this.getGoalsUser();
+        }
+
+
         this.setGoalsUser = function([textGoal, costGoals]) {
 
-            // console.log(textGoal);
-            // console.log(costGoals);
+            if (!textGoal.value || !costGoals.value) return;
 
             userDataGoals = {
                 userText: textGoal.value,
                 userCost: costGoals.value,
             }
-
-            // userDataGoals['userText' + textGoal.value] = textGoal.value;
-            // userDataGoals['userCost' + textGoal.value] = costGoals.value;
-
-            // console.log(userDataGoals);
-
             localStorage.setItem('userDataGoals', JSON.stringify(userDataGoals));
 
             this.getGoalsUser();
@@ -687,16 +688,15 @@ const SPA_Smoking = (function() {
 
         this.getGoalsUser = function() {
 
-
             let userDataGoalsStorage = JSON.parse(localStorage.getItem('userDataGoals'));
-
-            // this.calculateStatistics();
 
             calculateDateUser();
 
-            if (!userDataGoalsStorage) return;
+            if (!userDataGoalsStorage) {
 
-            // console.log(sumDay)
+                myModuleView.renderGoalsHide();
+                return;
+            }
 
             let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
             if (percentGoals > 100) percentGoals = 100;
@@ -704,7 +704,14 @@ const SPA_Smoking = (function() {
             let restDay = Math.ceil(sumDay * 100 / percentGoals) - sumDay;
 
             myModuleView.renderGoalsUser(userDataGoalsStorage, percentGoals, costFullCigarette, restDay);
+        }
 
+
+        this.clearDataGoals = function() {
+
+            localStorage.removeItem('userDataGoals');
+
+            this.getGoalsUser();
         }
 
 
@@ -896,7 +903,7 @@ const SPA_Smoking = (function() {
                 let t = Math.round(time/(num/step));
                 let interval = setInterval(() => {
                         n = n + step;
-                        if(n === num) clearInterval(interval);
+                        if (n === num) clearInterval(interval);
                         elem.innerHTML = `<span>${n}</span> ${unit}`;
                     }, t);
             }
@@ -985,14 +992,14 @@ const SPA_Smoking = (function() {
                 stateRiskHeartChart.style.width = `${riskHeart}%`;
                 stateRiskCancerChart.style.width = `${riskCancer}%`;
 
-                if (heart > 50) stateHeartChart.style.backgroundColor = `#5eef5e`;
-                if (carbonMonoxide > 50) stateCarbonMonoxideChart.style.backgroundColor = `#5eef5e`;
-                if (nicotine > 50) stateNicotineChart.style.backgroundColor = `#5eef5e`;
-                if (smell > 50) stateSmellChart.style.backgroundColor = `#5eef5e`;
-                if (lung > 50) stateLungChart.style.backgroundColor = `#5eef5e`;
-                if (liver > 50) stateRiskLiverChart.style.backgroundColor = `#5eef5e`;
-                if (riskHeart > 50) stateRiskHeartChart.style.backgroundColor = `#5eef5e`;
-                if (riskCancer > 50) stateRiskCancerChart.style.backgroundColor = `#5eef5e`;
+                if (heart > 50) stateHeartChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (carbonMonoxide > 50) stateCarbonMonoxideChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (nicotine > 50) stateNicotineChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (smell > 50) stateSmellChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (lung > 50) stateLungChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (liver > 50) stateRiskLiverChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (riskHeart > 50) stateRiskHeartChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
+                if (riskCancer > 50) stateRiskCancerChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
             }
         }
 
@@ -1272,12 +1279,14 @@ const SPA_Smoking = (function() {
 
         this.showMessageChat = function() {
 
-            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
-            chatSpa.style.display = 'block';
             let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
             let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'none';
+            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            goalsSpa.style.display = 'none';
+            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            chatSpa.style.display = 'block';
         }
 
 
@@ -1292,12 +1301,14 @@ const SPA_Smoking = (function() {
 
         this.renderAdviceUser = function(textAdvice) {
 
-            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
-            adviceSpa.style.display = 'block';
+            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            goalsSpa.style.display = 'none';
             let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
             let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'none';
+            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            adviceSpa.style.display = 'block';
             let messageAdvice = myModuleContainer.querySelector(".advice-spa div");
             messageAdvice.innerHTML = textAdvice;
             if (!textAdvice) {
@@ -1309,12 +1320,14 @@ const SPA_Smoking = (function() {
 
         this.renderVideoFactsUser = function(videoFacts) {
 
-            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
-            factsSpa.style.display = 'block';
             let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
             let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
+            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            goalsSpa.style.display = 'none';
+            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            factsSpa.style.display = 'block';
             let messageFacts = myModuleContainer.querySelector(".facts-spa iframe");
             messageFacts.setAttribute("src", videoFacts);
 
@@ -1380,7 +1393,23 @@ const SPA_Smoking = (function() {
         }
 
 
+        this.showGoalsUser = function() {
+
+            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            adviceSpa.style.display = 'none';
+            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            chatSpa.style.display = 'none';
+            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            factsSpa.style.display = 'none';
+            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            goalsSpa.style.display = 'block';
+        }
+
+
         this.renderGoalsUser = function({userText, userCost}, percentGoals, moneyNowUser, restDay) {
+
+            let goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
+            goalsWrap.style.display = 'block';
 
             const stateGoals = myModuleContainer.querySelector("#content .state__goals__chart .percent");
             const stateGoalsChart = myModuleContainer.querySelector("#content .state__goals__chart .chart");
@@ -1388,17 +1417,28 @@ const SPA_Smoking = (function() {
             const moneyNow = myModuleContainer.querySelector("#content .state__goals__dicription .money_now");
             const moneyFull = myModuleContainer.querySelector("#content .state__goals__dicription .money_full");
             const restTime = myModuleContainer.querySelector("#content .state__goals__dicription .rest_time");
+            let inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
+            let goalsDicrip = myModuleContainer.querySelectorAll("#content .goals-dicription");
 
+            inputGoalsUser.forEach(elem => elem.value = '');
             stateGoals.innerHTML = `<strong class="percent-H">${percentGoals}%</strong>`;
-            stateGoalsChart.style.width = `${percentGoals}%`;
-            stateGoalsText.innerHTML = userText;
-            moneyNow.innerHTML = moneyNowUser;
-            moneyFull.innerHTML = userCost;
-            restTime.innerHTML = 'примерно через ' + restDay + ' дн';
+            setTimeout(function() {
 
-            // let styleCSS = document.head.querySelector("link[href$='styles.css']");
-            // if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
-            // else styleCSS.setAttribute('href', `./styles/styles.css`);
+                stateGoalsChart.style.width = `${percentGoals}%`;
+            }, 100);
+
+            stateGoalsText.innerHTML = userText;
+            moneyNow.innerHTML = moneyNowUser + ' руб';
+            moneyFull.innerHTML = userCost + ' руб';
+            restTime.innerHTML = restDay + ' дн';
+            if (restDay === 0) restTime.innerHTML = 'Выполнено!';
+        }
+
+
+        this.renderGoalsHide = function() {
+
+            let goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
+            goalsWrap.style.display = 'none';
         }
 
     }
@@ -1537,14 +1577,23 @@ const SPA_Smoking = (function() {
                     that.addCurrency();
                 }
 
-                if (e.target.getAttribute('class') === 'btn_goals_add') {
+                if (e.target.getAttribute('class') === 'btn_goals_add' || e.target.getAttribute('class') === 'fas fa-fast-forward') {
 
                     that.setGoalsUser();
                 }
 
                 if (e.target.getAttribute('class') === 'btn-goals') {
 
-                    that.getGoalsUser();
+                    that.showGoalsUser();
+                    that.setActiveBtn(e.target);
+                }
+
+                if (e.target.getAttribute('class') === 'modal__close') {
+
+                    e.preventDefault();
+
+                    that.clearDataGoals();
+
                 }
 
             }
@@ -1767,8 +1816,6 @@ const SPA_Smoking = (function() {
 
             let inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
 
-            // console.log(inputGoalsUser);
-
             myModuleModel.setGoalsUser(inputGoalsUser);
         }
 
@@ -1776,6 +1823,18 @@ const SPA_Smoking = (function() {
         this.getGoalsUser = function() {
 
             myModuleModel.getGoalsUser();
+        }
+
+
+        this.showGoalsUser = function() {
+
+            myModuleModel.showGoalsUser();
+        }
+
+
+        this.clearDataGoals = function() {
+
+            myModuleModel.clearDataGoals();
         }
 
     }
