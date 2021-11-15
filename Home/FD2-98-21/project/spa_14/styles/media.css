@@ -286,13 +286,11 @@
 
 
 
-
 @media all and (max-width: 666px) {
     .app {
         padding: 7px 7px 7px;
         display: flex;
         width: 375px;
-        /*height: 815px;*/
         height: auto;
         border: 1px solid #919191;
         flex-direction: column;
