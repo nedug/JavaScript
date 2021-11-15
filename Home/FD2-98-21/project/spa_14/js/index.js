@@ -697,7 +697,7 @@ const SPA_Smoking = (function() {
                 myModuleView.renderGoalsHide();
                 return;
             }
-            
+
             let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
             if (percentGoals > 100) percentGoals = 100;
 
@@ -1386,8 +1386,16 @@ const SPA_Smoking = (function() {
         this.changeColorSpa = function() {
 
             let styleCSS = document.head.querySelector("link[href$='styles.css']");
-            if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
-            else styleCSS.setAttribute('href', `./styles/styles.css`);
+            let mediaCSS = document.head.querySelector("link[href$='media.css']");
+            if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') {
+
+                styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
+                mediaCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-media.css`);
+            }
+            else {
+                styleCSS.setAttribute('href', `./styles/styles.css`);
+                mediaCSS.setAttribute('href', `./styles/media.css`);
+            }
         }
 
 
