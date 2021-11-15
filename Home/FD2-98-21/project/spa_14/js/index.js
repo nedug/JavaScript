@@ -697,7 +697,7 @@ const SPA_Smoking = (function() {
                 myModuleView.renderGoalsHide();
                 return;
             }
-
+            
             let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
             if (percentGoals > 100) percentGoals = 100;
 
@@ -710,8 +710,6 @@ const SPA_Smoking = (function() {
         this.clearDataGoals = function() {
 
             localStorage.removeItem('userDataGoals');
-
-            this.getGoalsUser();
         }
 
 
@@ -1641,7 +1639,7 @@ const SPA_Smoking = (function() {
         this.clearData = function() { /* Очищаем данные из localStorage */
 
             myModuleModel.clearData();
-            that.checkInputChange();
+            myModuleModel.clearDataGoals();
         }
 
 
@@ -1835,6 +1833,8 @@ const SPA_Smoking = (function() {
         this.clearDataGoals = function() {
 
             myModuleModel.clearDataGoals();
+
+            myModuleModel.getGoalsUser();
         }
 
     }
