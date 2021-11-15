@@ -300,7 +300,7 @@
         margin: 0 auto;
         border-radius: 10px;
     }
-    .motivation-page, .other-page {
+    .motivation-page, .other-page, .statistics-page, .authorization-page {
         height: 700px;
     }
     .header > a {
@@ -724,7 +724,7 @@
         margin: 0 5px 10px 15px;
     }
     #currency-exchange .input__date-currency {
-        width: 145px;
+        width: 155px;
         margin: 15px 0 0 0;
         padding: 4px;
         border: 1px solid red;
