@@ -896,5 +896,19 @@
         position: absolute;
         top: -5px;
     }
+    .authorization-page p {
+        margin: 30px 0 0 10px;
+    }
+    .btn_set {
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        padding: 10px 37px;
+        background-color: #bab9b9;
+        margin: 13px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: .3s;
+    }
 }
 
