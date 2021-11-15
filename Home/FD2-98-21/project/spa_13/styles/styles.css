@@ -98,7 +98,7 @@ html, body {
 /*  color: #fff;*/
 /*  margin: 5px;*/
 /*}*/
-.header:hover .fa-smoking-ban{
+.header:hover .fa-smoking-ban {
   color: #f54b4b;
   animation: my_1;
   animation-duration: 3s;
@@ -700,7 +700,6 @@ button {
 }
 .goals-spa {
   width: 700px;
-  /*height: 430px;*/
   padding: 0 15px;
   border: 1px solid #bab9b9;
   border-radius: 8px;
