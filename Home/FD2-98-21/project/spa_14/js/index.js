@@ -1648,6 +1648,7 @@ const SPA_Smoking = (function() {
 
             myModuleModel.clearData();
             myModuleModel.clearDataGoals();
+            that.checkInputChange();
         }
 
 
