@@ -423,23 +423,17 @@ html, body {
   position: absolute;
   top: -5px;
 }
-
-
 .color_wrap {
   margin: 23px 0 13px;
   position: relative;
-  /*height: 35px;*/
 }
 .btn_wrap {
   display: flex;
-  /*justify-content: space-between;*/
   align-items: flex-end;
   position: absolute;
   top: 0;
   left: 195px;
-  /*display: inline-block;*/
   height: 20px;
-  /*padding: 10px;*/
 }
 
 input[type="checkbox"] {
@@ -525,7 +519,7 @@ button {
   margin: 0 20px;
 }
 #loader {
-  margin-top: 140px;
+  margin-top: 155px;
 }
 #forecast-now {
   width: 380px;
