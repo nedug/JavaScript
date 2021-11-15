@@ -286,17 +286,22 @@
 
 
 
+
 @media all and (max-width: 666px) {
     .app {
         padding: 7px 7px 7px;
         display: flex;
         width: 375px;
-        height: 815px;
+        /*height: 815px;*/
+        height: auto;
         border: 1px solid #919191;
         flex-direction: column;
         justify-content: space-between;
         margin: 0 auto;
         border-radius: 10px;
+    }
+    .motivation-page, .other-page {
+        height: 700px;
     }
     .header > a {
         font-size: 22px;
@@ -909,6 +914,10 @@
         cursor: pointer;
         text-decoration: none;
         transition: .3s;
+    }
+    #content {
+        height: auto;
+        overflow: visible;
     }
 }
 

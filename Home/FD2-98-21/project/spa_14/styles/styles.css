@@ -130,7 +130,7 @@ html, body {
 
 /*------------------------------*/
 #content {
-  height: 500px;
+  height: auto;
   overflow: auto;
 }
 .health-page h2, .statistics-page h2 {
