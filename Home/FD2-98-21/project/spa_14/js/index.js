@@ -1,12 +1,10 @@
-// Список компонент (from components.js)
-const components = {
+const components = { /* Список компонентов (from components.js) */
   header: Header,
   navbar: NavBar,
   content: Content,
 };
 
-// Список поддердживаемых роутов (from pages.js)
-const routes = {
+const routes = { /* Список поддердживаемых роутов (from pages.js) */
   login: LoginWeb,
   options: Options,
   authorization: AuthorPage,
@@ -1851,22 +1849,23 @@ const SPA_Smoking = (function() {
 
 
   return {
+
       init: function({container, routes, components}) {
-        this.renderComponents(container, components);
+
+        this.renderComponents(container, components); /* Верстаем хэдер, навигацию и контент */
 
         const view = new ModuleView();
         const model = new ModuleModel();
         const controller = new ModuleController();
 
-        //связываем части модуля
-        view.init(document.getElementById(container), routes);
+        view.init(document.getElementById(container), routes); /* связываем части модуля */
         model.init(view);
         controller.init(document.getElementById(container), model);
       },
 
       renderComponents: function (container, components) {
         const root = document.getElementById(container);
-        const componentsList = Object.keys(components);
+        const componentsList = Object.keys(components); /* const components = {header: Header, navbar: NavBar, content: Content,} */
         for (let item of componentsList) {
           root.innerHTML += components[item].render("component");
         }
@@ -1876,7 +1875,7 @@ const SPA_Smoking = (function() {
 }());
 
 
-/*** --- init module --- ***/
+/* --- init module --- */
 document.addEventListener("DOMContentLoaded", SPA_Smoking.init({
   container: "spa-smoking",
   routes: routes,
