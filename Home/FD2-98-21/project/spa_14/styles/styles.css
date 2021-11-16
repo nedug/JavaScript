@@ -3,7 +3,6 @@ html, body {
   box-sizing: border-box;
   font-family: "Exo 2", sans-serif;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -16,7 +15,6 @@ html, body {
   font-family: 'Oxygen Mono', monospace;
   font-size: 20px;
 }
-
 .app {
   padding: 15px 20px 10px;
   display: flex;

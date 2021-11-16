@@ -1390,11 +1390,11 @@ const SPA_Smoking = (function() {
             if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') {
 
                 styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
-                mediaCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-media.css`);
+                // mediaCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-media.css`);
             }
             else {
                 styleCSS.setAttribute('href', `./styles/styles.css`);
-                mediaCSS.setAttribute('href', `./styles/media.css`);
+                // mediaCSS.setAttribute('href', `./styles/media.css`);
             }
         }
 

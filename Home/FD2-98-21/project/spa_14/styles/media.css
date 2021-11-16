@@ -4,7 +4,6 @@
         display: flex;
         width: 667px;
         height: 815px;
-        border: 1px solid #919191;
         flex-direction: column;
         justify-content: space-between;
         margin: 0 auto;
@@ -16,14 +15,12 @@
     .mainmenu__link {
         display: block;
         padding: 15px 20px;
-        color: #000;
         text-decoration: none;
         font-size: 18px;
     }
     .state__wrap {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 7px 0;
@@ -37,12 +34,10 @@
         margin-right: -16px;
     }
     .btn-advice, .btn-facts, .btn-chat, .btn-goals {
-        color: white;
         max-width: 255px;
         border: none;
         border-radius: 4px;
         padding: 5px 15px;
-        background-color: #919191;
         margin: 20px 27px 0;
         font-size: 20px;
         transition: .3s;
@@ -53,7 +48,6 @@
     .advice-spa {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -63,7 +57,6 @@
         width: auto;
         height: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -73,7 +66,6 @@
         width: auto;
         height: 507px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -82,14 +74,12 @@
     .message-chat {
         max-width: 465px;
         padding: 7px;
-        border: 1px solid #927b7b;
         border-radius: 5px;
         transition: .3s;
     }
     .goals-spa {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -99,15 +89,12 @@
         margin: 10px 15px 20px 10px;
         padding: 8px;
         max-width: 235px;
-        background-color: #e0e5ee;
-        border: 1px solid #6cb6fd;
         border-radius: 3px;
     }
     .goals__wrap {
         display: none;
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 15px 0;
@@ -115,23 +102,19 @@
         position: relative;
     }
     .btn-futbol, .btn-weather {
-        color: white;
         max-width: 165px;
         border: none;
         border-radius: 4px;
         padding: 6px 20px;
-        background-color: #919191;
         margin: 20px 15px;
         font-size: 20px;
         transition: .3s;
     }
     .btn-currency {
-        color: white;
         max-width: 190px;
         border: none;
         border-radius: 4px;
         padding: 6px 10px;
-        background-color: #919191;
         margin: 20px 15px;
         font-size: 20px;
         transition: .3s;
@@ -140,7 +123,6 @@
         width: 410px;
         height: 455px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 10px 10px;
@@ -159,7 +141,6 @@
         width: 380px;
         height: 280px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 10px 10px;
@@ -178,7 +159,6 @@
     #currency-exchange {
         width: auto;
         padding: 20px 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -188,15 +168,12 @@
         margin: 15px 30px 15px 10px;
         padding: 8px;
         max-width: 465px;
-        border: 1px solid dodgerblue;
         border-radius: 3px;
     }
     .btn-add-currency {
-        color: white;
         border: none;
         border-radius: 4px;
         padding: 5px 10px;
-        background-color: #ef8c8c;
         margin: 30px 30px 0 124px;
         font-size: 16px;
         transition: .3s;
@@ -204,25 +181,20 @@
     .modal__content {
         width: auto;
         padding: 10px 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         transition: .3s;
         position: relative;
     }
     #content .fa-user-cog {
-        color: dodgerblue;
         font-size: 60px;
         position: absolute;
         top: 64px;
         right: 13px;
     }
     .data__save {
-        color: #fff;
         width: 105px;
-        border: 1px solid #bab9b9;
         border-radius: 4px;
         padding: 7px 11px;
-        background-color: #303030;
         margin: 10px;
         position: absolute;
         bottom: 10px;
@@ -232,11 +204,9 @@
     }
     .about_spa {
         max-width: 108px;
-        color: #fff;
         border: none;
         border-radius: 4px;
         padding: 7px 8px;
-        background-color: #8de290;
         margin: 10px 10px 10px 40px;
         position: absolute;
         bottom: 8px;
@@ -246,11 +216,9 @@
     }
     .data__delete {
         width: 390px;
-        color: #fff;
         border: none;
         border-radius: 4px;
         padding: 7px 11px;
-        background-color: #e57e7e;
         margin: 20px 10px 10px 120px;
         cursor: pointer;
         transition: .3s;
@@ -259,7 +227,6 @@
         position: absolute;
         top: 140px;
         right: 10px;
-        color: red;
         text-align: center;
     }
     .modal_about_spa {
@@ -275,8 +242,6 @@
         border-radius: 7px;
         padding: 17px;
         transform: translate(-50%, -50%);
-        background: white;
-        border: 1px solid #bab9b9;
         overflow: auto;
     }
     .modal_closed {
@@ -292,7 +257,6 @@
         display: flex;
         width: 375px;
         height: auto;
-        border: 1px solid #919191;
         flex-direction: column;
         justify-content: space-between;
         margin: 0 auto;
@@ -303,7 +267,6 @@
     }
     .header > a {
         font-size: 22px;
-        color: black;
         text-decoration: none;
         font-weight: bold;
         letter-spacing: 10px;
@@ -311,7 +274,6 @@
     .header .fa-smoking-ban {
         font-size: 25px;
         margin: 0 0 0 20px;
-        color: #c3c3c3;
         transition: .3s;
     }
     .sum__time__stop span, .num__cigarette span, .num__money span, .free__time span {
@@ -361,7 +323,6 @@
         transition: .3s;
     }
     .statistics-page .fa-angle-double-down {
-        color: #7c7c7c;
         font-size: 16px;
         position: absolute;
         bottom: 5px;
@@ -373,19 +334,16 @@
     .mainmenu__link {
         display: block;
         padding: 13px 5px;
-        color: #000;
         text-decoration: none;
         font-size: 12px;
     }
     .header:hover .fa-smoking-ban {
-        color: #f54b4b;
         animation: my_1;
         animation-play-state: paused;
     }
     .state__wrap {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 7px 0;
@@ -408,7 +366,6 @@
         font-size: 20px;
         margin-left: 20px;
         margin-bottom: 7px;
-        color: dodgerblue;
         transition: .3s;
     }
     .mainmenu__list {
@@ -419,12 +376,10 @@
         margin-right: -8px;
     }
     .btn-advice, .btn-facts, .btn-chat, .btn-goals {
-        color: white;
         max-width: 152px;
         border: none;
         border-radius: 4px;
         padding: 5px 5px;
-        background-color: #919191;
         margin: 15px 12px 0;
         font-size: 16px;
         transition: .3s;
@@ -432,7 +387,6 @@
     .btn-advice .fa-random, .btn-facts .fa-video, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign, .btn-goals .fa-crosshairs {
         font-size: 18px;
         margin: 6px 0 6px 15px;
-        color: white;
         transition: .3s;
     }
     .btn-chat, .btn-goals {
@@ -441,7 +395,6 @@
     .advice-spa {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -455,7 +408,6 @@
         font-size: 17px;
         padding: 8px;
         line-height: 25px;
-        border: 1px solid dodgerblue;
         border-radius: 8px;
         margin-bottom: 10px;
     }
@@ -466,7 +418,6 @@
     }
     .chat-border {
         padding: 5px;
-        border: 1px solid dodgerblue;
         border-radius: 7px;
         margin: 20px 0 10px;
         height: 338px;
@@ -481,7 +432,6 @@
         width: auto;
         height: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -491,7 +441,6 @@
         width: auto;
         height: 507px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -500,13 +449,11 @@
     .message-chat {
         max-width: 232px;
         padding: 7px;
-        border: 1px solid #927b7b;
         border-radius: 5px;
         transition: .3s;
     }
     .chat-spa .fa-envelope {
         font-size: 25px;
-        color: #5b5b5b;
         padding: 5px;
         margin: 0 0 0 0;
         transition: .3s;
@@ -520,7 +467,6 @@
     .goals-spa {
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -530,8 +476,6 @@
         margin: 10px 15px 8px 10px;
         padding: 7px;
         max-width: 229px;
-        background-color: #e0e5ee;
-        border: 1px solid #6cb6fd;
         border-radius: 3px;
     }
     .goals__wrap {
@@ -539,7 +483,6 @@
         display: none;
         width: auto;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 15px 0;
@@ -562,29 +505,24 @@
         width: 225px;
         height: 12px;
         display: inline-block;
-        border: 1px solid #bab9b9;
         border-radius: 3px;
         margin-top: 13px;
     }
     .btn-futbol, .btn-weather {
-        color: white;
         max-width: 99px;
         border: none;
         border-radius: 4px;
         padding: 5px 5px;
-        background-color: #919191;
         margin: 15px 9px;
         font-size: 16px;
         transition: .3s;
         text-align: center;
     }
     .btn-currency {
-        color: white;
         max-width: 99px;
         border: none;
         border-radius: 4px;
         padding: 5px 5px;
-        background-color: #919191;
         margin: 15px 9px;
         font-size: 16px;
         transition: .3s;
@@ -593,7 +531,6 @@
         width: auto;
         height: 350px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 10px 10px;
@@ -628,7 +565,6 @@
         display: flex;
         padding: 5px;
         justify-content: center;
-        border: 1px solid #838383;
         border-radius: 5px;
     }
     .futbol-league .wrap {
@@ -662,7 +598,6 @@
         width: auto;
         height: 280px;
         padding: 0 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         text-align: center;
         margin: 10px 10px;
@@ -681,11 +616,9 @@
     .btn-forecast_wrap button {
         width: 200px;
         height: 40px;
-        color: white;
         border: none;
         border-radius: 4px;
         padding: 5px 10px;
-        background-color: #c6c6c6;
         margin: 10px 0;
         font-size: 16px;
         transition: .3s;
@@ -693,7 +626,6 @@
     #currency-exchange {
         width: auto;
         padding: 20px 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         margin: 10px 5px;
         transition: .3s;
@@ -704,15 +636,12 @@
         margin: 12px 5px 12px 5px;
         padding: 8px;
         max-width: 315px;
-        border: 1px solid dodgerblue;
         border-radius: 3px;
     }
     .btn-add-currency {
-        color: white;
         border: none;
         border-radius: 4px;
         padding: 5px 12px;
-        background-color: #ef8c8c;
         margin: 22px 25px 0 10px;
         font-size: 15px;
         transition: .3s;
@@ -725,15 +654,12 @@
         width: 155px;
         margin: 15px 0 0 0;
         padding: 4px;
-        border: 1px solid red;
         border-radius: 3px;
     }
     .btn-clean-currency {
-        color: white;
         border: none;
         border-radius: 4px;
         padding: 5px 15px;
-        background-color: #64a5e5;
         margin: 25px 5px 0 0;
         font-size: 15px;
         transition: .3s;
@@ -746,22 +672,18 @@
         width: auto;
         height: 680px;
         padding: 10px 15px;
-        border: 1px solid #bab9b9;
         border-radius: 8px;
         transition: .3s;
         position: relative;
     }
     #content .fa-user-cog {
-        color: dodgerblue;
         font-size: 47px;
         position: absolute;
         top: 693px;
         right: 140px;
     }
     .data__save {
-        color: #fff;
         width: 105px;
-        border: 1px solid #bab9b9;
         border-radius: 4px;
         padding: 7px 11px;
         background-color: #303030;
@@ -774,11 +696,9 @@
     }
     .about_spa {
         max-width: 139px;
-        color: #fff;
         border: none;
         border-radius: 4px;
         padding: 8px 8px;
-        background-color: #8de290;
         margin: 10px 10px 10px 13px;
         position: absolute;
         bottom: 10px;
@@ -788,11 +708,10 @@
     }
     .data__delete {
         width: 305px;
-        color: #fff;
+
         border: none;
         border-radius: 4px;
         padding: 7px 11px;
-        background-color: #e57e7e;
         margin: 80px 10px 10px 20px;
         cursor: pointer;
         transition: .3s;
@@ -801,7 +720,6 @@
         position: absolute;
         top: 672px;
         right: 20px;
-        color: red;
         text-align: center;
     }
     .modal_about_spa {
@@ -817,8 +735,6 @@
         border-radius: 7px;
         padding: 17px;
         transform: translate(-50%, -50%);
-        background: white;
-        border: 1px solid #bab9b9;
         overflow: auto;
     }
     .modal_closed {
@@ -829,7 +745,6 @@
     }
     .modal__content input, .modal__content select {
         margin: 8px 10px;
-        border: 1px solid #bab9b9;
         border-radius: 3px;
         padding: 4px;
     }
@@ -903,11 +818,9 @@
         margin: 30px 0 0 10px;
     }
     .btn_set {
-        color: #fff;
         font-size: 18px;
         border-radius: 4px;
         padding: 10px 37px;
-        background-color: #bab9b9;
         margin: 13px;
         cursor: pointer;
         text-decoration: none;
