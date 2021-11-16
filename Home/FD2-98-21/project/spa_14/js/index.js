@@ -48,8 +48,8 @@ const SPA_Smoking = (function() {
         const clickAudio = new Audio('sound/1.mp3');
         const tickAudio = new Audio('sound/2.mp3');
 
-        let ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
-        let messages; // элемент массива - {name:'Иванов',mess:'Привет'};
+        let ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php"; /* Серверный скрипт; Сервис AjaxStringStorage2 предназначен для сохранения в базе данных и получения из базы данных */
+        let messages;
         let updatePassword;
         let stringName = 'SASHA1_CHAT_MESSAGES';
 
@@ -70,7 +70,7 @@ const SPA_Smoking = (function() {
                                 ['Вероятность развития рака легких медленно снижается.',
                                  'Вероятность развития рака легких снижена до уровня, как у некурящего человека.'],];
 
-        const rangeStateHealth = {
+        const rangeStateHealth = { /* Параметры времени для раздела ЗДОРОВЬЕ; в мин */
             heart: 20,
             carbonMonoxide: 720,
             nicotine: 2880,
@@ -81,11 +81,12 @@ const SPA_Smoking = (function() {
             riskCancer: 3628800,
         };
 
-        this.init = function(view) {
+        this.init = function(view) { /* Инициализация Модели */
             myModuleView = view;
         }
 
-        this.updateState = function(pageName) {
+        this.updateState = function(pageName) { /* Отрисовка основных блоков программы */
+
             advice = ['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                     'Поймите, что курение давно уже не модно.',
                     'Избегайте курящих компаний.',
@@ -112,7 +113,7 @@ const SPA_Smoking = (function() {
                     'По степени ядовитости никотин сравним с синильной кислотой, и даже обладает одинаковой смертельной дозой для человека.',
                     'Если никотин частично выводится из организма, то остальные яды оседают надолго, накапливаются и вызывают различные болезни. От табачных ядов неминуемо страдает не только тот, кто курит табак, но и те, кого окуривают.',
                     'Целых два года необходимо освобождаться от этих ядов организму человека, который бросил курить. Но последствия отравления остаются на всю жизнь. Через несколько лет человека начинают одолевать болезни, а он и не предполагает, что их причиной является курение табака в молодые годы. Чем раньше человек бросает курить, тем больше у него шансов остаться здоровым.',
-            ];
+            ]; /* Сохраненные советы */
             links = ['https://www.youtube.com/embed/PBR-Yev5vO8',
                     'https://www.youtube.com/embed/2DQxagQZTLg',
                     'https://www.youtube.com/embed/lOx4HgqchUw',
@@ -123,25 +124,25 @@ const SPA_Smoking = (function() {
                     'https://www.youtube.com/embed/EfN9VpZNeD0',
                     'https://www.youtube.com/embed/3CPrJmZahJE',
                     'https://www.youtube.com/embed/nKVeRDiZaes',
-            ];
+            ]; /* Сохраненные ссылки */
             numDiap = 25;
             numDiapF = 9;
             placeChampionFut = 0;
             pageNameLink = pageName; /* Линк после # */
 
-            if (userDataStorage && userDataStorage.soundSpaUser) playSound();
+            if (userDataStorage && userDataStorage.soundSpaUser) playSound(); /* Воспроизводим ЗВУКИ */
 
-            this.getData();
+            this.getData(); /* Получаем данные из LocalStorage */
 
-            myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
+            myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig); /* Отображаем необходимый блок из routes */
 
             if ((pageNameLink === 'statistics' || pageNameLink === '') && userDataStorage) {
-                this.calculateStatistics();
+                this.calculateStatistics(); /* Считаем раздел СТАТИСТИКИ */
             }
             else if (pageNameLink === 'health' && userDataStorage) {
-                clearInterval(timerStatisticTime);
+                clearInterval(timerStatisticTime); /* Удаляем таймеры при переходе на другие разделы */
                 clearInterval(timerStatisticOther);
-                clearInterval(timerTick);
+                clearInterval(timerTick); /* Таймер звука */
                 this.calculateHealth();
             }
             else {
@@ -150,18 +151,19 @@ const SPA_Smoking = (function() {
                 clearInterval(timerTick);
             }
 
-            if (userDataStorage) stateColorSpa = userDataStorage.colorSpaUser;
+            if (userDataStorage) stateColorSpa = userDataStorage.colorSpaUser; /* Забираем данные о цветовой схеме из LocalStorage */
             myModuleView.changeColorSpa();
         }
 
         this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity, soundSpa) { /* Получаем данные пользователя и сохраняем в объект 'userData' */
 
-            if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) { /* Проверка на корректность данных */
+            /* Проверка на корректность данных */
+            if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) {
                 myModuleView.validDate(false);
                 return;
             }
-
-            if (+inputDate.value.split('-')[0] > new Date().getFullYear() || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[2] > new Date().getDate() && +inputDate.value.split('-')[1] >= new Date().getMonth()+1 || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[1] > new Date().getMonth()+1) { /* Проверка на ввод даты пользователя через клавиатуру */
+            /* Проверка на ввод даты пользователя через клавиатуру */
+            if (+inputDate.value.split('-')[0] > new Date().getFullYear() || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[2] > new Date().getDate() && +inputDate.value.split('-')[1] >= new Date().getMonth()+1 || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[1] > new Date().getMonth()+1) {
                 myModuleView.validDate(false);
                 return;
             }
@@ -180,7 +182,7 @@ const SPA_Smoking = (function() {
 
             this.storeData(); /* Сохраняем данные в localStorage */
 
-            if ((pageNameLink === 'login')) myModuleView.validDate(true);
+            if ((pageNameLink === 'login')) myModuleView.validDate(true); /* Отображаем валидацию данных */
         }
 
         this.storeData = function() { /* Сохраняем данные в localStorage */
@@ -191,60 +193,60 @@ const SPA_Smoking = (function() {
             this.updateState(pageNameLink); /* Обновляем приложение */
         }
 
-        this.getData = function() {
+        this.getData = function() { /* Получаем данные из LocalStorage */
 
             userDataStorage = JSON.parse(localStorage.getItem('userData'));
         }
 
-        this.clearData = function() { /* Очищаем данные в хранилище */
+        this.clearData = function() { /* Очищаем данные в хранилище localStorage */
 
             localStorage.removeItem('userData');
             stateColorSpa = 'white';
             this.updateState(pageNameLink); /* Обновляем приложение */
         }
 
-        this.calculateStatistics = function() {
+        this.calculateStatistics = function() { /* Считаем СТАТИСТИКУ пользователя */
 
             if (!userDataStorage) return;
 
             const stopDay = +userDataStorage.userDate.split('-')[2];
             const stopMonth = +userDataStorage.userDate.split('-')[1];
             const stopYear = +userDataStorage.userDate.split('-')[0];
-            const dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
+            const dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay); /* Устанавливаем дату СТОП КУРЕНИЯ */
 
             goTimer();
-            timerStatisticTime = setInterval(goTimer, 1000); /* Запускаем таймер статистики */
+            timerStatisticTime = setInterval(goTimer, 1000); /* Запускаем таймер статистики ВРЕМЕНИ */
 
             function goTimer() {
 
-                if (userDataStorage && userDataStorage.soundSpaUser) {
+                if (userDataStorage && userDataStorage.soundSpaUser) { /* Воспроизводим звуки ТИК-ТАК */
                     timerTick = setTimeout(playSoundTick, 1000)
                 }
                 const timeNow = new Date();
-                const sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
-                const sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
-                const sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60);
-                const sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60);
-                const sumYear = Math.floor(sumDay / 365);
-                const dayWithYear = sumDay - sumYear * 365;
+                const sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24); /* Подсчет дней */
+                const sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24); /* Подсчет часов */
+                const sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60); /* Подсчет минут */
+                const sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60); /* Подсчет секунд */
+                const sumYear = Math.floor(sumDay / 365); /* Подсчет лет */
+                const dayWithYear = sumDay - sumYear * 365; /* Подсчет лет с учетом дней */
 
-                myModuleView.renderStatisticTime(sumYear, dayWithYear, sumHour, sumMin, sumSec);
+                myModuleView.renderStatisticTime(sumYear, dayWithYear, sumHour, sumMin, sumSec); /* Обновляем статистику каждую секунду */
             }
 
             goTimerCig();
-            timerStatisticOther = setInterval(goTimerCig, 300000); /* Запускаем таймер статистики */
+            timerStatisticOther = setInterval(goTimerCig, 300000); /* Запускаем таймер статистики СИГ, ДЕНЕГ и тд */
 
             function goTimerCig() {
 
                 const timeNow = new Date();
                 const sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
                 const timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
-                const sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
-                const nicotineMg = Math.floor(sumFullCigarette * 0.6);
-                const resinMg = Math.floor(sumFullCigarette * 5);
+                const sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette); /* Не выкурено сигарет */
+                const nicotineMg = Math.floor(sumFullCigarette * 0.6); /* не получено никотина */
+                const resinMg = Math.floor(sumFullCigarette * 5); /* не получено смолы */
 
                 const costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
-                const costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
+                const costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette); /* Сэкономлено средств */
                 const costOneMonth = Math.floor(userDataStorage.userNumCigarette * 30 / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette);
                 const costOneYear = costOneMonth * 12;
 
@@ -259,14 +261,14 @@ const SPA_Smoking = (function() {
                 const addTimeDayFull = Math.floor(addTimeHourFull / 24);
                 const addTimeHour = addTimeHourFull - 24 * addTimeDayFull;
 
+                /* Обновляем статистику каждые 5 мин */
                 myModuleView.renderStatisticCig(sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin);
             }
         }
 
+        this.calculateHealth = function() { /* Считаем состояние ЗДОРОВЬЯ пользователя */
 
-        this.calculateHealth = function() {
-
-            if (!userDataStorage) return
+            if (!userDataStorage) return;
 
             const stopDay = +userDataStorage.userDate.split('-')[2];
             const stopMonth = +userDataStorage.userDate.split('-')[1];
@@ -275,56 +277,55 @@ const SPA_Smoking = (function() {
 
             const timeNow = new Date();
             const sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
-
-            let heart = Math.floor(sumMin * 100 / rangeStateHealth.heart); /* Сердце */
+            let heart = Math.floor(sumMin * 100 / rangeStateHealth.heart); /* Проценты Сердце */
             if (heart > 100) heart = 100;
-            let carbonMonoxide = Math.floor(sumMin * 100 / rangeStateHealth.carbonMonoxide); /* Угарный газ */
+            let carbonMonoxide = Math.floor(sumMin * 100 / rangeStateHealth.carbonMonoxide); /* Проценты Угарный газ */
             if (carbonMonoxide > 100) carbonMonoxide = 100;
-            let nicotine = Math.floor(sumMin * 100 / rangeStateHealth.nicotine); /* Никотин */
+            let nicotine = Math.floor(sumMin * 100 / rangeStateHealth.nicotine); /* Проценты Никотин */
             if (nicotine > 100) nicotine = 100;
-            let smell = Math.floor(sumMin * 100 / rangeStateHealth.smell); /* Запахи */
+            let smell = Math.floor(sumMin * 100 / rangeStateHealth.smell); /* Проценты Запахи */
             if (smell > 100) smell = 100;
-            let lung = Math.floor(sumMin * 100 / rangeStateHealth.lung); /* Легкие */
+            let lung = Math.floor(sumMin * 100 / rangeStateHealth.lung); /* Проценты Легкие */
             if (lung > 100) lung = 100;
-            let liver = Math.floor(sumMin * 100 / rangeStateHealth.liver); /* Печень */
+            let liver = Math.floor(sumMin * 100 / rangeStateHealth.liver); /* Проценты Печень */
             if (liver > 100) liver = 100;
-            let riskHeart = Math.floor(sumMin * 100 / rangeStateHealth.riskHeart); /* Риск сердечного приступа */
+            let riskHeart = Math.floor(sumMin * 100 / rangeStateHealth.riskHeart); /* Проценты Риск сердечного приступа */
             if (riskHeart > 100) riskHeart = 100;
-            let riskCancer = Math.floor(sumMin * 100 / rangeStateHealth.riskCancer); /* Риск рака */
+            let riskCancer = Math.floor(sumMin * 100 / rangeStateHealth.riskCancer); /* Проценты Риск рака */
             if (riskCancer > 100) riskCancer = 100;
 
             myModuleView.renderHealth(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer);
         }
 
-        this.showMoreInfo = function(parent, btn) {
+        this.showMoreInfo = function(parent, btn) { /* Показываем больше данных в разделе Статистика */
 
             myModuleView.renderMoreInfo(parent, btn);
         }
 
-        this.getFutbolSeason = function() {
+        this.getFutbolSeason = function() { /* Показываем инпут выбора ГОДА футбольного сезона */
 
             myModuleView.renderFutbolSeason();
         }
 
-        this.getFutbol = function(inputDateFutbol) {
+        this.getFutbol = function(inputDateFutbol) { /* Показываем блок Футбол */
 
-            myModuleView.renderFutbolLoader();
+            myModuleView.renderFutbolLoader(); /* Показываем Лоудер загрузки */
 
-            if (inputDateFutbol.value < 2015 || inputDateFutbol.value > new Date().getFullYear()) return;
+            if (inputDateFutbol.value < 2015 || inputDateFutbol.value > new Date().getFullYear()) return; /* Ограничиваем возможность выбора не нужных дат */
 
             const apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=${inputDateFutbol.value}&sort=asc`;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Загрузка ТУРНИРНОЙ ТАБЛИЦЫ команд */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
-                    myModuleView.renderFutbol(data, placeChampionFut);
+                    myModuleView.renderFutbol(data, placeChampionFut); /* placeChampionFut = 0; */
                 })
                 .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
 
             const apiQueryLogo = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}`;
 
-            fetch(apiQueryLogo, {method: 'get'})
+            fetch(apiQueryLogo, {method: 'get'}) /* Загрузка лого команд */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
@@ -333,7 +334,21 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
         }
 
-        this.getWeather = function() {
+        this.getFutbolFoward = function(inputDateFutbol) { /* Листаем футбол ВПЕРЕД */
+
+            placeChampionFut++;
+            if (placeChampionFut === 20) placeChampionFut = 0;
+            this.getFutbol(inputDateFutbol);
+        }
+
+        this.getFutbolBack = function(inputDateFutbol) { /* Листаем футбол НАЗАД */
+
+            placeChampionFut--;
+            if (placeChampionFut === -1) placeChampionFut = 19;
+            this.getFutbol(inputDateFutbol);
+        }
+
+        this.getWeather = function() { /* Показываем блок ПОГОДА */
 
             // navigator.geolocation.getCurrentPosition(success);
             // function success(pos) {
@@ -344,13 +359,13 @@ const SPA_Smoking = (function() {
             //     console.log(`Плюс-минус ${crd.accuracy} метров.`);
             // }
 
-            myModuleView.renderWeatherLoader();
+            myModuleView.renderWeatherLoader(); /* Показываем Лоудер загрузки */
 
             const apiUrl = "https://api.openweathermap.org/data/2.5/";
             const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
             const apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Получаем погоду на СЕГОДНЯ */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
@@ -359,7 +374,7 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
-        this.getWeather3days = function() {
+        this.getWeather3days = function() { /* Показываем прогноз ПОГОДЫ на 3 дня */
 
             myModuleView.renderWeather3daysLoader();
 
@@ -367,7 +382,7 @@ const SPA_Smoking = (function() {
             const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
             const apiQuery = apiUrl+"/forecast?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Получаем погоду на 3 дня */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
@@ -376,14 +391,14 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
-        this.getPollution = function() {
+        this.getPollution = function() { /* Показываем загрязнение ВОЗДУХА */
 
             myModuleView.renderWeather3daysLoader();
 
             const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
             const apiQuery = 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+ userDataStorage.typeWeatherUser.split('/')[1] +'&lon=' + userDataStorage.typeWeatherUser.split('/')[2] +'&appid='+apiKey;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Получаем загрязнение ВОЗДУХА */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data);
@@ -392,21 +407,21 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения загрязнение воздуха. Причина: " + error));
         }
 
-        this.getCurrency = function() {
+        this.getCurrency = function() { /* Показываем блок ОбМЕНА ВАЛЮТ */
 
-            setTimeNow();
-            myModuleView.renderCurrency(dateNow);
+            setTimeNow(); /* Функция установки текущей даты в объект для дальнейшего использования */
+            myModuleView.renderCurrency(dateNow); /* Показываем блок и устаналиваем текущую дату и ограничиваем выбор даты позднее чем сегодня */
         }
 
-        this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
+        this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 1 и селектов */
 
             let dateCurrency = selectDate.value;
-            if (!dateCurrency) return;
+            if (!dateCurrency) return; /* Ограничиваем ввод пустой строки */
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
             const apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Получаем курс необходимой валюты к другой */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('первый');
@@ -415,14 +430,14 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
 
-        this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
+        this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 2 */
 
             let dateCurrency = selectDate.value;
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
             const apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
 
-            fetch(apiQuery, {method: 'get'})
+            fetch(apiQuery, {method: 'get'}) /* Получаем курс необходимой валюты к другой */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('второй');
@@ -431,50 +446,29 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
 
-        this.cleanCurrency = function() {
+        this.cleanCurrency = function() {  /* Очищаем инпуты ввода валюты */
 
             myModuleView.renderCleanCurrency();
         }
 
-        this.addCurrency = function(inputAddCurrency) {
+        this.addCurrency = function(inputAddCurrency) { /* Возможность добавлять новую ВАЛЮТУ */
 
             if (inputAddCurrency.value === '') return;
             myModuleView.renderAddCurrency(inputAddCurrency.value);
         }
 
-        this.getFutbolFoward = function(inputDateFutbol) {
-
-            placeChampionFut++;
-            if (placeChampionFut === 20) placeChampionFut = 0;
-            this.getFutbol(inputDateFutbol);
-        }
-
-        this.getFutbolBack = function(inputDateFutbol) {
-
-            placeChampionFut--;
-            if (placeChampionFut === -1) placeChampionFut = 19;
-            this.getFutbol(inputDateFutbol);
-        }
-
-        this.showMessageChat = function() {
+        this.showMessageChat = function() { /* Показываем блок ОНЛАЙН-ЧАТА */
 
             myModuleView.showMessageChat();
         }
 
-        this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) {
-
-            let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
-            myModuleView.btnUpdate(stateBtn);
-        }
-
-        this.sendMessageChat = function(inputChat) {
+        this.sendMessageChat = function(inputChat) { /* Отправка сообщений в ОНЛАЙН-ЧАТе */
 
             updatePassword = Math.random();
             $.ajax( {
                     url : ajaxHandlerScript,
                     type : 'POST', dataType:'json',
-                    data : { f : 'LOCKGET', n : stringName,
-                        p : updatePassword },
+                    data : { f : 'LOCKGET', n : stringName, p : updatePassword },
                     cache : false,
                     success : lockGetReady,
                     error : errorHandler,
@@ -494,9 +488,10 @@ const SPA_Smoking = (function() {
                             messages = [];
                     }
 
-                    let senderName = userDataStorage.userName;
+                    let senderName = userDataStorage.userName; /* Получаем имя Пользователя из LocalStorage */
                     let message = inputChat.value;
                     if (message === '') message = '/тут должен быть текст/';
+                    /* Отметка времени для ЧАТА */
                     let timeNow = ` [${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}]`;
                     let messageAll = message + timeNow;
                     messages.push( { name:senderName, mess:messageAll } );
@@ -527,8 +522,7 @@ const SPA_Smoking = (function() {
 
         this.updateMessageChat = function() {
 
-            // получает сообщения с сервера и потом показывает
-            $.ajax( {
+            $.ajax( { // получает сообщения с сервера и потом показывает
                     url : ajaxHandlerScript,
                     type : 'POST', dataType:'json',
                     data : { f : 'READ', n : stringName },
@@ -579,50 +573,49 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.getAdviceUser = function() {
+        this.getAdviceUser = function() { /* Показываем блок СОВЕТОВ */
 
-            const randomNumberAdvice = randomDiap(0, numDiap);
+            const randomNumberAdvice = randomDiap(0, numDiap); /* Получаем случайное значение номера массива */
 
-            myModuleView.renderAdviceUser(advice[randomNumberAdvice]);
+            myModuleView.renderAdviceUser(advice[randomNumberAdvice]); /* Показываем пользователю нужный совет */
 
-            advice.splice(randomNumberAdvice, 1);
+            advice.splice(randomNumberAdvice, 1); /* Удаляем показанный совет из массива */
             --numDiap;
         }
 
-        this.getVideoFactsUser = function() {
+        this.getVideoFactsUser = function() { /* Показываем блок ВИДЕО-ФАКТОВ */
 
-            const randomNumberFacts = randomDiap(0, numDiapF);
+            const randomNumberFacts = randomDiap(0, numDiapF); /* Получаем случайное значение номера массива */
 
-            myModuleView.renderVideoFactsUser(links[randomNumberFacts]);
+            myModuleView.renderVideoFactsUser(links[randomNumberFacts]);/* Показываем пользователю нужное видео */
 
-            links.splice(randomNumberFacts, 1);
+            links.splice(randomNumberFacts, 1); /* Удаляем показанное видео из массива */
             --numDiapF;
         }
 
-        this.setActiveBtn = function(activeBtn) {
+        this.setActiveBtn = function(activeBtn) { /* Выделяем нажимаемую кнопку */
 
             myModuleView.renderActiveBtn(activeBtn);
         }
 
-        this.showAboutSpa = function() {
+        this.showAboutSpa = function() { /* Показываем блок О ПРИЛОЖЕНИИ */
 
             myModuleView.renderAboutSpa();
         }
 
-        this.changeColorSpa = function(btnColor) {
+        this.changeColorSpa = function(btnColor) { /* Изменяем цветовую схему приложения */
 
-            stateColorSpa = btnColor.getAttribute('class').split(' ')[1];
+            stateColorSpa = btnColor.getAttribute('class').split(' ')[1];  /* Получаем класс кнопки, делим строку на массив и получаем цвет вторым индексом массива */
             myModuleView.changeColorBtn(btnColor);
         }
 
-        this.showGoalsUser = function() {
+        this.showGoalsUser = function() { /* Показываем блок УСТАНОВКИ ЦЕЛИ */
 
             myModuleView.showGoalsUser();
-
-            this.getGoalsUser();
+            this.getGoalsUser(); /* Проверяем наличие уже сохраненной ЦЕЛИ */
         }
 
-        this.setGoalsUser = function([textGoal, costGoals]) {
+        this.setGoalsUser = function([textGoal, costGoals]) { /* Устанавливаем ЦЕЛь пользователя в localStorage */
 
             if (!textGoal.value || !costGoals.value) return;
 
@@ -632,19 +625,20 @@ const SPA_Smoking = (function() {
             }
             localStorage.setItem('userDataGoals', JSON.stringify(userDataGoals));
 
-            this.getGoalsUser();
+            this.getGoalsUser(); /* Показываем статистику о цели пользователя */
         }
 
-        this.getGoalsUser = function() {
+        this.getGoalsUser = function() { /* Показываем статистику о цели пользователя из localStorage */
 
             let userDataGoalsStorage = JSON.parse(localStorage.getItem('userDataGoals'));
-            calculateDateUser();
+            calculateDateUser(); /* Подсчет необходиммых данных */
 
-            if (!userDataGoalsStorage) {
+            if (!userDataGoalsStorage) { /* Прячем статистику если данных в localStorage нет */
                 myModuleView.renderGoalsHide();
                 return;
             }
 
+            /* Считаем статистику о ЦЕЛИ */
             let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
             if (percentGoals > 100) percentGoals = 100;
             let restDay = Math.ceil(sumDay * 100 / percentGoals) - sumDay;
@@ -652,12 +646,18 @@ const SPA_Smoking = (function() {
             myModuleView.renderGoalsUser(userDataGoalsStorage, percentGoals, costFullCigarette, restDay);
         }
 
-        this.clearDataGoals = function() {
+        this.clearDataGoals = function() { /* Удаляем ЦЕЛь пользователя из localStorage */
 
             localStorage.removeItem('userDataGoals');
         }
 
-        function playSound() {
+        this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) { /* Проверка инпутов на ввод данных */
+
+            let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
+            myModuleView.btnUpdate(stateBtn); /* Обновление состояние кнопки 'Изменить' */
+        }
+
+        function playSound() { /* Звуки */
             clickAudio.currentTime = 0;
             clickAudio.play().then(() => {
                 // Autoplay started!
@@ -674,15 +674,15 @@ const SPA_Smoking = (function() {
             });
         }
 
-        function randomDiap(n, m) {
+        function randomDiap(n, m) { /* Случайное число в указанном диапазоне */
             return Math.floor(Math.random() * (m - n + 1)) + n;
         }
 
-        function errorHandler(jqXHR, statusStr, errorStr) {
+        function errorHandler(jqXHR, statusStr, errorStr) { /* Проверка ошибки в чате */
             alert(statusStr+' '+errorStr);
         }
 
-        function setTimeNow() {
+        function setTimeNow() { /* Функция установки текущей даты в объект для дальнейшего исользования */
             let currentYear = new Date().getFullYear();
             let currentDay = new Date().getDate();
             if (currentDay < 10) currentDay = '0' + currentDay;
@@ -691,7 +691,7 @@ const SPA_Smoking = (function() {
             dateNow = `${currentYear}-${currentMonth}-${currentDay}`;
         }
 
-        function calculateDateUser() {
+        function calculateDateUser() { /* Функция подсчета необходимой статистики */
             let stopDay = +userDataStorage.userDate.split('-')[2];
             let stopMonth = +userDataStorage.userDate.split('-')[1];
             let stopYear = +userDataStorage.userDate.split('-')[0];
@@ -719,7 +719,7 @@ const SPA_Smoking = (function() {
         let userStorage = null;
         let placeChampion = null;
 
-        this.init = function(container, routes) {
+        this.init = function(container, routes) { /* Инициализация ВЬЮ */
 
             myModuleContainer = container;
             routesObj = routes;
@@ -1489,7 +1489,7 @@ const SPA_Smoking = (function() {
             const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             inputDateFutbol.addEventListener('input', inputDateHandler); /* Слушатель событий на инпут ГОД сезона */
 
-            myModuleModel.getFutbolSeason(); /* Показываем инпут выбора футбольного сезона */
+            myModuleModel.getFutbolSeason(); /* Показываем инпут выбора ГОДА футбольного сезона */
             myModuleModel.getFutbol(inputDateFutbol);
 
             function inputDateHandler() {
@@ -1536,7 +1536,7 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.showMessageChat = function() {  /* Показываем блок ОНЛАЙН-ЧАТА */
+        this.showMessageChat = function() { /* Показываем блок ОНЛАЙН-ЧАТА */
 
             myModuleModel.showMessageChat(); /* Показываем чат */
             myModuleModel.updateMessageChat(); /* Обновляем чат */
@@ -1625,7 +1625,7 @@ const SPA_Smoking = (function() {
             myModuleModel.showGoalsUser();
         }
 
-        this.setGoalsUser = function() {  /* Устанавливаем ЦЕЛь пользователя в localStorage */
+        this.setGoalsUser = function() { /* Устанавливаем ЦЕЛь пользователя в localStorage */
 
             const inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
             myModuleModel.setGoalsUser(inputGoalsUser);
