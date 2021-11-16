@@ -462,13 +462,15 @@ const SPA_Smoking = (function() {
             myModuleView.showMessageChat();
         }
 
-        this.sendMessageChat = function(inputChat) { /* Отправка сообщений в ОНЛАЙН-ЧАТе */
+        this.sendMessageChat = function(inputChat) { /* ОТПРАВКА сообщений в ОНЛАЙН-ЧАТе */
+            /*  AjaxStringStorage2 предназначен для сохранения в базе данных и получения из базы данных произвольных именованных строк посредством jQuery AJAX. */
 
             updatePassword = Math.random();
+
             $.ajax( {
-                    url : ajaxHandlerScript,
+                    url : ajaxHandlerScript, /* скрипт */
                     type : 'POST', dataType:'json',
-                    data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+                    data : { f : 'LOCKGET', n : stringName, p : updatePassword }, /* LOCKGET — чтение строки и планирование её изменения */
                     cache : false,
                     success : lockGetReady,
                     error : errorHandler,
@@ -480,31 +482,33 @@ const SPA_Smoking = (function() {
                     alert(callresult.error);
                 else {
                     messages = [];
-                    if (callresult.result != "") { // либо строка пустая - сообщений нет
-                        // либо в строке - JSON-представление массива сообщений
+                    if (callresult.result != "") { // проверка на пустую строку, Если такой строки нет в базе данных, возвращается пустая строка.
+
+                        /* результат парсим из JSON и сохраняем */
                         messages = JSON.parse(callresult.result);
+
                         // вдруг кто-то сохранил мусор вместо SASHA1_CHAT_MESSAGES?
-                        if (!Array.isArray(messages))
-                            messages = [];
+                        if (!Array.isArray(messages)) messages = [];
                     }
 
                     let senderName = userDataStorage.userName; /* Получаем имя Пользователя из LocalStorage */
-                    let message = inputChat.value;
+                    let message = inputChat.value; /* Текст сообщения */
                     if (message === '') message = '/тут должен быть текст/';
+
                     /* Отметка времени для ЧАТА */
                     let timeNow = ` [${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}]`;
                     let messageAll = message + timeNow;
-                    messages.push( { name:senderName, mess:messageAll } );
-                    if (messages.length > 10)
+
+                    messages.push( { name:senderName, mess:messageAll } ); /* Готовим сообщение как последний элемент массива */
+                    if (messages.length > 10) /* Ограничиваем 10 значениями */
                         messages = messages.slice(messages.length - 10);
 
-                    that.showMessagesForChat();
+                    that.showMessagesForChat(); /* Отображаем сообщения чата */
 
                     $.ajax( {
                             url : ajaxHandlerScript,
                             type : 'POST', dataType:'json',
-                            data : { f : 'UPDATE', n : stringName,
-                                v : JSON.stringify(messages), p : updatePassword },
+                            data : { f : 'UPDATE', n : stringName, v : JSON.stringify(messages), p : updatePassword },  /* UPDATE — изменение заблокированной строки; v : JSON.stringify(messages) - на какое значение нужно изменить строку */
                             cache : false,
                             success : updateReady,
                             error : errorHandler
@@ -519,13 +523,12 @@ const SPA_Smoking = (function() {
             }
         }
 
-
-        this.updateMessageChat = function() {
+        this.updateMessageChat = function() { /* Обновление окна сообщений в ОНЛАЙН-ЧАТе по нажатию на кнопку */
 
             $.ajax( { // получает сообщения с сервера и потом показывает
                     url : ajaxHandlerScript,
                     type : 'POST', dataType:'json',
-                    data : { f : 'READ', n : stringName },
+                    data : { f : 'READ', n : stringName }, /* READ — чтение строки */
                     cache : false,
                     success : readReady,
                     error : errorHandler
@@ -536,15 +539,17 @@ const SPA_Smoking = (function() {
                 if (callresult.error != undefined)
                     alert(callresult.error);
                 else {
-                    messages=[];
+                    messages = [];
                     if (callresult.result != "") { // либо строка пустая - сообщений нет
-                        // либо в строке - JSON-представление массива сообщений
+
+                        /* результат парсим из JSON и сохраняем */
                         messages = JSON.parse(callresult.result);
-                        // вдруг кто-то сохранил мусор вместо LOKTEV_CHAT_MESSAGES?
+
+                        // вдруг кто-то сохранил мусор вместо SASHA1_CHAT_MESSAGES?
                         if (!Array.isArray(messages))
                             messages = [];
                     }
-                    that.showMessagesForChat();
+                    that.showMessagesForChat(); /* Отображаем сообщения чата из БАЗЫ ДАнных */
                 }
             }
         }
@@ -554,11 +559,10 @@ const SPA_Smoking = (function() {
             let str = '';
             for (let m = 0; m < messages.length; m++) {
                 let message = messages[m];
-                str+="<b>"+escapeHTML(message.name) + ":</b> "
-                    + escapeHTML(message.mess) + "<br/>";
+                str += "<b>" + escapeHTML(message.name) + ":</b> " + escapeHTML(message.mess) + "<br/>";
             }
 
-            myModuleView.renderChat(str);
+            myModuleView.renderChat(str); /* Отображаем сообщения чата с версткой */
 
             function escapeHTML(text) {
                 if (!text)
@@ -1196,12 +1200,12 @@ const SPA_Smoking = (function() {
             chatSpa.style.display = 'block';
         }
 
-        this.renderChat = function(str) {
+        this.renderChat = function(str) { /* Отображаем сообщения чата с версткой */
 
             const chatBorder = myModuleContainer.querySelector(".chat-spa .chat-border");
             chatBorder.innerHTML = str;
             const messageChat = myModuleContainer.querySelector(".chat-spa .message-chat");
-            messageChat.value = '';
+            messageChat.value = ''; /* Чистим поле ввода текста */
         }
 
         this.renderAdviceUser = function(textAdvice) {
