@@ -152,7 +152,7 @@ const SPA_Smoking = (function() {
             }
 
             if (userDataStorage) stateColorSpa = userDataStorage.colorSpaUser; /* Забираем данные о цветовой схеме из LocalStorage */
-            myModuleView.changeColorSpa();
+            myModuleView.changeColorSpa(); /* Изменяем цветовую схему приложени */
         }
 
         this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity, soundSpa) { /* Получаем данные пользователя и сохраняем в объект 'userData' */
@@ -325,7 +325,7 @@ const SPA_Smoking = (function() {
 
             const apiQueryLogo = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}`;
 
-            fetch(apiQueryLogo, {method: 'get'}) /* Загрузка лого команд */
+            fetch(apiQueryLogo, {method: 'get'})  /* Загрузка лого ЛИГИ */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data.data);
@@ -398,7 +398,7 @@ const SPA_Smoking = (function() {
             const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
             const apiQuery = 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+ userDataStorage.typeWeatherUser.split('/')[1] +'&lon=' + userDataStorage.typeWeatherUser.split('/')[2] +'&appid='+apiKey;
 
-            fetch(apiQuery, {method: 'get'}) /* Получаем загрязнение ВОЗДУХА */
+            fetch(apiQuery, {method: 'get'}) /* Получаем загрязнении ВОЗДУХА */
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log(data);
@@ -446,7 +446,7 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
 
-        this.cleanCurrency = function() {  /* Очищаем инпуты ввода валюты */
+        this.cleanCurrency = function() { /* Очищаем инпуты ввода валюты */
 
             myModuleView.renderCleanCurrency();
         }
@@ -607,9 +607,9 @@ const SPA_Smoking = (function() {
             myModuleView.renderAboutSpa();
         }
 
-        this.changeColorSpa = function(btnColor) { /* Изменяем цветовую схему приложения */
+        this.changeColorSpa = function(btnColor) { /* Изменяем высоту кнопки выбора цветовой схемы приложения */
 
-            stateColorSpa = btnColor.getAttribute('class').split(' ')[1];  /* Получаем класс кнопки, делим строку на массив и получаем цвет вторым индексом массива */
+            stateColorSpa = btnColor.getAttribute('class').split(' ')[1]; /* Получаем класс кнопки, делим строку на массив и получаем цвет вторым индексом массива */
             myModuleView.changeColorBtn(btnColor);
         }
 
@@ -658,7 +658,7 @@ const SPA_Smoking = (function() {
         this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) { /* Проверка инпутов на ввод данных */
 
             let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
-            myModuleView.btnUpdate(stateBtn); /* Обновление состояние кнопки 'Изменить' */
+            myModuleView.btnUpdate(stateBtn); /* Обновление состояние кнопки 'Изменить/Сохранить' */
         }
 
         function playSound() { /* Звуки */
@@ -726,47 +726,47 @@ const SPA_Smoking = (function() {
         this.init = function(container, routes) { /* Инициализация ВЬЮ */
 
             myModuleContainer = container;
-            routesObj = routes;
+            routesObj = routes; /* Из pages */
             menu = myModuleContainer.querySelector("#mainmenu");
             contentContainer = myModuleContainer.querySelector("#content");
         }
 
-        this.renderContent = function(hashPageName, userData, sumSig, costSig) {
+        this.renderContent = function(hashPageName, userData, sumSig, costSig) { /* Отображаем необходимый блок из routes */
 
             let routeName = "default";
             userStorage = userData;
 
-            if (hashPageName.length > 0 && hashPageName !== 'login' && !userStorage) {
+            if (hashPageName.length > 0 && hashPageName !== 'login' && !userStorage) { /* До авторизации и не ЛОГИН */
                 // console.log(1111)
                 routeName = "authorization";
                 updateContent();
             }
-            else if ((hashPageName === '' || hashPageName === 'login') && !userStorage) {
+            else if ((hashPageName === '' || hashPageName === 'login') && !userStorage) { /* До авторизации, если ЛОГИН или пусто */
                 // console.log(2222)
                 routeName = hashPageName in routes ? hashPageName : "login";
                 updateContent();
-                setMaxDate();
-                const btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .white`);
+                setMaxDate(); /* Устанавливаем в инпуте 'дата' максимум ввода */
+                const btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .white`); /* Цветовая схема по умолчанию */
                 btnColorSpa.style.height = '20px';
             }
-            else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
+            else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {  /* После авторизации, если statistics или пусто */
                 // console.log(333)
                 routeName = "statistics";
                 updateContent();
             }
-            else if (hashPageName === 'login' && userStorage) {
+            else if (hashPageName === 'login' && userStorage) { /* После авторизации, если ЛОГИН */
                 // console.log(444)
                 routeName = "options";
                 updateContent();
                 const typeSoccer = myModuleContainer.querySelector(`option[value="${userStorage.typeFutbolUser}"]`);
-                typeSoccer.selected = 'true';
+                typeSoccer.selected = 'true'; /* Отображаем необходимое значение селекта Футбол из localStorage */
                 const typeWeather = myModuleContainer.querySelector(`option[value="${userStorage.typeWeatherUser}"]`);
-                typeWeather.selected = 'true';
+                typeWeather.selected = 'true'; /* Отображаем необходимое значение селекта Город из localStorage */
                 const soundSpa = myModuleContainer.querySelector('#content #sound');
-                soundSpa.checked = userStorage.soundSpaUser;
+                soundSpa.checked = userStorage.soundSpaUser; /* Отображаем необходимое значение чекбокса ЗВУКА из localStorage */
                 const btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .${userStorage.colorSpaUser}`);
-                btnColorSpa.style.height = '20px';
-                setMaxDate();
+                btnColorSpa.style.height = '20px'; /* Отображаем необходимое значение темы приложения из localStorage */
+                setMaxDate(); /* Устанавливаем в инпуте 'дата' максимум ввода */
             }
             else {
                 // console.log(555)
@@ -776,8 +776,8 @@ const SPA_Smoking = (function() {
 
             function updateContent() {
 
-                window.document.title = routesObj[routeName].title;
-                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage, sumSig, costSig);
+                window.document.title = routesObj[routeName].title; /* Изменянем тайтл */
+                contentContainer.innerHTML = routesObj[routeName].render(`${routeName}-page`, userStorage, sumSig, costSig); /* Отображаем необходимый блок верстки из pages */
                 that.updateButtons(routesObj[routeName].id);
             }
 
@@ -789,12 +789,12 @@ const SPA_Smoking = (function() {
                 if (currentMonth < 10) currentMonth = '0' + currentMonth;
                 const dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
                 const userStopSmok = myModuleContainer.querySelector(`.input__date-last`);
-                userStopSmok.setAttribute('max', dateLimit);
+                userStopSmok.setAttribute('max', dateLimit); /* Устанавливаем предел выбора даты сегодняшним числом */
             }
 
         }
 
-        this.updateButtons = function(currentPage) {
+        this.updateButtons = function(currentPage) { /* Выделяем активный элемент МЕНЮ */
 
             const menuLinks = menu.querySelectorAll(".mainmenu__link");
             for (let link of menuLinks) {
@@ -802,7 +802,7 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.renderStatisticTime = function(sumYear, dayWithYear, sumHour, sumMin, sumSec) {
+        this.renderStatisticTime = function(sumYear, dayWithYear, sumHour, sumMin, sumSec) { /* Показываем статистику ВРЕМЕНИ без сигарет */
 
             const sumTimeStop = myModuleContainer.querySelector("#content .sum__time__stop");
 
@@ -810,10 +810,11 @@ const SPA_Smoking = (function() {
             if (sumMin < 10) sumMin = '0' + sumMin;
             if (sumHour < 10) sumHour = '0' + sumHour;
 
-            if (sumYear > 0) sumTimeStop.innerHTML = `<span>${sumYear}</span> г <span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`
+            if (sumYear > 0) sumTimeStop.innerHTML = `<span>${sumYear}</span> г <span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`; /* Отображаем таймер ВРЕМЕНИ без курения */
             else sumTimeStop.innerHTML = `<span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`;
         }
 
+        /* Показываем статистику без сигарет, деньги, и другое */
         this.renderStatisticCig = function(sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin) {
 
             const sumCigarette = myModuleContainer.querySelector("#content .num__cigarette");
@@ -826,7 +827,7 @@ const SPA_Smoking = (function() {
             const addHealth = myModuleContainer.querySelector("#content .add__health");
             const step = 1;
 
-            function outNum(num, elem, unit) {
+            function outNum(num, elem, unit) { /* Функция отображения нарастающего эффекта подсчета данных */
                 let n = 0;
                 let time = 0;
                 if (num < 150) time = 2000;
@@ -834,14 +835,15 @@ const SPA_Smoking = (function() {
                 let t = Math.round(time/(num/step));
                 let interval = setInterval(() => {
                         n = n + step;
-                        if (n === num) clearInterval(interval);
-                        elem.innerHTML = `<span>${n}</span> ${unit}`;
+                        if (n === num) clearInterval(interval); /* Удаляем таймер когда дошли до нужного значения */
+                        elem.innerHTML = `<span>${n}</span> ${unit}`; /* Изменяем значения с указанныи интервалом времени */
                     }, t);
             }
 
             outNum(sumFullCigarette, sumCigarette, 'шт');
             outNum(costFullCigarette, sumMoney, 'руб');
 
+            /* Отображаем количество сохраненного и дополнительного времени, никотина, смолы, и тд */
             freeTime.innerHTML = `<span>${freeTimeDayFull}</span> дн <span>${freeTimeHour}</span> ч <span>${freeTimeMin}</span> мин`;
             nicotine.innerHTML = nicotineMg + 'мг';
             resin.innerHTML = resinMg + 'мг';
@@ -850,6 +852,7 @@ const SPA_Smoking = (function() {
             addHealth.innerHTML = `+<span>${addTimeDayFull}</span> дн <span>${addTimeHour}</span> ч <span>${addTimeMin}</span> мин`;
         }
 
+        /* Показываем состояние ЗДОРОВЬЯ пользователя */
         this.renderHealth = function(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer) {
 
             const stateHeart = myModuleContainer.querySelector("#content .state__heart__chart .percent");
@@ -884,7 +887,7 @@ const SPA_Smoking = (function() {
             const stateRiskCancerChart = myModuleContainer.querySelector("#content .state__risk__cancer__chart .chart");
             const riskCancerDescription = myModuleContainer.querySelector("#content .state__risk__cancer .description");
 
-            stateHeart.innerHTML = `<strong class="percent-H">${heart}%</strong>`;
+            stateHeart.innerHTML = `<strong class="percent-H">${heart}%</strong>`; /* Отображаем проценты */
             stateCarbonMonoxide.innerHTML = `<strong class="percent-H">${carbonMonoxide}%</strong>`;
             stateNicotine.innerHTML = `<strong class="percent-H">${nicotine}%</strong>`;
             stateSmell.innerHTML = `<strong class="percent-H">${smell}%</strong>`;
@@ -893,24 +896,24 @@ const SPA_Smoking = (function() {
             stateRiskHeart.innerHTML = `<strong class="percent-H">${riskHeart}%</strong>`;
             stateRiskCancer.innerHTML = `<strong class="percent-H">${riskCancer}%</strong>`;
 
-            if (heart < 100) heartDescription.innerHTML = descriptionHealth[0][0]
+            if (heart < 100) heartDescription.innerHTML = descriptionHealth[0][0]; /* Отображаем описание, если 100% описание меняется */
             else heartDescription.innerHTML = descriptionHealth[0][1];
-            if (carbonMonoxide < 100) carbonMonoxideDescription.innerHTML = descriptionHealth[1][0]
+            if (carbonMonoxide < 100) carbonMonoxideDescription.innerHTML = descriptionHealth[1][0];
             else carbonMonoxideDescription.innerHTML = descriptionHealth[1][1];
-            if (nicotine < 100) nicotineDescription.innerHTML = descriptionHealth[2][0]
+            if (nicotine < 100) nicotineDescription.innerHTML = descriptionHealth[2][0];
             else nicotineDescription.innerHTML = descriptionHealth[2][1];
-            if (smell < 100) smellDescription.innerHTML = descriptionHealth[3][0]
+            if (smell < 100) smellDescription.innerHTML = descriptionHealth[3][0];
             else smellDescription.innerHTML = descriptionHealth[3][1];
-            if (lung < 100) lungDescription.innerHTML = descriptionHealth[4][0]
+            if (lung < 100) lungDescription.innerHTML = descriptionHealth[4][0];
             else lungDescription.innerHTML = descriptionHealth[4][1];
-            if (liver < 100) liverDescription.innerHTML = descriptionHealth[5][0]
+            if (liver < 100) liverDescription.innerHTML = descriptionHealth[5][0];
             else liverDescription.innerHTML = descriptionHealth[5][1];
-            if (riskHeart < 100) riskHeartDescription.innerHTML = descriptionHealth[6][0]
+            if (riskHeart < 100) riskHeartDescription.innerHTML = descriptionHealth[6][0];
             else riskHeartDescription.innerHTML = descriptionHealth[6][1];
-            if (riskCancer < 100) riskCancerDescription.innerHTML = descriptionHealth[7][0]
+            if (riskCancer < 100) riskCancerDescription.innerHTML = descriptionHealth[7][0];
             else riskCancerDescription.innerHTML = descriptionHealth[7][1];
 
-            setTimeout(showChart, 200)
+            setTimeout(showChart, 200); /* Отображаем графики состояния */
             function showChart() {
 
                 stateHeartChart.style.width = `${heart}%`;
@@ -922,6 +925,7 @@ const SPA_Smoking = (function() {
                 stateRiskHeartChart.style.width = `${riskHeart}%`;
                 stateRiskCancerChart.style.width = `${riskCancer}%`;
 
+                /* Меняем цвет графиков если больше 50% */
                 if (heart > 50) stateHeartChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
                 if (carbonMonoxide > 50) stateCarbonMonoxideChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
                 if (nicotine > 50) stateNicotineChart.style.background = `linear-gradient(90deg, #65d3ba,#2cfab8,#3eef74)`;
@@ -933,18 +937,18 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.renderMoreInfo = function(parent, btn) {
+        this.renderMoreInfo = function(parent, btn) { /* Показываем больше данных в разделе Статистика */
 
             parent.classList.toggle('wrap__more');
             btn.classList.toggle('arrow__click');
         }
 
-        this.renderFutbol = function(data, placeChampionFut) {
+        this.renderFutbol = function(data, placeChampionFut) { /* Показываем блок Футбол */
 
-            placeChampion = placeChampionFut;
+            placeChampion = placeChampionFut; /* Сохраняем необходимое место в таблице */
 
             const loader = myModuleContainer.querySelector('#loader');
-            loader.style.display = "none";
+            loader.style.display = "none"; /* Скрываем лоудер */
             const futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
             futbolLeagueWrap.style.display = "block";
 
@@ -955,6 +959,7 @@ const SPA_Smoking = (function() {
             const matches = myModuleContainer.querySelector('#content .futbol-league .matches');
             const stats = myModuleContainer.querySelector('#content .futbol-league .stats');
 
+            /* Строим блок с характеристиками по ФУТБОЛУ: лого, мячи, очки и тд */
             league.innerHTML = `<h3>${data.data.name} / ${data.data.seasonDisplay}</h3>`;
             icon.innerHTML = `<img src="${data.data.standings[placeChampion].team.logos[0].href}" height="80" width="auto">`;
             team.innerHTML = `${data.data.standings[placeChampion].team.location}`;
@@ -963,33 +968,33 @@ const SPA_Smoking = (function() {
             stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
         }
 
-        this.renderFutbolSeason = function() {
+        this.renderFutbolSeason = function() { /* Показываем инпут выбора ГОДА футбольного сезона */
 
             const futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
             if (new Date().getMonth() + 1 === 1 || new Date().getMonth() + 1 === 2 || new Date().getMonth() + 1 === 3 || new Date().getMonth() + 1 === 4 || new Date().getMonth() + 1 === 5 || new Date().getMonth() + 1 === 6  || new Date().getMonth() + 1 === 7) {
-                futbolSeason.value = new Date().getFullYear() - 1;
+                futbolSeason.value = new Date().getFullYear() - 1; /* Показываем прошлый год */
             }
             if (new Date().getMonth() + 1 === 8 || new Date().getMonth() + 1 === 9 || new Date().getMonth() + 1 === 10 || new Date().getMonth() + 1 === 11 || new Date().getMonth() + 1 === 12) {
-                futbolSeason.value = new Date().getFullYear();
+                futbolSeason.value = new Date().getFullYear();  /* Показываем текущий год */
             }
-            futbolSeason.setAttribute('max', `${new Date().getFullYear()}`);
+            futbolSeason.setAttribute('max', `${new Date().getFullYear()}`); /* Ограничиваем инпут текущим годом */
         }
 
-        this.renderFutbolLogo = function(data) {
+        this.renderFutbolLogo = function(data) { /* Показываем лого ЛИГИ */
 
             const logoWrap = myModuleContainer.querySelector('#content .logo_wrap');
             logoWrap.innerHTML = `<img src="${data.data.logos.light}" height="120" width="120">`;
         }
 
-        this.renderCurrency = function(dateNow) {
+        this.renderCurrency = function(dateNow) { /* Показываем блок ОбМЕНА ВАЛЮТ */
 
             const dateCurrency = myModuleContainer.querySelector(`#content .input__date-currency`);
-            dateCurrency.setAttribute('max', dateNow);
+            dateCurrency.setAttribute('max', dateNow); /* Ограничиваем макс дату сегодняшним днем */
             dateCurrency.setAttribute('min', '2020-11-22');
-            dateCurrency.setAttribute('value', dateNow);
+            dateCurrency.setAttribute('value', dateNow); /* Значение при загрузке - сегодняшний день */
 
             const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
-            futbolSeason.style.display = "none";
+            futbolSeason.style.display = "none"; /* Прячем другие блоки */
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "none";
             const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
@@ -1000,19 +1005,19 @@ const SPA_Smoking = (function() {
             currencyExchange.style.display = "block";
         }
 
-        this.renderCurrencyInput1 = function(resultCurrency) {
+        this.renderCurrencyInput1 = function(resultCurrency) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 1 и селектов */
 
             const inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
             inputCurrency2.value = resultCurrency;
         }
 
-        this.renderCurrencyInput2 = function(resultCurrency) {
+        this.renderCurrencyInput2 = function(resultCurrency) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 2 */
 
             const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.value = resultCurrency;
         }
 
-        this.renderCleanCurrency = function() {
+        this.renderCleanCurrency = function() { /* Очищаем инпуты ввода валюты */
 
             const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.value = 0;
@@ -1020,24 +1025,25 @@ const SPA_Smoking = (function() {
             inputCurrency2.value = 0;
         }
 
-        this.renderAddCurrency = function(currency) {
+        this.renderAddCurrency = function(currency) { /* Возможность добавлять новую ВАЛЮТУ */
 
             const selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
             const newCurrency = document.createElement('option');
             newCurrency.value = currency.toLowerCase();
             newCurrency.innerHTML = currency.toUpperCase();
-            selectCurrency1.append(newCurrency);
+            selectCurrency1.append(newCurrency); /* Создаем новый элемент OPTION и добавляем его в селект1 */
             const inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
             inputAddCurrency.value = '';
         }
 
-        this.renderWeather = function(data) {
+        this.renderWeather = function(data) { /* Показываем блок ПОГОДА */
 
             const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
             const weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
             weatherWrap.style.display = "block";
 
+            /* Строим блок с данными по ПОГОДЕ */
             const icon = myModuleContainer.querySelector('#content .icon-weather');
             icon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" height="50" width="auto">`;
             const location = myModuleContainer.querySelector('#content .location');
@@ -1049,12 +1055,12 @@ const SPA_Smoking = (function() {
             const wind = myModuleContainer.querySelector('#content .wind');
             wind.innerHTML = `Ветер: ${round(data.wind.speed, 1)} м/с`;
 
-            function round(value, decimals) {
+            function round(value, decimals) { /* Округление температуры и ветра */
                 return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
             }
         }
 
-        this.renderWeather3days = function(data3day) {
+        this.renderWeather3days = function(data3day) { /* Показываем прогноз ПОГОДЫ на 3 дня */
 
             const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
@@ -1064,6 +1070,7 @@ const SPA_Smoking = (function() {
             const afterTomorrow = myModuleContainer.querySelector('#forecast-now .after-tomorrow');
             afterTomorrow.style.display = "block";
 
+            /* Строим блок с данными по ПОГОДЕ на 3 дня */
             const today = myModuleContainer.querySelector('#forecast-now .today');
             today.innerHTML = `
                 Сегодня:<br>
@@ -1090,18 +1097,19 @@ const SPA_Smoking = (function() {
                 ${round(data3day.list[17].wind.speed, 1)} м/с</p>
                 ${data3day.list[17].weather[0]["description"]}`;
 
-            function round(value, decimals) {
+            function round(value, decimals) { /* Округление температуры и ветра */
                 return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
             }
         }
 
-        this.renderPollution = function(data) {
+        this.renderPollution = function(data) { /* Показываем загрязнение ВОЗДУХА */
 
             const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
             const weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "flex";
 
+            /* Строим блок с данными о загрязнении ВОЗДУХА */
             const today = myModuleContainer.querySelector('#forecast-now .today');
             today.innerHTML = `
                 Индекс загрязнение воздуха:<br>
@@ -1121,7 +1129,7 @@ const SPA_Smoking = (function() {
             afterTomorrow.style.display = "none";
         }
 
-        this.renderFutbolLoader = function() {
+        this.renderFutbolLoader = function() { /* Отображаем Лойдер загрузки и скрываем другие блоки */
 
             const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "block";
@@ -1139,7 +1147,7 @@ const SPA_Smoking = (function() {
             futbol.style.display = "none";
         }
 
-        this.renderWeatherLoader = function() {
+        this.renderWeatherLoader = function() { /* Отображаем Лойдер загрузки и скрываем другие блоки */
 
             const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "none";
@@ -1159,7 +1167,7 @@ const SPA_Smoking = (function() {
             btnForecast.style.display = "block";
         }
 
-        this.renderWeather3daysLoader = function() {
+        this.renderWeather3daysLoader = function() { /* Отображаем Лойдер загрузки и скрываем другие блоки */
 
             const weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
             weatherWrap.style.display = "none";
@@ -1169,10 +1177,10 @@ const SPA_Smoking = (function() {
             loaderW.style.display = "block";
         }
 
-        this.btnUpdate = function(stateBtn) {
+        this.btnUpdate = function(stateBtn) { /* Проверка инпутов на ввод данных */
 
             const buttonSave = myModuleContainer.querySelector('#content .data__save');
-            buttonSave.disabled = stateBtn;
+            buttonSave.disabled = stateBtn; /* Изменяем состояние кнопки 'Изменить/Сохранить' */
         }
 
         this.validDate = function(checkData) { /* Показываем валидацию данных */
@@ -1185,10 +1193,10 @@ const SPA_Smoking = (function() {
 
             setTimeout(function() {
                 validDate.style.display = 'none';
-            }, 1500)
+            }, 1500); /* Скрываем данные через 1,5с */
         }
 
-        this.showMessageChat = function() {
+        this.showMessageChat = function() { /* Показываем блок ОНЛАЙН-ЧАТА */
 
             const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
@@ -1200,7 +1208,7 @@ const SPA_Smoking = (function() {
             chatSpa.style.display = 'block';
         }
 
-        this.renderChat = function(str) { /* Отображаем сообщения чата с версткой */
+        this.renderChat = function(str) { /* Отображаем сообщения чата с версткой из БАЗЫ ДАННЫХ */
 
             const chatBorder = myModuleContainer.querySelector(".chat-spa .chat-border");
             chatBorder.innerHTML = str;
@@ -1208,7 +1216,7 @@ const SPA_Smoking = (function() {
             messageChat.value = ''; /* Чистим поле ввода текста */
         }
 
-        this.renderAdviceUser = function(textAdvice) {
+        this.renderAdviceUser = function(textAdvice) { /* Показываем блок СОВЕТОВ */
 
             const goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
             goalsSpa.style.display = 'none';
@@ -1220,13 +1228,13 @@ const SPA_Smoking = (function() {
             adviceSpa.style.display = 'block';
             const messageAdvice = myModuleContainer.querySelector(".advice-spa div");
             messageAdvice.innerHTML = textAdvice;
-            if (!textAdvice) {
+            if (!textAdvice) { /* Если советы закончились */
                 messageAdvice.style.color = 'red';
                 messageAdvice.innerHTML = 'Советы закончились! Заходите позже!';
             }
         }
 
-        this.renderVideoFactsUser = function(videoFacts) {
+        this.renderVideoFactsUser = function(videoFacts) { /* Показываем блок ВИДЕО-ФАКТОВ */
 
             const chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
@@ -1243,62 +1251,60 @@ const SPA_Smoking = (function() {
                 messageFacts.setAttribute("src", '');
                 messageFacts.style.display = 'none';
                 factsSpa.style.height = 'auto';
-                let factNone = myModuleContainer.querySelector("#content .fact_none");
+                let factNone = myModuleContainer.querySelector("#content .fact_none"); /* Если факты закончились */
                 factNone.style.display = 'block';
             }
         }
 
-        this.renderActiveBtn = function(activeBtn) {
+        this.renderActiveBtn = function(activeBtn) { /* Выделяем нажимаемую кнопку */
 
             const buttonAll = myModuleContainer.querySelectorAll("#content > section > button");
             buttonAll.forEach(elem => elem.style.backgroundColor = '#919191');
-            activeBtn.style.backgroundColor = '#303030';
+            activeBtn.style.backgroundColor = '#303030'; /* Находим все кнопки и меняем цвет по которой кликаем */
 
-            if (userStorage.colorSpaUser === 'black') {
+            if (userStorage.colorSpaUser === 'black') { /* Для темной темы оформления */
                 buttonAll.forEach(elem => elem.style.backgroundColor = '#c3c3c3');
                 activeBtn.style.backgroundColor = '#ffffff';
             }
         }
 
-        this.renderAboutSpa = function() {
+        this.renderAboutSpa = function() { /* Показываем блок О ПРИЛОЖЕНИИ */
 
             const modalAboutSpa = myModuleContainer.querySelector("#content .modal_about_spa");
             modalAboutSpa.classList.remove('modal_closed');
             const modalOverlay = myModuleContainer.querySelector("#content .modal-overlay");
             modalOverlay.classList.remove('modal_closed');
 
-
-            $(document).ready(function(){
+            $(document).ready(function() { /* Автоматическая прокрутка блока вниз */
                 $('.modal_about_spa').animate({scrollTop: 0}, 0).animate({scrollTop: 200}, 7000);
-
             });
 
-            setTimeout(function() {
+            setTimeout(function() { /* Автоматическая скрытие блока через 6 сек */
                 modalAboutSpa.classList.add('modal_closed');
                 modalOverlay.classList.add('modal_closed');
             }, 6000)
         }
 
-        this.changeColorBtn = function(btnColor) {
+        this.changeColorBtn = function(btnColor) { /* Изменяем высоту кнопки выбора цветовой схемы приложения */
 
             const btnColorSpa = myModuleContainer.querySelectorAll("#content .color_wrap .color-spa");
             btnColorSpa.forEach(elem => elem.style.height = '13px');
-            btnColor.style.height = '20px';
+            btnColor.style.height = '20px'; /* У всех высоту 13px, у выбранной кнопки высота 20px */
         }
 
-        this.changeColorSpa = function() {
+        this.changeColorSpa = function() { /* Изменяем цветовую схему приложения */
 
-            const styleCSS = document.head.querySelector("link[href$='styles.css']");
-            if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') {
+            const styleCSS = document.head.querySelector("link[href$='styles.css']"); /* Находим link со стилями */
+            if (userStorage && userStorage.colorSpaUser === 'black') {
 
-                styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
+                styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`); /* Меняем на черную тему */
             }
             else {
-                styleCSS.setAttribute('href', `./styles/styles.css`);
+                styleCSS.setAttribute('href', `./styles/styles.css`); /* Темы других цветов не загружены */
             }
         }
 
-        this.showGoalsUser = function() {
+        this.showGoalsUser = function() { /* Показываем блок УСТАНОВКИ ЦЕЛИ */
 
             const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
@@ -1310,7 +1316,7 @@ const SPA_Smoking = (function() {
             goalsSpa.style.display = 'block';
         }
 
-        this.renderGoalsUser = function({userText, userCost}, percentGoals, moneyNowUser, restDay) {
+        this.renderGoalsUser = function({userText, userCost}, percentGoals, moneyNowUser, restDay) { /* Показываем статистику о цели пользователя из localStorage */
 
             const goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
             goalsWrap.style.display = 'block';
@@ -1322,29 +1328,27 @@ const SPA_Smoking = (function() {
             const moneyFull = myModuleContainer.querySelector("#content .state__goals__dicription .money_full");
             const restTime = myModuleContainer.querySelector("#content .state__goals__dicription .rest_time");
             const inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
-            const goalsDicrip = myModuleContainer.querySelectorAll("#content .goals-dicription");
 
-            inputGoalsUser.forEach(elem => elem.value = '');
-            stateGoals.innerHTML = `<strong class="percent-H">${percentGoals}%</strong>`;
+            inputGoalsUser.forEach(elem => elem.value = ''); /* Очищаем инпуты */
+            stateGoals.innerHTML = `<strong class="percent-H">${percentGoals}%</strong>`; /* Показываем проценты достижения цели */
             setTimeout(function() {
 
                 stateGoalsChart.style.width = `${percentGoals}%`;
-            }, 100);
+            }, 100); /* Отображаем график цели */
 
-            stateGoalsText.innerHTML = userText;
-            moneyNow.innerHTML = moneyNowUser + ' руб';
-            moneyFull.innerHTML = userCost + ' руб';
-            restTime.innerHTML = restDay + ' дн';
+            stateGoalsText.innerHTML = userText; /* Отображаем текст цели */
+            moneyNow.innerHTML = moneyNowUser + ' руб'; /* Отображаем сколько есть денег */
+            moneyFull.innerHTML = userCost + ' руб'; /* Отображаем сколько нужно денег */
+            restTime.innerHTML = restDay + ' дн'; /* Отображаем сколько осталось дней */
             if (restDay === 0) restTime.innerHTML = 'Выполнено!';
         }
 
-        this.renderGoalsHide = function() {
+        this.renderGoalsHide = function() { /* Прячем статистику ЦЕЛИ пользователя */
 
             const goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
             goalsWrap.style.display = 'none';
         }
     }
-
 
 
 
@@ -1669,6 +1673,7 @@ const SPA_Smoking = (function() {
   };
 
 }());
+
 
 
 /* --- init module --- */
