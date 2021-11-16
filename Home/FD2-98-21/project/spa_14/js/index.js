@@ -27,7 +27,6 @@ const SPA_Smoking = (function() {
         let myModuleView = null;
         let userData = {};
         let userDataGoals = {};
-
         let pageNameLink = null;
         let userDataStorage = null;
         let sumSig = null;
@@ -46,15 +45,15 @@ const SPA_Smoking = (function() {
         let costFullCigarette = null;
         let sumDay = null;
 
-        let clickAudio = new Audio('sound/1.mp3');
-        let tickAudio = new Audio('sound/2.mp3');
+        const clickAudio = new Audio('sound/1.mp3');
+        const tickAudio = new Audio('sound/2.mp3');
 
-        var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-        var messages; // элемент массива - {name:'Иванов',mess:'Привет'};
-        var updatePassword;
-        var stringName='SASHA1_CHAT_MESSAGES';
+        let ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
+        let messages; // элемент массива - {name:'Иванов',mess:'Привет'};
+        let updatePassword;
+        let stringName = 'SASHA1_CHAT_MESSAGES';
 
-        let descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
+        const descriptionHealth = [['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
                                   'Пульс и артериальное давление пришло в норму, нагрузка на сердце снижается.'],
                                 ['Концентрация угарного газа в организме уменьшается.',
                                  'Угарный газ полностью выведен из организма. Ткани и органы лучше снобжаются кислородом.'],
@@ -71,7 +70,7 @@ const SPA_Smoking = (function() {
                                 ['Вероятность развития рака легких медленно снижается.',
                                  'Вероятность развития рака легких снижена до уровня, как у некурящего человека.'],];
 
-        let rangeStateHealth = {
+        const rangeStateHealth = {
             heart: 20,
             carbonMonoxide: 720,
             nicotine: 2880,
@@ -83,53 +82,48 @@ const SPA_Smoking = (function() {
         };
 
         this.init = function(view) {
-
             myModuleView = view;
         }
 
-
         this.updateState = function(pageName) {
-
             advice = ['Пульс и артериальное давление возращается в норму, нагрузка на сердце снижается.',
-                'Поймите, что курение давно уже не модно.',
-                'Избегайте курящих компаний.',
-                'Не докуривайте сигарету до конца, оставляйте треть или даже половину. Таким образом, вы фактически выкуриваете меньше и не курите тогда, когда фильтр сигареты наиболее загрязнен.',
-                'Стоит отказаться от ароматизированных сигарет. Их химический состав более обширен, и они могут содержать еще большее число опасных веществ, чем обычные.',
-                'Не курите больше одной сигареты в час.',
-                'Старайтесь курить в одно и то же время. Если организм в одно и то же время будет получать токсины, то со временем у него выработаются «биологические часы», которые будут активизировать защитные механизмы.',
-                'Не стоит курить на голодный желудок, или натощак, поскольку в этом случае слюна смешивается с табаком и повреждает слизистую оболочку желудка. А при всасывании из кишечника токсичные вещества попадают сразу в кровь, по этой же причине не следует курить во время питья и еды.',
-                'Постарайтесь не курить при ходьбе, особенно взбираясь в гору или поднимаясь по лестнице. При нагрузке дыхание становится интенсивнее, и токсичные вещества достигают самых отдаленных участков легких.',
-                'Повышайте иммунный статус организма всеми доступными средствами: закаливание, сауна, прививки против гриппа, отпуск на море или в горах.',
-                'Чаще гуляйте на свежем воздухе. Такие прогулки способствуют «проветриванию» легких и выведению из них канцерогенных и болезнетворных веществ.',
-                'Не обманывайте себя мыслями о том, что можете начинать и прекращать курить, когда захотите.',
-                'Курильщики обоих полов, отказавшись от курения в возрасте между 35 и 39 годами добавляют в среднем от трех до пяти лет к своей жизни.',
-                'Табак - коварный "убийца". Вначале он увлекает, как правило, молодых, неопытных людей. Затем крепко привязывает к себе, заставляет курить, доставляя некоторое удовольствие, и только потом, спустя годы, убивает свою жертву.',
-                'Из 10 000 видов ядовитых растений планеты наибольшее внимание людей привлекает табак, потому что в нем есть никотин.',
-                'Табачный дым содержит более 4000 химических соединений, более сорока, из которых, вызывают рак, а также несколько сотен ядов, включая никотин, цианид, мышьяк, формальдегид, углекислый газ, окись углерода, синильную кислоту и т. д.',
-                'Некоторые производители включают в свою продукцию следующие крайне опасные соединения: ацетальдегид, ацетон, аммиак, бензол, бутиламин, диметиламин, ДДТ, этиламин, формальдегид, сероводород, гидрохинон, метиловый спирт, метиламин, соединения никеля и пиридин.',
-                'Размеры аэрозольных частичек, из которых состоит табачный дым, варьируются от 0,15 мкм до 1,3 мкм (в среднем 0,4 мкм). В дыме от сигареты, поступающем в окружающую среду, размер частичек значительно меньше - от 0,01 мкм до 0,1 мкм. Таким образом, эти частички при вдыхании могут достигать альвеол. Показано, что табачный дым проникает во все отделы трахеи, бронхов и легких. Установлено, что содержащиеся в табачном дыме химические соединения подвергаются фагоцитозу альвеолярными макрофагами.',
-                'Концентратом табачных ядов является деготь, вызывающий раковую опухоль у многих курильщиков. Разорвите бумажный мундштук выкуренной сигареты. На его внутренних стенках, на фильтре, вы увидите маслянистую черноту. Это и есть смертоносный деготь.',
-                'В сигаретном дыме присутствуют радиоактивные вещества: полоний, свинец, висмут. Особую опасность представляет выделенный из табачных листьев в 1964 г. радиоактивный изотоп полоний-210.',
-                'Температура тлеющей сигареты 500 – 900 градусов. В тот момент, когда курильщик затягивается, температура на кончике сигареты достигает 600 °С.',
-                'Урина, химический компонент, входящий в состав мочи, используется при производстве сигарет для придания специфического «аромата» и «вкуса» дыму.',
-                'Никотин вызывает быстрое привыкание и является НАРКОТИЧЕСКИМ СРЕДСТВОМ, легко доступным и практически беспрепятственно распространяемым!',
-                'По степени ядовитости никотин сравним с синильной кислотой, и даже обладает одинаковой смертельной дозой для человека.',
-                'Если никотин частично выводится из организма, то остальные яды оседают надолго, накапливаются и вызывают различные болезни. От табачных ядов неминуемо страдает не только тот, кто курит табак, но и те, кого окуривают.',
-                'Целых два года необходимо освобождаться от этих ядов организму человека, который бросил курить. Но последствия отравления остаются на всю жизнь. Через несколько лет человека начинают одолевать болезни, а он и не предполагает, что их причиной является курение табака в молодые годы. Чем раньше человек бросает курить, тем больше у него шансов остаться здоровым.',
+                    'Поймите, что курение давно уже не модно.',
+                    'Избегайте курящих компаний.',
+                    'Не докуривайте сигарету до конца, оставляйте треть или даже половину. Таким образом, вы фактически выкуриваете меньше и не курите тогда, когда фильтр сигареты наиболее загрязнен.',
+                    'Стоит отказаться от ароматизированных сигарет. Их химический состав более обширен, и они могут содержать еще большее число опасных веществ, чем обычные.',
+                    'Не курите больше одной сигареты в час.',
+                    'Старайтесь курить в одно и то же время. Если организм в одно и то же время будет получать токсины, то со временем у него выработаются «биологические часы», которые будут активизировать защитные механизмы.',
+                    'Не стоит курить на голодный желудок, или натощак, поскольку в этом случае слюна смешивается с табаком и повреждает слизистую оболочку желудка. А при всасывании из кишечника токсичные вещества попадают сразу в кровь, по этой же причине не следует курить во время питья и еды.',
+                    'Постарайтесь не курить при ходьбе, особенно взбираясь в гору или поднимаясь по лестнице. При нагрузке дыхание становится интенсивнее, и токсичные вещества достигают самых отдаленных участков легких.',
+                    'Повышайте иммунный статус организма всеми доступными средствами: закаливание, сауна, прививки против гриппа, отпуск на море или в горах.',
+                    'Чаще гуляйте на свежем воздухе. Такие прогулки способствуют «проветриванию» легких и выведению из них канцерогенных и болезнетворных веществ.',
+                    'Не обманывайте себя мыслями о том, что можете начинать и прекращать курить, когда захотите.',
+                    'Курильщики обоих полов, отказавшись от курения в возрасте между 35 и 39 годами добавляют в среднем от трех до пяти лет к своей жизни.',
+                    'Табак - коварный "убийца". Вначале он увлекает, как правило, молодых, неопытных людей. Затем крепко привязывает к себе, заставляет курить, доставляя некоторое удовольствие, и только потом, спустя годы, убивает свою жертву.',
+                    'Из 10 000 видов ядовитых растений планеты наибольшее внимание людей привлекает табак, потому что в нем есть никотин.',
+                    'Табачный дым содержит более 4000 химических соединений, более сорока, из которых, вызывают рак, а также несколько сотен ядов, включая никотин, цианид, мышьяк, формальдегид, углекислый газ, окись углерода, синильную кислоту и т. д.',
+                    'Некоторые производители включают в свою продукцию следующие крайне опасные соединения: ацетальдегид, ацетон, аммиак, бензол, бутиламин, диметиламин, ДДТ, этиламин, формальдегид, сероводород, гидрохинон, метиловый спирт, метиламин, соединения никеля и пиридин.',
+                    'Размеры аэрозольных частичек, из которых состоит табачный дым, варьируются от 0,15 мкм до 1,3 мкм (в среднем 0,4 мкм). В дыме от сигареты, поступающем в окружающую среду, размер частичек значительно меньше - от 0,01 мкм до 0,1 мкм. Таким образом, эти частички при вдыхании могут достигать альвеол. Показано, что табачный дым проникает во все отделы трахеи, бронхов и легких. Установлено, что содержащиеся в табачном дыме химические соединения подвергаются фагоцитозу альвеолярными макрофагами.',
+                    'Концентратом табачных ядов является деготь, вызывающий раковую опухоль у многих курильщиков. Разорвите бумажный мундштук выкуренной сигареты. На его внутренних стенках, на фильтре, вы увидите маслянистую черноту. Это и есть смертоносный деготь.',
+                    'В сигаретном дыме присутствуют радиоактивные вещества: полоний, свинец, висмут. Особую опасность представляет выделенный из табачных листьев в 1964 г. радиоактивный изотоп полоний-210.',
+                    'Температура тлеющей сигареты 500 – 900 градусов. В тот момент, когда курильщик затягивается, температура на кончике сигареты достигает 600 °С.',
+                    'Урина, химический компонент, входящий в состав мочи, используется при производстве сигарет для придания специфического «аромата» и «вкуса» дыму.',
+                    'Никотин вызывает быстрое привыкание и является НАРКОТИЧЕСКИМ СРЕДСТВОМ, легко доступным и практически беспрепятственно распространяемым!',
+                    'По степени ядовитости никотин сравним с синильной кислотой, и даже обладает одинаковой смертельной дозой для человека.',
+                    'Если никотин частично выводится из организма, то остальные яды оседают надолго, накапливаются и вызывают различные болезни. От табачных ядов неминуемо страдает не только тот, кто курит табак, но и те, кого окуривают.',
+                    'Целых два года необходимо освобождаться от этих ядов организму человека, который бросил курить. Но последствия отравления остаются на всю жизнь. Через несколько лет человека начинают одолевать болезни, а он и не предполагает, что их причиной является курение табака в молодые годы. Чем раньше человек бросает курить, тем больше у него шансов остаться здоровым.',
             ];
-
             links = ['https://www.youtube.com/embed/PBR-Yev5vO8',
-                'https://www.youtube.com/embed/2DQxagQZTLg',
-                'https://www.youtube.com/embed/lOx4HgqchUw',
-                'https://www.youtube.com/embed/a15y8r382Cw',
-                'https://www.youtube.com/embed/scEVwgfn1_A',
-                'https://www.youtube.com/embed/tM-G_VVIj9M',
-                'https://www.youtube.com/embed/nXPoii1SwqU',
-                'https://www.youtube.com/embed/EfN9VpZNeD0',
-                'https://www.youtube.com/embed/3CPrJmZahJE',
-                'https://www.youtube.com/embed/nKVeRDiZaes',
+                    'https://www.youtube.com/embed/2DQxagQZTLg',
+                    'https://www.youtube.com/embed/lOx4HgqchUw',
+                    'https://www.youtube.com/embed/a15y8r382Cw',
+                    'https://www.youtube.com/embed/scEVwgfn1_A',
+                    'https://www.youtube.com/embed/tM-G_VVIj9M',
+                    'https://www.youtube.com/embed/nXPoii1SwqU',
+                    'https://www.youtube.com/embed/EfN9VpZNeD0',
+                    'https://www.youtube.com/embed/3CPrJmZahJE',
+                    'https://www.youtube.com/embed/nKVeRDiZaes',
             ];
-
             numDiap = 25;
             numDiapF = 9;
             placeChampionFut = 0;
@@ -142,19 +136,15 @@ const SPA_Smoking = (function() {
             myModuleView.renderContent(pageNameLink, userDataStorage, sumSig, costSig);
 
             if ((pageNameLink === 'statistics' || pageNameLink === '') && userDataStorage) {
-
                 this.calculateStatistics();
             }
             else if (pageNameLink === 'health' && userDataStorage) {
-
                 clearInterval(timerStatisticTime);
                 clearInterval(timerStatisticOther);
                 clearInterval(timerTick);
-
                 this.calculateHealth();
             }
             else {
-
                 clearInterval(timerStatisticTime);
                 clearInterval(timerStatisticOther);
                 clearInterval(timerTick);
@@ -164,17 +154,14 @@ const SPA_Smoking = (function() {
             myModuleView.changeColorSpa();
         }
 
-
-        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity, soundSpa) { // Получаем данные пользователя и сохраняем в объект 'userData'
+        this.saveData = function([inputName, inputDate, inputNumCig, inputCostCig, inputCigInBlock], typeFutbol, typeCity, soundSpa) { /* Получаем данные пользователя и сохраняем в объект 'userData' */
 
             if (+inputName.value || inputName.value.length < 3 || inputNumCig.value < 0 || inputNumCig.value > 100 || inputCostCig.value < 1 || inputCostCig.value > 20 || inputCigInBlock.value < 1 || inputCigInBlock.value > 50) { /* Проверка на корректность данных */
-
                 myModuleView.validDate(false);
                 return;
             }
 
             if (+inputDate.value.split('-')[0] > new Date().getFullYear() || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[2] > new Date().getDate() && +inputDate.value.split('-')[1] >= new Date().getMonth()+1 || +inputDate.value.split('-')[0] === new Date().getFullYear() && +inputDate.value.split('-')[1] > new Date().getMonth()+1) { /* Проверка на ввод даты пользователя через клавиатуру */
-
                 myModuleView.validDate(false);
                 return;
             }
@@ -193,45 +180,37 @@ const SPA_Smoking = (function() {
 
             this.storeData(); /* Сохраняем данные в localStorage */
 
-            myModuleView.validDate(true);
+            if ((pageNameLink === 'login')) myModuleView.validDate(true);
         }
-
 
         this.storeData = function() { /* Сохраняем данные в localStorage */
 
             let userDataSerial = JSON.stringify(userData);
-
             localStorage.setItem('userData', userDataSerial);
 
             this.updateState(pageNameLink); /* Обновляем приложение */
         }
-
 
         this.getData = function() {
 
             userDataStorage = JSON.parse(localStorage.getItem('userData'));
         }
 
-
         this.clearData = function() { /* Очищаем данные в хранилище */
 
             localStorage.removeItem('userData');
-
             stateColorSpa = 'white';
-
             this.updateState(pageNameLink); /* Обновляем приложение */
         }
 
-
         this.calculateStatistics = function() {
 
-            if (!userDataStorage) return
+            if (!userDataStorage) return;
 
-            let stopDay = +userDataStorage.userDate.split('-')[2];
-            let stopMonth = +userDataStorage.userDate.split('-')[1];
-            let stopYear = +userDataStorage.userDate.split('-')[0];
-
-            let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
+            const stopDay = +userDataStorage.userDate.split('-')[2];
+            const stopMonth = +userDataStorage.userDate.split('-')[1];
+            const stopYear = +userDataStorage.userDate.split('-')[0];
+            const dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
 
             goTimer();
             timerStatisticTime = setInterval(goTimer, 1000); /* Запускаем таймер статистики */
@@ -241,14 +220,13 @@ const SPA_Smoking = (function() {
                 if (userDataStorage && userDataStorage.soundSpaUser) {
                     timerTick = setTimeout(playSoundTick, 1000)
                 }
-
-                let timeNow = new Date();
-                let sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
-                let sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
-                let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60);
-                let sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60);
-                let sumYear = Math.floor(sumDay / 365);
-                let dayWithYear = sumDay - sumYear * 365;
+                const timeNow = new Date();
+                const sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
+                const sumHour = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 - sumDay * 24);
+                const sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 - sumDay * 24 * 60 - sumHour * 60);
+                const sumSec = Math.floor((timeNow - dateStopSmoking) / 1000 - sumDay * 24 * 60 * 60 - sumHour * 60 * 60 - sumMin * 60);
+                const sumYear = Math.floor(sumDay / 365);
+                const dayWithYear = sumDay - sumYear * 365;
 
                 myModuleView.renderStatisticTime(sumYear, dayWithYear, sumHour, sumMin, sumSec);
             }
@@ -258,28 +236,28 @@ const SPA_Smoking = (function() {
 
             function goTimerCig() {
 
-                let timeNow = new Date();
-                let sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
-                let timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
-                let sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
-                let nicotineMg = Math.floor(sumFullCigarette * 0.6);
-                let resinMg = Math.floor(sumFullCigarette * 5);
+                const timeNow = new Date();
+                const sumSecFull = Math.floor((timeNow - dateStopSmoking) / 1000);
+                const timeOneCigarette = Math.floor(24 * 60 * 60 / userDataStorage.userNumCigarette);
+                const sumFullCigarette = Math.floor(sumSecFull / timeOneCigarette);
+                const nicotineMg = Math.floor(sumFullCigarette * 0.6);
+                const resinMg = Math.floor(sumFullCigarette * 5);
 
-                let costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
-                let costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
-                let costOneMonth = Math.floor(userDataStorage.userNumCigarette * 30 / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette);
-                let costOneYear = costOneMonth * 12;
+                const costOneCigarette = userDataStorage.userCostCigarette / userDataStorage.cigarettesInBlock;
+                const costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
+                const costOneMonth = Math.floor(userDataStorage.userNumCigarette * 30 / userDataStorage.cigarettesInBlock * userDataStorage.userCostCigarette);
+                const costOneYear = costOneMonth * 12;
 
-                let freeTimeMinFull = 4 * sumFullCigarette; /* Всего минут */
-                let freeTimeHourFull = Math.floor(freeTimeMinFull / 60); /* Всего часов */
-                let freeTimeMin = freeTimeMinFull - 60 * freeTimeHourFull; /* минут с учетом часов */
-                let freeTimeDayFull = Math.floor(freeTimeHourFull / 24); /* Всего дней */
-                let freeTimeHour = freeTimeHourFull - 24 * freeTimeDayFull; /* часов с учетом дней */
-                let addTimeMinFull = 5.5 * sumFullCigarette;
-                let addTimeHourFull = Math.floor(addTimeMinFull / 60);
-                let addTimeMin = Math.floor(addTimeMinFull - 60 * addTimeHourFull);
-                let addTimeDayFull = Math.floor(addTimeHourFull / 24);
-                let addTimeHour = addTimeHourFull - 24 * addTimeDayFull;
+                const freeTimeMinFull = 4 * sumFullCigarette; /* Всего минут */
+                const freeTimeHourFull = Math.floor(freeTimeMinFull / 60); /* Всего часов */
+                const freeTimeMin = freeTimeMinFull - 60 * freeTimeHourFull; /* минут с учетом часов */
+                const freeTimeDayFull = Math.floor(freeTimeHourFull / 24); /* Всего дней */
+                const freeTimeHour = freeTimeHourFull - 24 * freeTimeDayFull; /* часов с учетом дней */
+                const addTimeMinFull = 5.5 * sumFullCigarette;
+                const addTimeHourFull = Math.floor(addTimeMinFull / 60);
+                const addTimeMin = Math.floor(addTimeMinFull - 60 * addTimeHourFull);
+                const addTimeDayFull = Math.floor(addTimeHourFull / 24);
+                const addTimeHour = addTimeHourFull - 24 * addTimeDayFull;
 
                 myModuleView.renderStatisticCig(sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin);
             }
@@ -290,15 +268,13 @@ const SPA_Smoking = (function() {
 
             if (!userDataStorage) return
 
-            let stopDay = +userDataStorage.userDate.split('-')[2];
-            let stopMonth = +userDataStorage.userDate.split('-')[1];
-            let stopYear = +userDataStorage.userDate.split('-')[0];
+            const stopDay = +userDataStorage.userDate.split('-')[2];
+            const stopMonth = +userDataStorage.userDate.split('-')[1];
+            const stopYear = +userDataStorage.userDate.split('-')[0];
+            const dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
 
-            let dateStopSmoking = new Date(stopYear, stopMonth - 1, stopDay);
-
-            let timeNow = new Date();
-
-            let sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
+            const timeNow = new Date();
+            const sumMin = Math.floor((timeNow - dateStopSmoking) / 1000 / 60); /* минуты всего */
 
             let heart = Math.floor(sumMin * 100 / rangeStateHealth.heart); /* Сердце */
             if (heart > 100) heart = 100;
@@ -320,18 +296,15 @@ const SPA_Smoking = (function() {
             myModuleView.renderHealth(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer);
         }
 
-
         this.showMoreInfo = function(parent, btn) {
 
             myModuleView.renderMoreInfo(parent, btn);
         }
 
-
         this.getFutbolSeason = function() {
 
             myModuleView.renderFutbolSeason();
         }
-
 
         this.getFutbol = function(inputDateFutbol) {
 
@@ -339,7 +312,7 @@ const SPA_Smoking = (function() {
 
             if (inputDateFutbol.value < 2015 || inputDateFutbol.value > new Date().getFullYear()) return;
 
-            let apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=${inputDateFutbol.value}&sort=asc`;
+            const apiQuery = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}/standings?season=${inputDateFutbol.value}&sort=asc`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -349,7 +322,7 @@ const SPA_Smoking = (function() {
                 })
                 .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
 
-            let apiQueryLogo = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}`;
+            const apiQueryLogo = `https://api-football-standings.azharimm.site/leagues/${userDataStorage.typeFutbolUser}`;
 
             fetch(apiQueryLogo, {method: 'get'})
                 .then((response) => response.json())
@@ -359,7 +332,6 @@ const SPA_Smoking = (function() {
                 })
                 .catch((error) => console.error("Ошибка получения футбола. Причина: " + error));
         }
-
 
         this.getWeather = function() {
 
@@ -374,9 +346,9 @@ const SPA_Smoking = (function() {
 
             myModuleView.renderWeatherLoader();
 
-            let apiUrl = "https://api.openweathermap.org/data/2.5/";
-            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
+            const apiUrl = "https://api.openweathermap.org/data/2.5/";
+            const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            const apiQuery = apiUrl+"/weather?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -387,14 +359,13 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
-
         this.getWeather3days = function() {
 
             myModuleView.renderWeather3daysLoader();
 
-            let apiUrl = "https://api.openweathermap.org/data/2.5/";
-            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = apiUrl+"/forecast?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
+            const apiUrl = "https://api.openweathermap.org/data/2.5/";
+            const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            const apiQuery = apiUrl+"/forecast?id=" + userDataStorage.typeWeatherUser.split('/')[0] + "&units=metric&lang=ru&appid="+apiKey;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -405,13 +376,12 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения погоды. Причина: " + error));
         }
 
-
         this.getPollution = function() {
 
             myModuleView.renderWeather3daysLoader();
 
-            let apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
-            let apiQuery = 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+ userDataStorage.typeWeatherUser.split('/')[1] +'&lon=' + userDataStorage.typeWeatherUser.split('/')[2] +'&appid='+apiKey;
+            const apiKey = "bdcb6183108ed3f3e6d230300e66ca2f";
+            const apiQuery = 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+ userDataStorage.typeWeatherUser.split('/')[1] +'&lon=' + userDataStorage.typeWeatherUser.split('/')[2] +'&appid='+apiKey;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -422,13 +392,11 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения загрязнение воздуха. Причина: " + error));
         }
 
-
         this.getCurrency = function() {
 
             setTimeNow();
             myModuleView.renderCurrency(dateNow);
         }
-
 
         this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
 
@@ -436,7 +404,7 @@ const SPA_Smoking = (function() {
             if (!dateCurrency) return;
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
-            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
+            const apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency1.value}/${selectCurrency2.value}.json`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -447,13 +415,12 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
 
-
         this.changeCurrency2 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) {
 
             let dateCurrency = selectDate.value;
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
-            let apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
+            const apiQuery = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${dateCurrency}/currencies/${selectCurrency2.value}/${selectCurrency1.value}.json`;
 
             fetch(apiQuery, {method: 'get'})
                 .then((response) => response.json())
@@ -464,7 +431,6 @@ const SPA_Smoking = (function() {
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
 
-
         this.cleanCurrency = function() {
 
             myModuleView.renderCleanCurrency();
@@ -473,10 +439,8 @@ const SPA_Smoking = (function() {
         this.addCurrency = function(inputAddCurrency) {
 
             if (inputAddCurrency.value === '') return;
-
             myModuleView.renderAddCurrency(inputAddCurrency.value);
         }
-
 
         this.getFutbolFoward = function(inputDateFutbol) {
 
@@ -485,7 +449,6 @@ const SPA_Smoking = (function() {
             this.getFutbol(inputDateFutbol);
         }
 
-
         this.getFutbolBack = function(inputDateFutbol) {
 
             placeChampionFut--;
@@ -493,19 +456,16 @@ const SPA_Smoking = (function() {
             this.getFutbol(inputDateFutbol);
         }
 
-
         this.showMessageChat = function() {
 
             myModuleView.showMessageChat();
         }
-
 
         this.checkInput = function(inputName, inputDate, inputNumCigs, inputCostCigs, inputCigsInBlock) {
 
             let stateBtn = !(inputName && inputDate && inputNumCigs && inputCostCigs && inputCigsInBlock);
             myModuleView.btnUpdate(stateBtn);
         }
-
 
         this.sendMessageChat = function(inputChat) {
 
@@ -595,12 +555,11 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.showMessagesForChat = function() {
 
-            var str = '';
-            for (var m = 0; m < messages.length; m++) {
-                var message = messages[m];
+            let str = '';
+            for (let m = 0; m < messages.length; m++) {
+                let message = messages[m];
                 str+="<b>"+escapeHTML(message.name) + ":</b> "
                     + escapeHTML(message.mess) + "<br/>";
             }
@@ -620,10 +579,9 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.getAdviceUser = function() {
 
-            let randomNumberAdvice = randomDiap(0, numDiap);
+            const randomNumberAdvice = randomDiap(0, numDiap);
 
             myModuleView.renderAdviceUser(advice[randomNumberAdvice]);
 
@@ -631,10 +589,9 @@ const SPA_Smoking = (function() {
             --numDiap;
         }
 
-
         this.getVideoFactsUser = function() {
 
-            let randomNumberFacts = randomDiap(0, numDiapF);
+            const randomNumberFacts = randomDiap(0, numDiapF);
 
             myModuleView.renderVideoFactsUser(links[randomNumberFacts]);
 
@@ -642,18 +599,15 @@ const SPA_Smoking = (function() {
             --numDiapF;
         }
 
-
         this.setActiveBtn = function(activeBtn) {
 
             myModuleView.renderActiveBtn(activeBtn);
         }
 
-
         this.showAboutSpa = function() {
 
             myModuleView.renderAboutSpa();
         }
-
 
         this.changeColorSpa = function(btnColor) {
 
@@ -661,14 +615,12 @@ const SPA_Smoking = (function() {
             myModuleView.changeColorBtn(btnColor);
         }
 
-
         this.showGoalsUser = function() {
 
             myModuleView.showGoalsUser();
 
             this.getGoalsUser();
         }
-
 
         this.setGoalsUser = function([textGoal, costGoals]) {
 
@@ -683,33 +635,27 @@ const SPA_Smoking = (function() {
             this.getGoalsUser();
         }
 
-
         this.getGoalsUser = function() {
 
             let userDataGoalsStorage = JSON.parse(localStorage.getItem('userDataGoals'));
-
             calculateDateUser();
 
             if (!userDataGoalsStorage) {
-
                 myModuleView.renderGoalsHide();
                 return;
             }
 
             let percentGoals = Math.floor(costFullCigarette * 100 / userDataGoalsStorage.userCost);
             if (percentGoals > 100) percentGoals = 100;
-
             let restDay = Math.ceil(sumDay * 100 / percentGoals) - sumDay;
 
             myModuleView.renderGoalsUser(userDataGoalsStorage, percentGoals, costFullCigarette, restDay);
         }
 
-
         this.clearDataGoals = function() {
 
             localStorage.removeItem('userDataGoals');
         }
-
 
         function playSound() {
             clickAudio.currentTime = 0;
@@ -737,7 +683,6 @@ const SPA_Smoking = (function() {
         }
 
         function setTimeNow() {
-
             let currentYear = new Date().getFullYear();
             let currentDay = new Date().getDate();
             if (currentDay < 10) currentDay = '0' + currentDay;
@@ -759,7 +704,6 @@ const SPA_Smoking = (function() {
             costFullCigarette = Math.floor(costOneCigarette * sumFullCigarette);
             sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
         }
-
     }
 
 
@@ -775,7 +719,6 @@ const SPA_Smoking = (function() {
         let userStorage = null;
         let placeChampion = null;
 
-
         this.init = function(container, routes) {
 
             myModuleContainer = container;
@@ -783,7 +726,6 @@ const SPA_Smoking = (function() {
             menu = myModuleContainer.querySelector("#mainmenu");
             contentContainer = myModuleContainer.querySelector("#content");
         }
-
 
         this.renderContent = function(hashPageName, userData, sumSig, costSig) {
 
@@ -795,23 +737,19 @@ const SPA_Smoking = (function() {
                 routeName = "authorization";
                 updateContent();
             }
-
             else if ((hashPageName === '' || hashPageName === 'login') && !userStorage) {
                 // console.log(2222)
                 routeName = hashPageName in routes ? hashPageName : "login";
                 updateContent();
                 setMaxDate();
-                let btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .white`);
-                // console.log(btnColorSpa);
+                const btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .white`);
                 btnColorSpa.style.height = '20px';
             }
-
             else if (hashPageName === '' || hashPageName === 'statistics' && userStorage) {
                 // console.log(333)
                 routeName = "statistics";
                 updateContent();
             }
-
             else if (hashPageName === 'login' && userStorage) {
                 // console.log(444)
                 routeName = "options";
@@ -820,14 +758,12 @@ const SPA_Smoking = (function() {
                 typeSoccer.selected = 'true';
                 const typeWeather = myModuleContainer.querySelector(`option[value="${userStorage.typeWeatherUser}"]`);
                 typeWeather.selected = 'true';
-                let soundSpa = myModuleContainer.querySelector('#content #sound');
+                const soundSpa = myModuleContainer.querySelector('#content #sound');
                 soundSpa.checked = userStorage.soundSpaUser;
-                let btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .${userStorage.colorSpaUser}`);
-                // console.log(btnColorSpa);
+                const btnColorSpa = myModuleContainer.querySelector(`#content .color_wrap .${userStorage.colorSpaUser}`);
                 btnColorSpa.style.height = '20px';
                 setMaxDate();
             }
-
             else {
                 // console.log(555)
                 routeName = hashPageName in routes ? hashPageName : "error";
@@ -842,29 +778,25 @@ const SPA_Smoking = (function() {
             }
 
             function setMaxDate() {
-
-                let currentYear = new Date().getFullYear();
+                const currentYear = new Date().getFullYear();
                 let currentDay = new Date().getDate();
                 if (currentDay < 10) currentDay = '0' + currentDay;
                 let currentMonth = new Date().getMonth() + 1;
                 if (currentMonth < 10) currentMonth = '0' + currentMonth;
-                let dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
+                const dateLimit = `${currentYear}-${currentMonth}-${currentDay}`;
                 const userStopSmok = myModuleContainer.querySelector(`.input__date-last`);
                 userStopSmok.setAttribute('max', dateLimit);
             }
 
         }
 
-
         this.updateButtons = function(currentPage) {
 
             const menuLinks = menu.querySelectorAll(".mainmenu__link");
-
             for (let link of menuLinks) {
                 currentPage === link.getAttribute("href").slice(1) ? link.classList.add("active") : link.classList.remove("active");
             }
         }
-
 
         this.renderStatisticTime = function(sumYear, dayWithYear, sumHour, sumMin, sumSec) {
 
@@ -877,7 +809,6 @@ const SPA_Smoking = (function() {
             if (sumYear > 0) sumTimeStop.innerHTML = `<span>${sumYear}</span> г <span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`
             else sumTimeStop.innerHTML = `<span>${dayWithYear}</span> дн <span>${sumHour}</span> ч <span>${sumMin}</span> мин <span>${sumSec}</span> сек`;
         }
-
 
         this.renderStatisticCig = function(sumFullCigarette, costFullCigarette, freeTimeDayFull, freeTimeHour, freeTimeMin, nicotineMg, resinMg, costOneMonth, costOneYear, addTimeDayFull, addTimeHour, addTimeMin) {
 
@@ -914,7 +845,6 @@ const SPA_Smoking = (function() {
             year.innerHTML = costOneYear;
             addHealth.innerHTML = `+<span>${addTimeDayFull}</span> дн <span>${addTimeHour}</span> ч <span>${addTimeMin}</span> мин`;
         }
-
 
         this.renderHealth = function(descriptionHealth, heart, carbonMonoxide, nicotine, smell, lung, liver, riskHeart, riskCancer) {
 
@@ -999,21 +929,19 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderMoreInfo = function(parent, btn) {
 
             parent.classList.toggle('wrap__more');
             btn.classList.toggle('arrow__click');
         }
 
-
         this.renderFutbol = function(data, placeChampionFut) {
 
             placeChampion = placeChampionFut;
 
-            let loader = myModuleContainer.querySelector('#loader');
+            const loader = myModuleContainer.querySelector('#loader');
             loader.style.display = "none";
-            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
+            const futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol_wrap');
             futbolLeagueWrap.style.display = "block";
 
             const league = myModuleContainer.querySelector('#content .futbol-league .league');
@@ -1031,7 +959,6 @@ const SPA_Smoking = (function() {
             stats.innerHTML = `<h4>Побед: ${data.data.standings[placeChampion].stats[0].value}</h4> <h4>Поражений: ${data.data.standings[placeChampion].stats[1].value}</h4> <h4>Ничей: ${data.data.standings[placeChampion].stats[2].value}</h4>`;
         }
 
-
         this.renderFutbolSeason = function() {
 
             let futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
@@ -1044,13 +971,11 @@ const SPA_Smoking = (function() {
             futbolSeason.setAttribute('max', `${new Date().getFullYear()}`);
         }
 
-
         this.renderFutbolLogo = function(data) {
 
-            let logoWrap = myModuleContainer.querySelector('#content .logo_wrap');
+            const logoWrap = myModuleContainer.querySelector('#content .logo_wrap');
             logoWrap.innerHTML = `<img src="${data.data.logos.light}" height="120" width="120">`;
         }
-
 
         this.renderCurrency = function(dateNow) {
 
@@ -1059,59 +984,54 @@ const SPA_Smoking = (function() {
             dateCurrency.setAttribute('min', '2020-11-22');
             dateCurrency.setAttribute('value', dateNow);
 
-            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "none";
             const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
             nowWeather.style.display = "none";
-            let btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
+            const btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
             btnForecast.style.display = "none";
-            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            const currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "block";
         }
 
-
         this.renderCurrencyInput1 = function(resultCurrency) {
 
-            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            const inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
             inputCurrency2.value = resultCurrency;
         }
 
-
         this.renderCurrencyInput2 = function(resultCurrency) {
 
-            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.value = resultCurrency;
         }
 
-
         this.renderCleanCurrency = function() {
 
-            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.value = 0;
-            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            const inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
             inputCurrency2.value = 0;
         }
 
-
         this.renderAddCurrency = function(currency) {
 
-            let selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
-            let newCurrency = document.createElement('option');
+            const selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
+            const newCurrency = document.createElement('option');
             newCurrency.value = currency.toLowerCase();
             newCurrency.innerHTML = currency.toUpperCase();
             selectCurrency1.append(newCurrency);
-            let inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
+            const inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
             inputAddCurrency.value = '';
         }
 
-
         this.renderWeather = function(data) {
 
-            let loaderW = myModuleContainer.querySelector('#loader-W');
+            const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
-            let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
+            const weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
             weatherWrap.style.display = "block";
 
             const icon = myModuleContainer.querySelector('#content .icon-weather');
@@ -1130,13 +1050,12 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderWeather3days = function(data3day) {
 
-            let loaderW = myModuleContainer.querySelector('#loader-W');
+            const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
 
-            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            const weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "flex";
             const afterTomorrow = myModuleContainer.querySelector('#forecast-now .after-tomorrow');
             afterTomorrow.style.display = "block";
@@ -1172,12 +1091,11 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderPollution = function(data) {
 
-            let loaderW = myModuleContainer.querySelector('#loader-W');
+            const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "none";
-            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            const weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "flex";
 
             const today = myModuleContainer.querySelector('#forecast-now .today');
@@ -1199,16 +1117,15 @@ const SPA_Smoking = (function() {
             afterTomorrow.style.display = "none";
         }
 
-
         this.renderFutbolLoader = function() {
 
-            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "block";
-            let weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
+            const weatherWrap = myModuleContainer.querySelector('#content #forecast-now');
             weatherWrap.style.display = "none";
-            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            const currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "none";
-            let btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
+            const btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
             btnForecast.style.display = "none";
             const futbolLeague = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeague.style.display = "block";
@@ -1218,16 +1135,15 @@ const SPA_Smoking = (function() {
             futbol.style.display = "none";
         }
 
-
         this.renderWeatherLoader = function() {
 
-            let futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
+            const futbolSeason = myModuleContainer.querySelector('#content .futbol-season');
             futbolSeason.style.display = "none";
-            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            const weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "none";
-            let futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
+            const futbolLeagueWrap = myModuleContainer.querySelector('#content .futbol-league');
             futbolLeagueWrap.style.display = "none";
-            let currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
+            const currencyExchange = myModuleContainer.querySelector('#content #currency-exchange');
             currencyExchange.style.display = "none";
             const nowWeather = myModuleContainer.querySelector('#content #forecast-now');
             nowWeather.style.display = "block";
@@ -1235,22 +1151,19 @@ const SPA_Smoking = (function() {
             loaderW.style.display = "block";
             const weather = myModuleContainer.querySelector('#content .forecast_wrap');
             weather.style.display = "none";
-            let btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
+            const btnForecast = myModuleContainer.querySelector('#content .btn-forecast_wrap');
             btnForecast.style.display = "block";
         }
 
-
         this.renderWeather3daysLoader = function() {
 
-
-            let weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
+            const weatherWrap = myModuleContainer.querySelector('#content .forecast_wrap');
             weatherWrap.style.display = "none";
-            let weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
+            const weather3days = myModuleContainer.querySelector('#content .forecast-3-days');
             weather3days.style.display = "none";
             const loaderW = myModuleContainer.querySelector('#loader-W');
             loaderW.style.display = "block";
         }
-
 
         this.btnUpdate = function(stateBtn) {
 
@@ -1258,10 +1171,9 @@ const SPA_Smoking = (function() {
             buttonSave.disabled = stateBtn;
         }
 
-
         this.validDate = function(checkData) { /* Показываем валидацию данных */
 
-            let validDate = myModuleContainer.querySelector("#content .valid-value");
+            const validDate = myModuleContainer.querySelector("#content .valid-value");
             validDate.style.display = '';
 
             if (checkData) validDate.innerHTML = 'Данные <br> сохранены!';
@@ -1272,40 +1184,37 @@ const SPA_Smoking = (function() {
             }, 1500)
         }
 
-
         this.showMessageChat = function() {
 
-            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
-            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            const factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'none';
-            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            const goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
             goalsSpa.style.display = 'none';
-            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            const chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'block';
         }
 
-
         this.renderChat = function(str) {
 
-            let chatBorder = myModuleContainer.querySelector(".chat-spa .chat-border");
+            const chatBorder = myModuleContainer.querySelector(".chat-spa .chat-border");
             chatBorder.innerHTML = str;
-            let messageChat = myModuleContainer.querySelector(".chat-spa .message-chat");
+            const messageChat = myModuleContainer.querySelector(".chat-spa .message-chat");
             messageChat.value = '';
         }
 
-
         this.renderAdviceUser = function(textAdvice) {
 
-            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            const goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
             goalsSpa.style.display = 'none';
-            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            const chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
-            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            const factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'none';
-            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'block';
-            let messageAdvice = myModuleContainer.querySelector(".advice-spa div");
+            const messageAdvice = myModuleContainer.querySelector(".advice-spa div");
             messageAdvice.innerHTML = textAdvice;
             if (!textAdvice) {
                 messageAdvice.style.color = 'red';
@@ -1313,18 +1222,17 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderVideoFactsUser = function(videoFacts) {
 
-            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            const chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
-            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
-            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            const goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
             goalsSpa.style.display = 'none';
-            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            const factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'block';
-            let messageFacts = myModuleContainer.querySelector(".facts-spa iframe");
+            const messageFacts = myModuleContainer.querySelector(".facts-spa iframe");
             messageFacts.setAttribute("src", videoFacts);
 
             if (!videoFacts) {
@@ -1336,10 +1244,9 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderActiveBtn = function(activeBtn) {
 
-            let buttonAll = myModuleContainer.querySelectorAll("#content > section > button");
+            const buttonAll = myModuleContainer.querySelectorAll("#content > section > button");
             buttonAll.forEach(elem => elem.style.backgroundColor = '#919191');
             activeBtn.style.backgroundColor = '#303030';
 
@@ -1349,12 +1256,11 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.renderAboutSpa = function() {
 
-            let modalAboutSpa = myModuleContainer.querySelector("#content .modal_about_spa");
+            const modalAboutSpa = myModuleContainer.querySelector("#content .modal_about_spa");
             modalAboutSpa.classList.remove('modal_closed');
-            let modalOverlay = myModuleContainer.querySelector("#content .modal-overlay");
+            const modalOverlay = myModuleContainer.querySelector("#content .modal-overlay");
             modalOverlay.classList.remove('modal_closed');
 
 
@@ -1369,50 +1275,40 @@ const SPA_Smoking = (function() {
             }, 6000)
         }
 
-
         this.changeColorBtn = function(btnColor) {
 
-            // let styleCSS = document.head.querySelector("link[href$='styles.css']");
-            // styleCSS.setAttribute('href', './styles/styles-black.css')
-
-            let btnColorSpa = myModuleContainer.querySelectorAll("#content .color_wrap .color-spa");
+            const btnColorSpa = myModuleContainer.querySelectorAll("#content .color_wrap .color-spa");
             btnColorSpa.forEach(elem => elem.style.height = '13px');
             btnColor.style.height = '20px';
         }
 
-
         this.changeColorSpa = function() {
 
-            let styleCSS = document.head.querySelector("link[href$='styles.css']");
-            let mediaCSS = document.head.querySelector("link[href$='media.css']");
+            const styleCSS = document.head.querySelector("link[href$='styles.css']");
             if (userStorage && userStorage.colorSpaUser !== 'white' && userStorage.colorSpaUser !== 'red' && userStorage.colorSpaUser !== 'blue' && userStorage.colorSpaUser !== 'green') {
 
                 styleCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-styles.css`);
-                // mediaCSS.setAttribute('href', `./styles/${userStorage.colorSpaUser}-media.css`);
             }
             else {
                 styleCSS.setAttribute('href', `./styles/styles.css`);
-                // mediaCSS.setAttribute('href', `./styles/media.css`);
             }
         }
 
-
         this.showGoalsUser = function() {
 
-            let adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
+            const adviceSpa = myModuleContainer.querySelector("#content .advice-spa");
             adviceSpa.style.display = 'none';
-            let chatSpa = myModuleContainer.querySelector("#content .chat-spa");
+            const chatSpa = myModuleContainer.querySelector("#content .chat-spa");
             chatSpa.style.display = 'none';
-            let factsSpa = myModuleContainer.querySelector("#content .facts-spa");
+            const factsSpa = myModuleContainer.querySelector("#content .facts-spa");
             factsSpa.style.display = 'none';
-            let goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
+            const goalsSpa = myModuleContainer.querySelector("#content .goals-spa");
             goalsSpa.style.display = 'block';
         }
 
-
         this.renderGoalsUser = function({userText, userCost}, percentGoals, moneyNowUser, restDay) {
 
-            let goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
+            const goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
             goalsWrap.style.display = 'block';
 
             const stateGoals = myModuleContainer.querySelector("#content .state__goals__chart .percent");
@@ -1421,8 +1317,8 @@ const SPA_Smoking = (function() {
             const moneyNow = myModuleContainer.querySelector("#content .state__goals__dicription .money_now");
             const moneyFull = myModuleContainer.querySelector("#content .state__goals__dicription .money_full");
             const restTime = myModuleContainer.querySelector("#content .state__goals__dicription .rest_time");
-            let inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
-            let goalsDicrip = myModuleContainer.querySelectorAll("#content .goals-dicription");
+            const inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
+            const goalsDicrip = myModuleContainer.querySelectorAll("#content .goals-dicription");
 
             inputGoalsUser.forEach(elem => elem.value = '');
             stateGoals.innerHTML = `<strong class="percent-H">${percentGoals}%</strong>`;
@@ -1438,13 +1334,11 @@ const SPA_Smoking = (function() {
             if (restDay === 0) restTime.innerHTML = 'Выполнено!';
         }
 
-
         this.renderGoalsHide = function() {
 
-            let goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
+            const goalsWrap = myModuleContainer.querySelector("#content .goals__wrap");
             goalsWrap.style.display = 'none';
         }
-
     }
 
 
@@ -1455,11 +1349,6 @@ const SPA_Smoking = (function() {
 
         let myModuleContainer = null;
         let myModuleModel = null;
-
-        let inputName = null;
-        let inputDate = null;
-        let inputNumCig = null;
-        let inputCostCig = null;
         let that = this;
 
         this.init = function(container, model) {
@@ -1467,153 +1356,102 @@ const SPA_Smoking = (function() {
             myModuleContainer = container;
             myModuleModel = model;
 
-            window.addEventListener("hashchange", this.updateState); // вешаем слушателей на событие hashchange и кликам по пунктам меню
+            window.addEventListener("hashchange", this.updateState); /* вешаем слушателей на событие hashchange и кликам по пунктам меню */
 
-            this.updateState(); //первая отрисовка
+            this.updateState(); /* первая отрисовка */
 
             myModuleContainer.addEventListener("click", clickHandler);
 
             function clickHandler(e) {
 
                 if (e.target.getAttribute('class') === 'data__save') {
-
                     that.saveDataUser();
                 }
-
                 if (e.target.getAttribute('class') === 'data__delete') {
-
                     that.clearData();
                 }
-
                 if (e.target.getAttribute('class') === 'fas fa-angle-double-down' || e.target.getAttribute('class') === 'fas fa-angle-double-down arrow__click') {
-
                     that.showMoreInfo(e.target.parentNode, e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'btn-futbol') {
-
                     that.showFutbol();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'btn-weather') {
-
                     that.showWeather();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'fas fa-chevron-right' || e.target.getAttribute('class') === 'btn-futbol-foward') {
-
                     that.showFutbolFoward();
                 }
-
                 if (e.target.getAttribute('class') === 'fas fa-chevron-left' || e.target.getAttribute('class') === 'btn-futbol-back') {
-
                     that.showFutbolBack();
                 }
-
                 if (e.target.getAttribute('class') === 'far fa-envelope') {
-
                     that.sendMessageChat();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-chat') {
-
                     that.showMessageChat();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'fas fa-cloud-upload-alt') {
-
                     that.updateMessageChat();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-advice') {
-
                     that.getAdviceUser();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'btn-facts') {
-
                     that.getVideoFactsUser();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'btn-currency') {
-
                     that.showCurrency();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'btn-clean-currency' || e.target.getAttribute('class') === 'fas fa-eraser') {
-
                     that.cleanCurrency();
                 }
-
                 if (e.target.getAttribute('class') === 'about_spa') {
-
                     that.showAboutSpa();
                 }
-
                 if (e.target.classList.contains('color-spa')) {
-
                     that.changeColorSpa(e.target);
                 }
-
                 if (e.target.classList.contains('btn-forecast-3days')) {
-
                     that.showWeather3days();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-forecast-now') {
-
                     that.showWeather();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-forecast-pollution') {
-
                     that.showPollution();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-add-currency') {
-
                     that.addCurrency();
                 }
-
                 if (e.target.getAttribute('class') === 'btn_goals_add' || e.target.getAttribute('class') === 'fas fa-fast-forward') {
-
                     that.setGoalsUser();
                 }
-
                 if (e.target.getAttribute('class') === 'btn-goals') {
-
                     that.showGoalsUser();
                     that.setActiveBtn(e.target);
                 }
-
                 if (e.target.getAttribute('class') === 'modal__close') {
-
                     e.preventDefault();
-
                     that.clearDataGoals();
-
                 }
-
             }
 
             document.addEventListener("keyup", keyHandler);
             function keyHandler(e) {
-
                 if (e.code === 'KeyZ' && e.shiftKey) window.location.hash = 'statistics';
                 if (e.code === 'KeyX' && e.shiftKey) window.location.hash = 'health';
                 if (e.code === 'KeyC' && e.shiftKey) window.location.hash = 'motivation';
                 if (e.code === 'KeyV' && e.shiftKey) window.location.hash = 'other';
                 if (e.code === 'KeyB' && e.shiftKey) window.location.hash = 'login';
             }
-
         }
-
 
         this.updateState = function() {
 
@@ -1623,24 +1461,16 @@ const SPA_Smoking = (function() {
             that.checkInputChange();
         }
 
-
         this.saveDataUser = function() { /* Сохраняем данные из инпутов в localStorage */
 
-            // inputName = myModuleContainer.querySelector(".input__default");
-            // inputDate = myModuleContainer.querySelector(".input__date-last");
-            // inputNumCig = myModuleContainer.querySelector(".input__num-cigarette");
-            // inputCostCig = myModuleContainer.querySelector(".input__cost-cigarette");
-            // myModuleModel.saveData(inputName.value, inputDate.value, inputNumCig.value, inputCostCig.value);
-
-            let inputData = myModuleContainer.querySelectorAll("#content input");
-            let typeFutbol = myModuleContainer.querySelector('#type-futbol');
-            let typeCity = myModuleContainer.querySelector('#type-city');
-            let soundSpa = myModuleContainer.querySelector('#content #sound');
+            const inputData = myModuleContainer.querySelectorAll("#content input");
+            const typeFutbol = myModuleContainer.querySelector('#type-futbol');
+            const typeCity = myModuleContainer.querySelector('#type-city');
+            const soundSpa = myModuleContainer.querySelector('#content #sound');
 
             myModuleModel.saveData(inputData, typeFutbol, typeCity, soundSpa);
             that.checkInputChange();
         }
-
 
         this.clearData = function() { /* Очищаем данные из localStorage */
 
@@ -1649,21 +1479,18 @@ const SPA_Smoking = (function() {
             that.checkInputChange();
         }
 
-
         this.showMoreInfo = function(parent, btn) {
 
             myModuleModel.showMoreInfo(parent, btn);
         }
 
-
         this.showFutbol = function() {
 
-            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             inputDateFutbol.addEventListener('input', inputDateHandler);
 
             myModuleModel.getFutbolSeason();
             myModuleModel.getFutbol(inputDateFutbol);
-
 
             function inputDateHandler() {
                 myModuleModel.getFutbol(inputDateFutbol);
@@ -1675,36 +1502,31 @@ const SPA_Smoking = (function() {
             myModuleModel.getWeather();
         }
 
-
         this.showWeather3days = function() {
 
             myModuleModel.getWeather3days();
         }
-
 
         this.showPollution = function() {
 
             myModuleModel.getPollution();
         }
 
-
         this.showFutbolFoward = function() {
 
-            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             myModuleModel.getFutbolFoward(inputDateFutbol);
         }
 
-
         this.showFutbolBack = function() {
 
-            let inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
+            const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             myModuleModel.getFutbolBack(inputDateFutbol);
         }
 
-
         this.checkInputChange = function() {
 
-            let inputAll = myModuleContainer.querySelectorAll(".modal__content input");
+            const inputAll = myModuleContainer.querySelectorAll(".modal__content input");
             inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
 
             function checkChangeInput(e) {
@@ -1714,13 +1536,12 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.showMessageChat = function() {
 
             myModuleModel.showMessageChat();
             myModuleModel.updateMessageChat();
 
-            let inputChat = myModuleContainer.querySelector(".chat-spa input");
+            const inputChat = myModuleContainer.querySelector(".chat-spa input");
             inputChat.addEventListener('keyup', pressEnterHandler);
 
             function pressEnterHandler(e) {
@@ -1728,55 +1549,45 @@ const SPA_Smoking = (function() {
             }
         }
 
-
         this.sendMessageChat = function() {
 
-            let inputChat = myModuleContainer.querySelector(".chat-spa .message-chat");
+            const inputChat = myModuleContainer.querySelector(".chat-spa .message-chat");
             myModuleModel.sendMessageChat(inputChat);
         }
-
 
         this.updateMessageChat = function() {
 
             myModuleModel.updateMessageChat();
         }
 
-
         this.getAdviceUser = function() {
 
             myModuleModel.getAdviceUser();
         }
-
 
         this.getVideoFactsUser = function() {
 
             myModuleModel.getVideoFactsUser();
         }
 
-
         this.setActiveBtn = function(activeBtn) {
 
             myModuleModel.setActiveBtn(activeBtn);
         }
 
-
         this.showCurrency = function() {
 
             myModuleModel.getCurrency();
 
-            let inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
+            const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
             inputCurrency1.addEventListener('input', inputHandler1);
-
-            let inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
+            const inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
             inputCurrency2.addEventListener('input', inputHandler2);
-
-            let selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
+            const selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
             selectCurrency1.addEventListener('click', inputHandler1);
-
-            let selectCurrency2 = myModuleContainer.querySelector("#currency-exchange #currency-2");
+            const selectCurrency2 = myModuleContainer.querySelector("#currency-exchange #currency-2");
             selectCurrency2.addEventListener('click', inputHandler1);
-
-            let selectDate = myModuleContainer.querySelector("#currency-exchange .input__date-currency");
+            const selectDate = myModuleContainer.querySelector("#currency-exchange .input__date-currency");
             selectDate.addEventListener('input', inputHandler1);
 
             function inputHandler1() {
@@ -1785,65 +1596,51 @@ const SPA_Smoking = (function() {
             function inputHandler2() {
                 myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
-
             that.cleanCurrency();
         }
-
 
         this.cleanCurrency = function() {
 
             myModuleModel.cleanCurrency();
         }
 
-
         this.addCurrency = function() {
 
-            let inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
-            // inputCurrency1.addEventListener('input', inputHandler1);
-
+            const inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
             myModuleModel.addCurrency(inputAddCurrency);
         }
-
 
         this.showAboutSpa = function() {
 
             myModuleModel.showAboutSpa();
         }
 
-
         this.changeColorSpa = function(btnColor) {
 
             myModuleModel.changeColorSpa(btnColor);
         }
 
-
         this.setGoalsUser = function() {
 
-            let inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
-
+            const inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
             myModuleModel.setGoalsUser(inputGoalsUser);
         }
-
 
         this.getGoalsUser = function() {
 
             myModuleModel.getGoalsUser();
         }
 
-
         this.showGoalsUser = function() {
 
             myModuleModel.showGoalsUser();
         }
 
-
         this.clearDataGoals = function() {
 
             myModuleModel.clearDataGoals();
-
             myModuleModel.getGoalsUser();
         }
-
     }
 
 
