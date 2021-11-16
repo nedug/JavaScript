@@ -127,7 +127,7 @@ const SPA_Smoking = (function() {
             numDiap = 25;
             numDiapF = 9;
             placeChampionFut = 0;
-            pageNameLink = pageName;
+            pageNameLink = pageName; /* Линк после # */
 
             if (userDataStorage && userDataStorage.soundSpaUser) playSound();
 
@@ -961,7 +961,7 @@ const SPA_Smoking = (function() {
 
         this.renderFutbolSeason = function() {
 
-            let futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
+            const futbolSeason = myModuleContainer.querySelector('#content .input__date-futbol');
             if (new Date().getMonth() + 1 === 1 || new Date().getMonth() + 1 === 2 || new Date().getMonth() + 1 === 3 || new Date().getMonth() + 1 === 4 || new Date().getMonth() + 1 === 5 || new Date().getMonth() + 1 === 6  || new Date().getMonth() + 1 === 7) {
                 futbolSeason.value = new Date().getFullYear() - 1;
             }
@@ -1351,105 +1351,105 @@ const SPA_Smoking = (function() {
         let myModuleModel = null;
         let that = this;
 
-        this.init = function(container, model) {
+        this.init = function(container, model) { /* Инициализация контроллера */
 
             myModuleContainer = container;
             myModuleModel = model;
 
-            window.addEventListener("hashchange", this.updateState); /* вешаем слушателей на событие hashchange и кликам по пунктам меню */
+            window.addEventListener("hashchange", this.updateState); /* Вешаем слушателей на событие hashchange и кликам по пунктам меню */
 
             this.updateState(); /* первая отрисовка */
 
-            myModuleContainer.addEventListener("click", clickHandler);
+            myModuleContainer.addEventListener("click", clickHandler); /* Слушатели событий на клики от пользователя */
 
             function clickHandler(e) {
 
                 if (e.target.getAttribute('class') === 'data__save') {
-                    that.saveDataUser();
+                    that.saveDataUser(); /* Сохранение данных пользователя */
                 }
                 if (e.target.getAttribute('class') === 'data__delete') {
-                    that.clearData();
+                    that.clearData(); /* Удаление данных пользователя */
                 }
                 if (e.target.getAttribute('class') === 'fas fa-angle-double-down' || e.target.getAttribute('class') === 'fas fa-angle-double-down arrow__click') {
-                    that.showMoreInfo(e.target.parentNode, e.target);
+                    that.showMoreInfo(e.target.parentNode, e.target); /* Показываем больше данных в разделе Статистика */
                 }
                 if (e.target.getAttribute('class') === 'btn-futbol') {
-                    that.showFutbol();
-                    that.setActiveBtn(e.target);
+                    that.showFutbol(); /* Показываем блок Футбол */
+                    that.setActiveBtn(e.target); /* Выделяем нажимаемую кнопку */
                 }
                 if (e.target.getAttribute('class') === 'btn-weather') {
-                    that.showWeather();
+                    that.showWeather(); /* Показываем блок ПОГОДА */
                     that.setActiveBtn(e.target);
                 }
                 if (e.target.getAttribute('class') === 'fas fa-chevron-right' || e.target.getAttribute('class') === 'btn-futbol-foward') {
-                    that.showFutbolFoward();
+                    that.showFutbolFoward(); /* Листаем футбол ВПЕРЕД */
                 }
                 if (e.target.getAttribute('class') === 'fas fa-chevron-left' || e.target.getAttribute('class') === 'btn-futbol-back') {
-                    that.showFutbolBack();
-                }
-                if (e.target.getAttribute('class') === 'far fa-envelope') {
-                    that.sendMessageChat();
+                    that.showFutbolBack(); /* Листаем футбол НАЗАД */
                 }
                 if (e.target.getAttribute('class') === 'btn-chat') {
-                    that.showMessageChat();
+                    that.showMessageChat(); /* Показываем блок ОНЛАЙН-ЧАТА */
                     that.setActiveBtn(e.target);
                 }
+                if (e.target.getAttribute('class') === 'far fa-envelope') {
+                    that.sendMessageChat(); /* Отправка сообщений в ОНЛАЙН-ЧАТе */
+                }
                 if (e.target.getAttribute('class') === 'fas fa-cloud-upload-alt') {
-                    that.updateMessageChat();
+                    that.updateMessageChat(); /* Обновление сообщений в ОНЛАЙН-ЧАТе */
                 }
                 if (e.target.getAttribute('class') === 'btn-advice') {
-                    that.getAdviceUser();
+                    that.getAdviceUser(); /* Показываем блок СОВЕТОВ */
                     that.setActiveBtn(e.target);
                 }
                 if (e.target.getAttribute('class') === 'btn-facts') {
-                    that.getVideoFactsUser();
+                    that.getVideoFactsUser(); /* Показываем блок ВИДЕО-ФАКТОВ */
                     that.setActiveBtn(e.target);
                 }
                 if (e.target.getAttribute('class') === 'btn-currency') {
-                    that.showCurrency();
+                    that.showCurrency(); /* Показываем блок ОбМЕНА ВАЛЮТ */
                     that.setActiveBtn(e.target);
                 }
                 if (e.target.getAttribute('class') === 'btn-clean-currency' || e.target.getAttribute('class') === 'fas fa-eraser') {
-                    that.cleanCurrency();
-                }
-                if (e.target.getAttribute('class') === 'about_spa') {
-                    that.showAboutSpa();
-                }
-                if (e.target.classList.contains('color-spa')) {
-                    that.changeColorSpa(e.target);
-                }
-                if (e.target.classList.contains('btn-forecast-3days')) {
-                    that.showWeather3days();
-                }
-                if (e.target.getAttribute('class') === 'btn-forecast-now') {
-                    that.showWeather();
-                }
-                if (e.target.getAttribute('class') === 'btn-forecast-pollution') {
-                    that.showPollution();
+                    that.cleanCurrency(); /* Очищаем инпуты ввода валюты */
                 }
                 if (e.target.getAttribute('class') === 'btn-add-currency') {
-                    that.addCurrency();
+                    that.addCurrency(); /* Возможность добавлять новую ВАЛЮТУ */
                 }
-                if (e.target.getAttribute('class') === 'btn_goals_add' || e.target.getAttribute('class') === 'fas fa-fast-forward') {
-                    that.setGoalsUser();
+                if (e.target.getAttribute('class') === 'about_spa') {
+                    that.showAboutSpa(); /* Показываем блок О ПРИЛОЖЕНИИ */
                 }
-                if (e.target.getAttribute('class') === 'btn-goals') {
+                if (e.target.classList.contains('color-spa')) {
+                    that.changeColorSpa(e.target); /* Изменяем цветовую схему приложения */
+                }
+                if (e.target.classList.contains('btn-forecast-3days')) {
+                    that.showWeather3days(); /* Показываем ПОГОДу на 3 дня */
+                }
+                if (e.target.getAttribute('class') === 'btn-forecast-now') {
+                    that.showWeather();  /* Показываем ПОГОДу сейчас */
+                }
+                if (e.target.getAttribute('class') === 'btn-forecast-pollution') {
+                    that.showPollution();  /* Показываем Загрязнение воздуха из ПОГОДЫ */
+                }
+                if (e.target.getAttribute('class') === 'btn-goals') { /* Показываем блок УСТАНОВКИ ЦЕЛИ */
                     that.showGoalsUser();
                     that.setActiveBtn(e.target);
                 }
+                if (e.target.getAttribute('class') === 'btn_goals_add' || e.target.getAttribute('class') === 'fas fa-fast-forward') {
+                    that.setGoalsUser(); /* Устанавливаем ЦЕЛь пользователя в localStorage */
+                }
                 if (e.target.getAttribute('class') === 'modal__close') {
                     e.preventDefault();
-                    that.clearDataGoals();
+                    that.clearDataGoals(); /* Удаляем ЦЕЛь пользователя из localStorage */
                 }
             }
 
-            document.addEventListener("keyup", keyHandler);
+            document.addEventListener("keyup", keyHandler); /* Горячие клавиши */
             function keyHandler(e) {
-                if (e.code === 'KeyZ' && e.shiftKey) window.location.hash = 'statistics';
-                if (e.code === 'KeyX' && e.shiftKey) window.location.hash = 'health';
-                if (e.code === 'KeyC' && e.shiftKey) window.location.hash = 'motivation';
-                if (e.code === 'KeyV' && e.shiftKey) window.location.hash = 'other';
-                if (e.code === 'KeyB' && e.shiftKey) window.location.hash = 'login';
+                if (e.code === 'KeyZ' && e.shiftKey) window.location.hash = '#statistics'; /* закладка (якорь, хэш), т.е. часть URI */
+                if (e.code === 'KeyX' && e.shiftKey) window.location.hash = '#health';
+                if (e.code === 'KeyC' && e.shiftKey) window.location.hash = '#motivation';
+                if (e.code === 'KeyV' && e.shiftKey) window.location.hash = '#other';
+                if (e.code === 'KeyB' && e.shiftKey) window.location.hash = '#login';
             }
         }
 
@@ -1458,7 +1458,7 @@ const SPA_Smoking = (function() {
             const hashPageName = location.hash.slice(1).toLowerCase(); /* Линк после # */
 
             myModuleModel.updateState(hashPageName);
-            that.checkInputChange();
+            that.checkInputChange(); /* Проверка инпутов на ввод данных */
         }
 
         this.saveDataUser = function() { /* Сохраняем данные из инпутов в localStorage */
@@ -1469,27 +1469,27 @@ const SPA_Smoking = (function() {
             const soundSpa = myModuleContainer.querySelector('#content #sound');
 
             myModuleModel.saveData(inputData, typeFutbol, typeCity, soundSpa);
-            that.checkInputChange();
+            that.checkInputChange(); /* Проверка инпутов на ввод данных */
         }
 
         this.clearData = function() { /* Очищаем данные из localStorage */
 
-            myModuleModel.clearData();
-            myModuleModel.clearDataGoals();
+            myModuleModel.clearData(); /* Общие настройки */
+            myModuleModel.clearDataGoals(); /* Дополнительные настройки */
             that.checkInputChange();
         }
 
-        this.showMoreInfo = function(parent, btn) {
+        this.showMoreInfo = function(parent, btn) { /* Показываем больше данных в разделе Статистика */
 
-            myModuleModel.showMoreInfo(parent, btn);
+            myModuleModel.showMoreInfo(parent, btn); /* parent = e.target.parentNode; btn = e.target */
         }
 
-        this.showFutbol = function() {
+        this.showFutbol = function() { /* Показываем блок Футбол */
 
             const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
-            inputDateFutbol.addEventListener('input', inputDateHandler);
+            inputDateFutbol.addEventListener('input', inputDateHandler); /* Слушатель событий на инпут ГОД сезона */
 
-            myModuleModel.getFutbolSeason();
+            myModuleModel.getFutbolSeason(); /* Показываем инпут выбора футбольного сезона */
             myModuleModel.getFutbol(inputDateFutbol);
 
             function inputDateHandler() {
@@ -1497,34 +1497,34 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.showWeather = function() {
+        this.showWeather = function() { /* Показываем блок ПОГОДА */
 
             myModuleModel.getWeather();
         }
 
-        this.showWeather3days = function() {
+        this.showWeather3days = function() { /* Показываем ПОГОДу на 3 дня */
 
             myModuleModel.getWeather3days();
         }
 
-        this.showPollution = function() {
+        this.showPollution = function() { /* Показываем Загрязнение воздуха из ПОГОДЫ */
 
             myModuleModel.getPollution();
         }
 
-        this.showFutbolFoward = function() {
+        this.showFutbolFoward = function() { /* Листаем футбол ВПЕРЕД */
 
             const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             myModuleModel.getFutbolFoward(inputDateFutbol);
         }
 
-        this.showFutbolBack = function() {
+        this.showFutbolBack = function() { /* Листаем футбол НАЗАД */
 
             const inputDateFutbol = myModuleContainer.querySelector("#content .input__date-futbol");
             myModuleModel.getFutbolBack(inputDateFutbol);
         }
 
-        this.checkInputChange = function() {
+        this.checkInputChange = function() { /* Проверка инпутов на ввод данных */
 
             const inputAll = myModuleContainer.querySelectorAll(".modal__content input");
             inputAll.forEach(elem => elem.addEventListener('input', checkChangeInput));
@@ -1536,57 +1536,57 @@ const SPA_Smoking = (function() {
             }
         }
 
-        this.showMessageChat = function() {
+        this.showMessageChat = function() {  /* Показываем блок ОНЛАЙН-ЧАТА */
 
-            myModuleModel.showMessageChat();
-            myModuleModel.updateMessageChat();
+            myModuleModel.showMessageChat(); /* Показываем чат */
+            myModuleModel.updateMessageChat(); /* Обновляем чат */
 
             const inputChat = myModuleContainer.querySelector(".chat-spa input");
-            inputChat.addEventListener('keyup', pressEnterHandler);
+            inputChat.addEventListener('keyup', pressEnterHandler); /* Слушатель событий в чате для отправки сообщений на Enter */
 
             function pressEnterHandler(e) {
                 if (e.code === 'Enter') that.sendMessageChat();
             }
         }
 
-        this.sendMessageChat = function() {
+        this.sendMessageChat = function() { /* Отправка сообщений в ОНЛАЙН-ЧАТе */
 
             const inputChat = myModuleContainer.querySelector(".chat-spa .message-chat");
             myModuleModel.sendMessageChat(inputChat);
         }
 
-        this.updateMessageChat = function() {
+        this.updateMessageChat = function() { /* Обновление сообщений в ОНЛАЙН-ЧАТе */
 
             myModuleModel.updateMessageChat();
         }
 
-        this.getAdviceUser = function() {
+        this.getAdviceUser = function() { /* Показываем блок СОВЕТОВ */
 
             myModuleModel.getAdviceUser();
         }
 
-        this.getVideoFactsUser = function() {
+        this.getVideoFactsUser = function() { /* Показываем блок ВИДЕО-ФАКТОВ */
 
             myModuleModel.getVideoFactsUser();
         }
 
-        this.setActiveBtn = function(activeBtn) {
+        this.setActiveBtn = function(activeBtn) { /* Выделяем нажимаемую кнопку */
 
-            myModuleModel.setActiveBtn(activeBtn);
+            myModuleModel.setActiveBtn(activeBtn); /* activeBtn = e.target */
         }
 
-        this.showCurrency = function() {
+        this.showCurrency = function() { /* Показываем блок ОбМЕНА ВАЛЮТ */
 
             myModuleModel.getCurrency();
 
             const inputCurrency1 = myModuleContainer.querySelector("#currency-exchange .input_sum-currency");
-            inputCurrency1.addEventListener('input', inputHandler1);
+            inputCurrency1.addEventListener('input', inputHandler1); /* Слушатель событий на 1 инпут */
             const inputCurrency2 = myModuleContainer.querySelector("#currency-exchange .input_res-currency");
-            inputCurrency2.addEventListener('input', inputHandler2);
+            inputCurrency2.addEventListener('input', inputHandler2); /* Слушатель событий на 2 инпут */
             const selectCurrency1 = myModuleContainer.querySelector("#currency-exchange #currency-1");
-            selectCurrency1.addEventListener('click', inputHandler1);
+            selectCurrency1.addEventListener('click', inputHandler1); /* Слушатель событий на клик по 1 селекту */
             const selectCurrency2 = myModuleContainer.querySelector("#currency-exchange #currency-2");
-            selectCurrency2.addEventListener('click', inputHandler1);
+            selectCurrency2.addEventListener('click', inputHandler1); /* Слушатель событий на клик по 2 селекту */
             const selectDate = myModuleContainer.querySelector("#currency-exchange .input__date-currency");
             selectDate.addEventListener('input', inputHandler1);
 
@@ -1596,47 +1596,42 @@ const SPA_Smoking = (function() {
             function inputHandler2() {
                 myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
-            that.cleanCurrency();
+            that.cleanCurrency(); /* Очищаем инпуты ввода валюты */
         }
 
-        this.cleanCurrency = function() {
+        this.cleanCurrency = function() { /* Очищаем инпуты ввода валюты */
 
             myModuleModel.cleanCurrency();
         }
 
-        this.addCurrency = function() {
+        this.addCurrency = function() { /* Возможность добавлять новую ВАЛЮТУ */
 
             const inputAddCurrency = myModuleContainer.querySelector("#currency-exchange .input_add-currency");
             myModuleModel.addCurrency(inputAddCurrency);
         }
 
-        this.showAboutSpa = function() {
+        this.showAboutSpa = function() { /* Показываем блок О ПРИЛОЖЕНИИ */
 
             myModuleModel.showAboutSpa();
         }
 
-        this.changeColorSpa = function(btnColor) {
+        this.changeColorSpa = function(btnColor) { /* Изменяем цветовую схему приложения */
 
             myModuleModel.changeColorSpa(btnColor);
         }
 
-        this.setGoalsUser = function() {
+        this.showGoalsUser = function() { /* Показываем блок УСТАНОВКИ ЦЕЛИ */
+
+            myModuleModel.showGoalsUser();
+        }
+
+        this.setGoalsUser = function() {  /* Устанавливаем ЦЕЛь пользователя в localStorage */
 
             const inputGoalsUser = myModuleContainer.querySelectorAll("#content .goals-spa input");
             myModuleModel.setGoalsUser(inputGoalsUser);
         }
 
-        this.getGoalsUser = function() {
-
-            myModuleModel.getGoalsUser();
-        }
-
-        this.showGoalsUser = function() {
-
-            myModuleModel.showGoalsUser();
-        }
-
-        this.clearDataGoals = function() {
+        this.clearDataGoals = function() { /* Удаляем ЦЕЛь пользователя из localStorage */
 
             myModuleModel.clearDataGoals();
             myModuleModel.getGoalsUser();
