@@ -1,0 +1,925 @@
+@media all and (max-width: 795px) {
+    .app {
+        padding: 15px 15px 10px;
+        display: flex;
+        width: 667px;
+        height: 815px;
+        border: 1px solid #e3e3e3;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color: #373737;
+    }
+    .mainmenu li {
+        width: auto;
+    }
+    .mainmenu__link {
+        display: block;
+        padding: 15px 20px;
+        color: #8f8f8f;
+        text-decoration: none;
+        font-size: 18px;
+    }
+    .state__wrap {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 7px 0;
+        transition: .3s;
+    }
+    .mainmenu__list {
+        justify-content: center;
+        border: 1px #b5b4b4 solid;
+    }
+    #mainmenu {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+    .btn-advice, .btn-facts, .btn-chat, .btn-goals {
+        color: black;
+        max-width: 255px;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 15px;
+        background-color: #e3e3e3;
+        margin: 20px 27px 0;
+        font-size: 20px;
+        transition: .3s;
+    }
+    .btn-chat, .btn-goals {
+        margin-bottom: 15px;
+    }
+    .advice-spa {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .facts-spa {
+        width: auto;
+        height: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .chat-spa {
+        width: auto;
+        height: 507px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .message-chat {
+        max-width: 465px;
+        padding: 7px;
+        border: 1px solid #927b7b;
+        border-radius: 5px;
+        transition: .3s;
+    }
+    .goals-spa {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .goals-spa input {
+        margin: 10px 15px 20px 10px;
+        padding: 8px;
+        max-width: 235px;
+        background-color: #e0e5ee;
+        border: 1px solid #6cb6fd;
+        border-radius: 3px;
+    }
+    .goals__wrap {
+        display: none;
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 15px 0;
+        transition: .3s;
+        position: relative;
+    }
+    .btn-futbol, .btn-weather {
+        color: black;
+        max-width: 165px;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 20px;
+        background-color: #e3e3e3;
+        margin: 20px 15px;
+        font-size: 20px;
+        transition: .3s;
+    }
+    .btn-currency {
+        color: black;
+        max-width: 190px;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 10px;
+        background-color: #e3e3e3;
+        margin: 20px 15px;
+        font-size: 20px;
+        transition: .3s;
+    }
+    .futbol-league {
+        width: 410px;
+        height: 455px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 10px 10px;
+        transition: .3s;
+        display: none;
+        position: relative;
+        overflow: auto;
+    }
+    .futbol-season {
+        display: none;
+        position: absolute;
+        top: 120px;
+        right: 15px;
+    }
+    #forecast-now {
+        width: 380px;
+        height: 280px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 10px 10px;
+        transition: .3s;
+        display: none;
+        background-image: url(../img/wind-atlas.gif);
+        background-size: auto 101%;
+        background-position: -45px;
+    }
+    .btn-forecast_wrap {
+        display: none;
+        position: absolute;
+        top: 120px;
+        right: 15px;
+    }
+    #currency-exchange {
+        width: auto;
+        padding: 20px 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    #currency-exchange input {
+        margin: 15px 30px 15px 10px;
+        padding: 8px;
+        max-width: 465px;
+        border: 1px solid dodgerblue;
+        border-radius: 3px;
+    }
+    .btn-add-currency {
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        background-color: #ef8c8c;
+        margin: 30px 30px 0 124px;
+        font-size: 16px;
+        transition: .3s;
+    }
+    .modal__content {
+        width: auto;
+        padding: 10px 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        transition: .3s;
+        position: relative;
+    }
+    #content .fa-user-cog {
+        color: dodgerblue;
+        font-size: 60px;
+        position: absolute;
+        top: 64px;
+        right: 13px;
+    }
+    .data__save {
+        color: #fff;
+        width: 105px;
+        border: 1px solid #bab9b9;
+        border-radius: 4px;
+        padding: 7px 11px;
+        background-color: #303030;
+        margin: 10px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .about_spa {
+        max-width: 108px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 7px 8px;
+        background-color: #8de290;
+        margin: 10px 10px 10px 40px;
+        position: absolute;
+        bottom: 8px;
+        right: 130px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .data__delete {
+        width: 390px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 7px 11px;
+        background-color: #e57e7e;
+        margin: 20px 10px 10px 120px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .valid-value {
+        position: absolute;
+        top: 140px;
+        right: 10px;
+        color: red;
+        text-align: center;
+    }
+    .modal_about_spa {
+        display: block;
+        width: 350px;
+        max-width: 100%;
+        height: 350px;
+        max-height: 100%;
+        position: fixed;
+        z-index: 100;
+        left: 50%;
+        top: 50%;
+        border-radius: 7px;
+        padding: 17px;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 1px solid #bab9b9;
+        overflow: auto;
+    }
+    .modal_closed {
+        display: none;
+    }
+}
+
+
+
+@media all and (max-width: 666px) {
+    .app {
+        padding: 7px 7px 7px;
+        display: flex;
+        width: 375px;
+        height: auto;
+        border: 1px solid #e3e3e3;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color: #373737;
+    }
+    .motivation-page, .other-page, .statistics-page, .authorization-page {
+        height: 700px;
+    }
+    .header > a {
+        font-size: 22px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 10px;
+    }
+    .header .fa-smoking-ban {
+        font-size: 25px;
+        margin: 0 0 0 20px;
+        color: #e3e3e3;
+        transition: .3s;
+    }
+    .sum__time__stop span, .num__cigarette span, .num__money span, .free__time span {
+        font-family: 'Oxygen Mono', monospace;
+        margin-left: 10px;
+        font-size: 26px;
+    }
+    .header {
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    .state__wrap strong {
+        font-size: 15px;
+    }
+    .nicotine, .resin, .month, .year, .add__health span {
+        font-family: 'Oxygen Mono', monospace;
+        font-size: 15px;
+    }
+    .wrap__less {
+        height: 131px;
+        transition: .6s;
+        overflow: hidden;
+        position: relative;
+    }
+    .wrap__more {
+        height: 175px;
+    }
+    .state__wrap p {
+        margin: 10px 0 10px;
+        font-size: 14px;
+    }
+    .state__wrap p:last-of-type {
+        margin: 15px 0;
+        font-size: 11px;
+    }
+    h2 {
+        font-size: 18px;
+        margin: 13px 0 13px 20px;
+    }
+    .health-page h2, .statistics-page h2 {
+        margin-left: 18px;
+    }
+    .statistics-page .fa,
+    .statistics-page .fas {
+        font-size: 38px;
+        margin: 2px 0;
+        transition: .3s;
+    }
+    .statistics-page .fa-angle-double-down {
+        color: #7c7c7c;
+        font-size: 16px;
+        position: absolute;
+        bottom: 5px;
+        right: 8px;
+    }
+    .mainmenu li {
+        width: 75px;
+    }
+    .mainmenu__link {
+        display: block;
+        padding: 13px 5px;
+        color: #8f8f8f;
+        text-decoration: none;
+        font-size: 12px;
+    }
+    .header:hover .fa-smoking-ban {
+        color: #f54b4b;
+        animation: my_1;
+        animation-play-state: paused;
+    }
+    .state__wrap {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 7px 0;
+        transition: .3s;
+    }
+    .year, .month, .add__health {
+        margin-left: 15px;
+    }
+    .nicotine {
+        margin-right: 5px;
+    }
+    .description, .wind {
+        padding-top: 15px;
+        font-size: 15px;
+    }
+    .fa,
+    .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-bottom: 7px;
+        color: dodgerblue;
+        transition: .3s;
+    }
+    .mainmenu__list {
+        justify-content: center;
+        border: 1px #b5b4b4 solid;
+    }
+    #mainmenu {
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    .btn-advice, .btn-facts, .btn-chat, .btn-goals {
+        color: black;
+        max-width: 152px;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 5px;
+        background-color: #e3e3e3;
+        margin: 15px 12px 0;
+        font-size: 16px;
+        transition: .3s;
+    }
+    .btn-advice .fa-random, .btn-facts .fa-video, .btn-chat .fa-comments, .btn-futbol .fa-futbol, .btn-weather .fa-cloud-moon-rain, .btn-currency .fa-yen-sign, .btn-goals .fa-crosshairs {
+        font-size: 18px;
+        margin: 6px 0 6px 15px;
+        color: black;
+        transition: .3s;
+    }
+    .btn-chat, .btn-goals {
+        margin-bottom: 15px;
+    }
+    .advice-spa {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .chat-spa p, .advice-spa p, .facts-spa p, .goals-spa > p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .advice-spa div {
+        font-size: 17px;
+        padding: 8px;
+        line-height: 25px;
+        border: 1px solid dodgerblue;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    .facts-spa .video-fact {
+        width: 100%;
+        height: 194px;
+        padding: 0 0 15px;
+    }
+    .chat-border {
+        padding: 5px;
+        border: 1px solid dodgerblue;
+        border-radius: 7px;
+        margin: 20px 0 10px;
+        height: 338px;
+        font-size: 14px;
+    }
+    .chat-border b {
+        display: inline-block;
+        padding: 8px 10px 0 5px;
+        height: 20px;
+    }
+    .facts-spa {
+        width: auto;
+        height: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .chat-spa {
+        width: auto;
+        height: 507px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .message-chat {
+        max-width: 232px;
+        padding: 7px;
+        border: 1px solid #927b7b;
+        border-radius: 5px;
+        transition: .3s;
+    }
+    .chat-spa .fa-envelope {
+        font-size: 25px;
+        color: #5b5b5b;
+        padding: 5px;
+        margin: 0 0 0 0;
+        transition: .3s;
+    }
+    .chat-spa .fa-cloud-upload-alt {
+        font-size: 25px;
+        padding: 5px;
+        margin: 0 0 0 0;
+    }
+
+    .goals-spa {
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+    }
+    .goals-spa input {
+        margin: 10px 15px 8px 10px;
+        padding: 7px;
+        max-width: 229px;
+        background-color: #e0e5ee;
+        border: 1px solid #6cb6fd;
+        border-radius: 3px;
+    }
+    .goals__wrap {
+        font-size: 16px;
+        display: none;
+        width: auto;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 15px 0;
+        transition: .3s;
+        position: relative;
+    }
+    .state__goals__dicription {
+        font-size: 15px;
+        margin-top: 20px;
+    }
+    .state__text__goals {
+        font-size: 16px;
+        margin-right: 15px;
+    }
+    .percent {
+        margin-left: 7px;
+        font-size: 16px;
+    }
+    .goals__wrap .chart__wrap {
+        width: 225px;
+        height: 12px;
+        display: inline-block;
+        border: 1px solid #bab9b9;
+        border-radius: 3px;
+        margin-top: 13px;
+    }
+    .btn-futbol, .btn-weather {
+        color: black;
+        max-width: 99px;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 5px;
+        background-color: #e3e3e3;
+        margin: 15px 9px;
+        font-size: 16px;
+        transition: .3s;
+        text-align: center;
+    }
+    .btn-currency {
+        color: black;
+        max-width: 99px;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 5px;
+        background-color: #e3e3e3;
+        margin: 15px 9px;
+        font-size: 16px;
+        transition: .3s;
+    }
+    .futbol-league {
+        width: auto;
+        height: 350px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 10px 10px;
+        transition: .3s;
+        display: none;
+        position: relative;
+        overflow: auto;
+    }
+    .futbol-season {
+        display: none;
+        position: absolute;
+        top: 500px;
+        right: 95px;
+    }
+    .futbol-league .team {
+        font-size: 25px;
+        margin: 10px 0;
+    }
+    .futbol-league h3 {
+        font-size: 15px;
+        margin: 12px 0;
+    }
+    .futbol-league h4 {
+        margin: 15px 0;
+    }
+    .futbol-league .icon img {
+        width: 50px;
+        height: 50px;
+    }
+    .futbol-league .team-place {
+        margin: 15px 0 5px;
+        display: flex;
+        padding: 5px;
+        justify-content: center;
+        border: 1px solid #838383;
+        border-radius: 5px;
+    }
+    .futbol-league .wrap {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+    }
+    .futbol-league .stats {
+        text-align: right;
+        margin: 0 5px;
+    }
+    .logo_wrap img {
+        width: 100px;
+        height: 100px;
+    }
+    .logo_wrap {
+        margin-left: 33px;
+        width: 120px;
+        height: 92px;
+    }
+    #loader {
+        margin-top: 115px;
+    }
+    .futbol-season h3 {
+        font-size: 15px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        margin-left: 15px;
+    }
+    #forecast-now {
+        width: auto;
+        height: 280px;
+        padding: 0 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        text-align: center;
+        margin: 10px 10px;
+        transition: .3s;
+        display: none;
+        background-image: url(../img/wind-atlas.gif);
+        background-size: auto 101%;
+        background-position: -86px;
+    }
+    .btn-forecast_wrap {
+        display: none;
+        position: absolute;
+        top: 387px;
+        right: 75px;
+    }
+    .btn-forecast_wrap button {
+        width: 200px;
+        height: 40px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        background-color: #c6c6c6;
+        margin: 10px 0;
+        font-size: 16px;
+        transition: .3s;
+    }
+    #currency-exchange {
+        width: auto;
+        padding: 20px 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        margin: 10px 5px;
+        transition: .3s;
+        display: none;
+        text-align: center;
+    }
+    #currency-exchange input {
+        margin: 12px 5px 12px 5px;
+        padding: 8px;
+        max-width: 315px;
+        border: 1px solid dodgerblue;
+        border-radius: 3px;
+    }
+    .btn-add-currency {
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 12px;
+        background-color: #ef8c8c;
+        margin: 22px 25px 0 10px;
+        font-size: 15px;
+        transition: .3s;
+    }
+    #currency-exchange h3 {
+        font-size: 17px;
+        margin: 0 5px 10px 15px;
+    }
+    #currency-exchange .input__date-currency {
+        width: 155px;
+        margin: 15px 0 0 0;
+        padding: 4px;
+        border: 1px solid red;
+        border-radius: 3px;
+    }
+    .btn-clean-currency {
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 15px;
+        background-color: #64a5e5;
+        margin: 25px 5px 0 0;
+        font-size: 15px;
+        transition: .3s;
+    }
+    .user__content {
+        font-size: 18px;
+        margin: 13px 0 13px 18px;
+    }
+    .modal__content {
+        width: auto;
+        height: 680px;
+        padding: 10px 15px;
+        border: 1px solid #bab9b9;
+        border-radius: 8px;
+        transition: .3s;
+        position: relative;
+    }
+    #content .fa-user-cog {
+        color: dodgerblue;
+        font-size: 47px;
+        position: absolute;
+        top: 693px;
+        right: 140px;
+    }
+    .data__save {
+        color: #fff;
+        width: 105px;
+        border: 1px solid #bab9b9;
+        border-radius: 4px;
+        padding: 7px 11px;
+        background-color: #303030;
+        margin: 10px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .about_spa {
+        max-width: 139px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 8px;
+        background-color: #8de290;
+        margin: 10px 10px 10px 13px;
+        position: absolute;
+        bottom: 10px;
+        right: 185px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .data__delete {
+        width: 305px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 7px 11px;
+        background-color: #e57e7e;
+        margin: 80px 10px 10px 20px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .valid-value {
+        position: absolute;
+        top: 672px;
+        right: 20px;
+        color: red;
+        text-align: center;
+    }
+    .modal_about_spa {
+        display: block;
+        width: 330px;
+        max-width: 100%;
+        height: 350px;
+        max-height: 100%;
+        position: fixed;
+        z-index: 100;
+        left: 50%;
+        top: 50%;
+        border-radius: 7px;
+        padding: 17px;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 1px solid #bab9b9;
+        overflow: auto;
+    }
+    .modal_closed {
+        display: none;
+    }
+    .modal__content input:nth-of-type(1) {
+        width: 305px;
+    }
+    .modal__content input, .modal__content select {
+        margin: 8px 10px;
+        border: 1px solid #bab9b9;
+        border-radius: 3px;
+        padding: 4px;
+    }
+    .modal__content input:nth-of-type(2) {
+        width: 305px;
+    }
+    .modal__content input:nth-of-type(3) {
+        width: 305px;
+    }
+    .modal__content input:nth-of-type(4) {
+        width: 305px;
+    }
+    .modal__content input:nth-of-type(5) {
+        width: 305px;
+    }
+    .modal__content #type-city {
+        width: 305px;
+    }
+    .modal__content #type-futbol {
+        width: 305px;
+    }
+    .btn_wrap {
+        display: flex;
+        align-items: flex-end;
+        position: absolute;
+        top: 0;
+        left: 160px;
+        height: 20px;
+    }
+    input[type="checkbox"] {
+        width: 40px;
+        height: 18px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: #c6c6c6;
+        outline: none;
+        border-radius: 25px;
+        box-shadow: inset 0 0 5px rgba(0,0,0, .2);
+        transition: 0.5s;
+        position: relative;
+    }
+    input:checked[type="checkbox"] {
+        background: black;
+    }
+    input[type="checkbox"]::before {
+        content: '';
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;;
+        top: -1px;
+        left: 0;
+        background: white;
+        transform: scale(1.1);
+        box-shadow: 0 0 5px rgba(0,0,0, .2);
+        transition: 0.5s;
+        border: 1px solid #a7a7a7;
+    }
+    input:checked[type="checkbox"]::before {
+        left: 23px;
+        background: black;
+        border: 1px solid white;
+    }
+    #sound {
+        margin: 6px 75px;
+        width: 40px;
+        position: absolute;
+        top: -5px;
+    }
+    .authorization-page p {
+        margin: 30px 0 0 10px;
+    }
+    .btn_set {
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        padding: 10px 37px;
+        background-color: #bab9b9;
+        margin: 13px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: .3s;
+    }
+    #content {
+        height: auto;
+        overflow: visible;
+    }
+}
+
