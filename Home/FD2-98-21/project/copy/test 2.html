@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+    let ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php"; /* Серверный скрипт; Сервис AjaxStringStorage2 предназначен для сохранения в базе данных и получения из базы данных */
+    let messages;
+    let updatePassword;
+    let stringName = 'SASHA_RUS_BISE';
+
+
+    $.ajax(
+        {
+            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+            data : { f : 'READ', n : stringName },
+            success : readReady, error : errorHandler
+        }
+    );
+
+    function readReady(callresult) {
+        if ( callresult.error!=undefined )
+            alert(callresult.error);
+        else if ( callresult.result!="" ) {
+            var info = JSON.parse(callresult.result);
+
+            console.log(info[info.length - 1]['mess'][15])
+            console.log(info[info.length - 1]['mess'])
+        }
+    }
+
+    function errorHandler(jqXHR, statusStr, errorStr) { /* Проверка ошибки в чате */
+        alert(statusStr+' '+errorStr);
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>
