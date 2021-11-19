@@ -373,7 +373,7 @@ const SPA_Smoking = (function() {
 
         this.changeCurrency1 = function(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 1 и селектов */
 
-            let dateCurrency = selectDate.value;
+            let dateCurrency = selectDate.value; /* Устанавливаем дату */
             if (!dateCurrency) return; /* Ограничиваем ввод пустой строки */
             if (dateCurrency === dateNow) dateCurrency = 'latest';
 
@@ -383,7 +383,7 @@ const SPA_Smoking = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('первый');
-                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value * 1000) / 1000);
+                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
                 })
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
@@ -399,7 +399,7 @@ const SPA_Smoking = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('второй');
-                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value * 1000) / 1000);
+                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
                 })
                 .catch((error) => console.error("Ошибка получения валюты. Причина: " + error));
         }
@@ -616,7 +616,7 @@ const SPA_Smoking = (function() {
             myModuleView.renderAboutSpa();
         }
 
-        this.changeColorSpa = function(btnColor) { /* Изменяем высоту кнопки выбора цветовой схемы приложения */
+        this.changeColorSpa = function(btnColor) { /* Изменяем высоту КНОПКИ выбора цветовой схемы приложения */
 
             stateColorSpa = btnColor.getAttribute('class').split(' ')[1]; /* Получаем класс кнопки, делим строку на массив и получаем цвет вторым индексом массива */
             myModuleView.changeColorBtn(btnColor);
@@ -718,6 +718,8 @@ const SPA_Smoking = (function() {
             sumDay = Math.floor((timeNow - dateStopSmoking) / 1000 / 60 / 60 / 24);
         }
     }
+
+
 
 
 
@@ -1358,6 +1360,8 @@ const SPA_Smoking = (function() {
             goalsWrap.style.display = 'none';
         }
     }
+
+
 
 
 
