@@ -15,12 +15,52 @@
 		 );
 	}
 
-
 	let arrow = (a, b) => console.log(a + b);
 	arrow (21, 15)
 
    let sum = (...args) => console.log(args.reduce((m, n) => m + n, 0));
    sum (5, 6);
+
+	let numbers = [2, 3, 5, 7, 11, 13, 17];
+   let res2 = [];
+	numbers.reduce((sum, elem, index, arr) => res2[index] = sum + elem, 0);
+	console.log(res2);
+
+   const str = "Каждый охотник желает знать, где сидит фазан.";
+   console.log(str.split(' ').map(elem => elem[0]));
+
+   const startArray = [-1, 2, 3.5, -12, 4, 1.25, 16];
+   console.log(startArray.filter(elem => elem > 0 && elem % 1 === 0));
+
+   const array1 = [false, 1, 0, NaN, 2, 0, null, 3, 4, 0, 5];
+   console.log(array1.sort((a, b) => (b === 0 ? -1 : 0)));
+
+   const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+   console.log(arr1.filter(elem => elem % 2 === 0));
+
+   const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+   console.log(arr2.reduce((sum, elem) => sum + elem * elem));
+
+   const arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+   console.log(arr3.filter((elem) => elem % 2 === 0).reduce((start, elem) => elem ** 2 + start, 0));
+
+   let arr = [2, 4, 6, 9];
+   let result = arr.some(elem => elem % 2 === 0);
+   console.log(result);
+
+   let studentRecords = [ {name: 'John', id: 123, marks : 98 },
+       {name: 'Baba', id: 101, marks : 23 },
+       {name: 'yaga', id: 200, marks : 45 },
+       {name: 'Wick', id: 115, marks : 75 } ];
+   console.log(studentRecords.filter(elem => elem.marks > 50 && elem.id > 120));
+   console.log(studentRecords.reduce((start, elem) => elem.marks + start, 0));
+   console.log(studentRecords.filter(elem => elem.marks > 50).map(elem => elem.name));
+   console.log(studentRecords.map(elem => elem.marks += 15));
+   console.log(studentRecords.filter(elem => elem.marks > 50).reduce((start, elem) => elem.marks + start, 0));
+
+
+
+   
 
 
 </script>
