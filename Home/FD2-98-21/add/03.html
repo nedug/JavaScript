@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+	<button>0</button>
+	<button>0</button>
+	<button>0</button>
+
+	<script>
+
+      "use strict";
+
+		const btns = document.querySelectorAll('button');
+
+      /* Мой вариант */
+		for (let i = 0; i < btns.length; i++) {
+
+          let count = 0;
+
+		    btns[i].addEventListener('click', function (e) {
+              e.target.innerHTML = ++count;
+              // btns[i].innerHTML = ++count;
+			 })
+		}
+
+
+		/* Домашка Юрия */
+      for (let i = 0; i < btns.length; i++) {
+
+          let count = trigger();
+
+          btns[i].addEventListener('click', function() {
+              btns[i].innerHTML = count();
+      	 })
+      }
+
+      function trigger() {
+
+          let count = 0;
+
+          return function() {
+              return ++count;
+			 }
+		}
+
+
+
+
+
+	</script>
+
+</body>
+</html>
