@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.45);
   color: white;
 }
 
@@ -8,9 +8,12 @@ h1 {
 }
 
 h2 {
-  color: yellow;
+  color: red;
+  margin: 10px;
 }
-
 h2 + p {
   color: lightgreen;
+}
+h3 {
+  color: black;
 }

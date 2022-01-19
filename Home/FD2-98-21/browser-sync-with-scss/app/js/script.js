@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('--=( Hello from console!!! )=--');
+  console.log('Привет, я Sasha!');
 });
