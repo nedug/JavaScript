@@ -1,0 +1,16 @@
+body {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+h1 {
+  color: cyan;
+}
+
+h2 {
+  color: yellow;
+}
+
+h2 + p {
+  color: lightgreen;
+}

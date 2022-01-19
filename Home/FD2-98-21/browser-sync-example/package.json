@@ -1,0 +1,12 @@
+{
+  "name": "browser-sync-server",
+  "version": "0.0.1",
+  "description": "Server example",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}
