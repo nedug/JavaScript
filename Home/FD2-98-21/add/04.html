@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+	<p><h1><strong>привет</strong></h1></p>
+
+<script>
+
+// 'use strict';
+
+
+	 if (5) {
+
+       function lol() {
+
+           console.log('внутренняя функция');
+       }
+
+	}
+
+    // lol();
+
+
+
+
+
+	 try {
+	     let x;
+        x = parseInt('y') + 56;
+        console.log(x);
+	 }
+	 catch (e) {
+        console.log(e.type);
+	 }
+
+
+
+	 class Car {
+
+	     constructor(x) {
+	         this.color = x;
+        }
+
+        beep() {
+	         console.log(this.color);
+		  }
+
+
+
+    }
+
+	 // function Car1(x) {
+	 //     this.color = x;
+	 //
+	 //     this.beep = function() {
+    //         console.log(this.color);
+		//   }
+	 // }
+
+	function Car1(x) {
+		 this.color = x;
+
+	}
+
+	Car1.prototype.beep = function() {
+		 console.log(this.color);
+	}
+
+
+
+
+	 let audi = new Car('black');
+
+	let bmb = new Car1('white');
+
+
+	 console.log(Object.keys(audi));
+	 console.log(Object.values(audi));
+	 console.log(Object.entries(audi));
+
+	 console.log(Object.getOwnPropertyNames(audi));
+
+
+	console.log(Object.keys(bmb));
+	console.log(Object.values(bmb));
+	console.log(Object.entries(bmb));
+
+	console.log(Object.getOwnPropertyNames(bmb));
+
+	for (let key in audi) {
+	    console.log(key);
+	}
+
+	for (let key in bmb) {
+		 console.log(key);
+	}
+
+
+
+
+
+</script>
+
+</body>
+</html>
