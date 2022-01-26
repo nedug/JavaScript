@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		 * {
+           margin: 0;
+           padding: 0;
+			  box-sizing: border-box;
+		 }
+		.first {
+          height: 150px;
+			 background-color: yellowgreen;
+		}
+      .second {
+          height: 500px;
+			 position: relative;
+          /*background-color: yellowgreen;*/
+      }
+      .third {
+          height: 1000px;
+          background-color: #a57159;
+      }
+      .sticky {
+          height: 100px;
+          background-color: #5596db;
+			 /*position: sticky;*/
+			 /*top: 0;*/
+      }
+		.fixed {
+          position: fixed;
+          top: 0;
+			 width: 100%;
+		}
+       .absolute {
+           position: absolute;
+           bottom: 0;
+           width: 100%;
+       }
+	</style>
+</head>
+<body>
+
+	<div class="first"></div>
+	<div class="second">
+		<p class="sticky"></p>
+		<p>
+			<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum optio quasi qui quisquam ratione. Consectetur corporis deleniti dolor dolores dolorum eius fugiat illum ipsum maiores, neque possimus repudiandae vitae voluptas?</span><span>A alias, amet blanditiis enim harum mollitia nam, nesciunt nulla possimus qui quod sit totam, voluptatem? Commodi consequuntur maxime perspiciatis? Aliquam dolorum ex impedit iure nemo praesentium provident quos similique!</span><span>Labore repellendus tempore veritatis. Accusamus ex laudantium quibusdam tempore? Consectetur earum eos necessitatibus, perspiciatis placeat sequi. Autem dolor illo nostrum, optio possimus praesentium quod repellat, sed sint tempore, temporibus vero.</span><span>Ab fugit laborum nulla quam saepe. Corporis debitis eveniet nostrum odit optio quidem reprehenderit saepe. Ad ex, iste minus nesciunt nisi perspiciatis quam quidem, repellendus soluta ullam ut voluptas voluptates?</span><span>Eum in magnam maxime sint temporibus? Aliquid aperiam asperiores aspernatur consequatur est eum fugiat inventore ipsa labore maxime natus, nihil perspiciatis quae quis quod reprehenderit sapiente tempore totam voluptas voluptatum.</span><span>Accusantium amet beatae blanditiis consectetur corporis cupiditate delectus deleniti distinctio dolor doloremque earum enim fugit iure labore laborum minima molestiae molestias porro quas quos, sapiente, suscipit, ut velit voluptate voluptatum.</span><span>A aperiam autem cum deserunt, dolorem eligendi est expedita in ipsa nihil placeat possimus quae quasi ratione rem similique voluptatem! Atque ex id, magni minima quo rerum sit vitae. Distinctio!</span><span>At consectetur, delectus exercitationem illo, illum inventore ipsa iure nemo obcaecati pariatur porro praesentium sequi sint suscipit voluptatum? Ad asperiores, at corporis cupiditate facere laudantium molestias mollitia provident sit suscipit!</span><span>Adipisci delectus dolore ducimus et neque, quia repellendus sed sint? Aliquid architecto cumque dolorum eaque, mollitia odit quod saepe totam! Atque deserunt dolorum fugit illum? Nemo omnis quia recusandae reiciendis.</span><span>Aspernatur aut cum deserunt et impedit, iste itaque labore nemo non perspiciatis. Doloremque dolorum, earum illum magni maiores modi mollitia perferendis provident qui quidem quisquam reprehenderit, similique suscipit tempora vitae.</span></p>
+	</div>
+	<div class="third"></div>
+
+
+	<script>
+
+		let sticky = document.body.querySelector('.sticky');
+
+
+		window.addEventListener('scroll', scrollHandler);
+
+		function scrollHandler() {
+
+			 // if (sticky.getBoundingClientRect().top < 0) {
+          //     sticky.classList.add('fixed');
+			 // }
+			 //
+          // if (sticky.parentElement.getBoundingClientRect().bottom < sticky.scrollHeight) {
+          //     sticky.classList.remove('fixed');
+          //     sticky.classList.add('absolute');
+          // }
+          // else {
+          //     sticky.classList.remove('absolute');
+			 // }
+          // if (sticky.parentElement.getBoundingClientRect().top > sticky.scrollHeight) {
+          //     sticky.classList.remove('fixed');
+          // }
+
+			 if (document.documentElement.scrollTop > sticky.parentElement.previousElementSibling.scrollHeight) {
+              sticky.classList.add('fixed');
+              sticky.classList.remove('absolute');
+			 }
+			 else {
+              sticky.classList.remove('fixed');
+          }
+			 if (document.documentElement.scrollTop > (sticky.parentElement.previousElementSibling.scrollHeight + sticky.parentElement.scrollHeight - sticky.scrollHeight)) {
+              sticky.classList.remove('fixed');
+              sticky.classList.add('absolute');
+			 }
+
+
+
+
+
+		}
+
+
+
+	</script>
+
+
+</body>
+</html>
