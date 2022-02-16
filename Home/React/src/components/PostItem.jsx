@@ -1,19 +1,25 @@
 import React from 'react';
+import MyButton from "./UI/button/MyButton";
 
-const PostItem = ({post}) => {
+const PostItem = ({post, index, remove}) => {
 
-    // console.log(props.post);
+    const removeCurrentPost = () => {
+        remove(post); /* Удалем текущий пост */
+    }
 
     return (
         <div className="post">
             <div className="post__content">
-                <strong>{post.id}. {post.title}</strong>
+                <strong>{index + 1}. {post.title}</strong>
                 <div>
                     {post.body}
                 </div>
             </div>
             <div className="post__btns">
-                <button>Удалить</button>
+                <MyButton
+                    onClick={removeCurrentPost}>
+                        Удалить
+                </MyButton>
             </div>
         </div>
     );
