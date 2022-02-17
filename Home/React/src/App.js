@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import Counter from "./components/Counter";
 import ClassCounter from "./components/ClassCounter";
 import  "./styles/App.css";
@@ -10,35 +10,28 @@ import PostForm from "./components/PostForm";
 import NewSelect from "./components/UI/select/NewSelect";
 import PostFilter from "./components/PostFilter";
 import MyModal from "./components/UI/MyModal/MyModal";
+import {usePosts} from "./components/hooks/usePosts";
+import axios from "axios";
+import PostService from "./components/API/PostService";
+import Loader from "./components/UI/Loader/Loader";
+import {useFetching} from "./components/hooks/useFetching";
+
 
 const App = () => {
 
-    const [posts, setPosts] = useState([ /* Хук СОСТОЯНИЯ - Список постов */
-        {id: 1, title: 'JavaScriptt 1.', body: 'Yescription 1'},
-        {id: 2, title: 'PavaScriptt 2', body: 'Gescription 2'},
-        {id: 3, title: 'BavaScript 3', body: 'Lescription 3'},
-        ]);
-
-    // const [selectSort, setSelectSort] = useState(''); /* Хук СОСТОЯНИЯ - селект СОРТИРОВКИ */
-    // const [inputSearch, setInputSearch] = useState(''); /* Хук СОСТОЯНИЯ - инпут ПОИСКА */
-
+    const [posts, setPosts] = useState([]); /* Хук СОСТОЯНИЯ - Список постов */
     const [filter, setFilter] = useState({sort: '', search: ''}); /* ОБЩИЙ Хук СОСТОЯНИЙ - селект СОРТИРОВКИ и инпут ПОИСКА */
+    const [modal, setModal] = useState(false); /* Хук МОДАЛЬНОГО ОКНА */
+    const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search); /* Пользовательский ХУК сортировки и поиска */
 
-    const [modal, setModal] = useState(false);
+    const [fetchPosts, postIsLoad, postError] = useFetching(async () => { /* Для получения данных и обработки ошибок */
+        const fetchPosts = await PostService.getAll();
+        setPosts(fetchPosts);
+    })
 
-    const sortedPost = useMemo(() => { /* Используется для кэширования, МЕМОИЗАЦИИ сортировки ПОСТОВ */
-        // console.log('memo');
-
-        if (filter.sort) {
-            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort])); /* Сортировка списка постов по названию и описанию */
-        }
-        return posts;
-    }, [filter.sort, posts]);
-
-
-    const sortAndSearchPosts = useMemo(() => { /* Используется для кэширования, МЕМОИЗАЦИИ поиска по сортированным ПОСТам */
-        return sortedPost.filter(elem => elem.title.toLowerCase().includes(filter.search.toLowerCase()));
-    }, [filter.search, sortedPost]);
+    useEffect(() => { /* Хук для получения данных при монтировании, вызовется только один раз */
+        fetchPosts();
+    }, []);
 
 
     const createPost = (newPost) => {
@@ -52,24 +45,20 @@ const App = () => {
     }
 
 
-    // const sortPosts = (sort) => {
-    //     setSelectSort(sort);
-    //     SetFilter({...filter, sort})
-    // }
-
-
     return (
         <div className='App'>
+
             <MyButton
                 style={{marginTop: 15}}
-                onClick={() => setModal(true)}>
-                    Создать новый пост
+                onClick={() => setModal(true)}
+            >
+                Создать новый пост
             </MyButton>
 
             <MyModal
                 visible={modal}
-                setVisible={setModal} >
-
+                setVisible={setModal}
+            >
                 <PostForm create={createPost} /> {/* Передаем callback, чтобы вызвать его внутри компонента */}
             </MyModal>
 
@@ -77,13 +66,24 @@ const App = () => {
 
             <PostFilter
                 filter={filter}
-                setFilter={setFilter} />
+                setFilter={setFilter}
+            />
 
+            {(postError && <h1>Произошла ошибка - {postError}!</h1>)
 
-            <PostList
-                posts={sortAndSearchPosts}
-                title={'Посты про JS'}
-                remove={removePost} />
+            ||
+
+            (postIsLoad
+                ? <div style={{display: 'flex', justifyContent: 'center', margin: 50}} >
+                    <Loader />
+                </div>
+                : <PostList
+                    posts={sortAndSearchPosts}
+                    title={'Посты про JS'}
+                    remove={removePost}
+                />
+            )}
+
         </div>
     );
 };
