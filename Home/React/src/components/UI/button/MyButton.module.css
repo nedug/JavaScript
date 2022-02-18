@@ -6,3 +6,8 @@
     border: 1px solid teal;
     margin: 5px 0;
 }
+
+.MyBtn__active {
+    background-color: #eec252;
+    border: 1px solid #020202;
+}

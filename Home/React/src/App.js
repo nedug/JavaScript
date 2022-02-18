@@ -15,6 +15,8 @@ import axios from "axios";
 import PostService from "./components/API/PostService";
 import Loader from "./components/UI/Loader/Loader";
 import {useFetching} from "./components/hooks/useFetching";
+import {getPagesArray, getPagesCount} from "./utils/pages";
+import Pagination from "./components/pagination/Pagination";
 
 
 const App = () => {
@@ -23,14 +25,23 @@ const App = () => {
     const [filter, setFilter] = useState({sort: '', search: ''}); /* ОБЩИЙ Хук СОСТОЯНИЙ - селект СОРТИРОВКИ и инпут ПОИСКА */
     const [modal, setModal] = useState(false); /* Хук МОДАЛЬНОГО ОКНА */
     const sortAndSearchPosts = usePosts(posts, filter.sort, filter.search); /* Пользовательский ХУК сортировки и поиска */
+    const [totalPages, setTotalPages] = useState(0); /* Общее количество страниц */
+    const [limit, setLimit] = useState(10); /* Лимит постов */
+    const [page, setPage] = useState(1); /* Страницы для постов */
 
-    const [fetchPosts, postIsLoad, postError] = useFetching(async () => { /* Для получения данных и обработки ошибок */
-        const fetchPosts = await PostService.getAll();
-        setPosts(fetchPosts);
+
+
+    const [fetchPosts, postIsLoad, postError] = useFetching(async (limit, page) => { /* Для получения данных и обработки ошибок */
+        const response = await PostService.getAll(limit, page);
+        setPosts(response.data);
+
+        const totalCountPosts = response.headers['x-total-count'];
+        setTotalPages(getPagesCount(totalCountPosts, limit));
     })
 
+
     useEffect(() => { /* Хук для получения данных при монтировании, вызовется только один раз */
-        fetchPosts();
+        fetchPosts(limit, page);
     }, []);
 
 
@@ -42,6 +53,13 @@ const App = () => {
 
     const removePost = (delPost) => {
         setPosts(posts.filter((elem) => elem.id !== delPost.id)); /* Создаем новый массив, без переданного элемента */
+
+    }
+
+
+    const changePage = (page) => {
+        setPage(page);
+        fetchPosts(limit, page);
     }
 
 
@@ -70,9 +88,7 @@ const App = () => {
             />
 
             {(postError && <h1>Произошла ошибка - {postError}!</h1>)
-
             ||
-
             (postIsLoad
                 ? <div style={{display: 'flex', justifyContent: 'center', margin: 50}} >
                     <Loader />
@@ -83,6 +99,12 @@ const App = () => {
                     remove={removePost}
                 />
             )}
+
+            <Pagination
+                totalPages={totalPages}
+                page={page}
+                changePage={changePage}
+            />
 
         </div>
     );

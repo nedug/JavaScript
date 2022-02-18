@@ -10,7 +10,7 @@ const PostItem = ({post, index, remove}) => {
     return (
         <div className="post">
             <div className="post__content">
-                <strong>{index + 1}. {post.title}</strong>
+                <strong>{post.id}. {post.title}</strong>
                 <div>
                     {post.body}
                 </div>
