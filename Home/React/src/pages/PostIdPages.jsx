@@ -52,11 +52,7 @@ const PostIdPages = () => {
                         </div>
                     )
 
-                    }</div>
-
-
-
-                    // : <div>{comment.name}. {comment.email}</div>
+                    } </div>
                 }
             </div>
 
