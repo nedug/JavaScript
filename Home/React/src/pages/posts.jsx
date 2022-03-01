@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {usePosts} from "../components/hooks/usePosts";
 import {useFetching} from "../components/hooks/useFetching";
 import PostService from "../components/API/PostService";
@@ -10,6 +10,9 @@ import PostFilter from "../components/PostFilter";
 import Loader from "../components/UI/Loader/Loader";
 import PostList from "../components/PostList";
 import Pagination from "../components/pagination/Pagination";
+import {useObserver} from "../components/hooks/useObserver";
+import NewSelect from "../components/UI/select/NewSelect";
+
 
 const Posts = () => {
     const [posts, setPosts] = useState([]); /* Хук СОСТОЯНИЯ - Список постов */
@@ -19,21 +22,25 @@ const Posts = () => {
     const [totalPages, setTotalPages] = useState(0); /* Общее количество страниц */
     const [limit, setLimit] = useState(10); /* Лимит постов */
     const [page, setPage] = useState(1); /* Страницы для постов */
-
+    const lastElem =  useRef();
 
 
     const [fetchPosts, postIsLoad, postError] = useFetching(async (limit, page) => { /* Для получения данных и обработки ошибок */
         const response = await PostService.getAll(limit, page);
-        setPosts(response.data);
+        setPosts([...posts, ...response.data]);
 
         const totalCountPosts = response.headers['x-total-count'];
         setTotalPages(getPagesCount(totalCountPosts, limit));
-    })
+    });
 
+
+    useObserver(lastElem, page < totalPages, postIsLoad, () => {
+        setPage(page + 1);
+    })
 
     useEffect(() => { /* Хук для получения данных при монтировании, вызовется только один раз */
         fetchPosts(limit, page);
-    }, []);
+    }, [page, limit]);
 
 
     const createPost = (newPost) => {
@@ -44,13 +51,11 @@ const Posts = () => {
 
     const removePost = (delPost) => {
         setPosts(posts.filter((elem) => elem.id !== delPost.id)); /* Создаем новый массив, без переданного элемента */
-
     }
 
 
     const changePage = (page) => {
         setPage(page);
-        fetchPosts(limit, page);
     }
 
 
@@ -78,18 +83,35 @@ const Posts = () => {
                 setFilter={setFilter}
             />
 
-            {(postError && <h1>Произошла ошибка - {postError}!</h1>)
-            ||
-            (postIsLoad
-                    ? <div style={{display: 'flex', justifyContent: 'center', margin: 50}} >
+            <NewSelect
+                value={limit}
+                onChange={value => setLimit(value)}
+                defaultValue={'Кол. элементов на странице'}
+                options={[
+                    {value: 5, name: '5'},
+                    {value: 10, name: '10'},
+                    {value: 25, name: '25'},
+                    {value: -1, name: 'Показать все'},
+                ]}
+            />
+
+            {postError &&
+                <h1>Произошла ошибка - {postError}!</h1>
+            }
+
+            <PostList
+                posts={sortAndSearchPosts}
+                title={'Посты про JS'}
+                remove={removePost}
+            />
+
+            <div style={{height: 20, background: 'red'}} ref={lastElem}> </div>
+
+            {postIsLoad &&
+                    <div style={{display: 'flex', justifyContent: 'center', margin: 50}} >
                         <Loader />
                     </div>
-                    : <PostList
-                        posts={sortAndSearchPosts}
-                        title={'Посты про JS'}
-                        remove={removePost}
-                    />
-            )}
+            }
 
             <Pagination
                 totalPages={totalPages}
@@ -102,3 +124,4 @@ const Posts = () => {
 };
 
 export default Posts;
+
