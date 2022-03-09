@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+	let tree = [
+		 {
+		     v: 5,
+			  c: [
+					{
+					    v: 2,
+						 c: [
+							  {
+							      v: 10
+							  }
+						 ]
+					},
+
+               {
+                   v: 3,
+                   c: [
+                       {
+                           v: 1
+                       },
+                       {
+                           v: 4,
+                           c: [
+                               {
+                                   v: 8
+                               }
+                           ]
+                       }
+                   ]
+               }
+
+			  ]
+		 }
+	]
+
+
+	function sumSummit(tree) {
+
+	    let sum = 0;
+	    const stack = [];
+
+	    tree.forEach(node => {
+           sum += node.v;
+           stack.push(node)
+		 })
+
+		 while (stack.length) {
+	        let node = stack.pop();
+
+	        if (node.c) {
+
+	            node.c.forEach(child => {
+                   sum += child.v;
+                   stack.push(child)
+					})
+			  }
+
+		 }
+
+		 // console.log(stack)
+		 console.log(sum)
+
+	}
+
+   sumSummit(tree)
+
+
+
+
+   function sumSummitRec(tree) {
+
+       let sum = 0;
+
+       tree.forEach(node => {
+           sum += node.v;
+
+           if (!node.c) return;
+
+           sum += sumSummitRec(node.c)
+       })
+
+       return sum
+
+   }
+
+   console.log(sumSummitRec(tree))
+
+
+</script>
+
+</body>
+</html>
