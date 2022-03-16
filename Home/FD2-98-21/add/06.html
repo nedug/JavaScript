@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+    const sum = (a) => {
+
+        console.log(a)
+
+        return (b) => {
+            return sum(a + b)
+        }
+    }
+
+    sum(5)(10)(1)(2)
+
+    /*---------------------------*/
+
+    let obj1 = {
+        foo: 'foo',
+        bar: 'bar',
+        coo: undefined
+    }
+
+    let obj2 = {
+        bar: '111',
+        some: 'some',
+        coo: 52
+    }
+
+    const upObject = (a, b) => {
+
+        for (const obj1Key in a) {
+
+            if (b.hasOwnProperty(obj1Key)) {
+
+                a[obj1Key] = b[obj1Key];
+            }
+        }
+
+        console.log(a)
+    }
+
+    upObject(obj1, obj2)
+
+
+    const upObject2 = (a, b) => {
+
+        const key1 = Object.keys(a)
+        const key2 = Object.keys(b)
+
+        for (const ob1 of key1) {
+
+            if (key2.includes(ob1)) {
+
+                a[ob1] = b[ob1];
+            }
+        }
+
+        console.log(a)
+
+    }
+
+    upObject2(obj1, obj2)
+
+
+    /*---------------------------*/
+
+
+    let arr1 = [6.1, 4.2, 6.3, 6.5, 5.9];
+    const callback = Math.floor;
+
+    const group = (arr, callback) => {
+
+        const result = {};
+
+        arr.forEach(item => {
+
+            let keyOb = callback(item);
+
+            if (!result[keyOb]) {
+
+                result[keyOb] = [item];
+            } else {
+
+                result[keyOb] = [...result[keyOb], item]
+            }
+
+
+        })
+
+        console.log(result)
+
+    }
+
+    group(arr1, callback)
+
+
+    /*---------------------------*/
+
+
+</script>
+
+</body>
+</html>
