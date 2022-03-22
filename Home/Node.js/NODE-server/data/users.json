@@ -1,6 +1,0 @@
-[
-  {"id":1, "username":"Lena", "email":"lena@companyname.com", "job":"tester"},
-  {"id":2, "username":"Artem", "email":"artem@companyname.com", "job":"backend developer"},
-  {"id":3, "username":"Pasha", "email":"pasha@companyname.com", "job":"frontend developer"},
-  {"id":4, "username":"Masha", "email":"masha@companyname.com", "job":"designer"}
-]
