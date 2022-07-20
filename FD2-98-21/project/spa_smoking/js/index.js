@@ -1597,17 +1597,23 @@ const SPA_Smoking = (function() {
             const selectCurrency2 = myModuleContainer.querySelector('#currency-exchange #currency-2');
             selectCurrency2.addEventListener('click', inputHandler1); /* Слушатель событий на клик по 2 селекту */
             const selectDate = myModuleContainer.querySelector('#currency-exchange .input__date-currency');
-            selectDate.addEventListener('input', inputHandler1);
+            selectDate.addEventListener('input', inputHandler3);
 
-            function inputHandler1() {
-                this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
-
+            function inputHandler1(e) {
+                if (e.type === 'input') {
+                    this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
+                }
                 myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
 
-            function inputHandler2() {
-                this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
+            function inputHandler3() {
+                myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
+            }
 
+            function inputHandler2(e) {
+                if (e.type === 'input') {
+                    this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
+                }
                 myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
 
