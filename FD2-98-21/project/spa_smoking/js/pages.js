@@ -1,8 +1,8 @@
 const LoginWeb = {
-  id: "login",
-  title: "Авторизация пользователя",
-  render: (className = "container") => {
-    return `
+    id: 'login',
+    title: 'Авторизация пользователя',
+    render: (className = 'container') => {
+        return `
       <section class="${className}">
       
         <h3 class="user__content">Дорогой пользователь, введите ваши данные!</h3>
@@ -93,15 +93,15 @@ const LoginWeb = {
         
       </section>
     `;
-  }
+    }
 };
 
 
 const Options = {
-  id: "login",
-  title: "Настройки пользователя",
-  render: (className = "container", {userName, userNumCigarette, userCostCigarette, userDate, cigarettesInBlock}) => {
-    return `
+    id: 'login',
+    title: 'Настройки пользователя',
+    render: (className = 'container', {userName, userNumCigarette, userCostCigarette, userDate, cigarettesInBlock}) => {
+        return `
       <section class="${className}">
       
         <h3 class="user__content">Изменить данные пользователя:</h3>
@@ -194,15 +194,15 @@ const Options = {
         
       </section>
     `;
-  }
+    }
 };
 
 
 const Statistics = {
-  id: "statistics",
-  title: "Основная статистика",
-  render: (className = "container", {userName}) => {
-    return `
+    id: 'statistics',
+    title: 'Основная статистика',
+    render: (className = 'container', {userName}) => {
+        return `
       <section class="${className}">
       
         <h2>Отлично держитесь, ${userName}:</h2>
@@ -241,15 +241,15 @@ const Statistics = {
                
       </section>
     `;
-  }
+    }
 };
 
 
 const Health = {
-  id: "health",
-  title: "Состояние здоровья пользователя",
-  render: (className = "container", ...rest) => {
-    return `
+    id: 'health',
+    title: 'Состояние здоровья пользователя',
+    render: (className = 'container', ...rest) => {
+        return `
       <section class="${className}">
       
         <h2>Состояние здоровья и самочувствие:</h2>
@@ -296,15 +296,15 @@ const Health = {
            
       </section>
     `;
-  }
+    }
 };
 
 
 const Motivation = {
-  id: "motivation",
-  title: "Мотивация и поддержка",
-  render: (className = "container", {userName}) => {
-    return `
+    id: 'motivation',
+    title: 'Мотивация и поддержка',
+    render: (className = 'container', {userName}) => {
+        return `
       <section class="${className}">
       
         <button id="btn-advice" class="btn-advice">Советы <i class="fas fa-random"></i></button>
@@ -348,15 +348,15 @@ const Motivation = {
         
       </section>
     `;
-  }
+    }
 };
 
 
 const Other = {
-  id: "other",
-  title: "Полезная информация",
-  render: (className = "container", ...rest) => {
-    return `
+    id: 'other',
+    title: 'Полезная информация',
+    render: (className = 'container', ...rest) => {
+        return `
       <section class="${className}">
       
         <button id="btn-futbol" class="btn-futbol">Футбол<i class="fas fa-futbol"></i></button>
@@ -386,7 +386,7 @@ const Other = {
         
         <div id="currency-exchange">
           <h3>Онлайн конвертер валют на <input type="date" class="input__date-currency"></h3>
-          <input type="number" class="input_sum-currency" value="1">
+          <input type="text" class="input_sum-currency" value="1">
           <select id="currency-1">
               <option value="byn">BYN</option>
               <option value="usd">USD</option>
@@ -396,7 +396,7 @@ const Other = {
               <option value="uah">UAH</option>
               <option value="btc">BTC</option>
            </select><br>
-          <input type="number" class="input_res-currency" value="1">
+          <input type="text" class="input_res-currency" value="1">
           <select id="currency-2">
               <option value="usd">USD</option>
               <option value="byn">BYN</option>
@@ -435,15 +435,15 @@ const Other = {
         
       </section>
     `;
-  }
+    }
 };
 
 
 const ErrorPage = {
-  id: "error",
-  title: "warning",
-  render: (className = "container", ...rest) => {
-    return `
+    id: 'error',
+    title: 'warning',
+    render: (className = 'container', ...rest) => {
+        return `
       <section class="${className}">
       
         <h2>Ошибка 404</h2>
@@ -451,15 +451,15 @@ const ErrorPage = {
       
       </section>
     `;
-  }
+    }
 };
 
 
 const AuthorPage = {
-  id: "authorization",
-  title: "Требуется авторизация",
-  render: (className = "container", ...rest) => {
-    return `
+    id: 'authorization',
+    title: 'Требуется авторизация',
+    render: (className = 'container', ...rest) => {
+        return `
       <section class="${className}">
       
         <h2>Необходима авторизация пользователя!</h2>
@@ -467,5 +467,5 @@ const AuthorPage = {
         
       </section>
     `;
-  }
+    }
 };
