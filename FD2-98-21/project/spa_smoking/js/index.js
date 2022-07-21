@@ -381,7 +381,7 @@ const SPA_Smoking = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('первый');
-                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value.replace(/\D/g, '') * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
+                    myModuleView.renderCurrencyInput1(Math.round(data[selectCurrency2.value] * inputCurrency1.value * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
                 })
                 .catch((error) => console.error('Ошибка получения валюты. Причина: ' + error));
         }
@@ -397,7 +397,7 @@ const SPA_Smoking = (function() {
                 .then((response) => response.json())
                 .then((data) => {
                     // console.log('второй');
-                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value.replace(/\D/g, '') * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
+                    myModuleView.renderCurrencyInput2(Math.round(data[selectCurrency1.value] * inputCurrency2.value * 1000) / 1000); /* Получаем курс, умножаем на нужное количество денег, ограничиваем знаки после запятой до 3 */
                 })
                 .catch((error) => console.error('Ошибка получения валюты. Причина: ' + error));
         }
@@ -1011,13 +1011,15 @@ const SPA_Smoking = (function() {
         this.renderCurrencyInput1 = function(resultCurrency) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 1 и селектов */
 
             const inputCurrency2 = myModuleContainer.querySelector('#currency-exchange .input_res-currency');
-            inputCurrency2.value = Number(resultCurrency).toLocaleString('ru');
+            // inputCurrency2.value = Number(resultCurrency).toLocaleString('ru');
+            inputCurrency2.value = resultCurrency;
         }
 
         this.renderCurrencyInput2 = function(resultCurrency) { /* Подсчет ОБМЕНА ВАЛЮТ при изменении инпута 2 */
 
             const inputCurrency1 = myModuleContainer.querySelector('#currency-exchange .input_sum-currency');
-            inputCurrency1.value = Number(resultCurrency).toLocaleString('ru');
+            // inputCurrency1.value = Number(resultCurrency).toLocaleString('ru');
+            inputCurrency1.value = resultCurrency;
         }
 
         this.renderCleanCurrency = function() { /* Очищаем инпуты ввода валюты */
@@ -1600,10 +1602,13 @@ const SPA_Smoking = (function() {
             selectDate.addEventListener('input', inputHandler3);
 
             function inputHandler1(e) {
-                if (e.type === 'input') {
-                    this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
-                }
+                // if (e.type === 'input') {
+                //     let parts = this.value.toString().split(".");
+                //     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                //     this.value = parts.join(".");
+                // }
                 myModuleModel.changeCurrency1(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
+
             }
 
             function inputHandler3() {
@@ -1611,9 +1616,14 @@ const SPA_Smoking = (function() {
             }
 
             function inputHandler2(e) {
-                if (e.type === 'input') {
-                    this.value = Number(this.value.replace(/\D/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
-                }
+                // if (e.type === 'input') {
+                //
+                //     let parts = this.value.toString().split(".");
+                //     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                //     this.value = parts.join(".");
+                //
+                //     // this.value = Number(this.value.replace(/\B(?=(\d{3})+(?!\d))/g, '')).toLocaleString('ru'); /* Конвертация числа с пробелами в тысячи */
+                // }
                 myModuleModel.changeCurrency2(inputCurrency1, inputCurrency2, selectCurrency1, selectCurrency2, selectDate);
             }
 
