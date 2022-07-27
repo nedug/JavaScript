@@ -1,10 +1,26 @@
-##  JavaScript SPA "No Smoking"
+#  JavaScript SPA 'No Smoking'
 
-Web application (SPA) that helps the user quit smoking.
+***
+
+Web application (SPA) helps the user quit smoking:
+* registering and saving a user with localStorage
+* introduction of personal data
+* no smoking statistics section
+* user health statistics section
+* motivation section (advice, video, online chat, goals)
+* additional information section (obtaining up-to-date weather data, currency exchange, football)
+* city settings, football club selection, app sounds and color scheme
+* responsive design for mobile devices
+
+***
+
 ```
 Technologies and libraries in development:
-
-Native JavaScript, OOP, MVC, Fetch, rest API, localStorage, Database, etc
+- Native JavaScript
+- OOP
+- MVC
+- Fetch + rest API + Database
+- localStorage
 ```
 
 ***
